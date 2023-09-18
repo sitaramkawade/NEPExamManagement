@@ -12,6 +12,13 @@ use App\Http\Controllers\Student\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
  
+
+Route::get('/student/home', function(){
+    $activeexamDate=null;//ExamPatternclass::where('launch_status','1')->orderBy('id','desc')->paginate(9);
+    //dd($activeexamDate);
+     return view('student.dashboard.welcome',compact('activeexamDate'));
+ });
+ 
 Route::group(['prefix'=>'student'],function (){
     Route::middleware('guest:student')->group(function () {
         Route::get('register', [RegisteredUserController::class, 'create'])
