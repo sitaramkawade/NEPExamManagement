@@ -1,4 +1,5 @@
-<x-guest-layout>
+<x-newstudent-layout>
+    <div class="w-full sm:max-w-sm mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
     <form method="POST" action="{{ route('student.register') }}">
         @csrf
 
@@ -49,4 +50,5 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+    </div>
+</x-newstudent-layout>

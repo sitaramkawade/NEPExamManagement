@@ -12,20 +12,31 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
-    
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 
-   
+
 </head>
 
 
-<body class="antialiased ">
+<body class="antialiased  ">
 
 
-    <div class="min-h-screen  overflow-hidden flex relative ">
+    <div class="  overflow-hidden  relative " x-data="{ open: true }">
 
-        <aside class=" w-72   bg-gray-700 hidden    md:block   ">
+       <div class="flex min-h-screen">
+        <aside   x-show="open"
+       
+        x-transition:enter="transition-transform transition-opacity ease-in duration-100"
+        x-transition:enter-start="opacity-100 transform translate-x-0"
+        x-transition:enter-end="opacity-100 transform translate-y-0"
+        x-transition:leave="transition ease-in duration-100"
+        x-transition:leave-end="opacity-100 transform -translate-x-0"
+     
+        
+        
+        class=" w-72   bg-gray-700 hidden    md:block         ">
 
 
 
@@ -46,7 +57,7 @@
             </div>
 
 
-            <nav  class="  pb-4 ">
+            <nav class="  pb-4 ">
 
                 <a class=" mx-1   flex flex-inline px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                     href="studhome">
@@ -58,12 +69,12 @@
                     </svg> Dashboard
                 </a>
 
-                
+
 
                 <a class=" mx-1 flex flex-inline px-4 py-2 mt-2 text-sm font-semibold text-gray-200 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                    href="student-login">
-                    <span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
+                href="{{route('student.login')}}">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                         </svg></span>
@@ -71,7 +82,7 @@
                 </a>
 
                 <a class=" mx-1 flex flex-inline px-4 py-2 mt-2 text-sm font-semibold text-gray-200 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                    href="student-register">
+                href="{{route('student.register')}}">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                             fill="currentColor">
@@ -79,7 +90,7 @@
                                 d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
                                 clip-rule="evenodd" />
                         </svg></span> Create Account</a>
-                
+
                 <a class=" mx-1 flex flex-inline px-4 py-2 mt-2 text-sm  text-gray-100 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                     href="#">
 
@@ -99,39 +110,49 @@
 
 
         </aside>
-        <div class="   bg-gray-200 flex-1 ">
-          <div>
-            <nav class="flex  justify-between bg-gray-700 p-2 mb-1 mr-1 rounded shadow border border-b-2 ">
-                <div class="flex items-center  text-white mr-6">
-                    <svg class=" py-1 h-8 w-8 mr-1 " width="54" height="54" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
+        <div class="    bg-gray-200 flex-1 ">
+            
+            <div>
+                <nav class="flex  justify-between bg-gray-700 p-2 mb-1 mr-1 rounded shadow border border-b-2 ">
+                    <div class="flex items-center  text-white mr-6">
+                        <button @click="open = !open" class="hidden md:block m-2 hover:bg-gray-500 px-2  rounded-sm ">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5" />
+                            </svg>
 
+                        </button>
 
-                    <span class="font-semibold text-xl tracking-tight text-gray-200">STUDENT</span>
-                </div>
-                <div class=" flex space-x-3 text-black font-semibold mr-5 ">
-                    <div
-                        class=" rounded bg-yellow-400 hover:bg-yellow-300 opacity-80 py-1 px-2 block  hover:text-white">
-                      <a href="student-login"> Login</a>
-                       
-                      </div>
-                    <div class="rounded bg-yellow-400 hover:bg-yellow-300 py-1 px-2 block hover:text-white  ">
-                      <a href="student-register"> Register</a>  
-                    </div>
-                 
+                        <svg class=" py-1 h-8 w-8 mr-1 " width="54" height="54" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
 
-
-                </div>
-
-
-
+                        <span class="font-semibold text-xl tracking-tight text-gray-200">STUDENT</span>
                 
+                    </div>
 
-            </nav>
-          </div>
+                    <div class=" flex space-x-3 text-black font-semibold mr-5 ">
+                        <div>
+                            <a  class=" rounded bg-yellow-400 hover:bg-yellow-300 opacity-80 py-1 px-2 block  hover:text-white" href="{{route('student.login')}}"> Login</a>
+
+                        </div>
+                        <div>
+                            <a  class="rounded bg-yellow-400 hover:bg-yellow-300 py-1 px-2 block hover:text-white  " href="{{route('student.register')}}"> Register</a>
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                </nav>
+            </div>
             <!-- Content  -->
             <div class=" bg-gray-200  ">
                 <!-- Page Heading -->
@@ -144,9 +165,23 @@
                 @endif
 
                 <!-- Page Content -->
+                <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+                    
+        
+                    <div class="w-full    mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+                  
                 <main>
+                    
                     {{ $slot }}
+ 
                 </main>
+               
+                    </div>
+                    
+
+                </div><footer class="mt-2 h-12   items-center text-center w-full  bg-gray-700 text-white">
+                        <p class=" font-bold  ">Copyright © 2021 Sangamner College. </p>
+                    </footer>
             </div>
 
         </div>
@@ -155,9 +190,7 @@
 
     </div>
 
-     <footer class=" text-center w-full  bg-gray-700 text-white">
-      <p class=" font-bold  ">Copyright © 2021 Sangamner College. </p>  
-    </footer>
+      
    
     @stack('modals')
 

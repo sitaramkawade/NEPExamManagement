@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
  
 
-Route::get('/student/home', function(){
+Route::get('/student/', function(){
     $activeexamDate=null;//ExamPatternclass::where('launch_status','1')->orderBy('id','desc')->paginate(9);
     //dd($activeexamDate);
      return view('student.dashboard.welcome',compact('activeexamDate'));
