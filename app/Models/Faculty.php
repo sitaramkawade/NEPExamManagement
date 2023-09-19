@@ -19,10 +19,21 @@ class Faculty extends Authenticatable
      * @var array<int, string>
      */
     protected $guard = 'faculty';
-     protected $fillable = [
+    protected $table="faculties";
+    protected $fillable = [
         'name',
         'email',
+        'mobile_no',
+        'email_verified_at',
         'password',
+        'profile_photo_path',
+        'unipune_id',
+        'qualification',
+        'role_id',
+        'department_id',
+        'college_id',
+        'active',
+        'last_login',
     ];
 
     /**
