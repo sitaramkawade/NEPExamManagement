@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -31,21 +32,31 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
       
+       
+
         $request->validate([
-            'student_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'middle_name' =>['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],          
+            'mobile_no'=>['required','digits:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Student::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+    
         ]);
 
-        $user = Student::create([
-            'student_name' => $request->student_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+
+        $student = Student::create([
+            'student_name' =>strtoupper(trim($request->input('last_name'))." ".trim($request->input('first_name'))." ".trim($request->input('middle_name'))),
+            'email' => strtolower($request->input('email')),
+            'password' => bcrypt($request->input('password')),
+            'mobile_no' => trim($request->input('mobile_no')),
+            'email_verification_token' => Str::random(32),
+            
         ]);
 
-        event(new Registered($user));
+        event(new Registered($student));
 
-        Auth::login($user);
+        Auth::login($student);
 
         return redirect(RouteServiceProvider::STUDENTHOME);
     }
