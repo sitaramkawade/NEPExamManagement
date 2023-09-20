@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Models;
-
+use App\Notifications\StudentRegisteMailNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
-class Student extends  Authenticatable
+class Student extends  Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -59,5 +61,10 @@ class Student extends  Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new StudentRegisteMailNotification);
+    }
+
 }
 

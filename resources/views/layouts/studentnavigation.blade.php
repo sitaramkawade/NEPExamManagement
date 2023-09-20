@@ -39,7 +39,7 @@
                         </x-dropdown-link>
 
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('student.logout') }}">
+                        <form method="POST" action="#">
                             @csrf
 
                             <x-dropdown-link :href="route('student.logout')"
@@ -84,16 +84,16 @@
                     {{ __('Pro file') }}
                 </x-responsive-nav-link>
 
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('student.logout') }}">
-                    @csrf
+               <!-- Authentication -->
+               <form method="POST" action="{{ route('student.logout') }}">
+                @csrf
 
-                    <x-responsive-nav-link :href="route('student.logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
+                <x-dropdown-link :href="route('student.logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-dropdown-link>
+            </form>
             </div>
         </div>
     </div>

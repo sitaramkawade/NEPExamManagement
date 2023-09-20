@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\FacultyRegisteMailNotification;
 
 class Faculty extends Authenticatable  
 {
@@ -55,4 +56,8 @@ class Faculty extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new FacultyRegisteMailNotification);
+    }
 }
