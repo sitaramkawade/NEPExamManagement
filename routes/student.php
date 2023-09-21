@@ -45,14 +45,22 @@ Route::group(['prefix'=>'student'],function (){
                     ->name('student.password.store');
     });
  
-Route::group(['middleware'=>['student','auth:student' ],'as'=>'student.'],function(){
+Route::group(['middleware'=>['student','auth:student','is_studentverified' ],'as'=>'student.'],function(){
     Route::get('/dashboard', function () {
            
         return view('student.dashboard');
-    })->name('dashboard') ;
+    })->name('dashboard');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+});
+
+
+Route::group(['middleware'=>['student','auth:student' ],'as'=>'student.'],function(){
     Route::get('verify-email', EmailVerificationPromptController::class)
     ->name('verification.notice');
+    
 
 Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
     ->middleware(['signed:student', 'throttle:6,1'])
@@ -71,9 +79,7 @@ Route::put('password', [PasswordController::class, 'update'])->name('password.up
 
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+   
 
 });
 });

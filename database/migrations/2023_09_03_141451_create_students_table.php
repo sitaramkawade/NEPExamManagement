@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('eligibilityno',50)->nullable();
             $table->string('abcid',50)->nullable();
             $table->string('student_name');
-            $table->string('mother_name');
-            $table->string('mobile_no',50);
+            $table->string('mother_name')->nullable()->default(null);
+            $table->string('mobile_no',20)->nullable()->default(null);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('email_verified')->default(0); 
@@ -27,9 +27,9 @@ return new class extends Migration
             $table->integer('mobile_no_verified')->default(0);
             $table->string('password');
             $table->timestamp('last_login')->nullable();
-            $table->bigInteger('patternclass_id')->nullable()->unsigned();
+            $table->bigInteger('patternclass_id')->nullable()->unsigned()->default(null);
             $table->foreign('patternclass_id')->references('id')->on('pattern_classes');//Entry on which class
-           $table->bigInteger('department_id')->unsigned();  //Major Minor
+           $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
             $table->foreign('department_id')->references('id')->on('departments');
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->foreign('college_id')->references('id')->on('colleges');

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->bigInteger('department_id')->unsigned();  //Major Minor
+            $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
             $table->foreign('department_id')->references('id')->on('departments');
           
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);

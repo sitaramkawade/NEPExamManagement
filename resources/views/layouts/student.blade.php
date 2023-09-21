@@ -113,15 +113,25 @@
 
                 <!-- Content  -->
                 <div class=" bg-gray-200  ">
+
+                    @include('student.dashboard.studenthumberger')
+              
+                 
                     <!-- Page Heading -->
+
+
                     @if (isset($header))
                         <header class="bg-white shadow m-2">
                             <div class="max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8">
                                 {{ $header }}
+
+                                
                             </div>
                         </header>
+                      
                     @endif
 
+                  
                     <!-- Page Content -->
                     <div
                         class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-200 dark:bg-gray-900">
