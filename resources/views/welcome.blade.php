@@ -173,15 +173,15 @@
                 </div>
 
 
+   
 
-
-                <div class="  space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class=" bg-gray-700 space-x-8 text-white sm:-my-px sm:ml-10 sm:flex">
                     @if (Route::has('login'))
-                        <div class="hidden  right-0 px-6 py-2 sm:block">
+                        <div class="  right-0 px-6 py-2 sm:block">
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="text-lg text-gray-700 underline">Dashboard</a>
+                                <a href="{{ url('/dashboard') }}" class="text-lg text-white-700 underline">Dashboard</a>
                             @else
-                                <a href="{{ route('login') }}" class=" text-lg text-gray-700 underline">Log in</a>
+                                <a href="{{ route('login') }}" class=" text-lg text-white-700 underline">Log in</a>
 
 
                             @endauth

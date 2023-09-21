@@ -20,6 +20,7 @@ Route::get('/student/', function(){
  });
  
 Route::group(['prefix'=>'student'],function (){
+
     Route::middleware('guest:student')->group(function () {
         Route::get('register', [RegisteredUserController::class, 'create'])
                     ->name('student.register');
@@ -44,16 +45,17 @@ Route::group(['prefix'=>'student'],function (){
                     ->name('student.password.store');
     });
  
-Route::group(['middleware'=>['student','auth:student'],'as'=>'student.'],function(){
+Route::group(['middleware'=>['student','auth:student' ],'as'=>'student.'],function(){
     Route::get('/dashboard', function () {
            
         return view('student.dashboard');
-    })->name('dashboard');
+    })->name('dashboard') ;
+
     Route::get('verify-email', EmailVerificationPromptController::class)
     ->name('verification.notice');
 
 Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
-    ->middleware(['signed', 'throttle:6,1'])
+    ->middleware(['signed:student', 'throttle:6,1'])
     ->name('verification.verify');
 
 Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])

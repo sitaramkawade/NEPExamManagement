@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Student\Auth;
+
+use App\Events\AdminRegisterMailEvent;
 use App\Http\Controllers\Controller;
+use App\Listeners\AdminRegisterMailListener;
 use App\Models\Faculty;
 use App\Models\Student;
 use App\Providers\RouteServiceProvider;
@@ -31,7 +34,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-      
+     
        
 
         $request->validate([
@@ -53,10 +56,11 @@ class RegisteredUserController extends Controller
             'email_verification_token' => Str::random(32),
             
         ]);
-
-        event(new Registered($student));
-
-        Auth::login($student);
+ 
+    //    event(new Registered($student));
+       event(new AdminRegisterMailEvent($student));
+        Auth::guard('faculty')->login($student);
+      
 
         return redirect(RouteServiceProvider::STUDENTHOME);
     }

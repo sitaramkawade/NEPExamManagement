@@ -15,6 +15,7 @@ class Student
      */
     public function handle(Request $request, Closure $next,$guard="student"): Response
     {
+         
         if (!Auth::guard('student')->check()) {
             return redirect('/student/login');
          }

@@ -7,151 +7,162 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <link rel="icon" href="{!! asset('img/shikshan-logo.png') !!}" />
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-    <!-- Scripts -->
+    <!-- Styles -->
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 
+
 </head>
 
-<body class="font-sans antialiased">
-    {{-- Navbar --}}
-    <div class="  h-14 mb-5">
-        @include('layouts.studentnavigation')
-      </div>
-    {{-- Sidebar --}}
-    <div class=" flex " x-data="{ open: true }">
-        <div :class="open ? 'w-72' : 'w-24'"
-            class=" duration-300    h-screen  bg-purple-950 text-white relative 
-            ">
-            <button @click="open = !open"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke-width="1.5" stroke="currentColor" :class="open ? ' ' : 'rotate-180'"
-                    class="w-7 h-7  font-thin  bg-gray-100 stroke-purple-700   absolute cursor-pointer -right-3 top-8 border-2  border-purple-950   rounded-full">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
 
-                </svg></button>
+<body class="antialiased  ">
 
-                <ul class="  m-auto" 
-                x-data="{ colors: ['Red Menu', 'Orange Menu', 'Yellow','Text'] }">
-                @foreach(["one"=>"Home","two"=>"Add Data","three"=>"Delete Data"] as $data)
-                   
-                    
-                          <li class=" text-gray-300   flex    items-center
-                           gap-x-2 cursor-pointer p-2 hover:bg-purple-600 rounded-md 
-                          "  >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                             class="w-7 h-7 mx-5 shrink-0">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
-                              </svg>
-                              
-                           <span  :class="open ? ' ' : 'hidden'"
-                            class=" origin-left duration-200  shrink-0 "  >{{$data}}</span>
-                          
-                        </li>
+
+    <div class="  overflow-hidden  relative " x-data="{ open: true }">
+
+        <div class="flex min-h-screen">
+            <aside x-show="open" x-transition:enter="transition-transform transition-opacity ease-in duration-100"
+                x-transition:enter-start="opacity-100 transform translate-x-0"
+                x-transition:enter-end="opacity-100 transform translate-y-0"
+                x-transition:leave="transition ease-in duration-100"
+                x-transition:leave-end="opacity-100 transform -translate-x-0"
+                class=" w-72   bg-gray-700 hidden    md:block         ">
+
+
+
+
+                <div class=" flex   ">
+
+                    <img class="p-2 h-20 m-auto mt-2 rounded shadow-2xl bg-white opacity-80 hover:bg-gray-200 hover:optacity-100 "
+                        src="{{ asset('img/shikshan-logo.png') }}"></img>
+                </div>
+
+
+
+                <div
+                    class=" transition-all duration-500 rounded uppercase shadow-md mt-1 mx-1  py-2 text-xl bg-yellow-400 hover:bg-yellow-300 font-semibold tracking-tighter  hover:text-gray-600  text-center text-gray-900">
+                    Sangamner College, Sangamner
+
+
+                </div>
+
+
+                <nav class="  pb-4 ">
+
+                    {{-- <a class=" mx-1   flex flex-inline px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        href="studhome">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg> Dashboard
+                    </a>
+
+
+
+                    <a class=" mx-1 flex flex-inline px-4 py-2 mt-2 text-sm font-semibold text-gray-200 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        href="{{ route('student.login') }}">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                            </svg></span>
+                        Log In
+                    </a>
+
+                    <a class=" mx-1 flex flex-inline px-4 py-2 mt-2 text-sm font-semibold text-gray-200 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        href="{{ route('student.register') }}">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                                    clip-rule="evenodd" />
+                            </svg></span> Create Account</a>
+
+                    <a class=" mx-1 flex flex-inline px-4 py-2 mt-2 text-sm  text-gray-100 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" 
+                        href="#">
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 3l-6 6m0 0V4m0 5h5M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.683A1 1 0 008.279 3H5z" />
+                        </svg> Contact</a>
+                        --}}
+
+
+
+
+
+                </nav>
+
+
+
+            </aside>
+            <div class="    bg-gray-200 flex-1 ">
+
+
+                @include('layouts.studentnavigation')
+
+                <!-- Content  -->
+                <div class=" bg-gray-200  ">
+                    <!-- Page Heading -->
+                    @if (isset($header))
+                        <header class="bg-white shadow m-2">
+                            <div class="max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8">
+                                {{ $header }}
+                            </div>
+                        </header>
+                    @endif
+
+                    <!-- Page Content -->
+                    <div
+                        class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-200 dark:bg-gray-900">
+
                       
-                     @endforeach
-                    
-                </ul>
+                        <div class="w-full  px-1 py-1 dark:bg-gray-800  overflow-hidden sm:rounded-lg">
+
+                            <main>
+
+                                {{ $slot }}
+
+                            </main>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+        <footer class="footer bg-gray-700     ">
+
+            <div class="container mx-auto px-6 py-2">
+               
+                   
+                        <p class="text-sm  text-center text-white font-semibold  ">
+                            Copyright © 2023 NEP-2020 Sangamner College Sangamner (Autonomous) All rights reserved. </p>
+                     
                  
-                <ul class="  m-auto" 
-                x-data="{ colors: ['Red Menu', 'Orange Menu', 'Yellow','Text'] }">
-                @foreach(["one"=>"Home","two"=>"Add Data","three"=>"Delete Data"] as $data)
-                   
-                    
-                          <li class=" text-gray-300   flex    items-center
-                           gap-x-2 cursor-pointer p-2 hover:bg-purple-600 rounded-md 
-                          "  >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                             class="w-7 h-7 mx-5 shrink-0">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
-                              </svg>
-                              
-                           <span  :class="open ? ' ' : 'hidden'"
-                            class=" origin-left duration-200  shrink-0 "  >{{$data}}</span>
-                          
-                        </li>
-                      
-                     @endforeach
-                    
-                </ul>
-                <div class="max-w-lg mx-auto" x-data="{ open: false }">
-    
-                    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button" @click="open = !open">Dropdown button 
-                        <svg :class="open ? ' ' : 'rotate-180'" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                
-                    <!-- Dropdown menu -->
-                    <div :class="open ? '' : 'hidden'" class=" bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4" id="dropdown">
-                        <div class="px-4 py-3">
-                        <span class="block text-sm">Bonnie Green</span>
-                        <span class="block text-sm font-medium text-gray-900 truncate">name@flowbite.com</span>
-                        </div>
-                        <ul class="py-1" aria-labelledby="dropdown">
-                        <li>
-                            <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Settings</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Earnings</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Sign out</a>
-                        </li>
-                        </ul>
-                    </div>
-                
-                    <p class="mt-5">This dropdown element is part of a larger, open-source library of Tailwind CSS components. Learn more by going to the official <a class="text-blue-600 hover:underline" href="https://flowbite.com/docs/getting-started/introduction/" target="_blank">Flowbite Documentation</a>.</p>
-                </div>
-                
-                <div class="max-w-lg mx-auto" x-data="{ open: false }">
-    
-                    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button" @click="open = !open">Dropdown button 
-                        <svg :class="open ? ' ' : 'rotate-180'" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                
-                    <!-- Dropdown menu -->
-                    <div :class="open ? '' : 'hidden'" class=" bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4" id="dropdown">
-                        <div class="px-4 py-3">
-                        <span class="block text-sm">Bonnie Green</span>
-                        <span class="block text-sm font-medium text-gray-900 truncate">name@flowbite.com</span>
-                        </div>
-                        <ul class="py-1" aria-labelledby="dropdown">
-                        <li>
-                            <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Settings</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Earnings</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Sign out</a>
-                        </li>
-                        </ul>
-                    </div>
-                
-                    <p class="mt-5">This dropdown element is part of a larger, open-source library of Tailwind CSS components. Learn more by going to the official <a class="text-blue-600 hover:underline" href="https://flowbite.com/docs/getting-started/introduction/" target="_blank">Flowbite Documentation</a>.</p>
-                </div>
-        </div>
-        
-        <!-- component -->
-<!-- This is an example component -->
-
- 
-        <div class=" p-7 text-2xl font-semibold flex-1 bg-gray-100">
-            <h1>Home Page</h1>
-        </div>
-
+            </div>
+        </footer>
     </div>
-    {{-- footer --}}
-   
-    @livewireScripts
+        @stack('modals')
+
+        @livewireScripts
 </body>
 
 </html>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\FacultyRegisteMailNotification;
 
 class Faculty extends Authenticatable  
 {
@@ -75,5 +76,9 @@ class Faculty extends Authenticatable
     public function facultybankaccount()
     {
         return $this->hasOne(Facultybankaccount::class,'faculty_id','id');
+    }
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new FacultyRegisteMailNotification);
     }
 }

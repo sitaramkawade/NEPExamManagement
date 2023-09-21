@@ -21,15 +21,9 @@ class RedirectIfAuthenticated
 //   dd($guards);
         foreach ($guards as $guard) {
               
-        //   dd(  Auth::guard($guard)->check());
-            // if($guard==="faculty"){
-            //     if (Auth::guard($guard)->check()) {
-            //         return redirect(RouteServiceProvider::FACULTYHOME);
-            //     } 
-             
-            // }
+       
  
-// dd(Auth::guard($guard)->check());
+  
 
             if (Auth::guard($guard)->check()) {
        // dd($guard);

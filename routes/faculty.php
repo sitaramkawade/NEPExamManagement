@@ -10,6 +10,7 @@ use App\Http\Controllers\Faculty\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Faculty\Auth\RegisteredUserController;
 use App\Http\Controllers\Faculty\Auth\VerifyEmailController;
 use App\Http\Controllers\Faculty\head\FacultyController;
+// use App\Faculty\head\FacultyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 Route::group(['prefix'=>'admin'],function (){
@@ -45,7 +46,7 @@ Route::group(['middleware'=>['faculty','auth:faculty'],'as'=>'admin.'],function(
     ->name('verification.notice');
 
 Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
-    ->middleware(['signed', 'throttle:6,1'])
+    ->middleware(['signed:faculty', 'throttle:6,1'])
     ->name('verification.verify');
 
 Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
@@ -76,6 +77,8 @@ Route::put('/updatefaculty/{id}', [FacultyController::class, 'update'])->name('h
 Route::delete('/deletefaculty{id}', [FacultyController::class, 'delete'])->name('head.deletefaculty');
 Route::get('/facultydetails/{id}', [FacultyController::class, 'alldetails'])->name('head.showalldetails');
 
+// Route::get('/showfaculty', [FacultyController::class, 'index'])->name('admin.showfaculty');
+// Route::get('/addfaculty', [FacultyController::class, 'create'])->name('admin.addfaculty');
 
 });
 

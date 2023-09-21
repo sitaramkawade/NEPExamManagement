@@ -21,9 +21,14 @@ class DatabaseSeeder extends Seeder
           CourseSeeder::class,
           RoletypeSeeder::class,
           RoleSeeder::class,
+         
           SubjectcategorySeeder::class,
           SubjecttypeSeeder::class,
+          CourseclassSeeder::class,
           PatternclassSeeder::class,
+          StudmenumasterSeeder::class,
+          ClassStudmenumasterSeeder::class,
+          
 
         ]);
         // \App\Models\User::factory(10)->create();

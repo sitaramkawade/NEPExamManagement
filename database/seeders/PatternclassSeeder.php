@@ -6,6 +6,7 @@ use App\Models\Pattern;
 use App\Models\Patternclass;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class PatternclassSeeder extends Seeder
 {
@@ -14,6 +15,7 @@ class PatternclassSeeder extends Seeder
      */
     public function run(): void
     {
+     // Schema::disableForeignKeyConstraints();
       $p=  Pattern::create( [
             'id'=>NULL,
             'pattern_name'=>'NEP 2020',
@@ -2038,6 +2040,7 @@ class PatternclassSeeder extends Seeder
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
+             // Schema::enableForeignKeyConstraints();
 
     }
 }
