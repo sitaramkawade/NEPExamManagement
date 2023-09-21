@@ -9,7 +9,7 @@ use App\Http\Controllers\Faculty\Auth\PasswordController;
 use App\Http\Controllers\Faculty\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Faculty\Auth\RegisteredUserController;
 use App\Http\Controllers\Faculty\Auth\VerifyEmailController;
-use App\Faculty\head\FacultyController;
+use App\Http\Controllers\Faculty\head\FacultyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 Route::group(['prefix'=>'admin'],function (){
@@ -66,8 +66,16 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 //Head role
 //1 Add new faculty
-Route::get('/showfaculty', [FacultyController::class, 'index'])->name('admin.showfaculty');
-Route::get('/addfaculty', [FacultyController::class, 'create'])->name('admin.addfaculty');
+Route::get('/showfaculty', [FacultyController::class, 'index'])->name('head.showfaculty');
+Route::get('/addfaculty', [FacultyController::class, 'create'])->name('head.addfaculty');
+Route::post('/storefaculty', [FacultyController::class, 'store'])->name('head.store');
+Route::get('/editfaculty/{id}', [FacultyController::class, 'edit'])->name('head.editfaculty');
+Route::post('/updatefaculty', [FacultyController::class, 'update'])->name('head.update');
+Route::put('/updatefaculty/{id}', [FacultyController::class, 'update'])->name('head.update');
+
+Route::delete('/deletefaculty{id}', [FacultyController::class, 'delete'])->name('head.deletefaculty');
+Route::get('/facultydetails/{id}', [FacultyController::class, 'alldetails'])->name('head.showalldetails');
+
 
 });
 

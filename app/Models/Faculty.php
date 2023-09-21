@@ -55,4 +55,25 @@ class Faculty extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function role()
+    {
+     return $this->belongsTo(Role::class,'role_id','id');
+    }
+    public function exampanels()
+    {
+        return $this->hasMany(Exampanel::class,'faculty_id','id');
+    }
+    public function department()
+    {
+     return $this->belongsTo(Department::class,'department_id','id');
+    }
+    public function college()
+    {
+     return $this->belongsTo(College::class,'college_id','id');
+    }
+
+    public function facultybankaccount()
+    {
+        return $this->hasOne(Facultybankaccount::class,'faculty_id','id');
+    }
 }
