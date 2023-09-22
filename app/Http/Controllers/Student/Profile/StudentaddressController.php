@@ -5,22 +5,23 @@ namespace App\Http\Controllers\Student\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StudentprofileController extends Controller
+class StudentaddressController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-          return view('student.profile.index');
+        return view('student.address.index');
     }
+     
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('student.profile.create');
+        //
     }
 
     /**

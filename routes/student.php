@@ -11,6 +11,8 @@ use App\Http\Controllers\Student\Auth\RegisteredUserController;
 use App\Http\Controllers\Student\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Student\Profile\StudentaddressController;
+use App\Http\Controllers\Student\Profile\StudentcourseController;
 use App\Http\Controllers\Student\Profile\StudenteducationController;
 use App\Http\Controllers\Student\Profile\StudentprofileController;
 
@@ -81,16 +83,19 @@ Route::group(['middleware'=>['student','auth:student','is_studentverified' ],'as
     })->name('dashboard');
 
 
-   Route::resource('Profile', StudentprofileController::class);
+   Route::resource('ProfileDetails', StudentprofileController::class);
 
    
     Route::resource('EducationDetails',StudenteducationController::class);
+    Route::resource('AddressDetails',StudentaddressController::class);
+    Route::resource('CourseSelection',StudentcourseController::class);
+
    // Route::get('/AddressDetails', [ProfileController::class, 'edit'])->name('address.edit');
  
 
-    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 });
 });

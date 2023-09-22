@@ -12,8 +12,36 @@
         </div>
         <div class="pt-2 pb-3 space-y-1">
                  
-            <x-responsive-nav-link :href="route('student.dashboard')" :active="request()->routeIs('student.dashboard')">
+            <x-responsive-nav-link :href="route('student.ProfileDetails.index')" :active="request()->routeIs('student.ProfileDetails.index')">
                 {{ __('Student Profile') }}
+                
+            </x-responsive-nav-link>
+            
+            
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+                 
+            <x-responsive-nav-link :href="route('student.AddressDetails.index')" :active="request()->routeIs('student.AddressDetails.index')">
+                {{ __('Student Address') }}
+                
+            </x-responsive-nav-link>
+            
+            
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+                 
+            <x-responsive-nav-link :href="route('student.EducationDetails.index')" :active="request()->routeIs('student.EducationDetails.index')">
+                {{ __('Student Education') }}
+                
+            </x-responsive-nav-link>
+            
+            
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+                 
+            <x-responsive-nav-link :href="route('student.CourseSelection.index')" :active="request()->routeIs('student.CourseSelection.index')">
+                {{ __('Student Course Selection') }}
                 
             </x-responsive-nav-link>
             

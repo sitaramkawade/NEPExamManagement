@@ -18,17 +18,18 @@ class DatabaseSeeder extends Seeder
             ProgrammeSeeder::class,
             DepatmenttypeSeeder::class,
             DepatmentSeeder::class,
-          CourseSeeder::class,
-          RoletypeSeeder::class,
-          RoleSeeder::class,
-         
-          SubjectcategorySeeder::class,
-          SubjecttypeSeeder::class,
-          CourseclassSeeder::class,
-          PatternclassSeeder::class,
-          StudmenumasterSeeder::class,
-          ClassStudmenumasterSeeder::class,
-          
+            CourseSeeder::class,
+            RoletypeSeeder::class,
+            RoleSeeder::class,         
+            SubjectcategorySeeder::class,
+            SubjecttypeSeeder::class,
+            CourseclassSeeder::class,
+            PatternclassSeeder::class,
+            StudmenumasterSeeder::class,
+            ClassStudmenumasterSeeder::class,
+            CasteCategorySeeder::class,
+            BloodgroupSeeder::class,
+            ReligionSeeder::class,
 
         ]);
         // \App\Models\User::factory(10)->create();
