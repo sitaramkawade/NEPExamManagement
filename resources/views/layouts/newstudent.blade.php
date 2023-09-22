@@ -48,7 +48,7 @@
                     class=" transition-all duration-500 rounded uppercase shadow-md mt-1 mx-1  py-2 text-xl bg-yellow-400 hover:bg-yellow-300 font-semibold tracking-tighter  hover:text-gray-600  text-center text-gray-900">
                     Sangamner College, Sangamner
 
-
+                      
                 </div>
 
 

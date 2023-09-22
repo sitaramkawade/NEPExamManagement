@@ -11,7 +11,8 @@ use App\Http\Controllers\Student\Auth\RegisteredUserController;
 use App\Http\Controllers\Student\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
- 
+use App\Http\Controllers\Student\Profile\StudenteducationController;
+use App\Http\Controllers\Student\Profile\StudentprofileController;
 
 Route::get('/student/', function(){
     $activeexamDate=null;//ExamPatternclass::where('launch_status','1')->orderBy('id','desc')->paginate(9);
@@ -45,16 +46,7 @@ Route::group(['prefix'=>'student'],function (){
                     ->name('student.password.store');
     });
  
-Route::group(['middleware'=>['student','auth:student','is_studentverified' ],'as'=>'student.'],function(){
-    Route::get('/dashboard', function () {
-           
-        return view('student.dashboard');
-    })->name('dashboard');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-});
 
 
 Route::group(['middleware'=>['student','auth:student' ],'as'=>'student.'],function(){
@@ -80,6 +72,25 @@ Route::put('password', [PasswordController::class, 'update'])->name('password.up
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
    
+
+});
+Route::group(['middleware'=>['student','auth:student','is_studentverified' ],'as'=>'student.'],function(){
+    Route::get('/dashboard', function () {
+           
+        return view('student.dashboard');
+    })->name('dashboard');
+
+
+   Route::resource('Profile', StudentprofileController::class);
+
+   
+    Route::resource('EducationDetails',StudenteducationController::class);
+   // Route::get('/AddressDetails', [ProfileController::class, 'edit'])->name('address.edit');
+ 
+
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 });
 });
