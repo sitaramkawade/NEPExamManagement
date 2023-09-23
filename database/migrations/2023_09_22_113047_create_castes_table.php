@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('castes', function (Blueprint $table) {
             $table->id();
+            $table->integer('sno')->default('0');
             $table->string('caste_name'); 
             $table->bigInteger('caste_category_id')->unsigned()->nullable()->default(null);
             $table->foreign('caste_category_id')->references('id')->on('caste_categories');

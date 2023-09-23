@@ -26,10 +26,11 @@ class DatabaseSeeder extends Seeder
             CourseclassSeeder::class,
             PatternclassSeeder::class,
             StudmenumasterSeeder::class,
-            ClassStudmenumasterSeeder::class,
-            CasteCategorySeeder::class,
+            ClassStudmenumasterSeeder::class,           
             BloodgroupSeeder::class,
             ReligionSeeder::class,
+            CasteCategorySeeder::class,
+            CasteSeeder::class,
 
         ]);
         // \App\Models\User::factory(10)->create();
