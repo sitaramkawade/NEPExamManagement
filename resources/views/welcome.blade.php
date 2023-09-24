@@ -229,6 +229,8 @@
                     </div>
         
                 </div>
+                
+                
                 <div class="     bg-white  border border-blue-500 ">
                     <div class="rounded    max-w-sm  m-auto ">
                         <img class="  mx-auto w-32 h-32 rounded-full 	 " src="{{ asset('img/r-s-laddha.jpg') }}"></img>
