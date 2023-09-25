@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Student\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Village;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentprofileController extends Controller
 {
@@ -12,6 +14,9 @@ class StudentprofileController extends Controller
      */
     public function index()
     {
+         
+       
+       // return (Auth::user()->studentprofile);
           return view('student.profile.index');
     }
 

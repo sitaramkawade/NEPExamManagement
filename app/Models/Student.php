@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student extends  Authenticatable implements MustVerifyEmail
 {
@@ -65,6 +66,9 @@ class Student extends  Authenticatable implements MustVerifyEmail
     {
         $this->notify(new StudentRegisteMailNotification);
     }
-
+    public function studentprofile(): HasOne
+    {
+        return $this->hasOne(Studentprofile::class, 'student_id', 'id');
+    }
 }
 

@@ -31,6 +31,11 @@ class DatabaseSeeder extends Seeder
             ReligionSeeder::class,
             CasteCategorySeeder::class,
             CasteSeeder::class,
+            GendermasterSeeder::class,
+            CountrySeeder::class,
+            StateSeeder::class,
+            TalukaSeeder::class,
+
 
         ]);
         // \App\Models\User::factory(10)->create();

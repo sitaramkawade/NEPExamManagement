@@ -15,7 +15,7 @@
                    
 
 
-             @livewire('test')
+              
 
 
                 </div>
