@@ -71,12 +71,20 @@ class CasteCategorySeeder extends Seeder
                                     'id'=>7,
                                     'caste_category'=>'OBC',
                                     'caste_category_desc'=>'Other Backward Classes',
-                                    'reservation'=>19,
+                                    'reservation'=>17,
                                     'is_active'=>1,
                                     'created_at'=>'2023-09-22 13:05:36',
                                     'updated_at'=>'2023-09-22 13:05:36',
                                     ] );
-                                    
+                                    CasteCategory::create( [
+                                        'id'=>8,
+                                        'caste_category'=>'SBC',
+                                        'caste_category_desc'=>'Special Backward Classes',
+                                        'reservation'=>2,
+                                        'is_active'=>1,
+                                        'created_at'=>'2023-09-22 13:05:36',
+                                        'updated_at'=>'2023-09-22 13:05:36',
+                                        ] );
  
              
                      

@@ -18,10 +18,8 @@ return new class extends Migration
             $table->string('eligibilityno',50)->nullable();
             $table->string('abcid',50)->nullable();
             $table->string('aadhar_card_no',50)->nullable();
-            $table->string('student_name');
-          
-            $table->string('mother_name')->nullable()->default(null);
-          
+            $table->string('student_name');          
+            $table->string('mother_name')->nullable()->default(null);          
             $table->string('mobile_no',20)->nullable()->default(null);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

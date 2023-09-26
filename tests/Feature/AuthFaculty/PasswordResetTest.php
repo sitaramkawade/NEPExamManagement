@@ -4,6 +4,7 @@ namespace Tests\Feature\AuthFaculty;
 
 use App\Models\Faculty;
 use App\Models\User;
+use App\Notifications\FacultyResetPassword;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
@@ -22,6 +23,7 @@ class PasswordResetTest extends TestCase
 
     public function test_reset_password_link_can_be_requested(): void
     {
+        
         Notification::fake();
         
 
@@ -29,7 +31,7 @@ class PasswordResetTest extends TestCase
 
         $this->post('/admin/forgot-password', ['email' => $user->email]);
 
-        Notification::assertSentTo($user, ResetPassword::class);
+        Notification::assertSentTo($user, FacultyResetPassword::class);
     }
 
     public function test_reset_password_screen_can_be_rendered(): void
@@ -40,7 +42,7 @@ class PasswordResetTest extends TestCase
 
         $this->post('/admin/forgot-password', ['email' => $user->email]);
 
-        Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
+        Notification::assertSentTo($user, FacultyResetPassword::class, function ($notification) {
             $response = $this->get('/admin/reset-password/'.$notification->token);
 
             $response->assertStatus(200);
@@ -57,7 +59,7 @@ class PasswordResetTest extends TestCase
 
         $this->post('/admin/forgot-password', ['email' => $user->email]);
 
-        Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {
+        Notification::assertSentTo($user, FacultyResetPassword::class, function ($notification) use ($user) {
             $response = $this->post('/admin/reset-password', [
                 'token' => $notification->token,
                 'email' => $user->email,

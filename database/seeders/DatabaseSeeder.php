@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             GendermasterSeeder::class,
             CountrySeeder::class,
             StateSeeder::class,
+            DistrictSeeder::class,
             TalukaSeeder::class,
 
 

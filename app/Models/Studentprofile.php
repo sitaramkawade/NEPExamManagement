@@ -32,8 +32,7 @@ class Studentprofile extends Model
         'migratestud',
         'profile_photo_path',
         'sign_photo_path',
-        'student_id',
-        'student_id',
+        'student_id',       
         'profile_complete_status',
     ];
     public function student():BelongsTo

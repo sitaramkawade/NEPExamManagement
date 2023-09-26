@@ -17,5 +17,9 @@ class CountrySeeder extends Seeder
             'id'=>1,
             'country_name'=>'India',
         ]);
+        Country::create( [
+            'id'=>2,
+            'country_name'=>'Other',
+        ]);
     }
 }

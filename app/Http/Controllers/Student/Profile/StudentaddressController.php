@@ -12,7 +12,8 @@ class StudentaddressController extends Controller
      */
     public function index()
     {
-        return view('student.address.index');
+        return view('student.address.create');
+        //return view('student.address.index');
     }
      
 

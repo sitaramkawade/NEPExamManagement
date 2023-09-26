@@ -13,31 +13,31 @@ use App\Http\Controllers\Faculty\head\FacultyController;
 // use App\Faculty\head\FacultyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-Route::group(['prefix'=>'admin'],function (){
+Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
     Route::middleware('guest:faculty')->group(function () {
         Route::get('register', [RegisteredUserController::class, 'create'])
-                    ->name('admin.register');
+                    ->name('register');
     
         Route::post('register', [RegisteredUserController::class, 'store']);
     
         Route::get('login', [AuthenticatedSessionController::class, 'create'])
-                    ->name('admin.login');
+                    ->name('login');
     
         Route::post('login', [AuthenticatedSessionController::class, 'store']);
     
         Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-                    ->name('admin.password.request');
+                    ->name('password.request');
     
         Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-                    ->name('admin.password.email');
+                    ->name('password.email');
     
         Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-                    ->name('admin.password.reset');
+                    ->name('password.reset');
     
         Route::post('reset-password', [NewPasswordController::class, 'store'])
-                    ->name('admin.password.store');
+                    ->name('password.store');
     });
-Route::group(['middleware'=>['faculty','auth:faculty'],'as'=>'admin.'],function(){
+Route::group(['middleware'=>['faculty','auth:faculty']],function(){
     Route::get('/dashboard', function () {
            
         return view('faculty.dashboard');

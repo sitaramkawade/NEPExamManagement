@@ -15,7 +15,7 @@ class StudentprofileController extends Controller
     public function index()
     {
          
-       
+        return view('student.profile.create');
        // return (Auth::user()->studentprofile);
           return view('student.profile.index');
     }
