@@ -46,6 +46,7 @@ return new class extends Migration
             $table->bigInteger('student_id')->unsigned()->unique();
             $table->foreign('student_id')->references('id')->on('students');
             $table->tinyInteger('profile_complete_status')->default(0);  //if 0 =>profile is uncompleted ,1 means not completed
+            $table->boolean('is_competed')->default(1); //
             $table->timestamps();
                 
         });

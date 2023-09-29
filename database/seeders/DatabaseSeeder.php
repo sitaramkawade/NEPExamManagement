@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             StateSeeder::class,
             DistrictSeeder::class,
             TalukaSeeder::class,
+            AddresstypeSeeder::class,
 
 
         ]);

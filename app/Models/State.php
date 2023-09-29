@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 class State extends Model
 {
     use HasFactory;
@@ -21,4 +22,23 @@ class State extends Model
       
         
     ];
+    public function distrits():HasMany
+    {
+    return $this->hasMany(District::class,'state_id','id');
+    }
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+    public function getStateColorAttribute(){
+     
+        return    [
+            'U'=>'green',
+            'S'=>'blue',
+        ][$this->state_or_UT]??'gray' ;
+    }
+    public function getCreatedDateFormatAttribute(){
+        return $this->created_at->format('M, d Y');
+    }
+
 }

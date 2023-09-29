@@ -9,7 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\DB;
 
 class Student extends  Authenticatable implements MustVerifyEmail
 {
@@ -70,5 +72,22 @@ class Student extends  Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Studentprofile::class, 'student_id', 'id');
     }
+    public function studentaddress(): HasMany
+    {
+        return $this->HasMany(Studentaddress::class, 'student_id', 'id');
+    }
+    // public function country() 
+    // {
+    //     return $this->hasOne(Studentaddress::class, 'student_id', 'id');
+    //     // $users = DB::table('studentaddresses')
+    //     // ->select(['student_id','talukas.id','talukas.district_id','districts.state_id','countries.id'])
+    //     // ->Join('talukas', 'talukas.id', '=', 'studentaddresses.p_taluka_id')
+    //     // ->Join('districts','talukas.district_id','=','districts.id')
+    //     // ->Join('states','districts.state_id','=','states.id')
+    //     // ->Join('countries','states.country_id','=','countries.id')->get();
+    //     // return $users;
+         
+       
+    // }
 }
 

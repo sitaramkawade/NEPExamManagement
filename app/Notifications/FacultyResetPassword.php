@@ -11,10 +11,7 @@ use Illuminate\Support\Facades\Lang;
 
 class FacultyResetPassword extends Notification
 {
-    * The password reset token.
-    *
-    * @var string
-    */
+    
    public $token;
 
    /**

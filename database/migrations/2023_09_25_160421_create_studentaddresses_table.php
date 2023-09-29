@@ -13,29 +13,37 @@ return new class extends Migration
     {
         Schema::create('studentaddresses', function (Blueprint $table) {
         $table->id();
-        $table->string('address',100)->nullable();
-        $table->string('pincode', 200)->nullable();
-        $table->string('district',200)->nullable();
-        $table->string('state',100)->nullable();
-        $table->string('taluka',200)->nullable();
-        $table->string('village_name',50)->nullable();
-        $table->string('locality_name',200)->nullable();
-        $table->string('c_address',100)->nullable();
-        $table->string('c_pincode',200)->nullable();
-        $table->string('c_district',100)->nullable();
-        $table->string('c_state',100)->nullable();
-        $table->string('c_taluka',100)->nullable();
-        $table->string('c_village_name')->nullable();
-        $table->string('c_locality_name')->nullable();
-       
-        $table->bigInteger('student_id')->unsigned()->unique();
-        $table->foreign('student_id')->references('id')->on('students');
+        $table->string('address',100)->nullable()->default(NULL);
+        $table->string('pincode', 200)->nullable()->default(NULL);
+        $table->bigInteger('taluka_id')->unsigned()->nullable()->default(NULL);
+        $table->foreign('taluka_id')->references('id')->on('talukas');
+        $table->string('village_name',50)->nullable()->default(NULL);
+        $table->string('locality_name',200)->nullable()->default(NULL);      
       
-            $table->timestamps();
+        $table->bigInteger('student_id')->unsigned()->nullable();
+        $table->foreign('student_id')->references('id')->on('students');
+
+        $table->bigInteger('addresstype_id')->unsigned()->nullable();
+        $table->foreign('addresstype_id')->references('id')->on('addresstypes');    
+
+        $table->boolean('is_competed')->default(1); //
+        $table->timestamps();
+        $table->unique(['student_id', 'addresstype_id']); //  [ 'column1', 'column2']
         });
     }
 
-    /**
+
+
+
+        /**
+     * Reverse the migrations.
+     * Reverse the migrations.
+     * Reverse the migrations.
+    * Reverse the migrations.
+     * Reverse the migrations.
+     * Reverse the migrations.
+     * Reverse the migrations.
+     * Reverse the migrations.
      * Reverse the migrations.
      */
     public function down(): void

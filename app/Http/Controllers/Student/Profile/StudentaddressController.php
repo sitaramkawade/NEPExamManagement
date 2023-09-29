@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Addresstype;
 use Illuminate\Http\Request;
 
 class StudentaddressController extends Controller
@@ -12,17 +13,22 @@ class StudentaddressController extends Controller
      */
     public function index()
     {
-        return view('student.address.create');
-        //return view('student.address.index');
+       
+       return view('student.address.create');
+    //    // return view('student.address.index',
+    // [
+    //     'addresstypes'=> Addresstype::all()
+    // ]);
     }
      
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $name =   $request->query('type');
+         dd( $name);
     }
 
     /**
