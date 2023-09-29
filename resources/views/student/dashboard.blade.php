@@ -13,9 +13,18 @@
             <div class="   bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                    
-
-
-
+  @php
+  $options = range('a','z');    
+  @endphp
+   
+             {{-- <x-select-input class=" mt-1 w-full"  >                  
+                @foreach ($options as $option)
+                <x-select-option>                
+                {{$option}} 
+                </x-select-option>
+                @endforeach   
+             </x-select-input> --}}
+         
 
 
                 </div>

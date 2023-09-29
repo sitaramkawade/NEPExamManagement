@@ -17,8 +17,9 @@ return new class extends Migration
             $table->bigInteger('memid')->nullable()->unsigned();
             $table->string('eligibilityno',50)->nullable();
             $table->string('abcid',50)->nullable();
-            $table->string('student_name');
-            $table->string('mother_name')->nullable()->default(null);
+            $table->string('aadhar_card_no',50)->nullable();
+            $table->string('student_name');          
+            $table->string('mother_name')->nullable()->default(null);          
             $table->string('mobile_no',20)->nullable()->default(null);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -29,7 +30,7 @@ return new class extends Migration
             $table->timestamp('last_login')->nullable();
             $table->bigInteger('patternclass_id')->nullable()->unsigned()->default(null);
             $table->foreign('patternclass_id')->references('id')->on('pattern_classes');//Entry on which class
-           $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
+            $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
             $table->foreign('department_id')->references('id')->on('departments');
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->foreign('college_id')->references('id')->on('colleges');

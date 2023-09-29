@@ -13,9 +13,10 @@
 
     <!-- Styles -->
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+   
+  
     @livewireStyles
-
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 
@@ -121,8 +122,8 @@
 
 
                     @if (isset($header))
-                        <header class="bg-white shadow m-2">
-                            <div class="max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8">
+                        <header class="bg-white shadow-2xl mx-2 rounded-md">
+                            <div class="max-w-7xl mx-auto py-4 px-4   ">
                                 {{ $header }}
 
                                 
@@ -134,7 +135,7 @@
                   
                     <!-- Page Content -->
                     <div
-                        class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-200 dark:bg-gray-900">
+                        class="min-h-screen flex flex-col sm:justify-start items-center pt-6 sm:pt-0 bg-gray-200 dark:bg-gray-900">
 
                       
                         <div class="w-full  px-1 py-1 dark:bg-gray-800  overflow-hidden sm:rounded-lg">
@@ -172,6 +173,7 @@
     </div>
         @stack('modals')
 
+      
         @livewireScripts
 </body>
 

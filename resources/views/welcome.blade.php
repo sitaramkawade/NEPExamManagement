@@ -19,12 +19,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 
-    {{-- <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script> --}}
+ 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js"
-        integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -232,6 +229,8 @@
                     </div>
         
                 </div>
+                
+                
                 <div class="     bg-white  border border-blue-500 ">
                     <div class="rounded    max-w-sm  m-auto ">
                         <img class="  mx-auto w-32 h-32 rounded-full 	 " src="{{ asset('img/r-s-laddha.jpg') }}"></img>
@@ -359,7 +358,7 @@
         
        </div>
     </div>
-
+    @livewireScripts
 </body>
 
 </html>

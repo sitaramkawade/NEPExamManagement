@@ -12,4 +12,8 @@ To Enable Menus For Student
 7)Revaluation
 8)Help Desk
 
-ClassMenu
+1)Contact Details
+2)Personal Details
+3)Adhar Details
+4)Educational Details
+5)Document Upload
