@@ -18,24 +18,35 @@ class FacultyController extends Controller
     {
         //$user=User::all();
        
-        $department_id= Auth::user()->department_id;
-        $user=Faculty::where('department_id',$department_id)->get();
-        return view("faculty.head.index",compact('user'));
-    }
-    public function create()
-    {
-        $department_id= Auth::user()->department_id;
-        $role=Role::where('id',4)->get();
-        $dept=Department::where('id',$department_id)->get();
        
+        //$department_id= Auth::user()->department_id;
+        
+        $head_department_ids=Auth::user()->departments->pluck('pivot.department_id');
+       // dd(Auth::user());
+//         foreach(Faculty::first()->departments as $f) $f->pivot->status;
+// > foreach(Faculty::first()->departments as $f) echo $f->pivot->status;
+    $user=Faculty::whereIn('department_id',$head_department_ids)
+            
+            ->get();
+        return view("faculty.head.index",compact('user','head_department_ids'));
+    }
+    public function create($id)
+    {
+        $head_department_ids=Auth::user()->departments->pluck('pivot.department_id');
+       
+        //$department_id= Auth::user()->department_id;
+        $role=Role::where('roletype_id',2)->get();
+        $dept=Department::where('id',$id)->get();
+        if(!$head_department_ids->contains($id))
+        return redirect()->route('admin.head.showfaculty')
+        ->with('success','Wrong Department !!!!!');
+
         $college=College::all();
         return view("faculty.head.create",compact('role','dept','college'));
      
     }
     public function store(Request $request)
-    {
-
-        
+    {   
         Validator::make($request->all(), [
             
             'name' => ['required', 'string', 'max:255'],
@@ -49,22 +60,24 @@ class FacultyController extends Controller
             'bank_name' => ['required'],
             'branch_code' => ['required'],
             'branch_name' => ['required'],
-            
+            'account_type'=> ['required'],
             'ifsc_code' => ['required'],
             'micr_code' => ['required'],
-               
+            'unipune_id'=> ['required'],
+            'qualification'=> ['required'],
         ])->validate();
 
  
        $faculty= Faculty::create([
             'name' => $request['name'],
             'email' => $request['email'],
-            'mobile' => $request['mobile'],
+            'mobile_no' => $request['mobile'],
             'password' =>Hash::make('password'),
             'role_id'=>$request['role'],
             'department_id'=>$request['dept'],
             'college_id'=>$request['college'],
-            
+            'unipune_id'=> $request['unipune_id'],
+            'qualification'=>$request['qualification'],
         ]);
 
         $faculty->facultybankaccount()->create([
@@ -75,6 +88,7 @@ class FacultyController extends Controller
             'ifsc_code'=>$request['ifsc_code'],
             'micr_code'=>$request['micr_code'],
             'branch_name'=>$request['branch_name'],
+            'account_type'=> $request['account_type'],
 
         ]);
         //dd($request->all());
@@ -84,7 +98,13 @@ class FacultyController extends Controller
     }
     public function edit($id)
     { 
-        $faculty=Faculty::find($id);
+        $head_department_ids=Auth::user()->departments->pluck('pivot.department_id');
+        $faculty=Faculty::find($id);dd($faculty->department_id);
+        if(!$head_department_ids->contains($faculty->department_id))
+        return redirect()->route('admin.head.showfaculty')
+        ->with('success','Wrong Department !!!!!');
+        
+
         $department_id= Auth::user()->department_id;
         $role=Role::where('id',4)->get();
         $dept=Department::where('id',$department_id)->get();
@@ -92,8 +112,32 @@ class FacultyController extends Controller
         $college=College::all();
         return view('faculty.head.edit',compact('faculty','role','dept','college'));
     }
+    
+    public function active_faculty($id)
+    { 
+        $faculty=Faculty::find($id);
+        $faculty->update([
+           'active'=> '0',
+            
+        ]);
+        return redirect()->route('admin.head.showfaculty');
+    }
+    public function deactive_faculty($id)
+    { 
+        $faculty=Faculty::find($id);
+        $faculty->update([
+           'active'=> '1',
+            
+        ]);
+        return redirect()->route('admin.head.showfaculty');
+    }
     public function update(Request $request,$id):RedirectResponse
-    { $faculty= Faculty::find($id);
+    { 
+        $head_department_ids=Auth::user()->departments->pluck('pivot.department_id');
+        $faculty=Faculty::find($id);
+        if(!$head_department_ids->contains($faculty->department_id))
+        return redirect()->route('admin.head.showfaculty')
+        ->with('success','Wrong Department !!!!!');
        // dd($request->all());
         Validator::make($request->all(), [
             
@@ -108,9 +152,12 @@ class FacultyController extends Controller
             'bank_name' => ['required'],
             'branch_code' => ['required'],
             'branch_name' => ['required'],
-            
+            'account_type'=> ['required'],
             'ifsc_code' => ['required'],
             'micr_code' => ['required'],
+            'active'=> ['required'],
+            'unipune_id'=> ['required'],
+            'qualification'=> ['required'],
                
         ])->validate();
         //dd($request->all());
@@ -124,7 +171,9 @@ class FacultyController extends Controller
             'role_id'=>$request['role'],
             'department_id'=>$request['dept'],
             'college_id'=>$request['college'],
-            
+            'active'=> $request['active'],
+            'unipune_id'=> $request['unipune_id'],
+            'qualification'=>$request['qualification'],
         ]);
 
         $faculty->facultybankaccount()->update([
@@ -135,7 +184,7 @@ class FacultyController extends Controller
             'ifsc_code'=>$request['ifsc_code'],
             'micr_code'=>$request['micr_code'],
             'branch_name'=>$request['branch_name'],
-
+            'account_type'=> $request['account_type'],
         ]);
         //dd($request->all());
 
@@ -145,12 +194,22 @@ class FacultyController extends Controller
     public function delete($id)
     { 
         $faculty=Faculty::find($id);
-        $faculty->facultybankaccount->delete();
-        $faculty->delete();
+        $faculty->update([
+            'active' => 0]);
+        //$faculty->facultybankaccount->delete();
+        //$faculty->delete();
 
         return redirect()->route('admin.head.showfaculty');
     }
-   public function  alldetails()
-    { dd("all details");
+   public function  alldetails($id)
+    { 
+        $head_department_ids=Auth::user()->departments->pluck('pivot.department_id');
+        $faculty=Faculty::find($id);
+        if(!$head_department_ids->contains($faculty->department_id))
+        return redirect()->route('admin.head.showfaculty')
+        ->with('success','Wrong Department !!!!!');
+
+        
+        return view('faculty.head.show',compact('faculty'));
     }
 }

@@ -30,8 +30,10 @@ return new class extends Migration
 
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->foreign('college_id')->references('id')->on('colleges');
-           $table->tinyInteger('active')->default(1);
+            $table->tinyInteger('active')->default(1);//1 =>active ,0=>inactive
             $table->timestamp('last_login')->nullable();
+            $table->tinyInteger('faculty_verified')->default('0');  //0 means not verified
+         
             $table->timestamps();
         });
     }

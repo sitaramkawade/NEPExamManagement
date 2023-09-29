@@ -49,15 +49,15 @@ class RoleSeeder extends Seeder
             
             
                         
-            Role::create( [
-            'id'=>4,
-            'role_name'=>'faculty',
-            'roletype_id'=>2,
+            // Role::create( [
+            // 'id'=>4,
+            // 'role_name'=>'faculty',
+            // 'roletype_id'=>2,
            
-            'college_id'=>1,
-            'created_at'=>'2021-05-20 00:02:57',
-            'updated_at'=>'2021-05-19 00:02:57'
-            ] );
+            // 'college_id'=>1,
+            // 'created_at'=>'2021-05-20 00:02:57',
+            // 'updated_at'=>'2021-05-19 00:02:57'
+            // ] );
             
             
                         

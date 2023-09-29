@@ -45,7 +45,8 @@ return new class extends Migration
             $table->foreign('department_id')->references('id')->on('departments');//subject belongs to department
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->foreign('college_id')->references('id')->on('colleges');
-         
+            $table->tinyInteger('status')->default(1);//1 =>subject in use ,0=>not in use
+           
             $table->timestamps();
 
         });

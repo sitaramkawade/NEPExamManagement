@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('bank_name',50)->nullable();
             $table->string('branch_name',50)->nullable();
             $table->string('branch_code',50)->nullable();
-            $table->string('account_type',50)->nullable();
+            $table->string('account_type',1)->nullable();//S =>Saving account, C =>Current account
             $table->string('ifsc_code',50)->nullable();
             $table->string('micr_code',50)->nullable();
 

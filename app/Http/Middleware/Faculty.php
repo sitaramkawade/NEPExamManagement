@@ -16,7 +16,7 @@ class Faculty
     
     public function handle(Request $request, Closure $next,$guard=null): Response
     {
-         
+        //dd($request->getRequestUri());
         if (!Auth::guard('faculty')->check()) {
            return redirect('/admin/login');
         }

@@ -21,10 +21,6 @@ class RedirectIfAuthenticated
 //   dd($guards);
         foreach ($guards as $guard) {
               
-       
- 
-  
-
             if (Auth::guard($guard)->check()) {
        // dd($guard);
                 if($guard==="faculty"){

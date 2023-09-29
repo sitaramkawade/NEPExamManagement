@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\FacultyRegisteMailNotification;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Faculty extends Authenticatable  
 {
@@ -35,6 +37,7 @@ class Faculty extends Authenticatable
         'college_id',
         'active',
         'last_login',
+        'faculty_verified',
     ];
 
     /**
@@ -56,7 +59,7 @@ class Faculty extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function role()
+    public function role(): BelongsTo
     {
      return $this->belongsTo(Role::class,'role_id','id');
     }
@@ -64,11 +67,11 @@ class Faculty extends Authenticatable
     {
         return $this->hasMany(Exampanel::class,'faculty_id','id');
     }
-    public function department()
+    public function department(): BelongsTo
     {
      return $this->belongsTo(Department::class,'department_id','id');
     }
-    public function college()
+    public function college(): BelongsTo
     {
      return $this->belongsTo(College::class,'college_id','id');
     }
@@ -81,4 +84,23 @@ class Faculty extends Authenticatable
     {
         $this->notify(new FacultyRegisteMailNotification);
     }
+    // public function facultyhead()
+    // {
+    //     return $this->hasMany(Facultyhead::class,'faculty_id','id');
+    // }
+    public function departments(): BelongsToMany
+    {
+        // return $this->belongsToMany(Department::class, Facultyhead::class,
+        // 'faculty_id', 'department_id','id');
+        return $this->belongsToMany(Department::class,'facultyheads','faculty_id', 'department_id','id')
+        ->withPivot('status','department_id')
+        ->wherePivot('status','1');
+       
+    }
+    public function getdepartment($deptid)
+    {
+        return Department::where('id',$deptid)->first()->dept_name;
+    }
+    
+   
 }

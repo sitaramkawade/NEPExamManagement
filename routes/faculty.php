@@ -10,6 +10,7 @@ use App\Http\Controllers\Faculty\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Faculty\Auth\RegisteredUserController;
 use App\Http\Controllers\Faculty\Auth\VerifyEmailController;
 use App\Http\Controllers\Faculty\head\FacultyController;
+use App\Http\Controllers\Faculty\head\SubjectController;
 // use App\Faculty\head\FacultyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -68,7 +69,7 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
 //Head role
 //1 Add new faculty
 Route::get('/showfaculty', [FacultyController::class, 'index'])->name('head.showfaculty');
-Route::get('/addfaculty', [FacultyController::class, 'create'])->name('head.addfaculty');
+Route::get('/addfaculty/{id}', [FacultyController::class, 'create'])->name('head.addfaculty');
 Route::post('/storefaculty', [FacultyController::class, 'store'])->name('head.store');
 Route::get('/editfaculty/{id}', [FacultyController::class, 'edit'])->name('head.editfaculty');
 Route::post('/updatefaculty', [FacultyController::class, 'update'])->name('head.update');
@@ -77,8 +78,21 @@ Route::put('/updatefaculty/{id}', [FacultyController::class, 'update'])->name('h
 Route::delete('/deletefaculty{id}', [FacultyController::class, 'delete'])->name('head.deletefaculty');
 Route::get('/facultydetails/{id}', [FacultyController::class, 'alldetails'])->name('head.showalldetails');
 
-// Route::get('/showfaculty', [FacultyController::class, 'index'])->name('admin.showfaculty');
-// Route::get('/addfaculty', [FacultyController::class, 'create'])->name('admin.addfaculty');
+Route::get('/activefaculty/{id}', [FacultyController::class, 'active_faculty'])->name('head.activefaculty');
+Route::get('/deactivefaculty/{id}', [FacultyController::class, 'deactive_faculty'])->name('head.deactivefaculty');
+//2 Add new Subject
+Route::get('/showsubject', [SubjectController::class, 'index'])->name('subject.showsubject');
+Route::get('/addsubject/{id}', [SubjectController::class, 'create'])->name('subject.addsubject');
+Route::post('/storesubject/{id}', [SubjectController::class, 'store'])->name('subject.storesubject');
+Route::get('/editsubject/{id}', [SubjectController::class, 'edit'])->name('subject.editsubject');
+Route::post('/updatesubject', [SubjectController::class, 'update'])->name('subject.updatesubject');
+Route::put('/updatesubject/{id}', [SubjectController::class, 'update'])->name('subject.updatesubject');
+
+Route::delete('/deletesubject{id}', [SubjectController::class, 'delete'])->name('subject.deletesubject');
+Route::get('/subjectdetails/{id}', [SubjectController::class, 'alldetails'])->name('subject.showalldetailssubject');
+
+Route::get('/activesubject/{id}', [SubjectController::class, 'active_subject'])->name('subject.activesubject');
+Route::get('/deactivesubject/{id}', [SubjectController::class, 'deactive_subject'])->name('subject.deactivesubject');
 
 });
 
