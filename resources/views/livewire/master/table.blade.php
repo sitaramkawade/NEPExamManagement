@@ -3,9 +3,7 @@
         <x-text-input placeholder="Search Text" wire:model.live="search"></x-text-input>
      </div>
    <div class=" flex-col space-y-4 bg-white m-2 py-2 px-3 rounded-sm shadow-lg">
-   <div>
-    <button x-on:click="$wire.sortBy('state_code')" >Click Me!!!</button>
-   </div>
+    
         
     <x-table >
         <x-slot name="head" >
@@ -42,9 +40,9 @@
           @endforelse
         </x-slot>
     </x-table>
-
+ {{$allstates->links()}}
 <div>
-    {{$allstates->links()}}
+   
 </div>
 
    </div>

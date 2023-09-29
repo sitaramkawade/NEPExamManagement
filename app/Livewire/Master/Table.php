@@ -12,9 +12,7 @@ class Table extends Component
 
     use WithPagination;
 public $search="";
-public int $step  = 0; 
-
-public $sortField='id';
+public $sortField="id";
 public $sortDirection='desc';
 public function sortBy($field){
    
@@ -26,9 +24,11 @@ public function sortBy($field){
 
       //  sleep(1);
         return view('livewire.master.table' ,
-        [ 'allstates'=>State::paginate(10),
+        [ 'allstates'=>State::search('state_name',$this->search)
+        
+        ->orderBy( $this->sortField,$this->sortDirection)
+        ->paginate(10),
         ]);
-
         
     }
 }
