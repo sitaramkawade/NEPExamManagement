@@ -14,11 +14,21 @@ class Table extends Component
 public $search="";
 public $sortField="id";
 public $sortDirection='desc';
+protected $queryString=['sortField','sortDirection','search'];
+
 public function sortBy($field){
    
-    $this->sortField=$field;
+
+if($this->sortField==$field){
+    $this->sortDirection=$this->sortDirection==='asc'?'desc':'asc';
+}else{
+    $this->sortDirection='asc';
 }
 
+
+    $this->sortField=$field;
+}
+ 
     public function render()
     {
 

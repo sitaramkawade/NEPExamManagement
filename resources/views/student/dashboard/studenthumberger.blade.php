@@ -1,7 +1,7 @@
-<header class="bg-white shadow m-2">
-    <div class="max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8">
+<header class=" shadow m-2 bg-white">
+    <div class="max-w-7xl mx-auto   sm:px-6 lg:px-8">
         <nav class="md:flex  " aria-label="Breadcrumb">
-        <div class="pt-2 pb-3 space-y-1 ">
+        <div class="  space-y-1 ">
                  
             <x-responsive-nav-link :href="route('student.dashboard')" :active="request()->routeIs('student.dashboard')">
                 {{ __('Dashboard') }}
@@ -10,7 +10,7 @@
             
             
         </div>
-        <div class="pt-2 pb-3 space-y-1">
+        <div class=" space-y-1">
                  
             <x-responsive-nav-link :href="route('student.ProfileDetails.index')" :active="request()->routeIs('student.ProfileDetails.index')">
                 {{ __('Student Profile') }}
@@ -20,7 +20,7 @@
             
         </div>
 
-        <div class="pt-2 pb-3 space-y-1">
+        <div class=" space-y-1">
                  
             <x-responsive-nav-link :href="route('student.AddressDetails.index')" :active="request()->routeIs('student.AddressDetails.index')">
                 {{ __('Student Address') }}
@@ -29,7 +29,7 @@
             
             
         </div>
-        <div class="pt-2 pb-3 space-y-1">
+        <div class=" space-y-1">
                  
             <x-responsive-nav-link :href="route('student.EducationDetails.index')" :active="request()->routeIs('student.EducationDetails.index')">
                 {{ __('Student Education') }}
@@ -38,7 +38,7 @@
             
             
         </div>
-        <div class="pt-2 pb-3 space-y-1">
+        <div class=" space-y-1">
                  
             <x-responsive-nav-link :href="route('student.CourseSelection.index')" :active="request()->routeIs('student.CourseSelection.index')">
                 {{ __('Student Course Selection') }}
@@ -62,7 +62,7 @@
                     </a>
                 </li>
               
-                <div class="pt-2 pb-3 space-y-1">
+                <div class=" space-y-1">
                  
                     <x-responsive-nav-link :href="route('student.dashboard')" :active="request()->routeIs('student')">
                         {{ __('Dashboard') }}

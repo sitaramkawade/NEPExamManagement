@@ -74,6 +74,41 @@
                     :value="old('last_name')" required autofocus autocomplete="last_name" placeholder="Enter Last Name"  />
                 <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
             </div>
+
+            <div>
+                <x-input-label for="mother_name" :value="__('Mother Name ')" />
+                <x-text-input id="mother_name" class="block mt-1 w-full" type="text" name="mother_name"
+                    :value="old('mother_name')" required autofocus autocomplete="mother_name" placeholder="Enter Mother"  />
+                <x-input-error :messages="$errors->get('mother_name')" class="mt-2" />
+            </div>
+            <div>
+                <x-input-label for="memid" :value="__('Member ID ')" />
+                <x-text-input id="memid" class="block mt-1 w-full" type="text" name="memid"
+                    :value="old('memid')" required autofocus autocomplete="memid" placeholder="Enter MemID"  />
+                <x-input-error :messages="$errors->get('memid')" class="mt-2" />
+            </div>
+            <div>
+                <x-input-label for="eligibilityno" :value="__('Eligibility No.')" />
+                <x-text-input id="eligibilityno" class="block mt-1 w-full" type="text" name="eligibilityno"
+                    :value="old('eligibilityno')" required autofocus autocomplete="eligibilityno" placeholder="Enter Eligibility Number"  />
+                <x-input-error :messages="$errors->get('eligibilityno')" class="mt-2" />
+            </div>
+            <div>
+                <x-input-label for="aadhar_card_no" :value="__('Addhar Number')" />
+                <x-text-input id="aadhar_card_no" class="block mt-1 w-full" type="text" name="aadhar_card_no"
+                    :value="old('aadhar_card_no')" required autofocus autocomplete="aadhar_card_no" placeholder="Enter Addhar Number"  />
+                <x-input-error :messages="$errors->get('aadhar_card_no')" class="mt-2" />
+            </div>
+            
+            <div>
+                <x-input-label for="abcid" :value="__('ABC-ID.')" />
+                <x-text-input id="abcid" class="block mt-1 w-full" type="text" name="abcid"
+                    :value="old('abcid')" required autofocus autocomplete="abcid" placeholder="Enter ABC-ID"  />
+                <x-input-error :messages="$errors->get('abcid')" class="mt-2" />
+            </div>
+            
+            
+    
             <div class="mt-4">
                 <x-input-label for="mobile_no" value="{{ __('Mobile Number') }}" />
                 <x-text-input id="mobile_no" class="block mt-1 w-full" type="text"

@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Addresstype extends Model
+class Boarduniversity extends Model
 {
     use HasFactory;
-    protected $table='addresstypes';
+    protected $table='boarduniversities';
     protected $fillable=[
-        'type',
+        'boarduniversity_name',
         'is_active'
 
     ];
-
-    
 }

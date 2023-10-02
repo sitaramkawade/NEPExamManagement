@@ -51,11 +51,13 @@ class Address extends Component
             
 
     }
+  
     public function render()
     {
         
         return view('livewire.student.address',
         ['countries'=> Country::all(),
+              'filledaddresstypes'=>Addresstype::all(),
                 // 'allstates'=>State::paginate(10),
         ]);
     }
@@ -125,7 +127,7 @@ class Address extends Component
             ]);
 
            }
-           return  redirect('/student/AddressDetails')->with('success', 'Address successfully created.');
+           return  redirect(route("student.AddressDetails.create"))->with('success', 'Address successfully created.');
    
     }
 

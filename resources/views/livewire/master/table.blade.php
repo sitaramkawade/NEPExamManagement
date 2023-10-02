@@ -8,15 +8,15 @@
     <x-table >
         <x-slot name="head" >
             <x-tables.row  > 
-                <x-tables.heading class="   cursor-pointer " sortable   wire:click.live="sortBy('state_code')"  direction='asc'   > state_code
+                <x-tables.heading class="   cursor-pointer " sortable   wire:click.live="sortBy('state_code')"  :direction="$sortField === 'state_code' ?$sortDirection:null"   > state_code
               </x-tables.heading>
-            <x-tables.heading  sortable wire:click.live="sortBy('state_name')" direction='asc'> state_name
+            <x-tables.heading  sortable wire:click.live="sortBy('state_name')"  :direction="$sortField === 'state_name' ?$sortDirection:null"> state_name
             </x-tables.heading>
-            <x-tables.heading  sortable wire:click.live="sortBy('country_id')"  direction='asc'> Country
+            <x-tables.heading  sortable wire:click.live="sortBy('country_id')"   :direction="$sortField === 'country_id' ?$sortDirection:null"> Country
             </x-tables.heading>
-            <x-tables.heading  sortable wire:click.live="sortBy('state_or_UT')"  direction='asc'> Code
+            <x-tables.heading  sortable wire:click.live="sortBy('state_or_UT')"   :direction="$sortField === 'state_or_UT' ?$sortDirection:null"> Code
             </x-tables.heading>
-            <x-tables.heading  sortable wire:click.live="sortBy('created_at')"  direction='asc'> Date  
+            <x-tables.heading  sortable wire:click.live="sortBy('created_at')"   :direction="$sortField === 'created_at' ?$sortDirection:null"> Date  
             </x-tables.heading>
             </x-tables.row>
         </x-slot>

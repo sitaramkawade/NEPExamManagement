@@ -30,10 +30,11 @@ class Studentaddress extends Model
     }
     public function taluka():BelongsTo
     {
-    return $this->belongsTo(Taluka::class,'c_taluka_id','id');
+    return $this->belongsTo(Taluka::class,'taluka_id','id');
     }
-    public function talukap():BelongsTo
+   
+    public function addresstype():BelongsTo
     {
-    return $this->belongsTo(Taluka::class,'p_taluka_id','id');
+    return $this->belongsTo(Addresstype::class,'addresstype_id','id');
     }
 }
