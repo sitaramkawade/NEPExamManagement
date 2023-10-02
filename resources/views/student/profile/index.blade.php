@@ -46,11 +46,11 @@
                 <div class=" flex   justify-between   ">
                     <header>
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {{ __('Previous Education Details') }}
+                            {{ __('Personal Details') }}
                         </h2>
 
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            {{ __(' मागील  शैक्षणिक तपशील') }}
+                            {{ __(' वैयक्तिक  तपशील') }}
                         </p>
                     </header>
                     <button @click="open = !open" class=" bg-gray  	">
@@ -69,8 +69,8 @@
 
                     </button>
                 </div>
-                 
-         
+
+
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -78,142 +78,191 @@
                         @endforeach
                     </ul>
                 </div>
-          @php
-           $test=$errors->all();   
-          @endphp
+                @php
+                    $test = $errors->all();
+                @endphp
                 <section x-show="open" x-collapse.duration.500ms>
                     <form action="{{ route('student.EducationDetails.store') }}" method="POST">
                         @csrf
-                        <div> 
+                        <div>
                             <div class=" flex-none md:flex  space-x-6   py-4">
-                                 <div class="  flex-1 space-y-6">
+                                <div class="  flex-1 space-y-6">
                                     <div class="max-w-2xl mx-auto">
                                         <div>
-                                            <x-input-label for="mother_name" :value="__('Mother Name ')" />
-                                            <x-text-input id="mother_name" class="block mt-1 w-full" type="text" name="mother_name"
-                                                :value="old('mother_name')" required autofocus autocomplete="mother_name" placeholder="Enter Last Name"  />
-                                            <x-input-error :messages="$errors->get('mother_name')" class="mt-2" />
+                                            <x-input-label for="student_name_devnagari" :value="__('देवनागरीतील विद्यार्थ्याचे नाव ')" />
+                                            <x-text-input id="student_name_devnagari" class="block mt-1 w-full" type="text"
+                                                name="student_name_devnagari" :value="old('student_name_devnagari')" required autofocus
+                                                autocomplete="student_name_devnagari" placeholder="विद्यार्थ्याचे नाव" />
+                                            <x-input-error :messages="$errors->get('student_name_devnagari')" class="mt-2" />
                                         </div>
-                                       
-                 
-                                     </div>
-
-                                     
-                                 </div>
-                                 <div class="  flex-1 space-y-6">
-                                    <div class="max-w-2xl mx-auto">
-                                        <div>
-                                            <x-input-label for="mother_name" :value="__('Mother Name ')" />
-                                            <x-text-input id="mother_name" class="block mt-1 w-full" type="text" name="mother_name"
-                                                :value="old('mother_name')" required autofocus autocomplete="mother_name" placeholder="Enter Last Name"  />
-                                            <x-input-error :messages="$errors->get('mother_name')" class="mt-2" />
-                                        </div>
-                                       
-                 
-                                     </div>
-
-                                     
-                                 </div>
-                                 
-                                 <div class="flex-1   space-y-6">
-                                     <div class="max-w-2xl mx-auto">
-                                        <div>
-                                            <x-input-label for="memid" :value="__('Member Id')" />
-                                            <x-text-input id="memid" class="block mt-1 w-full" type="text" name="memid"
-                                                :value="old('memid')" required autofocus autocomplete="memid" placeholder="Enter Last Name"  />
-                                            <x-input-error :messages="$errors->get('memid')" class="mt-2" />
-                                        </div>
-                 
-                                     </div>
+                                    </div>                                  
                                 </div>
-                 
-                                 <div class="flex-1  space-y-6">
-                                     <div class="flex-1   space-y-6">
-                                        
-                                     </div>
-                                 </div>
-                             </div>
-                 
-                          
-                             <div class=" flex-none  space-x-6 md:flex   py-4">
-                                 <div class="flex-1  space-y-6">
-                                     <div class="flex-1   space-y-6">
-                                          
-                                                       
-                                         </div>                    
-                                 </div>
-                                 <div class="flex-1   space-y-6">
-                                     <div class="flex-1   space-y-6">
-                                         
-                                                 <x-input-label for="cgpa" :value="__('CGPA')" />
-                                                 <x-text-input id="cgpa" required type="text" class="mt-2 block w-full"
-                                                 name="cgpa"  autocomplete="cgpa" />
-                                                 <x-input-error :messages="$errors->get('cgpa')" class="mt-2" />
-                                               
-                                     </div>
-                 
-                                 </div>
-                 
-                                 <div class="flex-1   space-y-6">
-                                     <div class="flex-1   space-y-6">
-                                         
-                                                 <x-input-label for="grade" :value="__('GRADE')" />
-                                                 <x-text-input id="grade" required type="text" class="mt-2 block w-full"
-                                                 name="grade"    autocomplete="grade" />
-                                                 <x-input-error :messages="$errors->get('grade')" class="mt-2" />
-                                             
-                                     </div>
-                                 </div>
-                             </div>
-                 
-                             <div class=" flex-none  space-x-6 md:flex   py-4">
-                                 <div class="flex-1   space-y-6">
-                                     <div class="flex-1   space-y-6">
-                                         
-                                                 <x-input-label for="obtained_marks" :value="__('Obtained Marks')" />
-                                                 <x-text-input id="obtained_marks" required type="text" class="mt-2 block w-full"
-                                                 wire:model.blur="obtained_marks"
-                                                 name="obtained_marks" autocomplete="obtained_marks" />
-                                                 <x-input-error :messages="$errors->get('obtained_marks')" class="mt-2" />
-                                               
-                                     </div>
-                 
-                                 </div>
-                 
-                                 <div class="flex-1   space-y-6">
-                                     <div class="flex-1   space-y-6">
-                                         
-                                                 <x-input-label for="total_marks" :value="__('Total Marks')" />
-                                                 <x-text-input id="total_marks" required type="text" class="mt-2 block w-full"
-                                                 wire:model.blur="total_marks"
-                                                 name="total_marks"  autocomplete="total_marks" />
-                                                 <x-input-error :messages="$errors->get('total_marks')" class="mt-2" />
-                                             
-                                     </div>
-                                 </div>
-                 
-                                 <div class="flex-1   space-y-6">
-                                     <div class="flex-1   space-y-6">
-                                         
-                                                 <x-input-label for="percentage" :value="__('Percentage')" />
-                                                 <x-text-input id="percentage" required type="text" class="mt-2 block w-full"
-                                                 name="percentage"  readonly autocomplete="percentage"    />
-                                                 <x-input-error :messages="$errors->get('percentage')" class="mt-2" />
-                                             
-                                     </div>
-                                 </div>
-                             </div>
-                 
-                 
-                 
-                         </div>
-                 
-                      <div class=" flex justify-end content-center items-center bg-slate-200 px-10 py-1 rounded shadow-sm">
-                        <input   class=" mr-6  text-white bg-gray-700 hover:bg-gray-400
+                                <div class="  flex-1 space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="mother_name_devnagari" :value="__('देवनागरीत आईचे नाव ')" />
+                                            <x-text-input id="mother_name_devnagari" class="block mt-1 w-full" type="text"
+                                                name="mother_name_devnagari" :value="old('mother_name_devnagari')" required autofocus
+                                                autocomplete="mother_name_devnagari" placeholder="आईचे नाव" />
+                                            <x-input-error :messages="$errors->get('mother_name_devnagari')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex-1   space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="father_name_devnagari" :value="__('वडिलांचे नाव देवनागरी')" />
+                                            <x-text-input id="father_name_devnagari" class="block mt-1 w-full" type="text"
+                                                name="father_name_devnagari" :value="old('father_name_devnagari')" required autofocus
+                                                autocomplete="father_name_devnagari" placeholder="वडिलांचे नाव " />
+                                            <x-input-error :messages="$errors->get('father_name_devnagari')" class="mt-2" />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+
+ {{-- Second Row --}}
+                            <div class=" flex-none md:flex  space-x-6   py-4">
+                                <div class="  flex-1 space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="parent_name" :value="__(' Guardian name /Parent Name ')" />
+                                            <x-text-input id="parent_name" class="block mt-1 w-full" type="text"
+                                                name="parent_name" :value="old('parent_name')" required autofocus
+                                                autocomplete="parent_name" placeholder="Enter Guardian name /Parent Name" />
+                                            <x-input-error :messages="$errors->get('parent_name')" class="mt-2" />
+                                        </div>
+                                    </div>                                  
+                                </div>
+                                <div class="  flex-1 space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="parent_mobile_no" :value="__('Guardian /Parent Mobile No. ')" />
+                                            <x-text-input id="parent_mobile_no" class="block mt-1 w-full" type="text"
+                                                name="parent_mobile_no" :value="old('parent_mobile_no')" required autofocus
+                                                autocomplete="parent_mobile_no" placeholder="Guardian /Parent Mobile No." />
+                                            <x-input-error :messages="$errors->get('parent_mobile_no')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="flex-1   space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="gender" :value="__('Gender')" />
+                                            <x-input-select class="block mt-1 w-full"  >
+                                            @foreach(Genders() as $key => $value)   
+                                            <option value="{{$value->gender_shortform}}">{{$value->gender}}</option>
+                                            @endforeach
+                                        </x-input-select>
+                                        <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+
+                            <div class=" flex-none md:flex  space-x-6   py-4">
+                                <div class="  flex-1 space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="date_of_birth" :value="__('Date of Birth ')" />
+                                            <x-text-input id="date_of_birth" class="block mt-1 w-full" type="date"
+                                                name="date_of_birth" :value="old('date_of_birth')" required autofocus
+                                                autocomplete="date_of_birth" placeholder="Enter Date of Birth" />
+                                            <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
+                                        </div>
+                                    </div>                                  
+                                </div>
+                                <div class="  flex-1 space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="nationality" :value="__('Nationality ')" />
+                                            <x-text-input id="nationality" class="block mt-1 w-full" type="text"
+                                                name="nationality" :value="old('nationality')" required autofocus
+                                                autocomplete="nationality" placeholder="Enter Nationality" />
+                                            <x-input-error :messages="$errors->get('nationality')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex-1   space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="caste_id" :value="__('Father Caste')" />
+                                            <x-text-input id="caste_id" class="block mt-1 w-full" type="text"
+                                                name="caste_id" :value="old('caste_id')" required autofocus
+                                                autocomplete="caste_id" placeholder="Enter Father Full Name" />
+                                            <x-input-error :messages="$errors->get('caste_id')" class="mt-2" />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+
+                            <div class=" flex-none md:flex  space-x-6   py-4">
+                                <div class="  flex-1 space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="caste_category_id" :value="__('Category ')" />
+                                            <x-text-input id="caste_category_id" class="block mt-1 w-full" type="text"
+                                                name="caste_category_id" :value="old('caste_category_id')" required autofocus
+                                                autocomplete="caste_category_id" placeholder="Category" />
+                                            <x-input-error :messages="$errors->get('caste_category_id')" class="mt-2" />
+                                        </div>
+                                    </div>                                  
+                                </div>
+                                <div class="  flex-1 space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="is_noncreamylayer" :value="__('is_noncreamylayer ')" />
+                                            <x-text-input id="is_noncreamylayer" class="block mt-1 w-full" type="text"
+                                                name="is_noncreamylayer" :value="old('is_noncreamylayer')" required autofocus
+                                                autocomplete="is_noncreamylayer" placeholder="आईचे नाव" />
+                                            <x-input-error :messages="$errors->get('is_noncreamylayer')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex-1   space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="is_minority" :value="__('is_minority')" />
+                                            <x-text-input id="is_minority" class="block mt-1 w-full" type="text"
+                                                name="is_minority" :value="old('is_minority')" required autofocus
+                                                autocomplete="is_minority" placeholder="Enter Father Full Name" />
+                                            <x-input-error :messages="$errors->get('is_minority')" class="mt-2" />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+
+
+
+                        </div>
+
+                        <div
+                            class=" flex justify-end content-center items-center bg-slate-200 px-10 py-1 rounded shadow-sm">
+                            <input
+                                class=" mr-6  text-white bg-gray-700 hover:bg-gray-400
                         focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 font-medium 
                         rounded-lg text-sm px-5 py-2 text-center inline-flex items-center 
-                         " type="submit" value="Submit">
-                      </div>
+                         "
+                                type="submit" value="Submit">
+                        </div>
                     </form>
 
                 </section>
@@ -223,11 +272,21 @@
 
             </div>
 
-           
+
         </div>
-   
-        @if(!$studenteducations->isEmpty())
-        <div class="p-3 mt-3  sm:px-6 sm:py-4 bg-white dark:bg-gray-800 shadow rounded-md">
+
+       
+           
+
+
+            
+         
+    </div>
+    <div class="py-2 px-1">
+
+
+
+        <div class="p-3  sm:px-6 sm:py-4 bg-white dark:bg-gray-800 shadow rounded-md">
             <div class=" max-w-full  " x-data={open:true}>
                 <div class=" flex   justify-between   ">
                     <header>
@@ -256,81 +315,116 @@
                     </button>
                 </div>
 
+
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @php
+                    $test = $errors->all();
+                @endphp
                 <section x-show="open" x-collapse.duration.500ms>
-                    <div class=" flex-none md:flex  space-x-6   py-4 overflow-scroll">
-                        <x-table>
-                            <x-slot name="head">
-                                <x-tables.row>
+                    <form action="{{ route('student.EducationDetails.store') }}" method="POST">
+                        @csrf
+                        <div>
+                            <div class=" flex-none md:flex  space-x-6   py-4">
+                                <div class="  flex-1 space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="is_handicap" :value="__('is_handicap Name ')" />
+                                            <x-text-input id="is_handicap" class="block mt-1 w-full" type="text"
+                                                name="is_handicap" :value="old('is_handicap')" required autofocus
+                                                autocomplete="is_handicap" placeholder="Enter Last Name" />
+                                            <x-input-error :messages="$errors->get('is_handicap')" class="mt-2" />
+                                        </div>
 
-                                    <x-tables.heading> Course
-                                    </x-tables.heading>
-                                    <x-tables.heading> Passing Year
-                                    </x-tables.heading>
-                                    <x-tables.heading> Seat No
-                                    </x-tables.heading>
-                                    <x-tables.heading> Obtained Marks
-                                    </x-tables.heading>
-                                    <x-tables.heading> Total Marks
-                                    </x-tables.heading>
-                                    <x-tables.heading> Percentage
-                                    </x-tables.heading>
-                                    <x-tables.heading> CGPA
-                                    </x-tables.heading>
-                                    <x-tables.heading> GRADE
-                                    </x-tables.heading>
-                                    <x-tables.heading> Action
-                                    </x-tables.heading>
-                                </x-tables.row>
-                            </x-slot>
-                            <x-slot name="body">
 
-                                @forelse($studenteducations as $studenteducation)
-                                    <x-tables.row>
-                                        <x-tables.cell class="text-center">
-                                            {{ $studenteducation->educationalcourse->course_name }} </x-tables.cell>
-                                        <x-tables.cell class="text-center">
-                                            {{ $studenteducation->passing_year->format('M-Y') }} </x-tables.cell>
-                                        <x-tables.cell class="text-center"> {{ $studenteducation->seat_number }}
-                                        </x-tables.cell>
-                                        <x-tables.cell class="text-center">{{ $studenteducation->obtained_marks }}
-                                        </x-tables.cell>
-                                        <x-tables.cell class="text-center"> {{ $studenteducation->total_marks }}
-                                        </x-tables.cell>
-                                        <x-tables.cell class="text-center"> {{ $studenteducation->percentage }}
-                                        </x-tables.cell>
-                                        <x-tables.cell class="text-center"> {{ $studenteducation->cgpa }}
-                                        </x-tables.cell>
-                                        <x-tables.cell class="text-center"> {{ $studenteducation->grade }}
-                                        </x-tables.cell>
-                                        <x-tables.cell class="text-center">
-                                            <form method="POST"
-                                                action="{{ route('student.EducationDetails.destroy', $studenteducation->id) }}">
-                                                @csrf
-                                                @method('DELETE')
+                                    </div>
 
-                                                <button type="submit" title="submit"
-                                                    class="    text-white bg-red-700 hover:bg-red-400
-                             focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 font-medium 
-                             rounded-lg text-sm px-5 py-2 text-center inline-flex items-center 
-                              ">
-                                                    Delete
-                                                </button>
-                                            </form>
 
-                                        </x-tables.cell>
-                                    </x-tables.row>
-                                @empty
-                                    <x-tables.row>
-                                        <x-tables.cell colspan="5">
-                                            <div
-                                                class=" flex justify-center bg-slate-100 py-6 font-semibold rounded-sm shadow-sm items-center text-xl  ">
-                                                No Data Found .....</div>
-                                        </x-tables.cell>
-                                    </x-tables.row>
-                                @endforelse
-                            </x-slot>
-                        </x-table>
-                    </div>
+                                </div>
+                                <div class="  flex-1 space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="maritalstatus_id" :value="__('Mother Name ')" />
+                                            <x-text-input id="maritalstatus_id" class="block mt-1 w-full" type="text"
+                                                name="maritalstatus_id" :value="old('maritalstatus_id')" required autofocus
+                                                autocomplete="maritalstatus_id" placeholder="Enter Last Name" />
+                                            <x-input-error :messages="$errors->get('maritalstatus_id')" class="mt-2" />
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="flex-1   space-y-6">
+                                    <div class="max-w-2xl mx-auto">
+                                        <div>
+                                            <x-input-label for="migratestud" :value="__('migratestud')" />
+                                            <x-text-input id="migratestud" class="block mt-1 w-full" type="text"
+                                                name="migratestud" :value="old('migratestud')" required autofocus
+                                                autocomplete="migratestud" placeholder="Enter Last Name" />
+                                            <x-input-error :messages="$errors->get('migratestud')" class="mt-2" />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                              
+                            </div>
+
+
+                            <div class=" flex-none  space-x-6 md:flex   py-4">
+                               
+                                <div class="flex-1   space-y-6">
+                                    <div class="flex-1   space-y-6">
+
+                                        <x-input-label for="profile_photo_path" :value="__('profile_photo_path')" />
+                                        <x-text-input id="profile_photo_path" required type="text" class="mt-2 block w-full"
+                                            name="profile_photo_path" autocomplete="profile_photo_path" />
+                                        <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
+
+                                    </div>
+
+                                </div>
+                               
+
+                                <div class="flex-1   space-y-6">
+                                    <div class="flex-1   space-y-6">
+
+                                        <x-input-label for="sign_photo_path" :value="__('sign_photo_path')" />
+                                        <x-text-input id="sign_photo_path" required type="text" class="mt-2 block w-full"
+                                            name="sign_photo_path" autocomplete="sign_photo_path" />
+                                        <x-input-error :messages="$errors->get('sign_photo_path')" class="mt-2" />
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+
+
+                        </div>
+                        @foreach(  Genders()  as $master)
+                        {{$master}}
+                        @endforeach
+                        <div
+                            class=" flex justify-end content-center items-center bg-slate-200 px-10 py-1 rounded shadow-sm">
+                            <input
+                                class=" mr-6  text-white bg-gray-700 hover:bg-gray-400
+                        focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 font-medium 
+                        rounded-lg text-sm px-5 py-2 text-center inline-flex items-center 
+                         "
+                                type="submit" value="Submit">
+                        </div>
+                    </form>
+
                 </section>
 
 
@@ -340,12 +434,12 @@
 
 
         </div>
-         @endif
 
-
-
-
+       
+          
+         
     </div>
+
 
 
 
