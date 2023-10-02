@@ -12,23 +12,33 @@ class Table extends Component
 
     use WithPagination;
 public $search="";
-public int $step  = 0; 
-
-public $sortField='id';
+public $sortField="id";
 public $sortDirection='desc';
+protected $queryString=['sortField','sortDirection','search'];
+
 public function sortBy($field){
    
-    $this->sortField=$field;
+
+if($this->sortField==$field){
+    $this->sortDirection=$this->sortDirection==='asc'?'desc':'asc';
+}else{
+    $this->sortDirection='asc';
 }
 
+
+    $this->sortField=$field;
+}
+ 
     public function render()
     {
 
       //  sleep(1);
         return view('livewire.master.table' ,
-        [ 'allstates'=>State::paginate(10),
+        [ 'allstates'=>State::search('state_name',$this->search)
+        
+        ->orderBy( $this->sortField,$this->sortDirection)
+        ->paginate(10),
         ]);
-
         
     }
 }

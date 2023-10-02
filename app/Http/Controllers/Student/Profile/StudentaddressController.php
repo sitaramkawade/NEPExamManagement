@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Models\Addresstype;
+use App\Models\Studentaddress;
 use Illuminate\Http\Request;
 
 class StudentaddressController extends Controller
@@ -14,11 +15,8 @@ class StudentaddressController extends Controller
     public function index()
     {
        
-       return view('student.address.create');
-    //    // return view('student.address.index',
-    // [
-    //     'addresstypes'=> Addresstype::all()
-    // ]);
+    
+          return view('student.address.index');
     }
      
 
@@ -27,8 +25,7 @@ class StudentaddressController extends Controller
      */
     public function create(Request $request)
     {
-        $name =   $request->query('type');
-         dd( $name);
+        return view('student.address.create');
     }
 
     /**
@@ -68,6 +65,12 @@ class StudentaddressController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+     
+        $studentaddress=Studentaddress::find($id);
+        
+        $studentaddress->delete();
+
+        return back()->with('success','Address is deleted');
+       
     }
 }

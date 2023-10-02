@@ -44,6 +44,10 @@ class RegisteredUserController extends Controller
             'mobile_no'=>['required','digits:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Student::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'mother_name'=>['required', 'string', 'max:255'],
+            'memid'=>['required', 'numeric', 'unique:'.Student::class.',memid'],
+            'eligibilityno'=>['required', 'numeric', 'unique:'.Student::class.',eligibilityno'],
+             
     
         ]);
 
@@ -53,15 +57,21 @@ class RegisteredUserController extends Controller
             'email' => strtolower($request->input('email')),
             'password' => bcrypt($request->input('password')),
             'mobile_no' => trim($request->input('mobile_no')),
+            'mother_name' => trim($request->input('mother_name')),
+            'memid' => trim($request->input('memid')),
+            'eligibilityno' => trim($request->input('eligibilityno')),
+            'abcid' => trim($request->input('abcid')), 
+            'aadhar_card_no' => trim($request->input('aadhar_card_no')), 
             'email_verification_token' => Str::random(32),
             
         ]);
  
     //    event(new Registered($student));
        event(new AdminRegisterMailEvent($student));
-        Auth::guard('faculty')->login($student);
       
-
-        return redirect(RouteServiceProvider::STUDENTHOME);
+        Auth::guard('student')->login($student);
+      
+ 
+        return redirect('/student/dashboard');
     }
 }

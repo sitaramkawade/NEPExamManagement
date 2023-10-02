@@ -38,6 +38,9 @@ class DatabaseSeeder extends Seeder
             TalukaSeeder::class,
             AddresstypeSeeder::class,
             ClassyearSeeder::class,
+            BoarduniversitySeeder::class,
+            EducationalcourseSeeder::class,
+
 
         ]);
         // \App\Models\User::factory(10)->create();

@@ -30,9 +30,9 @@ class Taluka extends Model
     {
         return $this->belongsTo(District::class, 'district_id', 'id');
     }
-    public function studentaddress(): HasOne
+    public function studentaddress():HasMany
     {
-        return $this->hasOne(Studentaddress::class, 'student_id', 'id');
+        return $this->HasMany(Studentaddress::class, 'taluka_id', 'id');
     }
     public function getStateColorAttribute(){
      

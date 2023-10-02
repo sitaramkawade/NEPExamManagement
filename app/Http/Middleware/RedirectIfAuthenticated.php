@@ -33,7 +33,7 @@ class RedirectIfAuthenticated
                 return redirect('dashboard');
             }
         }
-
+ 
         return $next($request);
     }
 

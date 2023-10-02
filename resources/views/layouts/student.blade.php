@@ -40,7 +40,7 @@
                 <div class=" flex   ">
 
                     <img class="p-2 h-20 m-auto mt-2 rounded shadow-2xl bg-white opacity-80 hover:bg-gray-200 hover:optacity-100 "
-                        src="{{ asset('img/shikshan-logo.png') }}"></img>
+                        src="{{ asset('img/shikshan-logo.png') }}" alt="logo" aria-label="For screen readers"></img>
                 </div>
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Studentpreviousexam;
 use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,11 @@ class StudentprofileController extends Controller
     public function index()
     {
          
-        return view('student.profile.create');
+      //  return view('student.profile.create');
        // return (Auth::user()->studentprofile);
-          return view('student.profile.index');
+          return view('student.profile.index',
+         [ 'studenteducations'=>Studentpreviousexam::where('student_id',Auth::user()->id)->get(),]
+        );
     }
 
     /**

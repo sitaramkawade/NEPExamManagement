@@ -30,7 +30,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
         'memid',
         'eligibilityno',
         'abcid',
-       
+       'aadhar_card_no',
         'mother_name',
         'mobile_no',
      
@@ -75,6 +75,10 @@ class Student extends  Authenticatable implements MustVerifyEmail
     public function studentaddress(): HasMany
     {
         return $this->HasMany(Studentaddress::class, 'student_id', 'id');
+    }
+    public function educationalcourses(): HasMany
+    {
+        return $this->HasMany(Studentpreviousexam::class, 'student_id', 'id');
     }
     // public function country() 
     // {
