@@ -20,5 +20,8 @@ class Subjectcategory extends Model
     {
         return $this->hasMany(Subject::class,'subjectcategory_id','id');
     }
-    
+    public function subjectbuckets():HasMany
+    {
+        return $this->hasMany(Subjectbucket::class,'subjectcategory_id','id');
+    }
 }

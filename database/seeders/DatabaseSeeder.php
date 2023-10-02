@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,
             TalukaSeeder::class,
             AddresstypeSeeder::class,
-
+            ClassyearSeeder::class,
 
         ]);
         // \App\Models\User::factory(10)->create();

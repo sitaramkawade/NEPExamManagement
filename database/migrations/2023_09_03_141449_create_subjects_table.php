@@ -37,8 +37,10 @@ return new class extends Migration
             $table->integer('subject_extpassing')->default(0);//12
           
             $table->char('subject_optionalgroup',3)->nullable(); //6
-            $table->bigInteger('patternclass_id')->nullable()->unsigned();
+            $table->bigInteger('patternclass_id')->nullable()->unsigned()->default(null);;
             $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
+            $table->bigInteger('classyear_id')->nullable()->unsigned()->default(null);;
+            $table->foreign('classyear_id')->references('id')->on('classyears');
          
           
             $table->bigInteger('department_id')->unsigned();  //Major Minor

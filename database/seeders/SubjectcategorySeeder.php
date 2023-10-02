@@ -43,8 +43,8 @@ class SubjectcategorySeeder extends Seeder
             Subjectcategory::create( [
             'id'=>4,
             'subjectcategory'=>'MINOR',
-            'subjectcategory_shortname'=>'MINOR',
-            'active'=>1,
+            'subjectcategory_shortname'=>'M',
+            'active'=>2,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
             ] );
@@ -53,7 +53,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>5,
             'subjectcategory'=>'Co-curricular Course',
             'subjectcategory_shortname'=>'CC',
-            'active'=>1,
+            'active'=>2,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
             ] );
@@ -62,7 +62,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>6,
             'subjectcategory'=>'Open Elective',
             'subjectcategory_shortname'=>'OE',
-            'active'=>1,
+            'active'=>2,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
             ] );
@@ -71,16 +71,16 @@ class SubjectcategorySeeder extends Seeder
             'id'=>7,
             'subjectcategory'=>'Skill Enhancement Course (SEC)',
             'subjectcategory_shortname'=>'SEC',
-            'active'=>1,
+            'active'=>2,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
             ] );
                         
-            Subjectcategory::create( [
+            Subjectcategory::create([
             'id'=>8,
             'subjectcategory'=>'Ability Enhancement Course',
             'subjectcategory_shortname'=>'AEC',
-            'active'=>1,
+            'active'=>2,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
             ] );
@@ -89,7 +89,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>9,
             'subjectcategory'=>'Value Education Courses',
             'subjectcategory_shortname'=>'VEC',
-            'active'=>1,
+            'active'=>2,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
             ] );

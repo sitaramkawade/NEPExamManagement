@@ -93,6 +93,9 @@ Route::get('/subjectdetails/{id}', [SubjectController::class, 'alldetails'])->na
 
 Route::get('/activesubject/{id}', [SubjectController::class, 'active_subject'])->name('subject.activesubject');
 Route::get('/deactivesubject/{id}', [SubjectController::class, 'deactive_subject'])->name('subject.deactivesubject');
+//add subject in bucket
+Route::get('/addsubjectbucket/{id}', [SubjectController::class, 'create_subject_bucket'])->name('subject.addsubjectbucket');
+Route::post('/storesubjectbucket/{id}', [SubjectController::class, 'store_subject_bucket'])->name('subject.storesubjectbucket');
 
 });
 

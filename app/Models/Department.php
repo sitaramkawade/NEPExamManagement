@@ -36,4 +36,8 @@ class Department extends Model
     {
         return $this->hasMany(Subject::class,'department_id','id');
     }
+    public function subjectbuckets():HasMany
+    {
+        return $this->hasMany(Subjectbucket::class,'department_id','id');
+    }
 }

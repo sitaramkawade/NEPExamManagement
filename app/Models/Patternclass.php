@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Patternclass extends Model
 {
@@ -22,4 +23,20 @@ class Patternclass extends Model
         'totalnosubjects',
       
     ];
+    public function subjects():HasMany
+    {
+        return $this->hasMany(Subject::class,'patternclass_id','id');
+    }
+    public function pattern()
+    {
+        return $this->belongsTo(Pattern::class,'pattern_id','id');
+    }
+    public function courseclass()
+    {
+         return $this->belongsTo(CourseClass::class,'class_id','id');
+    }
+    public function subjectbuckets():HasMany
+    {
+        return $this->hasMany(Subjectbucket::class,'patternclass_id','id');
+    }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Subject extends Model
 {
@@ -33,6 +34,8 @@ class Subject extends Model
         'subject_optionalgroup',
         'department_id',
         'status',     
+        'patternclass_id',
+        'classyear_id',// fy or sy or ty
     ];
     
     public function subjectcategories(): BelongsTo
@@ -46,5 +49,17 @@ class Subject extends Model
     public function subjecttypes(): BelongsTo
     {
      return $this->belongsTo(Subjecttype::class,'subjecttype_id','id');
+    }
+    public function patternclass(): BelongsTo
+    {
+     return $this->belongsTo(Patternclass::class,'patternclass_id','id');
+    }
+    public function classyear(): BelongsTo
+    {
+     return $this->belongsTo(Classyear::class,'classyear_id','id');
+    }
+    public function subjectbuckets():HasMany
+    {
+        return $this->hasMany(Subjectbucket::class,'subject_id','id');
     }
 }
