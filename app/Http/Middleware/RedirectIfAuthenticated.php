@@ -69,7 +69,7 @@ class RedirectIfAuthenticated
 
     //     //     //    if($guard==='admin')
     //     //     //    return redirect()->route('admin.home');
-    //     //         return redirect(RouteServiceProvider::HOME);
+    //     //         return redirect(RouteServiceProvider::USERHOME);
     //     //     }
     //     // }
 

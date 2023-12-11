@@ -70,7 +70,7 @@
                 class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row ">
 
                 <a class="px-4 py-2 mt-2 text-lg font-semibold text-white :active   rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline active:bg-gray-200"
-                    href="#">Home </a>
+                    href="#">Dashboard </a>
 
                 <div @click.away="open = false" class="relative" x-data="{ open: false }">
                     <button @click="open = !open"
@@ -159,7 +159,7 @@
                         class="relative  md:absolute  right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
                         <div class="px-1 py-2 bg-gray-700 rounded-md shadow dark-mode:bg-gray-800">
                             <a class="block px-4 py-2 mt-2 text-lg font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                href="{{ route('login') }}"> Log in</a>
+                                href="{{ route('user.login') }}"> User Log in</a>
 
                             <a class="block px-4 py-2 mt-2 text-lg font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                 href="#"> Board of Examination</a>
@@ -173,12 +173,12 @@
    
 
                 <div class=" bg-gray-700 space-x-8 text-white sm:-my-px sm:ml-10 sm:flex">
-                    @if (Route::has('login'))
+                    @if (Route::has('user.login'))
                         <div class="  right-0 px-6 py-2 sm:block">
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="text-lg text-white-700 underline">Dashboard</a>
+                                <a href="{{ route('user.dashboard') }}" class="text-lg text-white-700 underline">User Dashboard</a>
                             @else
-                                <a href="{{ route('login') }}" class=" text-lg text-white-700 underline">Log in</a>
+                                <a href="{{ route('user.login') }}" class=" text-lg text-white-700 underline">Log in</a>
 
 
                             @endauth
