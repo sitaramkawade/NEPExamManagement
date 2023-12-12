@@ -12,23 +12,30 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        // if (! $request->expectsJson()) {
-        //     return route('login');
-        //   //  return '/';    // Redirection to home for teacher as well as student those who are not logged in
+        // // if (! $request->expectsJson()) {
+        // //     return route('login');
+        // //   //  return '/';    // Redirection to home for teacher as well as student those who are not logged in
  
-        //  }
+        // //  }
         
-        if(!$request->expectsJson()){
+        // if(!$request->expectsJson()){
              
-            if($request->routeIs('admin.*')){
+        //     if($request->routeIs('faculty.*')){
               
-                return   route('admin.login');
-            }
-            if($request->routeIs('student.*')){
-                return   route('student.login');
-            }
+        //         return   route('faculty.login');
+        //     }
+        //     if($request->routeIs('student.*')){
+        //         return   route('student.login');
+        //     }
             
-            return   route('login');
+        //     return   route('user.login');
+        // }
+
+        if ($request->expectsJson()) {
+            return null;
+        } else {
+            session()->flash('alert', ['type' => 'info', 'message' => 'You Need To Login To Access Authorized Resources.']);
+            return url('/');
         }
       
     }

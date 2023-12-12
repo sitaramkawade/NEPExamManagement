@@ -17,8 +17,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
-    public const FACULTYHOME = '/admin/dashboard';
+    public const USERHOME = '/user/dashboard';
+    public const FACULTYHOME = '/faculty/dashboard';
     public const STUDENTHOME = '/student/dashboard';
      
 
@@ -32,12 +32,9 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
+            Route::middleware('api')->prefix('api')->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+            Route::middleware('web')->group(base_path('routes/web.php'));
         });
     }
 }

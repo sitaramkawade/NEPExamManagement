@@ -14,11 +14,11 @@ class Faculty
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     
-    public function handle(Request $request, Closure $next,$guard=null): Response
+    public function handle(Request $request, Closure $next): Response
     {
         //dd($request->getRequestUri());
         if (!Auth::guard('faculty')->check()) {
-           return redirect('/admin/login');
+            abort(403);
         }
         return $next($request);
     }

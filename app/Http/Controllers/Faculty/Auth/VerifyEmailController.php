@@ -1,7 +1,7 @@
 <?php
 
- 
 namespace App\Http\Controllers\Faculty\Auth;
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
@@ -15,15 +15,14 @@ class VerifyEmailController extends Controller
      */
     public function __invoke(EmailVerificationRequest $request): RedirectResponse
     {
-        //dd($request->user());
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended('/admin/dashboard'.'?verified=1');
+            return redirect()->intended(RouteServiceProvider::FACULTYHOME.'?verified=1');
         }
 
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
 
-        return redirect()->intended('/admin/dashboard'.'?verified=1');
+        return redirect()->intended(RouteServiceProvider::FACULTYHOME.'?verified=1');
     }
 }
