@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix'=>'user' ,'as'=>'user.'],function (){
 
-    Route::middleware('guest')->group(function () {
+    Route::middleware('guest:user')->group(function () {
         
         // Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
 
@@ -32,7 +32,7 @@ Route::group(['prefix'=>'user' ,'as'=>'user.'],function (){
         Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
     });
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware(['auth:user'])->group(function () {
 
         // Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
 
@@ -50,7 +50,7 @@ Route::group(['prefix'=>'user' ,'as'=>'user.'],function (){
 
         Route::get('dashboard', function () {
 
-            return view('user-dashboard');
+            return view('user.user-dashboard');
 
         })->name('dashboard');
         

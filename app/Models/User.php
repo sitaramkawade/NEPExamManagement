@@ -18,6 +18,9 @@ class User extends Authenticatable
         $this->notify(new UserResetPasswordNotification($token));
     }
 
+
+    protected $guard="user";
+
     /**
      * The attributes that are mass assignable.
      *

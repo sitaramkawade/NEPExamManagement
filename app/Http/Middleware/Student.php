@@ -13,11 +13,11 @@ class Student
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next,$guard="student"): Response
+    public function handle(Request $request, Closure $next): Response
     {
          
         if (!Auth::guard('student')->check()) {
-            return redirect('/student/login');
+            abort(403);
          }
          return $next($request);
          

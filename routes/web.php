@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
- 
+
 Route::get('/', function () {
     $post=null;
     return view('welcome',compact('post'));
@@ -21,8 +21,6 @@ Route::get('/', function () {
 
 
 
- 
- 
+
+require __DIR__.'/faculty.php';
 require __DIR__.'/user.php';
-
-

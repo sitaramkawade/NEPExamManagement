@@ -23,6 +23,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
         $this->notify(new StudentResetPasswordNotification($token));
     }
 
+    protected $guard="student";
     protected $fillable = [
         'student_name',
         'email',

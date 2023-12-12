@@ -22,6 +22,7 @@ class Faculty extends Authenticatable
         $this->notify(new FacultyResetPasswordNotification($token));
     }
 
+
     protected $guard = 'faculty';
     protected $table="faculties";
     protected $fillable = [

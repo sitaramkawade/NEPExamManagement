@@ -21,16 +21,17 @@ class RedirectIfAuthenticated
 //   dd($guards);
         foreach ($guards as $guard) {
               
-            if (Auth::guard($guard)->check()) {
-       // dd($guard);
-                if($guard==="faculty"){
-                    return redirect('admin/dashboard');
-                }
-                if($guard==="student"){
-                    return redirect('student/dashboard');
-                }
-                //dd($guard);
-                return redirect('dashboard');
+            if ($guard=='student' && Auth::guard($guard)->check()) {
+
+                return redirect(RouteServiceProvider::STUDENTHOME);
+            }
+
+            if ($guard=='faculty' && Auth::guard($guard)->check()) {
+                return redirect(RouteServiceProvider::FACULTYHOME);
+            }
+
+            if ($guard=='user' && Auth::guard($guard)->check()) {
+                return redirect(RouteServiceProvider::USERHOME);
             }
         }
  

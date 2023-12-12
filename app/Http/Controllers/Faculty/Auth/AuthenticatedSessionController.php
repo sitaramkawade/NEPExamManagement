@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Auth;
+namespace App\Http\Controllers\Faculty\Auth;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -8,9 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Providers\RouteServiceProvider;
-use App\Http\Requests\User\Auth\LoginRequest;
-
-
+use App\Http\Requests\Faculty\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -19,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('user.auth.login');
+        return view('faculty.auth.login');
     }
 
     /**
@@ -31,7 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::USERHOME);
+        return redirect()->intended(RouteServiceProvider::FACULTYHOME);
     }
 
     /**
@@ -39,7 +37,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('user')->logout();
+        Auth::guard('faculty')->logout();
 
         $request->session()->invalidate();
 
