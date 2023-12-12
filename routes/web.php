@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Livewire;
+use App\Livewire\User\AddCollege;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
@@ -17,6 +18,7 @@ Route::get('/', function () {
     return view('welcome',compact('post'));
 });
 
+Route::get('add_college', AddCollege::class );
 
 
 Route::middleware('auth')->group(function () {
