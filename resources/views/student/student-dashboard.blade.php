@@ -6,6 +6,8 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __(" student dashboard You're logged in!") }}
                 </div>
+
+                
             </div>
         </div>
     </div>

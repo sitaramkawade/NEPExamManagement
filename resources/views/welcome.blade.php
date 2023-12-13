@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 @section('guest')
-<div class="w-full   shadow-lg rounded-b-lg  text-gray-900 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800  ">
+{{-- <div class="w-full   shadow-lg rounded-b-lg  text-gray-900 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800  ">
 
     <div class="pt-4 mx-2 mb-4 items-center  flex  flex-col lg:flex-row  ">
         <div class=" flex-1 text-2xl font-semibold    text-center     ">
@@ -325,8 +325,8 @@
     </div>
     
    </div>
-</div>
-
+</div> --}}
+@include('student.home.home')
 @endsection
 
    
