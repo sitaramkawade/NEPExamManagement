@@ -18,25 +18,29 @@ class Authenticate extends Middleware
  
         // //  }
         
-        // if(!$request->expectsJson()){
+        if(!$request->expectsJson()){
              
-        //     if($request->routeIs('faculty.*')){
+            if($request->routeIs('faculty.*')){
               
-        //         return   route('faculty.login');
-        //     }
-        //     if($request->routeIs('student.*')){
-        //         return   route('student.login');
-        //     }
-            
-        //     return   route('user.login');
-        // }
+                return   route('faculty.login');
+            }
+            if($request->routeIs('student.*')){
+                return   route('student.login');
+            }
 
-        if ($request->expectsJson()) {
-            return null;
-        } else {
-            session()->flash('alert', ['type' => 'info', 'message' => 'You Need To Login To Access Authorized Resources.']);
-            return url('/');
+            if($request->routeIs('user.*')){
+                return   route('user.login');
+            }
+
+            return   url('/');
         }
+
+        // if ($request->expectsJson()) {
+        //     return null;
+        // } else {
+        //     session()->flash('alert', ['type' => 'info', 'message' => 'You Need To Login To Access Authorized Resources.']);
+        //     return url('/');
+        // }
       
     }
 }

@@ -17,7 +17,8 @@ class Student
     {
          
         if (!Auth::guard('student')->check()) {
-            abort(403);
+            // abort(403);
+            return redirect('/student/login');
          }
          return $next($request);
          
