@@ -31,7 +31,7 @@
                         
                     </div>
                   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                  <x-text-input type="url" wire:model="college_website_url" placeholder="College website url" class="border p-2 rounded w-full" />
+                  <x-text-input type="text" wire:model="college_website_url" placeholder="College website url" class="border p-2 rounded w-full" />
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <x-text-input type="file" wire:model="college_logo_path" class="border p-2 rounded w-full" />
