@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers\Student\Auth;
 
-use App\Events\AdminRegisterMailEvent;
-use App\Http\Controllers\Controller;
-use App\Listeners\AdminRegisterMailListener;
-use App\Models\Faculty;
 use App\Models\Student;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
-use Illuminate\Support\Str;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
 
 class RegisteredUserController extends Controller
 {
@@ -34,44 +30,22 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-     
-       
-
         $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'middle_name' =>['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],          
-            'mobile_no'=>['required','digits:10'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Student::class],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.Student::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'mother_name'=>['required', 'string', 'max:255'],
-            'memid'=>['required', 'numeric', 'unique:'.Student::class.',memid'],
-            'eligibilityno'=>['required', 'numeric', 'unique:'.Student::class.',eligibilityno'],
-             
-    
         ]);
 
-
-        $student = Student::create([
-            'student_name' =>strtoupper(trim($request->input('last_name'))." ".trim($request->input('first_name'))." ".trim($request->input('middle_name'))),
-            'email' => strtolower($request->input('email')),
-            'password' => bcrypt($request->input('password')),
-            'mobile_no' => trim($request->input('mobile_no')),
-            'mother_name' => trim($request->input('mother_name')),
-            'memid' => trim($request->input('memid')),
-            'eligibilityno' => trim($request->input('eligibilityno')),
-            'abcid' => trim($request->input('abcid')), 
-            'aadhar_card_no' => trim($request->input('aadhar_card_no')), 
-            'email_verification_token' => Str::random(32),
-            
+        $user = Student::create([
+            'student_name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
- 
-    //    event(new Registered($student));
-       event(new AdminRegisterMailEvent($student));
-      
-        Auth::guard('student')->login($student);
-      
- 
-        return redirect('/student/dashboard');
+
+        event(new Registered($user));
+
+        Auth::guard('student')->login($user);
+
+        return redirect(RouteServiceProvider::STUDENTHOME);
     }
 }

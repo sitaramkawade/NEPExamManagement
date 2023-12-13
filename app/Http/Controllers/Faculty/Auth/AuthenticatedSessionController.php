@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers\Faculty\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Faculty\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
      */
-    // public function __construct(){
-    //     dd("Dd");
-    // }
     public function create(): View
     {
-       
         return view('faculty.auth.login');
     }
 
@@ -29,12 +25,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-           
-        $request->authenticatefaculty();
-      
+        $request->authenticate();
+
         $request->session()->regenerate();
- 
-        return redirect()->intended('/admin/dashboard');
+
+        Auth::guard('faculty')->user()->update(['last_login' => now()]);
+        return redirect()->intended(RouteServiceProvider::FACULTYHOME);
     }
 
     /**
@@ -48,6 +44,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        return redirect('/');
     }
 }
