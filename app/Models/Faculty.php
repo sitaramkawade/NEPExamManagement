@@ -13,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Notifications\Faculty\FacultyResetPasswordNotification;
 
-class Faculty extends Authenticatable  
+class Faculty extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -26,9 +26,16 @@ class Faculty extends Authenticatable
     protected $guard = 'faculty';
     protected $table="faculties";
     protected $fillable = [
-        'name',
+        'faculty_name',
         'email',
+        'date_of_birth',
+        'gender',
+        'category',
         'mobile_no',
+        'current_address',
+        'permanant_address',
+        'pan',
+        'active',
         'email_verified_at',
         'password',
         'profile_photo_path',
@@ -97,12 +104,12 @@ class Faculty extends Authenticatable
         return $this->belongsToMany(Department::class,'facultyheads','faculty_id', 'department_id','id')
         ->withPivot('status','department_id')
         ->wherePivot('status','1');
-       
+
     }
     public function getdepartment($deptid)
     {
         return Department::where('id',$deptid)->first()->dept_name;
     }
-    
-   
+
+
 }

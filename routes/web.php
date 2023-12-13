@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Livewire\Faculty\ViewFaculty;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ Route::get('/', function () {
     return view('welcome',compact('post'));
 });
 
-
+Route::get('vf', ViewFaculty::class);
 
 
 require __DIR__.'/faculty.php';

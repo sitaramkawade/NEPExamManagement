@@ -20,22 +20,22 @@ class DatabaseSeeder extends Seeder
             DepatmentSeeder::class,
             CourseSeeder::class,
             RoletypeSeeder::class,
-            RoleSeeder::class,         
+            RoleSeeder::class,
             SubjectcategorySeeder::class,
             SubjecttypeSeeder::class,
             CourseclassSeeder::class,
             PatternclassSeeder::class,
             StudmenumasterSeeder::class,
-            ClassStudmenumasterSeeder::class,           
+            ClassStudmenumasterSeeder::class,
             BloodgroupSeeder::class,
             ReligionSeeder::class,
             CasteCategorySeeder::class,
             CasteSeeder::class,
             GendermasterSeeder::class,
-            CountrySeeder::class,
-            StateSeeder::class,
-            DistrictSeeder::class,
-            TalukaSeeder::class,
+            // CountrySeeder::class,
+            // StateSeeder::class,
+            // DistrictSeeder::class,
+            // TalukaSeeder::class,
             AddresstypeSeeder::class,
             ClassyearSeeder::class,
             BoarduniversitySeeder::class,
@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
 
         ]);
         // \App\Models\User::factory(10)->create();
- 
+
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
