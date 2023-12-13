@@ -32,24 +32,23 @@ Route::group(['prefix'=>'student' ,'as'=>'student.'],function (){
         Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
     });
 
-    Route::middleware(['auth:student'])->group(function () {
+    Route::middleware(['auth:student','is_student'])->group(function () {
         Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
 
         Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
 
-        Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])->middleware('throttle:6,1')
-                    ->name('verification.send');
+        Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])->middleware('throttle:6,1') ->name('verification.send');
 
-        Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])->name('password.confirm');
+        // Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])->name('password.confirm');
 
-        Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
+        // Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
-        Route::put('password', [PasswordController::class, 'update'])->name('password.update');
+        // Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+        Route::get('/dashboard', function () {
+            return view('student.student-dashboard');
+        })->middleware('is_studentverified')->name('dashboard');
     });
 
-    Route::get('/dashboard', function () {
-        return view('student.student-dashboard');
-    })->middleware('is_studentverified')->name('dashboard');
 });

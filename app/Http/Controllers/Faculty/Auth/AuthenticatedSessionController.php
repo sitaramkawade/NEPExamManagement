@@ -29,6 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        Auth::guard('faculty')->user()->update(['last_login' => now()]);
         return redirect()->intended(RouteServiceProvider::FACULTYHOME);
     }
 
