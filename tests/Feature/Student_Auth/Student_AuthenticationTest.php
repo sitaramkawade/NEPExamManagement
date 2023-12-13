@@ -1,42 +1,41 @@
 <?php
 
-namespace Tests\Feature\User_Auth;
+namespace Tests\Feature\Student_Auth;
 
-use Tests\TestCase;
-use App\Models\User;
-use Database\Factories\UserFactory;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Student;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-class User_AuthenticationTest extends TestCase
+class Student_AuthenticationTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     // public function test_login_screen_can_be_rendered(): void
     // {
-    //     $response = $this->get('user/login');
+    //     $response = $this->get('student/login');
 
     //     $response->assertStatus(200);
     // }
 
     // public function test_users_can_authenticate_using_the_login_screen(): void
     // {
-    //     $user = User::factory()->create();   
+    //     $user = Student::factory()->create();
 
-    //     $response = $this->post('user/login', [
+    //     $response = $this->post('student/login', [
     //         'email' => $user->email,
-    //         'password' =>'password',
+    //         'password' => 'password',
     //     ]);
-    //     $this->assertAuthenticated('user');
-    //     $response->assertRedirect(RouteServiceProvider::USERHOME);
+
+    //     $this->assertAuthenticated('student');
+    //     $response->assertRedirect(RouteServiceProvider::STUDENTHOME);
     // }
 
     // public function test_users_can_not_authenticate_with_invalid_password(): void
     // {
-    //     $user = User::factory()->create();
+    //     $user = Student::factory()->create();
 
-    //     $this->post('user/login', [
+    //     $this->post('student/login', [
     //         'email' => $user->email,
     //         'password' => 'wrong-password',
     //     ]);

@@ -1,5 +1,4 @@
 <div>
-
     <!-- Navbar -->
     <header class="relative bg-white dark:bg-darker">
         <div class="flex items-center justify-between p-2 border-b dark:border-primary-darker">
@@ -24,8 +23,8 @@
             </button>
 
             <!-- Brand -->
-            <a href="{{ route('student.dashboard') }}" class="  md:hidden text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light">
-                App name
+            <a href="{{ url('/') }}" class="  md:hidden text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light">
+                {{ env('APP_NAME') }}
             </a>
 
 
@@ -40,8 +39,8 @@
             </button>
 
             <!-- Desktop Right buttons -->
-            <nav aria-label="Secondary" class="hidden space-x-2 md:flex md:items-center">
-                <!-- Toggle dark theme button -->
+            <nav aria-label="Secondary" class=" z-50 hidden space-x-2 md:flex md:items-center">
+                <!-- Desktop Toggle dark theme button -->
                 <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
                     <div class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter">
                     </div>
@@ -56,7 +55,7 @@
                 </button>
 
 
-                <!-- Settings button -->
+                <!-- Desktop Settings button -->
                 <button x-cloak @click="openSettingsPanel" class="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
                     <span class="sr-only">Open settings panel</span>
                     <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -65,37 +64,47 @@
                     </svg>
                 </button>
 
-                <!-- User avatar button -->
+                <!--Desktop User avatar button -->
                 <div x-cloak class="relative" x-data="{ open: false }">
                     <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })" type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
                         <span class="sr-only">User menu</span>
-                        <img class="w-9 h-9 rounded-full" src="{{ asset('assets/img/no-imgpng.png') }}" alt="User" />
+                        <img class="w-9 h-9 rounded-full" src="{{ asset('img/no-img.png') }}" alt="User" />
                     </button>
 
-                    <!-- User dropdown menu -->
+                    <!-- Desktop User dropdown menu -->
                     <div x-show="open" x-ref="userMenu" x-transition:enter="transition-all transform ease-out" x-transition:enter-start="translate-y-1/2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition-all transform ease-in" @keydown.escape="open = false" class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none" tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
-                        {{-- <a wire:navigate href="{{ route('profile') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                            Profile
-                        </a> --}}
+                        <a wire:navigate href="{{ route('student') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                            Student Home
+                         </a>
+                        @auth('student')
+                            {{-- <p class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">{{ auth()->guard('student')->user()->student_name }}</p>
+                            <hr> --}}
+                            <a wire:navigate href="{{ route('student.dashboard') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                               Student Dashboard
+                            </a>
 
-                        <form method="POST" action="{{ route('student.logout') }}">
-                            @csrf
-        
-                            <x-dropdown-link :href="route('student.logout')"  onclick="event.preventDefault(); this.closest('form').submit();" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                                {{ __('Logout') }}
-                            </x-dropdown-link>
-                        </form>
-                        {{-- <a  href="#" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                            Logout
-                        </a> --}}
+                            <form method="POST" action="{{ route('student.logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('student.logout')"  onclick="event.preventDefault(); this.closest('form').submit();" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                    Student Logout
+                                </x-dropdown-link>
+                            </form>
+                        @else
+                            <a wire:navigate href="{{ route('student.login') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                               Student Login
+                            </a>
+                            <a wire:navigate href="{{ route('student.register') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                               Student Register
+                            </a>
+                        @endauth
                     </div>
                 </div>
             </nav>
 
             <!-- Mobile sub menu -->
-            <nav x-transition:enter="transition duration-200 ease-in-out transform sm:duration-500"x-transition:enter-start="-translate-y-full opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="-translate-y-full opacity-0" x-show="isMobileSubMenuOpen" @click.away="isMobileSubMenuOpen = false" class="absolute flex items-center p-4 bg-white rounded-md shadow-lg dark:bg-darker top-16 inset-x-4 md:hidden" aria-label="Secondary">
+            <nav x-transition:enter="transition duration-200 ease-in-out transform sm:duration-500"x-transition:enter-start="-translate-y-full opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="-translate-y-full opacity-0" x-show="isMobileSubMenuOpen" @click.away="isMobileSubMenuOpen = false" class=" z-50 absolute flex items-center p-4 bg-white rounded-md shadow-lg dark:bg-darker top-16 inset-x-4 md:hidden" aria-label="Secondary">
                 <div class="space-x-2">
-                    <!-- Toggle dark theme button -->
+                    <!-- Mobile Toggle dark theme button -->
                     <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
                         <div class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter">
                         </div>
@@ -109,7 +118,7 @@
                         </div>
                     </button>
 
-                    <!-- Settings button -->
+                    <!-- Mobile Settings button -->
                     <button x-cloak @click="openSettingsPanel(); $nextTick(() => { isMobileSubMenuOpen = false })" class="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
                         <span class="sr-only">Open settings panel</span>
                         <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -119,214 +128,94 @@
                     </button>
                 </div>
 
-                <!-- User avatar button -->
+                <!-- Mobile User avatar button -->
                 <div x-cloak class="relative ml-auto" x-data="{ open: false }">
-                    <button @click="open = !open" type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" class="block transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
+                    <button @click="open = !open" type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" class="block mx-auto transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
                         <span class="sr-only">User menu</span>
-                        <img class="w-9 h-9 rounded-full" src="{{ asset('assets/img/no-imgpng.png') }}" alt="User" />
+                        <img class=" items-center w-9 h-9 rounded-full" src="{{ asset('img/no-img.png') }}" alt="User" />
                     </button>
 
-                    <!-- User dropdown menu -->
-                    <div x-show="open" x-transition:enter="transition-all transform ease-out" x-transition:enter-start="translate-y-1/2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition-all transform ease-in" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false" role="menu" aria-orientation="vertical" aria-label="User menu">
-                        {{-- <a wire:navigate href="{{ route('profile') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                            Profile
-                        </a> --}}
-                        <a wire:click="logout" href="#" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                            Logout
+                    <!-- Mobile User dropdown menu -->
+                    <div  x-show="open" x-transition:enter="transition-all transform ease-out" x-transition:enter-start="translate-y-1/2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition-all transform ease-in" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false" role="menu" aria-orientation="vertical" aria-label="User menu">
+                        <a wire:navigate href="{{ route('student') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                            Student Home
                         </a>
+                        @auth('student')
+                            {{-- <p class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">{{ auth()->guard('student')->user()->student_name }}</p>
+                            <hr> --}}
+                            <a wire:navigate href="{{ route('student.dashboard') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                              Student  Dashboard
+                            </a>
+
+                            <form method="POST" action="{{ route('student.logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('student.logout')"  onclick="event.preventDefault(); this.closest('form').submit();" role="menuitem" class="block px-4 py-2 text-sm text-start text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                    <span class="ml-2 duration-300 ease-in-out">Student Logout</span>
+                                </x-dropdown-link>
+                            </form>
+                        @else
+                            <a wire:navigate href="{{ route('student.login') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                <span class="ml-2 duration-300 ease-in-out">Student Login</span>
+                            </a>
+                            <a wire:navigate href="{{ route('student.register') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                <span class="ml-2 duration-300 ease-in-out">Student Register</span>
+                            </a>
+                        @endauth
                     </div>
                 </div>
             </nav>
         </div>
-        <!-- Mobile main manu -->
+        <!-- Mobile Sidebar -->
         <div class="border-b md:hidden dark:border-primary-darker" x-show="isMobileMainMenuOpen" @click.away="isMobileMainMenuOpen = false">
             <nav aria-label="Main" class="px-2 py-4 space-y-2">
-                <!-- Dashboards links -->
-                <div x-data="{ isActive: true, open: true }">
-                    <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
-                    <a href="#" @click="$event.preventDefault(); open = !open" class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary" :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                <a wire:navigate href="{{ route('student') }}" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('student') }}' }" class="flex items-center p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                    <span aria-hidden="true">
                         <span aria-hidden="true">
                             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                            </svg>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                            </svg>   
                         </span>
-                        <span class="ml-2 text-sm"> Dashboards </span>
-                        <span class="ml-auto" aria-hidden="true">
-                            <!-- active class 'rotate-180' -->
-                            <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </span>
-                    </a>
-                    <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
-                        <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                        <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                        <a href="index.html" role="menuitem" class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-light dark:hover:text-light hover:text-gray-700">
-                            Default mobile
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Project Mangement (soon)
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            E-Commerce (soon)
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Components links -->
-                <div x-data="{ isActive: false, open: false }">
-                    <!-- active classes 'bg-primary-100 dark:bg-primary' -->
-                    <a href="#" @click="$event.preventDefault(); open = !open" class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary" :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                        <span aria-hidden="true">
-                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                            </svg>
-                        </span>
-                        <span class="ml-2 text-sm"> Components </span>
-                        <span aria-hidden="true" class="ml-auto">
-                            <!-- active class 'rotate-180' -->
-                            <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </span>
-                    </a>
-                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                        <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                        <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                            Alerts (soon)
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                            Buttons (soon)
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Cards (soon)
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Dropdowns (soon)
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Forms (soon)
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Lists (soon)
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Modals (soon)
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Pages links -->
-                <div x-data="{ isActive: false, open: false }">
-                    <!-- active classes 'bg-primary-100 dark:bg-primary' -->
-                    <a href="#" @click="$event.preventDefault(); open = !open" class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary":class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                        <span aria-hidden="true">
-                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                            </svg>
-                        </span>
-                        <span class="ml-2 text-sm"> Pages </span>
-                        <span aria-hidden="true" class="ml-auto">
-                            <!-- active class 'rotate-180' -->
-                            <svg class="w-4 h-4 transition-transform transform":class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </span>
-                    </a>
-                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Pages">
-                        <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                        <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                        <a href="pages/blank.html" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                            Blank
-                        </a>
-                        <a href="pages/404.html" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                            404
-                        </a>
-                        <a href="pages/500.html" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                            500
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                            Profile (soon)
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Pricing (soon)
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Kanban (soon)
-                        </a>
-                        <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Feed (soon)
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Authentication links -->
-                <div x-data="{ isActive: false, open: false }">
-                    <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
-                    <a href="#" @click="$event.preventDefault(); open = !open" class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary" :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
-                        <span aria-hidden="true">
-                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
-                        </span>
-                        <span class="ml-2 text-sm"> Authentication </span>
-                        <span aria-hidden="true" class="ml-auto">
-                            <!-- active class 'rotate-180' -->
-                            <svg class="w-4 h-4 transition-transform transform":class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </span>
-                    </a>
-                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Authentication">
-                        <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                        <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                        <a href="auth/register.html" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Register
-                        </a>
-                        <a href="auth/login.html" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Login
-                        </a>
-                        <a href="auth/forgot-password.html" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Forgot Password
-                        </a>
-                        <a href="auth/reset-password.html" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">
-                            Reset Password
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Layouts links -->
-                <div x-data="{ isActive: false, open: false }">
-                    <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
-                    <a href="#" @click="$event.preventDefault(); open = !open" class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary" :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }" role="button" aria-haspopup="true" :aria-expanded="(open || isActive) ? 'true' : 'false'">
+                    </span>
+                    <span class="ml-2 duration-300 ease-in-out">Student Home</span>
+                </a>
+                @auth('student')
+                    <a wire:navigate href="{{ route('student.dashboard') }}" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('student.dashboard') }}' }" class="flex items-center p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
                         <span aria-hidden="true">
                             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                             </svg>
                         </span>
-                        <span class="ml-2 text-sm"> Layouts </span>
-                        <span aria-hidden="true" class="ml-auto">
-                            <!-- active class 'rotate-180' -->
-                            <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        <span class="ml-2 duration-300 ease-in-out">Student Dashboard</span>
+                    </a>
+                    <form  method="POST" action="{{ route('student.logout') }}">
+                        @csrf
+                        <x-dropdown-link :href="route('student.logout')"  onclick="event.preventDefault(); this.closest('form').submit();" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('student.logout') }}' }" class="flex items-center  p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                            <span aria-hidden="true">
+                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                                </svg> 
+                            </span>
+                            <span class="ml-2 duration-300 ease-in-out">Logout</span>
+                        </x-dropdown-link>
+                    </form>
+                @else
+                    <a wire:navigate href="{{ route('student.login') }}" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('student.login') }}' }" class="flex items-center p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                        <span aria-hidden="true">
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
                             </svg>
                         </span>
+                        <span class="ml-2 duration-300 ease-in-out">Login</span>
                     </a>
-                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Layouts">
-                        <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                        <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                        <a href="layouts/two-columns-sidebar.html" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                            Two Columns Sidebar
-                        </a>
-                        <a href="layouts/mini-plus-one-columns-sidebar.html" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                            Mini + One Columns Sidebar
-                        </a>
-                        <a href="layouts/mini-column-sidebar.html" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                            Mini Column Sidebar
-                        </a>
-                    </div>
-                </div>
+                    <a wire:navigate href="{{ route('student.register') }}" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('student.register') }}' }" class="flex items-center p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                        <span aria-hidden="true">
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </span>
+                        <span class="ml-2 duration-300 ease-in-out">Register</span>
+                    </a>
+                @endauth
             </nav>
         </div>
     </header>

@@ -47,11 +47,7 @@ Route::group(['prefix'=>'faculty' ,'as'=>'faculty.'],function (){
         // Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-        Route::get('dashboard', function () {
-            return view('faculty.faculty-dashboard');
-        })->name('dashboard');
-        
+  
     });
     
 });
