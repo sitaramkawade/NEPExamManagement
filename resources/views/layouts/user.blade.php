@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('main')
-<div class="                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    y">
+<div class="min-h-screen bg-gray-100 dark:bg-gray-900">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   y">
     @include('layouts.user-navigation')
     <main>
        @yield('user')
