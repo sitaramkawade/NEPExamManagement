@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class AddCollege extends Component
 {
+    
     public $college_name;
     public $college_address;
     public $college_website_url;
@@ -27,6 +28,7 @@ class AddCollege extends Component
     public function add(){
 
         $college= new College;
+       
         $college->college_name= $this->college_name;
         $college->college_address=  $this->college_address;
         $college->college_website_url=  $this->college_website_url;
