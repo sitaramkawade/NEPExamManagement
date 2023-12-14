@@ -48,11 +48,5 @@ Route::group(['prefix'=>'user' ,'as'=>'user.'],function (){
 
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-        Route::get('dashboard', function () {
-
-            return view('user.user-dashboard');
-
-        })->name('dashboard');
-        
     });
 });
