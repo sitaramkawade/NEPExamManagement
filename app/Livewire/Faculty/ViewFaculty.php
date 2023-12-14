@@ -6,9 +6,13 @@ use App\Models\College;
 use App\Models\Faculty;
 use Livewire\Component;
 use App\Models\Roletype;
+use App\Models\Department;
 use App\Models\Gendermaster;
+use App\Models\Prefixmaster;
 use App\Models\CasteCategory;
-use App\Models\Departmenttype;
+use App\Models\Banknamemaster;
+use App\Models\Facultybankaccount;
+use Illuminate\Support\Facades\DB;
 
 class ViewFaculty extends Component
 {
@@ -35,10 +39,27 @@ class ViewFaculty extends Component
     public $colleges=null;
     public $active=null;
     public $faculty_verified=null;
+    public $prefix=null;
+    public $prefixes=null;
+    public $banknames=null;
+
+    public $account_no=null;
+    public $bank_address=null;
+    public $bank_name=null;
+    public $branch_name=null;
+    public $branch_code=null;
+    public $ifsc_code=null;
+    public $micr_code=null;
+    public $account_type=null;
+    public $acc_verified=null;
 
     public function add()
     {
-        Faculty::create([
+    DB::beginTransaction();
+
+        try {
+            $faculty = Faculty::create([
+            'prefix' => $this->prefix,
             'faculty_name' => $this->faculty_name,
             'email' => $this->email,
             'mobile_no' => $this->mobile_no,
@@ -59,19 +80,39 @@ class ViewFaculty extends Component
             'faculty_verified' => $this->faculty_verified,
         ]);
 
+        $bankdetails = Facultybankaccount::create([
+            'account_no' => $this->account_no,
+            'bank_address' => $this->bank_address,
+            'bank_name' => $this->bank_name,
+            'branch_name' => $this->branch_name,
+            'branch_code' => $this->branch_code,
+            'ifsc_code' => $this->ifsc_code,
+            'micr_code' => $this->micr_code,
+            'account_type' => $this->account_type,
+            'acc_verified' => $this->acc_verified,
+        ]);
+            DB::commit();
+
+            session()->flash('message', 'Details added successfully.');
+        } catch (\Exception $e) {
+            DB::rollback();
+            session()->flash('error', 'Failed to add details.');
+        }
     }
 
     public function mount()
     {
+        $this->prefixes = Prefixmaster::where('is_active',1)->get();
+        $this->banknames = Banknamemaster::where('is_active',1)->get();
         $this->genders = Gendermaster::where('is_active',1)->get();
         $this->categories= CasteCategory::where('is_active',1)->get();
         $this->roles= Roletype::where('status',1)->get();
-        $this->departments= Departmenttype::where('status',1)->get();
+        $this->departments= Department::where('status',1)->get();
         $this->colleges= College::where('status',1)->get();
     }
 
     public function render()
     {
-        return view('livewire.faculty.faculty')->extends('layouts.faculty')->section('faculty');
+        return view('livewire.faculty.register-faculty')->extends('layouts.faculty')->section('faculty');
     }
 }

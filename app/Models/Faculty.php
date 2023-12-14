@@ -26,6 +26,7 @@ class Faculty extends Authenticatable
     protected $guard = 'faculty';
     protected $table="faculties";
     protected $fillable = [
+        'prefix',
         'faculty_name',
         'email',
         'date_of_birth',

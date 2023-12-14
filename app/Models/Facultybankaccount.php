@@ -19,7 +19,7 @@ class Facultybankaccount extends Model
         'account_type',
         'ifsc_code',
         'micr_code',
-        'acc_verified', 
+        'acc_verified',
     ];
     public function faculty()
     {

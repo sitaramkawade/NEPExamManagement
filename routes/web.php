@@ -23,7 +23,11 @@ Route::get('/temp', function () {
     return view('temp',compact(''));
 });
 
-Route::get('vf', ViewFaculty::class);
+Route::get('register-faculty', ViewFaculty::class);
+
+Route::get('/vf', function () {
+    return view('livewire.faculty.view-faculty')->extends('layouts.faculty')->section('faculty');
+});
 
 Route::get('gender', ViewGender::class);
 
