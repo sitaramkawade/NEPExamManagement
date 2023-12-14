@@ -7,20 +7,19 @@
         Loading.....
     </div>
 
-    {{-- @include('layouts.student.sidebar') --}}
+    {{-- Student Sidebar --}}
     @include('layouts.student.sidebar')
 
     <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
-        {{-- @include('layouts.student.student-navigation') --}}
+        {{-- Student Navbar --}}
         @include('layouts.student.navbar')
-
-        <!-- Main content -->
+        <!-- Student Main content -->
         <main class="z-10">
             @yield('student')
         </main>
     </div>
 
-    <!-- Panels -->
+    <!-- Setting Panels -->
     <div x-cloak>
         @include('layouts.setting-panel')
     </div>

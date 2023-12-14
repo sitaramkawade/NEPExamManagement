@@ -18,6 +18,16 @@ Route::middleware(['guest'])->group(function () {
         return view('student.home.home');
     })->name('student');
 
+    // User Home
+    Route::get('/user', function () {
+        return view('user.home.home');
+    })->name('user');
+
+    // Faculty Home
+    Route::get('/faculty', function () {
+        return view('faculty.home.home');
+    })->name('faculty');
+
     // RND Page
     Route::get('/temp', function () {
         return view('temp');

@@ -6,10 +6,12 @@
         Loading.....
     </div>
 
+    {{-- Faculty Sidebar --}}
     @include('layouts.faculty.sidebar')
 
     <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
-        @include('layouts.faculty.faculty-navigation')
+        {{-- Faculty Navbar --}}
+        @include('layouts.faculty.navbar')
 
         <!-- Main content -->
         <main class="z-10">
@@ -17,7 +19,7 @@
         </main>
     </div>
 
-    <!-- Panels -->
+    <!-- Setting Panels -->
     <div x-cloak>
         @include('layouts.setting-panel')
     </div>

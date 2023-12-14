@@ -64,37 +64,34 @@
                     </svg>
                 </button>
 
-                <!--Desktop User avatar button -->
+                <!--Desktop Faculty avatar button -->
                 <div x-cloak class="relative" x-data="{ open: false }">
-                    <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })" type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
-                        <span class="sr-only">User menu</span>
-                        <img class="w-9 h-9 rounded-full" src="{{ asset('img/no-img.png') }}" alt="User" />
+                    <button @click="open = !open; $nextTick(() => { if(open){ $refs.facultyMenu.focus() } })" type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
+                        <span class="sr-only">Faculty menu</span>
+                        <img class="w-9 h-9 rounded-full" src="{{ asset('img/no-img.png') }}" alt="Faculty" />
                     </button>
 
-                    <!-- Desktop User dropdown menu -->
-                    <div x-show="open" x-ref="userMenu" x-transition:enter="transition-all transform ease-out" x-transition:enter-start="translate-y-1/2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition-all transform ease-in" @keydown.escape="open = false" class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none" tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
-                        <a wire:navigate href="{{ route('student') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                            Student Home
+                    <!-- Desktop Faculty dropdown menu -->
+                    <div x-show="open" x-ref="facultyMenu" x-transition:enter="transition-all transform ease-out" x-transition:enter-start="translate-y-1/2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition-all transform ease-in" @keydown.escape="open = false" class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none" tabindex="-1" role="menu" aria-orientation="vertical" aria-label="Faculty menu">
+                        <a wire:navigate href="{{ route('faculty') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                            Faculty Home
                          </a>
-                        @auth('student')
-                            {{-- <p class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">{{ auth()->guard('student')->user()->student_name }}</p>
+                        @auth('faculty')
+                            {{-- <p class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">{{ auth()->guard('faculty')->faculty()->faculty_name }}</p>
                             <hr> --}}
-                            <a wire:navigate href="{{ route('student.dashboard') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                               Student Dashboard
+                            <a wire:navigate href="{{ route('faculty.dashboard') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                               Faculty Dashboard
                             </a>
 
-                            <form method="POST" action="{{ route('student.logout') }}">
+                            <form method="POST" action="{{ route('faculty.logout') }}">
                                 @csrf
-                                <x-dropdown-link :href="route('student.logout')"  onclick="event.preventDefault(); this.closest('form').submit();" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                                    Student Logout
+                                <x-dropdown-link :href="route('faculty.logout')"  onclick="event.preventDefault(); this.closest('form').submit();" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                    Faculty Logout
                                 </x-dropdown-link>
                             </form>
                         @else
-                            <a wire:navigate href="{{ route('student.login') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                               Student Login
-                            </a>
-                            <a wire:navigate href="{{ route('student.register') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                               Student Register
+                            <a wire:navigate href="{{ route('faculty.login') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                               Faculty Login
                             </a>
                         @endauth
                     </div>
@@ -128,37 +125,34 @@
                     </button>
                 </div>
 
-                <!-- Mobile User avatar button -->
+                <!-- Mobile Faculty avatar button -->
                 <div x-cloak class="relative ml-auto" x-data="{ open: false }">
                     <button @click="open = !open" type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" class="block mx-auto transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
-                        <span class="sr-only">User menu</span>
-                        <img class=" items-center w-9 h-9 rounded-full" src="{{ asset('img/no-img.png') }}" alt="User" />
+                        <span class="sr-only">Faculty menu</span>
+                        <img class=" items-center w-9 h-9 rounded-full" src="{{ asset('img/no-img.png') }}" alt="Faculty" />
                     </button>
 
-                    <!-- Mobile User dropdown menu -->
-                    <div  x-show="open" x-transition:enter="transition-all transform ease-out" x-transition:enter-start="translate-y-1/2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition-all transform ease-in" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false" role="menu" aria-orientation="vertical" aria-label="User menu">
-                        <a wire:navigate href="{{ route('student') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                            Student Home
+                    <!-- Mobile Faculty dropdown menu -->
+                    <div  x-show="open" x-transition:enter="transition-all transform ease-out" x-transition:enter-start="translate-y-1/2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition-all transform ease-in" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false" role="menu" aria-orientation="vertical" aria-label="Faculty menu">
+                        <a wire:navigate href="{{ route('faculty') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                            Faculty Home
                         </a>
-                        @auth('student')
-                            {{-- <p class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">{{ auth()->guard('student')->user()->student_name }}</p>
+                        @auth('faculty')
+                            {{-- <p class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">{{ auth()->guard('faculty')->faculty()->faculty_name }}</p>
                             <hr> --}}
-                            <a wire:navigate href="{{ route('student.dashboard') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                              Student  Dashboard
+                            <a wire:navigate href="{{ route('faculty.dashboard') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                              Faculty  Dashboard
                             </a>
 
-                            <form method="POST" action="{{ route('student.logout') }}">
+                            <form method="POST" action="{{ route('faculty.logout') }}">
                                 @csrf
-                                <x-dropdown-link :href="route('student.logout')"  onclick="event.preventDefault(); this.closest('form').submit();" role="menuitem" class="block px-4 py-2 text-sm text-start text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                                    <span class="ml-2 duration-300 ease-in-out">Student Logout</span>
+                                <x-dropdown-link :href="route('faculty.logout')"  onclick="event.preventDefault(); this.closest('form').submit();" role="menuitem" class="block px-4 py-2 text-sm text-start text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                    <span class="ml-2 duration-300 ease-in-out">Faculty Logout</span>
                                 </x-dropdown-link>
                             </form>
                         @else
-                            <a wire:navigate href="{{ route('student.login') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                                <span class="ml-2 duration-300 ease-in-out">Student Login</span>
-                            </a>
-                            <a wire:navigate href="{{ route('student.register') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
-                                <span class="ml-2 duration-300 ease-in-out">Student Register</span>
+                            <a wire:navigate href="{{ route('faculty.login') }}" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
+                                <span class="ml-2 duration-300 ease-in-out">Faculty Login</span>
                             </a>
                         @endauth
                     </div>
@@ -168,7 +162,7 @@
         <!-- Mobile Sidebar -->
         <div class="border-b md:hidden dark:border-primary-darker" x-show="isMobileMainMenuOpen" @click.away="isMobileMainMenuOpen = false">
             <nav aria-label="Main" class="px-2 py-4 space-y-2">
-                <a wire:navigate href="{{ route('student') }}" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('student') }}' }" class="flex items-center p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                <a wire:navigate href="{{ route('faculty') }}" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('faculty') }}' }" class="flex items-center p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
                     <span aria-hidden="true">
                         <span aria-hidden="true">
                             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -176,44 +170,36 @@
                             </svg>   
                         </span>
                     </span>
-                    <span class="ml-2 duration-300 ease-in-out">Student Home</span>
+                    <span class="ml-2 duration-300 ease-in-out">Faculty Home</span>
                 </a>
-                @auth('student')
-                    <a wire:navigate href="{{ route('student.dashboard') }}" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('student.dashboard') }}' }" class="flex items-center p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                @auth('faculty')
+                    <a wire:navigate href="{{ route('faculty.dashboard') }}" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('faculty.dashboard') }}' }" class="flex items-center p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
                         <span aria-hidden="true">
                             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                             </svg>
                         </span>
-                        <span class="ml-2 duration-300 ease-in-out">Student Dashboard</span>
+                        <span class="ml-2 duration-300 ease-in-out">Faculty Dashboard</span>
                     </a>
-                    <form  method="POST" action="{{ route('student.logout') }}">
+                    <form  method="POST" action="{{ route('faculty.logout') }}">
                         @csrf
-                        <x-dropdown-link :href="route('student.logout')"  onclick="event.preventDefault(); this.closest('form').submit();" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('student.logout') }}' }" class="flex items-center  p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                        <x-dropdown-link :href="route('faculty.logout')"  onclick="event.preventDefault(); this.closest('form').submit();" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('faculty.logout') }}' }" class="flex items-center  p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
                             <span aria-hidden="true">
                                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                                 </svg> 
                             </span>
-                            <span class="ml-2 duration-300 ease-in-out">Student Logout</span>
+                            <span class="ml-2 duration-300 ease-in-out">Faculty Logout</span>
                         </x-dropdown-link>
                     </form>
                 @else
-                    <a wire:navigate href="{{ route('student.login') }}" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('student.login') }}' }" class="flex items-center p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
+                    <a wire:navigate href="{{ route('faculty.login') }}" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('faculty.login') }}' }" class="flex items-center p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
                         <span aria-hidden="true">
                             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
                             </svg>
                         </span>
-                        <span class="ml-2 duration-300 ease-in-out">Student Login</span>
-                    </a>
-                    <a wire:navigate href="{{ route('student.register') }}" :class="{ 'bg-primary-100 dark:bg-primary': '{{ request()->routeis('student.register') }}' }" class="flex items-center p-2 px-5 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary">
-                        <span aria-hidden="true">
-                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                        </span>
-                        <span class="ml-2 duration-300 ease-in-out">Student Register</span>
+                        <span class="ml-2 duration-300 ease-in-out">Faculty Login</span>
                     </a>
                 @endauth
             </nav>

@@ -7,18 +7,21 @@
         Loading.....
     </div>
 
-    {{-- @include('layouts.user.sidebar') --}}
+     {{-- User Sidebar --}}
+    @include('layouts.user.sidebar')
 
     <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
-        @include('layouts.user.user-navigation')
 
-        <!-- Main content -->
+        {{-- User Navbar --}}
+        @include('layouts.user.navbar')
+
+        <!--Uesr Main content -->
         <main class="z-10">
             @yield('user')
         </main>
     </div>
 
-    <!-- Panels -->
+    <!--Setting Panels -->
     <div x-cloak>
         @include('layouts.setting-panel')
     </div>
