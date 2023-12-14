@@ -3,6 +3,15 @@
 use Livewire\Livewire;
 use Illuminate\Support\Facades\Route;
 
+// Livewire Update Route
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post('/livewire/update', $handle);
+});
+
+// Livewire JS Route
+Livewire::setScriptRoute(function ($handle) {
+    return Route::get('/livewire/livewire.js', $handle);
+});
 
 // Guest Routes
 Route::middleware(['guest'])->group(function () {
@@ -72,17 +81,6 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','is_facul
 
 
 
-});
-
-
-// Livewire Update Route
-Livewire::setUpdateRoute(function ($handle) {
-    return Route::post('/livewire/update', $handle);
-});
-
-// Livewire JS Route
-Livewire::setScriptRoute(function ($handle) {
-    return Route::get('/livewire/livewire.js', $handle);
 });
 
 require __DIR__.'/student.php';

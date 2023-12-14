@@ -9,4 +9,6 @@
             </div>
         </div>
     </div>
+    @livewire('faculty.faculty-register')
+
 @endsection
