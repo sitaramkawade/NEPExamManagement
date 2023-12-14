@@ -9,6 +9,8 @@
             </div>
         </div>
     </div>
+    @livewire('faculty.create-account')
+
 @endsection
 
 
