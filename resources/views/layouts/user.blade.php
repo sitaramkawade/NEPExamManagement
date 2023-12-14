@@ -7,7 +7,7 @@
         Loading.....
     </div>
 
-    @include('layouts.user.sidebar')
+    {{-- @include('layouts.user.sidebar') --}}
 
     <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
         @include('layouts.user.user-navigation')
