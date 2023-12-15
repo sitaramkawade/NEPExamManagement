@@ -9,6 +9,7 @@
             </div>
         </div>
     </div>
-    @livewire('faculty.faculty-register')
-
+    {{-- @livewire('faculty.faculty-register') --}}
+    @livewire('faculty.register-faculty')
+    @livewire('faculty.view-faculty')
 @endsection

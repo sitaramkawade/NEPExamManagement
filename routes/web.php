@@ -83,7 +83,15 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','is_facul
         return view('faculty.faculty-dashboard');
     })->name('dashboard');
 
+    // Register Faculty
+    Route::get('/register-faculty', function () {
+        return view('faculty.faculty-register');
+    });
 
+    // View Faculty
+    Route::get('/view-faculty', function () {
+        return view('faculty.register');
+    });
 
 });
 

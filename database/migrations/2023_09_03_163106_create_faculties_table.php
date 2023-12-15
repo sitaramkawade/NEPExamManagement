@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('faculties', function (Blueprint $table) {
             $table->id();
-            $table->string('prefix');
-            $table->string('faculty_name');
-            $table->string('email')->unique();
-            $table->string('mobile_no',20);
+            $table->string('prefix')->nullable();
+            $table->string('faculty_name')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('mobile_no',20)->nullable();
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
             $table->bigInteger('role_id')->before('created_at')->nullable()->unsigned()->default(null);
