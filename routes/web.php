@@ -1,8 +1,9 @@
 <?php
 
+use Livewire\Livewire;
 use App\Livewire\Faculty\ViewFaculty;
 use Illuminate\Support\Facades\Route;
-use Livewire\Livewire;
+use App\Livewire\Faculty\RegisterFaculty;
 use App\Livewire\Master\Gender\ViewGender;
 
 
@@ -97,10 +98,9 @@ Route::get('/temp', function () {
     return view('temp',compact(''));
 });
 
-Route::get('register-faculty', ViewFaculty::class);
 
-Route::get('/vf', function () {
-    return view('livewire.faculty.view-faculty')->extends('layouts.faculty')->section('faculty');
+Route::get('/register-faculty', function () {
+    return view('faculty.reg-faculty');
 });
 
 Route::get('gender', ViewGender::class);
