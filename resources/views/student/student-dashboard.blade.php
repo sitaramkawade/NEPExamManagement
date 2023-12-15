@@ -11,6 +11,9 @@
             </div>
         </div>
     </div>
+    <div>
+        @include('student.profile.multi-step-student-profile')
+    </div>
 @endsection
 
 

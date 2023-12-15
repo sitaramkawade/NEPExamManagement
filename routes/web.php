@@ -7,6 +7,15 @@ use App\Livewire\Faculty\RegisterFaculty;
 use App\Livewire\Master\Gender\ViewGender;
 
 
+// Livewire Update Route
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post('/livewire/update', $handle);
+});
+
+// Livewire JS Route
+Livewire::setScriptRoute(function ($handle) {
+    return Route::get('/livewire/livewire.js', $handle);
+});
 
 // Guest Routes
 Route::middleware(['guest'])->group(function () {
@@ -77,33 +86,6 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','is_facul
 
 
 });
-
-
-// Livewire Update Route
-Livewire::setUpdateRoute(function ($handle) {
-    return Route::post('/livewire/update', $handle);
-});
-
-// Livewire JS Route
-Livewire::setScriptRoute(function ($handle) {
-    return Route::get('/livewire/livewire.js', $handle);
-});
-
-Route::get('/', function () {
-    $post=null;
-    return view('welcome',compact('post'));
-});
-Route::get('/temp', function () {
-    $mode='add';
-    return view('temp',compact(''));
-});
-
-
-Route::get('/register-faculty', function () {
-    return view('faculty.reg-faculty');
-});
-
-Route::get('gender', ViewGender::class);
 
 require __DIR__.'/student.php';
 require __DIR__.'/faculty.php';
