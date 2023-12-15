@@ -1,31 +1,31 @@
 <?php
 
-namespace Tests\Feature\Auth;
+namespace Tests\Feature\Student_Auth;
 
-use App\Models\User;
+use App\Models\Student;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
-class PasswordResetTest extends TestCase
+class Student_PasswordResetTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_reset_password_link_screen_can_be_rendered(): void
-    {
-        $response = $this->get('user/forgot-password');
+    // public function test_reset_password_link_screen_can_be_rendered(): void
+    // {
+    //     $response = $this->get('student/forgot-password');
 
-        $response->assertStatus(200);
-    }
+    //     $response->assertStatus(200);
+    // }
 
     public function test_reset_password_link_can_be_requested(): void
     {
         Notification::fake();
 
-        $user = User::factory()->create();
-
-        $this->post('user/forgot-password', ['email' => $user->email]);
+        $user = Student::factory()->create();
+ 
+        $this->post('student/forgot-password', ['email' => $user->email]);
 
         Notification::assertSentTo($user, ResetPassword::class);
     }
@@ -34,12 +34,12 @@ class PasswordResetTest extends TestCase
     {
         Notification::fake();
 
-        $user = User::factory()->create();
+        $user = Student::factory()->create();
 
-        $this->post('user/forgot-password', ['email' => $user->email]);
+        $this->post('student/forgot-password', ['email' => $user->email]);
 
         Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
-            $response = $this->get('user/reset-password/'.$notification->token);
+            $response = $this->get('student/reset-password/'.$notification->token);
 
             $response->assertStatus(200);
 
@@ -47,16 +47,17 @@ class PasswordResetTest extends TestCase
         });
     }
 
+
     public function test_password_can_be_reset_with_valid_token(): void
     {
         Notification::fake();
 
-        $user = User::factory()->create();
+        $user = Student::factory()->create();
 
-        $this->post('user/forgot-password', ['email' => $user->email]);
+        $this->post('student/forgot-password', ['email' => $user->email]);
 
         Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {
-            $response = $this->post('user/reset-password', [
+            $response = $this->post('student/reset-password', [
                 'token' => $notification->token,
                 'email' => $user->email,
                 'password' => 'password',

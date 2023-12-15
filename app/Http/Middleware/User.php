@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class User
@@ -16,7 +17,8 @@ class User
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::guard('user')->check()) {
-            abort(403);
+            // abort(403);
+            return redirect('/user/login');
          }
          return $next($request);
     }

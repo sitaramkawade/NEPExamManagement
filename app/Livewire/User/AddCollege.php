@@ -4,10 +4,12 @@ namespace App\Livewire\User;
 
 use App\Models\College;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AddCollege extends Component
 {
-    
+    use WithFileUploads;
+
     public $college_name;
     public $college_address;
     public $college_website_url;
@@ -17,6 +19,24 @@ class AddCollege extends Component
     public $sanstha_id;
     public $university_id;
     public $status;
+    public $btn_add = false;
+
+    protected function rules()
+    {
+        return [
+        'college_name' => 'required|string|max:255',
+        'college_address' => 'required|string|max:255',
+        'college_website_url' => 'required|string|max:255',
+        'college_email' => 'required|unique:users,email',
+        'college_contact_no' => 'required|max:10',          
+        'college_logo_path'=>'required|file|mimes:png,jpg|max:10240',
+        'sanstha_id' => 'required',   
+        'university_id' => 'required', 
+        'status'=>'required'  
+                       
+        ];
+        }
+
     public function render()
     {
         return view('livewire.user.add-college')->extends('layouts.user')->section('user');
@@ -26,7 +46,7 @@ class AddCollege extends Component
         dd($this->all());
     }
     public function add(){
-
+        $this->validate(); 
         $college= new College;
        
         $college->college_name= $this->college_name;
@@ -39,6 +59,9 @@ class AddCollege extends Component
         $college->university_id= $this->university_id;
         $college->status= $this->status;
         $college->save();
+        $this->btn_add = true;
+//Remove fields after submiting the college info
+        $this->reset(['college_name','college_address','college_website_url','college_email','college_contact_no','college_logo_path','sanstha_id','university_id','status']);
     }
 
 }

@@ -18,7 +18,7 @@ class Faculty
     {
         //dd($request->getRequestUri());
         if (!Auth::guard('faculty')->check()) {
-            abort(403);
+            return redirect('/faculty/login');
         }
         return $next($request);
     }

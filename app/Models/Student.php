@@ -28,6 +28,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
         'student_name',
         'email',
         'password',
+        'last_login',
         'prn',
         'memid',
         'eligibilityno',

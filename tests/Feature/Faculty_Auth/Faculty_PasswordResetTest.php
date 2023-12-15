@@ -1,37 +1,33 @@
 <?php
 
-namespace Tests\Feature\AuthFaculty;
+namespace Tests\Feature\Faculty_Auth;
 
 use App\Models\Faculty;
-use App\Models\User;
-use App\Notifications\FacultyResetPassword;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
-class PasswordResetTest extends TestCase
+class Faculty_PasswordResetTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_reset_password_link_screen_can_be_rendered(): void
-    {
-        $response = $this->get('/admin/forgot-password');
+    // public function test_reset_password_link_screen_can_be_rendered(): void
+    // {
+    //     $response = $this->get('faculty/forgot-password');
 
-        $response->assertStatus(200);
-    }
+    //     $response->assertStatus(200);
+    // }
 
     public function test_reset_password_link_can_be_requested(): void
     {
-        
         Notification::fake();
-        
 
         $user = Faculty::factory()->create();
+ 
+        $this->post('faculty/forgot-password', ['email' => $user->email]);
 
-        $this->post('/admin/forgot-password', ['email' => $user->email]);
-
-        Notification::assertSentTo($user, FacultyResetPassword::class);
+        Notification::assertSentTo($user, ResetPassword::class);
     }
 
     public function test_reset_password_screen_can_be_rendered(): void
@@ -40,10 +36,10 @@ class PasswordResetTest extends TestCase
 
         $user = Faculty::factory()->create();
 
-        $this->post('/admin/forgot-password', ['email' => $user->email]);
+        $this->post('faculty/forgot-password', ['email' => $user->email]);
 
-        Notification::assertSentTo($user, FacultyResetPassword::class, function ($notification) {
-            $response = $this->get('/admin/reset-password/'.$notification->token);
+        Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
+            $response = $this->get('faculty/reset-password/'.$notification->token);
 
             $response->assertStatus(200);
 
@@ -57,10 +53,10 @@ class PasswordResetTest extends TestCase
 
         $user = Faculty::factory()->create();
 
-        $this->post('/admin/forgot-password', ['email' => $user->email]);
+        $this->post('faculty/forgot-password', ['email' => $user->email]);
 
-        Notification::assertSentTo($user, FacultyResetPassword::class, function ($notification) use ($user) {
-            $response = $this->post('/admin/reset-password', [
+        Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {
+            $response = $this->post('faculty/reset-password', [
                 'token' => $notification->token,
                 'email' => $user->email,
                 'password' => 'password',

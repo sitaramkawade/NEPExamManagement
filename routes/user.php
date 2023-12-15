@@ -32,7 +32,7 @@ Route::group(['prefix'=>'user' ,'as'=>'user.'],function (){
         Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
     });
 
-    Route::middleware(['auth:user'])->group(function () {
+    Route::middleware(['auth:user','is_user'])->group(function () {
 
         // Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
 
@@ -48,11 +48,5 @@ Route::group(['prefix'=>'user' ,'as'=>'user.'],function (){
 
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-        Route::get('dashboard', function () {
-
-            return view('user.user-dashboard');
-
-        })->name('dashboard');
-        
     });
 });
