@@ -1,4 +1,5 @@
-@extends('layouts.student')
-@section('student')
-    @livewire('student.profile.multi-step-student-profile')
+@extends("layouts.student")
+@section("student")
+  @livewire("student.profile.multi-step-student-profile")
+
 @endsection

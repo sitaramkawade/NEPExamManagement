@@ -118,6 +118,60 @@
         }
       }
     </script>
+    <script src="{{ asset('assets/sweetalert/sweetalert.js') }}"></script>
+    <script>
+        document.addEventListener('livewire:init', () => {
+            // Toster Config
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top',
+                showConfirmButton: false,
+                showCloseButton: true,
+                timer: 3000,
+                timerProgressBar:true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+            
+         //  Notification Fire
+        window.addEventListener('alert', ({ detail: { type, message } }) => {
+            Toast.fire({
+                icon: type,
+                title: message
+            });
+        });
+    
+         
+            // Delete Fire
+            window.addEventListener('delete-confirmation',event=>{
+                Swal.fire({
+                    title: 'Are You Sure?',
+                    text: "You Won't Be Able To Revert This!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#dc3545',
+                    cancelButtonColor: '#198754',
+                    confirmButtonText: 'Yes, Delete It !'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    Livewire.dispatch('delete-confirmed')
+                    }
+                });
+            });
+
+            @if(session('alert'))
+                const toastEvent = @json(session('alert'));
+                Toast.fire({
+                    icon: toastEvent.type,
+                    title: toastEvent.message
+                });
+                @php session()->forget('alert') @endphp
+            @endif
+
+        })
+    </script>
   </body>
 
 </html>

@@ -24,6 +24,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
     }
 
     protected $guard="student";
+    protected $broker = 'students';
     protected $fillable = [
         'student_name',
         'email',

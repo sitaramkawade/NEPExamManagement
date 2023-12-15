@@ -47,3 +47,4 @@ class IsStudentVerifyEmail
         return $next($request);
     }
 }
+  
