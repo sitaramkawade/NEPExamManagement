@@ -7,7 +7,7 @@
       <div class="w-full gap-3 md:w-2/4">
         <div class="mb-3">
           <!-- Card -->
-          <div class="rounded-md bg-white dark:bg-darker">
+          <div class="rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
             <!-- Card header -->
             <div class="flex items-center justify-between border-b p-4 dark:border-primary">
               <h4 class="text-lg font-semibold text-gray-500 dark:text-light">hello</h4>
@@ -29,7 +29,7 @@
         </div>
         <div class="mb-3">
           <!-- Card -->
-          <div class="rounded-md bg-white dark:bg-darker">
+          <div class="rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
             <!-- Card header -->
             <div class="flex items-center justify-between border-b p-4 dark:border-primary">
               <h4 class="text-lg font-semibold text-gray-500 dark:text-light">hello</h4>
@@ -51,7 +51,7 @@
         </div>
         <div class="mb-3">
           <!-- Card -->
-          <div class="rounded-md bg-white dark:bg-darker">
+          <div class="rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
             <!-- Card header -->
             <div class="flex items-center justify-between border-b p-4 dark:border-primary">
               <h4 class="text-lg font-semibold text-gray-500 dark:text-light">hello</h4>
@@ -87,7 +87,7 @@
                 </ul>
               </div>
               <!-- Card -->
-              <div class="rounded-md bg-white dark:bg-darker">
+              <div class="rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
                 <!-- Card header -->
                 <div class="flex items-center justify-between border-b dark:border-primary">
                   <h4 class="text-lg font-semibold text-gray-500 dark:text-light">hello</h4>
@@ -118,7 +118,7 @@
       </div>
       <div class="mb-3 w-full gap-3 md:w-2/4">
         <!-- Card -->
-        <div class="col-span-1 rounded-md bg-white dark:bg-darker">
+        <div class="col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
           <!-- Card header -->
           <div class="flex items-center justify-between border-b p-4 dark:border-primary">
             <h4 class="text-lg font-semibold text-gray-500 dark:text-light">hello</h4>
@@ -136,7 +136,7 @@
     </div>
     <div class="w-full">
       <!-- Card -->
-      <div class="mx-2 rounded-md bg-white dark:bg-darker">
+      <div class="mx-2 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
         <!-- Card body -->
         <div class="relative h-auto p-4">
           <p>hello</p>

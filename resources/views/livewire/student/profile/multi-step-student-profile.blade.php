@@ -177,39 +177,39 @@
                       Upload Photo & Sign
                    </div>
                    <div class="grid grid-cols-1 md:grid-cols-2">
-                    <div class="px-5 py-4 text-sm text-gray-600 dark:text-gray-400">
-                      <div class="flex items-center space-x-6 my-3">
-                        <div class="shrink-0">
+                    <div class="p-5 text-sm text-gray-600 dark:text-gray-400 ">
+                      <div class="flex flex-col items-center mx-auto space-x-6  ">
+                        <div class="shrink-0 p-2">
                           @if ($profile_photo_path)
-                            <img class="h-30 w-28 object-cover " src="{{ isset($profile_photo_path)?$profile_photo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
+                            <img style="width: 135px; height: 150px;"class="object-center object-fill bg-red-500 " src="{{ isset($profile_photo_path)?$profile_photo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
                           @else
-                          <img class="h-30 w-28 object-cover " src="{{ isset($profile_photo_path_old)?asset($profile_photo_path_old):asset('img/no-img.png'); }}" alt="Current profile photo" />
+                          <img style="width: 135px; height: 150px;" class="object-center object-fill " src="{{ isset($profile_photo_path_old)?asset($profile_photo_path_old):asset('img/no-img.png'); }}" alt="Current profile photo" />
                           @endif
                         </div>
-                        <label class="block">
+                        <label class="block p-2">
                           <span class="sr-only">Choose profile photo</span>
-                          <x-text-input id="profile_photo_path" wire:model.live="profile_photo_path" name="profile_photo_path"  :value="old('profile_photo_path',$profile_photo_path)" required autofocus autocomplete="profile_photo_path"  type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker"/>
+                          <x-text-input id="profile_photo_path" wire:model.live="profile_photo_path" name="profile_photo_path"  :value="old('profile_photo_path',$profile_photo_path)"  autofocus autocomplete="profile_photo_path"  type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker"/>
                           <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
                         </label>
+                        <x-input-label class="py-2" for="profile_photo_path" :value="__('Update Student Photo ( 250KB , png , jpeg , jpg Only )')" />
                       </div>
-                      <x-input-label for="profile_photo_path" :value="__('Update Student Photo ( 250KB , png , jpeg , jpg Only )')" />
                     </div>
-                    <div class="px-5 py-4 text-sm text-gray-600 dark:text-gray-400">
-                      <div class="flex items-center space-x-6 my-3">
-                        <div class="shrink-0">
+                    <div class="p-5 text-sm text-gray-600 dark:text-gray-400 ">
+                      <div class="flex flex-col items-center mx-auto space-x-6 ">
+                        <div class="shrink-0 py-10">
                           @if ($sign_photo_path)
-                            <img class="h-16 w-40 object-fit" src="{{ isset($sign_photo_path)?$sign_photo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
+                            <img style="width: 200px; height:82px;" class="object-center object-fill" src="{{ isset($sign_photo_path)?$sign_photo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
                           @else
-                          <img class="h-16 w-40 object-fit" src="{{ isset($sign_photo_path_old)?asset($sign_photo_path_old):asset('img/no-img.png'); }}" alt="Current profile photo" />
+                          <img  style="width: 200px; height:82px;"class="object-center oobject-fill" src="{{ isset($sign_photo_path_old)?asset($sign_photo_path_old):asset('img/no-img.png'); }}" alt="Current profile photo" />
                           @endif
                         </div>
-                        <label class="block">
+                        <label class="block p-2">
                           <span class="sr-only">Choose profile photo</span>
-                          <x-text-input id="sign_photo_path" wire:model.live="sign_photo_path" name="sign_photo_path"  :value="old('sign_photo_path',$sign_photo_path)" required autofocus autocomplete="sign_photo_path"  type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker"/>
+                          <x-text-input id="sign_photo_path" wire:model.live="sign_photo_path" name="sign_photo_path"  :value="old('sign_photo_path',$sign_photo_path)" autofocus autocomplete="sign_photo_path"  type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker"/>
                           <x-input-error :messages="$errors->get('sign_photo_path')" class="mt-2" />
                         </label>
+                        <x-input-label class="py-2" for="sign_photo_path" :value="__('Update Student Sign ( 50KB , png , jpeg , jpg Only )')" />
                       </div>
-                      <x-input-label for="sign_photo_path" :value="__('Update Student Sign ( 50KB , png , jpeg , jpg Only )')" />
                     </div>
                    </div>
                    <div class="h-20 p-2">

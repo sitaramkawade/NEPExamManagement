@@ -43,6 +43,7 @@ class MultiStepStudentProfile extends Component
     public $profile_photo_path_old;
     public $sign_photo_path;
     public $sign_photo_path_old;
+    public $can_update=0;
 
     public function rules()
     {
@@ -69,8 +70,8 @@ class MultiStepStudentProfile extends Component
             ];
         } elseif ($this->current_step == 3) {
             $rules = [
-                'profile_photo_path' =>['required','max:250','mimes:png,jpg,jpeg'],
-                'sign_photo_path' => ['required','max:50','mimes:png,jpg,jpeg'],
+                'profile_photo_path' =>[$this->can_update==1?'nullable':'required','max:250','mimes:png,jpg,jpeg'],
+                'sign_photo_path' => [$this->can_update==1?'nullable':'required','max:50','mimes:png,jpg,jpeg'],
             ];
         }
 
@@ -236,6 +237,10 @@ class MultiStepStudentProfile extends Component
             $this->is_handicap=$student_profile->is_handicap;
             $this->profile_photo_path_old=$student_profile->profile_photo_path;
             $this->sign_photo_path_old=$student_profile->sign_photo_path;
+            if(isset($student_profile->sign_photo_path) && isset($student_profile->profile_photo_path))
+            {
+                $this->can_update=1;
+            }
         }
 
     }

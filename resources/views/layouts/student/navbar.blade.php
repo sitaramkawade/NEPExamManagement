@@ -23,7 +23,10 @@
             </button>
 
             <!-- Brand -->
-            <a href="{{ url('/') }}" class="  md:hidden text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light">
+            {{-- <a href="{{ url('/') }}" class="  md:hidden text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light">
+                {{ env('APP_NAME') }}
+            </a> --}}
+            <a href="{{ url('/') }}" class="text-sm text-center md:text-lg md:font-bold  text-primary-dark dark:text-light">
                 {{ env('APP_NAME') }}
             </a>
 

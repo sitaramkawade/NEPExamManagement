@@ -6,7 +6,7 @@
       <div class="w-full gap-3 md:w-2/4">
         <div class="mb-3">
           <!-- Card -->
-          <div class="rounded-md bg-white dark:bg-darker">
+          <div class="rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
             <!-- Card header -->
             <div class="flex items-center justify-between border-b p-4 dark:border-primary">
               <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Exam Form Subjetcs</h4>
@@ -28,7 +28,7 @@
         </div>
         <div class="mb-3">
           <!-- Card -->
-          <div class="rounded-md bg-white dark:bg-darker">
+          <div class="rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
             <!-- Card header -->
             <div class="flex items-center justify-between border-b p-4 dark:border-primary">
               <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Email Id And Mobile Number Update</h4>
@@ -50,7 +50,7 @@
         </div>
         <div class="mb-3">
           <!-- Card -->
-          <div class="rounded-md bg-white dark:bg-darker">
+          <div class="rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
             <!-- Card header -->
             <div class="flex items-center justify-between border-b p-4 dark:border-primary">
               <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Student Profile</h4>
@@ -86,7 +86,7 @@
                 </ul>
               </div>
               <!-- Card -->
-              <div class="rounded-md bg-white dark:bg-darker">
+              <div class="rounded-md bg-white dark:bg-darker dark:border-primary-darker border mt-2">
                 <!-- Card header -->
                 <div class="flex items-center justify-between border-b dark:border-primary">
                   <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Steps To Create Profile / प्रोफाइल तयार करण्याचे टप्पे</h4>
@@ -117,7 +117,7 @@
       </div>
       <div class="mb-3 w-full gap-3 md:w-2/4">
         <!-- Card -->
-        <div class="col-span-1 rounded-md bg-white dark:bg-darker">
+        <div class="col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
           <!-- Card header -->
           <div class="flex items-center justify-between border-b p-4 dark:border-primary">
             <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Online Exam Form Dates</h4>
@@ -291,7 +291,7 @@
     </div>
     <div class="w-full">
       <!-- Card -->
-      <div class="mx-2 rounded-md bg-white dark:bg-darker">
+      <div class="mx-2 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
         <!-- Card body -->
         <div class="relative h-auto p-4">
           <p>After completing above steps your profile will be complete and you can fill exam form by clicking Exam Form button from dashboard.</p>
