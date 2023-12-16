@@ -10,7 +10,7 @@
             @if ($current_step===1)
               <section>
                   <form wire:submit="member_id_form()">
-                    <div class="overflow-hidden bg-white border shadow dark:border-primary-darker dark:bg-darker sm:rounded-lg">
+                    <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
                       <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
                         Student Information
                       </div>
@@ -53,7 +53,7 @@
           @if ($current_step===2)
             <section>
               <form wire:submit="student_information_form()">
-                <div class="overflow-hidden bg-white border shadow dark:border-primary-darker dark:bg-darker sm:rounded-lg">
+                <div class="m-2 overflow-hidden bg-white border shadow dark:border-primary-darker dark:bg-darker rounded">
                   <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
                     Student Information
                   </div>

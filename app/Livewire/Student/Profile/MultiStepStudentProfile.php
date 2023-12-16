@@ -101,17 +101,19 @@ class MultiStepStudentProfile extends Component
             'mother_name'=>$this->mother_name,
             'aadhar_card_no'=>$this->adharnumber,
         ]);
-        Auth::guard('student')->user()->studentprofile()->updateOrCreate([
-            'student_id'=>Auth::guard('student')->user()->id,
-            'student_name_on_adharcard'=>Auth::guard('student')->user()->student_name,
-            'father_name'=>$this->father_name,
-            'gender'=>$this->gender,
-            'date_of_birth'=>$this->date_of_birth,
-            'nationality'=>$this->nationality,
-            'caste_category_id'=>$this->caste_category_id,
-            'is_noncreamylayer'=>$this->is_noncreamylayer,
-            'is_handicap'=>$this->is_handicap,
-        ]);
+        Auth::guard('student')->user()->studentprofile()->updateOrCreate(
+            [   'student_id'=>Auth::guard('student')->user()->id ],
+            [
+                'student_name_on_adharcard'=>Auth::guard('student')->user()->student_name,
+                'father_name'=>$this->father_name,
+                'gender'=>$this->gender,
+                'date_of_birth'=>$this->date_of_birth,
+                'nationality'=>$this->nationality,
+                'caste_category_id'=>$this->caste_category_id,
+                'is_noncreamylayer'=>$this->is_noncreamylayer,
+                'is_handicap'=>$this->is_handicap,
+            ]
+        );
         $this->dispatch('alert',type:'success',message:'Step Tow : Student Information Saved Successfully!!');  
         $this->current_step = 3;
     }
