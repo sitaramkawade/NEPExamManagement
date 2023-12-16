@@ -16,8 +16,8 @@
                       </div>
                       <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                          <x-input-label for="memid" :value="__('Student Member ID (From I-card or Admission receipt)')" />
-                          <x-text-input  id="memid" type="number" wire:model.live="memid" name="memid" class=" @error('memid') is-invalid @enderror w-full mt-1"  :value="old('memid',$memid)" required autofocus autocomplete="memid" />
+                          <x-input-label for="memid" :value="__('Student Member ID ( From I-Card Or Admission Receipt)')" />
+                          <x-text-input  id="memid" type="number" wire:model.live="memid" name="memid" class="w-full mt-1"  :value="old('memid',$memid)" required autofocus autocomplete="memid" />
                           <x-input-error :messages="$errors->get('memid')" class="mt-2" />
                             
                         </div>
@@ -60,42 +60,42 @@
                   <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="student_name" :value="__('Student Name ( Not Editable )')" />
-                      <x-text-input  id="student_name" type="text" wire:model.live="student_name" name="student_name" disabled readonly class="disabled @error('student_name') is-invalid @enderror w-full mt-1"  :value="old('student_name',$student_name)" required autofocus autocomplete="student_name" />
+                      <x-text-input  id="student_name" type="text" wire:model.live="student_name" name="student_name" disabled readonly class="disabled w-full mt-1"  :value="old('student_name',$student_name)" required autofocus autocomplete="student_name" />
                       <x-input-error :messages="$errors->get('student_name')" class="mt-2" />
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="email" :value="__('Student Email ( Not Editable )')" />
-                      <x-text-input  id="email" type="email" wire:model.live="email" name="email" disabled readonly class="disabled @error('email') is-invalid @enderror w-full mt-1"  :value="old('email',$email)" required autofocus autocomplete="email" />
+                      <x-text-input  id="email" type="email" wire:model.live="email" name="email" disabled readonly class="disabled w-full mt-1"  :value="old('email',$email)" required autofocus autocomplete="email" />
                       <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="mobile_no" :value="__('Student Mobile Number ( Not Editable )')" />
-                      <x-text-input  id="mobile_no" type="number" wire:model.live="mobile_no" name="mobile_no" disabled readonly  class="disabled @error('mobile_no') is-invalid @enderror w-full mt-1"  :value="old('mobile_no',$mobile_no)" required autofocus autocomplete="mobile_no" />
+                      <x-text-input  id="mobile_no" type="number" wire:model.live="mobile_no" name="mobile_no" disabled readonly  class="disabled w-full mt-1"  :value="old('mobile_no',$mobile_no)" required autofocus autocomplete="mobile_no" />
                       <x-input-error :messages="$errors->get('mobile_no')" class="mt-2" />
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="father_name" :value="__('Father / Husband Name')" />
-                      <x-text-input  id="father_name" type="text" wire:model.live="father_name" name="father_name" class=" @error('father_name') is-invalid @enderror w-full mt-1"  :value="old('father_name',$father_name)" required autofocus autocomplete="father_name" />
+                      <x-text-input  id="father_name" type="text" wire:model.live="father_name" name="father_name" class="w-full mt-1"  :value="old('father_name',$father_name)" required autofocus autocomplete="father_name" />
                       <x-input-error :messages="$errors->get('father_name')" class="mt-2" />
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="mother_name" :value="__('Mother Name')" />
-                      <x-text-input  id="mother_name" type="text" wire:model.live="mother_name" name="mother_name" class=" @error('mother_name') is-invalid @enderror w-full mt-1"  :value="old('mother_name',$mother_name)" required autofocus autocomplete="mother_name" />
+                      <x-text-input  id="mother_name" type="text" wire:model.live="mother_name" name="mother_name" class="w-full mt-1"  :value="old('mother_name',$mother_name)" required autofocus autocomplete="mother_name" />
                       <x-input-error :messages="$errors->get('mother_name')" class="mt-2" />
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="adharnumber" :value="__('Adhar Number')" />
-                      <x-text-input  id="adharnumber" type="number" wire:model.live="adharnumber" name="adharnumber" class=" @error('adharnumber') is-invalid @enderror w-full mt-1"  :value="old('adharnumber',$adharnumber)" required autofocus autocomplete="adharnumber" />
+                      <x-text-input  id="adharnumber" type="number" wire:model.live="adharnumber" name="adharnumber" class="w-full mt-1"  :value="old('adharnumber',$adharnumber)" required autofocus autocomplete="adharnumber" />
                       <x-input-error :messages="$errors->get('adharnumber')" class="mt-2" />
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="date_of_birth" :value="__('Date Of Birth')" />
-                      <x-text-input  id="date_of_birth" type="date" wire:model.live="date_of_birth" name="date_of_birth" class=" @error('date_of_birth') is-invalid @enderror w-full mt-1"  :value="old('date_of_birth',$date_of_birth)" required autofocus autocomplete="date_of_birth" />
+                      <x-text-input  id="date_of_birth" type="date" wire:model.live="date_of_birth" name="date_of_birth" class="w-full mt-1"  :value="old('date_of_birth',$date_of_birth)" required autofocus autocomplete="date_of_birth" />
                       <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="gender" :value="__('Gender')" />
-                      <x-input-select id="gender" wire:model.live="gender" name="gender" class="text-center @error('gender') is-invalid @enderror w-full mt-1"  :value="old('gender',$gender)" required autofocus autocomplete="gender">
+                      <x-input-select id="gender" wire:model.live="gender" name="gender" class="text-center w-full mt-1"  :value="old('gender',$gender)" required autofocus autocomplete="gender">
                         <x-select-option class="text-start" hidden> -- Select Gender -- </x-select-option>
                         @foreach ($genders as $gender)
                             <x-select-option wire:key="{{ $gender->id }}" value="{{ $gender->gender_shortform	 }}" class="text-start">{{$gender->gender }}</x-select-option>
@@ -105,7 +105,7 @@
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="caste_category_id" :value="__('Cast Category')" />
-                      <x-input-select id="caste_category_id" type="text" wire:model.live="caste_category_id" name="caste_category_id" class="text-center @error('caste_category_id') is-invalid @enderror w-full mt-1"  :value="old('caste_category_id',$caste_category_id)" required autofocus autocomplete="caste_category_id">
+                      <x-input-select id="caste_category_id" type="text" wire:model.live="caste_category_id" name="caste_category_id" class="text-center w-full mt-1"  :value="old('caste_category_id',$caste_category_id)" required autofocus autocomplete="caste_category_id">
                         <x-select-option class="text-start" hidden> -- Select Cast Category -- </x-select-option>
                         @foreach ($cast_categories as $c_category)
                             <x-select-option wire:key="{{ $c_category->id }}" value="{{ $c_category->id }}" class="text-start">{{$c_category->caste_category }}</x-select-option>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="nationality" :value="__('Nationality')" />
-                      <x-input-select id="nationality" wire:model.live="nationality" name="nationality" class="text-center @error('nationality') is-invalid @enderror w-full mt-1"  :value="old('nationality',$nationality)" required autofocus autocomplete="nationality">
+                      <x-input-select id="nationality" wire:model.live="nationality" name="nationality" class="text-center w-full mt-1"  :value="old('nationality',$nationality)" required autofocus autocomplete="nationality">
                         <x-select-option class="text-start" hidden> -- Select Nationality-- </x-select-option>
                         <x-select-option class="text-start" value="Indian">Indian</x-select-option>
                         <x-select-option class="text-start" value="Other">Other</x-select-option>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="is_noncreamylayer" :value="__('Is Non Creamy Layer')" />
-                      <x-input-select id="is_noncreamylayer"  wire:model.live="is_noncreamylayer" name="is_noncreamylayer" class="text-center @error('is_noncreamylayer') is-invalid @enderror w-full mt-1"  :value="old('is_noncreamylayer',$is_noncreamylayer)" required autofocus autocomplete="is_noncreamylayer">
+                      <x-input-select id="is_noncreamylayer"  wire:model.live="is_noncreamylayer" name="is_noncreamylayer" class="text-center  w-full mt-1"  :value="old('is_noncreamylayer',$is_noncreamylayer)" required autofocus autocomplete="is_noncreamylayer">
                         <x-select-option class="text-start" hidden> -- Select -- </x-select-option>
                         <x-select-option class="text-start" value="1">Yes</x-select-option>
                         <x-select-option class="text-start" value="0">No</x-select-option>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <x-input-label for="is_handicap" :value="__('Is Handicapped')" />
-                      <x-input-select id="is_handicap" wire:model.live="is_handicap" name="is_handicap" class="text-center @error('is_handicap') is-invalid @enderror w-full mt-1"  :value="old('is_handicap',$is_handicap)" required autofocus autocomplete="is_handicap">
+                      <x-input-select id="is_handicap" wire:model.live="is_handicap" name="is_handicap" class="text-center  w-full mt-1"  :value="old('is_handicap',$is_handicap)" required autofocus autocomplete="is_handicap">
                         <x-select-option class="text-start" hidden> -- Select -- </x-select-option>
                         <x-select-option class="text-start" value="1">Yes</x-select-option>
                         <x-select-option class="text-start" value="0">No</x-select-option>
@@ -167,176 +167,79 @@
                 </div>
               </form>
             </section>
-            @endif
-      {{-- Student Information --}}
-          <section>
-              <div class="mt-8 overflow-hidden bg-white shadow dark:bg-gray-800 sm:rounded-lg">
-                <div class="px-2 py-2 font-semibold text-white bg-gray-500">
-                  Student Information
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2">
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="student_name" class="block text-sm font-medium text-gray-700"> Student Name</label>
-                        <input type="text" name="student_name" id="student_name" style="background-color: rgb(197, 236, 252);" class="block w-full mt-1 rounded-md shadow-sm form-input" placeholder="Enter name as per your marksheet" value="{{ Auth::guard("student")->user()->student_name }}" disabled />
-                        @error("student_name")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="father_name" class="block text-sm font-medium text-gray-700">Father / Husband Name</label>
-                        <input type="text" name="father_name" value=@if (isset($data)) "{{ $data->father_name }}" @else "{{ old("father_name") }}" @endif id="father_name" class="block w-full mt-1 rounded-md shadow-sm form-input" placeholder="Enter Father / Husband Name " required />
-                        @error("father_name")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="mother_name" class="block text-sm font-medium text-gray-700">
-                            Mother Name ( e.g. Sunita )</label>
-                        <input type="text" name="mother_name" @if (isset(Auth::guard("student")->user()->mother_name)) style="background-color: rgb(197, 236, 252);" value="{{ Auth::guard("student")->user()->mother_name }}" readonly @else value="{{ old("mother_name") }}" @endif id="mother_name" class="block w-full mt-1 rounded-md shadow-sm form-input" placeholder="Enter Mother Name" required />
-                        @error("mother_name")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email </label>
-                        <input type="text" name="email" id="email" style="background-color: rgb(197, 236, 252);" class="block w-full mt-1 rounded-md shadow-sm form-input" placeholder="Enter email" value="{{ Auth::guard("student")->user()->email }}" disabled />
-                        @error("email")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile</label>
-                        <input type="text" name="mobile" id="mobile" style="background-color: rgb(197, 236, 252);" class="block w-full mt-1 rounded-md shadow-sm form-input" placeholder="Enter Mobile Number" value="{{ Auth::guard("student")->user()->mobile_no }}" disabled />
-                        @error("mobile")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="gender" class="block text-sm font-medium text-gray-700">Gender </label>
-                        <select name="gender" id="gender" class="block w-full mt-1 rounded-md shadow-sm form-input" required>
-                          <option value="">--Select--</option>
-                          <option value="M" @if (isset($data)) @if ($data->gender == "M") selected @else {{ old("gender") == 1 ? "selected" : "" }} @endif @endif >Male</option>
-                          <option value="F" @if (isset($data)) @if ($data->gender == "F") selected @else {{ old("gender") == 1 ? "selected" : "" }} @endif @endif >Female</option>
-                        </select>
-                        @error("gender")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                        <input type="date" name="dob" id="dob" value= "" class="block w-full mt-1 rounded-md shadow-sm form-input" wire:model.defer="state.date_of_birth" required />
-                        @error("dob")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="nationality" class="block text-sm font-medium text-gray-700">Nationality</label>
-                        <select name="nationality" id="nationality" class="block w-full mt-1 rounded-md shadow-sm form-input" required>
-                          <option value="I" @if (isset($data)) @if ($data->nationality == "I") selected @else {{ old("nationality") == 1 ? "selected" : "" }} @endif @endif>Indian</option>
-                          <option value="O" @if (isset($data)) @if ($data->nationality == "O") selected @else {{ old("nationality") == 1 ? "selected" : "" }} @endif @endif>Other</option>
-                        </select>
-                        @error("nationality")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="adharno" class="block text-sm font-medium text-gray-700">Adhar Number</label>
-                        <input type="text" name="adharno" id="adharno" class="block w-full mt-1 rounded-md shadow-sm form-input" value="" placeholder="Enter your valid Adhar Number" required />
-                        @error("adharno")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="category" class="block text-sm font-medium text-gray-700">Caste category</label>
-                        <select name="category" id="category" class="block w-full mt-1 rounded-md shadow-sm form-input" required>
-                          <option value="">--Select--</option>
-                          <option value="1" @if (isset($data)) @if ($data->category == "1") selected @else {{ old("category") == 1 ? "selected" : "" }} @endif @endif >OPEN</option>
-                          <option value="2" @if (isset($data)) @if ($data->category == "2") selected @else {{ old("category") == 2 ? "selected" : "" }} @endif @endif >OBC</option>
-                          <option value="3" @if (isset($data)) @if ($data->category == "3") selected @else {{ old("category") == 3 ? "selected" : "" }} @endif @endif >SBC</option>
-                          <option value="4" @if (isset($data)) @if ($data->category == "4") selected @else {{ old("category") == 4 ? "selected" : "" }} @endif @endif >NT</option>
-                          <option value="5" @if (isset($data)) @if ($data->category == "5") selected @else {{ old("category") == 5 ? "selected" : "" }} @endif @endif >DT</option>
-                          <option value="6" @if (isset($data)) @if ($data->category == "6") selected @else {{ old("category") == 6 ? "selected" : "" }} @endif @endif >SC</option>
-                          <option value="7" @if (isset($data)) @if ($data->category == "7") selected @else {{ old("category") == 7 ? "selected" : "" }} @endif @endif >ST</option>
-                          <option value="8" @if (isset($data)) @if ($data->category == "8") selected @else {{ old("category") == 8 ? "selected" : "" }} @endif @endif >OTHER</option>
-                        </select>
-                        @error("category")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="is_noncreamylayer" class="block text-sm font-medium text-gray-700">Is NonCreamy Layer</label>
-                        <select name="is_noncreamylayer" id="is_noncreamylayer" class="block w-full mt-1 rounded-md shadow-sm form-input">
-                          <option value="0" @if (isset($data)) @if ($data->is_noncreamylayer == "0") selected @else {{ old("is_noncreamylayer") == 0 ? "selected" : "" }} @endif @endif >NO</option>
-                          <option value="1" @if (isset($data)) @if ($data->is_noncreamylayer == "1") selected @else {{ old("is_noncreamylayer") == 1 ? "selected" : "" }} @endif @endif >YES</option>
-                        </select>
-                        @error("is_noncreamylayer")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                  <div class="p-6">
-                    <div class="ml-12">
-                      <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        <label for="is_handicap" class="block text-sm font-medium text-gray-700">Is Handicapped</label>
-                        <select name="is_handicap" id="is_handicap" class="block w-full mt-1 rounded-md shadow-sm form-input">
-                          <option value="0" @if (isset($data)) @if ($data->is_handicap == "0") selected @else {{ old("is_handicap") == 0 ? "selected" : "" }} @endif @endif >NO</option>
-                          <option value="1" @if (isset($data)) @if ($data->is_handicap == "1") selected @else {{ old("is_handicap") == 1 ? "selected" : "" }} @endif @endif >YES</option>
-                        </select>
-                        @error("is_handicap")
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </section>
-
+          @endif
           {{-- Upload Photo & Sign --}}
-          <section>
+           @if ($current_step===3)
+           <section>
+               <form wire:submit="photo_upload()">
+                 <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
+                   <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
+                      Upload Photo & Sign
+                   </div>
+                   <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="px-5 py-4 text-sm text-gray-600 dark:text-gray-400">
+                      <div class="flex items-center space-x-6 my-3">
+                        <div class="shrink-0">
+                          @if ($profile_photo_path)
+                            <img class="h-30 w-28 object-cover " src="{{ isset($profile_photo_path)?$profile_photo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
+                          @else
+                          <img class="h-30 w-28 object-cover " src="{{ isset($profile_photo_path_old)?asset($profile_photo_path_old):asset('img/no-img.png'); }}" alt="Current profile photo" />
+                          @endif
+                        </div>
+                        <label class="block">
+                          <span class="sr-only">Choose profile photo</span>
+                          <x-text-input id="profile_photo_path" wire:model.live="profile_photo_path" name="profile_photo_path"  :value="old('profile_photo_path',$profile_photo_path)" required autofocus autocomplete="profile_photo_path"  type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker"/>
+                          <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
+                        </label>
+                      </div>
+                      <x-input-label for="profile_photo_path" :value="__('Update Student Photo ( 250KB , png , jpeg , jpg Only )')" />
+                    </div>
+                    <div class="px-5 py-4 text-sm text-gray-600 dark:text-gray-400">
+                      <div class="flex items-center space-x-6 my-3">
+                        <div class="shrink-0">
+                          @if ($sign_photo_path)
+                            <img class="h-16 w-40 object-fit" src="{{ isset($sign_photo_path)?$sign_photo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
+                          @else
+                          <img class="h-16 w-40 object-fit" src="{{ isset($sign_photo_path_old)?asset($sign_photo_path_old):asset('img/no-img.png'); }}" alt="Current profile photo" />
+                          @endif
+                        </div>
+                        <label class="block">
+                          <span class="sr-only">Choose profile photo</span>
+                          <x-text-input id="sign_photo_path" wire:model.live="sign_photo_path" name="sign_photo_path"  :value="old('sign_photo_path',$sign_photo_path)" required autofocus autocomplete="sign_photo_path"  type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker"/>
+                          <x-input-error :messages="$errors->get('sign_photo_path')" class="mt-2" />
+                        </label>
+                      </div>
+                      <x-input-label for="sign_photo_path" :value="__('Update Student Sign ( 50KB , png , jpeg , jpg Only )')" />
+                    </div>
+                   </div>
+                   <div class="h-20 p-2">
+                     @if ($current_step!==1)
+                       <button wire:click="back()" type="button"class=" float-start  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
+                         </svg>
+                         <span class="mx-2">Back</span>
+                       </button>
+                     @endif
+                     @if ($current_step < $steps)
+                       <button  type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                         <span class="mx-2"> Save & Next</span>
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
+                         </svg>
+                       </button>
+                     @endif
+                     @if ($current_step===$steps)
+                       <button type="button" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                         <span class="mx-2"> Submite</span>
+                       </button>
+                     @endif
+                   </div>
+                 </div>
+               </form>
+           </section>
+         @endif
+          {{-- <section>
             <div class="mt-8 overflow-hidden bg-white shadow dark:bg-gray-800 sm:rounded-lg">
                 <div class="px-2 py-2 font-semibold text-white bg-gray-500"> Upload Photo & Sign </div>
                 <div class="p-6">
@@ -384,7 +287,7 @@
                     </div>
               </div>
           </section>
-         
+          --}}
 {{-- 
           <div class="mt-8 overflow-hidden bg-white shadow dark:bg-gray-800 sm:rounded-lg">
 
