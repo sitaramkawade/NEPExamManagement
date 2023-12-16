@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            LoginSeeder::class,
             SansthaSeeder::class,
             AcademicyearSeeder::class,
             ProgrammeSeeder::class,
@@ -27,7 +28,7 @@ class DatabaseSeeder extends Seeder
             PatternclassSeeder::class,
             StudmenumasterSeeder::class,
             ClassStudmenumasterSeeder::class,
-            BloodgroupSeeder::class,
+            // BloodgroupSeeder::class,
             ReligionSeeder::class,
             CasteCategorySeeder::class,
             CasteSeeder::class,
@@ -42,7 +43,6 @@ class DatabaseSeeder extends Seeder
             EducationalcourseSeeder::class,
             PrefixmasterSeeder::class,
             BanknamemasterSeeder::class,
-            LoginSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
 

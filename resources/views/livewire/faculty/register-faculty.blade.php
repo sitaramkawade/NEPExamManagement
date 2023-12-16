@@ -12,8 +12,8 @@
                                 <x-input-label class="form-label">Prefix</x-input-label>
                                 <x-input-select id="prefix" wire:model.live="prefix" class="border p-2 rounded w-full">
                                     <x-select-option hidden>Select Prefix</x-select-option>
-                                    @foreach ($prefixes as $prefix)
-                                        <option wire:key="{{ $prefix->id }}" value="{{ $prefix->prefix_shortform }}">{{ $prefix->prefix_shortform }}-{{ $prefix->prefix }}</option>
+                                    @foreach ($prefixes as $pref)
+                                        <option wire:key="{{ $pref->id }}" value="{{ $pref->prefix_shortform }}">{{ $pref->prefix_shortform }}-{{ $pref->prefix }}</option>
                                     @endforeach
                                 </x-input-select>
                                 @error('prefix')
