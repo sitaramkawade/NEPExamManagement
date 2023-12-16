@@ -47,7 +47,7 @@ class Faculty extends Authenticatable
         'college_id',
         'active',
         'last_login',
-        'faculty_verified',
+        // 'faculty_verified',
     ];
 
     /**

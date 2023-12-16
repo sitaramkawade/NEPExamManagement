@@ -13,80 +13,57 @@ use Illuminate\Validation\Rule;
 
 class RegisterFaculty extends Component
 {
-    public $steps=2;
-    public $current_step=1;
+    public $prefix;
+    public $faculty_name;
+    public $email;
+    public $mobile_no;
+    public $role_id;
+    public $department_id;
+    public $college_id;
+    public $active;
+    public $faculty_verified;
 
-    // step 1
-    public $prefix=null;
-    public $faculty_name=null;
-    public $email=null;
-    public $mobile_no=null;
-    public $role_id=null;
-    public $department_id=null;
-    public $college_id=null;
-    public $active=null;
-    public $faculty_verified=null;
 
-    // step 2
-    public $bank_name=null;
-    public $account_no=null;
-    public $bank_address=null;
-    public $branch_name=null;
-    public $branch_code=null;
-    public $ifsc_code=null;
-    public $micr_code=null;
-    public $account_type=null;
-    public $acc_verified=null;
+    public $bank_name;
+    public $account_no;
+    public $bank_address;
+    public $branch_name;
+    public $branch_code;
+    public $ifsc_code;
+    public $micr_code;
+    public $account_type;
+    public $acc_verified;
 
-    public $prefixes=null;
-    public $roles=null;
-    public $departments=null;
-    public $colleges=null;
-    public $banknames=null;
+    public $prefixes;
+    public $roles;
+    public $departments;
+    public $colleges;
+    public $banknames;
+
 
     protected function rules()
     {
-        $rules = [];
-        if ($this->current_step==1){
-            $rules = [
-                'prefix' => ['required',],
-                'faculty_name' => ['required', 'string', 'max:255',],
-                'email' => ['required', 'email', 'max:255'],
-                'mobile_no' => ['required', 'numeric', 'unique:faculties,mobile_no'],
-                'role_id' => ['required',Rule::exists('roles','id')],
-                'department_id' => ['required',Rule::exists('departments','id')],
-                'college_id' => ['required',Rule::exists('colleges','id')],
-                'active' => ['required',],
-                'faculty_verified' => ['required',],
-            ];
-        } elseif($this->current_step == 2){
-            $rules = [
-                'account_no' => ['required', 'numeric', 'unique:facultybankaccounts,account_no'],
-                'bank_address' => ['required', 'string', 'max:255',],
-                'bank_name' => ['required', ],
-                'branch_name' => ['required', 'string', 'max:255',],
-                'branch_code' => ['required', 'string', 'max:255',],
-                'ifsc_code' => ['required', 'string', 'max:255',],
-                'micr_code' => ['required', 'string', 'max:255',],
-                'account_type' => ['required', ],
-                'acc_verified' => ['required', ],
-            ];
-        }
-        return $rules;
-    }
-
-    public function messages()
-    {
         return [
-            'prefix.required' => 'Please select the prefix.',
-            'email.required' => 'Please enter the role.',
-            'department_id.required' => 'Please select the department.',
-            'role_id.required' => 'Please select the role.',
-            'college_id.required' => 'Please select the college.',
-            'college_id.required' => 'Please select the college.',
+            'prefix' => ['required',],
+            'faculty_name' => ['required', 'string', 'max:255',],
+            'email' => ['required', 'email', 'string',],
+            'mobile_no' => ['required', 'numeric','digits:10'],
+            'role_id' => ['required',Rule::exists(Roletype::class,'id')],
+            'department_id' => ['required',Rule::exists(Department::class,'id')],
+            'college_id' => ['required',Rule::exists(College::class,'id')],
+            // 'active' => ['required',],
+            // 'faculty_verified' => ['required',],
+            'account_no' => ['required', 'numeric', 'unique:facultybankaccounts,account_no' ,'digits_between:8,16',],
+            'bank_address' => ['required', 'string', 'max:255',],
+            'bank_name' => ['required', 'string', 'max:255',],
+            'branch_name' => ['required', 'string', 'max:255',],
+            'branch_code' => ['required', 'numeric', 'digits:4',],
+            'ifsc_code' => ['required', 'string', 'size:11',],
+            'micr_code' => ['required', 'numeric', 'digits:9',],
+            'account_type' => ['required', 'in:C,S',],
+            // 'acc_verified' => ['required', ],
         ];
     }
-
 
     public function updated($propertyName)
     {
@@ -95,24 +72,47 @@ class RegisterFaculty extends Component
 
     public function resetinput()
     {
-         $this->$prefix=null;
-         $this->$faculty_name=null;
-         $this->$email=null;
-         $this->$mobile_no=null;
-         $this->$role_id=null;
-         $this->$department_id=null;
-         $this->$college_id=null;
-         $this->$active=null;
-         $this->$faculty_verified=null;
-         $this->$bank_name=null;
-         $this->$account_no=null;
-         $this->$bank_address=null;
-         $this->$branch_name=null;
-         $this->$branch_code=null;
-         $this->$ifsc_code=null;
-         $this->$micr_code=null;
-         $this->$account_type=null;
-         $this->$acc_verified=null;
+         $this->prefix=null;
+         $this->faculty_name=null;
+         $this->email=null;
+         $this->mobile_no=null;
+         $this->role_id=null;
+         $this->department_id=null;
+         $this->college_id=null;
+         $this->active=null;
+         $this->faculty_verified=null;
+         $this->bank_name=null;
+         $this->account_no=null;
+         $this->bank_address=null;
+         $this->branch_name=null;
+         $this->branch_code=null;
+         $this->ifsc_code=null;
+         $this->micr_code=null;
+         $this->account_type=null;
+         $this->acc_verified=null;
+    }
+
+    public function messages()
+    {
+        return [
+            'prefix.required' => 'Please select the prefix.',
+            'faculty_name.string' => 'Please enter the faculty name as a string.',
+            'email.required' => 'Please enter the faculty email.',
+            'email.email' => 'Please enter a valid email address.',
+            'mobile_no.required' => 'Please enter the mobile number.',
+            'role_id.required' => 'Please select the role.',
+            'department_id.required' => 'Please select the department.',
+            'college_id.required' => 'Please select the college.',
+            'active.required' => 'Please specify the active status.',
+            'account_no.required' => 'Please enter the faculty account number.',
+            'bank_address.required' => 'Please enter the bank address.',
+            'bank_name.required' => 'Please enter the bank name.',
+            'branch_name.required' => 'Please enter the branch name.',
+            'branch_code.required' => 'Please enter the branch code.',
+            'ifsc_code.required' => 'Please enter the IFSC code.',
+            'micr_code.required' => 'Please enter the MICR code.',
+            'account_type.required' => 'Please select the account type.',
+        ];
     }
 
     public function add()
@@ -120,13 +120,12 @@ class RegisterFaculty extends Component
         $validatedData = $this->validate();
 
         $faculty = Faculty::create($validatedData);
-
         if ($faculty) {
             $faculty->facultybankaccount()->create($validatedData);
-            session()->flash('message', 'Details added successfully.');
+            $this->dispatch('alert',type:'success',message:'Faculty Registered Successfully');
             $this->resetinput();
         } else {
-            session()->flash('error', 'Failed to add details.');
+            $this->dispatch('alert',type:'error',message:'Faculty Registration Unsucessful');
         }
     }
 

@@ -40,7 +40,7 @@ return new class extends Migration
             $table->foreign('college_id')->references('id')->on('colleges');
             $table->tinyInteger('active')->default(1);//1 =>active ,0=>inactive
             $table->timestamp('last_login')->nullable();
-            $table->tinyInteger('faculty_verified')->default('0');  //0 means not verified
+            // $table->tinyInteger('faculty_verified')->default('0');  //0 means not verified
 
             $table->timestamps();
         });
