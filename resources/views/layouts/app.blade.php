@@ -49,7 +49,7 @@
           if (window.localStorage.getItem('color')) {
             return window.localStorage.getItem('color')
           }
-          return 'cyan'
+          return 'gray'
         }
 
         const setColors = (color) => {
@@ -81,7 +81,7 @@
             setTheme(this.isDark)
           },
           color: getColor(),
-          selectedColor: 'cyan',
+          selectedColor: 'gray',
           setColors,
           toggleSidbarMenu() {
             this.isSidebarOpen = !this.isSidebarOpen
