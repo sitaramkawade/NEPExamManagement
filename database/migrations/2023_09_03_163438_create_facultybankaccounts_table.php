@@ -16,9 +16,10 @@ return new class extends Migration
             $table->bigInteger('faculty_id')->unsigned();
             $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('cascade');;
 
-            
+
             $table->string('account_no',50)->nullable();
-            $table->string('bank_address',50)->nullable();
+            // $table->string('bank_address',50)->nullable();
+            $table->string('bank_address')->nullable(); //length modified
             $table->string('bank_name',50)->nullable();
             $table->string('branch_name',50)->nullable();
             $table->string('branch_code',50)->nullable();
@@ -27,7 +28,7 @@ return new class extends Migration
             $table->string('micr_code',50)->nullable();
 
             $table->tinyInteger('acc_verified')->default('0');  //0 means not verified
-         
+
             $table->timestamps();
         });
     }

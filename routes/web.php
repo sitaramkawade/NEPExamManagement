@@ -86,12 +86,17 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','is_facul
     // Register Faculty
     Route::get('/register-faculty', function () {
         return view('faculty.faculty-register');
-    })->name('register.faculty');;
+    })->name('register.faculty');
 
     // View Faculty
-    // Route::get('/view-faculty', function () {
-    //     return view('faculty.register');
-    // });
+    Route::get('/view-faculty', function () {
+        return view('faculty.faculty-view');
+    })->name('view.faculty');
+
+    // Edit Faculty
+    // Route::get('/edit-faculty', function () {
+    //     return view('faculty.faculty-edit');
+    // })->name('edit.faculty');
 
 });
 

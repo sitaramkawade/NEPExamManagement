@@ -129,6 +129,23 @@ class RegisterFaculty extends Component
         }
     }
 
+    public function edit($id)
+    {   $this->current_id=$id;
+        $student = Student::find($id);
+        if($student){
+            $this->c_id=$student->id;
+            $this->username=$student->username;
+            $this->email=$student->email;
+            $this->status =$student->status;
+            $this->setmode('edit');
+        }else{
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'error',
+                'message'=>"Something Went Wrong !!"
+            ]);
+        }
+    }
+
     public function mount()
     {
 

@@ -11,7 +11,7 @@ class ViewFaculty extends Component
 
     public function mount()
     {
-        $this->faculties = Faculty::where('faculty_verified',1)->get();
+        $this->faculties = Faculty::where('active',1)->get();
     }
 
     public function render()
