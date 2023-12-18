@@ -1,6 +1,6 @@
 @extends("layouts.student")
 @section("student")
-  <div class="flex min-h-screen flex-col-1 items-center bg-gray-100 pt-6 dark:bg-gray-900 sm:justify-center sm:pt-0">
+  <div class="flex min-h-screen flex-col-1 items-center bg-gray-100 pt-6 dark:bg-gray-900 sm:justify-center sm:pt-0  px-2">
     <div class="mt-6 w-full p-5 overflow-hidden bg-white xm:m-10 md:m-20 shadow-md dark:bg-gray-800  sm:rounded-lg ">
 
       <form method="POST" action="{{ route('student.register') }}">

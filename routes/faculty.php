@@ -34,7 +34,7 @@ Route::group(['prefix'=>'faculty' ,'as'=>'faculty.'],function (){
 
     Route::middleware(['auth:faculty','is_faculty'])->group(function () {
 
-        // Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
+        Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
 
         // Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
 
