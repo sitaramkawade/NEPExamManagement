@@ -16,11 +16,11 @@ class Studentaddress extends Model
                         'village_name',
                         'pincode',
                         'address',
-                        'addresstype_id',
-                        'c_locality_name',
+                        'locality_name',
                         'student_id',                      
-                        'is_addresssame',
-                        'is_competed',
+                        'address_type',
+                        'is_same',
+                        'is_completed',
     ];
         
 
@@ -33,8 +33,8 @@ class Studentaddress extends Model
     return $this->belongsTo(Taluka::class,'taluka_id','id');
     }
    
-    public function addresstype():BelongsTo
-    {
-    return $this->belongsTo(Addresstype::class,'addresstype_id','id');
-    }
+    // public function addresstype():BelongsTo
+    // {
+    // return $this->belongsTo(Addresstype::class,'addresstype_id','id');
+    // }
 }

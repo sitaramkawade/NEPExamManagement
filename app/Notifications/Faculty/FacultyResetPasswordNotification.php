@@ -11,13 +11,11 @@ class FacultyResetPasswordNotification extends Notification
 {
     use Queueable;
 
-    protected $token;
     /**
      * Create a new notification instance.
      */
-    public function __construct($token)
+    public function __construct()
     {
-        $this->token = $token;
     }
 
     /**

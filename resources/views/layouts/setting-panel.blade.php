@@ -56,6 +56,7 @@
         <div class="space-y-4 p-4 md:p-8">
           <h6 class="text-lg font-medium text-gray-400 dark:text-light">Colors</h6>
           <div>
+            <button @click="setColors('gray')" class="h-10 w-10 rounded-full" style="background-color: var(--color-gray)"></button>
             <button @click="setColors('cyan')" class="h-10 w-10 rounded-full" style="background-color: var(--color-cyan)"></button>
             <button @click="setColors('teal')" class="h-10 w-10 rounded-full" style="background-color: var(--color-teal)"></button>
             <button @click="setColors('green')" class="h-10 w-10 rounded-full" style="background-color: var(--color-green)"></button>

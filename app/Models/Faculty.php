@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -13,13 +13,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Notifications\Faculty\FacultyResetPasswordNotification;
 
-class Faculty extends Authenticatable
+class Faculty extends Authenticatable  implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function sendPasswordResetNotification($token)
+    public function sendPasswordResetNotification()
     {
-        $this->notify(new FacultyResetPasswordNotification($token));
+        $this->notify(new FacultyResetPasswordNotification);
     }
 
 

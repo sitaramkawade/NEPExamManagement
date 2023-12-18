@@ -3,7 +3,7 @@
   <section>
     {{-- Header --}}
     <section>
-      <div class="flex grid grid-cols-1 justify-between gap-2 p-3 lg:grid-cols-3">
+      <div class="bg-white dark:text-white dark:bg-slate-800  ring-1 ring-slate-900/5 grid grid-cols-1 justify-between gap-2 p-3 lg:grid-cols-3">
         <div class="order-1 flex-1 text-center text-2xl font-semibold">
           संगमनेर नगरपालिका कला डी.जे. मालपाणी वाणिज्य आणि बी.एन.सारडा विज्ञान महाविद्यालय (स्वायत्त), संगमनेर.
         </div>
@@ -17,8 +17,7 @@
     </section>
     {{-- Navbar --}}
     <section>
-      <div x-data="{ open: false }" class="sticky top-0 z-30 mx-auto flex max-w-full flex-col bg-gray-700 px-4 py-4 text-white shadow-lg md:flex-row md:items-center md:justify-between md:py-3 lg:py-2">
-
+      <div x-data="{ open: false }" class="sticky top-0 z-20 mx-auto flex max-w-full flex-col bg-primary-dark px-4 py-4 text-white shadow-lg md:flex-row md:items-center md:justify-between md:py-3 lg:py-2">
         <button class="focus:shadow-outline absolute right-0 top-0 mr-5 rounded-lg focus:outline-none md:hidden" @click="open = !open">
           <svg fill="currentColor" viewBox="0 0 20 20" class="h-6 w-6">
             <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
@@ -26,7 +25,6 @@
           </svg>
         </button>
         <nav :class="{ 'flex': open, 'hidden': !open }" class="hidden flex-grow flex-col pb-4 md:flex md:flex-row md:justify-end md:pb-0">
-
           <div x-cloak @click.away="open = false" class="relative" x-data="{ open: false }">
             <button @click="open = !open" class="dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 focus:shadow-outline mt-2 flex w-full flex-row items-center rounded-lg bg-transparent px-4 py-2 text-left text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:ml-4 md:mt-0 md:inline md:w-auto">
               <span>Student's</span>
@@ -35,7 +33,10 @@
               </svg>
             </button>
             <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="relative right-0 mt-2 w-full origin-top-right rounded-md shadow-lg md:absolute md:w-48">
-              <div class="dark-mode:bg-gray-800 rounded-md bg-gray-700 px-1 py-2 shadow">
+              <div class="dark-mode:bg-gray-800 rounded-md bg-primary-darker px-1 py-2 shadow">
+                <a class="dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 focus:shadow-outline mt-2 block rounded-lg bg-transparent px-4 py-2 text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0" href="{{ route("student") }}">
+                  Home
+                </a>
                 <a class="dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 focus:shadow-outline mt-2 block rounded-lg bg-transparent px-4 py-2 text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0" href="{{ route("student.login") }}">
                   Login
                 </a>
@@ -48,7 +49,6 @@
               </div>
             </div>
           </div>
-
           <div x-cloak @click.away="open = false" class="relative" x-data="{ open: false }">
             <button @click="open = !open" class="dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 focus:shadow-outline mt-2 flex w-full flex-row items-center rounded-lg bg-transparent px-4 py-2 text-left text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:ml-4 md:mt-0 md:inline md:w-auto">
               <span>Department's</span>
@@ -57,14 +57,14 @@
               </svg>
             </button>
             <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="relative right-0 mt-2 w-full origin-top-right rounded-md shadow-lg md:absolute md:w-48">
-              <div class="dark-mode:bg-gray-800 rounded-md bg-gray-700 px-1 py-2 shadow">
+              <div class="dark-mode:bg-gray-800 rounded-md bg-primary-darker px-1 py-2 shadow">
+                <a class="dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 focus:shadow-outline mt-2 block rounded-lg bg-transparent px-4 py-2 text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0" href="{{ route("faculty") }}">Home</a>
                 <a class="dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 focus:shadow-outline mt-2 block rounded-lg bg-transparent px-4 py-2 text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0" href="{{ route("faculty.login") }}">Login</a>
                 <a class="dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 focus:shadow-outline mt-2 block rounded-lg bg-transparent px-4 py-2 text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0" href="#"> Circulars</a>
                 <a class="dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 focus:shadow-outline mt-2 block rounded-lg bg-transparent px-4 py-2 text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0" href="#"> Summaries</a>
               </div>
             </div>
           </div>
-
           <div x-cloak @click.away="open = false" class="relative" x-data="{ open: false }">
             <button @click="open = !open" class="dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 focus:shadow-outline mt-2 flex w-full flex-row items-center rounded-lg bg-transparent px-4 py-2 text-left text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:ml-4 md:mt-0 md:inline md:w-auto">
               <span>Examination's</span>
@@ -73,7 +73,10 @@
               </svg>
             </button>
             <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="relative right-0 mt-2 w-full origin-top-right rounded-md shadow-lg md:absolute md:w-48">
-              <div class="dark-mode:bg-gray-800 rounded-md bg-gray-700 px-1 py-2 shadow">
+              <div class="dark-mode:bg-gray-800 rounded-md bg-primary-darker px-1 py-2 shadow">
+                <a class="dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 focus:shadow-outline mt-2 block rounded-lg bg-transparent px-4 py-2 text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0" href="{{ route("user") }}">
+                  Home
+                </a>
                 <a class="dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 focus:shadow-outline mt-2 block rounded-lg bg-transparent px-4 py-2 text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0" href="{{ route("user.login") }}">
                   Login
                 </a>
@@ -86,31 +89,26 @@
               </div>
             </div>
           </div>
-
-          <div class="space-x-8 bg-gray-700 text-white sm:-my-px sm:ml-10 sm:flex">
+          <div class="dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 focus:shadow-outline mt-2 flex w-full flex-row items-center rounded-lg bg-transparent  text-lg font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:ml-4 md:mt-0 md:inline md:w-auto">
             @if (Route::has("user.login"))
               <div class="right-0 px-6 py-2 sm:block">
                 @auth
-                  <a href="{{ route("user.dashboard") }}" class="text-white-700 text-lg">User Dashboard</a>
+                  <a href="{{ route("user.dashboard") }}" class="text-white-700 text-lg">Dashboard</a>
                 @else
-                  <a href="{{ route("user.login") }}" class="text-white-700 text-lg">User Login</a>
-
+                  <a href="{{ route("user.login") }}" class="text-white-700 text-lg">Login</a>
                 @endauth
               </div>
             @endif
-
           </div>
-
         </nav>
-
       </div>
     </section>
     {{-- Content --}}
-    <section>
-      <div class="grid grid-cols-1 gap-2 p-3 lg:grid-cols-3">
+    <section  class="p-3">
+      <div class=" grid grid-cols-1 gap-2  lg:grid-cols-3">
         <!-- Principal card -->
-        <div class="flex items-center justify-between rounded-md dark:bg-darker">
-          <div class="min-h-full w-full rounded-lg bg-white px-6 py-5 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-900">
+        <div class="flex items-center justify-between rounded-md dark:bg-darker dark:border-primary-darker border">
+          <div class="min-h-full w-full rounded-lg bg-white dark:bg-slate-800  ring-1 ring-slate-900/5 px-6 py-5 shadow-xl ">
             <div class="flex justify-center">
               <span>
                 <img class="h-20 w-20 rounded-full object-cover" src="{{ asset("img/principal-photo.jpg") }}" alt="Photo">
@@ -127,8 +125,8 @@
         </div>
 
         <!-- Sub Principal  card -->
-        <div class="flex items-center justify-between rounded-md dark:bg-darker">
-          <div class="min-h-full w-full rounded-lg bg-white px-6 py-5 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-900">
+        <div class="flex items-center justify-between rounded-md dark:bg-darker dark:border-primary-darker border">
+          <div class="min-h-full w-full rounded-lg bg-white dark:bg-slate-800  ring-1 ring-slate-900/5  px-6 py-5 shadow-xl ">
             <div class="flex justify-center">
               <span>
                 <img class="w-25 h-20 rounded-full object-cover" src="{{ asset("img/r-s-laddha.jpg") }}" alt="Photo">
@@ -145,8 +143,8 @@
         </div>
 
         <!-- Recent Updates card -->
-        <div class="flex items-center justify-between rounded-md dark:bg-darker">
-          <div class="min-h-full w-full rounded-lg bg-white px-6 py-5 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-900">
+        <div class="flex items-center justify-between rounded-md dark:bg-darker dark:border-primary-darker border">
+          <div class="min-h-full w-full rounded-lg bg-white dark:bg-slate-800  ring-1 ring-slate-900/5  px-6 py-5 shadow-xl ">
             <h2 class="mt-5 text-base font-medium tracking-tight text-slate-900 dark:text-white">
               Recent Updates
               <hr>
@@ -159,8 +157,14 @@
       </div>
     </section>
     {{-- Footer --}}
-    <section class="text-center">
-      comming soon....
+    <section>
+      <div class="flex items-center justify-between  dark:bg-darker dark:border-primary-darker border">
+        <div class="min-h-full w-full  bg-white dark:bg-slate-800  ring-1 ring-slate-900/5  px-6 py-5 shadow-xl ">
+          <p class="mt-2 text-center text-sm text-slate-500 dark:text-slate-400">
+            comming soon....
+          </p>
+        </div>
+      </div>
     </section>
   </section>
 @endsection

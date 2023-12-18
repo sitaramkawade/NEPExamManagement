@@ -14,11 +14,11 @@ class EmailVerificationNotificationController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        if ($request->user()->hasVerifiedEmail()) {
+        if ($request->user('faculty')->hasVerifiedEmail()) {
             return redirect()->intended(RouteServiceProvider::FACULTYHOME);
         }
 
-        $request->user()->sendEmailVerificationNotification();
+        $request->user('faculty')->sendEmailVerificationNotification();
 
         return back()->with('status', 'verification-link-sent');
     }
