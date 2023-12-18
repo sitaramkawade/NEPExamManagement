@@ -10,9 +10,11 @@ use App\Models\Department;
 use App\Models\Prefixmaster;
 use App\Models\Banknamemaster;
 use Illuminate\Validation\Rule;
+use App\Models\Facultybankaccount;
 
-class RegisterFaculty extends Component
+class EditFaculty extends Component
 {
+
     public $prefix;
     public $faculty_name;
     public $email;
@@ -22,7 +24,6 @@ class RegisterFaculty extends Component
     public $college_id;
     public $active;
     public $faculty_verified;
-
 
     public $bank_name;
     public $account_no;
@@ -40,6 +41,7 @@ class RegisterFaculty extends Component
     public $colleges;
     public $banknames;
 
+    public $faculty_id;
 
     protected function rules()
     {
@@ -113,33 +115,64 @@ class RegisterFaculty extends Component
         ];
     }
 
-
-    public function add()
+    public function edit($id)
     {
-        $validatedData = $this->validate();
+        $faculty = Faculty::find($id);
+        if ($faculty)
+        {
+            $this->prefix= $faculty->prefix;
+            $this->faculty_name= $faculty->faculty_name;
+            $this->email= $faculty->email;
+            $this->mobile_no= $faculty->mobile_no;
+            $this->role_id= $faculty->role_id;
+            $this->department_id= $faculty->department_id;
+            $this->college_id= $faculty->college_id;
 
-        $faculty = Faculty::create($validatedData);
-        if ($faculty) {
-            $faculty->facultybankaccount()->create($validatedData);
-            $this->dispatch('alert',type:'success',message:'Faculty Registered Successfully');
-            $this->resetinput();
-        } else {
-            $this->dispatch('alert',type:'error',message:'Faculty Registration Unsucessful');
+            $bankdetails = Facultybankaccount:: where('faculty_id',$id)->first();
+            if($bankdetails){
+                $this->bank_name= $bankdetails->bank_name;
+                $this->account_no= $bankdetails->account_no;
+                $this->bank_address= $bankdetails->bank_address;
+                $this->branch_name= $bankdetails->branch_name;
+                $this->branch_code= $bankdetails->branch_code;
+                $this->ifsc_code= $bankdetails->ifsc_code;
+                $this->micr_code= $bankdetails->micr_code;
+                $this->account_type= $bankdetails->account_type;
+            }else{
+                $this->dispatch('alert',type:'error',message:'Bank Details Not Found');
+            }
         }
     }
 
-    public function mount()
+    public function update($id)
     {
+        $validatedData = $this->validate();
+        $faculty = Faculty::find($id);
 
+        if ($faculty) {
+            $faculty->update($validatedData);
+            $faculty->facultybankaccount()->updateOrCreate([], $validatedData);
+
+            $this->dispatch('alert',type:'success',message:'Faculty Updated Successfully');
+            return redirect()->route('faculty.view.faculty');
+        }else{
+            $this->dispatch('alert',type:'error',message:'Error To Update Faculty');
+        }
+    }
+
+    public function mount($id)
+    {
         $this->prefixes = Prefixmaster::where('is_active',1)->get();
         $this->banknames = Banknamemaster::where('is_active',1)->get();
         $this->roles= Roletype::where('status',1)->get();
         $this->departments= Department::where('status',1)->get();
         $this->colleges= College::where('status',1)->get();
+        $this->edit($id);
+        $this->faculty_id = $id;
     }
 
     public function render()
     {
-        return view('livewire.faculty.register-faculty')->extends('layouts.faculty')->section('faculty');
+        return view('livewire.faculty.edit-faculty')->extends('layouts.faculty')->section('faculty');
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
 use Livewire\Livewire;
+use App\Livewire\Faculty\EditFaculty;
 use App\Livewire\Faculty\ViewFaculty;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Faculty\DeleteFaculty;
 use App\Livewire\Faculty\RegisterFaculty;
 use App\Livewire\Master\Gender\ViewGender;
 
@@ -76,7 +78,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
 
 
 // Auth Faculty Routes
-Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified:faculty.verification.notice'])->group(function () {
+Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty',])->group(function () {
 
     // Faculty Dashboard
     Route::get('dashboard', function () {
@@ -93,10 +95,11 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
         return view('faculty.faculty-view');
     })->name('view.faculty');
 
-    // Edit Faculty
-    // Route::get('/edit-faculty', function () {
-    //     return view('faculty.faculty-edit');
-    // })->name('edit.faculty');
+    //Edit Faculty
+    Route::get('/edit-faculty/{id}', EditFaculty::class)->name('edit.faculty');
+
+    //Delete Faculty
+    Route::get('/delete-faculty/{id}', DeleteFaculty::class)->name('delete.faculty');
 
 });
 
