@@ -70,6 +70,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
         return view('user.college');
     })->name('college');
 
+    
 
 });
 

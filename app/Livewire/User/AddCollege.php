@@ -4,12 +4,16 @@ namespace App\Livewire\User;
 
 use App\Models\College;
 use Livewire\Component;
+use App\Models\Sanstha;
+use App\Models\University;
 use Livewire\WithFileUploads;
 
 class AddCollege extends Component
 {
     use WithFileUploads;
 
+    public $steps=1;
+    public $current_step=1;
     public $college_name;
     public $college_address;
     public $college_website_url;
@@ -17,9 +21,12 @@ class AddCollege extends Component
     public $college_contact_no;
     public $college_logo_path;
     public $sanstha_id;
+    public $sansthas;
     public $university_id;
+    public $universities;
     public $status;
     public $btn_add = false;
+
 
     protected function rules()
     {
@@ -28,27 +35,17 @@ class AddCollege extends Component
         'college_address' => 'required|string|max:255',
         'college_website_url' => 'required|string|max:255',
         'college_email' => 'required|unique:users,email',
-        'college_contact_no' => 'required|max:10',          
-        'college_logo_path'=>'required|file|mimes:png,jpg|max:10240',
-        'sanstha_id' => 'required',   
-        'university_id' => 'required', 
-        'status'=>'required'  
-                       
+        'college_contact_no' => 'required|max:10',
+        'sanstha_id' => 'required',
+        'university_id' => 'required',
+        'status'=>'required'
         ];
         }
 
-    public function render()
-    {
-        return view('livewire.user.add-college')->extends('layouts.user')->section('user');
-    }
-    public function save(){
-
-        dd($this->all());
-    }
     public function add(){
-        $this->validate(); 
+        $this->validate();
         $college= new College;
-       
+
         $college->college_name= $this->college_name;
         $college->college_address=  $this->college_address;
         $college->college_website_url=  $this->college_website_url;
@@ -60,8 +57,19 @@ class AddCollege extends Component
         $college->status= $this->status;
         $college->save();
         $this->btn_add = true;
-//Remove fields after submiting the college info
-        $this->reset(['college_name','college_address','college_website_url','college_email','college_contact_no','college_logo_path','sanstha_id','university_id','status']);
+
+
+    }
+
+    public function mount()
+    {
+        $this->sansthas = Sanstha::get('sanstha_name', 'id');
+        $this->universities = University::get('university_name', 'id');
+    }
+
+    public function render()
+    {
+        return view('livewire.user.add-college')->extends('layouts.user')->section('user');
     }
 
 }
