@@ -79,7 +79,7 @@ export default {
                 },
             },
         },
-        
+
     },
     variants: {
         extend: {

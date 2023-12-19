@@ -67,7 +67,7 @@
                             {{-- for edit --}}
                             <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.edit.faculty', $item->id)" :text="'Edit'" />
                             {{-- for soft delete --}}
-                            <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.delete.faculty', $item->id)" :text="'Delete'" />
+                            {{-- <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.delete.faculty', $item->id)" :text="'Delete'" /> --}}
                         </td>
                         <!-- ... -->
                     </tr>
@@ -76,5 +76,5 @@
             @endslot
         </x-table>
     </div>
-
+    <x-toggle-switch :labelLeft="'Percentage'" :labelRight="'CGPA'" :id="'myToggleSwitchId'" />
 </div>

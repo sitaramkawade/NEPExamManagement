@@ -99,7 +99,7 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty',])->group
     Route::get('/edit-faculty/{id}', EditFaculty::class)->name('edit.faculty');
 
     //Delete Faculty
-    Route::get('/delete-faculty/{id}', DeleteFaculty::class)->name('delete.faculty');
+    // Route::get('/delete-faculty/{id}', DeleteFaculty::class)->name('delete.faculty');
 
 });
 
