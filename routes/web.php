@@ -16,7 +16,7 @@ Livewire::setScriptRoute(function ($handle) {
 
 // Guest Routes
 Route::middleware(['guest'])->group(function () {
-    
+
     // Guest Home
     Route::get('/', function () {
         $post=null;
@@ -70,7 +70,10 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
         return view('user.college');
     })->name('college');
 
-    
+    Route::get('/view_college', function () {
+        return view('user.view_college');
+    })->name('view_college');
+
 
 });
 
