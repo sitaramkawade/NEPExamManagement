@@ -25,14 +25,13 @@
             @foreach ($colleges as $key => $item)
                 <tr class="text-center odd:bg-white even:bg-slate-50">
                     <td>{{ $key + 1 }}</td>
-
                     <td>{{ $item->college_name}}</td>
                     <td>{{ $item->college_email}}</td>
                     <td>{{ $item->college_address }}</td>
-                    <td>{{ $item->college_contact_no }}</td>
+                    <td>{{ $item->college_contact_no}}</td>
                     <td class="flex justify-center lg:justify-center md:justify-center space-x-1">
                         {{-- for edit --}}
-                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="#" :text="'Edit'" />
+                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" href="#" :text="'Edit'" />
                         {{-- for soft delete --}}
                         {{-- <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.delete.faculty', $item->id)" :text="'Delete'" /> --}}
                     </td>

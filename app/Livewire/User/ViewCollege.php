@@ -11,7 +11,7 @@ class ViewCollege extends Component
 
     public function mount()
     {
-        $this->colleges = College::get('college_name','college_email','college_address','college_contact_no');
+        $this->colleges = College::get();
     }
 
     public function render()
