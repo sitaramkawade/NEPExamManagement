@@ -66,13 +66,20 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
         return view('user.user-dashboard');
     })->name('dashboard');
 
+    //add College
     Route::get('add_college', function () {
         return view('user.college');
     })->name('college');
 
+    //View College
     Route::get('/view_college', function () {
         return view('user.view_college');
     })->name('view_college');
+
+    //Edit College
+    Route::get('/edit/{college_name}',function(){
+        return view('user.edit');
+    })->name('edit');
 
 
 });

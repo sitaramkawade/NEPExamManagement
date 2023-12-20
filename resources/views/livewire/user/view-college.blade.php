@@ -31,9 +31,9 @@
                     <td>{{ $item->college_contact_no}}</td>
                     <td class="flex justify-center lg:justify-center md:justify-center space-x-1">
                         {{-- for edit --}}
-                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" href="#" :text="'Edit'" />
+                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('user.edit',$item->college_name)" :text="'Edit'" />
                         {{-- for soft delete --}}
-                        {{-- <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.delete.faculty', $item->id)" :text="'Delete'" /> --}}
+                        <!-- {{-- <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.delete.faculty', $item->id)" :text="'Delete'" /> --}} -->
                     </td>
                     <!-- ... -->
                 </tr>

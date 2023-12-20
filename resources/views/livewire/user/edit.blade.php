@@ -1,10 +1,13 @@
- <div>
-    @if ($btn_add)
+
+  <div>
+
+    {{-- @if ($btn_add)
     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
         <strong class="font-bold">Added Successfully!</strong>
         <span class="block sm:inline">Your form has been successfully submitted.</span>
     </div>
-    @endif
+    @endif --}}
+
     <div class="mx-auto max-w-7xl sm:px-6 lg:p-2">
     <section>
             <form wire:submit="add">
@@ -101,8 +104,8 @@
                 <div class="h-20 p-2">
 
                   @if ($current_step===$steps)
-                    <button type="button"   wire:click="add" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                      <span class="mx-2"> Add</span>
+                    <button type="button" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                      <span class="mx-2"> Update</span>
                     </button>
                   @endif
                 </div>
@@ -111,3 +114,7 @@
         </section>
     </div>
   </div>
+
+
+
+
