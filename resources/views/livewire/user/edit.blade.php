@@ -1,16 +1,13 @@
 
   <div>
 
-    {{-- @if ($btn_add)
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-        <strong class="font-bold">Added Successfully!</strong>
-        <span class="block sm:inline">Your form has been successfully submitted.</span>
-    </div>
-    @endif --}}
+    @if(session()->has('message'))
+        <div>{{ session('message') }}</div>
+    @endif
 
     <div class="mx-auto max-w-7xl sm:px-6 lg:p-2">
     <section>
-            <form wire:submit="add">
+            <form wire:submit="updateCollege">
               <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
                 <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
                   College Information

@@ -55,11 +55,11 @@
                     </div>
 
 
-                    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                    {{-- <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="college_logo_path" :value="__('College Logo')" />
                         <x-input-file  id="college_logo_path" type="file" wire:model="college_logo_path" name="college_logo_path" class="w-full mt-1"  :value="old('college_logo_path',$college_logo_path)" required autofocus autocomplete="college_logo_path" />
                         <x-input-error :messages="$errors->get('college_logo_path')" class="mt-2" />
-                    </div>
+                    </div> --}}
 
                 </div>
 

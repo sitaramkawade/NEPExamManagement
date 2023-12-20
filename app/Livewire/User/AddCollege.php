@@ -43,7 +43,7 @@ class AddCollege extends Component
     //     }
 
     public function add(){
-        $this->validate();
+       
         $college= new College;
 
         $college->college_name= $this->college_name;
