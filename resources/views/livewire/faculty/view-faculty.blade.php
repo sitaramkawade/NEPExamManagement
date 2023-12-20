@@ -64,10 +64,17 @@
                         <td>{{ $item->role->role_name ?? '' }}</td>
                         <td>{{ $item->mobile_no }}</td>
                         <td class="flex justify-center lg:justify-center md:justify-center space-x-1">
-                            {{-- for edit --}}
-                            <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.edit.faculty', $item->id)" :text="'Edit'" />
-                            {{-- for soft delete --}}
-                            {{-- <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.delete.faculty', $item->id)" :text="'Delete'" /> --}}
+                            @if ($item->deleted_at)
+                                {{-- For edit --}}
+                                <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.edit.faculty', $item->id)" :text="'Edit'" />
+                                {{-- For restore --}}
+                                <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.restore.faculty', $item->id)" :text="'Restore'" />
+                            @else
+                                {{-- For edit --}}
+                                <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.edit.faculty', $item->id)" :text="'Edit'" />
+                                {{-- For soft delete --}}
+                                <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.delete.faculty', $item->id)" :text="'delete'" />
+                            @endif
                         </td>
                         <!-- ... -->
                     </tr>
@@ -76,5 +83,15 @@
             @endslot
         </x-table>
     </div>
-    <x-toggle-switch :labelLeft="'Percentage'" :labelRight="'CGPA'" :id="'myToggleSwitchId'" />
+    {{-- <x-breadnav aria-label="Breadcrumb">
+        <x-breadol>
+            <x-breadli>
+                <x-breadanchor href="/" text="Home">
+                    <x-breadsvg>
+                        <x-breadsvgpath />
+                    </x-breadsvg>
+                </x-breadanchor>
+            </x-breadli>
+        </x-breadol>
+    </x-breadnav> --}}
 </div>

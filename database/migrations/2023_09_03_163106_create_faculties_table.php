@@ -33,15 +33,16 @@ return new class extends Migration
             $table->text('profile_photo_path')->nullable();
             $table->string('unipune_id',100)->nullable()->default(null);
             $table->string('qualification',100)->nullable()->default(null);
-            $table->foreign('role_id')->references('id')->on('roles');
 
-            $table->foreign('department_id')->references('id')->on('departments');
 
-            $table->foreign('college_id')->references('id')->on('colleges');
             $table->tinyInteger('active')->default(1);//1 =>active ,0=>inactive
             $table->timestamp('last_login')->nullable();
             // $table->tinyInteger('faculty_verified')->default('0');  //0 means not verified
 
+            $table->foreign('department_id')->references('id')->on('departments')->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreign('college_id')->references('id')->on('colleges')->onUpdate('cascade')->onDelete('cascade');;
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -52,5 +53,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('faculties');
+        $table->dropSoftDeletes();
     }
 };

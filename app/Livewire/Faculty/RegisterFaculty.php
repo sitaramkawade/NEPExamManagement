@@ -20,8 +20,6 @@ class RegisterFaculty extends Component
     public $role_id;
     public $department_id;
     public $college_id;
-    public $active;
-    public $faculty_verified;
 
 
     public $bank_name;
@@ -32,7 +30,6 @@ class RegisterFaculty extends Component
     public $ifsc_code;
     public $micr_code;
     public $account_type;
-    public $acc_verified;
 
     public $prefixes;
     public $roles;
