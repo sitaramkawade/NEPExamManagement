@@ -58,7 +58,7 @@
 
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="college_logo_path" :value="__('College Logo')" />
-                        <x-input-file  id="college_logo_path" type="file" wire:model="college_logo_path" name="college_logo_path" class="w-full mt-1"  :value="old('college_logo_path',$college_logo_path)" required autofocus autocomplete="college_logo_path" />
+                        <x-input-file  id="college_logo_path" type="file"  name="college_logo_path" class="w-full mt-1"  :value="old('college_logo_path',$college_logo_path)" required autofocus autocomplete="college_logo_path" />
                         <x-input-error :messages="$errors->get('college_logo_path')" class="mt-2" />
                     </div>
 
@@ -102,7 +102,7 @@
                 <div class="h-20 p-2">
 
                   @if ($current_step===$steps)
-                    <button type="button" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                    <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
                       <span class="mx-2"> Add</span>
                     </button>
                   @endif

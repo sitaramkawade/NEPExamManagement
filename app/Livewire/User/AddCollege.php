@@ -63,8 +63,8 @@ class AddCollege extends Component
 
     public function mount()
     {
-        $this->sansthas = Sanstha::get('sanstha_name', 'id');
-        $this->universities = University::get('university_name', 'id');
+        $this->sansthas = Sanstha::all();
+        $this->universities = University::all();
     }
 
     public function render()
