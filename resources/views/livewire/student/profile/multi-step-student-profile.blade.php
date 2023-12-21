@@ -8,11 +8,12 @@
               <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
                 <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
                   Student Information
+                  <x-spinner/>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2">
                   <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                    <x-input-label for="memid" :value="__('Student Member ID ( From I-Card Or Admission Receipt)')" />
-                    <x-text-input  id="memid" type="number" wire:model.live="memid" name="memid" class="w-full mt-1"  :value="old('memid',$memid)" required autofocus autocomplete="memid" />
+                    <x-input-label for="memid" :value="__('Student Member ID ( From I-Card Or Admission Receipt )')" />
+                    <x-text-input  id="memid" type="number" wire:model="memid" name="memid" class="w-full mt-1"  :value="old('memid',$memid)" required autofocus autocomplete="memid" />
                     <x-input-error :messages="$errors->get('memid')" class="mt-2" />
                   </div>
                 </div>
@@ -50,6 +51,7 @@
             <div class="m-2 overflow-hidden bg-white border shadow dark:border-primary-darker dark:bg-darker rounded">
               <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
                 Student Information
+                <x-spinner/>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2">
                 <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -167,7 +169,7 @@
         <section>
           <form wire:submit="photo_upload()">
             <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
-              <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">Upload Photo & Sign </div>
+              <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">Upload Photo & Sign <x-spinner/></div>
               <div class="grid grid-cols-1 md:grid-cols-2">
                 <div class="m-5  bg-red-500 col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
                   <div class="flex items-center justify-between border-b p-4 dark:border-primary">
@@ -247,11 +249,11 @@
       @endif
       {{--  Address --}}
       @if ($current_step===4)
-        <section>
+        <section x-data="{ open: true }">
           <form wire:submit="address_form()">
             <div class="m-2 overflow-hidden bg-white border shadow dark:border-primary-darker dark:bg-darker rounded">
               <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
-                Student Address
+                Student Address <x-spinner/>
               </div>
               <div class="m-5  bg-red-500 col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
                 <div class="flex items-center justify-between border-b p-4 dark:border-primary">
@@ -324,15 +326,15 @@
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                       <br>
-                      <x-text-input id="is_same" type="checkbox" wire:model.live="is_same" class="my-1 h-8 w-8"  name="is_same" :value="old('is_same',$is_same)"  autofocus autocomplete="is_same" />
+                      <x-text-input id="is_same" type="checkbox" wire:model.change="is_same"  @click="open = ! open" class="my-1 h-8 w-8"  name="is_same" :value="old('is_same',$is_same)"  autofocus autocomplete="is_same" />
                       <x-input-label for="is_same"  class="inline mb-1 mx-2" :value="__('Is Permanent Address Is Same As Correspondence Address')" />
                       <x-input-error :messages="$errors->get('is_same')" class="mt-2" />
                     </div>
                   </div>
                 </div>
               </div>
-              @if (!$is_same)
-                <div class="m-5  bg-red-500 col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
+              {{-- @if (!$is_same) --}}
+                <div x-show="open" class="m-5  bg-red-500 col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
                   <div class="flex items-center justify-between border-b p-4 dark:border-primary">
                     <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Permanent Address</h4>
                   </div>
@@ -402,7 +404,7 @@
                     </div>
                   </div>
                 </div>
-              @endif
+              {{-- @endif --}}
               <div class="h-20 p-2">
                 @if ($current_step!==1)
                   <button wire:click="back()" type="button" class=" float-start  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
@@ -430,16 +432,51 @@
           </form>
         </section>
       @endif
-      {{--  Choose Chourse --}}
+      {{--  Choose Course --}}
       @if ($current_step===5)
         <section>
           <form wire:submit="choose_course_form()">
             <div class="m-2 overflow-hidden bg-white border shadow dark:border-primary-darker dark:bg-darker rounded">
               <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
-                Choose Course
+                New Course Enrollment
               </div>
-              <div>
-                comming soon
+              <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                  <x-input-label for="class_year_id" :value="__('Class Year')" />
+                  <x-input-select id="class_year_id" wire:model.live="class_year_id" name="class_year_id" class="text-center w-full mt-1" :value="old('class_year_id',$class_year_id)" required autofocus autocomplete="class_year_id">
+                    <x-select-option class="text-start" hidden> -- Select Class Year -- </x-select-option>
+                    @forelse ($class_years as $c_yaer)
+                      <x-select-option wire:key="{{$c_yaer->id }}" value="{{ $c_yaer->id }}" class="text-start"> {{ $c_yaer->classyear_name }} </x-select-option>
+                    @empty
+                    <x-select-option class="text-start">Class Years Not Found</x-select-option>
+                    @endforelse
+                  </x-input-select>
+                  <x-input-error :messages="$errors->get('class_year_id')" class="mt-2" />
+                </div>
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                  <x-input-label for="course_id" :value="__('Course')" />
+                  <x-input-select id="course_id" wire:model.live="course_id" name="course_id" class="text-center w-full mt-1" :value="old('course_id',$course_id)" required autofocus autocomplete="course_id">
+                    <x-select-option class="text-start" hidden> -- Select Course -- </x-select-option>
+                    @forelse ($courses as $course)
+                      <x-select-option wire:key="{{ $course->id }}" value="{{ $course->id }}" class="text-start"> {{ $course->course_name	 }} </x-select-option>
+                    @empty
+                    <x-select-option class="text-start">Courses Not Found</x-select-option>
+                    @endforelse
+                  </x-input-select>
+                  <x-input-error :messages="$errors->get('course_id')" class="mt-2" />
+                </div>
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                  <x-input-label for="course_class_id" :value="__('Course')" />
+                  <x-input-select id="course_class_id" wire:model.live="course_class_id" name="course_class_id" class="text-center w-full mt-1" :value="old('course_class_id',$course_class_id)" required autofocus autocomplete="course_class_id">
+                    <x-select-option class="text-start" hidden> -- Select Course Class -- </x-select-option>
+                    @forelse ($course_classes as $course_class)
+                      <x-select-option wire:key="{{ $course_class->id }}" value="{{ $course_class->id }}" class="text-start"> {{ $course_class->course_name	 }} </x-select-option>
+                    @empty
+                    <x-select-option class="text-start">Course Classes Not Found</x-select-option>
+                    @endforelse
+                  </x-input-select>
+                  <x-input-error :messages="$errors->get('course_class_id')" class="mt-2" />
+                </div>
               </div>
               <div class="h-20 p-2">
                 @if ($current_step!==1)
@@ -468,6 +505,141 @@
           </form>
         </section>
       @endif
+      {{--  Previous Exam Details --}}
+      @if ($current_step===6)
+        <section>
+          <form wire:submit="previous_exam_form()">
+            <div class="m-2 overflow-hidden bg-white border shadow dark:border-primary-darker dark:bg-darker rounded">
+              <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
+                Previous Exam Details
+              </div>
+              <div x-data="{ open: true }" class="grid grid-cols-1 md:grid-cols-2">
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                  <x-input-label for="boarduniversity_id" :value="__('Board University')" />
+                  <x-input-select id="boarduniversity_id" wire:model.live="boarduniversity_id" name="boarduniversity_id" class="text-center w-full mt-1" :value="old('boarduniversity_id',$boarduniversity_id)" required autofocus autocomplete="boarduniversity_id">
+                    <x-select-option class="text-start" hidden> -- Select Board University -- </x-select-option>
+                    @forelse ($boarduniversities as $b_university)
+                      <x-select-option wire:key="{{ $b_university->id }}" value="{{ $b_university->id }}" class="text-start"> {{$b_university->boarduniversity_name }} </x-select-option>
+                    @empty
+                    <x-select-option class="text-start">Board Universities Not Found</x-select-option>
+                    @endforelse
+                  </x-input-select>
+                  <x-input-error :messages="$errors->get('boarduniversity_id')" class="mt-2" />
+                </div>
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                  <x-input-label for="educationalcourse_id" :value="__('Educational Course')" />
+                  <x-input-select id="educationalcourse_id" wire:model.live="educationalcourse_id" name="educationalcourse_id" class="text-center w-full mt-1" :value="old('educationalcourse_id',$educationalcourse_id)" required autofocus autocomplete="educationalcourse_id">
+                    <x-select-option class="text-start" hidden> -- Select Educational Course -- </x-select-option>
+                    @forelse ($educationalcourses as $e_course)
+                      <x-select-option wire:key="{{ $e_course->id }}" value="{{ $e_course->id }}" class="text-start"> {{$e_course->course_name }} </x-select-option>
+                    @empty
+                    <x-select-option class="text-start">Educational Course Not Found</x-select-option>
+                    @endforelse
+                  </x-input-select>
+                  <x-input-error :messages="$errors->get('educationalcourse_id')" class="mt-2" />
+                </div>
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                  <x-input-label for="passout_year" :value="__('Previous Passout Year')" />
+                  <x-input-select id="passout_year" wire:model.live="passout_year" name="passout_year" class="text-center w-full mt-1" :value="old('passout_year',$passout_year)" required autofocus autocomplete="passout_year">
+                    <x-select-option class="text-start" hidden> -- Select Passout Year -- </x-select-option>
+                    @forelse ($passoutyears as $p_years)
+                      <x-select-option wire:key="{{ $p_years->id }}" value="{{ $p_years->year_name }}" class="text-start"> {{ $p_years->year_name }} </x-select-option>
+                    @empty
+                    <x-select-option class="text-start">Passout Year Not Found</x-select-option>
+                    @endforelse
+                  </x-input-select>
+                  <x-input-error :messages="$errors->get('passout_year')" class="mt-2" />
+                </div>
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                  <x-input-label for="passout_month" :value="__('Previous Passout Month')"/>                  
+                    <x-input-select id="passout_month" wire:model.live="passout_month" name="passout_month" class="text-center w-full mt-1" :value="old('passout_month',$passout_month)" required autofocus autocomplete="passout_month">
+                    <x-select-option class="text-start" hidden> -- Select Passout Month -- </x-select-option>
+                    @forelse ($passoutmonths as  $p_month)
+                      <x-select-option wire:key="{{  $p_month->id }}" value="{{  $p_month->month_name}}" class="text-start"> {{ $p_month->month_name}} </x-select-option>
+                    @empty
+                    <x-select-option class="text-start">Passout Month Not Found</x-select-option>
+                    @endforelse
+                  </x-input-select>
+                  <x-input-error :messages="$errors->get('passout_month')" class="mt-2" />
+                </div>
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                  <x-input-label for="grade" :value="__('Previous Class Grade')"/>                  
+                    <x-input-select id="grade" wire:model.live="grade" name="grade" class="text-center w-full mt-1" :value="old('grade',$grade)" required autofocus autocomplete="grade">
+                    <x-select-option class="text-start" hidden> -- Select Grade -- </x-select-option>
+                    @forelse ($grades as $gra)
+                      <x-select-option wire:key="{{  $gra->id }}" value="{{ $gra->grade_name }}" class="text-start"> {{ $gra->grade_name }} </x-select-option>
+                    @empty
+                    <x-select-option class="text-start">Grades Not Found</x-select-option>
+                    @endforelse
+                  </x-input-select>
+                  <x-input-error :messages="$errors->get('grade')" class="mt-2" />
+                </div>
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                  <x-input-label for="seat_number" :value="__('Previous Seat Number')" />
+                  <x-text-input id="seat_number" type="number" wire:model.live="seat_number" name="seat_number" class="w-full mt-1" :value="old('seat_number',$seat_number)" required autofocus autocomplete="seat_number" />
+                  <x-input-error :messages="$errors->get('seat_number')" class="mt-2" />
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                  <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                    <br>
+                      <label  class="inline-flex items-center text-sm space-x-2 cursor-pointer dark:text-gray-100 ">
+                        <span>Percentage</span>
+                        <x-toggle  @click="open = ! open" id="is_cgpa" name="is_cgpa" wire:model.change="is_cgpa" />
+                        <span>CGPA</span>
+                      </label>
+                  </div>
+                  <div x-show="open"  class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                      <x-input-label for="obtained_marks" :value="__('Previous Marks Obtained')" />
+                      <x-text-input id="obtained_marks" type="number" wire:model.live="obtained_marks" name="obtained_marks" class="w-full mt-1" :value="old('obtained_marks',$obtained_marks)"  autofocus autocomplete="obtained_marks" />
+                      <x-input-error :messages="$errors->get('obtained_marks')" class="mt-2" />
+                  </div>
+                  <div x-show="! open"  class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                    <x-input-label for="cgpa" :value="__('CGPA')" />
+                    <x-text-input id="cgpa" type="number" wire:model.live="cgpa" name="cgpa" class="w-full mt-1" :value="old('cgpa',$cgpa)"   autocomplete="cgpa" />
+                    <x-input-error :messages="$errors->get('cgpa')" class="mt-2" />
+                  </div>
+                </div>
+                <div x-show="open" class="grid grid-cols-1 md:grid-cols-2">
+                  <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                      <x-input-label for="total_marks" :value="__('Previous Marks Outof')" />
+                      <x-text-input id="total_marks" type="number" wire:model.live="total_marks" name="total_marks" class="w-full mt-1" :value="old('total_marks',$total_marks)"  autofocus autocomplete="total_marks" />
+                      <x-input-error :messages="$errors->get('total_marks')" class="mt-2" />
+                  </div>
+                  <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                      <x-input-label for="percentage" :value="__('Percentage')" />
+                      <x-text-input id="percentage" type="number" wire:model.live="percentage" name="percentage" class="w-full mt-1" :value="old('percentage',$percentage)"  autofocus autocomplete="percentage" />
+                      <x-input-error :messages="$errors->get('percentage')" class="mt-2" />
+                   </div>
+                </div>
+              </div>
+              <div class="h-20 p-2">
+                @if ($current_step!==1)
+                  <button wire:click="back()" type="button" class=" float-start  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"  stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
+                    </svg>
+                    <span class="mx-2">Back</span>
+                  </button>
+                @endif
+                @if ($current_step < $steps) 
+                  <button type="submit"class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                    <span class="mx-2"> Save & Next</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round"  d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
+                    </svg>
+                  </button>
+                @endif
+                @if ($current_step===$steps)
+                  <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                    <span class="mx-2"> Submit</span>
+                  </button>
+                @endif
+              </div>
+            </div>
+          </form>
+        </section>
+      @endif
+      
     </div>
   </div>
 </div>
