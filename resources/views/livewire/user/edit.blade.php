@@ -7,11 +7,11 @@
 
     <div class="mx-auto max-w-7xl sm:px-6 lg:p-2">
     <section>
-            <form wire:submit="updateCollege">
+            <form wire:submit="updateCollege({{ $college_id }})">
               <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
                 <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
                   College Information
-                </div>
+                </div> 
 
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -101,7 +101,7 @@
                 <div class="h-20 p-2">
 
                   @if ($current_step===$steps)
-                    <button type="button" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                    <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
                       <span class="mx-2"> Update</span>
                     </button>
                   @endif

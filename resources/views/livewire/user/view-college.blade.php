@@ -10,7 +10,7 @@
                 <tr class="text-center">
                     <!-- Pass your table headers as a variable -->
                     <th>srno</th>
-
+                    <th>ID</th>
                     <th>College Name</th>
                     <th>College Email</th>
                     <th>College Address</th>
@@ -25,13 +25,14 @@
             @foreach ($colleges as $key => $item)
                 <tr class="text-center odd:bg-white even:bg-slate-50">
                     <td>{{ $key + 1 }}</td>
+                    <td>{{$item->id}}</td>
                     <td>{{ $item->college_name}}</td>
                     <td>{{ $item->college_email}}</td>
                     <td>{{ $item->college_address }}</td>
                     <td>{{ $item->college_contact_no}}</td>
                     <td class="flex justify-center lg:justify-center md:justify-center space-x-1">
                         {{-- for edit --}}
-                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('user.edit',$item->college_name)" :text="'Edit'" />
+                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('user.edit',$item->id)" :text="'Edit'" />
                         {{-- for soft delete --}}
                         <!-- {{-- <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.delete.faculty', $item->id)" :text="'Delete'" /> --}} -->
                     </td>

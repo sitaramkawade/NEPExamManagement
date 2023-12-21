@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Livewire;
+use App\Livewire\User\Edit;
 use App\Livewire\User\AddCollege;
 use Illuminate\Support\Facades\Route;
 
@@ -77,16 +78,15 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
     })->name('view_college');
 
     //Edit College
-    Route::get('/edit/{college_name}',function(){
-        return view('user.edit');
-    })->name('edit');
+    // Route::get('/edit/{id}',function(){
+    //     return view('user.edit');
+    // })->name('edit');
+    //Edit College
+    Route::get('/edit/{id}',Edit::class)->name('edit');
 
 
 });
 
-//exam-user dashboard
-
-// Route::get('add_college', AddCollege::class );
 
 
 // Auth Faculty Routes

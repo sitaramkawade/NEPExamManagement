@@ -13,6 +13,7 @@ class Edit extends Component
 
     public $steps=1;
     public $current_step=1;
+  
     public $college_name;
     public $college_address;
     public $college_website_url;
@@ -24,19 +25,76 @@ class Edit extends Component
     public $university_id;
     public $universities;
     public $status;
+    public $college_id;
     public $btn_add = false;
 
-   
-
+    protected function rules()
+    {
+        return [
+            'college_name' => ['required','string', 'max:255',],
+            'college_address' => ['required','string', 'max:255',],
+            'college_website_url' => ['required','string', 'max:255',],
+            'college_email' => ['required','email', 'string',],
+            'college_contact_no' => ['required','numeric','digits:10'],
+            'college_logo_path' => ['required',],
+            'sanstha_id' => ['required',],
+            'university_id' => ['required',],
+            'status' => ['required',],
+        ];
+    }
 
     
-
-
-    public function mount($college_name)
+    public function updated($propertyName)
     {
-        $college = College::find($college_name);
+        $this->validateOnly($propertyName);
+    }
+
+    public function resetinput()
+    {
+         $this->college_name=null;
+         $this->college_email=null;
+         $this->college_address=null;
+         $this->college_contact_no=null;
+         $this->college_website_url=null;
+         $this->college_logo_path=null;
+         $this->sanstha_id=null;
+         $this->university_id=null;
+         $this->status=null;
+       
+    }
+
+
+    public function messages()
+    {
+        return [
+            'college_name.string' =>'Please enter a college name as string',
+            'college_email.email' =>'Please enter a valid email address',
+            'college_address.required' =>'Please enter a college address',
+            'college_contact_no.required' =>'Please enter a Mobile number',
+            'college_website_url.required' =>'Please enter a valid website url',
+            'college_logo_path.required' =>'Please enter a logo path',
+            'college_sanstha_id.required' =>'Please enter a sanstha',
+            'college_university_id.required' =>'Please enter a university',
+        ];
+    }
+   
+    public function mount($id)
+    {
+
+       
+        $this->edit($id);
+        $this->college_id = $id;
+        $this->sansthas = Sanstha::get('sanstha_name', 'id');
+        $this->universities = University::get('university_name', 'id');
+    }
+
+    public function edit($id){
+
+        $college = College::find($id);
+      
 
         if ($college) {
+            $this->college_id=$college->id;
             $this->college_name = $college->college_name;
             $this->college_email = $college->college_email;
             $this->college_contact_no = $college->college_contact_no;
@@ -48,17 +106,16 @@ class Edit extends Component
             $this->status = $college->status;
             
         }
-
-        $this->sansthas = Sanstha::get('sanstha_name', 'id');
-        $this->universities = University::get('university_name', 'id');
     }
 
-    public function updateCollege(){
+    public function updateCollege(College  $college){
 
-        $college = College::find($this->college_name);
-
-        if ($college) {
+        $validatedData = $this->validate();
+        dd( $college);
+        if ($validatedData) {
+          
             $college->update([
+                
                 'college_name' => $this->college_name,
                 'college_email' => $this->college_email,
                 'college_address' => $this->college_address,
