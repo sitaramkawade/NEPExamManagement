@@ -1,17 +1,17 @@
- <div>
-    @if ($btn_add)
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-        <strong class="font-bold">Added Successfully!</strong>
-        <span class="block sm:inline">Your form has been successfully submitted.</span>
-    </div>
+
+  <div>
+
+    @if(session()->has('message'))
+        <div>{{ session('message') }}</div>
     @endif
+
     <div class="mx-auto max-w-7xl sm:px-6 lg:p-2">
     <section>
-            <form wire:submit="add">
+            <form wire:submit="updateCollege({{ $college_id }})">
               <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
                 <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
                   College Information
-                </div>
+                </div> 
 
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -57,7 +57,7 @@
 
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="college_logo_path" :value="__('College Logo')" />
-                        <x-input-file  id="college_logo_path" type="file"  name="college_logo_path" class="w-full mt-1"  :value="old('college_logo_path',$college_logo_path)" required autofocus autocomplete="college_logo_path" />
+                        <x-input-file  id="college_logo_path" type="file" wire:model="college_logo_path" name="college_logo_path" class="w-full mt-1"  :value="old('college_logo_path',$college_logo_path)" required autofocus autocomplete="college_logo_path" />
                         <x-input-error :messages="$errors->get('college_logo_path')" class="mt-2" />
                     </div>
 
@@ -101,12 +101,8 @@
                 <div class="h-20 p-2">
 
                   @if ($current_step===$steps)
-<<<<<<< HEAD
                     <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-=======
-                    <button type="submit"   class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
->>>>>>> 7a1ca66d0d95914e8364de4752b8705329129164
-                      <span class="mx-2"> Add</span>
+                      <span class="mx-2"> Update</span>
                     </button>
                   @endif
                 </div>
@@ -115,3 +111,7 @@
         </section>
     </div>
   </div>
+
+
+
+

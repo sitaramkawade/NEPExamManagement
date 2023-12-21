@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Livewire;
+use App\Livewire\User\Edit;
 use App\Livewire\User\AddCollege;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,7 @@ Livewire::setScriptRoute(function ($handle) {
 
 // Guest Routes
 Route::middleware(['guest'])->group(function () {
-    
+
     // Guest Home
     Route::get('/', function () {
         $post=null;
@@ -66,21 +67,30 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
         return view('user.user-dashboard');
     })->name('dashboard');
 
+    //add College
     Route::get('add_college', function () {
         return view('user.college');
     })->name('college');
 
-    
+    //View College
+    Route::get('/view_college', function () {
+        return view('user.view_college');
+    })->name('view_college');
+
+    //Edit College
+    // Route::get('/edit/{id}',function(){
+    //     return view('user.edit');
+    // })->name('edit');
+    //Edit College
+    Route::get('/edit/{id}',Edit::class)->name('edit');
+
 
 });
 
-//exam-user dashboard
-
-// Route::get('add_college', AddCollege::class );
 
 
 // Auth Faculty Routes
-Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified:faculty.verification.notice'])->group(function () {
+Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty'])->group(function () {
 
     // Faculty Dashboard
     Route::get('dashboard', function () {

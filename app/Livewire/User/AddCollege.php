@@ -28,22 +28,22 @@ class AddCollege extends Component
     public $btn_add = false;
 
 
-    protected function rules()
-    {
-        return [
-        'college_name' => 'required|string|max:255',
-        'college_address' => 'required|string|max:255',
-        'college_website_url' => 'required|string|max:255',
-        'college_email' => 'required|unique:users,email',
-        'college_contact_no' => 'required|max:10',
-        'sanstha_id' => 'required',
-        'university_id' => 'required',
-        'status'=>'required'
-        ];
-        }
+    // protected function rules()
+    // {
+    //     return [
+    //     'college_name' => 'required|string|max:255',
+    //     'college_address' => 'required|string|max:255',
+    //     'college_website_url' => 'required|string|max:255',
+    //     'college_email' => 'required|unique:users,email',
+    //     'college_contact_no' => 'required|max:10',
+    //     'sanstha_id' => 'required',
+    //     'university_id' => 'required',
+    //     'status'=>'required'
+    //     ];
+    //     }
 
     public function add(){
-        $this->validate();
+       
         $college= new College;
 
         $college->college_name= $this->college_name;
