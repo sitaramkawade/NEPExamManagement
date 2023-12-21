@@ -13,14 +13,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Notifications\Faculty\FacultyResetPasswordNotification;
 
-class Faculty extends Authenticatable  implements MustVerifyEmail
+class Faculty extends Authenticatable 
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function sendPasswordResetNotification()
-    {
-        $this->notify(new FacultyResetPasswordNotification);
-    }
+    // public function sendPasswordResetNotification()
+    // {
+    //     $this->notify(new FacultyResetPasswordNotification);
+    // }
 
 
     protected $guard = 'faculty';

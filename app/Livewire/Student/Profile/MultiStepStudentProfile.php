@@ -2,36 +2,46 @@
 
 namespace App\Livewire\Student\Profile;
 
+use App\Models\Grade;
+use App\Models\Month;
 use App\Models\State;
+use App\Models\Course;
 use App\Models\Taluka;
 use App\Models\Country;
 use App\Models\Student;
 use App\Models\Village;
 use Livewire\Component;
 use App\Models\District;
+use App\Models\Classyear;
+use App\Models\Courseclass;
+use App\Models\Academicyear;
 use App\Models\Gendermaster;
+use App\Models\Patternclass;
+use App\Models\Previousyear;
 use App\Models\CasteCategory;
 use Livewire\WithFileUploads;
 use App\Models\Studentaddress;
 use App\Models\Studentprofile;
+use App\Models\Boarduniversity;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Locked;
+use App\Models\Educationalcourse;
 use Livewire\Attributes\Validate;
+use App\Models\Studentpreviousexam;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class MultiStepStudentProfile extends Component
 {   
     use WithFileUploads;
-    public $steps = 6;
+    public $steps = 7;
     public $current_step = 5;
     public $student_id;
-    public $genders;
-    public $cast_categories;
-
     // step 1
     public $memid;
     // step 2
+    public $genders;
+    public $cast_categories;
     public $student_name;
     public $email;
     public $mobile_no;
@@ -74,6 +84,33 @@ class MultiStepStudentProfile extends Component
     public $pincode_2;
     public $village_2;
     public $address_2;
+    // step 5
+    public $class_years;
+    public $class_year_id;
+    public $courses;
+    public $course_id;
+    public $course_classes;
+    public $course_class_id;
+    public $pattern_classes;
+    public $pattern_class_id;
+    // step 6
+    public $educationalcourses;
+    public $educationalcourse_id;
+    public $boarduniversity_id ;
+    public $boarduniversities ;
+    public $obtained_marks ;
+    public $total_marks ;
+    public $passoutmonths;
+    public $passoutyears;
+    public $passout_year;
+    public $passout_month;
+    public $grades;
+    public $grade;
+    public $cgpa;
+    public $percentage;
+    public $seat_number;
+    public $is_cgpa=0;
+
 
     public function rules()
     {
@@ -81,7 +118,7 @@ class MultiStepStudentProfile extends Component
 
         if ($this->current_step == 1) {
             $rules = [
-                'memid' => ['required','numeric','min:1','digits_between:4,10'],
+                'memid' => ['required','numeric','min:1','digits_between:4,10','unique:students,memid,'.Auth::guard('student')->user()->id],
             ];
         } elseif ($this->current_step == 2) {
             $rules = [
@@ -132,6 +169,38 @@ class MultiStepStudentProfile extends Component
                     'country_id_2' =>['required'],
                     'district_id_2' =>['required'],
                     'state_id_2' =>['required'],
+                ];
+            }
+        } elseif ($this->current_step == 5) {
+            $rules = [
+
+                'educationalcourse_id' =>['required','numeric',Rule::exists('educationalcourses', 'id')],
+
+            ];
+        }elseif ($this->current_step == 6) {
+
+            if($this->is_cgpa)
+            {
+                $rules = [
+                    'educationalcourse_id' =>['required','numeric', Rule::unique('studentpreviousexams')->where('student_id', Auth::guard('student')->user()->id)],
+                    'boarduniversity_id'=>['required','numeric',Rule::exists('boarduniversities', 'id'),],
+                    'passout_year'=>['required','numeric','digits:4'],
+                    'passout_month'=>['required','string'],
+                    'seat_number'=>['required','numeric',Rule::unique('studentpreviousexams')->where('student_id', Auth::guard('student')->user()->id)],
+                    'grade'=>['required','string'],
+                    'cgpa'=>['required','numeric','min:0.00','max:10.00'],
+                ];
+            }
+            else
+            {
+                $rules = [
+                    'educationalcourse_id' =>['required','numeric', Rule::unique('studentpreviousexams')->where('student_id', Auth::guard('student')->user()->id)],
+                    'boarduniversity_id'=>['required','numeric',Rule::exists('boarduniversities', 'id')],
+                    'passout_year'=>['required','numeric','digits:4'],
+                    'passout_month'=>['required','string'],
+                    'seat_number'=>['required','numeric',Rule::unique('studentpreviousexams')->where('student_id', Auth::guard('student')->user()->id)],
+                    'grade'=>['required','string'],
+                    'percentage'=>['required','numeric','decimal:5,2'],
                 ];
             }
         }
@@ -224,6 +293,28 @@ class MultiStepStudentProfile extends Component
             'country_id_2.required' => 'The Country field is required.',
             'district_id_2.required' => 'The District field is required.',
             'state_id_2.required' => 'The State field is required.',
+            // step 5
+
+            //step 6
+            'educationalcourse_id.required' => 'The Educational Course field is required.',
+            'educationalcourse_id.numeric' => 'The Educational Course must be a number.',
+            'educationalcourse_id.unique' => 'This Educational Course You Have Already Selected.',
+            'boarduniversity_id.required' => 'The Board/University field is required.',
+            'boarduniversity_id.numeric' => 'The Board/University must be a number.',
+            'boarduniversity_id.exists' => 'The selected Board/University is invalid.',
+            'passout_year.required' => 'The Passout Year field is required.',
+            'passout_year.numeric' => 'The Passout Year must be a number.',
+            'passout_year.digits' => 'The Passout Year must be four digits.',
+            'passout_month.required' => 'The Passout Month field is required.',
+            'seat_number.required' => 'The Seat Number field is required.',
+            'seat_number.numeric' => 'The Seat Number must be a number.',
+            'seat_number.unique' => 'The Seat Number has already been taken..',
+            'grade.required' => 'The Grade field is required.',
+            'grade.string' => 'The Grade must be a string.',
+            'cgpa.required' => 'The CGPA field is required.',
+            'cgpa.numeric' => 'The CGPA must be a number.',
+            'cgpa.min' => 'The CGPA must be at least 0.00.',
+            'cgpa.max' => 'The CGPA must not exceed 10.00.',
         ];
     }
 
@@ -310,20 +401,38 @@ class MultiStepStudentProfile extends Component
         {
             Auth::guard('student')->user()->studentaddress()->updateOrCreate(
                 [   
-                    'student_id'=>Auth::guard('student')->user()->id,
-                    'is_same' => 1, 
+                    'student_id'=>Auth::guard('student')->user()->id, 
+                    'address_type' => 1
                 ],
                 [
-                    'taluka_id'=>$this->taluka_id,
-                    'pincode'=>$this->pincode,
-                    'village_name'=>$this->village,
-                    'locality_name'=>$this->village,
-                    'address'=>$this->address,
-                    'is_same'=>1,
+                    'taluka_id' => $this->taluka_id,
+                    'pincode' => $this->pincode,
+                    'village_name' => $this->village,
+                    'locality_name' => $this->village,
+                    'address' => $this->address,
+                    'is_same' => 1,
                     'address_type' => 1,
-                    'is_completed'=>1,
+                    'is_completed' => 1,
                 ]
-            ); 
+            );
+            
+            Auth::guard('student')->user()->studentaddress()->updateOrCreate(
+                [   
+                    'student_id'=>Auth::guard('student')->user()->id,
+                    'address_type' => 2
+                ],
+                [
+                    'taluka_id' => $this->taluka_id_2,
+                    'pincode' => $this->pincode_2,
+                    'village_name' => $this->village_2,
+                    'locality_name' => $this->village_2,
+                    'address' => $this->address_2,
+                    'is_same' => 1,
+                    'address_type' => 2,
+                    'is_completed' => 1,
+                ]
+            );
+            $this->is_same=0;
             $this->dispatch('alert',type:'success',message:'Step Four : Student Address Saved Successfully !!');  
         }else
         {
@@ -360,6 +469,7 @@ class MultiStepStudentProfile extends Component
                     'is_completed' => 1,
                 ]
             );
+            $this->is_same=0;
             $this->dispatch('alert',type:'success',message:'Step Four : Student Current And Permanent Address Saved Successfully !!');  
         }
         $this->current_step = 5;
@@ -368,6 +478,32 @@ class MultiStepStudentProfile extends Component
     public function choose_course_form()
     {   
        
+    }
+
+    public function previous_exam_form()
+    {   
+        $this->validate();
+      $student_previous_exam= new Studentpreviousexam;
+      $student_previous_exam-> student_id=Auth::guard('student')->user()->id;
+      $student_previous_exam->boarduniversity_id=  $this->boarduniversity_id ;
+      $student_previous_exam->educationalcourse_id=  $this->educationalcourse_id;
+      $student_previous_exam->passing_year=  $this->passout_year;
+      $student_previous_exam->passing_month=  $this->passout_month;
+      $student_previous_exam-> grade=  $this->grade;
+      $student_previous_exam-> seat_number=  $this->seat_number;
+      if( $this->is_cgpa)
+      {
+        $student_previous_exam->cgpa=  $this->cgpa;
+      }else
+      {
+        $student_previous_exam-> obtained_marks=  $this->obtained_marks ;
+        $student_previous_exam-> total_marks=  $this->total_marks ;
+        $student_previous_exam-> percentage = $this->percentage;
+      }
+
+     $student_previous_exam->save();
+     $this->dispatch('alert',type:'success',message:'Step Six : Student Previous Education Saved Successfully !!');  
+      
     }
 
     
@@ -408,27 +544,10 @@ class MultiStepStudentProfile extends Component
                 $this->can_update=1;
             }
         }
-        $student_addres_1= Studentaddress::where('student_id',$student->id)->where('is_same',1)->first();
-        if($student_addres_1)
-        {   
-            $taluka1=Taluka::find($student_addres_1->taluka_id);
-            if($taluka1)
-            {   
-                $this->is_same=1;
-                $this->country_id=$taluka1->district->state->country->id;
-                $this->state_id=$taluka1->district->state->id;
-                $this->district_id=$taluka1->district->id;
-                $this->taluka_id=$taluka1->id;
-            }
-            $this->pincode=$student_addres_1->pincode;
-            $this->village=$student_addres_1->village_name;
-            $this->address=$student_addres_1->address;
-        }
 
-        $student_addres_2= Studentaddress::where('student_id',$student->id)->where('is_same',0)->where('address_type',1)->first();
+        $student_addres_2= Studentaddress::where('student_id',$student->id)->where('address_type',1)->first();
         if($student_addres_2)
         {   
-            $this->is_same=0;
             $taluka2=Taluka::find($student_addres_2->taluka_id);
             if($taluka2)
             {   
@@ -442,9 +561,9 @@ class MultiStepStudentProfile extends Component
             $this->address=$student_addres_2->address;
         }
 
-        $student_addres_3= Studentaddress::where('student_id',$student->id)->where('is_same',0)->where('address_type',2)->first();
+        $student_addres_3= Studentaddress::where('student_id',$student->id)->where('address_type',2)->first();
         if($student_addres_3)
-        {   $this->is_same=0;
+        {   
             $taluka3=Taluka::find($student_addres_3->taluka_id);
             if($taluka3)
             {
@@ -482,6 +601,29 @@ class MultiStepStudentProfile extends Component
                 $this->districts_2 = District::where('state_id', $this->state_id_2)->get();
                 $this->talukas_2 = Taluka::where('district_id', $this->district_id_2)->get();
             }
+        }
+
+        if($this->current_step==5)
+        {
+            $this->class_years=Classyear::all();
+            $this->courses=Course::all();
+            $this->course_classes=where('country_id', $this->country_id_2)->get();
+            $this->pattern_classes=Patternclass::all();
+        }
+
+        if($this->current_step==6)
+        {
+            $this->educationalcourses=Educationalcourse::where('is_active',1)->get();
+            $this->boarduniversities=Boarduniversity::where('is_active',1)->get();
+            $this->passoutyears=Previousyear::where('is_active',1)->get();
+            $this->passoutmonths=Month::where('is_active',1)->get();
+            $this->grades=Grade::where('is_active',1)->get();
+        }
+
+
+        if($this->obtained_marks >0  && $this->total_marks >0)
+        {
+            $this->percentage =(( $this->obtained_marks/$this->total_marks  )*100);
         }
 
         return view('livewire.student.profile.multi-step-student-profile');
