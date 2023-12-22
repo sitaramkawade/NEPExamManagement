@@ -52,6 +52,6 @@ class RegisteredUserController extends Controller
 
         Auth::guard('student')->login($user);
 
-        return redirect(RouteServiceProvider::STUDENTHOME);
+        return redirect()->route('student.profile');
     }
 }

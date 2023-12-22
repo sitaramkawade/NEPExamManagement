@@ -30,7 +30,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
         Auth::guard('student')->user()->update(['last_login' => now()]);
-        return redirect()->intended(RouteServiceProvider::STUDENTHOME);
+        if(Auth::guard('student')->user()->is_profile_complete===1)
+        {
+            return redirect()->intended(RouteServiceProvider::STUDENTHOME);
+        }
+        else
+        {
+            return redirect()->route('student.profile');
+        }
     }
 
     /**
