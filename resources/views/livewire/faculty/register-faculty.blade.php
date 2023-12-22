@@ -53,7 +53,7 @@
                                 <x-input-select id="role_id" wire:model.live="role_id" name="role_id" class="text-center @error('role_id') is-invalid @enderror w-full mt-1" :value="old('role_id', $role_id)" required autofocus autocomplete="role_id">
                                     <x-select-option class="text-start" hidden> -- Select Role -- </x-select-option>
                                     @foreach ($roles as $role)
-                                        <x-select-option wire:key="{{ $role->id }}" value="{{ $role->id }}" class="text-start">{{ $role->roletype_name }}</x-select-option>
+                                        <x-select-option wire:key="{{ $role->id }}" value="{{ $role->id }}" class="text-start">{{ $role->role_name }}</x-select-option>
                                     @endforeach
                                 </x-input-select>
                                 <x-input-error :messages="$errors->get('role_id')" class="mt-2" />

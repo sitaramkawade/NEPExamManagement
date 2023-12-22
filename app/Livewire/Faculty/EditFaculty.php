@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Faculty;
 
+use App\Models\Role;
 use App\Models\College;
 use App\Models\Faculty;
 use Livewire\Component;
-use App\Models\Roletype;
 use App\Models\Department;
 use App\Models\Prefixmaster;
 use App\Models\Banknamemaster;
@@ -50,7 +50,7 @@ class EditFaculty extends Component
             'faculty_name' => ['required', 'string', 'max:255',],
             'email' => ['required', 'email', 'string',],
             'mobile_no' => ['required', 'numeric','digits:10'],
-            'role_id' => ['required',Rule::exists(Roletype::class,'id')],
+            'role_id' => ['required',Rule::exists(Role::class,'id')],
             'department_id' => ['required',Rule::exists(Department::class,'id')],
             'college_id' => ['required',Rule::exists(College::class,'id')],
             // 'active' => ['required',],
@@ -164,7 +164,7 @@ class EditFaculty extends Component
     {
         $this->prefixes = Prefixmaster::where('is_active',1)->get();
         $this->banknames = Banknamemaster::where('is_active',1)->get();
-        $this->roles= Roletype::where('status',1)->get();
+        $this->roles= Role::all();
         $this->departments= Department::where('status',1)->get();
         $this->colleges= College::where('status',1)->get();
         $this->edit($id);

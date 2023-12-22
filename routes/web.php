@@ -5,10 +5,12 @@ use App\Livewire\Faculty\EditFaculty;
 use App\Livewire\Faculty\ViewFaculty;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Faculty\DeleteFaculty;
+use App\Livewire\Faculty\UpdateProfile;
 use App\Livewire\Faculty\RestoreFaculty;
 use App\Livewire\Faculty\RegisterFaculty;
 use App\Livewire\Master\Gender\ViewGender;
 use App\Livewire\Faculty\SoftDeleteFaculty;
+use App\Livewire\Faculty\MultiStepFacultyProfile;
 
 
 // Livewire Update Route
@@ -105,6 +107,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty',])->group
 
     //Restore Faculty
     Route::get('/restore-faculty/{id}', RestoreFaculty::class)->name('restore.faculty');
+
+    //Complete Profile Faculty
+    Route::get('/update-profile', UpdateProfile::class)->name('updateprofile.faculty');
 
 });
 

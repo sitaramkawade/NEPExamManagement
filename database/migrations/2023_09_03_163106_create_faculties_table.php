@@ -22,7 +22,7 @@ return new class extends Migration
             $table->bigInteger('role_id')->before('created_at')->nullable()->unsigned()->default(null);
 
             $table->date('date_of_birth')->nullable()->default(null); // date of birth
-            $table->tinyInteger('gender')->nullable()->default(null); // '1-male' '2-female' '3-other'
+            $table->char('gender',1)->nullable()->default(null); // 'M-Male' 'F-Female' 'T-Transgender'
             $table->string('category')->nullable()->default(null); // category
             $table->text('pan',10)->unique()->nullable()->default(null); // pan
             $table->text('current_address')->nullable()->default(null); // current-address
@@ -53,6 +53,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('faculties');
-        $table->dropSoftDeletes();
     }
 };
