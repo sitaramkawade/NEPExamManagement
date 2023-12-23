@@ -13,6 +13,7 @@ class Studentprofile extends Model
     protected $table='studentprofiles';
     protected $fillable = [
         'student_name_devnagari',
+        'student_name_on_adharcard',
         'mother_name_devnagari',
         'father_name',
         'father_name_devnagari',

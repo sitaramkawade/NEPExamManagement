@@ -16,7 +16,12 @@ use App\Notifications\Faculty\FacultyResetPasswordNotification;
 
 class Faculty extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable;
+
+    // public function sendPasswordResetNotification()
+    // {
+    //     $this->notify(new FacultyResetPasswordNotification);
+    // }
 
     // public function sendPasswordResetNotification()
     // {

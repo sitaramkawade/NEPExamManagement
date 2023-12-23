@@ -30,32 +30,6 @@ class EducationalcourseSeeder extends Seeder
             'created_at'=>'2023-10-01 09:32:52',
             'updated_at'=>'2023-10-01 09:32:52'
             ] );
-                        
-            Educationalcourse::create( [
-            'id'=>3,
-            'course_name'=>'HSC',
-            'programme_id'=>2,
-            'is_active'=>1,
-            'created_at'=>'2023-10-01 09:32:52',
-            'updated_at'=>'2023-10-01 09:32:52'
-            ] );
-                        
-            Educationalcourse::create( [
-            'id'=>4,
-            'course_name'=>'HSC',
-            'programme_id'=>3,
-            'is_active'=>1,
-            'created_at'=>'2023-10-01 09:32:52',
-            'updated_at'=>'2023-10-01 09:32:52'
-            ] );
-                        
-            Educationalcourse::create( [
-            'id'=>5,
-            'course_name'=>'HSC',
-            'programme_id'=>4,
-            'is_active'=>1,
-            'created_at'=>'2023-10-01 09:32:52',
-            'updated_at'=>'2023-10-01 09:32:52'
-            ] );
+           
     }
 }
