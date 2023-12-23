@@ -84,8 +84,8 @@ class Edit extends Component
        
         $this->edit($id);
         $this->college_id = $id;
-        $this->sansthas = Sanstha::get('sanstha_name', 'id');
-        $this->universities = University::get('university_name', 'id');
+        $this->sansthas = Sanstha::all();
+        $this->universities = University::all();
     }
 
     public function edit($id){
@@ -111,11 +111,12 @@ class Edit extends Component
     public function updateCollege(College  $college){
 
         $validatedData = $this->validate();
-        dd( $college);
+       
         if ($validatedData) {
           
             $college->update([
                 
+
                 'college_name' => $this->college_name,
                 'college_email' => $this->college_email,
                 'college_address' => $this->college_address,
@@ -128,8 +129,9 @@ class Edit extends Component
                
                 
             ]);
-            session()->flash('message', 'College information updated successfully.');
-            $this->reset(); // Clear input fields after update
+            $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
+            return $this->redirect('/user/view_college',navigate:true);
+           
     }
     }
 

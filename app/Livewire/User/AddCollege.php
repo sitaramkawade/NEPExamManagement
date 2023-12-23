@@ -20,6 +20,7 @@ class AddCollege extends Component
     public $college_email;
     public $college_contact_no;
     public $college_logo_path;
+    public $sign_photo_path;
     public $sanstha_id;
     public $sansthas;
     public $university_id;
@@ -28,24 +29,36 @@ class AddCollege extends Component
     public $btn_add = false;
 
 
-    // protected function rules()
-    // {
-    //     return [
-    //     'college_name' => 'required|string|max:255',
-    //     'college_address' => 'required|string|max:255',
-    //     'college_website_url' => 'required|string|max:255',
-    //     'college_email' => 'required|unique:users,email',
-    //     'college_contact_no' => 'required|max:10',
-    //     'sanstha_id' => 'required',
-    //     'university_id' => 'required',
-    //     'status'=>'required'
-    //     ];
-    //     }
+    protected function rules()
+    {
+        return [
+        'college_name' => 'required|string|max:255',
+        'college_address' => 'required|string|max:255',
+        'college_website_url' => 'required|string|max:255',
+        'college_email' => 'required|unique:users,email',
+        'college_contact_no' => 'required|max:10',
+        'college_logo_path' =>'required','max:250','mimes:png,jpg,jpeg',
+        'sanstha_id' => 'required',
+        'university_id' => 'required',
+        'status'=>'required'
+        ];
+        }
 
     public function add(){
-       
+
         $college= new College;
 
+        if ($this->college_logo_path) {
+            if ($college->college_logo_path) {
+                File::delete($college->college_logo_path);
+            }
+            $path = 'user/profile/photo/';
+            $fileName = 'user-' . time(). '.' . $this->college_logo_path->getClientOriginalExtension();
+            $this->college_logo_path->storeAs($path, $fileName, 'public');
+          
+            $college->college_logo_path = 'storage/' . $path . $fileName;
+            $this->reset('college_logo_path');
+        }
         $college->college_name= $this->college_name;
         $college->college_address=  $this->college_address;
         $college->college_website_url=  $this->college_website_url;
@@ -56,16 +69,19 @@ class AddCollege extends Component
         $college->university_id= $this->university_id;
         $college->status= $this->status;
         $college->save();
-        $this->btn_add = true;
 
-
+        $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
+       
     }
+    
 
     public function mount()
     {
         $this->sansthas = Sanstha::all();
         $this->universities = University::all();
     }
+
+    
 
     public function render()
     {

@@ -33,9 +33,8 @@
                     <td class="flex justify-center lg:justify-center md:justify-center space-x-1">
                         {{-- for edit --}}
                         <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('user.edit',$item->id)" :text="'Edit'" />
-                        {{-- for soft delete --}}
-                        <!-- {{-- <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.delete.faculty', $item->id)" :text="'Delete'" /> --}} -->
-                    </td>
+                        {{-- for  delete --}}
+                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('user.delete', $item->id)" :text="'Delete'" /> 
                     <!-- ... -->
                 </tr>
             @endforeach

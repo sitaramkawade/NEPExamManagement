@@ -3,6 +3,7 @@
 use Livewire\Livewire;
 use App\Livewire\User\Edit;
 use App\Livewire\User\AddCollege;
+use App\Livewire\User\DeleteCollege;
 use Illuminate\Support\Facades\Route;
 
 // Livewire Update Route
@@ -77,12 +78,12 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
         return view('user.view_college');
     })->name('view_college');
 
-    //Edit College
-    // Route::get('/edit/{id}',function(){
-    //     return view('user.edit');
-    // })->name('edit');
+  
     //Edit College
     Route::get('/edit/{id}',Edit::class)->name('edit');
+
+    //delete College
+    Route::get('/delete/{id}',DeleteCollege::class)->name('delete');
 
 
 });
