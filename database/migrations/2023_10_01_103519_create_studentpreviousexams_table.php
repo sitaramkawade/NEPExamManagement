@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('student_id')->unsigned()->nullable();
             $table->string('passing_year');
             $table->string('passing_month');
-            $table->integer('seat_number');
+            $table->string('seat_number');
             $table->integer('obtained_marks')->nullable();
             $table->integer('total_marks')->nullable();
             $table->float('percentage',5,2)->nullable();

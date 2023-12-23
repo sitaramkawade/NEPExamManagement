@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class MultiStepStudentProfile extends Component
-{   
+{
     use WithFileUploads;
     public $steps = 6;
     public $current_step = 1;
@@ -111,7 +111,7 @@ class MultiStepStudentProfile extends Component
     public $pre_eductions;
     // step 6
     public $is_confirm;
-  
+
     public function rules()
     {
         $rules = [];
@@ -124,7 +124,7 @@ class MultiStepStudentProfile extends Component
                 'memid' => ['required','numeric','min:1','digits_between:4,10','unique:students,memid,'.Auth::guard('student')->user()->id],
                 'mother_name' => ['required','string','max:255'],
                 'aadhar_name' => ['required','string','max:255'],
-                'abcid' => ['nullable','string','max:255'],
+                'abcid' => ['nullable','numeric','digits:12'],
                 'adharnumber' => ['required','numeric','digits:12'],
                 'father_name' => ['required','string','max:255'],
                 'gender' => ['required','string','max:1'],
@@ -190,7 +190,7 @@ class MultiStepStudentProfile extends Component
                     'boarduniversity_id'=>['required','numeric',Rule::exists('boarduniversities', 'id'),],
                     'passout_year'=>['required','numeric','digits:4'],
                     'passout_month'=>['required','string'],
-                    'seat_number'=>['required','numeric',Rule::unique('studentpreviousexams')->where('student_id', Auth::guard('student')->user()->id)],
+                    'seat_number'=>['required','string',Rule::unique('studentpreviousexams')->where('student_id', Auth::guard('student')->user()->id)],
                     'grade'=>['required','string'],
                     'cgpa'=>['required','numeric','min:0.00','max:10.00'],
                 ];
@@ -207,10 +207,6 @@ class MultiStepStudentProfile extends Component
                     'percentage'=>['required','numeric','between:0.00,100.00'],
                 ];
             }
-        }elseif ($this->current_step == 6) {
-            $rules = [
-                'is_confirm'=>['required'],
-            ];
         }
 
         return $rules;
@@ -237,9 +233,14 @@ class MultiStepStudentProfile extends Component
             'mother_name.required' => 'The Mother Name field is required.',
             'mother_name.string' => 'The Mother Name must be a string.',
             'mother_name.max' => 'The Mother Name must not exceed 255 characters.',
+            'aadhar_name.required' => 'The Student Name As Per Aadhar field is required.',
+            'aadhar_name.string' => 'The Student Name As Per Aadhar must be a string.',
+            'aadhar_name.max' => 'The Student Name As Per Aadhar must not exceed 255 characters.',
             'adharnumber.required' => 'The Aadhar Number field is required.',
             'adharnumber.numeric' => 'The Aadhar Number must be a number.',
             'adharnumber.digits' => 'The Aadhar Number must be 12 digits.',
+            'abcid.numeric' => 'The ABC ID must be a number.',
+            'abcid.digits' => 'The ABC ID must be 12 digits.',
             'father_name.required' => 'The Father Name field is required.',
             'father_name.string' => 'The Father Name must be a string.',
             'father_name.max' => 'The Father Name must not exceed 255 characters.',
@@ -254,6 +255,9 @@ class MultiStepStudentProfile extends Component
             'caste_category_id.required' => 'The Caste Category field is required.',
             'caste_category_id.numeric' => 'The Caste Category must be a number.',
             'caste_category_id.exists' => 'The selected Caste Category is invalid.',
+            'caste_id.required' => 'The Caste field is required.',
+            'caste_id.numeric' => 'The Caste must be a number.',
+            'caste_id.exists' => 'The selected Caste is invalid.',
             'is_noncreamylayer.required' => 'The Non-Creamy Layer field is required.',
             'is_noncreamylayer.numeric' => 'The Non-Creamy Layer must be a number.',
             'is_noncreamylayer.min' => 'The Non-Creamy Layer must be at least 0.',
@@ -320,7 +324,7 @@ class MultiStepStudentProfile extends Component
             'passout_year.digits' => 'The Passout Year must be four digits.',
             'passout_month.required' => 'The Passout Month field is required.',
             'seat_number.required' => 'The Seat Number field is required.',
-            'seat_number.numeric' => 'The Seat Number must be a number.',
+            'seat_number.string' => 'The Seat Number must be a string.',
             'seat_number.unique' => 'The Seat Number has already been taken.',
             'grade.required' => 'The Grade field is required.',
             'grade.string' => 'The Grade must be a string.',
@@ -328,8 +332,6 @@ class MultiStepStudentProfile extends Component
             'cgpa.numeric' => 'The CGPA must be a number.',
             'cgpa.min' => 'The CGPA must be at least 0.00.',
             'cgpa.max' => 'The CGPA must not exceed 10.00.',
-            //step 6
-            'is_confirm.required' => 'Confirmation field is required.',
         ];
     }
 
@@ -339,12 +341,12 @@ class MultiStepStudentProfile extends Component
     }
 
     public function move_to($step)
-    {   
+    {
         $this->current_step=$step;
     }
 
     public function student_information_form()
-    {   
+    {
         $this->validate();
         Auth::guard('student')->user()->update([
             'mother_name'=>$this->mother_name,
@@ -365,22 +367,22 @@ class MultiStepStudentProfile extends Component
                 'is_noncreamylayer'=>$this->is_noncreamylayer,
                 'is_handicap'=>$this->is_handicap,
             ]
-        ); 
+        );
         Auth::guard('student')->user()->update(['current_step' =>2]);
-        $this->dispatch('alert',type:'success',message:'Step 1 : Student Information Saved Successfully !!');  
+        $this->dispatch('alert',type:'success',message:'Step 1 : Student Information Saved Successfully !!');
         $this->current_step = 2;
     }
 
     public function photo_upload()
-    {   
+    {
         $this->validate();
         $studentProfile = Studentprofile::where('student_id', Auth::guard('student')->user()->id)->first();
 
         if (!$studentProfile) {
-            $this->dispatch('alert',type:'error',message:'Student Profile Not Found !!');  
+            $this->dispatch('alert',type:'error',message:'Student Profile Not Found !!');
             return;
         }
-    
+
         if ($this->profile_photo_path) {
             if ($studentProfile->profile_photo_path) {
                 File::delete($studentProfile->profile_photo_path);
@@ -391,7 +393,7 @@ class MultiStepStudentProfile extends Component
             $studentProfile->profile_photo_path = 'storage/' . $path . $fileName;
             $this->reset('profile_photo_path');
         }
-    
+
         if ($this->sign_photo_path) {
             if ($studentProfile->sign_photo_path) {
                 File::delete($studentProfile->sign_photo_path);
@@ -404,7 +406,7 @@ class MultiStepStudentProfile extends Component
         }
         $studentProfile->update();
         Auth::guard('student')->user()->update(['current_step' =>3]);
-        $this->dispatch('alert',type:'success',message:'Step 2 : Student Photo And Sign Saved Successfully !!');  
+        $this->dispatch('alert',type:'success',message:'Step 2 : Student Photo And Sign Saved Successfully !!');
         $this->current_step = 3;
     }
 
@@ -416,8 +418,8 @@ class MultiStepStudentProfile extends Component
         if($this->is_same)
         {
             Auth::guard('student')->user()->studentaddress()->updateOrCreate(
-                [   
-                    'student_id'=>Auth::guard('student')->user()->id, 
+                [
+                    'student_id'=>Auth::guard('student')->user()->id,
                     'address_type' => 1
                 ],
                 [
@@ -431,9 +433,9 @@ class MultiStepStudentProfile extends Component
                     'is_completed' => 1,
                 ]
             );
-            
+
             Auth::guard('student')->user()->studentaddress()->updateOrCreate(
-                [   
+                [
                     'student_id'=>Auth::guard('student')->user()->id,
                     'address_type' => 2
                 ],
@@ -450,12 +452,12 @@ class MultiStepStudentProfile extends Component
             );
             Auth::guard('student')->user()->update(['current_step' =>4]);
             $this->is_same=0;
-            $this->dispatch('alert',type:'success',message:'Step 3 : Student Address Saved Successfully !!');  
+            $this->dispatch('alert',type:'success',message:'Step 3 : Student Address Saved Successfully !!');
         }else
         {
             Auth::guard('student')->user()->studentaddress()->updateOrCreate(
-                [   
-                    'student_id'=>Auth::guard('student')->user()->id, 
+                [
+                    'student_id'=>Auth::guard('student')->user()->id,
                     'address_type' => 1
                 ],
                 [
@@ -469,9 +471,9 @@ class MultiStepStudentProfile extends Component
                     'is_completed' => 1,
                 ]
             );
-            
+
             Auth::guard('student')->user()->studentaddress()->updateOrCreate(
-                [   
+                [
                     'student_id'=>Auth::guard('student')->user()->id,
                     'address_type' => 2
                 ],
@@ -488,13 +490,13 @@ class MultiStepStudentProfile extends Component
             );
             $this->is_same=0;
             Auth::guard('student')->user()->update(['current_step' =>4]);
-            $this->dispatch('alert',type:'success',message:'Step 3 : Student Current And Permanent Address Saved Successfully !!');  
+            $this->dispatch('alert',type:'success',message:'Step 3 : Student Current And Permanent Address Saved Successfully !!');
         }
         $this->current_step = 4;
     }
 
     public function choose_course_form()
-    {   
+    {
         $this->validate();
         Auth::guard('student')->user()->update(['patternclass_id'=>$this->pattern_class_id ,'current_step' =>5]);
         $this->dispatch('alert',type:'success',message:'Step 4 : New Course Saved Successfully !!');
@@ -522,45 +524,45 @@ class MultiStepStudentProfile extends Component
             $student_previous_exam-> percentage = $this->percentage;
         }
         $student_previous_exam->save();
-        $this->dispatch('alert',type:'success',message:'Previous Education Added Successfully !!');  
+        $this->dispatch('alert',type:'success',message:'Previous Education Added Successfully !!');
         $this->reset(['boarduniversity_id','educationalcourse_id','passout_year', 'passout_month','grade','seat_number','is_cgpa', 'cgpa','obtained_marks','total_marks', 'percentage']);
     }
     public function previous_exam_form()
-    {   
+    {
        $count= Studentpreviousexam::where('student_id',Auth::guard('student')->user()->id)->count();
         if($count >0)
         {
             Auth::guard('student')->user()->update(['current_step' =>6]);
-            $this->dispatch('alert',type:'success',message:'Step 5 : Student Previous Education Saved Successfully !!');  
+            $this->dispatch('alert',type:'success',message:'Step 5 : Student Previous Education Saved Successfully !!');
             $this->current_step = 6;
         }else
         {
-            $this->dispatch('alert',type:'info',message:'Please add at least one previous education. !!');  
+            $this->dispatch('alert',type:'info',message:'Please Add At Least One Previous Education. !!');
+            $this->add_previous_exam_form();
         }
     }
-    
+
     public function delete_pre_edu(Studentpreviousexam $student_previous_exam)
-    { 
+    {
         $student_previous_exam->delete();
-    }  
+    }
 
     public function confirm_form()
-    {  
-        $this->validate();
+    {
         Auth::guard('student')->user()->update(['is_profile_complete'=>1 ,'current_step' =>6]);
         $this->reset();
         $this->dispatch('alert',type:'success',message:'Student Profile Completed Successfully !!');
         $this->redirect('/student/dashboard',navigate:true);
     }
-    
+
     public function back()
-    {   
+    {
         $this->feach();
         $this->current_step--;
     }
 
     public function mount()
-    {   
+    {
         if(Auth::guard('student')->user()->is_profile_complete===1)
         {
             return $this->redirect('/student/dashboard',navigate:true);
@@ -576,10 +578,10 @@ class MultiStepStudentProfile extends Component
     {
         $student=Auth::guard('student')->user();
         if($student)
-        {   
+        {
             $this->pattern_class_id=$student->patternclass_id;
             if($pcid=Patternclass::find($student->patternclass_id))
-            {   
+            {
                 $pid=$pcid->pattern->id;
                 if($pid)
                 {
@@ -613,13 +615,13 @@ class MultiStepStudentProfile extends Component
                     $this->can_update=1;
                 }
             }
-    
+
             $student_addres_1= Studentaddress::where('student_id',$student->id)->where('address_type',1)->first();
             if($student_addres_1)
-            {   
+            {
                 $taluka_1=Taluka::find($student_addres_1->taluka_id);
                 if($taluka_1)
-                {   
+                {
                     $this->country_id=$taluka_1->district->state->country->id;
                     $this->state_id=$taluka_1->district->state->id;
                     $this->district_id=$taluka_1->district->id;
@@ -629,10 +631,10 @@ class MultiStepStudentProfile extends Component
                 $this->village=$student_addres_1->village_name;
                 $this->address=$student_addres_1->address;
             }
-    
+
             $student_addres_2= Studentaddress::where('student_id',$student->id)->where('address_type',2)->first();
             if($student_addres_2)
-            {   
+            {
                 $taluka_2=Taluka::find($student_addres_2->taluka_id);
                 if($taluka_2)
                 {
@@ -649,8 +651,8 @@ class MultiStepStudentProfile extends Component
     }
 
     public function render()
-    {   
-       
+    {
+
         if($this->current_step==1)
         {
             $this->genders=Gendermaster::select('id','gender','gender_shortform')->where('is_active',1)->get();
@@ -675,19 +677,23 @@ class MultiStepStudentProfile extends Component
         }
 
         if($this->current_step==4)
-        {   
+        {
             $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
             $this->pattern_classes=Patternclass::select('id','class_id')->where('pattern_id', $this->pattern_id)->get();
         }
 
         if($this->current_step==5)
-        {   
+        {
             $this->pre_eductions=Studentpreviousexam::where('student_id',Auth::guard('student')->user()->id)->get();
             $this->educationalcourses=Educationalcourse::select('id','course_name')->where('is_active',1)->get();
             $this->boarduniversities=Boarduniversity::select('id','boarduniversity_name')->where('is_active',1)->get();
             $this->passoutyears=Previousyear::select('id','year_name')->where('is_active',1)->get();
             $this->passoutmonths=Month::select('id','month_name')->where('is_active',1)->get();
             $this->grades=Grade::select('id','grade_name')->where('is_active',1)->get();
+        }
+        if($this->current_step==6)
+        {
+            $this->pre_eductions=Studentpreviousexam::where('student_id',Auth::guard('student')->user()->id)->get();
         }
 
 
