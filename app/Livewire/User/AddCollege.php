@@ -20,7 +20,6 @@ class AddCollege extends Component
     public $college_email;
     public $college_contact_no;
     public $college_logo_path;
-    public $sign_photo_path;
     public $sanstha_id;
     public $sansthas;
     public $university_id;
@@ -59,6 +58,7 @@ class AddCollege extends Component
             $college->college_logo_path = 'storage/' . $path . $fileName;
             $this->reset('college_logo_path');
         }
+        
         $college->college_name= $this->college_name;
         $college->college_address=  $this->college_address;
         $college->college_website_url=  $this->college_website_url;

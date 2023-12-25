@@ -34,14 +34,15 @@
                         {{-- for edit --}}
                         <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('user.edit',$item->id)" :text="'Edit'" />
                         {{-- for  delete --}}
-                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('user.delete', $item->id)" :text="'Delete'" /> 
+                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" href="javascript:void(0)" wire:click="deleteCollege({{$item['id']}})" :text="'Delete'" />
                     <!-- ... -->
                 </tr>
             @endforeach
             <!-- ... -->
         @endslot
-
+  
         </x-table>
+      
     </div>
 
 </div>

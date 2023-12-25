@@ -82,8 +82,6 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
     //Edit College
     Route::get('/edit/{id}',Edit::class)->name('edit');
 
-    //delete College
-    Route::get('/delete/{id}',DeleteCollege::class)->name('delete');
 
 
 });
