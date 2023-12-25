@@ -2,6 +2,8 @@
 
 use Livewire\Livewire;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Student\StudentDashboard;
+use App\Livewire\Student\Profile\MultiStepStudentProfile;
 
 // Livewire Update Route
 Livewire::setUpdateRoute(function ($handle) {
@@ -48,11 +50,10 @@ Route::middleware(['guest'])->group(function () {
 Route::prefix('student')->name('student.')->middleware(['auth:student','is_student','is_studentverified'])->group(function () {
 
     // Student Dashboard
-    Route::get('/dashboard', function () {
-        return view('student.student-dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard',StudentDashboard::class)->name('dashboard');
 
-
+    // Student Profile
+    Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
 
 });
 
@@ -72,7 +73,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
 
 
 // Auth Faculty Routes
-Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified:faculty.verification.notice'])->group(function () {
+Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty'])->group(function () {
 
     // Faculty Dashboard
     Route::get('dashboard', function () {

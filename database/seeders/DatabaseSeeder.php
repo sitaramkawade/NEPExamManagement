@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\GradeSeeder;
+use Database\Seeders\LoginSeeder;
+use Database\Seeders\MonthSeeder;
+use Database\Seeders\PreviousYearSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +17,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            LoginSeeder::class,
+            GradeSeeder::class,
+            PreviousYearSeeder::class,
+            MonthSeeder::class,
             SansthaSeeder::class,
             AcademicyearSeeder::class,
             ProgrammeSeeder::class,
