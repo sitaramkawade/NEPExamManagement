@@ -20,10 +20,12 @@ class District extends Model
       
         
     ];
+
     public function talukas():HasMany
     {
-    return $this->hasMany(Taluka::class,'district_id','id');
+        return $this->hasMany(Taluka::class,'district_id','id');
     }
+
     public function state(): BelongsTo
     {
         return $this->belongsTo(State::class, 'state_id', 'id');
