@@ -2,6 +2,8 @@
 
 namespace App\Livewire\User;
 
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\College;
@@ -20,6 +22,7 @@ class Edit extends Component
     public $college_email;
     public $college_contact_no;
     public $college_logo_path;
+    public $college_logo_path_old;
     public $sanstha_id;
     public $sansthas;
     public $university_id;
@@ -36,7 +39,7 @@ class Edit extends Component
             'college_website_url' => ['required','string', 'max:255',],
             'college_email' => ['required','email', 'string',],
             'college_contact_no' => ['required','numeric','digits:10'],
-            'college_logo_path' => ['required',],
+            'college_logo_path_old' => ['required',],
             'sanstha_id' => ['required',],
             'university_id' => ['required',],
             'status' => ['required',],
@@ -56,7 +59,7 @@ class Edit extends Component
          $this->college_address=null;
          $this->college_contact_no=null;
          $this->college_website_url=null;
-         $this->college_logo_path=null;
+         $this->college_logo_path_old=null;
          $this->sanstha_id=null;
          $this->university_id=null;
          $this->status=null;
@@ -99,7 +102,7 @@ class Edit extends Component
             $this->college_email = $college->college_email;
             $this->college_contact_no = $college->college_contact_no;
             $this->college_website_url = $college->college_website_url;
-            $this->college_logo_path = $college->college_logo_path;
+            $this->college_logo_path_old = $college->college_logo_path;
             $this->college_address = $college->college_address;
             $this->sanstha_id = $college->sanstha_id;
             $this->university_id = $college->university_id;
@@ -116,19 +119,21 @@ class Edit extends Component
           
             $college->update([
                 
-
+                
                 'college_name' => $this->college_name,
                 'college_email' => $this->college_email,
                 'college_address' => $this->college_address,
                 'college_contact_no' => $this->college_contact_no,
                 'college_website_url' => $this->college_website_url,
                 'college_logo_path' => $this->college_logo_path,
+            
                 'sanstha_id' => $this->sanstha_id,
                 'university_id' => $this->university_id,
                 'status' => $this->status,
-               
-                
+                     
             ]);
+          
+
             $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
             return $this->redirect('/user/view_college',navigate:true);
            

@@ -47,18 +47,7 @@ class AddCollege extends Component
 
         $college= new College;
 
-        if ($this->college_logo_path) {
-            if ($college->college_logo_path) {
-                File::delete($college->college_logo_path);
-            }
-            $path = 'user/profile/photo/';
-            $fileName = 'user-' . time(). '.' . $this->college_logo_path->getClientOriginalExtension();
-            $this->college_logo_path->storeAs($path, $fileName, 'public');
-          
-            $college->college_logo_path = 'storage/' . $path . $fileName;
-            $this->reset('college_logo_path');
-        }
-        
+       
         $college->college_name= $this->college_name;
         $college->college_address=  $this->college_address;
         $college->college_website_url=  $this->college_website_url;
@@ -68,6 +57,20 @@ class AddCollege extends Component
         $college->sanstha_id= $this->sanstha_id;
         $college->university_id= $this->university_id;
         $college->status= $this->status;
+
+        if ($this->college_logo_path) {
+           
+            $path = 'user/profile/photo/';
+            
+            $fileName = 'user-' . time(). '.' . $this->college_logo_path->getClientOriginalExtension();
+            
+           
+            $this->college_logo_path->storeAs($path, $fileName, 'public');
+          
+            $college->college_logo_path = 'storage/' . $path . $fileName;
+            $this->reset('college_logo_path');
+        }
+        
         $college->save();
 
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );

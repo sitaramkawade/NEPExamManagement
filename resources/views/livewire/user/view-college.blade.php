@@ -22,19 +22,19 @@
                 </tr>
             @endslot
             @slot('body')
-            @foreach ($colleges as $key => $item)
+            @foreach ($colleges as $key => $college)
                 <tr class="text-center odd:bg-white even:bg-slate-50">
                     <td>{{ $key + 1 }}</td>
-                    <td>{{$item->id}}</td>
-                    <td>{{ $item->college_name}}</td>
-                    <td>{{ $item->college_email}}</td>
-                    <td>{{ $item->college_address }}</td>
-                    <td>{{ $item->college_contact_no}}</td>
+                    <td>{{ $college->id }}</td>
+                    <td>{{ $college->college_name }}</td>
+                    <td>{{ $college->college_email }}</td>
+                    <td>{{ $college->college_address }}</td>
+                    <td>{{ $college->college_contact_no}}</td>
                     <td class="flex justify-center lg:justify-center md:justify-center space-x-1">
                         {{-- for edit --}}
-                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('user.edit',$item->id)" :text="'Edit'" />
+                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('user.edit',$college->id)" :text="'Edit'" />
                         {{-- for  delete --}}
-                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" href="javascript:void(0)" wire:click="deleteCollege({{$item['id']}})" :text="'Delete'" />
+                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" href="javascript:void(0)" wire:click="deleteCollege({{$college['id']}})" :text="'Delete'" />
                     <!-- ... -->
                 </tr>
             @endforeach
@@ -42,7 +42,9 @@
         @endslot
   
         </x-table>
-      
+     
+        {{ $colleges->links() }}
+    
     </div>
 
 </div>

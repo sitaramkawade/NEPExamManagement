@@ -10,18 +10,18 @@ class ViewCollege extends Component
 {
     use WithPagination;
     
-    public $colleges = null;
+
 
     public function mount()
     {
-        $this->colleges = College::all();
+      
     }
 
     public function render()
     {
-      
-        return view('livewire.user.view-college')->extends('layouts.user')->section('user');
-        $this->colleges = College::paginate(10);
+        $colleges = College::paginate(10);
+        return view('livewire.user.view-college',compact('colleges'))->extends('layouts.user')->section('user');
+        
     }
 
     public function deleteCollege($id)

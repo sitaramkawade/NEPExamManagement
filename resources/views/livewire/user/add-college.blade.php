@@ -99,10 +99,11 @@
                                             </div>
                                             <label class="block p-2">
                                                 <span class="sr-only">Choose profile photo</span>
-                                                <x-text-input id="college_logo_path" wire:model="college_logo_path" name="college_logo_path" accept="image/png, image/jpeg , image/jpg" :value="old('college_logo_path',$college_logo_path)" autofocus autocomplete="college_logo_path" type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
+                                                <x-text-input id="college_logo_path" wire:model.live="college_logo_path" name="college_logo_path" accept="image/png, image/jpeg , image/jpg" :value="old('college_logo_path',$college_logo_path)" autofocus autocomplete="college_logo_path" type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
                                                 <x-input-error :messages="$errors->get('college_logo_path')" class="mt-2" />
                                             </label>
-                                            <x-input-label class="py-2" for="college_logo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
+                                            <x-input-label class="py-2" wire:loading.remove wire:target="college_logo_path" for="college_logo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
+                                            <x-input-label class="py-2" wire:loading wire:target="college_logo_path"  for="college_logo_path" :value="__('Uploading...')" />
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +115,7 @@
 
                     <div class="h-20 p-2">
                         @if ($current_step===$steps)
-                        <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                        <button type="submit" wire:target="college_logo_path" wire:loading.attr="disable" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
                             <span class="mx-2"> Add</span>
                         </button>
                         @endif
