@@ -661,7 +661,8 @@ class MultiStepStudentProfile extends Component
         }
 
         if($this->current_step==3)
-        {
+        {   
+            
             $this->countries = Country::select('id','country_name')->get();
             $this->states = State::select('id','state_name')->where('country_id', $this->country_id)->get();
             $this->districts = District::select('id','district_name')->where('state_id', $this->state_id)->get();

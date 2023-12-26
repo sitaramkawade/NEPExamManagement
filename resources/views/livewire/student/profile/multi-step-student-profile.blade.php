@@ -131,29 +131,7 @@
                                     <x-input-error :messages="$errors->get('is_handicap')" class="mt-2" />
                                 </div>
                             </div>
-                            <div class="h-20 p-2">
-                                @if ($current_step!==1)
-                                    <button wire:click="back()" type="button"class=" float-start  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
-                                        </svg>
-                                        <span class="mx-2">Back</span>
-                                    </button>
-                                @endif
-                                @if ($current_step < $steps)
-                                    <button  type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <span class="mx-2"> Save & Next</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
-                                        </svg>
-                                    </button>
-                                @endif
-                                @if ($current_step===$steps)
-                                    <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <span class="mx-2"> Submit</span>
-                                    </button>
-                                @endif
-                            </div>
+                            <x-multi-step-btn :current_step="$current_step" :steps="$steps"/>
                         </div>
                     </form>
                 </section>
@@ -214,29 +192,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="h-20 p-2">
-                                @if ($current_step!==1)
-                                    <button wire:click="back()" type="button"  class=" float-start  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
-                                        </svg>
-                                        <span class="mx-2">Back</span>
-                                    </button>
-                                @endif
-                                @if ($current_step < $steps)
-                                    <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <span class="mx-2"> Save & Next</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
-                                        </svg>
-                                    </button>
-                                @endif
-                                @if ($current_step===$steps)
-                                    <button type="submit"  class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <span class="mx-2"> Submit</span>
-                                    </button>
-                                @endif
-                            </div>
+                            <x-multi-step-btn :current_step="$current_step" :steps="$steps"/>
                         </div>
                     </form>
                 </section>
@@ -399,29 +355,7 @@
                                 </div>
                             </div>
                             {{-- @endif --}}
-                            <div class="h-20 p-2">
-                                @if ($current_step!==1)
-                                    <button wire:click="back()" type="button" class=" float-start  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"  stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
-                                        </svg>
-                                        <span class="mx-2">Back</span>
-                                    </button>
-                                @endif
-                                @if ($current_step < $steps)
-                                    <button type="submit"class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <span class="mx-2"> Save & Next</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"  d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
-                                        </svg>
-                                    </button>
-                                @endif
-                                @if ($current_step===$steps)
-                                    <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <span class="mx-2"> Submit</span>
-                                    </button>
-                                @endif
-                            </div>
+                            <x-multi-step-btn :current_step="$current_step" :steps="$steps"/>
                         </div>
                     </form>
                 </section>
@@ -460,29 +394,7 @@
                                     <x-input-error :messages="$errors->get('pattern_class_id')" class="mt-2" />
                                 </div>
                             </div>
-                            <div class="h-20 p-2">
-                                @if ($current_step!==1)
-                                    <button wire:click="back()" type="button" class=" float-start  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"  stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
-                                        </svg>
-                                        <span class="mx-2">Back</span>
-                                    </button>
-                                @endif
-                                @if ($current_step < $steps)
-                                    <button type="submit"class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <span class="mx-2"> Save & Next</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"  d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
-                                        </svg>
-                                    </button>
-                                @endif
-                                @if ($current_step===$steps)
-                                    <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                        <span class="mx-2"> Submit</span>
-                                    </button>
-                                @endif
-                            </div>
+                            <x-multi-step-btn :current_step="$current_step" :steps="$steps"/>
                         </div>
                     </form>
                 </section>
@@ -596,7 +508,7 @@
                             </div>
                             <div class="h-20 p-2">
                                 @if ($current_step!==1)
-                                    <button wire:click="back()" type="button" class=" float-start  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                                    <button wire:loading.attr="disabled" wire:click="back()" type="button" class=" float-start  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"  stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
                                         </svg>
@@ -604,59 +516,55 @@
                                     </button>
                                 @endif
                                 @if ($current_step < $steps)
-                                    <button type="button" wire:click='previous_exam_form()' class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                                    <button wire:loading.attr="disabled" type="button" wire:click='previous_exam_form()' class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
                                         <span class="mx-2"> Save & Next</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"  d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
                                         </svg>
                                     </button>
                                 @endif
-                                <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                                <button wire:loading.attr="disabled" type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
                                     <span class="mx-2">Add</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                     </svg>
                                 </button>
                                 @if ($current_step===$steps)
-                                    <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                                    <button wire:loading.attr="disabled" type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
                                         <span class="mx-2"> Submit</span>
                                     </button>
                                 @endif
                             </div>
                             {{-- List Of Previous Eductions --}}
                             <section>
-                                <x-table class="p-1 border-2 border-black bg-black">
-                                    @slot('head')
-                                        <tr class="text-center">
-                                            <th>SRNO</th>
-                                            <th>Board / University</th>
-                                            <th>Course Name</th>
-                                            <th>Seat No</th>
-                                            <th>Passout Month - Year</th>
-                                            <th>Percentage / CGPA</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    @endslot
-                                    @slot('body')
-                                        @foreach ($pre_eductions as $key => $item)
-                                            <tr class="text-center odd:bg-white even:bg-slate-50">
-                                                <td>{{ $key + 1 }}</td>
-                                                <td>{{ $item->boarduniversity->boarduniversity_name }}</td>
-                                                <td>{{ $item->educationalcourse->course_name }}</td>
-                                                <td>{{ $item->seat_number }}</td>
-                                                <td> {{ $item->passing_month }} - {{ date(strtotime($item->passing_year))??" " }}</td>
-                                                <td>{{ $item->percentage??"0.00" }} % / {{ $item->cgpa??'0.00' }}</td>
-                                                <td class="flex justify-center lg:justify-center md:justify-center space-x-1">
-                                                    <span class="cursor-pointer" wire:click='delete_pre_edu({{ $item->id }})'>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                                                        </svg>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endslot
-                                </x-table>
+                                <x-table.table>
+                                    <x-table.thead>
+                                      <x-table.tr>
+                                        <x-table.th>No </x-table.th>
+                                        <x-table.th>Board / University </x-table.th>
+                                        <x-table.th>Course Name </x-table.th>
+                                        <x-table.th>Seat No</x-table.th>
+                                        <x-table.th>Passout Month - Year</x-table.th>
+                                        <x-table.th>Percentage / CGPA</x-table.th>
+                                        <x-table.th>Action</x-table.th>
+                                      </x-table.tr>
+                                    </x-table.thead>
+                                    <x-table.tbody>
+                                      @foreach ($pre_eductions as $key => $item)
+                                        <x-table.tr wire:key="{{ $item->id }}">
+                                          <x-table.td>{{ $key+1 }}</x-table.td>
+                                          <x-table.td>{{ $item->boarduniversity->boarduniversity_name }} </x-table.td>
+                                          <x-table.td> {{ $item->educationalcourse->course_name }} </x-table.td>
+                                          <x-table.td> {{ $item->seat_number }} </x-table.td>
+                                          <x-table.td> {{ $item->passing_month }} - {{ date(strtotime($item->passing_year))??" " }} </x-table.td>
+                                          <x-table.td> {{$item->percentage??"0.00" }} % / {{ $item->cgpa??'0.00' }} </x-table.td>
+                                          <x-table.td> 
+                                            <x-table.delete  wire:click="delete_pre_edu({{  $item->id }})"/>
+                                          </x-table.td>
+                                        </x-table.tr>
+                                      @endforeach
+                                    </x-table.tbody>
+                                </x-table.table>
                             </section>
                         </div>
                     </form>
@@ -901,46 +809,32 @@
                                 Previous Exam Details
                             </div>
                             <div class="p-2">
-                                <x-table class="overflow-hidden bg-white border shadow dark:border-primary-darker dark:bg-darker rounded">
-                                    @slot('head')
-                                        <tr class="text-center">
-                                        <th>SRNO</th>
-                                        <th>Board / University</th>
-                                        <th>Course Name</th>
-                                        <th>Seat No</th>
-                                        <th>Passout Month - Year</th>
-                                        <th>Percentage / CGPA</th>
-                                        </tr>
-                                    @endslot
-                                    @slot('body')
-                                        @foreach ($pre_eductions as $key => $item)
-                                            <tr class="text-center odd:bg-white even:bg-slate-50">
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $item->boarduniversity->boarduniversity_name }}</td>
-                                            <td>{{ $item->educationalcourse->course_name }}</td>
-                                            <td>{{ $item->seat_number }}</td>
-                                            <td> {{ $item->passing_month }} - {{ date(strtotime($item->passing_year))??" " }}</td>
-                                            <td>{{ $item->percentage??"0.00" }} % / {{ $item->cgpa??'0.00' }}</td>
-                                            </tr>
-                                        @endforeach
-                                    @endslot
-                                </x-table>
+                                <x-table.table>
+                                    <x-table.thead>
+                                      <x-table.tr>
+                                        <x-table.th>No </x-table.th>
+                                        <x-table.th>Board / University </x-table.th>
+                                        <x-table.th>Course Name </x-table.th>
+                                        <x-table.th>Seat No</x-table.th>
+                                        <x-table.th>Passout Month - Year</x-table.th>
+                                        <x-table.th>Percentage / CGPA</x-table.th>
+                                      </x-table.tr>
+                                    </x-table.thead>
+                                    <x-table.tbody>
+                                      @foreach ($pre_eductions as $key => $item)
+                                        <x-table.tr wire:key="{{ $item->id }}">
+                                          <x-table.td>{{ $key+1 }}</x-table.td>
+                                          <x-table.td>{{ $item->boarduniversity->boarduniversity_name }} </x-table.td>
+                                          <x-table.td> {{ $item->educationalcourse->course_name }} </x-table.td>
+                                          <x-table.td> {{ $item->seat_number }} </x-table.td>
+                                          <x-table.td> {{ $item->passing_month }} - {{ date(strtotime($item->passing_year))??" " }} </x-table.td>
+                                          <x-table.td> {{$item->percentage??"0.00" }} % / {{ $item->cgpa??'0.00' }} </x-table.td>
+                                        </x-table.tr>
+                                      @endforeach
+                                    </x-table.tbody>
+                                </x-table.table>
                             </div>
-                        </div>
-                        <div class="h-20 p-2">
-                            @if ($current_step!==1)
-                            <button wire:click="back()" type="button" class=" float-start  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"  stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
-                                </svg>
-                                <span class="mx-2">Back</span>
-                            </button>
-                            @endif
-                            @if ($current_step===$steps)
-                            <button type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                <span class="mx-2"> Confirm & Submit</span>
-                            </button>
-                            @endif
+                            <x-multi-step-btn :current_step="$current_step" :steps="$steps"/>
                         </div>
                     </form>
                 </section>
