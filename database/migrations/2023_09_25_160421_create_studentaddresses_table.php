@@ -25,9 +25,9 @@ return new class extends Migration
         $table->timestamps();
         $table->foreign('student_id')->references('id')->on('students');
         $table->foreign('taluka_id')->references('id')->on('talukas');
-        // $table->bigInteger('addresstype_id')->unsigned()->nullable();
-        // $table->foreign('addresstype_id')->references('id')->on('addresstypes');    
-        // $table->unique(['student_id', 'addresstype_id']); //  [ 'column1', 'column2']
+        $table->bigInteger('addresstype_id')->unsigned()->nullable();
+        $table->foreign('addresstype_id')->references('id')->on('addresstypes');    
+        $table->unique(['student_id', 'addresstype_id']); //  [ 'column1', 'column2']
         });
     }
 

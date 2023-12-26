@@ -3,6 +3,7 @@
 use Livewire\Livewire;
 use App\Livewire\Faculty\EditFaculty;
 use App\Livewire\Faculty\ViewFaculty;
+use App\Livewire\DataTable;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Faculty\DeleteFaculty;
 use App\Livewire\Faculty\UpdateProfile;
@@ -50,9 +51,7 @@ Route::middleware(['guest'])->group(function () {
     })->name('faculty');
 
     // RND Page
-    Route::get('/temp', function () {
-        return view('temp');
-    });
+    Route::get('/temp',DataTable::class);
 
 });
 
