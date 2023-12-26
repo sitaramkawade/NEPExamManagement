@@ -1,170 +1,155 @@
 <div>
+    <section>
 
-    <div>
+        <form wire:submit="add()" method="post" action="" id="myForm">
+            <x-container heading="Faculty Registration">
+                <x-slot name="slot">
+                    <x-container-btn class="bg-green-500 hover:bg-green-600" href="{{ route('faculty.view.faculty') }}">
+                        <x-slot name="svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                            </svg>
+                        </x-slot>
+                        <x-slot name="btntext">
+                            Back
+                        </x-slot>
+                    </x-container-btn>
+                </x-slot>
+                <x-slot name="content">
 
-        <div class="mx-auto max-w-7xl sm:px-6 lg:p-2">
-            <section>
-                <form wire:submit="add()">
-                    <div class="m-2 pb-3 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
-                        <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
-                            Faculty Registration
+                    <div class="grid grid-cols-1 md:grid-cols-3">
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="prefix" :value="__('Prefix')" />
+                            <x-input-select id="prefix" wire:model.live="prefix" name="prefix" class="text-center @error('prefix') is-invalid @enderror w-full mt-1" :value="old('prefix', $prefix)" required autofocus autocomplete="prefix">
+                                <x-select-option class="text-start" hidden> -- Select Prefix -- </x-select-option>
+                                @foreach ($prefixes as $prefix)
+                                    <x-select-option wire:key="{{ $prefix->id }}" value="{{ $prefix->prefix_shortform }}" class="text-start">{{ $prefix->prefix_shortform }} - {{ $prefix->prefix }}</x-select-option>
+                                @endforeach
+                            </x-input-select>
+                            <x-input-error :messages="$errors->get('prefix')" class="mt-2" />
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3">
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="prefix" :value="__('Prefix')" />
-                                <x-input-select id="prefix" wire:model.live="prefix" name="prefix" class="text-center @error('prefix') is-invalid @enderror w-full mt-1" :value="old('prefix', $prefix)" required autofocus autocomplete="prefix">
-                                    <x-select-option class="text-start" hidden> -- Select Prefix -- </x-select-option>
-                                    @foreach ($prefixes as $prefix)
-                                        <x-select-option wire:key="{{ $prefix->id }}" value="{{ $prefix->prefix_shortform }}" class="text-start">{{ $prefix->prefix_shortform }} - {{ $prefix->prefix }}</x-select-option>
-                                    @endforeach
-                                </x-input-select>
-                                <x-input-error :messages="$errors->get('prefix')" class="mt-2" />
-                            </div>
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="faculty_name" :value="__('Faculty Name')" />
-                                <x-text-input id="faculty_name" type="text" wire:model.live="faculty_name" name="faculty_name" placeholder="Faculty Name" class=" @error('faculty_name') is-invalid @enderror w-full mt-1" :value="old('faculty_name', $faculty_name)" required autofocus autocomplete="faculty_name" />
-                                <x-input-error :messages="$errors->get('faculty_name')" class="mt-2" />
-                            </div>
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="email" :value="__('Email')" />
-                                <x-text-input id="email" type="text" wire:model.live="email" name="email" placeholder="Email" class=" @error('email') is-invalid @enderror w-full mt-1" :value="old('email', $email)" required autofocus autocomplete="email" />
-                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                            </div>
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="faculty_name" :value="__('Faculty Name')" />
+                            <x-text-input id="faculty_name" type="text" wire:model="faculty_name" name="faculty_name" placeholder="Faculty Name" class=" @error('faculty_name') is-invalid @enderror w-full mt-1" :value="old('faculty_name', $faculty_name)" required autofocus autocomplete="faculty_name" />
+                            <x-input-error :messages="$errors->get('faculty_name')" class="mt-2" />
                         </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3">
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="mobile_no" :value="__('Mobile Number')" />
-                                <x-text-input id="mobile_no" type="number" wire:model.live="mobile_no" name="mobile_no" placeholder="Mobile Number" class=" @error('mobile_no') is-invalid @enderror w-full mt-1" :value="old('mobile_no', $mobile_no)" required autofocus autocomplete="mobile_no" />
-                                <x-input-error :messages="$errors->get('mobile_no')" class="mt-2" />
-                            </div>
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="department_id" :value="__('Department')" />
-                                <x-input-select id="department_id" wire:model.live="department_id" name="department_id" class="text-center @error('department_id') is-invalid @enderror w-full mt-1" :value="old('department_id', $department_id)" required autofocus autocomplete="department_id">
-                                    <x-select-option class="text-start" hidden> -- Select Department -- </x-select-option>
-                                    @foreach ($departments as $department)
-                                        <x-select-option wire:key="{{ $department->id }}" value="{{ $department->id }}" class="text-start">{{ $department->dept_name }}</x-select-option>
-                                    @endforeach
-                                </x-input-select>
-                                <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
-                            </div>
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="role_id" :value="__('Role')" />
-                                <x-input-select id="role_id" wire:model.live="role_id" name="role_id" class="text-center @error('role_id') is-invalid @enderror w-full mt-1" :value="old('role_id', $role_id)" required autofocus autocomplete="role_id">
-                                    <x-select-option class="text-start" hidden> -- Select Role -- </x-select-option>
-                                    @foreach ($roles as $role)
-                                        <x-select-option wire:key="{{ $role->id }}" value="{{ $role->id }}" class="text-start">{{ $role->role_name }}</x-select-option>
-                                    @endforeach
-                                </x-input-select>
-                                <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-1">
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="college_id" :value="__('College')" />
-                                <x-input-select id="college_id" wire:model.live="college_id" name="college_id" class="text-center @error('college_id') is-invalid @enderror w-full mt-1" :value="old('college_id', $college_id)" required autofocus autocomplete="college_id">
-                                    <x-select-option class="text-start" hidden> -- Select College -- </x-select-option>
-                                    @foreach ($colleges as $college)
-                                        <x-select-option wire:key="{{ $college->id }}" value="{{ $college->id }}" class="text-start">{{ $college->college_name }}</x-select-option>
-                                    @endforeach
-                                </x-input-select>
-                                <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
-                            </div>
-                        </div>
-
-                        {{-- <div class="grid grid-cols-1 md:grid-cols-2">
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="active" :value="__('Active')" />
-                                <x-text-input id="active" type="text" wire:model.live="active" name="active" placeholder="Active" class=" @error('active') is-invalid @enderror w-full mt-1" :value="old('active', $active)" required autofocus autocomplete="active" />
-                                <x-input-error :messages="$errors->get('active')" class="mt-2" />
-                            </div>
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="faculty_verified" :value="__('Faculty Verified')" />
-                                <x-text-input id="faculty_verified" type="text" wire:model.live="faculty_verified" name="faculty_verified" placeholder="Faculty Verified" class=" @error('faculty_verified') is-invalid @enderror w-full mt-1" :value="old('faculty_verified', $faculty_verified)" required autofocus autocomplete="faculty_verified" />
-                                <x-input-error :messages="$errors->get('faculty_verified')" class="mt-2" />
-                            </div>
-                        </div> --}}
-                    </div>
-                    <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
-                        <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
-                            Faculty Account Details
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3">
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="account_no" :value="__('Account Number')" />
-                                <x-text-input id="account_no" type="number" wire:model.live="account_no" name="account_no" placeholder="Account Number" class=" @error('account_no') is-invalid @enderror w-full mt-1" :value="old('account_no', $account_no)" required autofocus autocomplete="account_no" />
-                                <x-input-error :messages="$errors->get('account_no')" class="mt-2" />
-                            </div>
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="bank_address" :value="__('Bank Address')" />
-                                <x-text-input id="bank_address" type="text" wire:model.live="bank_address" name="bank_address" placeholder="Bank Address" class=" @error('bank_address') is-invalid @enderror w-full mt-1" :value="old('bank_address', $bank_address)" required autofocus autocomplete="bank_address" />
-                                <x-input-error :messages="$errors->get('bank_address')" class="mt-2" />
-                            </div>
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="bank_name" :value="__('Bank Name')" />
-                                <x-input-select id="bank_name" wire:model.live="bank_name" name="bank_name" class="text-center @error('bank_name') is-invalid @enderror w-full mt-1" :value="old('bank_name', $bank_name)" required autofocus autocomplete="bank_name">
-                                    <x-select-option class="text-start" hidden> -- Select Bank -- </x-select-option>
-                                    @foreach ($banknames as $bank)
-                                        <x-select-option wire:key="{{ $bank->id }}" value="{{ $bank->bank_name }}" class="text-start">{{ $bank->bank_name }}</x-select-option>
-                                    @endforeach
-                                </x-input-select>
-                                <x-input-error :messages="$errors->get('bank_name')" class="mt-2" />
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3">
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="branch_name" :value="__('Branch Name')" />
-                                <x-text-input id="branch_name" type="text" wire:model.live="branch_name" name="branch_name" placeholder="Branch Name" class=" @error('branch_name') is-invalid @enderror w-full mt-1" :value="old('branch_name', $branch_name)" required autofocus autocomplete="branch_name" />
-                                <x-input-error :messages="$errors->get('branch_name')" class="mt-2" />
-                            </div>
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="branch_code" :value="__('Branch Code')" />
-                                <x-text-input id="branch_code" type="number" wire:model.live="branch_code" name="branch_code" placeholder="Branch Code" class=" @error('branch_code') is-invalid @enderror w-full mt-1" :value="old('branch_code', $branch_code)" required autofocus autocomplete="branch_code" />
-                                <x-input-error :messages="$errors->get('branch_code')" class="mt-2" />
-                            </div>
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="ifsc_code" :value="__('IFSC Code')" />
-                                <x-text-input id="ifsc_code" type="text" wire:model.live="ifsc_code" name="ifsc_code" placeholder="IFSC Code" class=" @error('ifsc_code') is-invalid @enderror w-full mt-1" :value="old('ifsc_code', $ifsc_code)" required autofocus autocomplete="ifsc_code" />
-                                <x-input-error :messages="$errors->get('ifsc_code')" class="mt-2" />
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3">
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="micr_code" :value="__('MICR Code')" />
-                                <x-text-input id="micr_code" type="number" wire:model.live="micr_code" name="micr_code" placeholder="MICR Code" class=" @error('micr_code') is-invalid @enderror w-full mt-1" :value="old('micr_code', $micr_code)" required autofocus autocomplete="micr_code" />
-                                <x-input-error :messages="$errors->get('micr_code')" class="mt-2" />
-                            </div>
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="account_type" :value="__('Account Type')" />
-                                <x-input-select id="account_type" wire:model.live="account_type" name="account_type" class="text-center @error('account_type') is-invalid @enderror w-full mt-1" :value="old('account_type', $account_type)" required autofocus autocomplete="account_type">
-                                    <x-select-option class="text-start" hidden> -- Select Account Type -- </x-select-option>
-                                    <x-select-option class="text-start" value="S">SAVINGS</x-select-option>
-                                    <x-select-option class="text-start" value="C">CURRENT</x-select-option>
-                                </x-input-select>
-                                <x-input-error :messages="$errors->get('account_type')" class="mt-2" />
-                            </div>
-                            {{-- <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="acc_verified" :value="__('Account Verified')" />
-                                <x-input-select id="acc_verified" wire:model.live="acc_verified" name="acc_verified" class="text-center @error('acc_verified') is-invalid @enderror w-full mt-1" :value="old('acc_verified', $acc_verified)" required autofocus autocomplete="acc_verified">
-                                    <x-select-option class="text-start" hidden> -- Select Account Verification -- </x-select-option>
-                                    <x-select-option class="text-start" value=1>Verified</x-select-option>
-                                    <x-select-option class="text-start" value=0>Not-verified</x-select-option>
-                                </x-input-select>
-                                <x-input-error :messages="$errors->get('acc_verified')" class="mt-2" />
-                            </div> --}}
-                        </div>
-
-                        <div class="h-20 p-2">
-                            <button type="submit" class="float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                                <span class="mx-2">Submit</span>
-                            </button>
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="email" :value="__('Email')" />
+                            <x-text-input id="email" type="text" wire:model="email" name="email" placeholder="Email" class=" @error('email') is-invalid @enderror w-full mt-1" :value="old('email', $email)" required autofocus autocomplete="email" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
                     </div>
-                </form>
-            </section>
-        </div>
-    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3">
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="mobile_no" :value="__('Mobile Number')" />
+                            <x-text-input id="mobile_no" type="number" wire:model="mobile_no" name="mobile_no" placeholder="Mobile Number" class=" @error('mobile_no') is-invalid @enderror w-full mt-1" :value="old('mobile_no', $mobile_no)" required autofocus autocomplete="mobile_no" />
+                            <x-input-error :messages="$errors->get('mobile_no')" class="mt-2" />
+                        </div>
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="department_id" :value="__('Department')" />
+                            <x-input-select id="department_id" wire:model.live="department_id" name="department_id" class="text-center @error('department_id') is-invalid @enderror w-full mt-1" :value="old('department_id', $department_id)" required autofocus autocomplete="department_id">
+                                <x-select-option class="text-start" hidden> -- Select Department -- </x-select-option>
+                                @foreach ($departments as $department)
+                                    <x-select-option wire:key="{{ $department->id }}" value="{{ $department->id }}" class="text-start">{{ $department->dept_name }}</x-select-option>
+                                @endforeach
+                            </x-input-select>
+                            <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
+                        </div>
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="role_id" :value="__('Role')" />
+                            <x-input-select id="role_id" wire:model.live="role_id" name="role_id" class="text-center @error('role_id') is-invalid @enderror w-full mt-1" :value="old('role_id', $role_id)" required autofocus autocomplete="role_id">
+                                <x-select-option class="text-start" hidden> -- Select Role -- </x-select-option>
+                                @foreach ($roles as $role)
+                                    <x-select-option wire:key="{{ $role->id }}" value="{{ $role->id }}" class="text-start">{{ $role->role_name }}</x-select-option>
+                                @endforeach
+                            </x-input-select>
+                            <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-1">
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="college_id" :value="__('College')" />
+                            <x-input-select id="college_id" wire:model.live="college_id" name="college_id" class="text-center @error('college_id') is-invalid @enderror w-full mt-1" :value="old('college_id', $college_id)" required autofocus autocomplete="college_id">
+                                <x-select-option class="text-start" hidden> -- Select College -- </x-select-option>
+                                @foreach ($colleges as $college)
+                                    <x-select-option wire:key="{{ $college->id }}" value="{{ $college->id }}" class="text-start">{{ $college->college_name }}</x-select-option>
+                                @endforeach
+                            </x-input-select>
+                            <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
+                        </div>
+                    </div>
+                </x-slot>
+            </x-container>
+
+            <x-container heading="Faculty Account Details">
+
+                <x-slot name="content">
+                    <div class="grid grid-cols-1 md:grid-cols-3">
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="account_no" :value="__('Account Number')" />
+                            <x-text-input id="account_no" type="number" wire:model="account_no" name="account_no" placeholder="Account Number" class=" @error('account_no') is-invalid @enderror w-full mt-1" :value="old('account_no', $account_no)" required autofocus autocomplete="account_no" />
+                            <x-input-error :messages="$errors->get('account_no')" class="mt-2" />
+                        </div>
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="bank_address" :value="__('Bank Address')" />
+                            <x-text-input id="bank_address" type="text" wire:model="bank_address" name="bank_address" placeholder="Bank Address" class=" @error('bank_address') is-invalid @enderror w-full mt-1" :value="old('bank_address', $bank_address)" required autofocus autocomplete="bank_address" />
+                            <x-input-error :messages="$errors->get('bank_address')" class="mt-2" />
+                        </div>
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="bank_name" :value="__('Bank Name')" />
+                            <x-input-select id="bank_name" wire:model.live="bank_name" name="bank_name" class="text-center @error('bank_name') is-invalid @enderror w-full mt-1" :value="old('bank_name', $bank_name)" required autofocus autocomplete="bank_name">
+                                <x-select-option class="text-start" hidden> -- Select Bank -- </x-select-option>
+                                @foreach ($banknames as $bank)
+                                    <x-select-option wire:key="{{ $bank->id }}" value="{{ $bank->bank_name }}" class="text-start">{{ $bank->bank_name }}</x-select-option>
+                                @endforeach
+                            </x-input-select>
+                            <x-input-error :messages="$errors->get('bank_name')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3">
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="branch_name" :value="__('Branch Name')" />
+                            <x-text-input id="branch_name" type="text" wire:model="branch_name" name="branch_name" placeholder="Branch Name" class=" @error('branch_name') is-invalid @enderror w-full mt-1" :value="old('branch_name', $branch_name)" required autofocus autocomplete="branch_name" />
+                            <x-input-error :messages="$errors->get('branch_name')" class="mt-2" />
+                        </div>
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="branch_code" :value="__('Branch Code')" />
+                            <x-text-input id="branch_code" type="number" wire:model="branch_code" name="branch_code" placeholder="Branch Code" class=" @error('branch_code') is-invalid @enderror w-full mt-1" :value="old('branch_code', $branch_code)" required autofocus autocomplete="branch_code" />
+                            <x-input-error :messages="$errors->get('branch_code')" class="mt-2" />
+                        </div>
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="ifsc_code" :value="__('IFSC Code')" />
+                            <x-text-input id="ifsc_code" type="text" wire:model="ifsc_code" name="ifsc_code" placeholder="IFSC Code" class=" @error('ifsc_code') is-invalid @enderror w-full mt-1" :value="old('ifsc_code', $ifsc_code)" required autofocus autocomplete="ifsc_code" />
+                            <x-input-error :messages="$errors->get('ifsc_code')" class="mt-2" />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3">
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="micr_code" :value="__('MICR Code')" />
+                            <x-text-input id="micr_code" type="number" wire:model="micr_code" name="micr_code" placeholder="MICR Code" class=" @error('micr_code') is-invalid @enderror w-full mt-1" :value="old('micr_code', $micr_code)" required autofocus autocomplete="micr_code" />
+                            <x-input-error :messages="$errors->get('micr_code')" class="mt-2" />
+                        </div>
+                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                            <x-input-label for="account_type" :value="__('Account Type')" />
+                            <x-input-select id="account_type" wire:model.live="account_type" name="account_type" class="text-center @error('account_type') is-invalid @enderror w-full mt-1" :value="old('account_type', $account_type)" required autofocus autocomplete="account_type">
+                                <x-select-option class="text-start" hidden> -- Select Account Type -- </x-select-option>
+                                <x-select-option class="text-start" value="S">SAVINGS</x-select-option>
+                                <x-select-option class="text-start" value="C">CURRENT</x-select-option>
+                            </x-input-select>
+                            <x-input-error :messages="$errors->get('account_type')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="flex justify-end pr-4">
+                        <x-form-btn>
+                            <x-slot name="btntext">
+                                Submit
+                            </x-slot>
+                        </x-form-btn>
+                    </div>
+                </x-slot>
+            </x-container>
+        </form>
+    </section>
+
 </div>

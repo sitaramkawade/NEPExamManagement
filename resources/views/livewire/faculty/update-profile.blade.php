@@ -2,7 +2,18 @@
     <section>
         <form wire:submit="updateProfile()" method="post" action="" id="myForm">
             <x-container heading="Personal Details">
-
+                <x-slot name="slot">
+                    <x-container-btn class="bg-green-500 hover:bg-green-600" href="{{ route('faculty.view.faculty') }}">
+                        <x-slot name="svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                            </svg>
+                        </x-slot>
+                        <x-slot name="btntext">
+                            Back
+                        </x-slot>
+                    </x-container-btn>
+                </x-slot>
                 <x-slot name="content">
                     <div class="grid grid-cols-1 md:grid-cols-3">
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -52,7 +63,7 @@
                         </div>
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                             <x-input-label for="gender" :value="__('Gender')" />
-                            <x-input-select id="gender" wire:model="gender" name="gender" class="text-center @error('gender') is-invalid @enderror w-full mt-1" :value="old('gender', $gender)" required autofocus autocomplete="gender">
+                            <x-input-select id="gender" wire:model.live="gender" name="gender" class="text-center @error('gender') is-invalid @enderror w-full mt-1" :value="old('gender', $gender)" required autofocus autocomplete="gender">
                                 <x-select-option class="text-start" hidden> -- Select Gender -- </x-select-option>
                                 @foreach ($genders as $gender)
                                     <x-select-option wire:key="{{ $gender->id }}" value="{{ $gender->gender_shortform }}" class="text-start">{{ $gender->gender }}</x-select-option>
@@ -69,7 +80,7 @@
                         </div>
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                             <x-input-label for="category" :value="__('Category')" />
-                            <x-input-select id="category" wire:model="category" name="category" class="text-center @error('category') is-invalid @enderror w-full mt-1" :value="old('category', $category)" required autofocus autocomplete="category">
+                            <x-input-select id="category" wire:model.live="category" name="category" class="text-center @error('category') is-invalid @enderror w-full mt-1" :value="old('category', $category)" required autofocus autocomplete="category">
                                 <x-select-option class="text-start" hidden> -- Select Category -- </x-select-option>
                                 @foreach ($cast_categories as $category)
                                     <x-select-option wire:key="{{ $category->id }}" value="{{ $category->caste_category }}" class="text-start">{{ $category->caste_category }}</x-select-option>
@@ -122,7 +133,9 @@
             </x-container>
 
             <x-container heading="Working Details">
+                <x-slot name="collapse">
 
+                </x-slot>
                 <x-slot name="content">
                     <div class="grid grid-cols-1 md:grid-cols-3">
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">

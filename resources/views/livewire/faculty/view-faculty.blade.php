@@ -25,38 +25,7 @@
             </x-container-btn>
         </x-slot>
         <x-slot name="content">
-            <x-table>
-                <x-slot name="head">
-                    <tr class="text-center">
-                        <th>srno</th>
-                        <th>id</th>
-                        <th>Name</th>
-                        <th>Designation</th>
-                        <th>Mobile No</th>
-                        <th>Action</th>
-                    </tr>
-                </x-slot>
-                <x-slot name="body">
-                    @foreach ($faculties as $key => $item)
-                        <tr class="text-center odd:bg-white even:bg-slate-50">
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $item->id }}</td>
-                            <td>{{ $item->faculty_name }}</td>
-                            <td>{{ $item->role->role_name ?? '' }}</td>
-                            <td>{{ $item->mobile_no }}</td>
-                            <td class="flex justify-center lg:justify-center md:justify-center space-x-1">
-                                @if ($item->deleted_at)
-                                    <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.edit.faculty', $item->id)" :text="'Edit'" />
-                                    <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.restore.faculty', $item->id)" :text="'Restore'" />
-                                @else
-                                    <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.edit.faculty', $item->id)" :text="'Edit'" />
-                                    <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('faculty.delete.faculty', $item->id)" :text="'delete'" />
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                </x-slot>
-            </x-table>
+            @livewire('faculty.faculty-data-table')
         </x-slot>
     </x-container>
 </div>

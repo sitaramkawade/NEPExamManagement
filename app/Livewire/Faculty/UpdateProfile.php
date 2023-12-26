@@ -187,7 +187,6 @@ class UpdateProfile extends Component
                 $dataToUpdate['profile_photo_path'] = 'storage/' . $path . $fileName;
             }
 
-            // Update the faculty record with all data
             $faculty->update($dataToUpdate);
 
             $this->dispatch('alert', type: 'success', message: 'Faculty Profile Updated Successfully');

@@ -1,19 +1,20 @@
 <?php
 
 use Livewire\Livewire;
+use App\Livewire\DataTable;
 use App\Livewire\Faculty\EditFaculty;
 use App\Livewire\Faculty\ViewFaculty;
-use App\Livewire\DataTable;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Faculty\DeleteFaculty;
 use App\Livewire\Faculty\UpdateProfile;
 use App\Livewire\Faculty\RestoreFaculty;
 use App\Livewire\Faculty\RegisterFaculty;
+use App\Livewire\Faculty\FacultyDataTable;
 use App\Livewire\Master\Gender\ViewGender;
+use App\Livewire\Student\StudentDashboard;
+
 use App\Livewire\Faculty\SoftDeleteFaculty;
 use App\Livewire\Faculty\MultiStepFacultyProfile;
-
-use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 
 // Livewire Update Route
@@ -108,8 +109,11 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty'])->group(
     //Restore Faculty
     Route::get('/restore-faculty/{id}', RestoreFaculty::class)->name('restore.faculty');
 
-    //Complete Profile Faculty
+    //Update Profile Faculty
     Route::get('/update-profile', UpdateProfile::class)->name('updateprofile.faculty');
+
+    //Faculty Data Table
+    Route::get('/faculty-table', FacultyDataTable::class);
 
 });
 
