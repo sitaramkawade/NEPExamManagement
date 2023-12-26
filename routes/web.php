@@ -4,7 +4,10 @@ use Livewire\Livewire;
 use App\Livewire\User\Edit;
 use App\Livewire\User\AddCollege;
 use App\Livewire\User\DeleteCollege;
+use App\Livewire\DataTable;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Student\StudentDashboard;
+use App\Livewire\Student\Profile\MultiStepStudentProfile;
 
 // Livewire Update Route
 Livewire::setUpdateRoute(function ($handle) {
@@ -41,9 +44,7 @@ Route::middleware(['guest'])->group(function () {
     })->name('faculty');
 
     // RND Page
-    Route::get('/temp', function () {
-        return view('temp');
-    });
+    Route::get('/temp',DataTable::class);
 
 });
 
@@ -51,11 +52,10 @@ Route::middleware(['guest'])->group(function () {
 Route::prefix('student')->name('student.')->middleware(['auth:student','is_student','is_studentverified'])->group(function () {
 
     // Student Dashboard
-    Route::get('/dashboard', function () {
-        return view('student.student-dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard',StudentDashboard::class)->name('dashboard');
 
-
+    // Student Profile
+    Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
 
 });
 
