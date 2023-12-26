@@ -70,7 +70,7 @@
 
                 <div class="mx-auto mt-1 w-48 text-center text-xs text-gray-500">Click to add profile picture</div>
 
-                <input name="photo" id="fileInput" accept="image/*" class="hidden" type="file" @change="let file = document.getElementById('fileInput').files[0]; 
+                <input name="photo" id="fileInput" accept="image/*" class="hidden" type="file" @change="let file = document.getElementById('fileInput').files[0];
 								var reader = new FileReader();
 								reader.onload = (e) => image = e.target.result;
 								reader.readAsDataURL(file);">

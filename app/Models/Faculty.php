@@ -16,7 +16,7 @@ use App\Notifications\Faculty\FacultyResetPasswordNotification;
 
 class Faculty extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     // public function sendPasswordResetNotification()
     // {
