@@ -1,20 +1,16 @@
 <div>
-    <section>
+    <x-card-header href="{{ route('faculty.view.faculty') }}">
+        Edit Faculty
+        <x-slot name="svg">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 mr-1 mt-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+            </svg>
+        </x-slot>
+        <x-slot name="btntext">Back</x-slot>
+    </x-card-header>
 
         <form wire:submit="update({{ $faculty_id }})" method="post" action="" id="myForm">
-            <x-container heading="Faculty Registration">
-                <x-slot name="slot">
-                    <x-container-btn class="bg-green-500 hover:bg-green-600" href="{{ route('faculty.view.faculty') }}">
-                        <x-slot name="svg">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-                            </svg>
-                        </x-slot>
-                        <x-slot name="btntext">
-                            Back
-                        </x-slot>
-                    </x-container-btn>
-                </x-slot>
+            <x-card-collapsible heading="Personal Details">
                 <x-slot name="content">
                     <div class="grid grid-cols-1 md:grid-cols-3">
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -81,9 +77,9 @@
                     </div>
 
                 </x-slot>
-            </x-container>
+            </x-card-collapsible>
 
-            <x-container heading="Faculty Account Details">
+            <x-card-collapsible heading="Account Details">
 
                 <x-slot name="content">
                     <div class="grid grid-cols-1 md:grid-cols-3">
@@ -150,7 +146,6 @@
                         </x-form-btn>
                     </div>
                 </x-slot>
-            </x-container>
+            </x-card-collapsible>
         </form>
-    </section>
 </div>

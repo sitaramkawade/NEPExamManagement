@@ -22,7 +22,7 @@
               <x-table.tr wire:key="{{ $faculty->id }}">
                 <x-table.td>{{ $key+1 }}</x-table.td>
                 <x-table.td>{{ $faculty->faculty_name }} </x-table.td>
-                <x-table.td> {{ $faculty->role->role_name }} </x-table.td>
+                <x-table.td> {{ $faculty->role->role_name ?? '' }} </x-table.td>
                 <x-table.td> {{ $faculty->mobile_no }} </x-table.td>
                 <x-table.td>
                     @if($faculty->deleted_at)
