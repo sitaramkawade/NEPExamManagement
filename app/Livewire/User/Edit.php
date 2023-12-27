@@ -42,7 +42,7 @@ class Edit extends Component
             'college_logo_path' => ['required','max:1024','mimes:jpeg,pdf,jpg'],
             'sanstha_id' => ['required',],
             'university_id' => ['required',],
-            'status' => ['required',],
+           
         ];
     }
 
@@ -75,7 +75,7 @@ class Edit extends Component
             'college_address.required' =>'Please enter a college address',
             'college_contact_no.required' =>'Please enter a Mobile number',
             'college_website_url.required' =>'Please enter a valid website url',
-            'college_logo_path.required' =>'Please enter a logo path',
+            'college_logo_path.required' =>'Please Choose image',
             'college_sanstha_id.required' =>'Please enter a sanstha',
             'college_university_id.required' =>'Please enter a university',
         ];
@@ -106,7 +106,8 @@ class Edit extends Component
             $this->college_address = $college->college_address;
             $this->sanstha_id = $college->sanstha_id;
             $this->university_id = $college->university_id;
-            $this->status = $college->status;
+            $this->status = $college->status==0?true:0;
+           
             
         }
     }
@@ -129,7 +130,7 @@ class Edit extends Component
             
                 'sanstha_id' => $this->sanstha_id,
                 'university_id' => $this->university_id,
-                'status' => $this->status,
+                'status' => $this->status==1?0:1,
                      
             ]);
           

@@ -39,7 +39,7 @@ class AddCollege extends Component
         'college_logo_path' =>'required','max:250','mimes:png,jpg,jpeg',
         'sanstha_id' => 'required',
         'university_id' => 'required',
-        'status'=>'required'
+       
         ];
         }
 
@@ -56,7 +56,8 @@ class AddCollege extends Component
         $college->college_logo_path= $this->college_logo_path;
         $college->sanstha_id= $this->sanstha_id;
         $college->university_id= $this->university_id;
-        $college->status= $this->status;
+        $college->status= $this->status==1?0:1;
+        
 
         if ($this->college_logo_path) {
            

@@ -24,23 +24,30 @@
                     <div class="grid grid-cols-1 md:grid-cols-2">
 
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                            <x-input-label for="college_contact_no" :value="__('college Contact No')" />
+                            <x-input-label for="college_contact_no" :value="__('College Contact No')" />
                             <x-text-input id="college_contact_no" type="text" wire:model="college_contact_no" name="college_contact_no" class="w-full mt-1" :value="old('college_contact_no',$college_contact_no)" required autofocus autocomplete="college_contact_no" />
                             <x-input-error :messages="$errors->get('college_contact_no')" class="mt-2" />
                         </div>
-
-
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                            <x-input-label for="college_address" :value="__('College Address')" />
-                            <x-text-input id="college_address" type="text" wire:model="college_address" name="college_address" class="w-full mt-1" :value="old('college_address',$college_address)" required autofocus autocomplete="college_address" />
-                            <x-input-error :messages="$errors->get('college_address')" class="mt-2" />
+                            <x-input-label for="college_website_url" :value="__('College Website URL ')" />
+                            <x-text-input id="college_website_url" type="url" wire:model="college_website_url" name="college_website_url" class="w-full mt-1" :value="old('college_website_url',$college_website_url)" required autofocus autocomplete="college_website_url" />
+                            <x-input-error :messages="$errors->get('college_website_url')" class="mt-2" />
                         </div>
+
+
 
                     </div>
 
 
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div>
+
+                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                <x-input-label for="college_address" :value="__('College Address')" />
+                                <x-textarea id="college_address" type="text" wire:model="college_address" name="college_address" class="w-full mt-1" :value="old('college_address',$college_address)" required autofocus autocomplete="college_address" />
+                                <x-input-error :messages="$errors->get('college_address')" class="mt-2" />
+                            </div>
+
                             {{-- Sanstha --}}
 
                             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -66,18 +73,20 @@
                                 <x-input-error :messages="$errors->get('university_id')" class="mt-2" />
                             </div>
 
-                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="college_website_url" :value="__('College Website URL ')" />
-                                <x-text-input id="college_website_url" type="url" wire:model="college_website_url" name="college_website_url" class="w-full mt-1" :value="old('college_website_url',$college_website_url)" required autofocus autocomplete="college_website_url" />
-                                <x-input-error :messages="$errors->get('college_website_url')" class="mt-2" />
-                            </div>
+
+
+
 
                             {{-- status --}}
+
                             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                <x-input-label for="status" :value="__('status')" />
-                                <x-text-input id="status" type="text" wire:model="status" name="status" class="w-full mt-1" :value="old('status',$status)" required autofocus autocomplete="status" />
+                                <br>
+                                <x-text-input id="status" type="checkbox" wire:model.live="status" @click="open = ! open" class="my-1 h-8 w-8" name="status" :value="old('status',$status)" />
+                                <x-input-label for="status" class="inline mb-1 mx-2" :value="__('Inactive College')" />
                                 <x-input-error :messages="$errors->get('status')" class="mt-2" />
                             </div>
+
+
                         </div>
 
                         {{-- upload logo --}}
@@ -103,7 +112,7 @@
                                                 <x-input-error :messages="$errors->get('college_logo_path')" class="mt-2" />
                                             </label>
                                             <x-input-label class="py-2" wire:loading.remove wire:target="college_logo_path" for="college_logo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
-                                            <x-input-label class="py-2" wire:loading wire:target="college_logo_path"  for="college_logo_path" :value="__('Uploading...')" />
+                                            <x-input-label class="py-2" wire:loading wire:target="college_logo_path" for="college_logo_path" :value="__('Uploading...')" />
                                         </div>
                                     </div>
                                 </div>

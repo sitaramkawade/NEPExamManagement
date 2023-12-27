@@ -8,16 +8,21 @@
       <x-table.search />
       <x-spinner/>
     </x-slot>
+    
     <x-slot:body>
       <x-table.table>
         <x-table.thead>
           <x-table.tr>
-            <x-table.th wire:click="sort_column('id')" name="districts.id" :sort="$sortColumn" :sort_by="$sortColumnBy">No.</x-table.th>
+            <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">No.</x-table.th>
             
             <x-table.th wire:click="sort_column('college_name')" name="college_name" :sort="$sortColumn" :sort_by="$sortColumnBy">College Name </x-table.th>
-            <x-table.th wire:click="sort_column('college_email')" name="college_email" :sort="$sortColumn" :sort_by="$sortColumnBy">College Email </x-table.th>
+            {{-- <x-table.th wire:click="sort_column('college_email')" name="college_email" :sort="$sortColumn" :sort_by="$sortColumnBy">College Email </x-table.th>
             <x-table.th wire:click="sort_column('college_address')" name="college_address" :sort="$sortColumn" :sort_by="$sortColumnBy">College Address</x-table.th>
             <x-table.th wire:click="sort_column('college_contact_no')" name="college_contact_no" :sort="$sortColumn" :sort_by="$sortColumnBy">College Contact No.</x-table.th>
+            <x-table.th wire:click="sort_column('college_website_url')" name="college_website_url" :sort="$sortColumn" :sort_by="$sortColumnBy">College website url.</x-table.th> --}}
+            <x-table.th wire:click="sort_column('sanstha_id')" name="sanstha_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Sanstha </x-table.th>
+            <x-table.th wire:click="sort_column('university_id')" name="university_id" :sort="$sortColumn" :sort_by="$sortColumnBy">University</x-table.th>
+            <x-table.th wire:click="sort_column('status')" name="status" :sort="$sortColumn" :sort_by="$sortColumnBy">Status</x-table.th>
             <x-table.th> Action </x-table.th>
           </x-table.tr>
         </x-table.thead>
@@ -26,9 +31,13 @@
             <x-table.tr wire:key="{{ $college->id }}">
               <x-table.td>{{ $key+1 }}</x-table.td>
               <x-table.td>{{ $college->college_name }} </x-table.td>
-              <x-table.td> {{ $college->college_email}} </x-table.td>
+              {{-- <x-table.td> {{ $college->college_email}} </x-table.td>
               <x-table.td> {{ $college->college_address }} </x-table.td>
               <x-table.td> {{ $college->college_contact_no }} </x-table.td>
+              <x-table.td> {{ $college->college_website_url }} </x-table.td> --}}
+              <x-table.td> {{ $college->sanstha->sanstha_name }} </x-table.td>
+              <x-table.td> {{ $college->university->university_name }} </x-table.td>
+              <x-table.td> {{ $college->status==0?"Inactive":"Active";}} </x-table.td>
 
               <x-table.td> 
                 <x-table.edit wire:navigate :href="route('user.edit',$college->id)"/>
