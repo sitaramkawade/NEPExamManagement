@@ -39,7 +39,7 @@ class Edit extends Component
             'college_website_url' => ['required','string', 'max:255',],
             'college_email' => ['required','email', 'string',],
             'college_contact_no' => ['required','numeric','digits:10'],
-            'college_logo_path_old' => ['required',],
+            'college_logo_path' => ['required','max:1024','mimes:jpeg,pdf,jpg'],
             'sanstha_id' => ['required',],
             'university_id' => ['required',],
             'status' => ['required',],

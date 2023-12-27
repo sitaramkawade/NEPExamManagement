@@ -10,18 +10,37 @@ class ViewCollege extends Component
 {
     use WithPagination;
     
+    use WithPagination;
+    public $perPage=1;
+    public $page = 1;
+    public $sno;
+    public $search='';
+    public $sortColumn="college_name";
+    public $sortColumnBy="ASC";
+    public $data;
+
+
+    public function sort_column($column)
+    {   
+        if( $this->sortColumn === $column)
+        {
+            $this->sortColumnBy=($this->sortColumnBy=="ASC")?"DESC":"ASC";
+            return;
+        }
+        $this->sortColumn=$column;
+        $this->sortColumnBy=="ASC";
+    }
+
+    
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
 
 
     public function mount()
     {
       
-    }
-
-    public function render()
-    {
-        $colleges = College::paginate(10);
-        return view('livewire.user.view-college',compact('colleges'))->extends('layouts.user')->section('user');
-        
     }
 
     public function deleteCollege($id)
@@ -30,4 +49,14 @@ class ViewCollege extends Component
         $this->mount();
         $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
     }
+
+    public function render()
+    {   
+        $colleges=College::where('college_name', 'like', "%{$this->search}%")->Orwhere('college_email', 'like', "%{$this->search}%")->orWhere('college_address', 'like', "%{$this->search}%")->orderBy($this->sortColumn,$this->sortColumnBy)->paginate($this->perPage);
+
+        return view('livewire.user.view-college',compact('colleges'))->extends('layouts.user')->section('user');
+    }
+
 }
+
+   

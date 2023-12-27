@@ -106,7 +106,8 @@
                           <x-text-input id="college_logo_path" wire:model.live="college_logo_path" name="college_logo_path" accept="image/png, image/jpeg , image/jpg" :value="old('college_logo_path',$college_logo_path)" autofocus autocomplete="college_logo_path" type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
                           <x-input-error :messages="$errors->get('college_logo_path')" class="mt-2" />
                         </label>
-                        <x-input-label class="py-2" for="college_logo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
+                        <x-input-label class="py-2"  wire:loading.remove wire:target="college_logo_path" for="college_logo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
+                         <x-input-label class="py-2" wire:loading wire:target="college_logo_path"  for="college_logo_path" :value="__('Uploading...')" />
                       </div>
                     </div>
                   </div>
