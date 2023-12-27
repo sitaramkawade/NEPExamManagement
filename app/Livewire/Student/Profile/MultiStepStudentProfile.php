@@ -14,6 +14,7 @@ use App\Models\Student;
 use Livewire\Component;
 use App\Models\District;
 use App\Models\Classyear;
+use App\Models\Addresstype;
 use App\Models\Courseclass;
 use App\Models\Gendermaster;
 use App\Models\Patternclass;
@@ -63,6 +64,7 @@ class MultiStepStudentProfile extends Component
     public $sign_photo_path_old;
     public $can_update=0;
     // step 3
+    public $address_types;
     public $countries;
     public $states;
     public $talukas;
@@ -416,7 +418,7 @@ class MultiStepStudentProfile extends Component
 
 
         if($this->is_same)
-        {
+        {   
             Auth::guard('student')->user()->studentaddress()->updateOrCreate(
                 [
                     'student_id'=>Auth::guard('student')->user()->id,
@@ -430,6 +432,7 @@ class MultiStepStudentProfile extends Component
                     'address' => $this->address,
                     'is_same' => 1,
                     'address_type' => 1,
+                    'addresstype_id' => isset($this->address_types[0]->id)?$this->address_types[0]->id:'',
                     'is_completed' => 1,
                 ]
             );
@@ -440,13 +443,14 @@ class MultiStepStudentProfile extends Component
                     'address_type' => 2
                 ],
                 [
-                    'taluka_id' => $this->taluka_id_2,
-                    'pincode' => $this->pincode_2,
-                    'village_name' => $this->village_2,
-                    'locality_name' => $this->village_2,
-                    'address' => $this->address_2,
+                    'taluka_id' => $this->taluka_id,
+                    'pincode' => $this->pincode,
+                    'village_name' => $this->village,
+                    'locality_name' => $this->village,
+                    'address' => $this->address,
                     'is_same' => 1,
                     'address_type' => 2,
+                    'addresstype_id' => isset($this->address_types[1]->id)?$this->address_types[1]->id:'',
                     'is_completed' => 1,
                 ]
             );
@@ -454,7 +458,7 @@ class MultiStepStudentProfile extends Component
             $this->is_same=0;
             $this->dispatch('alert',type:'success',message:'Step 3 : Student Address Saved Successfully !!');
         }else
-        {
+        {   
             Auth::guard('student')->user()->studentaddress()->updateOrCreate(
                 [
                     'student_id'=>Auth::guard('student')->user()->id,
@@ -468,6 +472,7 @@ class MultiStepStudentProfile extends Component
                     'address' => $this->address,
                     'is_same' => 0,
                     'address_type' => 1,
+                    'addresstype_id' => $this->address_types[0]?$this->address_types[0]->id:'',
                     'is_completed' => 1,
                 ]
             );
@@ -485,6 +490,7 @@ class MultiStepStudentProfile extends Component
                     'address' => $this->address_2,
                     'is_same' => 0,
                     'address_type' => 2,
+                    'addresstype_id' => $this->address_types[1]?$this->address_types[1]->id:'',
                     'is_completed' => 1,
                 ]
             );
@@ -662,7 +668,7 @@ class MultiStepStudentProfile extends Component
 
         if($this->current_step==3)
         {   
-            
+            $this->address_types=Addresstype::where('is_active',1)->limit(2)->get();
             $this->countries = Country::select('id','country_name')->get();
             $this->states = State::select('id','state_name')->where('country_id', $this->country_id)->get();
             $this->districts = District::select('id','district_name')->where('state_id', $this->state_id)->get();
