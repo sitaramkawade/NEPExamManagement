@@ -21,6 +21,7 @@ class Studentaddress extends Model
                         'address_type',
                         'is_same',
                         'is_completed',
+                        'addresstype_id'
     ];
         
 

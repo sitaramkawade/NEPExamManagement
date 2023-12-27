@@ -8,5 +8,4 @@
   <x-select-option value="100">100</x-select-option>
   <x-select-option value="250">250</x-select-option>
   <x-select-option value="500">500</x-select-option>
-  <x-select-option value="1000">1000</x-select-option>
 </x-input-select>

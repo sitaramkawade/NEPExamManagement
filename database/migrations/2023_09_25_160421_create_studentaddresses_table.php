@@ -21,11 +21,11 @@ return new class extends Migration
         $table->string('locality_name',200)->nullable()->default(NULL);      
         $table->tinyInteger('is_same')->default(0)->comment('0-not defined, 1-same');
         $table->tinyInteger('address_type')->nullable()->default(0)->comment('0-not defined, 1-current ,2-permanant');
+        $table->bigInteger('addresstype_id')->unsigned()->nullable();
         $table->boolean('is_completed')->default(0); 
         $table->timestamps();
         $table->foreign('student_id')->references('id')->on('students');
         $table->foreign('taluka_id')->references('id')->on('talukas');
-        $table->bigInteger('addresstype_id')->unsigned()->nullable();
         $table->foreign('addresstype_id')->references('id')->on('addresstypes');    
         $table->unique(['student_id', 'addresstype_id']); //  [ 'column1', 'column2']
         });
