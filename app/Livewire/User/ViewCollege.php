@@ -11,7 +11,7 @@ class ViewCollege extends Component
     use WithPagination;
     
     use WithPagination;
-    public $perPage=1;
+    public $perPage=10;
     public $page = 1;
     public $sno;
     public $search='';

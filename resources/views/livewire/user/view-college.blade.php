@@ -13,7 +13,7 @@
         <x-table.thead>
           <x-table.tr>
             <x-table.th wire:click="sort_column('id')" name="districts.id" :sort="$sortColumn" :sort_by="$sortColumnBy">No.</x-table.th>
-            <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">Id.</x-table.th>
+            
             <x-table.th wire:click="sort_column('college_name')" name="college_name" :sort="$sortColumn" :sort_by="$sortColumnBy">College Name </x-table.th>
             <x-table.th wire:click="sort_column('college_email')" name="college_email" :sort="$sortColumn" :sort_by="$sortColumnBy">College Email </x-table.th>
             <x-table.th wire:click="sort_column('college_address')" name="college_address" :sort="$sortColumn" :sort_by="$sortColumnBy">College Address</x-table.th>
