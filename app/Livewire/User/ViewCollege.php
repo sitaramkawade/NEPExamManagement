@@ -52,8 +52,10 @@ class ViewCollege extends Component
 
     public function render()
     {   
-        $colleges=College::where('college_name', 'like', "%{$this->search}%")->Orwhere('college_email', 'like', "%{$this->search}%")->orWhere('college_address', 'like', "%{$this->search}%")->orderBy($this->sortColumn,$this->sortColumnBy)->paginate($this->perPage);
-
+        $colleges=College::when($this->search, function ($query, $search) {
+            $query->search($search);
+        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+        
         return view('livewire.user.view-college',compact('colleges'))->extends('layouts.user')->section('user');
     }
 

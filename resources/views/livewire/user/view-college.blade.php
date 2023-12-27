@@ -2,6 +2,7 @@
 
 
 <div class="p-5">
+<x-card heading="All Colleges"/>
   <x-table.frame>
     <x-slot:header>
       <x-table.perpage />
@@ -60,22 +61,8 @@
       <x-table.paginate :data="$data" />
     </x-slot>
   </x-table.frame>
+ 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
