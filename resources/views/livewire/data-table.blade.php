@@ -1,6 +1,9 @@
 <div class="p-5">
   <x-table.frame>
     <x-slot:header>
+      <x-table.perpage />
+      <x-table.search />
+      <x-spinner/>
     </x-slot>
     <x-slot:body>
       <x-table.table>
@@ -23,6 +26,14 @@
               <x-table.td> 
                 <x-table.edit/>
                 <x-table.delete/>
+                <x-table.view/>
+                <x-table.hide/>
+                <x-table.archive/>
+                <x-table.restore/>
+                <x-table.active/>
+                <x-table.inactive/>
+                <x-table.download> Download</x-table.download>
+                
               </x-table.td>
             </x-table.tr>
           @endforeach

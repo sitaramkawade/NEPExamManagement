@@ -9,11 +9,7 @@
             <div class="inline-block min-w-full p-1.5 align-middle">
               <div class="divide-y divide-gray-300 rounded-lg border bg-gray-200 dark:divide-primary-darker dark:border-primary-darker dark:bg-transparent">
                 <div class="px-4 py-3">
-                  <x-table.loading/>
-                  <x-table.perpage />
-                  <x-table.search />
                   {{ $header }}
-                  <x-table.export />
                 </div>
                 <div class="overflow-hidden">
                   {{ $body }}

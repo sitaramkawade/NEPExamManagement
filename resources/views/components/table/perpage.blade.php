@@ -1,6 +1,6 @@
 @props(["disabled" => false])
 
-<x-input-select class="inline-flex mx-1 h-10" wire:loading.attr="disabled" wire:model.live="perPage">
+<x-input-select class="py-2" wire:loading.attr="disabled" wire:model.live="perPage">
   <x-select-option value="10">10</x-select-option>
   <x-select-option value="25">25</x-select-option>
   <x-select-option value="50">50</x-select-option>
