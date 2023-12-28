@@ -5,6 +5,7 @@ namespace App\Models;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\FacultyRegisteMailNotification;
@@ -119,5 +120,15 @@ class Faculty extends Authenticatable
         return Department::where('id',$deptid)->first()->dept_name;
     }
 
-
+    public function scopeSearch(Builder $query,string $search)
+    {
+        return $query->with('role')->where(function ($subquery) use ($search) {
+            $subquery->where('faculty_name', 'like', "%{$search}%")
+                ->orWhere('mobile_no', 'like', "%{$search}%")
+                ->orWhereHas('role', function ($subQuery) use ($search) {
+                    $subQuery->where('role_name', 'like', "%{$search}%");
+                }
+            );
+        });
+    }
 }

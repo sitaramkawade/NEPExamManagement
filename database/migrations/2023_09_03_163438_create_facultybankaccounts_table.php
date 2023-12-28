@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('facultybankaccounts', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('faculty_id')->unsigned();
-            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('cascade');;
+            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('cascade');
 
 
             $table->string('account_no',50)->nullable();

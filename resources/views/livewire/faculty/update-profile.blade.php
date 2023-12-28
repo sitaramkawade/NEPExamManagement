@@ -139,7 +139,7 @@
                         @unless ($isDisabled)
                             <x-text-input id="department_id" type="text" wire:model="department_id" name="department_id" class="@error('department_id') is-invalid @enderror w-full mt-1" :value="$department_id->dept_name" required />
                         @else
-                            <x-text-input id="department_id" type="text" :value="$department_id->dept_name" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="department_id" />
+                            <x-text-input id="department_id" type="text" :value="optional($department_id)->dept_name ?? ''" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="department_id" />
                         @endunless
                         <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
                     </div>
@@ -148,7 +148,7 @@
                         @unless ($isDisabled)
                             <x-text-input id="role_id" type="text" wire:model="role_id" name="role_id" class="@error('role_id') is-invalid @enderror w-full mt-1" :value="$role_id->role_name" required />
                         @else
-                            <x-text-input id="role_id" type="text" :value="$role_id->role_name" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="role_id" />
+                            <x-text-input id="role_id" type="text" :value="optional($role_id)->role_name ?? ''" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="role_id" />
                         @endunless
                         <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
                     </div>

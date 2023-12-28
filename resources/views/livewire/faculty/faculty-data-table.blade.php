@@ -9,18 +9,17 @@
         <x-table.table>
           <x-table.thead>
             <x-table.tr>
-              <x-table.th>No.</x-table.th>
-              {{-- <x-table.th wire:click="sort_column('faculties.id')" name="faculties.id" :sort="$sortColumn" :sort_by="$sortColumnBy">No.</x-table.th> --}}
-              <x-table.th wire:click="sort_column('faculties.faculty_name')" name="faculties.faculty_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Name</x-table.th>
-              <x-table.th wire:click="sort_column('roles.role_name')" name="roles.role_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Designation</x-table.th>
-              <x-table.th wire:click="sort_column('faculties.mobile_no')" name="faculties.mobile_no" :sort="$sortColumn" :sort_by="$sortColumnBy">Mobile No</x-table.th>
+              <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
+              <x-table.th wire:click="sort_column('faculty_name')" name="faculty_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Name</x-table.th>
+              <x-table.th wire:click="sort_column('role_id')" name="role_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Designation</x-table.th>
+              <x-table.th wire:click="sort_column('mobile_no')" name="mobile_no" :sort="$sortColumn" :sort_by="$sortColumnBy">Mobile No</x-table.th>
               <x-table.th> Action </x-table.th>
             </x-table.tr>
           </x-table.thead>
           <x-table.tbody>
-            @foreach ($data as $key => $faculty)
+            @foreach ($data as $faculty)
               <x-table.tr wire:key="{{ $faculty->id }}">
-                <x-table.td>{{ $key+1 }}</x-table.td>
+                <x-table.td>{{ $faculty->id }} </x-table.td>
                 <x-table.td>{{ $faculty->faculty_name }} </x-table.td>
                 <x-table.td> {{ $faculty->role->role_name ?? '' }} </x-table.td>
                 <x-table.td> {{ $faculty->mobile_no }} </x-table.td>

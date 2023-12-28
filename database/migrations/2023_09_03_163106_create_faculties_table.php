@@ -39,9 +39,9 @@ return new class extends Migration
             $table->timestamp('last_login')->nullable();
             // $table->tinyInteger('faculty_verified')->default('0');  //0 means not verified
 
-            $table->foreign('department_id')->references('id')->on('departments')->onUpdate('cascade')->onDelete('cascade');;
-            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');;
-            $table->foreign('college_id')->references('id')->on('colleges')->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreign('department_id')->references('id')->on('departments')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('college_id')->references('id')->on('colleges')->onUpdate('cascade')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

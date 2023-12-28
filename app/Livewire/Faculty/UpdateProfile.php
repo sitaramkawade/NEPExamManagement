@@ -142,7 +142,7 @@ class UpdateProfile extends Component
                 $roleId = $faculty->role()->first();
                 $this->role_id = $roleId;
 
-                $bankdetails = Facultybankaccount:: where('faculty_id',$faculty->id)->first();
+                $bankdetails = $faculty->facultybankaccount()->first();
                 if($bankdetails){
                     $this->bank_name= $bankdetails->bank_name;
                     $this->account_no= $bankdetails->account_no;
@@ -190,7 +190,7 @@ class UpdateProfile extends Component
             $faculty->update($dataToUpdate);
 
             $this->dispatch('alert', type: 'success', message: 'Faculty Profile Updated Successfully');
-            return redirect()->route('faculty.updateprofile.faculty');
+            return redirect()->route('faculty.update-profile.faculty');
         } else {
             $this->dispatch('alert', type: 'error', message: 'Error Updating Profile');
         }

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Livewire\Faculty;
+namespace App\Livewire\Faculty\FacultyRole;
 
-use App\Models\Faculty;
+use App\Models\Role;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class FacultyDataTable extends Component
+class RoleDataTable extends Component
 {
     use WithPagination;
     public $perPage=10;
     public $search='';
-    public $sortColumn="faculty_name";
+    public $sortColumn="role_name";
     public $sortColumnBy="ASC";
 
     public function sort_column($column)
@@ -32,9 +32,9 @@ class FacultyDataTable extends Component
 
     public function render()
     {
-        $data = Faculty::when($this->search, function($query, $search){
+        $data = Role::when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
-        return view('livewire.faculty.faculty-data-table' ,compact('data'))->extends('layouts.faculty')->section('faculty');
+        return view('livewire.faculty.faculty-role.role-data-table' ,compact('data'))->extends('layouts.faculty')->section('faculty');
     }
 }

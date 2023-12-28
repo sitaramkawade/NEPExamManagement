@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('role_name',50)->nullable();
             $table->bigInteger('roletype_id')->nullable()->unsigned()->default(null);
-            $table->foreign('roletype_id')->references('id')->on('roletypes');
-
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges');
+
+            $table->foreign('college_id')->references('id')->on('colleges')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('roletype_id')->references('id')->on('roletypes')->onUpdate('cascade')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

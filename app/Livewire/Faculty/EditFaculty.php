@@ -72,26 +72,6 @@ class EditFaculty extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function resetinput()
-    {
-         $this->prefix=null;
-         $this->faculty_name=null;
-         $this->email=null;
-         $this->mobile_no=null;
-         $this->role_id=null;
-         $this->department_id=null;
-         $this->college_id=null;
-
-         $this->bank_name=null;
-         $this->account_no=null;
-         $this->bank_address=null;
-         $this->branch_name=null;
-         $this->branch_code=null;
-         $this->ifsc_code=null;
-         $this->micr_code=null;
-         $this->account_type=null;
-    }
-
     public function messages()
     {
         return [
@@ -128,7 +108,7 @@ class EditFaculty extends Component
             $this->department_id= $faculty->department_id;
             $this->college_id= $faculty->college_id;
 
-            $bankdetails = Facultybankaccount:: where('faculty_id',$id)->first();
+            $bankdetails = $faculty->facultybankaccount()->first();
             if($bankdetails){
                 $this->bank_name= $bankdetails->bank_name;
                 $this->account_no= $bankdetails->account_no;

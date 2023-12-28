@@ -2,18 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Roletype extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table='roletypes';
     protected $fillable = [
-    'roletype_name',        
+    'roletype_name',
     'status',
     ];
-    
-    
+
+    public function roles()
+    {
+        return $this->hasMany(Role::class,'roletype_id','id')->withTrashed();
+    }
 }

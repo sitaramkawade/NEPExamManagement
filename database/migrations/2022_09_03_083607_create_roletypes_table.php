@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('roletype_name');
             $table->boolean('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

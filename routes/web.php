@@ -11,10 +11,15 @@ use App\Livewire\Faculty\RestoreFaculty;
 use App\Livewire\Faculty\RegisterFaculty;
 use App\Livewire\Faculty\FacultyDataTable;
 use App\Livewire\Master\Gender\ViewGender;
-use App\Livewire\Student\StudentDashboard;
 
+use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Faculty\SoftDeleteFaculty;
+use App\Livewire\Faculty\FacultyRole\AddRole;
+use App\Livewire\Faculty\FacultyRole\EditRole;
+use App\Livewire\Faculty\FacultyRole\ViewRole;
+use App\Livewire\Faculty\FacultyRole\RestoreRole;
 use App\Livewire\Faculty\MultiStepFacultyProfile;
+use App\Livewire\Faculty\FacultyRole\SoftDeleteRole;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 
 // Livewire Update Route
@@ -110,10 +115,25 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty'])->group(
     Route::get('/restore-faculty/{id}', RestoreFaculty::class)->name('restore.faculty');
 
     //Update Profile Faculty
-    Route::get('/update-profile', UpdateProfile::class)->name('updateprofile.faculty');
+    Route::get('/update-profile', UpdateProfile::class)->name('update-profile.faculty');
 
     //Faculty Data Table
     Route::get('/faculty-table', FacultyDataTable::class);
+
+    //View Faculty Role
+    Route::get('/view-faculty-role', ViewRole::class)->name('view-role.faculty');
+
+    //Add Faculty Role
+    Route::get('/add-faculty-role', AddRole::class)->name('add-role.faculty');
+
+    //Edit Faculty Role
+    Route::get('/edit-faculty-role/{id}', EditRole::class)->name('edit-role.faculty');
+
+    //Delete Faculty Role
+    Route::get('/delete-faculty-role/{id}', SoftDeleteRole::class)->name('delete-role.faculty');
+
+    //Restore Faculty Role
+    Route::get('/restore-faculty-role/{id}', RestoreRole::class)->name('restore-role.faculty');
 
 });
 
