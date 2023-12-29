@@ -11,7 +11,8 @@ use App\Models\Sanstha;
 use App\Models\University;
 
 class Edit extends Component
-{ use WithFileUploads;
+{
+     use WithFileUploads;
 
     public $steps=1;
     public $current_step=1;
@@ -29,7 +30,7 @@ class Edit extends Component
     public $universities;
     public $status;
     public $college_id;
-    public $btn_add = false;
+
 
     protected function rules()
     {

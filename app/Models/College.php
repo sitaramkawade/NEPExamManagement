@@ -39,5 +39,5 @@ class College extends Model
         ->orWhere('college_address', 'like', "%{$this->search}%");
     }
             
-        
+    
 }

@@ -52,6 +52,29 @@
                         </span>
                     </a>
 
+                    <a wire:navigate href="{{ route('user.addSanstha') }}" :class="{ 'bg-primary-lighter text-white dark:bg-primary': '{{ request()->routeis('user.addSanstha') }}' }" class="h-10 flex items-center p-2 px-5  transition-colors rounded-md dark:text-light hover:bg-primary-lighter text-white dark:hover:bg-primary">
+                        <span aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                            </svg>
+
+                        </span>
+                        <span class="ml-2 duration-300 ease-in-out" :class="isSidebarExpanded ? 'opacity-100' : 'opacity-0'">Add Sanstha
+                        </span>
+                    </a>
+
+                      <a wire:navigate href="{{ route('user.viewSanstha') }}" :class="{ 'bg-primary-lighter text-white dark:bg-primary': '{{ request()->routeis('user.viewSanstha') }}' }" class="h-10 flex items-center p-2 px-5  transition-colors rounded-md dark:text-light hover:bg-primary-lighter text-white dark:hover:bg-primary">
+                        <span aria-hidden="true">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+
+                        </span>
+                        <span class="ml-2 duration-300 ease-in-out" :class="isSidebarExpanded ? 'opacity-100' : 'opacity-0'">View Sanstha
+                        </span>
+                    </a>
+
                     <form  method="POST" action="{{ route('user.logout') }}">
                         @csrf
                         <x-dropdown-link :href="route('user.logout')"  onclick="event.preventDefault(); this.closest('form').submit();" :class="{ 'bg-primary-lighter text-white dark:bg-primary': '{{ request()->routeis('user.logout') }}' }" class="h-10 flex items-center  p-2 px-5  transition-colors rounded-md dark:text-light hover:bg-primary-lighter text-white dark:hover:bg-primary">
@@ -74,6 +97,7 @@
                     </a>
                 @endauth
             </nav>
+
             {{-- <!-- Sidebar footer -->
             <div class="flex-shrink-0 px-2 py-4 space-y-2  border-r dark:border-primary-darker dark:bg-darker">
                 <a wire:navigate href="" :class="{ 'bg-primary-lighter text-white dark:bg-primary': '{{ request()->is('') }}' }" class="h-10 flex items-center p-2 px-5  transition-colors rounded-md dark:text-light hover:bg-primary-lighter text-white dark:hover:bg-primary">

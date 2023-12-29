@@ -1,10 +1,12 @@
 <?php
 
 use Livewire\Livewire;
-use App\Livewire\User\Edit;
-use App\Livewire\User\AddCollege;
-use App\Livewire\User\DeleteCollege;
 use App\Livewire\DataTable;
+use App\Livewire\User\Edit;
+use App\Livewire\EditUniversity;
+use App\Livewire\User\AddCollege;
+use App\Livewire\User\EditSanstha;
+use App\Livewire\User\DeleteCollege;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
@@ -78,9 +80,34 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
         return view('user.view_college');
     })->name('view_college');
 
-  
     //Edit College
     Route::get('/edit/{id}',Edit::class)->name('edit');
+
+    //Add Sanstha
+    Route::get('addSanstha', function () {
+        return view('user.addSanstha');
+    })->name('addSanstha');
+
+    //View Sanstha
+    Route::get('/view_Sanstha', function () {
+        return view('user.viewSanstha');
+    })->name('viewSanstha');
+
+    //Edit Sanstha
+    Route::get('/editSanstha/{id}',EditSanstha::class)->name('editSanstha');
+
+    //Add University
+    Route::get('/add_university', function () {
+        return view('user.addUniversity');
+    })->name('addUniversity');
+
+     //View University
+     Route::get('/view_university', function () {
+        return view('user.viewUniversity');
+    })->name('viewUniversity');
+
+    //Edit University
+    Route::get('/editUniversity/{id}',EditUniversity::class)->name('editUniversity');
 
 
 

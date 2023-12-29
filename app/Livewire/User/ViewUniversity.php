@@ -4,20 +4,20 @@ namespace App\Livewire\User;
 
 use App\Models\College;
 use Livewire\Component;
+use App\Models\University;
 use Livewire\WithPagination;
 
-class ViewCollege extends Component
+class ViewUniversity extends Component
 {
-    
     use WithPagination;
     public $perPage=10;
     public $page = 1;
     public $sno;
     public $search='';
-    public $sortColumn="college_name";
+    public $sortColumn="sanstha_name";
     public $sortColumnBy="ASC";
     public $data;
-
+    public $universities;
 
     public function sort_column($column)
     {   
@@ -30,34 +30,36 @@ class ViewCollege extends Component
         $this->sortColumnBy=="ASC";
     }
 
-    
     public function updatedSearch()
     {
         $this->resetPage();
     }
 
-
+    
     public function mount()
     {
-      
+        $this->universities = University::all();
     }
 
-    public function deleteCollege($id)
+    public function deleteUniversity($id)
     {
-        College::find($id)->delete();
-        $this->mount();
-        $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
+        $university = University::find($id);
+
+        if ($university) {
+            // Delete the Sanstha and its related colleges
+            $university->university()->delete();
+            $university->delete();
+            $this->mount();
+            $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
+
+        }
     }
+
+    
+    
 
     public function render()
-    {   
-        $colleges=College::when($this->search, function ($query, $search) {
-            $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
-        
-        return view('livewire.user.view-college',compact('colleges'))->extends('layouts.user')->section('user');
+    {
+        return view('livewire.user.view-university')->extends('layouts.user')->section('user');
     }
-
 }
-
-   

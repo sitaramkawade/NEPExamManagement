@@ -3,21 +3,23 @@
 namespace App\Livewire\User;
 
 use App\Models\College;
+use App\Models\Sanstha;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ViewCollege extends Component
+
+class ViewSanstha extends Component
 {
-    
     use WithPagination;
     public $perPage=10;
     public $page = 1;
     public $sno;
     public $search='';
-    public $sortColumn="college_name";
+    public $sortColumn="sanstha_name";
     public $sortColumnBy="ASC";
     public $data;
-
+    public $sansthas;
+   
 
     public function sort_column($column)
     {   
@@ -30,34 +32,41 @@ class ViewCollege extends Component
         $this->sortColumnBy=="ASC";
     }
 
-    
     public function updatedSearch()
     {
         $this->resetPage();
     }
 
-
     public function mount()
     {
-      
+        $this->sansthas = Sanstha::all();
     }
 
-    public function deleteCollege($id)
+    public function deleteSanstha($id)
     {
-        College::find($id)->delete();
-        $this->mount();
-        $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
+        $sanstha = Sanstha::find($id);
+
+        if ($sanstha) {
+            // Delete the Sanstha and its related colleges
+            $sanstha->colleges()->delete();
+            $sanstha->delete();
+            $this->mount();
+            $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
+
+        }
+    }
+
+    public function colleges()
+    {
+        return $this->hasMany(College::class);
     }
 
     public function render()
-    {   
-        $colleges=College::when($this->search, function ($query, $search) {
+    {
+        $sansthas=Sanstha::when($this->search, function ($query, $search) {
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
-        
-        return view('livewire.user.view-college',compact('colleges'))->extends('layouts.user')->section('user');
+
+        return view('livewire.user.view-sanstha')->extends('layouts.user')->section('user');
     }
-
 }
-
-   
