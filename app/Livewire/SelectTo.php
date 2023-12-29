@@ -2,20 +2,30 @@
 
 namespace App\Livewire;
 
-use App\Models\Caste;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class SelectTo extends Component
-{   
-    public $selectedOption;
-    public $options = [];
+{
+    public $options;
+    public $search = '';
+    public $key;
+    public $value;
+    public $table;
 
-    public function mount()
+    public function mount($table, $key ,$value)
     {
-        $this->options = Caste::get('caste_name')->toArray();
+        $this->table = $table;
+        $this->key = $key;
+        $this->value = $value;
+
     }
+
     public function render()
     {   
-        return view('livewire.select-to');
+        
+        $Options =DB::table($this->table)->select($this->key ,$this->value)->get();
+        return view('livewire.select-to', compact('Options'));
     }
+
 }

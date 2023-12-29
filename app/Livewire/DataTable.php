@@ -5,9 +5,11 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\District;
 use Livewire\WithPagination;
+use App\Exports\ExportDistrict;
+use App\Exports\ExportDistrictPdf;
 
 class DataTable extends Component
-{   
+{
     use WithPagination;
     public $perPage=10;
     public $search='';
@@ -16,7 +18,7 @@ class DataTable extends Component
 
 
     public function sort_column($column)
-    {   
+    {
         if( $this->sortColumn === $column)
         {
             $this->sortColumnBy=($this->sortColumnBy=="ASC")?"DESC":"ASC";
@@ -33,7 +35,7 @@ class DataTable extends Component
 
 
     public function render()
-    {   
+    {
 
         $data = District::when($this->search, function ($query, $search) {
             $query->search($search);

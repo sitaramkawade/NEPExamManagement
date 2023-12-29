@@ -342,11 +342,6 @@ class MultiStepStudentProfile extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function move_to($step)
-    {
-        $this->current_step=$step;
-    }
-
     public function student_information_form()
     {
         $this->validate();
@@ -422,7 +417,7 @@ class MultiStepStudentProfile extends Component
             Auth::guard('student')->user()->studentaddress()->updateOrCreate(
                 [
                     'student_id'=>Auth::guard('student')->user()->id,
-                    'address_type' => 1
+                    'addresstype_id' => isset($this->address_types[0]->id)?$this->address_types[0]->id:'',
                 ],
                 [
                     'taluka_id' => $this->taluka_id,
@@ -431,7 +426,7 @@ class MultiStepStudentProfile extends Component
                     'locality_name' => $this->village,
                     'address' => $this->address,
                     'is_same' => 1,
-                    'address_type' => 1,
+                    // 'address_type' => 1,
                     'addresstype_id' => isset($this->address_types[0]->id)?$this->address_types[0]->id:'',
                     'is_completed' => 1,
                 ]
@@ -440,7 +435,7 @@ class MultiStepStudentProfile extends Component
             Auth::guard('student')->user()->studentaddress()->updateOrCreate(
                 [
                     'student_id'=>Auth::guard('student')->user()->id,
-                    'address_type' => 2
+                    'addresstype_id' => isset($this->address_types[1]->id)?$this->address_types[1]->id:'',
                 ],
                 [
                     'taluka_id' => $this->taluka_id,
@@ -449,7 +444,7 @@ class MultiStepStudentProfile extends Component
                     'locality_name' => $this->village,
                     'address' => $this->address,
                     'is_same' => 1,
-                    'address_type' => 2,
+                    // 'address_type' => 2,
                     'addresstype_id' => isset($this->address_types[1]->id)?$this->address_types[1]->id:'',
                     'is_completed' => 1,
                 ]
@@ -462,7 +457,7 @@ class MultiStepStudentProfile extends Component
             Auth::guard('student')->user()->studentaddress()->updateOrCreate(
                 [
                     'student_id'=>Auth::guard('student')->user()->id,
-                    'address_type' => 1
+                    'addresstype_id' => $this->address_types[0]?$this->address_types[0]->id:'',
                 ],
                 [
                     'taluka_id' => $this->taluka_id,
@@ -471,7 +466,7 @@ class MultiStepStudentProfile extends Component
                     'locality_name' => $this->village,
                     'address' => $this->address,
                     'is_same' => 0,
-                    'address_type' => 1,
+                    // 'address_type' => 1,
                     'addresstype_id' => $this->address_types[0]?$this->address_types[0]->id:'',
                     'is_completed' => 1,
                 ]
@@ -480,7 +475,7 @@ class MultiStepStudentProfile extends Component
             Auth::guard('student')->user()->studentaddress()->updateOrCreate(
                 [
                     'student_id'=>Auth::guard('student')->user()->id,
-                    'address_type' => 2
+                    'addresstype_id' => $this->address_types[1]?$this->address_types[1]->id:'',
                 ],
                 [
                     'taluka_id' => $this->taluka_id_2,
@@ -489,7 +484,7 @@ class MultiStepStudentProfile extends Component
                     'locality_name' => $this->village_2,
                     'address' => $this->address_2,
                     'is_same' => 0,
-                    'address_type' => 2,
+                    // 'address_type' => 2,
                     'addresstype_id' => $this->address_types[1]?$this->address_types[1]->id:'',
                     'is_completed' => 1,
                 ]
@@ -567,21 +562,29 @@ class MultiStepStudentProfile extends Component
         $this->current_step--;
     }
 
+    public function move_to($step)
+    {   
+        $this->feach();
+        $this->current_step=$step;
+    }
+
     public function mount()
     {
         if(Auth::guard('student')->user()->is_profile_complete===1)
         {
             return $this->redirect('/student/dashboard',navigate:true);
         }else
-        {
+        {   
             $this->current_step=Auth::guard('student')->user()->current_step;
+            $this->feach();
         }
 
-       $this->feach();
+       
     }
 
     public function feach()
-    {
+    {   
+        $this->address_types=Addresstype::where('is_active',1)->limit(2)->get();
         $student=Auth::guard('student')->user();
         if($student)
         {
@@ -622,38 +625,43 @@ class MultiStepStudentProfile extends Component
                 }
             }
 
-            $student_addres_1= Studentaddress::where('student_id',$student->id)->where('address_type',1)->first();
-            if($student_addres_1)
-            {
-                $taluka_1=Taluka::find($student_addres_1->taluka_id);
-                if($taluka_1)
+            if (isset($this->address_types[0]))
+            {   
+                $student_addres_1= Studentaddress::where('student_id',$student->id)->where('addresstype_id',$this->address_types[0]->id)->first();
+                if($student_addres_1)
                 {
-                    $this->country_id=$taluka_1->district->state->country->id;
-                    $this->state_id=$taluka_1->district->state->id;
-                    $this->district_id=$taluka_1->district->id;
-                    $this->taluka_id=$taluka_1->id;
+                    $taluka_1=Taluka::find($student_addres_1->taluka_id);
+                    if($taluka_1)
+                    {
+                        $this->country_id=$taluka_1->district->state->country->id;
+                        $this->state_id=$taluka_1->district->state->id;
+                        $this->district_id=$taluka_1->district->id;
+                        $this->taluka_id=$taluka_1->id;
+                    }
+                    $this->pincode=$student_addres_1->pincode;
+                    $this->village=$student_addres_1->village_name;
+                    $this->address=$student_addres_1->address;
                 }
-                $this->pincode=$student_addres_1->pincode;
-                $this->village=$student_addres_1->village_name;
-                $this->address=$student_addres_1->address;
             }
-
-            $student_addres_2= Studentaddress::where('student_id',$student->id)->where('address_type',2)->first();
-            if($student_addres_2)
+            if (isset($this->address_types[1]))
             {
-                $taluka_2=Taluka::find($student_addres_2->taluka_id);
-                if($taluka_2)
+                $student_addres_2= Studentaddress::where('student_id',$student->id)->where('addresstype_id',$this->address_types[1]->id)->first();
+                if($student_addres_2)
                 {
-                    $this->country_id_2=$taluka_2->district->state->country->id;
-                    $this->state_id_2=$taluka_2->district->state->id;
-                    $this->district_id_2=$taluka_2->district->id;
-                    $this->taluka_id_2=$taluka_2->id;
+                    $taluka_2=Taluka::find($student_addres_2->taluka_id);
+                    if($taluka_2)
+                    {
+                        $this->country_id_2=$taluka_2->district->state->country->id;
+                        $this->state_id_2=$taluka_2->district->state->id;
+                        $this->district_id_2=$taluka_2->district->id;
+                        $this->taluka_id_2=$taluka_2->id;
+                    }
+                    $this->pincode_2=$student_addres_2->pincode;
+                    $this->village_2=$student_addres_2->village_name;
+                    $this->address_2=$student_addres_2->address;
                 }
-                $this->pincode_2=$student_addres_2->pincode;
-                $this->village_2=$student_addres_2->village_name;
-                $this->address_2=$student_addres_2->address;
             }
-        }
+    }
     }
 
     public function render()

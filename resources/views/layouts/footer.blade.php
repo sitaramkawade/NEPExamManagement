@@ -1,0 +1,1 @@
+<x-footer.footer href="#" name=""> {{ env('APP_NAME') }}  </x-footer.footer>

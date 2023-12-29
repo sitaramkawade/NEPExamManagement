@@ -159,10 +159,11 @@
                                                 </div>
                                                 <label class="block p-2">
                                                     <span class="sr-only">Choose profile photo</span>
-                                                    <x-text-input id="profile_photo_path" wire:model="profile_photo_path" name="profile_photo_path" accept="image/png, image/jpeg , image/jpg" :value="old('profile_photo_path',$profile_photo_path)"  autocomplete="profile_photo_path" type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
+                                                    <x-text-input id="profile_photo_path" wire:model.live="profile_photo_path" name="profile_photo_path" accept="image/png, image/jpeg , image/jpg" :value="old('profile_photo_path',$profile_photo_path)"  autocomplete="profile_photo_path" type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
                                                     <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
                                                 </label>
-                                                <x-input-label class="py-2" for="profile_photo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
+                                                <x-input-label wire:loading.remove wire:target="profile_photo_path" class="py-2" for="profile_photo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
+                                                <x-input-label wire:loading wire:target="profile_photo_path" class="py-2" for="profile_photo_path"  :value="__('Uploading...')" />
                                             </div>
                                         </div>
                                     </div>
@@ -183,10 +184,11 @@
                                                 </div>
                                                 <label class="block p-2">
                                                     <span class="sr-only">Choose profile photo</span>
-                                                    <x-text-input id="sign_photo_path" wire:model="sign_photo_path" name="sign_photo_path" accept="image/png, image/jpeg , image/jpg" :value="old('sign_photo_path',$sign_photo_path)"  autocomplete="sign_photo_path" type="file"  class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
+                                                    <x-text-input id="sign_photo_path" wire:model.live="sign_photo_path" name="sign_photo_path" accept="image/png, image/jpeg , image/jpg" :value="old('sign_photo_path',$sign_photo_path)"  autocomplete="sign_photo_path" type="file"  class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
                                                     <x-input-error :messages="$errors->get('sign_photo_path')" class="mt-2" />
                                                 </label>
-                                                <x-input-label class="py-2" for="sign_photo_path"  :value="__('Hint : 50KB , png , jpeg , jpg')" />
+                                                <x-input-label wire:loading.remove wire:target="sign_photo_path" class="py-2" for="sign_photo_path"  :value="__('Hint : 50KB , png , jpeg , jpg')" />
+                                                <x-input-label wire:loading wire:target="sign_photo_path" class="py-2" for="sign_photo_path"  :value="__('Uploading...')"/>
                                             </div>
                                         </div>
                                     </div>
