@@ -96,17 +96,18 @@
                                     <div class="flex flex-col items-center mx-auto space-x-6  ">
                                         <div class="shrink-0 p-2">
                                             @if ($profile_photo_path)
-                                                <img style="width: 135px; height: 150px;" class="object-center object-fill bg-red-500 " src="{{ isset($profile_photo_path) ? $profile_photo_path->temporaryUrl() : asset('img/no-img.png') }}" alt="Current profile photo" />
+                                                <img style="width: 135px; height: 150px;" class="object-center object-fill  " src="{{ isset($profile_photo_path)?$profile_photo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
                                             @else
-                                                <img style="width: 135px; height: 150px;" class="object-center object-fill "src="{{ isset($profile_photo_path_old) ? asset($profile_photo_path_old) : asset('img/no-img.png') }}" alt="Current profile photo" />
+                                                <img style="width: 135px; height: 150px;" class="object-center object-fill "src="{{ isset($profile_photo_path_old)?asset($profile_photo_path_old):asset('img/no-img.png'); }}"alt="Current profile photo" />
                                             @endif
                                         </div>
                                         <label class="block p-2">
                                             <span class="sr-only">Choose profile photo</span>
-                                            <x-text-input id="profile_photo_path" wire:model.live="profile_photo_path" name="profile_photo_path" accept="image/png, image/jpeg , image/jpg" :value="old('profile_photo_path', $profile_photo_path)" autofocus autocomplete="profile_photo_path" type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
+                                            <x-text-input id="profile_photo_path" wire:model.live="profile_photo_path" name="profile_photo_path" accept="image/png, image/jpeg , image/jpg" :value="old('profile_photo_path',$profile_photo_path)"  autocomplete="profile_photo_path" type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
                                             <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
                                         </label>
-                                        <x-input-label class="py-2" for="profile_photo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
+                                        <x-input-label wire:loading.remove wire:target="profile_photo_path" class="py-2" for="profile_photo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
+                                        <x-input-label wire:loading wire:target="profile_photo_path" class="py-2" for="profile_photo_path"  :value="__('Uploading...')" />
                                     </div>
                                 </div>
                             </div>

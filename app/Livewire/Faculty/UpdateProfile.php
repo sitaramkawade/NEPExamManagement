@@ -178,13 +178,13 @@ class UpdateProfile extends Component
 
             if ($this->profile_photo_path) {
                 if ($faculty->profile_photo_path) {
-                    File::delete(public_path($faculty->profile_photo_path));
+                    File::delete($faculty->profile_photo_path);
                 }
-
-                $path = 'uploads/faculty/profile/photo/';
+                $path = 'faculty/profile/photo/';
                 $fileName = 'faculty-' . time(). '.' . $this->profile_photo_path->getClientOriginalExtension();
                 $this->profile_photo_path->storeAs($path, $fileName, 'public');
-                $dataToUpdate['profile_photo_path'] = 'storage/' . $path . $fileName;
+                $faculty->profile_photo_path = 'storage/' . $path . $fileName;
+                $this->reset('profile_photo_path');
             }
 
             $faculty->update($dataToUpdate);

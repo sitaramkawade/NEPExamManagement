@@ -1,5 +1,5 @@
 <x-navbar.navbar>
-    
+
   <x-slot name="AUTH">
     @auth("student")
       <img class="inline-flex h-9 w-9 rounded-full" src="{{ asset(auth()->guard("student")->user()->studentprofile->profile_photo_path) }}" alt="User" />
