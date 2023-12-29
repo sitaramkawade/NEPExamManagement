@@ -159,10 +159,11 @@
                                                 </div>
                                                 <label class="block p-2">
                                                     <span class="sr-only">Choose profile photo</span>
-                                                    <x-text-input id="profile_photo_path" wire:model="profile_photo_path" name="profile_photo_path" accept="image/png, image/jpeg , image/jpg" :value="old('profile_photo_path',$profile_photo_path)"  autocomplete="profile_photo_path" type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
+                                                    <x-text-input id="profile_photo_path" wire:model.live="profile_photo_path" name="profile_photo_path" accept="image/png, image/jpeg , image/jpg" :value="old('profile_photo_path',$profile_photo_path)"  autocomplete="profile_photo_path" type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
                                                     <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
                                                 </label>
-                                                <x-input-label class="py-2" for="profile_photo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
+                                                <x-input-label wire:loading.remove wire:target="profile_photo_path" class="py-2" for="profile_photo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
+                                                <x-input-label wire:loading wire:target="profile_photo_path" class="py-2" for="profile_photo_path"  :value="__('Uploading...')" />
                                             </div>
                                         </div>
                                     </div>
@@ -183,10 +184,11 @@
                                                 </div>
                                                 <label class="block p-2">
                                                     <span class="sr-only">Choose profile photo</span>
-                                                    <x-text-input id="sign_photo_path" wire:model="sign_photo_path" name="sign_photo_path" accept="image/png, image/jpeg , image/jpg" :value="old('sign_photo_path',$sign_photo_path)"  autocomplete="sign_photo_path" type="file"  class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
+                                                    <x-text-input id="sign_photo_path" wire:model.live="sign_photo_path" name="sign_photo_path" accept="image/png, image/jpeg , image/jpg" :value="old('sign_photo_path',$sign_photo_path)"  autocomplete="sign_photo_path" type="file"  class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
                                                     <x-input-error :messages="$errors->get('sign_photo_path')" class="mt-2" />
                                                 </label>
-                                                <x-input-label class="py-2" for="sign_photo_path"  :value="__('Hint : 50KB , png , jpeg , jpg')" />
+                                                <x-input-label wire:loading.remove wire:target="sign_photo_path" class="py-2" for="sign_photo_path"  :value="__('Hint : 50KB , png , jpeg , jpg')" />
+                                                <x-input-label wire:loading wire:target="sign_photo_path" class="py-2" for="sign_photo_path"  :value="__('Uploading...')"/>
                                             </div>
                                         </div>
                                     </div>
@@ -205,155 +207,159 @@
                             <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
                                 Student Address <x-spinner/>
                             </div>
-                            <div class="m-5   col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
-                                <div class="flex items-center justify-between border-b p-4 dark:border-primary">
-                                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Correspondence Address</h4>
-                                </div>
-                                <div class="relative h-auto p-4">
-                                    <div class="grid grid-cols-1 md:grid-cols-2">
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="country_id" :value="__('Country')" />
-                                            <x-input-select id="country_id" wire:model.live="country_id" name="country_id" class="text-center w-full mt-1" :value="old('country_id',$country_id)" required  autocomplete="country_id">
-                                                <x-select-option class="text-start" hidden> -- Select Country -- </x-select-option>
-                                                @forelse ($countries as $country)
-                                                    <x-select-option wire:key="{{ $country->id }}" value="{{ $country->id }}" class="text-start"> {{$country->country_name }} </x-select-option>
-                                                @empty
-                                                    <x-select-option class="text-start">Countries Not Found</x-select-option>
-                                                @endforelse
-                                            </x-input-select>
-                                            <x-input-error :messages="$errors->get('country_id')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="state_id" :value="__('State')" />
-                                            <x-input-select id="state_id" wire:model.live="state_id" name="state_id" class="text-center w-full mt-1" :value="old('state_id',$state_id)" required  autocomplete="state_id">
-                                                <x-select-option class="text-start" hidden> -- Select State -- </x-select-option>
-                                                @forelse ($states as $state)
-                                                    <x-select-option wire:key="{{ $state->id }}" value="{{ $state->id }}" class="text-start"> {{$state->state_name }} </x-select-option>
-                                                @empty
-                                                    <x-select-option value="" class="text-start">Select Country First</x-select-option>
-                                                @endforelse
-                                            </x-input-select>
-                                            <x-input-error :messages="$errors->get('state_id')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="district_id" :value="__('District')" />
-                                            <x-input-select id="district_id"  wire:model.live="district_id" name="district_id" class="text-center w-full mt-1" :value="old('district_id',$district_id)" required  autocomplete="district_id">
-                                                <x-select-option class="text-start" hidden> -- Select District -- </x-select-option>
-                                                @forelse ($districts as $district)
-                                                    <x-select-option wire:key="{{ $district->id }}" value="{{ $district->id }}" class="text-start"> {{$district->district_name }} </x-select-option>
-                                                @empty
-                                                    <x-select-option value="" class="text-start">Select State First</x-select-option>
-                                                @endforelse
-                                            </x-input-select>
-                                            <x-input-error :messages="$errors->get('district_id')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="taluka_id" :value="__('Taluka')" />
-                                            <x-input-select id="taluka_id" wire:model.live="taluka_id" name="taluka_id" class="text-center w-full mt-1" :value="old('taluka_id',$taluka_id)" required  autocomplete="taluka_id">
-                                                <x-select-option class="text-start" hidden> -- Select Taluka -- </x-select-option>
-                                                @forelse ($talukas as $taluka)
-                                                    <x-select-option wire:key="{{ $taluka->id }}" value="{{ $taluka->id }}" class="text-start"> {{$taluka->taluka_name }}</x-select-option>
-                                                @empty
-                                                    <x-select-option value="" class="text-start">Select District First</x-select-option>
-                                                @endforelse
-                                            </x-input-select>
-                                            <x-input-error :messages="$errors->get('taluka_id')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="village" :value="__('Village')" />
-                                            <x-text-input id="village" type="text" wire:model="village" name="village" class="w-full mt-1" :value="old('village',$village)" required  autocomplete="village" />
-                                            <x-input-error :messages="$errors->get('village')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="pincode" :value="__('Pincode')" />
-                                            <x-text-input id="pincode" type="number" wire:model="pincode" name="pincode" class="w-full mt-1" :value="old('pincode',$pincode)" required  autocomplete="pincode" />
-                                            <x-input-error :messages="$errors->get('pincode')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="address" :value="__('Address')" />
-                                            <x-textarea id="address" wire:model="address" rows="2" name="address" class="w-full mt-1" :value="old('address',$address)" required  autocomplete="address"></x-textarea>
-                                            <x-input-error :messages="$errors->get('address')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <br>
-                                            <x-text-input id="is_same" type="checkbox" wire:model.live="is_same"  @click="open = ! open" class="my-1 h-8 w-8"  name="is_same" :value="old('is_same',$is_same)"   />
-                                            <x-input-label for="is_same"  class="inline mb-1 mx-2" :value="__('Is Permanent Address Is Same As Correspondence Address')" />
-                                            <x-input-error :messages="$errors->get('is_same')" class="mt-2" />
+                            @if (isset($address_types[0]->type))
+                                <div class="m-5   col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
+                                    <div class="flex items-center justify-between border-b p-4 dark:border-primary">
+                                        <h4 class="text-lg font-semibold text-gray-500 dark:text-light">  @if (isset($address_types[0]->type)) {{ $address_types[0]->type }}@endif</h4>
+                                    
+                                    </div>
+                                    <div class="relative h-auto p-4">
+                                        <div class="grid grid-cols-1 md:grid-cols-2">
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="country_id" :value="__('Country')" />
+                                                <x-input-select id="country_id" wire:model.live="country_id" name="country_id" class="text-center w-full mt-1" :value="old('country_id',$country_id)" required  autocomplete="country_id">
+                                                    <x-select-option class="text-start" hidden> -- Select Country -- </x-select-option>
+                                                    @forelse ($countries as $country)
+                                                        <x-select-option wire:key="{{ $country->id }}" value="{{ $country->id }}" class="text-start"> {{$country->country_name }} </x-select-option>
+                                                    @empty
+                                                        <x-select-option class="text-start">Countries Not Found</x-select-option>
+                                                    @endforelse
+                                                </x-input-select>
+                                                <x-input-error :messages="$errors->get('country_id')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="state_id" :value="__('State')" />
+                                                <x-input-select id="state_id" wire:model.live="state_id" name="state_id" class="text-center w-full mt-1" :value="old('state_id',$state_id)" required  autocomplete="state_id">
+                                                    <x-select-option class="text-start" hidden> -- Select State -- </x-select-option>
+                                                    @forelse ($states as $state)
+                                                        <x-select-option wire:key="{{ $state->id }}" value="{{ $state->id }}" class="text-start"> {{$state->state_name }} </x-select-option>
+                                                    @empty
+                                                        <x-select-option value="" class="text-start">Select Country First</x-select-option>
+                                                    @endforelse
+                                                </x-input-select>
+                                                <x-input-error :messages="$errors->get('state_id')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="district_id" :value="__('District')" />
+                                                <x-input-select id="district_id"  wire:model.live="district_id" name="district_id" class="text-center w-full mt-1" :value="old('district_id',$district_id)" required  autocomplete="district_id">
+                                                    <x-select-option class="text-start" hidden> -- Select District -- </x-select-option>
+                                                    @forelse ($districts as $district)
+                                                        <x-select-option wire:key="{{ $district->id }}" value="{{ $district->id }}" class="text-start"> {{$district->district_name }} </x-select-option>
+                                                    @empty
+                                                        <x-select-option value="" class="text-start">Select State First</x-select-option>
+                                                    @endforelse
+                                                </x-input-select>
+                                                <x-input-error :messages="$errors->get('district_id')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="taluka_id" :value="__('Taluka')" />
+                                                <x-input-select id="taluka_id" wire:model.live="taluka_id" name="taluka_id" class="text-center w-full mt-1" :value="old('taluka_id',$taluka_id)" required  autocomplete="taluka_id">
+                                                    <x-select-option class="text-start" hidden> -- Select Taluka -- </x-select-option>
+                                                    @forelse ($talukas as $taluka)
+                                                        <x-select-option wire:key="{{ $taluka->id }}" value="{{ $taluka->id }}" class="text-start"> {{$taluka->taluka_name }}</x-select-option>
+                                                    @empty
+                                                        <x-select-option value="" class="text-start">Select District First</x-select-option>
+                                                    @endforelse
+                                                </x-input-select>
+                                                <x-input-error :messages="$errors->get('taluka_id')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="village" :value="__('Village')" />
+                                                <x-text-input id="village" type="text" wire:model="village" name="village" class="w-full mt-1" :value="old('village',$village)" required  autocomplete="village" />
+                                                <x-input-error :messages="$errors->get('village')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="pincode" :value="__('Pincode')" />
+                                                <x-text-input id="pincode" type="number" wire:model="pincode" name="pincode" class="w-full mt-1" :value="old('pincode',$pincode)" required  autocomplete="pincode" />
+                                                <x-input-error :messages="$errors->get('pincode')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="address" :value="__('Address')" />
+                                                <x-textarea id="address" wire:model="address" rows="2" name="address" class="w-full mt-1" :value="old('address',$address)" required  autocomplete="address"></x-textarea>
+                                                <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <br>
+                                                <x-text-input id="is_same" type="checkbox" wire:model.live="is_same"  @click="open = ! open" class="my-1 h-8 w-8"  name="is_same" :value="old('is_same',$is_same)"   />
+                                                <x-input-label for="is_same"  class="inline mb-1 mx-2" :value="__('Is Permanent Address Is Same As Correspondence Address')" />
+                                                <x-input-error :messages="$errors->get('is_same')" class="mt-2" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            {{-- @if (!$is_same) --}}
-                            <div x-show="open" class="m-5   col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
-                                <div class="flex items-center justify-between border-b p-4 dark:border-primary">
-                                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Permanent Address</h4>
-                                </div>
-                                <div class="relative h-auto p-4">
-                                    <div class="grid grid-cols-1 md:grid-cols-2">
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="country_id_2" :value="__('Country')" />
-                                            <x-input-select id="country_id_2" wire:model.live="country_id_2" name="country_id_2" class="text-center w-full mt-1" :value="old('country_id_2',$country_id_2)"  autocomplete="country_id_2">
-                                                <x-select-option class="text-start" hidden> -- Select Country -- </x-select-option>
-                                                @foreach ($countries_2 as $country)
-                                                    <x-select-option wire:key="{{ $country->id }}" value="{{ $country->id }}" class="text-start"> {{$country->country_name }} </x-select-option>
-                                                @endforeach
-                                            </x-input-select>
-                                            <x-input-error :messages="$errors->get('country_id_2')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="state_id_2" :value="__('State')" />
-                                            <x-input-select id="state_id_2" wire:model.live="state_id_2" name="state_id_2" class="text-center w-full mt-1" :value="old('state_id_2',$state_id_2)"  autocomplete="state_id_2">
-                                                <x-select-option class="text-start" hidden> -- Select State -- </x-select-option>
-                                                @forelse ($states_2 as $state)
-                                                    <x-select-option wire:key="{{ $state->id }}" value="{{ $state->id }}" class="text-start"> {{$state->state_name }} </x-select-option>
-                                                @empty
-                                                    <x-select-option value="" class="text-start">Select Country First</x-select-option>
-                                                @endforelse
-                                            </x-input-select>
-                                            <x-input-error :messages="$errors->get('state_id_2')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="district_id_2" :value="__('District')" />
-                                            <x-input-select id="district_id_2"  wire:model.live="district_id_2" name="district_id_2" class="text-center w-full mt-1" :value="old('district_id_2',$district_id_2)"  autocomplete="district_id_2">
-                                                <x-select-option class="text-start" hidden> -- Select District -- </x-select-option>
-                                                @forelse ($districts_2 as $district)
-                                                    <x-select-option wire:key="{{ $district->id }}" value="{{ $district->id }}" class="text-start"> {{$district->district_name }} </x-select-option>
-                                                @empty
-                                                    <x-select-option value="" class="text-start">Select State First</x-select-option>
-                                                @endforelse
-                                            </x-input-select>
-                                            <x-input-error :messages="$errors->get('district_id_2')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="taluka_id_2" :value="__('Taluka')" />
-                                            <x-input-select id="taluka_id_2" wire:model.live="taluka_id_2" name="taluka_id_2" class="text-center w-full mt-1" :value="old('taluka_id_2',$taluka_id_2)"  autocomplete="taluka_id_2">
-                                                <x-select-option class="text-start" hidden> -- Select Taluka -- </x-select-option>
-                                                @forelse ($talukas_2 as $taluka)
-                                                    <x-select-option wire:key="{{ $taluka->id }}" value="{{ $taluka->id }}" class="text-start"> {{$taluka->taluka_name }}</x-select-option>
-                                                @empty
-                                                    <x-select-option value="" class="text-start">Select District First</x-select-option>
-                                                @endforelse
-                                            </x-input-select>
-                                            <x-input-error :messages="$errors->get('taluka_id_2')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="village_2" :value="__('Village')" />
-                                            <x-text-input id="village_2" type="text" wire:model="village_2" name="village_2" class="w-full mt-1" :value="old('village_2',$village_2)"  autocomplete="village_2" />
-                                            <x-input-error :messages="$errors->get('village_2')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="pincode_2" :value="__('Pincode')" />
-                                            <x-text-input id="pincode_2" type="number" wire:model="pincode_2" name="pincode_2" class="w-full mt-1" :value="old('pincode_2',$pincode_2)"  autocomplete="pincode_2" />
-                                            <x-input-error :messages="$errors->get('pincode_2')" class="mt-2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="address_2" :value="__('Address')" />
-                                            <x-textarea id="address_2" wire:model="address_2" rows="2" name="address_2" class="w-full mt-1" :value="old('address_2',$address_2)" autocomplete="address_2"></x-textarea>
-                                            <x-input-error :messages="$errors->get('address_2')" class="mt-2" />
+                            @endif
+                            @if (isset($address_types[1]->type))
+                                <div x-show="open" class="m-5   col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
+                                    <div class="flex items-center justify-between border-b p-4 dark:border-primary">
+                                        <h4 class="text-lg font-semibold text-gray-500 dark:text-light">@if (isset($address_types[1]->type)) {{ $address_types[1]->type }} @endif </h4>
+                                    </div>
+                                    <div class="relative h-auto p-4">
+                                        <div class="grid grid-cols-1 md:grid-cols-2">
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="country_id_2" :value="__('Country')" />
+                                                <x-input-select id="country_id_2" wire:model.live="country_id_2" name="country_id_2" class="text-center w-full mt-1" :value="old('country_id_2',$country_id_2)"  autocomplete="country_id_2">
+                                                    <x-select-option class="text-start" hidden> -- Select Country -- </x-select-option>
+                                                    @foreach ($countries_2 as $country)
+                                                        <x-select-option wire:key="{{ $country->id }}" value="{{ $country->id }}" class="text-start"> {{$country->country_name }} </x-select-option>
+                                                    @endforeach
+                                                </x-input-select>
+                                                <x-input-error :messages="$errors->get('country_id_2')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="state_id_2" :value="__('State')" />
+                                                <x-input-select id="state_id_2" wire:model.live="state_id_2" name="state_id_2" class="text-center w-full mt-1" :value="old('state_id_2',$state_id_2)"  autocomplete="state_id_2">
+                                                    <x-select-option class="text-start" hidden> -- Select State -- </x-select-option>
+                                                    @forelse ($states_2 as $state)
+                                                        <x-select-option wire:key="{{ $state->id }}" value="{{ $state->id }}" class="text-start"> {{$state->state_name }} </x-select-option>
+                                                    @empty
+                                                        <x-select-option value="" class="text-start">Select Country First</x-select-option>
+                                                    @endforelse
+                                                </x-input-select>
+                                                <x-input-error :messages="$errors->get('state_id_2')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="district_id_2" :value="__('District')" />
+                                                <x-input-select id="district_id_2"  wire:model.live="district_id_2" name="district_id_2" class="text-center w-full mt-1" :value="old('district_id_2',$district_id_2)"  autocomplete="district_id_2">
+                                                    <x-select-option class="text-start" hidden> -- Select District -- </x-select-option>
+                                                    @forelse ($districts_2 as $district)
+                                                        <x-select-option wire:key="{{ $district->id }}" value="{{ $district->id }}" class="text-start"> {{$district->district_name }} </x-select-option>
+                                                    @empty
+                                                        <x-select-option value="" class="text-start">Select State First</x-select-option>
+                                                    @endforelse
+                                                </x-input-select>
+                                                <x-input-error :messages="$errors->get('district_id_2')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="taluka_id_2" :value="__('Taluka')" />
+                                                <x-input-select id="taluka_id_2" wire:model.live="taluka_id_2" name="taluka_id_2" class="text-center w-full mt-1" :value="old('taluka_id_2',$taluka_id_2)"  autocomplete="taluka_id_2">
+                                                    <x-select-option class="text-start" hidden> -- Select Taluka -- </x-select-option>
+                                                    @forelse ($talukas_2 as $taluka)
+                                                        <x-select-option wire:key="{{ $taluka->id }}" value="{{ $taluka->id }}" class="text-start"> {{$taluka->taluka_name }}</x-select-option>
+                                                    @empty
+                                                        <x-select-option value="" class="text-start">Select District First</x-select-option>
+                                                    @endforelse
+                                                </x-input-select>
+                                                <x-input-error :messages="$errors->get('taluka_id_2')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="village_2" :value="__('Village')" />
+                                                <x-text-input id="village_2" type="text" wire:model="village_2" name="village_2" class="w-full mt-1" :value="old('village_2',$village_2)"  autocomplete="village_2" />
+                                                <x-input-error :messages="$errors->get('village_2')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="pincode_2" :value="__('Pincode')" />
+                                                <x-text-input id="pincode_2" type="number" wire:model="pincode_2" name="pincode_2" class="w-full mt-1" :value="old('pincode_2',$pincode_2)"  autocomplete="pincode_2" />
+                                                <x-input-error :messages="$errors->get('pincode_2')" class="mt-2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="address_2" :value="__('Address')" />
+                                                <x-textarea id="address_2" wire:model="address_2" rows="2" name="address_2" class="w-full mt-1" :value="old('address_2',$address_2)" autocomplete="address_2"></x-textarea>
+                                                <x-input-error :messages="$errors->get('address_2')" class="mt-2" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                </div>   
+                            @endif
                             {{-- @endif --}}
                             <x-multi-step-btn :current_step="$current_step" :steps="$steps"/>
                         </div>
@@ -767,19 +773,19 @@
                                                 <x-input-label for="taluka_2" :value="__('Taluka')" />
                                                 <x-input-show  id='taluka_2' :value="$tal2->taluka_name" />
                                             </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="village_2" :value="__('Village')" />
+                                                <x-input-show  id='village_2' :value="$village_2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="pincode_2" :value="__('Pincode')" />
+                                                <x-input-show  id='pincode_2' :value="$pincode_2" />
+                                            </div>
+                                            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                                <x-input-label for="address_2" :value="__('Address')" />
+                                                <x-textarea-show  id='address_2' :value="$address_2" />
+                                            </div>
                                         @endif
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="village_2" :value="__('Village')" />
-                                            <x-input-show  id='village_2' :value="$village_2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="pincode_2" :value="__('Pincode')" />
-                                            <x-input-show  id='pincode_2' :value="$pincode_2" />
-                                        </div>
-                                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                            <x-input-label for="address_2" :value="__('Address')" />
-                                            <x-textarea-show  id='address_2' :value="$address_2" />
-                                        </div>
                                     </div>
                                 </div>
                             </div>

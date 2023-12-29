@@ -14,11 +14,19 @@
       <main class="z-10">
         @yield("user")
       </main>
+
+      {{-- Footer --}}
+      @include("layouts.footer")
+
     </div>
 
+    {{-- User Notification Panels  --}}
+
+    @include("layouts.user.notification-panel")
+
     {{-- Setting Panels  --}}
-    <div x-cloak>
-      @include("layouts.setting-panel")
-    </div>
+
+    @include("layouts.setting-panel")
+    
   </div>
 @endsection

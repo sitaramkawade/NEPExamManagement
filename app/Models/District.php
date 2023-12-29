@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\Builder;
 
 class District extends Model
 {
@@ -17,8 +18,6 @@ class District extends Model
         'district_code',
         'district_name',
         'state_id',
-      
-        
     ];
 
     public function talukas():HasMany
@@ -30,5 +29,16 @@ class District extends Model
     {
         return $this->belongsTo(State::class, 'state_id', 'id');
     }
-   
+
+    public function scopeSearch(Builder $query,string $search)
+    {
+        return $query->with('state')->where(function ($subquery) use ($search) {
+            $subquery->where('district_name', 'like', "%{$search}%")
+                ->orWhere('district_code', 'like', "%{$search}%")
+                ->orWhereHas('state', function ($subQuery) use ($search) {
+                    $subQuery->where('state_name', 'like', "%{$search}%");
+                }
+            );
+        });
+    }
 }
