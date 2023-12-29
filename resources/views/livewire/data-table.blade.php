@@ -33,4 +33,5 @@
       <x-table.paginate :data="$data" />
     </x-slot>
   </x-table.frame>
+  {{-- @livewire('select-to',['table'=>'districts','key'=>'id','value'=>'district_name']) --}}
 </div>

@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Livewire;
+use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Student\StudentDashboard;
@@ -41,7 +42,7 @@ Route::middleware(['guest'])->group(function () {
     })->name('faculty');
 
     // RND Page
-    Route::get('/temp',DataTable::class);
+    Route::get('/table',DataTable::class);
 
 });
 

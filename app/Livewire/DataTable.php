@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\District;
 use Livewire\WithPagination;
 use App\Exports\ExportDistrict;
+use App\Exports\ExportDistrictPdf;
 
 class DataTable extends Component
 {   

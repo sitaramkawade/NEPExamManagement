@@ -86,6 +86,13 @@
           toggleSidbarMenu() {
             this.isSidebarOpen = !this.isSidebarOpen
           },
+          isNotificationsPanelOpen: false,
+          openNotificationsPanel() {
+            this.isNotificationsPanelOpen = true
+            this.$nextTick(() => {
+              this.$refs.notificationsPanel.focus()
+            })
+          },
           isSettingsPanelOpen: false,
           openSettingsPanel() {
             this.isSettingsPanelOpen = true
