@@ -9,7 +9,6 @@ use App\Livewire\Faculty\DeleteFaculty;
 use App\Livewire\Faculty\UpdateProfile;
 use App\Livewire\Faculty\RestoreFaculty;
 use App\Livewire\Faculty\RegisterFaculty;
-use App\Livewire\Faculty\FacultyDataTable;
 use App\Livewire\Master\Gender\ViewGender;
 
 use App\Livewire\Student\StudentDashboard;
@@ -20,7 +19,12 @@ use App\Livewire\Faculty\FacultyRole\ViewRole;
 use App\Livewire\Faculty\FacultyRole\RestoreRole;
 use App\Livewire\Faculty\MultiStepFacultyProfile;
 use App\Livewire\Faculty\FacultyRole\SoftDeleteRole;
+use App\Livewire\Faculty\FacultyRoleType\AddRoleType;
+use App\Livewire\Faculty\FacultyRoleType\EditRoleType;
+use App\Livewire\Faculty\FacultyRoleType\ViewRoleType;
+use App\Livewire\Faculty\FacultyRoleType\RestoreRoleType;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
+use App\Livewire\Faculty\FacultyRoleType\SoftDeleteRoleType;
 
 // Livewire Update Route
 Livewire::setUpdateRoute(function ($handle) {
@@ -117,8 +121,6 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty'])->group(
     //Update Profile Faculty
     Route::get('/update-profile', UpdateProfile::class)->name('update-profile.faculty');
 
-    //Faculty Data Table
-    Route::get('/faculty-table', FacultyDataTable::class);
 
     //View Faculty Role
     Route::get('/view-faculty-role', ViewRole::class)->name('view-role.faculty');
@@ -134,6 +136,22 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty'])->group(
 
     //Restore Faculty Role
     Route::get('/restore-faculty-role/{id}', RestoreRole::class)->name('restore-role.faculty');
+
+    //View Faculty Role Type
+    Route::get('/view-roletype', ViewRoleType::class)->name('view-roletype.faculty');
+
+    //Add Faculty Role Type
+    Route::get('/add-roletype', AddRoleType::class)->name('add-roletype.faculty');
+
+    //Edit Faculty Role Type
+    Route::get('/edit-roletype/{id}', EditRoleType::class)->name('edit-roletype.faculty');
+
+    //Delete Faculty Role Type
+    Route::get('/delete-roletype/{id}', SoftDeleteRoleType::class)->name('delete-roletype.faculty');
+
+    //Restore Faculty Role Type
+    Route::get('/restore-roletype/{id}', RestoreRoleType::class)->name('restore-roletype.faculty');
+
 
 });
 

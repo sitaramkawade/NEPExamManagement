@@ -53,7 +53,6 @@ class AddRole extends Component
         $validatedData = $this->validate();
         $role = Role::create($validatedData);
         if ($role) {
-            $role->create($validatedData);
             $this->dispatch('alert',type:'success',message:'Role Added Successfully');
             $this->resetinput();
         } else {
