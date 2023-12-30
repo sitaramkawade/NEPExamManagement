@@ -2,10 +2,12 @@
 
 namespace App\Livewire\User;
 
+use Excel;
 use App\Models\College;
 use Livewire\Component;
 use App\Models\University;
 use Livewire\WithPagination;
+use App\Exports\user\ExportUniversity;
 
 class ViewUniversity extends Component
 {
@@ -14,10 +16,11 @@ class ViewUniversity extends Component
     public $page = 1;
     public $sno;
     public $search='';
-    public $sortColumn="sanstha_name";
+    public $sortColumn="university_name";
     public $sortColumnBy="ASC";
     public $data;
     public $universities;
+    public $ext;
 
     public function sort_column($column)
     {   
@@ -35,6 +38,22 @@ class ViewUniversity extends Component
         $this->resetPage();
     }
 
+    public function export()
+    {   
+        $filename="University-".now();
+        switch ($this->ext) {
+            case 'xlsx':
+                return Excel::download(new ExportUniversity($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+            break;
+            case 'csv':
+                return Excel::download(new ExportUniversity($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+            break;
+            case 'pdf':
+                return Excel::download(new ExportUniversity($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+            break;
+        }
+       
+    }
     
     public function mount()
     {

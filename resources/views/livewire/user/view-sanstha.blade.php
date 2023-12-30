@@ -2,9 +2,7 @@
     <x-card heading="All Sanstha" />
     <x-table.frame>
         <x-slot:header>
-            <x-table.perpage />
-            <x-table.search />
-            <x-spinner />
+           
             </x-slot>
 
             <x-slot:body>

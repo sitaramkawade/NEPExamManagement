@@ -2,11 +2,12 @@
 
 namespace App\Livewire\User;
 
+use Excel;
 use App\Models\College;
 use App\Models\Sanstha;
 use Livewire\Component;
 use Livewire\WithPagination;
-
+use App\Exports\user\ExportSanstha;
 
 class ViewSanstha extends Component
 {
@@ -19,6 +20,7 @@ class ViewSanstha extends Component
     public $sortColumnBy="ASC";
     public $data;
     public $sansthas;
+    public $ext;
    
 
     public function sort_column($column)
@@ -35,6 +37,23 @@ class ViewSanstha extends Component
     public function updatedSearch()
     {
         $this->resetPage();
+    }
+
+    public function export()
+    {   
+        $filename="Sanstha-".now();
+        switch ($this->ext) {
+            case 'xlsx':
+                return Excel::download(new ExportSanstha($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+            break;
+            case 'csv':
+                return Excel::download(new ExportSanstha($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+            break;
+            case 'pdf':
+                return Excel::download(new ExportSanstha($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+            break;
+        }
+       
     }
 
     public function mount()
