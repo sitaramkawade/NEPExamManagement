@@ -13,7 +13,7 @@
 
       {{-- Student Main --}}
 
-      <main class="z-10 h-screen">
+      <main class="z-10 min-h-screen">
         @yield("student")
       </main>
 

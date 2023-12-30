@@ -73,7 +73,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
 
 
 // Auth Faculty Routes
-Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty'])->group(function () {
+Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified:faculty.verification.notice'])->group(function () {
 
     // Faculty Dashboard
     Route::get('dashboard', function () {

@@ -11,7 +11,7 @@
       @include("layouts.user.navbar")
 
       {{-- Uesr Main content  --}}
-      <main class="z-10">
+      <main class="z-10 min-h-screen">
         @yield("user")
       </main>
 

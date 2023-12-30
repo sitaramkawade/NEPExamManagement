@@ -14,7 +14,7 @@
 
       {{-- Faculty Main --}}
 
-      <main class="z-10">
+      <main class="z-10 min-h-screen">
         @yield("faculty")
       </main>
 

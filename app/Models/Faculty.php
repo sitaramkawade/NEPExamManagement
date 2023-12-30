@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use App\Notifications\FacultyRegisteMailNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Notifications\Faculty\FacultyRegisterMailNotification;
 use App\Notifications\Faculty\FacultyResetPasswordNotification;
 
-class Faculty extends Authenticatable 
+class Faculty extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -82,10 +82,13 @@ class Faculty extends Authenticatable
     {
         return $this->hasOne(Facultybankaccount::class,'faculty_id','id');
     }
+
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new FacultyRegisteMailNotification);
-    }
+        $this->notify(new FacultyRegisterMailNotification);
+    } 
+
+
     // public function facultyhead()
     // {
     //     return $this->hasMany(Facultyhead::class,'faculty_id','id');
