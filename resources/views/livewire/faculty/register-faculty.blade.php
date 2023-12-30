@@ -77,7 +77,7 @@
             </x-slot>
         </x-card-collapsible>
 
-        <x-card-collapsible heading="Account Details">
+        <x-card-collapsible heading="Bank Account Details">
 
             <x-slot name="content">
                 <div class="grid grid-cols-1 md:grid-cols-3">

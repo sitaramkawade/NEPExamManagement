@@ -1,9 +1,6 @@
 <div>
     <x-table.frame>
         <x-slot:header>
-          <x-table.perpage />
-          <x-table.search />
-          <x-spinner/>
         </x-slot>
         <x-slot:body>
           <x-table.table>

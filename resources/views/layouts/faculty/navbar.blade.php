@@ -3,7 +3,7 @@
   <x-slot name="AUTH">
     @auth("faculty")
       <img class="inline-flex h-9 w-9 rounded-full" src="{{ isset(auth()->guard("faculty")->user()->profile_photo_path)? asset(auth()->guard("faculty")->user()->profile_photo_path): asset("img/no-img.png"); }}" alt="Faculty" />
-      <span class="text-bold mx-2 inline-flex py-2">{{ auth()->guard("faculty")->user()->name }}</span>
+      <span class="text-bold mx-2 inline-flex py-2">{{ auth()->guard("faculty")->user()->faculty_name }}</span>
     @else
       <img class="inline-flex h-9 w-9 rounded-full" src="{{ asset("img/no-img.png") }}" alt="Faculty" />
     @endauth

@@ -5,6 +5,8 @@ namespace App\Livewire\Faculty\FacultyRoleType;
 use Livewire\Component;
 use App\Models\Roletype;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\Faculty\ExportRoletype;
 
 class RoleTypeDataTable extends Component
 {
@@ -14,6 +16,7 @@ class RoleTypeDataTable extends Component
     public $search='';
     public $sortColumn="roletype_name";
     public $sortColumnBy="ASC";
+    public $ext;
 
     public function sort_column($column)
     {
@@ -29,6 +32,23 @@ class RoleTypeDataTable extends Component
     public function updatedSearch()
     {
         $this->resetPage();
+    }
+
+    public function export()
+    {
+        $filename="Roletype-".now();
+        switch ($this->ext) {
+            case 'xlsx':
+                return Excel::download(new ExportRoletype($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+            break;
+            case 'csv':
+                return Excel::download(new ExportRoletype($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+            break;
+            case 'pdf':
+                return Excel::download(new ExportRoletype($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+            break;
+        }
+
     }
 
     public function render()
