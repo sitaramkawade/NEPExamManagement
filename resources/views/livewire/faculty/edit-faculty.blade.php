@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-1">
-                        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                        <div class="px-5 py-2 mb-3 text-sm text-gray-600 dark:text-gray-400">
                             <x-input-label for="college_id" :value="__('College')" />
                             <x-input-select id="college_id" wire:model.live="college_id" name="college_id" class="text-center @error('college_id') is-invalid @enderror w-full mt-1" :value="old('college_id', $college_id)" required autofocus autocomplete="college_id">
                                 <x-select-option class="text-start" hidden> -- Select College -- </x-select-option>

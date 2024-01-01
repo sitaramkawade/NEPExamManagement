@@ -13,6 +13,7 @@
     <x-navbar.mobile-dropdown-link route="faculty" name="Faculty Home" />
     @auth("faculty")
       <x-navbar.mobile-dropdown-link route="faculty.dashboard" name="Faculty Dashboard" />
+      <x-navbar.mobile-dropdown-link route="faculty.update-profile.faculty" name="Faculty Profile" />
       <x-navbar.mobile-dropdown-logout-link route="faculty.logout" name="Faculty Logout" />
     @else
       <x-navbar.mobile-dropdown-link route="faculty.login" name="Faculty Login" />

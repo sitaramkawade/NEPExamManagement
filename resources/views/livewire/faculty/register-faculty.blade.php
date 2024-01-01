@@ -16,7 +16,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3">
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="prefix" :value="__('Prefix')" />
-                        <x-input-select id="prefix" wire:model.live="prefix" name="prefix" class="text-center @error('prefix') is-invalid @enderror w-full mt-1" :value="old('prefix', $prefix)" required autofocus autocomplete="prefix">
+                        <x-input-select id="prefix" wire:model="prefix" name="prefix" class="text-center @error('prefix') is-invalid @enderror w-full mt-1" :value="old('prefix', $prefix)" required autofocus autocomplete="prefix">
                             <x-select-option class="text-start" hidden> -- Select Prefix -- </x-select-option>
                             @foreach ($prefixes as $prefix)
                                 <x-select-option wire:key="{{ $prefix->id }}" value="{{ $prefix->prefix_shortform }}" class="text-start">{{ $prefix->prefix_shortform }} - {{ $prefix->prefix }}</x-select-option>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="department_id" :value="__('Department')" />
-                        <x-input-select id="department_id" wire:model.live="department_id" name="department_id" class="text-center @error('department_id') is-invalid @enderror w-full mt-1" :value="old('department_id', $department_id)" required autofocus autocomplete="department_id">
+                        <x-input-select id="department_id" wire:model="department_id" name="department_id" class="text-center @error('department_id') is-invalid @enderror w-full mt-1" :value="old('department_id', $department_id)" required autofocus autocomplete="department_id">
                             <x-select-option class="text-start" hidden> -- Select Department -- </x-select-option>
                             @foreach ($departments as $department)
                                 <x-select-option wire:key="{{ $department->id }}" value="{{ $department->id }}" class="text-start">{{ $department->dept_name }}</x-select-option>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="role_id" :value="__('Role')" />
-                        <x-input-select id="role_id" wire:model.live="role_id" name="role_id" class="text-center @error('role_id') is-invalid @enderror w-full mt-1" :value="old('role_id', $role_id)" required autofocus autocomplete="role_id">
+                        <x-input-select id="role_id" wire:model="role_id" name="role_id" class="text-center @error('role_id') is-invalid @enderror w-full mt-1" :value="old('role_id', $role_id)" required autofocus autocomplete="role_id">
                             <x-select-option class="text-start" hidden> -- Select Role -- </x-select-option>
                             @foreach ($roles as $role)
                                 <x-select-option wire:key="{{ $role->id }}" value="{{ $role->id }}" class="text-start">{{ $role->role_name }}</x-select-option>
@@ -65,7 +65,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-1">
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="college_id" :value="__('College')" />
-                        <x-input-select id="college_id" wire:model.live="college_id" name="college_id" class="text-center @error('college_id') is-invalid @enderror w-full mt-1" :value="old('college_id', $college_id)" required autofocus autocomplete="college_id">
+                        <x-input-select id="college_id" wire:model="college_id" name="college_id" class="text-center @error('college_id') is-invalid @enderror w-full mt-1" :value="old('college_id', $college_id)" required autofocus autocomplete="college_id">
                             <x-select-option class="text-start" hidden> -- Select College -- </x-select-option>
                             @foreach ($colleges as $college)
                                 <x-select-option wire:key="{{ $college->id }}" value="{{ $college->id }}" class="text-start">{{ $college->college_name }}</x-select-option>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="bank_name" :value="__('Bank Name')" />
-                        <x-input-select id="bank_name" wire:model.live="bank_name" name="bank_name" class="text-center @error('bank_name') is-invalid @enderror w-full mt-1" :value="old('bank_name', $bank_name)" required autofocus autocomplete="bank_name">
+                        <x-input-select id="bank_name" wire:model="bank_name" name="bank_name" class="text-center @error('bank_name') is-invalid @enderror w-full mt-1" :value="old('bank_name', $bank_name)" required autofocus autocomplete="bank_name">
                             <x-select-option class="text-start" hidden> -- Select Bank -- </x-select-option>
                             @foreach ($banknames as $bank)
                                 <x-select-option wire:key="{{ $bank->id }}" value="{{ $bank->bank_name }}" class="text-start">{{ $bank->bank_name }}</x-select-option>
@@ -128,7 +128,7 @@
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="account_type" :value="__('Account Type')" />
-                        <x-input-select id="account_type" wire:model.live="account_type" name="account_type" class="text-center @error('account_type') is-invalid @enderror w-full mt-1" :value="old('account_type', $account_type)" required autofocus autocomplete="account_type">
+                        <x-input-select id="account_type" wire:model="account_type" name="account_type" class="text-center @error('account_type') is-invalid @enderror w-full mt-1" :value="old('account_type', $account_type)" required autofocus autocomplete="account_type">
                             <x-select-option class="text-start" hidden> -- Select Account Type -- </x-select-option>
                             <x-select-option class="text-start" value="S">SAVINGS</x-select-option>
                             <x-select-option class="text-start" value="C">CURRENT</x-select-option>

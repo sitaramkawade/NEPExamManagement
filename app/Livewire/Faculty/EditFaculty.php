@@ -55,7 +55,7 @@ class EditFaculty extends Component
             'college_id' => ['required',Rule::exists(College::class,'id')],
             // 'active' => ['required',],
             // 'faculty_verified' => ['required',],
-            'account_no' => ['required', 'numeric', 'unique:facultybankaccounts,account_no' ,'digits_between:8,16',],
+            'account_no' => ['required', 'numeric','digits_between:8,16',Rule::unique('facultybankaccounts')->ignore($this->faculty_id)],
             'bank_address' => ['required', 'string', 'max:255',],
             'bank_name' => ['required', 'string', 'max:255',],
             'branch_name' => ['required', 'string', 'max:255',],
