@@ -19,7 +19,7 @@ class ViewSanstha extends Component
     public $sortColumn="sanstha_name";
     public $sortColumnBy="ASC";
     public $data;
-    public $sansthas;
+   
     public $ext;
    
 
@@ -56,14 +56,10 @@ class ViewSanstha extends Component
        
     }
 
-    public function mount()
-    {
-        $this->sansthas = Sanstha::all();
-    }
 
-    public function deleteSanstha($id)
+    public function deleteSanstha(Sanstha $sanstha)
     {
-        $sanstha = Sanstha::find($id);
+       
 
         if ($sanstha) {
             // Delete the Sanstha and its related colleges
@@ -75,17 +71,13 @@ class ViewSanstha extends Component
         }
     }
 
-    public function colleges()
-    {
-        return $this->hasMany(College::class);
-    }
 
     public function render()
     {
-        $sansthas=Sanstha::when($this->search, function ($query, $search) {
+      $sansthas=Sanstha::when($this->search, function ($query, $search) {
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
-        return view('livewire.user.view-sanstha')->extends('layouts.user')->section('user');
+        return view('livewire.user.view-sanstha',compact('sansthas'))->extends('layouts.user')->section('user');
     }
 }

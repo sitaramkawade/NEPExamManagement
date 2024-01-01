@@ -13,12 +13,9 @@ class ViewCollege extends Component
     
     use WithPagination;
     public $perPage=10;
-    public $page = 1;
-    public $sno;
     public $search='';
     public $sortColumn="college_name";
     public $sortColumnBy="ASC";
-    public $data;
     public $ext;
 
 

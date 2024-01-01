@@ -12,14 +12,10 @@ use App\Exports\user\ExportUniversity;
 class ViewUniversity extends Component
 {
     use WithPagination;
-    public $perPage=10;
-    public $page = 1;
-    public $sno;
+    public $perPage=10; 
     public $search='';
     public $sortColumn="university_name";
     public $sortColumnBy="ASC";
-    public $data;
-    public $universities;
     public $ext;
 
     public function sort_column($column)
@@ -55,15 +51,11 @@ class ViewUniversity extends Component
        
     }
     
-    public function mount()
-    {
-        $this->universities = University::all();
-    }
+  
 
-    public function deleteUniversity($id)
+    public function deleteUniversity( University  $university )
     {
-        $university = University::find($id);
-
+      
         if ($university) {
             // Delete the Sanstha and its related colleges
             $university->university()->delete();
@@ -79,6 +71,9 @@ class ViewUniversity extends Component
 
     public function render()
     {
-        return view('livewire.user.view-university')->extends('layouts.user')->section('user');
+        $universities=University::when($this->search, function ($query, $search) {
+            $query->search($search);
+        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+        return view('livewire.user.view-university',compact('universities'))->extends('layouts.user')->section('user');
     }
 }

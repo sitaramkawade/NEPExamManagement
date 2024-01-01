@@ -31,6 +31,13 @@ class AddUniversity extends Component
         ];
         }
 
+        public function resetInputFields()
+        {
+            // Reset the specified properties to their initial state
+            $this->reset(['university_name', 'university_address','university_website_url','university_address',
+            'university_email','university_contact_no','university_logo_path']);
+        }
+
         public function add(){
 
             $university= new University;
@@ -61,6 +68,7 @@ class AddUniversity extends Component
             $university->save();
     
             $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
+            $this->resetInputFields();
            
         }
         

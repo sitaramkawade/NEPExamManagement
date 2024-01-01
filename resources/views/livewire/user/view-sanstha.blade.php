@@ -46,7 +46,7 @@
                 </x-table.table>
                 </x-slot>
                 <x-slot:footer>
-                    <x-table.paginate :data="$data" />
+                    <x-table.paginate :data="$sansthas" />
                     </x-slot>
     </x-table.frame>
 

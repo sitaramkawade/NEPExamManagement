@@ -7,6 +7,7 @@
             <x-add-btn href="{{ route('user.college') }}"/>
         </x-slot>
         </x-card-header>
+
   <x-table.frame>
     <x-slot:header>
     
@@ -60,7 +61,7 @@
       </x-table.table>
     </x-slot>
     <x-slot:footer>
-      <x-table.paginate :data="$data" />
+      <x-table.paginate :data="$colleges" />
     </x-slot>
   </x-table.frame>
  

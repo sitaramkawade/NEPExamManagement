@@ -44,7 +44,7 @@
                 </x-table.table>
                 </x-slot>
                 <x-slot:footer>
-                    <x-table.paginate :data="$data" />
+                    <x-table.paginate :data="$universities" />
                     </x-slot>
     </x-table.frame>
 

@@ -28,6 +28,12 @@ class AddSanstha extends Component
         ];
     }
 
+    public function resetInputFields()
+    {
+        // Reset the specified properties to their initial state
+        $this->reset(['sanstha_name', 'sanstha_chairman_name','sanstha_address','sanstha_contact_no','sanstha_website_url','status']);
+    }
+
     public function addSanstha(){
 
         $sanstha= new Sanstha;
@@ -42,6 +48,7 @@ class AddSanstha extends Component
         $sanstha->save();
 
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
+        $this->resetInputFields();
     }
 
 

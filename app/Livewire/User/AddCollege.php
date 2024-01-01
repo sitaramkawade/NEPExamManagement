@@ -44,6 +44,12 @@ class AddCollege extends Component
         ];
         }
 
+        public function resetInputFields()
+        {
+            // Reset the specified properties to their initial state
+            $this->reset(['college_name', 'college_email' ,'college_address','college_contact_no','college_website_url','college_logo_path','sanstha_id','university_id','status','is_default']);
+        }
+
     public function add(){
 
         $college= new College;
@@ -77,7 +83,7 @@ class AddCollege extends Component
         $college->save();
 
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-       
+        $this->resetInputFields();
     }
     
 
