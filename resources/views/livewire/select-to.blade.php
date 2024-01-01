@@ -1,176 +1,21 @@
 <div>
-    {{-- <select type="text">
-        @foreach ($Options as $op)
-            <option value="{{ $op->{$key} }}">{{ $op->{$value} }}</option>
-        @endforeach
-    </select> --}}
-
-    {{-- <div style="position: relative; display: inline-block;">
-        <select wire:model="selectedOption">
-            <input type="text" wire:model="search" placeholder="Search..."  style="position: absolute; top: 0;left: 0;width: 100%; height:40px;  border: none;outline: none;">
-            <option value="">Select an option</option>
-            @foreach ($Options as $op)
-            <option value="{{ $op->{$key} }}">{{ $op->{$value} }}</option>
-        @endforeach
-        </select>
-    </div> --}}
-    {{-- <div style="position: relative; display: inline-block;">
-        <input type="text" wire:model="search" placeholder="Search..." style="width: 100%; height: 40px; border: none; outline: none;">
-        <select wire:model="selectedOption" style="width: 100%; height: 40px; border: none; outline: none;">
-            <option value="">Select an option</option>
-            @foreach ($Options as $op)
-                <option value="{{ $op->{$key} }}">{{ $op->{$value} }}</option>
-            @endforeach
-        </select>
-    </div> --}}
-    {{-- <div style="position: relative; display: inline-block;">
-        <div style="position: absolute; top: 0; left: 0; width: 100%;">
-            <input
-                type="text"
-                wire:model="search"
-                placeholder="Search..."
-                style="width: 100%; height: 40px; border: none; outline: none; display: none;"
-                id="searchInput"
-            >
+  <div class="p-5 md:w-1/3">
+    <div x-data="{ isOpen: false }">
+      <div class="relative rounded-md">
+        <div @click="isOpen = !isOpen" class="cursor-pointer rounded-md border border-gray-300 py-2 text-center shadow-sm dark:border-gray-700 dark:border-primary-darker dark:bg-gray-900 dark:text-gray-300">
+          <span x-text="selectedOption"></span>
+          <span class="" :class="{ 'hidden': selectedOption }">-- Select --</span>
         </div>
-        <select
-            wire:model="selectedOption"
-            style="width: 100%; height: 40px; border: none; outline: none;"
-            onclick="showSearchInput()"
-            onblur="hideSearchInput()"
-        >
-            <option value="">Select an option</option>
-            @foreach ($Options as $op)
-                <option value="{{ $op->{$key} }}">{{ $op->{$value} }}</option>
+        <div x-cloak x-show.transition.opacity="isOpen" @click.away="isOpen = false" class="mt-1">
+          <input wire:model.live.debounce.1s="filter" type="text" placeholder="Search" class="m-0 block h-10 w-full rounded-t-md border-x border-b-0 border-t border-gray-200 px-3 text-sm shadow-sm disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:border-primary-darker dark:bg-slate-900 dark:text-gray-400" />
+          <select wire:model.live="district_id" size="5" @change="selectedOption = $event.target.selectedOptions[0].innerHTML ,isOpen = false" class="min-h-10 custom-scrollbar block w-full rounded-b-md border-x border-b border-gray-200 px-0 text-sm shadow-sm disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:border-primary-darker dark:bg-slate-900 dark:text-gray-400">
+            @foreach ($options as $op)
+              <option class="px-1" value="{{ $op->{$key} }}">{{ $op->{$value} }}</option>
             @endforeach
-        </select>
-    
-        <script>
-            function showSearchInput() {
-                document.getElementById('searchInput').style.display = 'block';
-            }
-    
-            function hideSearchInput() {
-                document.getElementById('searchInput').style.display = 'none';
-            }
-        </script>
-    </div> --}}
-    {{-- <div style="position: relative; display: inline-block;">
-        <div style="position: absolute; top: 0; left: 0; width: 100%;">
-            <input
-                type="text"
-                wire:model="search"
-                placeholder="Search..."
-                style="width: 100%; height: 40px; border: none; outline: none; display: none;"
-                id="searchInput"
-            >
+          </select>
         </div>
-        <select
-            wire:model="selectedOption"
-            style="width: 100%; height: 40px; border: none; outline: none;"
-            onfocus="showSearchInput()"
-            onblur="hideSearchInput()"
-        >
-            <option value="">Select an option</option>
-            @foreach ($Options as $op)
-                <option value="{{ $op->{$key} }}">{{ $op->{$value} }}</option>
-            @endforeach
-        </select>
-    
-        <script>
-            function showSearchInput() {
-                document.getElementById('searchInput').style.display = 'block';
-            }
-    
-            function hideSearchInput() {
-                // Add a slight delay before hiding to allow clicking the input
-                setTimeout(function() {
-                    document.getElementById('searchInput').style.display = 'none';
-                }, 200);
-            }
-        </script>
-    </div> --}}
-    
-  
-    {{-- <div style="position: relative; display: inline-block;">
-        <select
-            wire:model="selectedOption"
-            style="width: 100%; height: 40px; border: none; outline: none;"
-            onclick="showSearchInput()"
-
-            >
-            <div style="position: absolute; top: 0; left: 0; width: 100%;">
-                <input
-                    type="text"
-                    wire:model="search"
-                    placeholder="Search..."
-                    style="width: 100%; height: 40px; border: none; outline: none; display: none;"
-                    id="searchInput"
-                >
-            </div>
-            <option value="" disabled>Select an option</option>
-            @foreach ($Options as $op)
-                <option value="{{ $op->{$key} }}">
-                    <span style="display: none;">{{ $op->{$value} }}</span>
-                </option>
-            @endforeach
-        </select>
-    
-    
-        <script>
-            function showSearchInput() {
-                document.getElementById('searchInput').style.display = 'block';
-            }
-    
-            function hideSearchInput() {
-                setTimeout(function() {
-                    document.getElementById('searchInput').style.display = 'none';
-                }, 200);
-            }
-        </script>
-
-
-    </div> --}}
-
-    <div x-data="{ isOpen: false }" class="relative inline-block">
-        <select
-            x-model="selectedOption"
-            @click="isOpen = !isOpen"
-            class="w-full h-12 border border-gray-300 rounded focus:outline-none px-4"
-        >
-        <option class="absolute mt-1 w-full">
-            
-        </option>
-           
-                <input  x-show.transition="isOpen" @click.away="isOpen = false" class="absolute mt-1 w-full"
-                    x-model="search"
-                    type="text"
-                    placeholder="Search..."
-                    class="w-full h-10 px-4 border border-gray-300 rounded-t focus:outline-none"
-                >
-         
-       
-            <option value="" disabled>Select an option</option>
-            @foreach ($Options as $op)
-                <option value="{{ $op->{$key} }}">{{ $op->{$value} }}</option>
-            @endforeach
-        </select>
-    
-        {{-- <div x-show.transition="isOpen" @click.away="isOpen = false" class="absolute mt-1 w-full">
-            <input
-                x-model="search"
-                type="text"
-                placeholder="Search..."
-                class="w-full h-10 px-4 border border-gray-300 rounded-t focus:outline-none"
-            >
-        </div> --}}
-    
-        <script>
-            function containsIgnoreCase(str, search) {
-                return str.toLowerCase().includes(search.toLowerCase());
-            }
-        </script>
+      </div>
     </div>
-    
-    
+    {{ $district_id }}
+  </div>
 </div>

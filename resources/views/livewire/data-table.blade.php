@@ -1,7 +1,7 @@
 <div class="p-5">
+  {{ $d_id }}
+  @livewire('select-to' ,['table'=>'districts','key'=>'id','value'=>'district_name'])
   <x-table.frame>
-    <x-slot:header>
-    </x-slot>
     <x-slot:body>
       <x-table.table>
         <x-table.thead>
@@ -33,5 +33,4 @@
       <x-table.paginate :data="$data" />
     </x-slot>
   </x-table.frame>
-  {{-- @livewire('select-to',['table'=>'districts','key'=>'id','value'=>'district_name']) --}}
 </div>

@@ -43,6 +43,7 @@ Route::middleware(['guest'])->group(function () {
 
     // RND Page
     Route::get('/table',DataTable::class);
+    Route::get('/select',SelectTo::class)->name('select');
 
 });
 
@@ -54,6 +55,8 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
 
     // Student Profile
     Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
+
+   
 
 });
 

@@ -19,7 +19,7 @@
     {{ $slot }}
     @if ($current_step===$steps)
         <button  wire:loading.attr="disabled" type="submit" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-            <span class="mx-2"> Submit</span>
+            <span class="mx-2">Confirm & Submit</span>
         </button>
     @endif
 </div>

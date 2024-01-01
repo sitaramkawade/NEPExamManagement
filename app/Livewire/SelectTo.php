@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\DB;
 class SelectTo extends Component
 {
     public $options;
-    public $search = '';
+    public $filter = '';
     public $key;
     public $value;
     public $table;
+    public $district_id;
 
     public function mount($table, $key ,$value)
     {
@@ -20,12 +21,22 @@ class SelectTo extends Component
         $this->value = $value;
 
     }
+    
+    public function selectDistrict($districtId)
+{
+    $this->district_id = $districtId;
+    $this->emit('districtSelected', $districtId);
+}
 
     public function render()
     {   
-        
-        $Options =DB::table($this->table)->select($this->key ,$this->value)->get();
-        return view('livewire.select-to', compact('Options'));
+        // $this->table = 'districts';
+        // $this->key = 'id';
+        // $this->value = 'district_name';
+
+        $this->options =DB::table($this->table)->select($this->key ,$this->value)->where($this->value, 'LIKE', '%' . $this->filter . '%')->get();
+
+        return view('livewire.select-to')->extends('layouts.student')->section('student');
     }
 
 }

@@ -24,7 +24,7 @@
 
     <!-- Brand -->
     <a href="{{ url("/") }}" class="text-center text-sm text-primary-dark dark:text-light md:text-lg md:font-bold">
-      {{ env("APP_NAME") }}
+      {{ config("app.name") }}
     </a>
 
     <!-- Mobile sub menu button -->
