@@ -1,10 +1,10 @@
 <div>
     <div class="mx-auto max-w-7xl sm:px-6 lg:p-2">
         <section>
-            <form wire:submit="editUniversity">
+            <form wire:submit=" updateUniversity({{$university_id}})">
                 <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
                     <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
-                        University Information
+                       Edit University Information
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2">

@@ -1,8 +1,12 @@
 <div class="p-5">
-    <x-card heading="All Colleges" />
+    <x-card-header> All Universities
+        <x-slot name="svg">
+            <x-add-btn href="{{ route('user.addUniversity') }}" />
+        </x-slot>
+    </x-card-header>
     <x-table.frame>
         <x-slot:header>
-          
+
             </x-slot>
 
             <x-slot:body>

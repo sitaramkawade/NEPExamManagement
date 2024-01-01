@@ -25,7 +25,8 @@ class AddCollege extends Component
     public $university_id;
     public $universities;
     public $status;
-    public $btn_add = false;
+    public $is_default;
+  
 
 
     protected function rules()
@@ -57,6 +58,7 @@ class AddCollege extends Component
         $college->sanstha_id= $this->sanstha_id;
         $college->university_id= $this->university_id;
         $college->status= $this->status==1?0:1;
+        $college->is_default= $this->is_default==1?0:1;
         
 
         if ($this->college_logo_path) {

@@ -4,7 +4,7 @@
             <form wire:submit="updateCollege({{ $college_id }})">
                 <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
                     <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
-                        Edit College
+                        Edit College Information
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2">

@@ -4,13 +4,13 @@ use Livewire\Livewire;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
 use App\Livewire\User\Edit;
-use App\Livewire\EditUniversity;
 use App\Livewire\User\AddCollege;
 use App\Livewire\User\EditSanstha;
 use App\Livewire\User\DeleteCollege;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
+use App\Livewire\User\EditUniversity;
 
 // Livewire Update Route
 Livewire::setUpdateRoute(function ($handle) {
@@ -109,6 +109,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
 
     //Edit University
     Route::get('/editUniversity/{id}',EditUniversity::class)->name('editUniversity');
+
 
 
 

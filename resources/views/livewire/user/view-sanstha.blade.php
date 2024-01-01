@@ -1,8 +1,12 @@
 <div class="p-5">
-    <x-card heading="All Sanstha" />
+    <x-card-header> All Sansthas
+        <x-slot name="svg">
+            <x-add-btn href="{{ route('user.addSanstha') }}" />
+        </x-slot>
+    </x-card-header>
     <x-table.frame>
         <x-slot:header>
-           
+
             </x-slot>
 
             <x-slot:body>

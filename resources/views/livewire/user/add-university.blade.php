@@ -3,9 +3,12 @@
         <section>
             <form wire:submit="add">
                 <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
-                    <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
-                       University Information
-                    </div>
+                     <x-card-header>
+                       Add University
+                        <x-slot name="svg">
+                            <x-back-btn href="{{ route('user.viewSanstha') }}" />
+                        </x-slot>
+                    </x-card-header>
 
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">

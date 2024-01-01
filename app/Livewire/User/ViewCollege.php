@@ -64,9 +64,9 @@ class ViewCollege extends Component
       
     }
 
-    public function deleteCollege($id)
+    public function deleteCollege(College $college)
     {
-        College::find($id)->delete();
+        $college->delete();
         $this->mount();
         $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
     }

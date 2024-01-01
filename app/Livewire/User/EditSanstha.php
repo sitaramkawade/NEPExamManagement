@@ -16,6 +16,7 @@ class EditSanstha extends Component
     public $sanstha_contact_no;
     public $sanstha_website_url;
     public $status;
+    public $sanstha_id;
 
     protected function rules()
     {
@@ -88,10 +89,9 @@ class EditSanstha extends Component
         $validatedData = $this->validate();
        
         if ($validatedData) {
-          
+                   
             $sanstha->update([
-                
-                
+                              
                 'sanstha_name' => $this->sanstha_name,
                 'sanstha_chairman_name' => $this->sanstha_chairman_name,               
                 'sanstha_address' => $this->sanstha_address,

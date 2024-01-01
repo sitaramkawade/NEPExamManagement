@@ -22,6 +22,7 @@ class College extends Model
         'sanstha_id',
         'university_id',
         'status',
+        'is_default'
     ];
     public function sanstha(): BelongsTo
     {
