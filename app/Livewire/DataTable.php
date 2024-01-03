@@ -17,6 +17,14 @@ class DataTable extends Component
     public $sortColumn="district_name";
     public $sortColumnBy="ASC";
     public $ext;
+    public $d_id="not";
+
+    protected $listeners = ['districtSelected'];
+
+    public function districtSelected($districtId)
+    {
+        $this->d_id=$districtId;
+    }
 
 
     public function sort_column($column)

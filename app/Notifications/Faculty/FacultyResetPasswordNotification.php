@@ -34,7 +34,6 @@ class FacultyResetPasswordNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {   
         $url =url(route('faculty.password.reset', [
-            'token' => $this->token,
             'email' => $notifiable->getEmailForPasswordReset(),
         ], false));
 

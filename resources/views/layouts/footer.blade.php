@@ -1,1 +1,1 @@
-<x-footer.footer href="#" name=""> {{ env('APP_NAME') }}  </x-footer.footer>
+<x-footer.footer href="#" name=""> {{ config("app.name") }}  </x-footer.footer>
