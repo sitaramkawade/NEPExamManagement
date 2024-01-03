@@ -1,7 +1,5 @@
-@extends('layouts.faculty')
-@section('faculty')
 <div>
-  <h1>Faculty Home</h1>
+    <h1>Faculty Home</h1>
   <div class="py-2">
     <div class="flex flex-col gap-3 p-2 md:flex-row">
       <div class="w-full gap-3 md:w-2/4">
@@ -146,5 +144,3 @@
     </div>
   </div>
 </div>
-@endsection
-

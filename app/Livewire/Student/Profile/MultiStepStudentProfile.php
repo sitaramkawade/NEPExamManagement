@@ -214,6 +214,11 @@ class MultiStepStudentProfile extends Component
                     'percentage'=>['required','numeric','between:0.00,100.00'],
                 ];
             }
+        }elseif ($this->current_step == $this->steps) {
+            
+            $rules = [
+                'is_confirm'=>['required'],
+            ];
         }
 
         return $rules;
@@ -347,6 +352,8 @@ class MultiStepStudentProfile extends Component
             'cgpa.numeric' => 'The CGPA must be a number.',
             'cgpa.min' => 'The CGPA must be at least 0.00.',
             'cgpa.max' => 'The CGPA must not exceed 10.00.',
+            //step 6
+            'is_confirm.required' => 'The Confirmation field is required.',
         ];
     }
 
@@ -579,13 +586,15 @@ class MultiStepStudentProfile extends Component
     public function delete_pre_edu(Studentpreviousexam $student_previous_exam)
     {
         $student_previous_exam->delete();
+        $this->dispatch('alert',type:'success',message:'Student Previous Education Deleted Successfully !!');
     }
 
     public function confirm_form()
-    {
+    {   
+        $this->validate();
         Auth::guard('student')->user()->update(['is_profile_complete'=>1 ,'current_step' =>6]);
-        $this->reset();
         $this->dispatch('alert',type:'success',message:'Student Profile Completed Successfully !!');
+        $this->reset();
         $this->redirect('/student/dashboard',navigate:true);
     }
 
@@ -611,8 +620,6 @@ class MultiStepStudentProfile extends Component
             $this->current_step=Auth::guard('student')->user()->current_step;
             $this->feach();
         }
-
-       
     }
 
     public function feach()

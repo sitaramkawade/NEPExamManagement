@@ -10,7 +10,7 @@ use App\Models\Studentaddress;
 use App\Models\Studentpreviousexam;
 use Illuminate\Support\Facades\Auth;
 
-class ViewProfile extends Component
+class StudentViewProfile extends Component
 {   
      public $memid;
      public $abcid;
@@ -136,6 +136,6 @@ class ViewProfile extends Component
     }
     public function render()
     {
-        return view('livewire.student.view-profile')->extends('layouts.student')->section('student');
+        return view('livewire.student.student-view-profile')->extends('layouts.student')->section('student');
     }
 }
