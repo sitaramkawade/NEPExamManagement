@@ -39,7 +39,7 @@ class ExportSubject implements FromCollection, WithHeadings, ShouldAutoSize, Wit
 
     public function headings(): array
     {
-        return ['ID', 'Subject Name', 'Subject Category', 'Subject Type', 'Pattern Class','Class Yesr'];
+        return ['ID', 'Subject Name', 'Subject Category', 'Subject Type', 'Pattern Class','Class Year', 'Department Name', 'College Name'];
     }
 
     public function map($row): array

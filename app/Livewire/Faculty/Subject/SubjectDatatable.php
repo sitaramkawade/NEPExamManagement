@@ -53,7 +53,7 @@ class SubjectDatatable extends Component
     {
         $data = Subject::when($this->search, function($query, $search){
             $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
+        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         return view('livewire.faculty.faculty-role.role-data-table' ,compact('data'))->extends('layouts.faculty')->section('faculty');
     }
 }
