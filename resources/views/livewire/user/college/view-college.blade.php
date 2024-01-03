@@ -2,11 +2,15 @@
 
 
 <div class="p-5">
-<x-card-header > All Colleges
- <x-slot name="svg">
-            <x-add-btn href="{{ route('user.college') }}"/>
+<x-card-header href="{{ route('user.college') }}">
+       All Colleges
+        <x-slot name="svg">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 mr-1 mt-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+            </svg>
         </x-slot>
-        </x-card-header>
+        <x-slot name="btntext">Add</x-slot>
+    </x-card-header>
 
   <x-table.frame>
     <x-slot:header>
@@ -31,10 +35,10 @@
           </x-table.tr>
         </x-table.thead>
         <x-table.tbody>
-          @foreach ($colleges as $key => $college)
+          @forelse ($colleges as $key => $college)
             <x-table.tr wire:key="{{ $college->id }}">
               <x-table.td>{{ $key+1 }}</x-table.td>
-              <x-table.td>{{ $college->college_name }} </x-table.td>
+              <x-table.td class="text-pretty">{{ $college->college_name }} </x-table.td>
               <x-table.td> {{ $college->college_email}} </x-table.td>
               <x-table.td> {{ $college->college_address }} </x-table.td>
               {{-- <x-table.td> {{ $college->college_contact_no }} </x-table.td>
@@ -45,7 +49,7 @@
 
               <x-table.td> 
                 <x-table.edit wire:navigate :href="route('user.edit',$college->id)"/>
-                <x-table.delete wire:click="deleteCollege({{$college['id']}})"/>
+                <x-table.delete wire:click="deleteCollege({{$college->id}})"/>
                 {{-- <x-table.view/> --}}
                 {{-- <x-table.hide/> --}}
                 {{-- <x-table.archive/> --}}
@@ -56,7 +60,11 @@
                 
               </x-table.td>
             </x-table.tr>
-          @endforeach
+              @empty 
+                         <x-table.tr> 
+                         <x-table.td colSpan='8'>No Data Found</x-table.td>
+                         </x-table.tr>
+          @endforelse
         </x-table.tbody>
       </x-table.table>
     </x-slot>
@@ -66,61 +74,3 @@
   </x-table.frame>
  
 </div>
-
-
-
-
-
-
-
-{{-- <div>
-    <div class="m-2 pb-3 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
-        <div class="px-2 py-2 font-semibold text-white dark:text-light bg-primary">
-            All Colleges
-        </div>
-        <x-table class="p-1">
-            @slot('head')
-                <tr class="text-center">
-                   
-                    <th>srno</th>
-                    <th>ID</th>
-                    <th>College Name</th>
-                    <th>College Email</th>
-                    <th>College Address</th>
-                    <th>College Contact no.</th>
-                    <th>Action</th>
-                   
-                   
-                </tr>
-            @endslot
-            @slot('body')
-            @foreach ($colleges as $key => $college)
-                <tr class="text-center odd:bg-white even:bg-slate-50">
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $college->id }}</td>
-                    <td>{{ $college->college_name }}</td>
-                    <td>{{ $college->college_email }}</td>
-                    <td>{{ $college->college_address }}</td>
-                    <td>{{ $college->college_contact_no}}</td>
-                    <td class="flex justify-center lg:justify-center md:justify-center space-x-1">
-                        
-                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" :href="route('user.edit',$college->id)" :text="'Edit'" />
-                        
-                        <x-custom-button class="md:w-auto md:h-auto hover:bg-slate-200" href="javascript:void(0)" wire:click="deleteCollege({{$college['id']}})" :text="'Delete'" />
-                   
-                </tr>
-            @endforeach
-           
-        @endslot
-  
-        </x-table>
-     
-        {{ $colleges->links() }}
-    
-    </div>
-
-</div>
-
- --}}
-
-

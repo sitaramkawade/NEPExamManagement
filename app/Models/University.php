@@ -28,8 +28,8 @@ class University extends Model
 
     public function scopeSearch(Builder $query,string $search)
     {
-        return $query->where('university_name', 'like', "%{$this->search}%")
-        ->Orwhere('university_email', 'like', "%{$this->search}%")
-        ->orWhere('university_address', 'like', "%{$this->search}%");
+        return $query->where('university_name', 'like', "%{$search}%")
+        ->orWhere('university_email', 'like', "%{$search}%")
+        ->orWhere('university_address', 'like', "%{$search}%");
     }
 }

@@ -35,9 +35,9 @@ class College extends Model
 
     public function scopeSearch(Builder $query,string $search)
     {
-        return $query->where('college_name', 'like', "%{$this->search}%")
-        ->Orwhere('college_email', 'like', "%{$this->search}%")
-        ->orWhere('college_address', 'like', "%{$this->search}%");
+        return $query->where('college_name', 'like', "%{$search}%")
+        ->orWhere('college_email', 'like', "%{$search}%")
+        ->orWhere('college_address', 'like', "%{$search}%");
     }
             
     

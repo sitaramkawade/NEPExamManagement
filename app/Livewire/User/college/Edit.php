@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\User;
+namespace App\Livewire\User\college;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -145,6 +145,6 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.user.edit')->extends('layouts.user')->section('user');
+        return view('livewire.user.college.edit')->extends('layouts.user')->section('user');
     }
 }

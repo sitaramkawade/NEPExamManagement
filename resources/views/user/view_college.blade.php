@@ -1,4 +1,4 @@
 @extends('layouts.user')
 @section('user')
-@livewire('user.view-college')
+@livewire('user.college.view-college')
 @endsection

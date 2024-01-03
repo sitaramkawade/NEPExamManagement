@@ -1,4 +1,4 @@
 @extends('layouts.user')
 @section('user')
-@livewire('user.college.edit')
+@livewire('user.exam.add-exam')
 @endsection

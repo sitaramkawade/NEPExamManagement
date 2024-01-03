@@ -27,9 +27,9 @@ class Sanstha extends Model
 
     public function scopeSearch(Builder $query,string $search)
     {
-        return $query->where('sanstha_name', 'like', "%{$this->search}%")
-        ->Orwhere('sanstha_chairman_name', 'like', "%{$this->search}%")
-        ->orWhere('sanstha_address', 'like', "%{$this->search}%");
+        return $query->where('sanstha_name', 'like', "%{$search}%")
+        ->orWhere('sanstha_chairman_name', 'like', "%{$search}%")
+        ->orWhere('sanstha_address', 'like', "%{$search}%");
     }
 
     

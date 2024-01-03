@@ -1,4 +1,4 @@
 @extends('layouts.user')
 @section('user')
-@livewire('user.add-sanstha')
+@livewire('user.sanstha.add-sanstha')
 @endsection

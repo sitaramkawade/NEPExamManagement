@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\User;
+namespace App\Livewire\User\sanstha;
 
 use App\Models\Sanstha;
 use Livewire\Component;
@@ -113,6 +113,6 @@ class EditSanstha extends Component
 
     public function render()
     {
-        return view('livewire.user.edit-sanstha')->extends('layouts.user')->section('user');
+        return view('livewire.user.sanstha.edit-sanstha')->extends('layouts.user')->section('user');
     }
 }

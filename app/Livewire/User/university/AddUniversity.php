@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\User;
+namespace App\Livewire\User\university;
 
 use Livewire\Component;
 use App\Models\University;
@@ -75,6 +75,6 @@ class AddUniversity extends Component
 
     public function render()
     {
-        return view('livewire.user.add-university')->extends('layouts.user')->section('user');
+        return view('livewire.user.university.add-university')->extends('layouts.user')->section('user');
     }
 }

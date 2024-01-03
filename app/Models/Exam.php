@@ -10,6 +10,8 @@ class Exam extends Model
     use HasFactory;
     protected $table='exams';
     protected $fillable=[
-
+        'exam_name',
+        'status',
+        'exam_sessions'
     ];
 }

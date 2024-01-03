@@ -3,14 +3,16 @@
 use Livewire\Livewire;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
-use App\Livewire\User\Edit;
-use App\Livewire\User\AddCollege;
-use App\Livewire\User\EditSanstha;
+use App\Livewire\User\college\Edit;
 use App\Livewire\User\DeleteCollege;
+
 use Illuminate\Support\Facades\Route;
+use App\Livewire\User\college\AddCollege;
 use App\Livewire\Student\StudentDashboard;
+use App\Livewire\User\Pattern\EditPattern;
+use App\Livewire\User\sanstha\EditSanstha;
+use App\Livewire\User\university\EditUniversity;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
-use App\Livewire\User\EditUniversity;
 
 // Livewire Update Route
 Livewire::setUpdateRoute(function ($handle) {
@@ -82,7 +84,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
     })->name('view_college');
 
     //Edit College
-    Route::get('/edit/{id}',Edit::class)->name('edit');
+     Route::get('/edit/{id}',Edit::class)->name('edit');
 
     //Add Sanstha
     Route::get('addSanstha', function () {
@@ -95,7 +97,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
     })->name('viewSanstha');
 
     //Edit Sanstha
-    Route::get('/editSanstha/{id}',EditSanstha::class)->name('editSanstha');
+      Route::get('/editSanstha/{id}',EditSanstha::class)->name('editSanstha');
 
     //Add University
     Route::get('/add_university', function () {
@@ -108,7 +110,26 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
     })->name('viewUniversity');
 
     //Edit University
-    Route::get('/editUniversity/{id}',EditUniversity::class)->name('editUniversity');
+     Route::get('/editUniversity/{id}',EditUniversity::class)->name('editUniversity');
+
+    //Add Pattern
+    Route::get('/add_pattern', function () {
+        return view('user.addPattern');
+    })->name('addPattern');
+
+    //View Pattern
+       Route::get('/view_pattern', function () {
+        return view('user.viewPattern');
+    })->name('viewPattern');
+
+    //Edit Pattern
+    Route::get('/editPattern/{id}',EditPattern::class)->name('editPattern');
+
+     //Add University
+     Route::get('/add_exam', function () {
+        return view('user.addExam');
+    })->name('addExam');
+
 
 
 

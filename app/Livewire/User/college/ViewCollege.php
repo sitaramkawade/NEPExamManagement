@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\User;
+namespace App\Livewire\User\college;
 
 use Excel;
 use App\Models\College;
@@ -56,15 +56,10 @@ class ViewCollege extends Component
        
 
 
-    public function mount()
-    {
-      
-    }
-
     public function deleteCollege(College $college)
     {
         $college->delete();
-        $this->mount();
+       
         $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
     }
 
@@ -74,7 +69,7 @@ class ViewCollege extends Component
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         
-        return view('livewire.user.view-college',compact('colleges'))->extends('layouts.user')->section('user');
+        return view('livewire.user.college.view-college',compact('colleges'))->extends('layouts.user')->section('user');
     }
 
 }

@@ -1,4 +1,4 @@
 @extends('layouts.user')
 @section('user')
-@livewire('user.delete')
+@livewire('user.pattern.add-pattern')
 @endsection

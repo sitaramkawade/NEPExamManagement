@@ -1,14 +1,21 @@
 <div>
     <div class="mx-auto max-w-7xl sm:px-6 lg:p-2">
         <section>
-            <form wire:submit="addSanstha">
+            <form wire:submit="updateSanstha ({{ $sanstha_id }})">
                 <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
-                       <x-card-header>
-                      Add Sanstha
+                 
+                 <x-card-header href="{{ route('user.viewSanstha') }}">
+                        Edit Sanstha
                         <x-slot name="svg">
-                            <x-back-btn href="{{ route('user.viewSanstha') }}" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 mr-1 mt-1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                            </svg>
                         </x-slot>
+                        <x-slot name="btntext">Back</x-slot>
                     </x-card-header>
+
+
+                  
 
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -58,16 +65,12 @@
                                 </x-input-select>
                                 <x-input-error :messages="$errors->get('status')" class="mt-2" />
                             </div>
-
-
                     </div>
-
-
-                   
+                  
                     <div class="h-20 p-2">
                         @if ($current_step===$steps)
-                        <button type="submit" wire:target="college_logo_path" wire:loading.attr="disable" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
-                            <span class="mx-2"> Add</span>
+                        <button type="submit"  wire:loading.attr="disable" class=" float-right  text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-darker font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-primary dark:hover:bg-primary-dark dark:focus:ring-primary-darker">
+                            <span class="mx-2"> Update</span>
                         </button>
                         @endif
                     </div>

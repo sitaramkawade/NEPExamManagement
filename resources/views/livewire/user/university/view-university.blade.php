@@ -1,7 +1,19 @@
 <div class="p-5">
-    <x-card-header> All Universities
+    
+     <x-card-header href="{{  route('user.addUniversity') }}">
+                       All Universities
+                        <x-slot name="svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 mr-1 mt-1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                            </svg>
+                        </x-slot>
+                        <x-slot name="btntext">Add</x-slot>
+                    </x-card-header>
+
+
+    <x-card-header> 
         <x-slot name="svg">
-            <x-add-btn href="{{ route('user.addUniversity') }}" />
+            <x-add-btn href="{{  }}" />
         </x-slot>
     </x-card-header>
     <x-table.frame>
@@ -24,10 +36,10 @@
                         </x-table.tr>
                     </x-table.thead>
                     <x-table.tbody>
-                        @foreach ($universities as $key => $university)
+                        @forelse ($universities as $key => $university)
                         <x-table.tr wire:key="{{ $university->id }}">
                             <x-table.td>{{ $key+1 }}</x-table.td>
-                            <x-table.td>{{ $university->university_name }} </x-table.td>
+                            <x-table.td class="text-pretty">{{ $university->university_name }} </x-table.td>
                             <x-table.td> {{ $university->university_email}} </x-table.td>
                             <x-table.td> {{ $university->university_address }} </x-table.td>
                             <x-table.td> {{ $university->university_website_url }} </x-table.td>
@@ -39,7 +51,11 @@
 
                             </x-table.td>
                         </x-table.tr>
-                        @endforeach
+                          @empty 
+                         <x-table.tr> 
+                         <x-table.td colSpan='7'>No Data Found</x-table.td>
+                         </x-table.tr>
+                        @endforelse
                     </x-table.tbody>
                 </x-table.table>
                 </x-slot>
