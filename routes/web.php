@@ -15,6 +15,7 @@ use App\Livewire\Master\Gender\ViewGender;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Faculty\SoftDeleteFaculty;
 use App\Livewire\Faculty\FacultyRole\AddRole;
+use App\Livewire\Faculty\Subject\ViewSubject;
 use App\Livewire\Faculty\FacultyRole\EditRole;
 use App\Livewire\Faculty\FacultyRole\ViewRole;
 use App\Livewire\Faculty\FacultyRole\RestoreRole;
@@ -101,20 +102,16 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
     })->name('dashboard');
 
     // Register Faculty
-    Route::get('/register-faculty', function () {
-        return view('faculty.faculty-register');
-    })->name('register.faculty');
+    Route::get('/register-faculty',RegisterFaculty::class)->name('register.faculty');
 
     // View Faculty
-    Route::get('/view-faculty', function () {
-        return view('faculty.faculty-view');
-    })->name('view.faculty');
+    Route::get('/view-faculty', ViewFaculty::class)->name('view.faculty');
 
     //Edit Faculty
     Route::get('/edit-faculty/{id}', EditFaculty::class)->name('edit.faculty');
 
     //Delete Faculty
-    Route::get('/delete-faculty/{id}', SoftDeleteFaculty::class)->name('delete.faculty');
+    Route::delete('/delete-faculty/{id}', SoftDeleteFaculty::class)->name('delete.faculty');
 
     //Restore Faculty
     Route::get('/restore-faculty/{id}', RestoreFaculty::class)->name('restore.faculty');
@@ -133,7 +130,7 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
     Route::get('/edit-faculty-role/{id}', EditRole::class)->name('edit-role.faculty');
 
     //Delete Faculty Role
-    Route::get('/delete-faculty-role/{id}', SoftDeleteRole::class)->name('delete-role.faculty');
+    Route::delete('/delete-faculty-role/{id}', SoftDeleteRole::class)->name('delete-role.faculty');
 
     //Restore Faculty Role
     Route::get('/restore-faculty-role/{id}', RestoreRole::class)->name('restore-role.faculty');
@@ -148,11 +145,13 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
     Route::get('/edit-roletype/{id}', EditRoleType::class)->name('edit-roletype.faculty');
 
     //Delete Faculty Role Type
-    Route::get('/delete-roletype/{id}', SoftDeleteRoleType::class)->name('delete-roletype.faculty');
+    Route::delete('/delete-roletype/{id}', SoftDeleteRoleType::class)->name('delete-roletype.faculty');
 
     //Restore Faculty Role Type
     Route::get('/restore-roletype/{id}', RestoreRoleType::class)->name('restore-roletype.faculty');
 
+    //View Subject
+    Route::get('/view-subject', ViewSubject::class)->name('view-subject.faculty');
 
 });
 

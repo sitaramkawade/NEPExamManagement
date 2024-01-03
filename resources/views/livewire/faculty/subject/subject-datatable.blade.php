@@ -1,5 +1,5 @@
 <div>
-    <x-table.frame>
+    {{-- <x-table.frame>
       <x-slot:header>
       </x-slot>
       <x-slot:body>
@@ -28,13 +28,6 @@
                         <x-table.edit :href="route('faculty.edit-role.faculty', $role->id)"/>
                         <x-delete-form :action="route('faculty.delete-role.faculty', $role->id)"/>
                     @endif
-                  {{-- <x-table.view/>
-                  <x-table.hide/>
-                  <x-table.archive/> --}}
-                  {{-- <x-table.active/>
-                  <x-table.inactive/>
-                  <x-table.download> Download</x-table.download> --}}
-
                 </x-table.td>
               </x-table.tr>
             @endforeach
@@ -44,5 +37,6 @@
       <x-slot:footer>
         <x-table.paginate :data="$data" />
       </x-slot>
-    </x-table.frame>
+    </x-table.frame> --}}
   </div>
+

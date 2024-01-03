@@ -26,7 +26,7 @@
                         <x-table.restore :href="route('faculty.restore.faculty', $faculty->id)"/>
                     @else
                         <x-table.edit :href="route('faculty.edit.faculty', $faculty->id)"/>
-                        <x-table.delete :href="route('faculty.delete.faculty', $faculty->id)"/>
+                        <x-delete-form :action="route('faculty.delete.faculty', $faculty->id)"/>
                     @endif
                 </x-table.td>
               </x-table.tr>

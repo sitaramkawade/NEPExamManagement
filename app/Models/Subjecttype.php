@@ -17,6 +17,6 @@ class Subjecttype extends Model
     ];
     public function subject():HasMany
     {
-        return $this->hasMany(Subject::class,'subjecttype_id','id');
+        return $this->hasMany(Subject::class,'subjecttype_id','id')->withTrashed();
     }
 }
