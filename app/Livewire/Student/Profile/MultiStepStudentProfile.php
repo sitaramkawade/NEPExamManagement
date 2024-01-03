@@ -704,7 +704,7 @@ class MultiStepStudentProfile extends Component
                     $this->address_2=$student_addres_2->address;
                 }
             }
-    }
+        }
     }
 
     public function render()

@@ -23,7 +23,7 @@
     </button>
 
     <!-- Brand -->
-    <a href="{{ url("/") }}" class="text-center text-sm text-primary-dark dark:text-light md:text-lg md:font-bold">
+    <a href="{{ url("/") }}" class="text-center text-sm text-primary-dark dark:text-light md:text-md md:font-bold">
       {{ config("app.name") }}
     </a>
 
@@ -53,7 +53,7 @@
         </div>
       </button>
       <!-- Notification button -->
-      <button @click="openNotificationsPanel"
+      <button  x-cloak @click="openNotificationsPanel"
       class="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
       <span class="sr-only">Open Notification panel</span>
       <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -110,7 +110,7 @@
           </div>
         </button>
          <!-- Notification button -->
-         <button @click="openNotificationsPanel(); $nextTick(() => { isMobileSubMenuOpen = false })"
+         <button  x-cloak @click="openNotificationsPanel(); $nextTick(() => { isMobileSubMenuOpen = false })"
             class="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
             <span class="sr-only">Open notifications panel</span>
             <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

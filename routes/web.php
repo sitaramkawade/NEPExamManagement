@@ -3,6 +3,7 @@
 use Livewire\Livewire;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
+use App\Livewire\Student\ViewProfile;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
@@ -55,9 +56,9 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
 
     // Student Profile
     Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
-
-   
-
+ 
+    // Student View Profile
+    Route::get('/view/profile',ViewProfile::class)->name('view-profile');
 });
 
 
