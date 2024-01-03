@@ -18,12 +18,12 @@
   </head>
 
   <body class="font-sans antialiased" x-data="setup()" x-init=" setColors(color);" :class="{ 'dark': isDark }">
-    {{-- <div x-init="$refs.loading.classList.add('hidden');">
+    <div x-init="$refs.loading.classList.add('hidden');">
             <!-- Loading screen -->
             <div x-ref="loading" class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-primary-darker">
                 Loading.....
             </div>
-        </div> --}}
+        </div>
     <div>
       <main>
         @yield("main")
@@ -179,6 +179,7 @@
 
         })
     </script>
+    @yield('scripts')
   </body>
 
 </html>

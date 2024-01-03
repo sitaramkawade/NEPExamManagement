@@ -90,8 +90,11 @@ class MultiStepStudentProfile extends Component
     public $address_2;
     // step 4
     public $patterns;
+    public $courses;
+    public $course_id;
+    public $course_classes;
+    public $course_class_id;
     public $pattern_id;
-    public $pattern_classes;
     public $pattern_class_id;
     // step 5
     public $educationalcourses;
@@ -180,7 +183,9 @@ class MultiStepStudentProfile extends Component
 
             $rules = [
                 'pattern_id' =>['required','numeric',Rule::exists('patterns', 'id')],
-                'pattern_class_id' =>['required','numeric',Rule::exists('pattern_classes', 'id')],
+                'course_id' =>['required','numeric',Rule::exists('courses', 'id')],
+                'course_class_id' =>['required','numeric',Rule::exists('course_classes', 'id')],
+                // 'pattern_class_id' =>['required','numeric',Rule::exists('pattern_classes', 'id')],
             ];
 
         }elseif ($this->current_step == 5) {
@@ -310,10 +315,18 @@ class MultiStepStudentProfile extends Component
             'pattern_id.required'=>'The Pattern field is required..',
             'pattern_id.exists'=>'The selected Pattern is invalid.',
             'pattern_id.numeric'=>'The Pattern must be a number.',
-            'pattern_class_id.exists'=>'The selected Class is invalid.',
-            'pattern_class_id.required'=>'The Class field is required.',
-            'pattern_class_id.numeric'=>'The Class must be a number.',
-            'pattern_class_id.unique'=>'The Class has been taken.',
+            // 'pattern_class_id.exists'=>'The selected Class is invalid.',
+            // 'pattern_class_id.required'=>'The Class field is required.',
+            // 'pattern_class_id.numeric'=>'The Class must be a number.',
+            // 'pattern_class_id.unique'=>'The Class has been taken.',
+            'course_class_id.exists'=>'The selected Course Class is invalid.',
+            'course_class_id.required'=>'The Course Class field is required.',
+            'course_class_id.numeric'=>'The Course Class must be a number.',
+            'course_class_id.unique'=>'The Course Class has been taken.',
+            'course_id.exists'=>'The selected Course is invalid.',
+            'course_id.required'=>'The Course field is required.',
+            'course_id.numeric'=>'The Course must be a number.',
+            'course_id.unique'=>'The Course has been taken.',
             //step 5
             'educationalcourse_id.required' => 'The Educational Course field is required.',
             'educationalcourse_id.numeric' => 'The Educational Course must be a number.',
@@ -499,9 +512,16 @@ class MultiStepStudentProfile extends Component
     public function choose_course_form()
     {
         $this->validate();
-        Auth::guard('student')->user()->update(['patternclass_id'=>$this->pattern_class_id ,'current_step' =>5]);
-        $this->dispatch('alert',type:'success',message:'Step 4 : New Course Saved Successfully !!');
-        $this->current_step = 5;
+        $pattern_class=Patternclass::select('id')->where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->first('id');
+        if($pattern_class)
+        {
+            Auth::guard('student')->user()->update(['patternclass_id'=>$pattern_class->id ,'current_step' =>5]);
+            $this->dispatch('alert',type:'success',message:'Step 4 : New Course Saved Successfully !!');
+            $this->current_step = 5;
+        }else
+        {
+            $this->dispatch('alert',type:'error',message:'Step 4 : Pattern Class Not Found!!');
+        }
     }
 
     public function add_previous_exam_form()
@@ -532,12 +552,25 @@ class MultiStepStudentProfile extends Component
     {
        $count= Studentpreviousexam::where('student_id',Auth::guard('student')->user()->id)->count();
         if($count >0)
-        {
-            Auth::guard('student')->user()->update(['current_step' =>6]);
-            $this->dispatch('alert',type:'success',message:'Step 5 : Student Previous Education Saved Successfully !!');
-            $this->current_step = 6;
+        {   
+            $studentId = Auth::guard('student')->user()->id;
+
+            $isHSC = Studentpreviousexam::where('student_id', $studentId)
+                ->whereHas('educationalcourse', function ($query) {
+                    $query->where('course_name', 'HSC');
+                })->exists();
+
+            if ($isHSC) {
+                Auth::guard('student')->user()->update(['current_step' => 6]);
+                $this->dispatch('alert',type:'success',message:'Step 5 : Student Previous Education Saved Successfully !!');
+                $this->current_step = 6;
+            } else {
+                $this->dispatch('alert',type:'info',message:'Please Add HSC As Previous Education.  !!');
+                $this->add_previous_exam_form();
+            }
+
         }else
-        {
+        {   
             $this->dispatch('alert',type:'info',message:'Please Add At Least One Previous Education. !!');
             $this->add_previous_exam_form();
         }
@@ -589,12 +622,22 @@ class MultiStepStudentProfile extends Component
         if($student)
         {
             $this->pattern_class_id=$student->patternclass_id;
-            if($pcid=Patternclass::find($student->patternclass_id))
+            if($pattern_class=Patternclass::find($student->patternclass_id))
             {
-                $pid=$pcid->pattern->id;
-                if($pid)
+                if($pattern_class)
                 {
-                    $this->pattern_id= $pid;
+                    if($pattern_class->courseclass->course)
+                    {
+                        $this->course_id=$pattern_class->courseclass->course->id;
+                    }
+                    if($pattern_class->courseclass)
+                    {
+                        $this->course_class_id=$pattern_class->courseclass->id;
+                    }
+                    if($pattern_class->pattern)
+                    {
+                        $this->pattern_id= $pattern_class->pattern->id;
+                    }
                 }
             }
             $this->memid=$student->memid;
@@ -661,7 +704,7 @@ class MultiStepStudentProfile extends Component
                     $this->address_2=$student_addres_2->address;
                 }
             }
-    }
+        }
     }
 
     public function render()
@@ -692,9 +735,10 @@ class MultiStepStudentProfile extends Component
         }
 
         if($this->current_step==4)
-        {
+        {   
+            $this->courses=course::select('id','course_name')->get();
             $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
-            $this->pattern_classes=Patternclass::select('id','class_id')->where('pattern_id', $this->pattern_id)->get();
+            $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
         }
 
         if($this->current_step==5)

@@ -6,6 +6,7 @@ use App\Livewire\DataTable;
 use App\Livewire\User\college\Edit;
 use App\Livewire\User\DeleteCollege;
 
+use App\Livewire\Student\ViewProfile;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\college\AddCollege;
 use App\Livewire\Student\StudentDashboard;
@@ -50,6 +51,7 @@ Route::middleware(['guest'])->group(function () {
 
     // RND Page
     Route::get('/table',DataTable::class);
+    Route::get('/select',SelectTo::class)->name('select');
 
 });
 
@@ -61,7 +63,9 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
 
     // Student Profile
     Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
-
+ 
+    // Student View Profile
+    Route::get('/view/profile',ViewProfile::class)->name('view-profile');
 });
 
 
