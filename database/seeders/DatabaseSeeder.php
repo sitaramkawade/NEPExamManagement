@@ -28,13 +28,13 @@ class DatabaseSeeder extends Seeder
             DepatmentSeeder::class,
             CourseSeeder::class,
             RoletypeSeeder::class,
-            RoleSeeder::class,         
+            RoleSeeder::class,
             SubjectcategorySeeder::class,
             SubjecttypeSeeder::class,
             CourseclassSeeder::class,
             PatternclassSeeder::class,
             StudmenumasterSeeder::class,
-            ClassStudmenumasterSeeder::class,           
+            ClassStudmenumasterSeeder::class,
             BloodgroupSeeder::class,
             ReligionSeeder::class,
             CasteCategorySeeder::class,
@@ -48,11 +48,11 @@ class DatabaseSeeder extends Seeder
             ClassyearSeeder::class,
             BoarduniversitySeeder::class,
             EducationalcourseSeeder::class,
-
-
+            PrefixmasterSeeder::class,
+            BanknamemasterSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
- 
+
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

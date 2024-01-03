@@ -5,6 +5,8 @@ namespace App\Models;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,20 +17,33 @@ use App\Notifications\Faculty\FacultyResetPasswordNotification;
 
 class Faculty extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     // public function sendPasswordResetNotification()
     // {
     //     $this->notify(new FacultyResetPasswordNotification);
     // }
 
+    // public function sendPasswordResetNotification()
+    // {
+    //     $this->notify(new FacultyResetPasswordNotification);
+    // }
 
+    protected $dates=['deleted_at'];
     protected $guard = 'faculty';
     protected $table="faculties";
     protected $fillable = [
-        'name',
+        'prefix',
+        'faculty_name',
         'email',
+        'date_of_birth',
+        'gender',
+        'category',
         'mobile_no',
+        'current_address',
+        'permanant_address',
+        'pan',
+        'active',
         'email_verified_at',
         'password',
         'profile_photo_path',
@@ -39,7 +54,7 @@ class Faculty extends Authenticatable implements MustVerifyEmail
         'college_id',
         'active',
         'last_login',
-        'faculty_verified',
+        // 'faculty_verified',
     ];
 
     /**
@@ -80,13 +95,13 @@ class Faculty extends Authenticatable implements MustVerifyEmail
 
     public function facultybankaccount()
     {
-        return $this->hasOne(Facultybankaccount::class,'faculty_id','id');
+        return $this->hasOne(Facultybankaccount::class,'faculty_id','id')->withTrashed();
     }
 
     public function sendEmailVerificationNotification()
     {
         $this->notify(new FacultyRegisterMailNotification);
-    } 
+    }
 
 
     // public function facultyhead()
@@ -100,12 +115,22 @@ class Faculty extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Department::class,'facultyheads','faculty_id', 'department_id','id')
         ->withPivot('status','department_id')
         ->wherePivot('status','1');
-       
+
     }
     public function getdepartment($deptid)
     {
         return Department::where('id',$deptid)->first()->dept_name;
     }
-    
-   
+
+    public function scopeSearch(Builder $query,string $search)
+    {
+        return $query->with('role')->where(function ($subquery) use ($search) {
+            $subquery->where('faculty_name', 'like', "%{$search}%")
+                ->orWhere('mobile_no', 'like', "%{$search}%")
+                ->orWhereHas('role', function ($subQuery) use ($search) {
+                    $subQuery->where('role_name', 'like', "%{$search}%");
+                }
+            );
+        });
+    }
 }

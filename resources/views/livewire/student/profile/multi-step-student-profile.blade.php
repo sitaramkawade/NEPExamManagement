@@ -588,7 +588,7 @@
                                           <x-table.td> {{ $item->seat_number }} </x-table.td>
                                           <x-table.td> {{ $item->passing_month }} - {{ date(strtotime($item->passing_year))??" " }} </x-table.td>
                                           <x-table.td> {{$item->percentage??"0.00" }} % / {{ $item->cgpa??'0.00' }} </x-table.td>
-                                          <x-table.td> 
+                                          <x-table.td>
                                             <x-table.delete  wire:click="delete_pre_edu({{  $item->id }})"/>
                                           </x-table.td>
                                         </x-table.tr>

@@ -17,7 +17,13 @@ class LoginSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create( [ 'name' => 'user', 'email' => 'user@gmail.com', 'email_verified_at' => now(), 'password' => Hash::make('123456789'), 'remember_token' => Str::random(10),] );
+        User::create( [
+            'name' => 'user',
+            'email' => 'user@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            'remember_token' => Str::random(10),
+        ] );
 
         Faculty::create( [
             'faculty_name' => 'faculty',

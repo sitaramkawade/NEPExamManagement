@@ -8,10 +8,9 @@ use Livewire\Component;
 use App\Models\District;
 use Livewire\WithPagination;
 use App\Exports\ExportDistrict;
-use App\Exports\ExportDistrictPdf;
 
 class DataTable extends Component
-{   
+{
     use WithPagination;
     public $perPage=10;
     public $search='';
@@ -29,7 +28,7 @@ class DataTable extends Component
 
 
     public function sort_column($column)
-    {   
+    {
         if( $this->sortColumn === $column)
         {
             $this->sortColumnBy=($this->sortColumnBy=="ASC")?"DESC":"ASC";
@@ -45,7 +44,7 @@ class DataTable extends Component
     }
 
     public function export()
-    {   
+    {
         $filename="District-".now();
         switch ($this->ext) {
             case 'xlsx':
@@ -58,12 +57,12 @@ class DataTable extends Component
                 return Excel::download(new ExportDistrict($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
-       
+
     }
-       
+
 
     public function render()
-    {   
+    {
 
         $data = District::select('id','district_name','district_code','state_id')->when($this->search, function ($query, $search) {
             $query->search($search);
