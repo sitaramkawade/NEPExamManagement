@@ -10,12 +10,6 @@
                         <x-slot name="btntext">Add</x-slot>
                     </x-card-header>
 
-
-    <x-card-header> 
-        <x-slot name="svg">
-            <x-add-btn href="{{  }}" />
-        </x-slot>
-    </x-card-header>
     <x-table.frame>
         <x-slot:header>
 

@@ -62,8 +62,8 @@
                                 <x-required />
                                 <x-input-select id="status" wire:model="status" name="status" class="text-center  w-full mt-1" :value="old('status',$status)" required autocomplete="status">
                                     <x-select-option class="text-start" hidden> -- Select -- </x-select-option>
-                                    <x-select-option class="text-start" value="1">Inactive</x-select-option>
-                                    <x-select-option class="text-start" value="0">Active</x-select-option>
+                                    <x-select-option class="text-start" value="0">Inactive</x-select-option>
+                                    <x-select-option class="text-start" value="1">Active</x-select-option>
                                 </x-input-select>
                                 <x-input-error :messages="$errors->get('status')" class="mt-2" />
                             </div>

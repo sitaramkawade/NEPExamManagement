@@ -107,7 +107,8 @@ class Edit extends Component
             $this->college_address = $college->college_address;
             $this->sanstha_id = $college->sanstha_id;
             $this->university_id = $college->university_id;
-            $this->status = $college->status==0?true:0;
+            $this->status = $college->status ;
+          
            
             
         }

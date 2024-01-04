@@ -11,6 +11,10 @@ use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use App\Livewire\Faculty\EditFaculty;
 use App\Livewire\Faculty\ViewFaculty;
+use App\Livewire\User\DeleteCollege;
+
+use App\Livewire\User\Exam\EditExam;
+use App\Livewire\Student\ViewProfile;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Faculty\UpdateProfile;
 use App\Livewire\Faculty\RestoreFaculty;
@@ -140,10 +144,19 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
     //Edit Pattern
     Route::get('/editPattern/{id}',EditPattern::class)->name('editPattern');
 
-     //Add University
+     //Add Exam
      Route::get('/add_exam', function () {
         return view('user.addExam');
     })->name('addExam');
+
+     //View Pattern
+     Route::get('/view_exam', function () {
+        return view('user.viewExam');
+    })->name('viewExam');
+
+     //Edit Pattern
+     Route::get('/editExam/{id}',EditExam::class)->name('editExam');
+
 
 
 

@@ -106,7 +106,7 @@ class EditUniversity extends Component
                 'university_contact_no' => $this->university_contact_no,
                 'university_website_url' => $this->university_website_url,
                 'university_logo_path' => $this->university_logo_path,
-                'status' => $this->status==1?0:1,
+                'status' => $this->status,
                      
             ]);
           

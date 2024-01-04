@@ -13,13 +13,9 @@ class ViewSanstha extends Component
 {
     use WithPagination;
     public $perPage=10;
-    public $page = 1;
-    public $sno;
     public $search='';
     public $sortColumn="sanstha_name";
     public $sortColumnBy="ASC";
-    public $data;
-   
     public $ext;
    
 
