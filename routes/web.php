@@ -1,9 +1,12 @@
 <?php
 
 use Livewire\Livewire;
+
+
 use App\Livewire\Index;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
+use App\Livewire\User\college\Edit;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use App\Livewire\Faculty\EditFaculty;
@@ -16,11 +19,14 @@ use App\Livewire\Faculty\FacultyDashboard;
 use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
+use App\Livewire\User\Pattern\EditPattern;
+use App\Livewire\User\sanstha\EditSanstha;
 use App\Livewire\Faculty\SoftDeleteFaculty;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\Faculty\FacultyRole\AddRole;
 use App\Livewire\Faculty\FacultyRole\EditRole;
 use App\Livewire\Faculty\FacultyRole\ViewRole;
+use App\Livewire\User\university\EditUniversity;
 use App\Livewire\Faculty\FacultyRole\RestoreRole;
 use App\Livewire\Faculty\FacultyRole\SoftDeleteRole;
 use App\Livewire\Faculty\FacultyRoleType\AddRoleType;
@@ -29,6 +35,7 @@ use App\Livewire\Faculty\FacultyRoleType\ViewRoleType;
 use App\Livewire\Faculty\FacultyRoleType\RestoreRoleType;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\Faculty\FacultyRoleType\SoftDeleteRoleType;
+
 
 // Livewire Update Route
 Livewire::setUpdateRoute(function ($handle) {
@@ -80,6 +87,65 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
     // User Dashboard
     Route::get('dashboard', UserDashboard::class)->name('dashboard');
+
+    //add College
+    Route::get('add_college', function () {
+        return view('user.college');
+    })->name('college');
+
+    //View College
+    Route::get('/view_college', function () {
+        return view('user.view_college');
+    })->name('view_college');
+
+    //Edit College
+     Route::get('/edit/{id}',Edit::class)->name('edit');
+
+    //Add Sanstha
+    Route::get('addSanstha', function () {
+        return view('user.addSanstha');
+    })->name('addSanstha');
+
+    //View Sanstha
+    Route::get('/view_Sanstha', function () {
+        return view('user.viewSanstha');
+    })->name('viewSanstha');
+
+    //Edit Sanstha
+      Route::get('/editSanstha/{id}',EditSanstha::class)->name('editSanstha');
+
+    //Add University
+    Route::get('/add_university', function () {
+        return view('user.addUniversity');
+    })->name('addUniversity');
+
+     //View University
+     Route::get('/view_university', function () {
+        return view('user.viewUniversity');
+    })->name('viewUniversity');
+
+    //Edit University
+     Route::get('/editUniversity/{id}',EditUniversity::class)->name('editUniversity');
+
+    //Add Pattern
+    Route::get('/add_pattern', function () {
+        return view('user.addPattern');
+    })->name('addPattern');
+
+    //View Pattern
+       Route::get('/view_pattern', function () {
+        return view('user.viewPattern');
+    })->name('viewPattern');
+
+    //Edit Pattern
+    Route::get('/editPattern/{id}',EditPattern::class)->name('editPattern');
+
+     //Add University
+     Route::get('/add_exam', function () {
+        return view('user.addExam');
+    })->name('addExam');
+
+
 
 
 

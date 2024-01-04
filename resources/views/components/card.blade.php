@@ -1,9 +1,4 @@
-@props([
-    'disabled' => false,
-    'heading' => false,
-    'content' => false,
-    'button' => false,
-])
+@props(['disabled' => false,'heading' => false,'content' => false,'button' => false,])
 
 <div class="m-2 pb-3 overflow-hidden rounded shadow">
     <div class="px-2 py-1 font-semibold dark:text-light bg-primary">
