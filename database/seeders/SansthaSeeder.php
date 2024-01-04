@@ -44,6 +44,7 @@ class SansthaSeeder extends Seeder
             'college_logo_path'=>'',
             'university_id'=>$data1->id,
             'status'=>'1',          
+            'is_default'=>'1',          
 
         ]);
 

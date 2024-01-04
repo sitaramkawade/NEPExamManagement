@@ -404,25 +404,13 @@
                                     <x-input-select id="course_class_id" wire:model.live="course_class_id" name="course_class_id" class="text-center w-full mt-1" :value="old('course_class_id',$course_class_id)" required  autocomplete="course_class_id">
                                         <x-select-option class="text-start" hidden> -- Select Class -- </x-select-option>
                                         @forelse ($course_classes as $course_class)
-                                            <x-select-option wire:key="{{ $course_class->id }}" value="{{ $course_class->id }}" class="text-start"> {{ $course_class->classyear->classyear_name}}{{ $course_class->course->course_name }} </x-select-option>
+                                            <x-select-option wire:key="{{ $course_class->id }}" value="{{ $course_class->id }}" class="text-start"> {{ $course_class->classyear->classyear_name}} {{ $course_class->course->course_name }} </x-select-option>
                                         @empty
                                             <x-select-option class="text-start"> Classes Not Found</x-select-option>
                                         @endforelse
                                     </x-input-select>
                                     <x-input-error :messages="$errors->get('course_class_id')" class="mt-2" />
                                 </div>
-                                {{-- <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                    <x-input-label for="pattern_class_id" :value="__('Class')" />
-                                    <x-input-select id="pattern_class_id" wire:model.live="pattern_class_id" name="pattern_class_id" class="text-center w-full mt-1" :value="old('pattern_class_id',$pattern_class_id)" required  autocomplete="pattern_class_id">
-                                        <x-select-option class="text-start" hidden> -- Select Class -- </x-select-option>
-                                        @forelse ($pattern_classes as $ptn_class)
-                                            <x-select-option wire:key="{{ $ptn_class->id }}" value="{{ $ptn_class->id }}" class="text-start"> {{ $ptn_class->getclass->classyear->classyear_name}} {{ $ptn_class->getclass->course->course_name ?? " "}} </x-select-option>
-                                        @empty
-                                            <x-select-option class="text-start">Classes Not Found</x-select-option>
-                                        @endforelse
-                                    </x-input-select>
-                                    <x-input-error :messages="$errors->get('pattern_class_id')" class="mt-2" />
-                                </div> --}}
                             </div>
                             <x-multi-step-btn :current_step="$current_step" :steps="$steps"/>
                         </div>
@@ -588,8 +576,8 @@
                                           <x-table.td> {{ $item->seat_number }} </x-table.td>
                                           <x-table.td> {{ $item->passing_month }} - {{ date(strtotime($item->passing_year))??" " }} </x-table.td>
                                           <x-table.td> {{$item->percentage??"0.00" }} % / {{ $item->cgpa??'0.00' }} </x-table.td>
-                                          <x-table.td> 
-                                            <x-table.delete  wire:click="delete_pre_edu({{  $item->id }})"/>
+                                          <x-table.td>
+                                            <x-table.delete wire:loading.attr="disabled" wire:target="delete_pre_edu" wire:click="delete_pre_edu({{  $item->id }})"/>
                                           </x-table.td>
                                         </x-table.tr>
                                       @endforeach
@@ -852,7 +840,7 @@
                                     </x-table.thead>
                                     <x-table.tbody>
                                       @foreach ($pre_eductions as $key => $item)
-                                        <x-table.tr wire:key="{{ $item->id }}">
+                                        <x-table.tr wire:key="{{ $item->id }}" >
                                           <x-table.td>{{ $key+1 }}</x-table.td>
                                           <x-table.td>{{ $item->boarduniversity->boarduniversity_name }} </x-table.td>
                                           <x-table.td> {{ $item->educationalcourse->course_name }} </x-table.td>
@@ -863,6 +851,14 @@
                                       @endforeach
                                     </x-table.tbody>
                                 </x-table.table>
+                            </div>
+                            <div class="p-2">
+                                <div class="px-5 text-sm text-gray-600 dark:text-gray-400">
+                                    <br>
+                                    <x-text-input id="is_confirm" type="checkbox" wire:model.live="is_confirm"  @click="open = ! open" class="my-1 h-8 w-8"  name="is_confirm" :value="old('is_confirm',$is_confirm)"   />
+                                    <x-input-label for="is_confirm"  class="inline mb-1 mx-2" :value="__('Confirmation : Are You Sure You Want To Submit This Form')" />
+                                    <x-input-error :messages="$errors->get('is_confirm')" class="mt-2" />
+                                </div>
                             </div>
                             <x-multi-step-btn :current_step="$current_step" :steps="$steps"/>
                         </div>

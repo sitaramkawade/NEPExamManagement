@@ -1,9 +1,9 @@
 <x-navbar.navbar>
-    
+
   <x-slot name="AUTH">
     @auth("student")
       <img class="inline-flex h-9 w-9 rounded-full" src="{{ isset(auth()->guard("student")->user()->studentprofile->profile_photo_path)? asset(auth()->guard("student")->user()->studentprofile->profile_photo_path): asset("img/no-img.png"); }}" alt="User" /> 
-      <span class="text-bold mx-2 inline-flex py-2 ">{{ explode(' ', auth()->guard("student")->user()->student_name)[1]  }}</span>
+      <span class="text-bold mx-2 inline-flex py-2 ">{{ isset(explode(' ', auth()->guard("student")->user()->student_name)[1] )?explode(' ', auth()->guard("student")->user()->student_name)[1]:auth()->guard("student")->user()->student_name; }}</span>
     @else
       <img class="inline-flex h-9 w-9 rounded-full" src="{{ asset("img/no-img.png") }}" alt="User" />
     @endauth
@@ -12,6 +12,7 @@
   <x-slot name="DROPDOWN">
     <x-navbar.mobile-dropdown-link route="student" name="Student Home" />
     @auth("student")
+      <x-navbar.mobile-dropdown-link route="student.view-profile" name="Student Profile" />
       <x-navbar.mobile-dropdown-link route="student.dashboard" name="Student Dashboard" />
       <x-navbar.mobile-dropdown-logout-link route="student.logout" name="Student Logout" />
     @else

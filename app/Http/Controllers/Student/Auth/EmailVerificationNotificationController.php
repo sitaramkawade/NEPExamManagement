@@ -15,7 +15,7 @@ class EmailVerificationNotificationController extends Controller
     public function store(Request $request): RedirectResponse
     {
         if ($request->user()->hasVerifiedEmail()) {
-            if($request->user()->is_profile_complete===1)
+            if($request->user('student')->is_profile_complete===1)
             {
                 return redirect()->intended(RouteServiceProvider::STUDENTHOME);
             }else
@@ -24,7 +24,7 @@ class EmailVerificationNotificationController extends Controller
             }
         }
 
-        $request->user()->sendEmailVerificationNotification();
+        $request->user('student')->sendEmailVerificationNotification();
 
         return back()->with('status', 'verification-link-sent');
     }

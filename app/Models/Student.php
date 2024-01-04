@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Notifications\StudentRegisteMailNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\Student\StudentRegisterMailNotification;
 use App\Notifications\Student\StudentResetPasswordNotification;
 
 class Student extends  Authenticatable implements MustVerifyEmail
@@ -22,6 +23,11 @@ class Student extends  Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new StudentResetPasswordNotification($token));
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new StudentRegisterMailNotification);
     }
 
     protected $guard="student";
@@ -62,10 +68,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new StudentRegisteMailNotification);
-    }
+
     public function studentprofile(): HasOne
     {
         return $this->hasOne(Studentprofile::class, 'student_id', 'id');

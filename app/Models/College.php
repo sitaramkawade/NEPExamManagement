@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Role;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,6 +32,10 @@ class College extends Model
     public function university(): BelongsTo
     {
         return $this->belongsTo(University::class,'university_id','id');
+    }
+    public function roles()
+    {
+        return $this->hasMany(Role::class,'roletype_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)
