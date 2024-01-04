@@ -60,8 +60,6 @@ class EditSanstha extends Component
 
     public function mount($id)
     {
-
-       
         $this->edit($id);
         $this->sanstha_id = $id;
       
@@ -97,7 +95,7 @@ class EditSanstha extends Component
                 'sanstha_address' => $this->sanstha_address,
                 'sanstha_contact_no' => $this->sanstha_contact_no,
                 'sanstha_website_url' => $this->sanstha_website_url,                
-                'status' => $this->status==1?0:1,
+                'status' => $this->status,
                      
             ]);
           

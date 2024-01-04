@@ -42,7 +42,7 @@
 
                             <x-table.td>
                                 <x-table.edit wire:navigate :href="route('user.editSanstha',$sanstha->id)" />
-                                <x-table.delete wire:click="deleteSanstha({{$sanstha['id']}})" />
+                                <x-table.delete wire:click="deleteSanstha({{$sanstha->id}})" />
 
                             </x-table.td>
                         </x-table.tr>
@@ -55,7 +55,7 @@
                 </x-table.table>
                 </x-slot>
                 <x-slot:footer>
-                    <x-table.paginate :data="$patterns" />
+                    <x-table.paginate :data="$sansthas" />
                     </x-slot>
     </x-table.frame>
 

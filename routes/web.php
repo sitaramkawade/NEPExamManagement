@@ -6,6 +6,7 @@ use App\Livewire\DataTable;
 use App\Livewire\User\college\Edit;
 use App\Livewire\User\DeleteCollege;
 
+use App\Livewire\User\Exam\EditExam;
 use App\Livewire\Student\ViewProfile;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\college\AddCollege;
@@ -129,10 +130,19 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user'])->group
     //Edit Pattern
     Route::get('/editPattern/{id}',EditPattern::class)->name('editPattern');
 
-     //Add University
+     //Add Exam
      Route::get('/add_exam', function () {
         return view('user.addExam');
     })->name('addExam');
+
+     //View Pattern
+     Route::get('/view_exam', function () {
+        return view('user.viewExam');
+    })->name('viewExam');
+
+     //Edit Pattern
+     Route::get('/editExam/{id}',EditExam::class)->name('editExam');
+
 
 
 
