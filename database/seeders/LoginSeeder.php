@@ -34,7 +34,9 @@ class LoginSeeder extends Seeder
         ] );
 
         Student::create( [
-            'student_name' => 'student',
+            'student_name' => 'Puri Ashutosh Laxman',
+            'mobile_no' => '9373545745',
+            'memid' => '12345',
             'email' => 'student@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456789'),

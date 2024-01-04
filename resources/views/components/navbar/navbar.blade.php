@@ -40,7 +40,7 @@
     <!-- Desktop Right buttons -->
     <nav aria-label="Secondary" class="hidden space-x-2 md:flex md:items-center">
       <!-- Desktop Toggle dark theme button -->
-      <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
+      <button aria-hidden="true" class="relative  focus:outline-none" x-cloak @click="toggleTheme">
         <div class="h-6 w-12 rounded-full bg-primary-100 outline-none transition dark:bg-primary-lighter">
         </div>
         <div class="absolute left-0 top-0 inline-flex h-6 w-6 scale-110 transform items-center justify-center rounded-full shadow-sm transition-all duration-150" :class="{ 'translate-x-0 -translate-y-px  bg-white text-primary-dark': !isDark, 'translate-x-6 text-primary-100 bg-primary-darker': isDark }">
@@ -75,7 +75,7 @@
 
       <!--Desktop User avatar button -->
       <div x-cloak class="relative" x-data="{ open: false }">
-        <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })" type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" class="transition-opacity duration-200 focus:outline-none focus:ring dark:opacity-75 dark:hover:opacity-100 dark:focus:opacity-100 ">
+        <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })" type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" class="transition-opacity duration-200 focus:outline-none dark:opacity-75 dark:hover:opacity-100 dark:focus:opacity-100 ">
           <span class="sr-only">User menu</span>
           <span class="inline-flex">
             {{ $AUTH }}
@@ -88,7 +88,7 @@
         </button>
 
         <!-- Desktop User dropdown menu -->
-        <div x-show="open" x-ref="userMenu" x-transition:enter="transition-all transform ease-out" x-transition:enter-start="translate-y-1/2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition-all transform ease-in" @keydown.escape="open = false" class="absolute right-0 top-12 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-dark z-50" tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
+        <div @click.away="open = false"   x-show="open" x-ref="userMenu" x-transition:enter="transition-all transform ease-out" x-transition:enter-start="translate-y-1/2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition-all transform ease-in" @keydown.escape="open = false" class="absolute right-0 top-12 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-dark z-50" tabindex="-1" role="menu" aria-orientation="vertical" aria-label="User menu">
           {{ $DROPDOWN }}
         </div>
       </div>
@@ -133,7 +133,7 @@
 
       <!-- Mobile User avatar button -->
       <div x-cloak class="relative ml-auto" x-data="{ open: false }">
-        <button @click="open = !open" type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" class="duration-200dark:opacity-75 mx-auto block transition-opacity focus:outline-none focus:ring dark:hover:opacity-100 dark:focus:opacity-100">
+        <button @click="open = !open" type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" class="duration-200dark:opacity-75 mx-auto block transition-opacity focus:outline-none dark:hover:opacity-100 dark:focus:opacity-100">
           <span class="sr-only">User menu</span>
           <span class="inline-flex">
             {{ $AUTH }}
@@ -145,7 +145,7 @@
           </span>
         </button>
         <!-- Mobile User dropdown menu -->
-        <div x-show="open" x-transition:enter="transition-all transform ease-out" x-transition:enter-start="translate-y-1/2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition-all transform ease-in" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false" role="menu" aria-orientation="vertical" aria-label="User menu">
+        <div  @click.away="open = false"  x-show="open" x-transition:enter="transition-all transform ease-out" x-transition:enter-start="translate-y-1/2 opacity-0" x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition-all transform ease-in" x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false" role="menu" aria-orientation="vertical" aria-label="User menu">
           {{ $DROPDOWN }}
         </div>
       </div>

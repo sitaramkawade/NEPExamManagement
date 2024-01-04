@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\College;
 class University extends Model
@@ -23,5 +24,12 @@ class University extends Model
     public function university(): HasMany
     {
         return $this->hasMany(College::class,'university_id','id');
+    }
+
+    public function scopeSearch(Builder $query,string $search)
+    {
+        return $query->where('university_name', 'like', "%{$search}%")
+        ->orWhere('university_email', 'like', "%{$search}%")
+        ->orWhere('university_address', 'like', "%{$search}%");
     }
 }

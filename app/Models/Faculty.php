@@ -19,15 +19,16 @@ class Faculty extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    // public function sendPasswordResetNotification()
-    // {
-    //     $this->notify(new FacultyResetPasswordNotification);
-    // }
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new FacultyResetPasswordNotification($token));
+    }
 
-    // public function sendPasswordResetNotification()
-    // {
-    //     $this->notify(new FacultyResetPasswordNotification);
-    // }
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new FacultyRegisterMailNotification);
+    }
+
 
     protected $dates=['deleted_at'];
     protected $guard = 'faculty';
@@ -98,10 +99,7 @@ class Faculty extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Facultybankaccount::class,'faculty_id','id')->withTrashed();
     }
 
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new FacultyRegisterMailNotification);
-    }
+
 
 
     // public function facultyhead()

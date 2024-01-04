@@ -13,6 +13,7 @@
     <x-navbar.mobile-dropdown-link route="user" name="User Home" />
     @auth("user")
       <x-navbar.mobile-dropdown-link route="user.dashboard" name="User Dashboard" />
+      
       <x-navbar.mobile-dropdown-logout-link route="user.logout" name="User Logout" />
     @else
       <x-navbar.mobile-dropdown-link route="user.login" name="User Login" />
