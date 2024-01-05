@@ -13,7 +13,6 @@ use App\Livewire\User\Home\UserHome;
 
 use App\Livewire\User\UserDashboard;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Faculty\UpdateProfile;
 use App\Livewire\Faculty\FacultyDashboard;
 use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
@@ -24,6 +23,7 @@ use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\User\university\EditUniversity;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
+use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\Faculty\Facultyroletype\AllFacultyRoletype;
 
@@ -167,6 +167,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
     // All Faculty Role
     Route::get('/all-faculty-roletype', AllFacultyRoletype::class)->name('all-roletypes');
+
+    // Update Faculty Profile
+    Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
 });
 
 require __DIR__.'/student.php';
