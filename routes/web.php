@@ -6,7 +6,7 @@ use Livewire\Livewire;
 use App\Livewire\Index;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
-use App\Livewire\User\college\Edit;
+use App\Livewire\User\Exam\AllExam;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use App\Livewire\Faculty\EditFaculty;
@@ -15,18 +15,19 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Faculty\UpdateProfile;
 use App\Livewire\Faculty\RestoreFaculty;
 use App\Livewire\Faculty\RegisterFaculty;
+use App\Livewire\User\College\AllCollege;
+use App\Livewire\User\Pattern\AllPattern;
+use App\Livewire\User\Sanstha\AllSanstha;
 use App\Livewire\Faculty\FacultyDashboard;
 use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
-use App\Livewire\User\Pattern\EditPattern;
-use App\Livewire\User\sanstha\EditSanstha;
 use App\Livewire\Faculty\SoftDeleteFaculty;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\Faculty\FacultyRole\AddRole;
 use App\Livewire\Faculty\FacultyRole\EditRole;
 use App\Livewire\Faculty\FacultyRole\ViewRole;
-use App\Livewire\User\university\EditUniversity;
+use App\Livewire\User\University\AllUniversity;
 use App\Livewire\Faculty\FacultyRole\RestoreRole;
 use App\Livewire\Faculty\FacultyRole\SoftDeleteRole;
 use App\Livewire\Faculty\FacultyRoleType\AddRoleType;
@@ -88,70 +89,20 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
     // User Dashboard
     Route::get('dashboard', UserDashboard::class)->name('dashboard');
 
-    //add College
-    Route::get('add_college', function () {
-        return view('user.college');
-    })->name('college');
+    //All College
+      Route::get('/all_college', AllCollege::class)->name('colleges');
 
-    //View College
-    Route::get('/view_college', function () {
-        return view('user.view_college');
-    })->name('view_college');
+    //All Sanstha  
+      Route::get('/all_sanstha', AllSanstha::class)->name('sanstha');
 
-    //Edit College
-     Route::get('/edit/{id}',Edit::class)->name('edit');
+    //All University    
+      Route::get('/all_university', AllUniversity::class)->name('university');
 
-    //Add Sanstha
-    Route::get('addSanstha', function () {
-        return view('user.addSanstha');
-    })->name('addSanstha');
+    //All Pattern   
+      Route::get('/all_pattern', AllPattern::class)->name('pattern');
 
-    //View Sanstha
-    Route::get('/view_Sanstha', function () {
-        return view('user.viewSanstha');
-    })->name('viewSanstha');
-
-    //Edit Sanstha
-      Route::get('/editSanstha/{id}',EditSanstha::class)->name('editSanstha');
-
-    //Add University
-    Route::get('/add_university', function () {
-        return view('user.addUniversity');
-    })->name('addUniversity');
-
-     //View University
-     Route::get('/view_university', function () {
-        return view('user.viewUniversity');
-    })->name('viewUniversity');
-
-    //Edit University
-     Route::get('/editUniversity/{id}',EditUniversity::class)->name('editUniversity');
-
-    //Add Pattern
-    Route::get('/add_pattern', function () {
-        return view('user.addPattern');
-    })->name('addPattern');
-
-    //View Pattern
-       Route::get('/view_pattern', function () {
-        return view('user.viewPattern');
-    })->name('viewPattern');
-
-    //Edit Pattern
-    Route::get('/editPattern/{id}',EditPattern::class)->name('editPattern');
-
-     //Add Exam
-     Route::get('/add_exam', function () {
-        return view('user.addExam');
-    })->name('addExam');
-
-     //View Pattern
-     Route::get('/view_exam', function () {
-        return view('user.viewExam');
-    })->name('viewExam');
-
-     //Edit Pattern
-     Route::get('/editExam/{id}',EditExam::class)->name('editExam');
+    //All Pattern   
+      Route::get('/all_exam', AllExam::class)->name('exam');
 
 
 

@@ -1,3 +1,4 @@
+@props(['last'=>false ,'current'=>false ,'step'=>false ,'name'=>false])
 <div x-data="{ showTooltip: false }" @mouseenter="showTooltip = true" @mouseleave="showTooltip = false" @if ($current==$step) class="border-b-2 border-primary-darker py-2" @endif>
     @if ($step <= $current)
         <a wire:click='move_to({{ $step }})' class="cursor-pointer">
@@ -22,6 +23,3 @@
         </a>
     @endif
 </div>
-
-
-
