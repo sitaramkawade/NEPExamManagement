@@ -24,20 +24,20 @@ class Patternclass extends Model
         'sem1_credits',
         'sem2_credits',
         'totalnosubjects',
-      
+
     ];
     public function subjects():HasMany
     {
-        return $this->hasMany(Subject::class,'patternclass_id','id');
+        return $this->hasMany(Subject::class,'patternclass_id','id')->withTrashed();
     }
 
     public function pattern()
     {
-        return $this->belongsTo(Pattern::class,'pattern_id','id');
+        return $this->belongsTo(Pattern::class,'pattern_id','id')->withTrashed();
     }
     public function courseclass()
     {
-         return $this->belongsTo(CourseClass::class,'class_id','id');
+         return $this->belongsTo(CourseClass::class,'class_id','id')->withTrashed();
     }
     public function subjectbuckets():HasMany
     {

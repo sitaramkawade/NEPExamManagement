@@ -21,10 +21,10 @@ return new class extends Migration
             $table->text('college_logo_path')->nullable();
             $table->bigInteger('sanstha_id')->nullable()->unsigned()->default(null);
             $table->foreign('sanstha_id')->references('id')->on('sansthas');
-            
+
             $table->bigInteger('university_id')->nullable()->unsigned()->default(null);
             $table->foreign('university_id')->references('id')->on('universities');
-            
+
             $table->tinyInteger('status')->default('0');// 0 :not active 1:active
             $table->tinyInteger('is_default')->default('0');// 0 :not active 1:active
             $table->timestamps();

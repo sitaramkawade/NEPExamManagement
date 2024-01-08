@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Livewire\Faculty\FacultyRole;
+namespace App\Livewire\Faculty\Subject;
 
-use App\Models\Role;
+use App\Models\Subject;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Exports\Faculty\ExportRole;
 use Maatwebsite\Excel\Facades\Excel;
 
-class RoleDataTable extends Component
+class SubjectDatatable extends Component
 {
     use WithPagination;
     public $perPage=10;
     public $search='';
-    public $sortColumn="role_name";
+    public $sortColumn="subject_name";
     public $sortColumnBy="ASC";
     public $ext;
 
@@ -35,16 +34,16 @@ class RoleDataTable extends Component
 
     public function export()
     {
-        $filename="Role-".now();
+        $filename="Subject-".now();
         switch ($this->ext) {
             case 'xlsx':
-                return Excel::download(new ExportRole($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
             break;
             case 'csv':
-                return Excel::download(new ExportRole($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
             case 'pdf':
-                return Excel::download(new ExportRole($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
 
@@ -52,9 +51,9 @@ class RoleDataTable extends Component
 
     public function render()
     {
-        $data = Role::when($this->search, function($query, $search){
+        $data = Subject::when($this->search, function($query, $search){
             $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
+        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         return view('livewire.faculty.faculty-role.role-data-table' ,compact('data'))->extends('layouts.faculty')->section('faculty');
     }
 }

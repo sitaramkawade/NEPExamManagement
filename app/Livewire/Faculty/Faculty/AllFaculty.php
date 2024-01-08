@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Faculty;
+namespace App\Livewire\Faculty\Faculty;
 
 use App\Models\Role;
 use App\Models\College;
@@ -8,12 +8,15 @@ use App\Models\Faculty;
 use Livewire\Component;
 use App\Models\Department;
 use App\Models\Prefixmaster;
+use Livewire\WithPagination;
 use App\Models\Banknamemaster;
 use Illuminate\Validation\Rule;
-use App\Models\Facultybankaccount;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\Faculty\ExportFaculty;
 
-class EditFaculty extends Component
+class AllFaculty extends Component
 {
+    use WithPagination;
 
     public $prefix;
     public $faculty_name;
@@ -42,6 +45,16 @@ class EditFaculty extends Component
     public $banknames;
 
     public $faculty_id;
+    public $facultybank_id;
+    public $mode='all';
+    public $per_page = 10;
+    public $delete_id;
+
+    public $perPage=10;
+    public $search='';
+    public $sortColumn="faculty_name";
+    public $sortColumnBy="ASC";
+    public $ext;
 
     protected function rules()
     {
@@ -55,7 +68,7 @@ class EditFaculty extends Component
             'college_id' => ['required',Rule::exists(College::class,'id')],
             // 'active' => ['required',],
             // 'faculty_verified' => ['required',],
-            'account_no' => ['required', 'numeric','digits_between:8,16',Rule::unique('facultybankaccounts')->ignore($this->faculty_id)],
+            'account_no' => ['required', 'numeric','digits_between:8,16','unique:facultybankaccounts,account_no,'.($this->mode=='edit'? $this->facultybank_id :'')],
             'bank_address' => ['required', 'string', 'max:255',],
             'bank_name' => ['required', 'string', 'max:255',],
             'branch_name' => ['required', 'string', 'max:255',],
@@ -65,11 +78,6 @@ class EditFaculty extends Component
             'account_type' => ['required', 'in:C,S',],
             // 'acc_verified' => ['required', ],
         ];
-    }
-
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
     }
 
     public function messages()
@@ -95,11 +103,64 @@ class EditFaculty extends Component
         ];
     }
 
-    public function edit($id)
+    public function resetinput()
     {
-        $faculty = Faculty::find($id);
+         $this->prefix=null;
+         $this->faculty_name=null;
+         $this->email=null;
+         $this->mobile_no=null;
+         $this->role_id=null;
+         $this->department_id=null;
+         $this->college_id=null;
+
+         $this->bank_name=null;
+         $this->account_no=null;
+         $this->bank_address=null;
+         $this->branch_name=null;
+         $this->branch_code=null;
+         $this->ifsc_code=null;
+         $this->micr_code=null;
+         $this->account_type=null;
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
+    public function setmode($mode)
+    {
+        if($mode=='add')
+        {
+            $this->resetinput();
+        }
+        $this->mode=$mode;
+    }
+
+    public function deleteconfirmation($id)
+    {
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
+
+    public function save()
+    {
+        $validatedData = $this->validate();
+
+        $faculty = Faculty::create($validatedData);
+        if ($faculty) {
+            $faculty->facultybankaccount()->create($validatedData);
+            $this->dispatch('alert',type:'success',message:'Faculty Registered Successfully');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Faculty Registration Unsucessful');
+        }
+    }
+
+    public function edit(Faculty $faculty)
+    {
         if ($faculty)
         {
+            $this->faculty_id = $faculty->id;
             $this->prefix= $faculty->prefix;
             $this->faculty_name= $faculty->faculty_name;
             $this->email= $faculty->email;
@@ -110,6 +171,7 @@ class EditFaculty extends Component
 
             $bankdetails = $faculty->facultybankaccount()->first();
             if($bankdetails){
+                $this->facultybank_id= $bankdetails->id;
                 $this->bank_name= $bankdetails->bank_name;
                 $this->account_no= $bankdetails->account_no;
                 $this->bank_address= $bankdetails->bank_address;
@@ -121,38 +183,115 @@ class EditFaculty extends Component
             }else{
                 $this->dispatch('alert',type:'error',message:'Bank Details Not Found');
             }
+            $this->setmode('edit');
+        }else{
+            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
         }
     }
 
-    public function update($id)
+    public function update(Faculty $faculty)
     {
         $validatedData = $this->validate();
-        $faculty = Faculty::find($id);
 
         if ($faculty) {
             $faculty->update($validatedData);
             $faculty->facultybankaccount()->updateOrCreate([], $validatedData);
 
             $this->dispatch('alert',type:'success',message:'Faculty Updated Successfully');
-            return redirect()->route('faculty.view.faculty');
+            $this->setmode('all');
+            $this->resetinput();
         }else{
             $this->dispatch('alert',type:'error',message:'Error To Update Faculty');
         }
     }
 
-    public function mount($id)
+    public function softdelete($id)
+    {
+        $faculty = Faculty::withTrashed()->findOrFail($id);
+
+        if ($faculty) {
+            $bankAccount = $faculty->facultybankaccount()->withTrashed()->first();
+            if ($bankAccount) {
+                $bankAccount->delete();
+            }
+            $faculty->delete();
+            $this->dispatch('alert',type:'success',message:'Faculty Deleted Successfully');
+            } else {
+                $this->dispatch('alert',type:'error',message:'Faculty Not Found !');
+            }
+            $this->setmode('all');
+    }
+
+    public function restore($id)
+    {
+        $faculty = Faculty::withTrashed()->findOrFail($id);
+
+        if ($faculty) {
+            $faculty->restore();
+
+            $bankDetails = $faculty->facultybankaccount()->onlyTrashed()->get();
+
+            if ($bankDetails->isNotEmpty()) {
+                foreach ($bankDetails as $bankDetail) {
+                    $bankDetail->restore();
+                }
+            }
+
+            $this->delete_id = null;
+            $this->dispatch('alert',type:'success',message:'Faculty Restored Successfully');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Faculty Not Found');
+        }
+        $this->setmode('all');
+    }
+
+    public function mount()
     {
         $this->prefixes = Prefixmaster::where('is_active',1)->get();
         $this->banknames = Banknamemaster::where('is_active',1)->get();
         $this->roles= Role::all();
         $this->departments= Department::where('status',1)->get();
         $this->colleges= College::where('status',1)->get();
-        $this->edit($id);
-        $this->faculty_id = $id;
+    }
+
+    public function sort_column($column)
+    {
+        if( $this->sortColumn === $column)
+        {
+            $this->sortColumnBy=($this->sortColumnBy=="ASC")?"DESC":"ASC";
+            return;
+        }
+        $this->sortColumn=$column;
+        $this->sortColumnBy=="ASC";
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function export()
+    {
+        $filename="Faculty-".now();
+        switch ($this->ext) {
+            case 'xlsx':
+                return Excel::download(new ExportFaculty($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+            break;
+            case 'csv':
+                return Excel::download(new ExportFaculty($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+            break;
+            case 'pdf':
+                return Excel::download(new ExportFaculty($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+            break;
+        }
+
     }
 
     public function render()
     {
-        return view('livewire.faculty.edit-faculty')->extends('layouts.faculty')->section('faculty');
+        $faculties = Faculty::when($this->search, function($query, $search){
+            $query->search($search);
+        })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
+        return view('livewire.faculty.faculty.all-faculty',compact('faculties'))->extends('layouts.faculty')->section('faculty');
     }
 }

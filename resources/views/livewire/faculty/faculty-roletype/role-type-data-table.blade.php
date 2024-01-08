@@ -24,13 +24,6 @@
                           <x-table.edit :href="route('faculty.edit-roletype.faculty', $roletype->id)"/>
                           <x-table.delete :href="route('faculty.delete-roletype.faculty', $roletype->id)"/>
                       @endif
-                    {{-- <x-table.view/>
-                    <x-table.hide/>
-                    <x-table.archive/> --}}
-                    {{-- <x-table.active/>
-                    <x-table.inactive/>
-                    <x-table.download> Download</x-table.download> --}}
-
                   </x-table.td>
                 </x-table.tr>
               @endforeach
@@ -40,5 +33,5 @@
         <x-slot:footer>
           <x-table.paginate :data="$data" />
         </x-slot>
-      </x-table.frame>
+    </x-table.frame>
 </div>

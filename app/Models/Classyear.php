@@ -17,10 +17,10 @@ class Classyear extends Model
     ];
     public function subject():HasMany
     {
-        return $this->hasMany(Subject::class,'classyear_id','id');
+        return $this->hasMany(Subject::class,'classyear_id','id')->withTrashed();
     }
     public function course_classes():HasMany
     {
-        return $this->hasMany(Courseclass::class,'classyear_id','id');
+        return $this->hasMany(Courseclass::class,'classyear_id','id')->withTrashed();
     }
 }
