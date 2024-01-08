@@ -5,7 +5,7 @@
           <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
         <x-form wire:submit="add()">
-          @include('livewire.user.helpline-query.helpline-query-form')
+          @include('livewire.student.helpline-query.helpline-query-form')
         </x-form>
       </div>
     @elseif($mode=='edit')
@@ -14,7 +14,7 @@
             <x-back-btn wire:click="setmode('all')" />
           </x-card-header>
           <x-form wire:submit="update({{ $edit_id }})" >
-             @include('livewire.user.helpline-query.helpline-query-form')
+             @include('livewire.student.helpline-query.helpline-query-form')
           </x-form>
       </div>
     @elseif($mode == 'all')

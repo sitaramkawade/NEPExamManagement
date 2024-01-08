@@ -45,21 +45,21 @@ Livewire::setScriptRoute(function ($handle) {
 // Guest Routes
 Route::middleware(['guest'])->group(function () {
 
-    // Guest Home
-    Route::get('/',Index::class)->name('home');
+  // Guest Home
+  Route::get('/',Index::class)->name('home');
 
-    // Student Home
-    Route::get('/student',StudentHome::class)->name('student');
+  // Student Home
+  Route::get('/student',StudentHome::class)->name('student');
 
-    // User Home
-    Route::get('/user',UserHome::class)->name('user');
+  // User Home
+  Route::get('/user',UserHome::class)->name('user');
 
-    // Faculty Home
-    Route::get('/faculty',FacultyHome::class)->name('faculty');
+  // Faculty Home
+  Route::get('/faculty',FacultyHome::class)->name('faculty');
 
-    // RND Pages
-    Route::get('/table',DataTable::class);
-    Route::get('/select',SelectTo::class)->name('select');
+  // RND Pages
+  Route::get('/table',DataTable::class);
+  Route::get('/select',SelectTo::class)->name('select');
     
 
 
@@ -68,49 +68,54 @@ Route::middleware(['guest'])->group(function () {
 // Auth Student Routes
 Route::prefix('student')->name('student.')->middleware(['auth:student','is_student','verified:student.verification.notice'])->group(function () {
 
-    // Student Dashboard
-    Route::get('/dashboard',StudentDashboard::class)->name('dashboard');
+  // Student Dashboard
+  Route::get('/dashboard',StudentDashboard::class)->name('dashboard');
 
     // Student Profile
     Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
 
     // Student View Profile
     Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
+  // Student Profile
+  Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
+ 
+  // Student View Profile
+  Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
 
-    // Student Helpline
-    Route::get('/helpline',Helpline::class)->name('helpline');
+  // Student Helpline
+  Route::get('/helpline',Helpline::class)->name('helpline');
 });
 
 
 // Auth User Routes
 Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verified:user.verification.notice'])->group(function () {
 
-    // User Dashboard
-    Route::get('dashboard', UserDashboard::class)->name('dashboard');
+  // User Dashboard
+  Route::get('dashboard', UserDashboard::class)->name('dashboard');
 
-    //All College
-      Route::get('/all_college', AllCollege::class)->name('colleges');
+  //All College
+  Route::get('/all_college', AllCollege::class)->name('colleges');
 
-    //All Sanstha  
-      Route::get('/all_sanstha', AllSanstha::class)->name('sanstha');
+  //All Sanstha  
+  Route::get('/all_sanstha', AllSanstha::class)->name('sanstha');
 
-    //All University    
-      Route::get('/all_university', AllUniversity::class)->name('university');
+  //All University    
+  Route::get('/all_university', AllUniversity::class)->name('university');
 
-    //All Pattern   
-      Route::get('/all_pattern', AllPattern::class)->name('pattern');
+  //All Pattern   
+  Route::get('/all_pattern', AllPattern::class)->name('pattern');
 
-    //All Pattern   
-      Route::get('/all_exam', AllExam::class)->name('exam');
+  //All Pattern   
+  Route::get('/all_exam', AllExam::class)->name('exam');
 
-    //All Student Helpline
-     Route::get('/all/helpline',AllHelpline::class)->name('all_helpline');
+  //All Student Helpline
+  Route::get('/all/hel pline',AllHelpline::class)->name('all_helpline');
 
-    //All Student Helpline Query
-     Route::get('/all/helpline/query',AllHelplineQuery::class)->name('all_helpline_query');
+  //All Student Helpline Query
+  Route::get('/all/helpline/query',AllHelplineQuery::class)->name('all_helpline_query');
 
-    //All Student Helpline Documnet
-    Route::get('/all/helpline/document',AllHelplineDocument::class)->name('all_helpline_document');
+  //All Student Helpline Documnet
+  Route::get('/all/helpline/document',AllHelplineDocument::class)->name('all_helpline_document');
 
 
 
@@ -121,8 +126,10 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 // Auth Faculty Routes
 Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified:faculty.verification.notice'])->group(function () {
 
-    // Faculty Dashboard
-    Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
+  // Faculty Dashboard
+  Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
+
+  
 
     // All Faculty
     Route::get('/all-faculties', AllFaculty::class)->name('all-faculties');
