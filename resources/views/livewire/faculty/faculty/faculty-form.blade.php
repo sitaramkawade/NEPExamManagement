@@ -58,7 +58,7 @@
                         <x-select-option wire:key="{{ $college->id }}" value="{{ $college->id }}" class="text-start">{{ $college->college_name }}</x-select-option>
                     @endforeach
                 </x-input-select>
-                <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
+                <x-input-error :messages="$errors->get('college_id')" class="mt-2" />
             </div>
         </div>
     </x-slot>
@@ -123,12 +123,6 @@
                 <x-input-error :messages="$errors->get('account_type')" class="mt-2" />
             </div>
         </div>
-        <div class="flex justify-end pr-4">
-            <x-form-btn>
-                <x-slot name="btntext">
-                    Submit
-                </x-slot>
-            </x-form-btn>
-        </div>
+        <x-form-btn>Submit</x-form-btn>
     </x-slot>
 </x-card-collapsible>

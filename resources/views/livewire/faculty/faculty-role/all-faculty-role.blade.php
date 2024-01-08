@@ -1,33 +1,24 @@
 <div>
     @if ($mode=='add')
     <div>
-        <x-card-header>
-            Add Role
-            <x-slot name="button">
+        <x-card-header heading="Add Role">
                 <x-back-btn wire:click="setmode('all')" />
-            </x-slot>
         </x-card-header>
         <x-form wire:submit="save()">
             @include('livewire.faculty.faculty-role.role-form')
         </x-form>
     </div>
     @elseif($mode=='edit')
-    <x-card-header>
-        Edit Role
-        <x-slot name="button">
+    <x-card-header heading="Edit Role">
             <x-back-btn wire:click="setmode('all')" />
-        </x-slot>
     </x-card-header>
     <x-form wire:submit="update({{ $role_id }})">
         @include('livewire.faculty.faculty-role.role-form')
     </x-form>
     @elseif($mode='all')
         <div>
-            <x-card-header>
-                All Roles
-                <x-slot name="button">
+            <x-card-header heading="All Roles">
                     <x-add-btn wire:click="setmode('add')" />
-                </x-slot>
             </x-card-header>
             <x-table.frame>
                 <x-slot:header>

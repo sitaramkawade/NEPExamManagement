@@ -1,23 +1,23 @@
 <div>
     @if ($mode=='add')
     <div>
-        <x-card-header heading="Add Faculty">
+        <x-card-header heading="Add Subject">
                 <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
         <x-form wire:submit="save()">
-            @include('livewire.faculty.faculty.faculty-form')
+            @include('livewire.faculty.subject.subject-form')
         </x-form>
     </div>
     @elseif($mode=='edit')
-    <x-card-header heading="Edit Faculty">
+    <x-card-header heading="Edit Subject">
             <x-back-btn wire:click="setmode('all')" />
     </x-card-header>
-    <x-form wire:submit="update({{ $faculty_id }})">
-        @include('livewire.faculty.faculty.faculty-form')
+    <x-form wire:submit="update({{ $subject_id }})">
+        @include('livewire.faculty.subject.subject-form')
     </x-form>
     @elseif($mode='all')
         <div>
-            <x-card-header heading="All Faculties">
+            <x-card-header heading="All Subjects">
                     <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
             <x-table.frame>
@@ -35,7 +35,7 @@
                       </x-table.tr>
                     </x-table.thead>
                     <x-table.tbody>
-                      @foreach ($faculties as $faculty)
+                      {{-- @foreach ($faculties as $faculty)
                         <x-table.tr wire:key="{{ $faculty->id }}">
                           <x-table.td>{{ $faculty->id }} </x-table.td>
                           <x-table.td>{{ $faculty->faculty_name }} </x-table.td>
@@ -51,12 +51,12 @@
                               @endif
                           </x-table.td>
                         </x-table.tr>
-                      @endforeach
+                      @endforeach --}}
                     </x-table.tbody>
                   </x-table.table>
                 </x-slot>
                 <x-slot:footer>
-                  <x-table.paginate :data="$faculties" />
+                  {{-- <x-table.paginate :data="$faculties" /> --}}
                 </x-slot>
               </x-table.frame>
         </div>

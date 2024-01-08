@@ -64,19 +64,19 @@ class Subject extends Model
         return $this->hasMany(Subjectbucket::class,'subject_id','id');
     }
 
-    public function scopeSearch(Builder $query,string $search)
-    {
-        return $query->with('subjectcategory', 'subjecttype', 'patternclass', 'classyear', 'department', 'college')->where(function ($subquery) use ($search) {
-            $subquery->where('subject_name', 'like', "%{$search}%")
-            ->orWhereHas('roletype', function ($roletypeQuery) use ($search) {
-                $roletypeQuery->where('roletype_name', 'like', "%{$search}%");
-            })
-            ->orWhereHas('college', function ($collegeQuery) use ($search) {
-                $collegeQuery->where('college_name', 'like', "%{$search}%");
-            });
-        });
+    // public function scopeSearch(Builder $query,string $search)
+    // {
+    //     return $query->with('subjectcategory', 'subjecttype', 'patternclass', 'classyear', 'department', 'college')->where(function ($subquery) use ($search) {
+    //         $subquery->where('subject_name', 'like', "%{$search}%")
+    //         ->orWhereHas('roletype', function ($roletypeQuery) use ($search) {
+    //             $roletypeQuery->where('roletype_name', 'like', "%{$search}%");
+    //         })
+    //         ->orWhereHas('college', function ($collegeQuery) use ($search) {
+    //             $collegeQuery->where('college_name', 'like', "%{$search}%");
+    //         });
+    //     });
 
-    }
+    // }
 }
 
 
