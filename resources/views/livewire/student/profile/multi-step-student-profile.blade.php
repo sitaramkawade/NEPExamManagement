@@ -211,7 +211,7 @@
                                 <div class="m-5   col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
                                     <div class="flex items-center justify-between border-b p-4 dark:border-primary">
                                         <h4 class="text-lg font-semibold text-gray-500 dark:text-light">  @if (isset($address_types[0]->type)) {{ $address_types[0]->type }}@endif</h4>
-                                    
+
                                     </div>
                                     <div class="relative h-auto p-4">
                                         <div class="grid grid-cols-1 md:grid-cols-2">
@@ -358,7 +358,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>   
+                                </div>
                             @endif
                             {{-- @endif --}}
                             <x-multi-step-btn :current_step="$current_step" :steps="$steps"/>

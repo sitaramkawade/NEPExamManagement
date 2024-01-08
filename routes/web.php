@@ -20,6 +20,7 @@ use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Helpline\Helpline;
 use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\Faculty\Faculty\AllFaculty;
+use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\User\University\AllUniversity;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
@@ -134,6 +135,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
     // Update Faculty Profile
     Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
+
+    // All Subject
+    Route::get('/all-subject', AllSubject::class)->name('all-subjects');
 });
 
 require __DIR__.'/student.php';
