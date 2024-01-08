@@ -1,6 +1,6 @@
 @props(["disabled" => false, "slot" => false,"i"=>true])
 
-<span {{ $disabled ? "disabled" : "" }} {!! $attributes->merge(["class" => "inline-flex text-white  cursor-pointer"]) !!}>
+<button type="button" {{ $disabled ? "disabled" : "" }} {!! $attributes->merge(["class" => "inline-flex text-white  cursor-pointer"]) !!}>
   <span class="inline-flex items-center justify-center rounded-md bg-red-700 p-1.5 shadow-lg">
     @if ($i)
       <svg class="mx-1 h-5 w-5 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
@@ -9,4 +9,5 @@
     @endif
     {{ $slot }}
   </span>
-</span>
+</button>
+  

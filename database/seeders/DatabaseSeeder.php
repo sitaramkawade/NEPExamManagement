@@ -8,6 +8,8 @@ use Database\Seeders\GradeSeeder;
 use Database\Seeders\LoginSeeder;
 use Database\Seeders\MonthSeeder;
 use Database\Seeders\PreviousYearSeeder;
+use Database\Seeders\StudenthelplineQuerySeeder;
+use Database\Seeders\StudenthelplineDocumentSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +19,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            StudenthelplineQuerySeeder::class,
+            StudenthelplineDocumentSeeder::class,
             LoginSeeder::class,
             GradeSeeder::class,
             PreviousYearSeeder::class,

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Patternclass;
+use App\Models\Studenthelpline;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
@@ -85,6 +86,11 @@ class Student extends  Authenticatable implements MustVerifyEmail
     public function patternclass()
     {
         return $this->belongsTo(Patternclass::class,'patternclass_id','id');
+    }
+
+    public function studenthelplines(): HasMany
+    {
+        return $this->HasMany(Studenthelpline::class, 'student_id', 'id');
     }
 }
 

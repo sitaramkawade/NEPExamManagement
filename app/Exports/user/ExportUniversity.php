@@ -33,7 +33,7 @@ class ExportUniversity implements FromCollection, WithHeadings, WithMapping
 
     public function headings(): array
     {
-        return ['ID', 'University Name','University Email','University Address','University website url','status'];
+        return ['ID', 'University Name','University Email','University Address','University Website URL','Status'];
     }
 
     public function map($row): array
