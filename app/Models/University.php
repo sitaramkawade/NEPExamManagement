@@ -26,6 +26,7 @@ class University extends Model
         return $this->hasMany(College::class,'university_id','id');
     }
 
+
     public function scopeSearch(Builder $query,string $search)
     {
         return $query->where('university_name', 'like', "%{$search}%")

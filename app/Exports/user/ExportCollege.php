@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-class ExportCollege implements FromCollection
+class ExportCollege implements  FromCollection, WithHeadings, WithMapping
 {
     protected $search;
     protected $sortColumn;
@@ -26,8 +26,8 @@ class ExportCollege implements FromCollection
     public function collection()
     {
         return College::
-        //  with('Colleges')->search($this->search)
-       orderBy($this->sortColumn, $this->sortColumnBy)
+         search($this->search)->
+        orderBy($this->sortColumn, $this->sortColumnBy)
         ->select('id', 'college_name','college_email','college_address', 'status')
         ->get();
     }
@@ -44,7 +44,7 @@ class ExportCollege implements FromCollection
             $row->college_name,
             $row->college_email,
             $row->college_address,
-            $row->status,
+            $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }
 

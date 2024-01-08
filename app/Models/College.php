@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Role;
 
+use App\Models\Pattern;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -44,6 +45,13 @@ class College extends Model
         ->orWhere('college_email', 'like', "%{$search}%")
         ->orWhere('college_address', 'like', "%{$search}%");
     }
+
+    public function patterns()
+    {
+        return $this->hasMany(Pattern::class);
+    }
+
+ 
             
     
 }
