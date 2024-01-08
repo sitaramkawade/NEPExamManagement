@@ -7,10 +7,15 @@ use App\Livewire\Index;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
 use App\Livewire\User\Exam\AllExam;
+use App\Livewire\User\college\Edit;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use App\Livewire\Faculty\EditFaculty;
 use App\Livewire\Faculty\ViewFaculty;
+use App\Livewire\User\DeleteCollege;
+
+use App\Livewire\User\Exam\EditExam;
+use App\Livewire\Student\ViewProfile;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Faculty\UpdateProfile;
 use App\Livewire\Faculty\RestoreFaculty;
