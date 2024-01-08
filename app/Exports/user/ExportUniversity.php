@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\user;
+namespace App\Exports\User;
 
 use App\Models\University;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -33,7 +33,7 @@ class ExportUniversity implements FromCollection
 
     public function headings(): array
     {
-        return ['ID', 'University Name','University Email','University Address','University website url','status'];
+        return ['ID', 'University Name','University Email','University Address','University Website URL','Status'];
     }
 
     public function map($row): array

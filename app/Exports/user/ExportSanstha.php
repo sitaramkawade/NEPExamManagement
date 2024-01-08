@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\user;
+namespace App\Exports\User;
 
 use App\Models\Sanstha;
 use Maatwebsite\Excel\Concerns\FromQuery;

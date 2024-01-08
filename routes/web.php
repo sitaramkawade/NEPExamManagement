@@ -7,13 +7,13 @@ use App\Livewire\Index;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
 use App\Livewire\User\college\Edit;
+use App\Livewire\User\DeleteCollege;
+use App\Livewire\User\Exam\EditExam;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use App\Livewire\Faculty\EditFaculty;
-use App\Livewire\Faculty\ViewFaculty;
-use App\Livewire\User\DeleteCollege;
 
-use App\Livewire\User\Exam\EditExam;
+use App\Livewire\Faculty\ViewFaculty;
 use App\Livewire\Student\ViewProfile;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Faculty\UpdateProfile;
@@ -26,19 +26,23 @@ use App\Livewire\Student\StudentDashboard;
 use App\Livewire\User\Pattern\EditPattern;
 use App\Livewire\User\sanstha\EditSanstha;
 use App\Livewire\Faculty\SoftDeleteFaculty;
+use App\Livewire\Student\Helpline\Helpline;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\Faculty\FacultyRole\AddRole;
 use App\Livewire\Faculty\FacultyRole\EditRole;
 use App\Livewire\Faculty\FacultyRole\ViewRole;
+use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\User\university\EditUniversity;
 use App\Livewire\Faculty\FacultyRole\RestoreRole;
 use App\Livewire\Faculty\FacultyRole\SoftDeleteRole;
 use App\Livewire\Faculty\FacultyRoleType\AddRoleType;
 use App\Livewire\Faculty\FacultyRoleType\EditRoleType;
 use App\Livewire\Faculty\FacultyRoleType\ViewRoleType;
+use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Faculty\FacultyRoleType\RestoreRoleType;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\Faculty\FacultyRoleType\SoftDeleteRoleType;
+use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 
 
 // Livewire Update Route
@@ -69,6 +73,8 @@ Route::middleware(['guest'])->group(function () {
     // RND Pages
     Route::get('/table',DataTable::class);
     Route::get('/select',SelectTo::class)->name('select');
+    
+
 
 });
 
@@ -83,6 +89,9 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
  
     // Student View Profile
     Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
+
+    // Student Helpline
+    Route::get('/helpline',Helpline::class)->name('helpline');
 });
 
 
@@ -157,8 +166,14 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
      //Edit Pattern
      Route::get('/editExam/{id}',EditExam::class)->name('editExam');
 
+    //All Student Helpline
+     Route::get('/all/helpline',AllHelpline::class)->name('all_helpline');
 
+    //All Student Helpline Query
+     Route::get('/all/helpline/query',AllHelplineQuery::class)->name('all_helpline_query');
 
+    //All Student Helpline Documnet
+    Route::get('/all/helpline/document',AllHelplineDocument::class)->name('all_helpline_document');
 
 
 

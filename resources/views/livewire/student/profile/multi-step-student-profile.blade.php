@@ -280,7 +280,7 @@
                                             </div>
                                             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                                                 <br>
-                                                <x-text-input id="is_same" type="checkbox" wire:model.live="is_same"  @click="open = ! open" class="my-1 h-8 w-8"  name="is_same" :value="old('is_same',$is_same)"   />
+                                                <x-input-checkbox id="is_same" wire:model.live="is_same"  @click="open = ! open"  name="is_same" :value="old('is_same',$is_same)"   />
                                                 <x-input-label for="is_same"  class="inline mb-1 mx-2" :value="__('Is Permanent Address Is Same As Correspondence Address')" />
                                                 <x-input-error :messages="$errors->get('is_same')" class="mt-2" />
                                             </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\user;
+namespace App\Exports\User;
 
 use App\Models\District;
 use Illuminate\Contracts\View\View;
