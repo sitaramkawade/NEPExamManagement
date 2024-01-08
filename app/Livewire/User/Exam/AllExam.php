@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Livewire\User\Exam;
-
+use Excel;
 use App\Models\Exam;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Exports\User\ExportExam;
 
 class AllExam extends Component
 {
@@ -74,7 +75,7 @@ class AllExam extends Component
         $exam = Exam::find($id);
 
         if ($exam) {
-         
+            $this->exam_id=$exam->id;
             $this->exam_name = $exam->exam_name;
             $this->status = $exam->status;          
             $this->exam_sessions = $exam->exam_sessions;          
@@ -91,7 +92,7 @@ class AllExam extends Component
             $exam->update([
                               
                 'exam_name' => $this->exam_name,              
-                'status' => $this->status==1?0:1,
+                'status' => $this->status==1?0:1,  
                 'exam_sessions' => $this->exam_sessions==1?0:1,                    
             ]);
           
@@ -117,6 +118,23 @@ class AllExam extends Component
         $this->sortColumn=$column;
         $this->sortColumnBy=="ASC";
     }
+
+    public function export()
+    {   
+        $filename="Exam-".now();
+        switch ($this->ext) {
+            case 'xlsx':
+                return Excel::download(new ExportExam($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+            break;
+            case 'csv':
+                return Excel::download(new ExportExam($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+            break;
+            case 'pdf':
+                return Excel::download(new ExportExam($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+            break;
+        }     
+    }
+
     public function render()
     {
         $exams=Exam::when($this->search, function ($query, $search) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\user;
+namespace App\Exports\User;
 
 use App\Models\University;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ExportUniversity implements FromCollection
+class ExportUniversity implements FromCollection, WithHeadings, WithMapping
 {
     protected $search;
     protected $sortColumn;
@@ -25,8 +25,8 @@ class ExportUniversity implements FromCollection
     public function collection()
     {
         return University::
-        //  with('Colleges')->search($this->search)
-       orderBy($this->sortColumn, $this->sortColumnBy)
+          search($this->search)
+        ->orderBy($this->sortColumn, $this->sortColumnBy)
         ->select('id', 'university_name','university_email','university_address','university_website_url', 'status')
         ->get();
     }
@@ -44,7 +44,7 @@ class ExportUniversity implements FromCollection
             $row->university_email,
             $row->university_address,
             $row->university_address,
-            $row->status,
+            $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }
 

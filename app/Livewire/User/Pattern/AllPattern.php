@@ -2,10 +2,12 @@
 
 namespace App\Livewire\User\Pattern;
 
+use Excel;
 use App\Models\College;
 use App\Models\Pattern;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Exports\User\ExportPattern;
 
 class AllPattern extends Component
 {
@@ -25,8 +27,8 @@ class AllPattern extends Component
     public $status;
     public $college_id ;
     public $colleges;
-    public $id;
-
+    public $pattern_id;
+ 
     protected function rules()
     {
         return [
@@ -98,7 +100,8 @@ class AllPattern extends Component
         $pattern=Pattern::find($id);
         
         if($pattern)
-        {
+        { 
+            $this->pattern_id=$pattern->id;
             $this->pattern_name=$pattern->pattern_name;
             $this->pattern_startyear=$pattern->pattern_startyear;
             $this->pattern_valid=$pattern->pattern_valid;
@@ -109,13 +112,10 @@ class AllPattern extends Component
     }
 
     public function update(Pattern  $pattern){
-
-        $validatedData= $this->validate();
-
        
+        $validatedData= $this->validate();
         if ($validatedData) {        
             $pattern->update([
-                             
                 'pattern_name' => $this->pattern_name,
                 'pattern_startyear' => $this->pattern_startyear,
                 'pattern_valid' => $this->pattern_valid,
@@ -137,6 +137,23 @@ class AllPattern extends Component
         }
         $this->sortColumn=$column;
         $this->sortColumnBy=="ASC";
+    }
+
+    public function export()
+    {   
+        $filename="Pattern-".now();
+        switch ($this->ext) {
+            case 'xlsx':
+                return Excel::download(new ExportPattern($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+            break;
+            case 'csv':
+                return Excel::download(new ExportPattern($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+            break;
+            case 'pdf':
+                return Excel::download(new ExportPattern($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+            break;
+        }
+       
     }
 
 

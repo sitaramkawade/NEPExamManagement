@@ -18,7 +18,7 @@
             <x-back-btn wire:click="setmode('all')" />
         </x-slot>
     </x-card-header>
-    <x-form wire:submit="update({{ $id  }})">
+    <x-form wire:submit="update({{ $pattern_id  }})">
         @include('livewire.user.pattern.pattern-form')
     </x-form>
     @elseif($mode='all')

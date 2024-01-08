@@ -64,7 +64,7 @@
                             </x-table.tr>
                             @empty
                             <x-table.tr>
-                                <x-table.td colSpan='8'>No Data Found</x-table.td>
+                                <x-table.td colSpan='8' class="text-center">No Data Found</x-table.td>
                             </x-table.tr>
                             @endforelse
                         </x-table.tbody>
