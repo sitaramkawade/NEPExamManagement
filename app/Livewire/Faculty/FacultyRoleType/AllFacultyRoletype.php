@@ -12,8 +12,10 @@ class AllFacultyRoletype extends Component
 {
     use WithPagination;
 
+    protected $listeners = ['delete-confirmed'=>'delete'];
     public $roletype_name;
     public $roletype_id;
+    public $delete_id;
 
     public $perPage=10;
     public $search='';
@@ -46,11 +48,21 @@ class AllFacultyRoletype extends Component
         ];
     }
 
+    public function deleteconfirmation($id)
+    {
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
+
     public function setmode($mode)
     {
         if($mode=='add')
         {
             $this->resetinput();
+        }
+        if($mode=='edit')
+        {
+            $this->resetValidation();
         }
         $this->mode=$mode;
     }
@@ -62,6 +74,7 @@ class AllFacultyRoletype extends Component
         if ($roletype) {
             $this->dispatch('alert',type:'success',message:'Role Type Added Successfully');
             $this->resetinput();
+            $this->setmode('all');
         } else {
             $this->dispatch('alert',type:'error',message:'Failed to Add Role Type. Please try again.');
         }
@@ -88,6 +101,19 @@ class AllFacultyRoletype extends Component
             $this->dispatch('alert',type:'error',message:'Error To Update Role Type');
         }
         $this->setmode('all');
+    }
+
+    public function delete()
+    {
+        $roletype = Roletype::withTrashed()->find($this->delete_id);
+        if($roletype){
+            $roletype->forceDelete();
+            $this->delete_id = null;
+            $this->setmode('all');
+            $this->dispatch('alert',type:'success',message:'"Roletype Deleted Successfully !!');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        }
     }
 
     public function softdelete($id)

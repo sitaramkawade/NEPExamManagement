@@ -15,6 +15,7 @@ class AllFacultyRole extends Component
 {
     use WithPagination;
 
+    protected $listeners = ['delete-confirmed'=>'delete'];
     public $role_name;
     public $roletype_id;
     public $college_id;
@@ -22,6 +23,7 @@ class AllFacultyRole extends Component
     public $colleges;
     public $mode='all';
     public $role_id;
+    public $delete_id;
 
     public $perPage=10;
     public $search='';
@@ -65,6 +67,10 @@ class AllFacultyRole extends Component
         {
             $this->resetinput();
         }
+        if($mode=='edit')
+        {
+            $this->resetValidation();
+        }
         $this->mode=$mode;
     }
 
@@ -80,7 +86,7 @@ class AllFacultyRole extends Component
         $role = Role::create($validatedData);
         if ($role) {
             $this->dispatch('alert',type:'success',message:'Role Added Successfully');
-            $this->resetinput();
+            $this->setmode('all');
         } else {
             $this->dispatch('alert',type:'error',message:'Failed to Add Role. Please try again.');
         }
@@ -111,6 +117,19 @@ class AllFacultyRole extends Component
         }else{
             $this->dispatch('alert',type:'error',message:'Error To Update Role');
         }
+    }
+
+    public function delete()
+    {
+        $role = Role::withTrashed()->find($this->delete_id);
+        if($role){
+            $role->forceDelete();
+            $this->delete_id = null;
+            $this->dispatch('alert',type:'success',message:'"Role Deleted Successfully !!');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        }
+        $this->setmode('all');
     }
 
     public function softdelete($id)

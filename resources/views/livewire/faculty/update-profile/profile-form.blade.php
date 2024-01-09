@@ -252,10 +252,6 @@
             </div>
         </div>
 
-        <div class="flex justify-end pr-4">
-            <x-form-btn>
-                <x-slot name="btntext">Submit</x-slot>
-            </x-form-btn>
-        </div>
+        <x-form-btn>Submit</x-form-btn>
     </x-slot>
 </x-card-collapsible>
