@@ -27,7 +27,7 @@ class AllHelpline extends Component
     public $mode='all';
     public $perPage=10;
     public $search='';
-    public $sortColumn="updated_at";
+    public $sortColumn="status";
     public $sortColumnBy="ASC";
     public $ext;
 
@@ -38,6 +38,7 @@ class AllHelpline extends Component
     public $student_helpline_query_id;
     public $old_query;
     public $new_query;
+    public $query;
     public $remark;
     public $description;
     public $current_query="Query";
@@ -205,13 +206,15 @@ class AllHelpline extends Component
 
     public function view(Studenthelpline $helpline)
     {   
-    
+        $this->query=null;
         $this->uploaded_documents_old=[];
         $this->student_name=Student::find($helpline->student_id)->student_name;
         $this->edit_id=  $helpline->id;
+        $this->remark=  $helpline->remark;
         $this->student_helpline_query_id=  $helpline->student_helpline_query_id;
         $this->old_query=  $helpline->old_query;
         $this->new_query=  $helpline->new_query;
+        $this->query=  $helpline->new_query;
         $this->description=  $helpline->description;
 
         $documents=$helpline->studenthelplineuploadeddocuments()->get();
@@ -222,25 +225,25 @@ class AllHelpline extends Component
         $this->setmode('view');
     }
 
-    public function edit(Studenthelpline $helpline)
-    {   
-        $this->resetinput();
-        $this->uploaded_documents_old=[];
-        $this->edit_id=  $helpline->id;
-        $this->student_id=  $helpline->student_id;
-        $this->student_helpline_query_id=  $helpline->student_helpline_query_id;
-        $this->old_query=  $helpline->old_query;
-        $this->remark=  $helpline->remark;
-        $this->new_query=  $helpline->new_query;
-        $this->description=  $helpline->description;
+    // public function edit(Studenthelpline $helpline)
+    // {   
+    //     $this->resetinput();
+    //     $this->uploaded_documents_old=[];
+    //     $this->edit_id=  $helpline->id;
+    //     $this->student_id=  $helpline->student_id;
+    //     $this->student_helpline_query_id=  $helpline->student_helpline_query_id;
+    //     $this->old_query=  $helpline->old_query;
+    //     $this->remark=  $helpline->remark;
+    //     $this->new_query=  $helpline->new_query;
+    //     $this->description=  $helpline->description;
 
-        $documents=$helpline->studenthelplineuploadeddocuments()->get();
-        foreach($documents as $doc)
-        {
-            $this->uploaded_documents_old[$doc->helpline_document_id ]=$doc->helpline_document_path;
-        }
-        $this->setmode('edit');
-    }
+    //     $documents=$helpline->studenthelplineuploadeddocuments()->get();
+    //     foreach($documents as $doc)
+    //     {
+    //         $this->uploaded_documents_old[$doc->helpline_document_id ]=$doc->helpline_document_path;
+    //     }
+    //     $this->setmode('edit');
+    // }
 
     public function update(Studenthelpline $helpline)
     {
@@ -277,6 +280,89 @@ class AllHelpline extends Component
 
     }
 
+    public function verify(Studenthelpline $helpline)
+    {   
+        $this->validate([
+            'query'=>'required'
+        ]);
+
+        $helpline->update([
+            'verified_by' =>  Auth::guard('user')->user()->id,
+            'new_query'=>$this->query,
+            'remark' => $this->remark,
+            'status' => 1,
+        ]);
+
+        $this->remark=null;
+        $this->setmode('all');
+        $this->dispatch('alert',type:'success',message:'Helpline Request Verified Successfully !!');
+    }
+
+    public function approve(Studenthelpline $helpline)
+    {   
+        $this->validate([
+            'query'=>'required'
+        ]);
+
+       if($query_name=$helpline->studenthelplinequery->query_name)
+       {    
+            $student=Student::find($helpline->student_id);
+            switch($query_name)
+            {
+                case 'Student Name':
+                    $student->update([
+                        'student_name'=>$this->query,
+                    ]);
+
+                    $this->dispatch('alert',type:'success',message:'Student Name Change Request Completed Successfully !!');
+                break;
+                case 'Mother Name':
+                    $student->update([
+                        'mother_name'=>$this->query,
+                    ]);
+                    $this->dispatch('alert',type:'success',message:'Mother Name Change Request Completed Successfully !!');
+                break;
+                case 'Mobile Number':
+                    $student->update([
+                        'mobile_no'=>$this->query,
+                    ]);
+                    $this->dispatch('alert',type:'success',message:'Mobile Number Change Request Completed Successfully !!');
+                break;
+                case 'Email ID':
+                    $student->update([
+                        'email'=>$this->query,
+                        'email_verified_at'=>null,
+                    ]);
+                    $this->dispatch('alert',type:'success',message:'Email ID Change Request Completed Successfully !!');
+                break;
+            }
+
+            $helpline->update([
+                'approve_by' =>  Auth::guard('user')->user()->id,
+                'new_query'=>$this->query,
+                'remark' => $this->remark,
+                'status' => 2,
+            ]);
+        }
+        $this->query=null;
+        $this->remark=null;
+        $this->setmode('all');
+        
+    }
+
+    public function reject(Studenthelpline $helpline)
+    {   
+        $helpline->update([
+            'verified_by' =>  Auth::guard('user')->user()->id,
+            'remark' => $this->remark,
+            'status' => 4,
+        ]);
+
+        $this->remark=null;
+        $this->setmode('all');
+        $this->dispatch('alert',type:'success',message:'Helpline Request Approved Successfully !!');
+    }
+
     public function status(Studenthelpline $helpline)
     {   
         if( $helpline->status==0)
@@ -285,12 +371,9 @@ class AllHelpline extends Component
         }
         else if( $helpline->status==1)
         {   
-            $helpline->status=3;
+            $helpline->status=4;
         }
-        else if( $helpline->status==3)
-        {
-            $helpline->status=1;
-        }
+        
         $helpline->verified_by= Auth::guard('user')->user()->id;
         $helpline->update();
 

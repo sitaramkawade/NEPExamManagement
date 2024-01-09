@@ -54,13 +54,12 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-4 mx-auto">
               @foreach ($documents as $doc)
-                {{-- {{ $doc }} --}}
                 <div class="flex flex-col items-center space-x-1 border rounded-md border-primary m-2 ">
                   <div class="shrink-0 p-2">
                     <img style="width: 135px; height: 150px;" class="object-center object-fill  " src="{{ isset($uploaded_documents_old[$doc->id]) ? asset($uploaded_documents_old[$doc->id]) : asset('img/no-img.png') }}" alt="{{ $doc->document_name }}" />
                   </div>
-
                   <x-input-label class="py-2" for="{{ $doc->id }}" :value="$doc->document_name" />
+                  <x-view-image-model-btn src="{{ isset($uploaded_documents_old[$doc->id]) ? asset($uploaded_documents_old[$doc->id]) : asset('img/no-img.png') }}"> View Document</x-view-image-model-btn>
                 </div>
               @endforeach
             </div>
@@ -80,8 +79,8 @@
               <x-table.tr>
                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
                 <x-table.th wire:click="sort_column('student_helpline_query_id')" name="student_helpline_query_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Query</x-table.th>
+                <x-table.th wire:click="sort_column('new_query')" name="new_query" :sort="$sortColumn" :sort_by="$sortColumnBy">Query Request</x-table.th>
                 <x-table.th wire:click="sort_column('remark')" name="remark" :sort="$sortColumn" :sort_by="$sortColumnBy">Remark</x-table.th>
-                <x-table.th wire:click="sort_column('created_at')" name="created_at" :sort="$sortColumn" :sort_by="$sortColumnBy">Date</x-table.th>
                 <x-table.th wire:click="sort_column('status')" name="status" :sort="$sortColumn" :sort_by="$sortColumnBy">Status</x-table.th>
                 <x-table.th> Action </x-table.th>
               </x-table.tr>
@@ -91,16 +90,18 @@
                 <x-table.tr wire:key="{{ $helpline->id }}">
                   <x-table.td>{{ $helpline->id }} </x-table.td>
                   <x-table.td>{{ $helpline->studenthelplinequery->query_name }} </x-table.td>
+                  <x-table.td> {{ $helpline->new_query ?? '-'  }} </x-table.td>
                   <x-table.td> {{ $helpline->remark ?? '-' }} </x-table.td>
-                  <x-table.td> {{ date('d/m/Y - h:i A', strtotime($helpline->created_at)) }} </x-table.td>
                   <x-table.td>
                     @if ($helpline->status == 0)
                       <x-status type="warning"> Pending </x-status>
                     @elseif ($helpline->status == 1)
-                      <x-status type="success"> Approve </x-status>
+                      <x-status type="info"> Verified </x-status>
                     @elseif ($helpline->status == 2)
+                      <x-status type="success"> Approved </x-status>
+                    @elseif ($helpline->status == 3)
                       <x-status type="danger"> Canceled </x-status>
-                    @else
+                    @elseif ($helpline->status == 4)
                       <x-status type="danger"> Rejected </x-status>
                     @endif
                   </x-table.td>

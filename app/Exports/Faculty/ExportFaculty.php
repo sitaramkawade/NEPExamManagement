@@ -24,11 +24,13 @@ class ExportFaculty implements FromCollection, WithHeadings, ShouldAutoSize, Wit
 
     public function collection()
     {
-        return Faculty::join('roles', 'faculties.role_id', '=', 'roles.id')
-        ->with('role')->search($this->search)
-        ->orderBy($this->sortColumn, $this->sortColumnBy)
-        ->select('faculties.id', 'faculties.faculty_name','faculties.email', 'faculties.mobile_no', 'roles.role_name')
-        ->get();
+        // return Faculty::join('roles', 'faculties.role_id', '=', 'roles.id')
+        // ->with('role')->search($this->search)
+        // ->orderBy($this->sortColumn, $this->sortColumnBy)
+        // ->select('faculties.id', 'faculties.faculty_name','faculties.email', 'faculties.mobile_no', 'roles.role_name')
+        // ->get();
+
+       return  Faculty::with('role')->get();
     }
 
     public function headings(): array

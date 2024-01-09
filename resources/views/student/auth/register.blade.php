@@ -1,12 +1,12 @@
 @extends("layouts.student")
 @section("student")
 <div class="p-4">
-    <div class="mx-auto my-4 h-full  flex-1 overflow-hidden rounded-lg bg-white shadow-xl dark:bg-gray-800">
+    <div class="mx-auto my-14 xm:my-2 h-full  flex-1 overflow-hidden rounded-lg bg-white shadow-xl dark:bg-gray-800">
       <div class="flex flex-col overflow-y-auto md:flex-row">
-        <div class="h-32 md:h-auto md:w-1/2">
+        {{-- <div class="h-32 md:h-auto md:w-1/2">
           <img aria-hidden="true" class="h-full w-full object-cover " src="{{ asset('img/login-office.jpeg') }}" alt="Office" />
-        </div>
-        <div class="flex items-center justify-center px-6 py-3 sm:p-12 md:w-full">
+        </div> --}}
+        <div class="flex items-center justify-center px-6 py-3 sm:p-12 w-full">
           <div class="w-full">
             <h1 class="mb-3 text-xl font-semibold text-gray-700 dark:text-gray-200">
              Student Register
@@ -34,8 +34,7 @@
                         <x-text-input placeholder="Enter Middle Name" id="middle_name" class="block mt-1 w-full" type="text" name="middle_name" :value="old('middle_name')" required autofocus autocomplete="middle_name" />
                         <x-input-error :messages="$errors->get('middle_name')" class="mt-1" />
                     </div>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 ">
+
                     <!--Member ID -->
                     <div class="mt-1">
                         <x-input-label for="member_id" :value="__('Member ID')" />
@@ -49,9 +48,16 @@
                         <x-text-input placeholder="Enter Mobile Number" id="mobile_no" class="block mt-1 w-full" type="number" name="mobile_no" :value="old('mobile_no')" required autofocus autocomplete="mobile_no" />
                         <x-input-error :messages="$errors->get('mobile_no')" class="mt-1" />
                     </div>
+
+                    <!--Mother Name -->
+                    <div class="mt-1">
+                        <x-input-label for="mother_name" :value="__('Mother Name')" />
+                        <x-text-input placeholder="Enter Mother Name" id="mother_name" class="block mt-1 w-full" type="text" name="mother_name" :value="old('mother_name')" required autofocus autocomplete="mother_name" />
+                        <x-input-error :messages="$errors->get('mother_name')" class="mt-1" />
+                    </div>
                 
                     <!-- Email -->
-                    <div class="mt-1 col-span-2">
+                    <div class="mt-1">
                         <x-input-label for="email" :value="__('Email')" />
                         <x-text-input placeholder="Enter Valid Email" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-1" />

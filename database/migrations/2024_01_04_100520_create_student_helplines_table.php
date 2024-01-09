@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('student_id')->unsigned();
             $table->bigInteger('student_helpline_query_id')->unsigned();
-            $table->tinyInteger('status')->nullable()->default(0);
+            $table->tinyInteger('status')->nullable()->default(0)->comment('0-pending,1-verified,2-approve,3-cancel,4-reject');
             $table->string('remark')->nullable();
             $table->string('old_query')->nullable();
             $table->string('new_query')->nullable();
