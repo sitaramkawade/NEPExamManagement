@@ -251,7 +251,7 @@ class Helpline extends Component
 
     public function cancel(Studenthelpline $helpline)
     {
-        $helpline->status=2;
+        $helpline->status=3;
         $helpline->update();
         $this->dispatch('alert',type:'success',message:'Helpline Status Updated Successfully !!');
 

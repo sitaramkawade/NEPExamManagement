@@ -8,10 +8,6 @@
 
     <title>{{ config("app.name", "Laravel") }}</title>
 
-    <!-- Fonts -->
-    {{-- <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> --}}
-
     <!-- Scripts -->
     @vite(["resources/css/app.css", "resources/js/app.js"])
     @livewireStyles()
@@ -24,7 +20,7 @@
       </main>
 
     @livewireScripts()
-
+    <x-view-image-model/>
     <script>
       var setup = () => {
         const getTheme = () => {
@@ -119,8 +115,10 @@
         }
       }
     </script>
+    <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/sweetalert/sweetalert.js') }}"></script>
     <script>
+
         document.addEventListener('livewire:init', () => {
             // Toster Config
             var Toast = Swal.mixin({

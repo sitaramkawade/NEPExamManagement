@@ -28,16 +28,16 @@ class Patternclass extends Model
     ];
     public function subjects():HasMany
     {
-        return $this->hasMany(Subject::class,'patternclass_id','id')->withTrashed();
+        return $this->hasMany(Subject::class,'patternclass_id','id');
     }
 
     public function pattern()
     {
-        return $this->belongsTo(Pattern::class,'pattern_id','id')->withTrashed();
+        return $this->belongsTo(Pattern::class,'pattern_id','id');
     }
     public function courseclass()
     {
-         return $this->belongsTo(CourseClass::class,'class_id','id')->withTrashed();
+         return $this->belongsTo(CourseClass::class,'class_id','id');
     }
     public function subjectbuckets():HasMany
     {

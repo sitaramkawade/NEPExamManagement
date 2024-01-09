@@ -1,12 +1,6 @@
 <div >
-    <x-card-header href="{{ route('student.dashboard') }}">
-        View Profile
-        <x-slot name="svg">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 mr-1 mt-1">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-            </svg>
-        </x-slot>
-        <x-slot name="btntext">Back</x-slot>
+    <x-card-header  heading="View Profile">
+      <a href="{{ route('student.dashboard') }}"><x-back-btn/></a>
     </x-card-header>
   <section class="p-2">
     <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">

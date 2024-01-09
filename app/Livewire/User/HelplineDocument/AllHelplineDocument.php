@@ -99,7 +99,7 @@ class AllHelplineDocument extends Component
 
     public function export()
     {
-        $filename="Helpline-".now();
+        $filename="Helpline-Document-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new HelplineDocumentExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
