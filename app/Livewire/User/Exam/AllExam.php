@@ -17,7 +17,6 @@ class AllExam extends Component
     public $ext;
     public $mode;
     public $exam_id;
-
     public $current_step=1;
     public $steps=1;
     public $exam_name;
@@ -61,18 +60,21 @@ class AllExam extends Component
     }
 
     public function add(Exam  $exam){
+        
+        $validatedData = $this->validate();
+       
+        if ($validatedData) {
 
         $exam->exam_name= $this->exam_name;         
         $exam->status= $this->status==1?0:1;
         $exam->exam_sessions= $this->exam_sessions==1?0:1;
         $exam->save();
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->resetInputFields();
+        $this->setmode('all');
     }
+}
 
-    public function edit($id){
-
-        $exam = Exam::find($id);
+    public function edit(Exam $exam){
 
         if ($exam) {
             $this->exam_id=$exam->id;

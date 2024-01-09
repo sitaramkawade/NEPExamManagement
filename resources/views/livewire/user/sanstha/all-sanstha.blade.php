@@ -1,33 +1,24 @@
 <div>
      @if ($mode=='add')
     <div>
-        <x-card-header>
-            Add Sanstha
-            <x-slot name="button">
+        <x-card-header heading=" Add Sanstha">
                 <x-back-btn wire:click="setmode('all')" />
-            </x-slot>
         </x-card-header>
         <x-form wire:submit="add()">
             @include('livewire.user.sanstha.sanstha-form')
         </x-form>
     </div>
       @elseif($mode=='edit')
-    <x-card-header>
-        Edit Sanstha
-        <x-slot name="button">
+    <x-card-header heading="Edit Sanstha">
             <x-back-btn wire:click="setmode('all')" />
-        </x-slot>
     </x-card-header>
     <x-form wire:submit="update({{ $sanstha_id  }})">
             @include('livewire.user.sanstha.sanstha-form')
     </x-form>
-     @elseif($mode='all')
+     @elseif($mode=='all')
         <div>
-            <x-card-header>
-                All Sanstha
-                <x-slot name="button">
+            <x-card-header heading="  All Sanstha">
                     <x-add-btn wire:click="setmode('add')" />
-                </x-slot>
             </x-card-header>
              <x-table.frame>
         <x-slot:header>
@@ -65,7 +56,7 @@
                         </x-table.tr>
                         @empty 
                          <x-table.tr> 
-                         <x-table.td colSpan='8'>No Data Found</x-table.td>
+                         <x-table.td colSpan='8' class='text-center'>No Data Found</x-table.td>
                          </x-table.tr>
                         @endforelse
                     </x-table.tbody>

@@ -1,33 +1,24 @@
 <div>
     @if ($mode=='add')
     <div>
-        <x-card-header>
-            Add Exam
-            <x-slot name="button">
+        <x-card-header heading="Add Exam">         
                 <x-back-btn wire:click="setmode('all')" />
-            </x-slot>
         </x-card-header>
         <x-form wire:submit="add()">
             @include('livewire.user.exam.exam-form')
         </x-form>
     </div>
     @elseif($mode=='edit')
-    <x-card-header>
-        Edit Exam
-        <x-slot name="button">
+    <x-card-header heading="Edit Exam">
             <x-back-btn wire:click="setmode('all')" />
-        </x-slot>
     </x-card-header>
     <x-form wire:submit="update({{ $exam_id  }})">
         @include('livewire.user.exam.exam-form')
     </x-form>
-    @elseif($mode='all')
+    @elseif($mode=='all')
     <div>
-        <x-card-header>
-            All Exam
-            <x-slot name="button">
+        <x-card-header heading=" All Exam's">   
                 <x-add-btn wire:click="setmode('add')" />
-            </x-slot>
         </x-card-header>
         <x-table.frame>
             <x-slot:header>
@@ -58,7 +49,7 @@
                             </x-table.tr>
                             @empty
                             <x-table.tr>
-                                <x-table.td colSpan='5'>No Data Found</x-table.td>
+                                <x-table.td colSpan='5' class='text-center'>No Data Found</x-table.td>
                             </x-table.tr>
                             @endforelse
                         </x-table.tbody>

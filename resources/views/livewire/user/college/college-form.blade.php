@@ -96,7 +96,7 @@
                     {{-- upload logo --}}
                     <section>
 
-                        <div class="m-5  bg-red-500 col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
+                        <div class="m-5  col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
                             <div class="flex items-center justify-between border-b p-4 dark:border-primary">
                                 <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Upload College Logo</h4>
                             </div>

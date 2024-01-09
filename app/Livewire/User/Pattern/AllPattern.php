@@ -18,7 +18,7 @@ class AllPattern extends Component
     public $sortColumnBy="ASC";
     public $ext;
 
-    public $mode;
+    public $mode='all';
     public $current_step=1;
     public $steps=1;
     public $pattern_name;
@@ -71,12 +71,14 @@ class AllPattern extends Component
 
     public function mount()
     {
-        $this->colleges = College::all();
-       
+        $this->colleges = College::all();    
     }
 
     public function add(){
 
+        $validatedData = $this->validate();
+       
+        if ($validatedData) {
         $pattern= new Pattern;    
         $pattern->pattern_name= $this->pattern_name;
         $pattern->pattern_startyear= $this->pattern_startyear;
@@ -86,9 +88,10 @@ class AllPattern extends Component
         $pattern->save();
 
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->resetInputFields();
+        $this->setmode('all');
     }
-
+    }
+    
     public function deletePattern(Pattern $pattern)
     {
         $pattern->delete();
@@ -96,8 +99,7 @@ class AllPattern extends Component
         $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
     }
 
-    public function edit($id){
-        $pattern=Pattern::find($id);
+    public function edit(Pattern $pattern){
         
         if($pattern)
         { 

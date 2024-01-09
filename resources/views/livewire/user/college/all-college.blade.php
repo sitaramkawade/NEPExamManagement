@@ -1,34 +1,27 @@
 <div>
     @if ($mode=='add')
     <div>
-        <x-card-header>
-            Add College
-            <x-slot name="button">
-                <x-back-btn wire:click="setmode('all')" />
-            </x-slot>
+        <x-card-header heading=" Add College">
+
+            <x-back-btn wire:click="setmode('all')" />
+
         </x-card-header>
         <x-form wire:submit="add()">
             @include('livewire.user.college.college-form')
         </x-form>
     </div>
     @elseif($mode=='edit')
-    <x-card-header>
-        Edit College
-        <x-slot name="button">
-            <x-back-btn wire:click="setmode('all')" />
-        </x-slot>
+    <x-card-header heading="Edit College">
+        <x-back-btn wire:click="setmode('all')" />
     </x-card-header>
     <x-form wire:submit="updateCollege({{ $college_id  }})">
-       @include('livewire.user.college.college-form')
-       
+        @include('livewire.user.college.college-form')
+
     </x-form>
-    @elseif($mode='all')
+    @elseif($mode=='all')
     <div>
-        <x-card-header>
-            All College
-            <x-slot name="button">
-                <x-add-btn wire:click="setmode('add')" />
-            </x-slot>
+        <x-card-header heading=" All College's">
+            <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
         <x-table.frame>
             <x-slot:header>

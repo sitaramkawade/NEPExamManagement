@@ -11,13 +11,12 @@ use App\Exports\user\ExportSanstha;
 class AllSanstha extends Component
 {
     use WithPagination;
-    public $mode;
+    public $mode='all';
     public $perPage=10;
     public $search='';
     public $sortColumn="sanstha_name";
     public $sortColumnBy="ASC";
     public $ext;
-
     public $steps=1;
     public $current_step=1;
     public $sanstha_name;
@@ -69,6 +68,10 @@ class AllSanstha extends Component
     }
 
     public function add(){
+        
+        $validatedData = $this->validate();
+       
+        if ($validatedData) {
 
         $sanstha= new Sanstha;
         $sanstha->sanstha_name= $this->sanstha_name;
@@ -80,8 +83,9 @@ class AllSanstha extends Component
         $sanstha->save();
 
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->resetInputFields();
+        $this->setmode('all');
     }
+}
 
     public function deleteSanstha(Sanstha $sanstha)
     {
@@ -128,7 +132,7 @@ class AllSanstha extends Component
 
             $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
             $this->setmode('all');        
-    }
+        }
     }
 
     public function export()
@@ -147,7 +151,6 @@ class AllSanstha extends Component
         }
        
     }
-
 
     public function render()
     {

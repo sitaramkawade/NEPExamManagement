@@ -13,7 +13,7 @@ use App\Exports\user\ExportUniversity;
 class AllUniversity extends Component
 {
     use WithFileUploads;
-    public $mode;
+    public $mode='all';
     public $current_step=1;
     public $steps=1;
     public $university_name;
@@ -22,9 +22,9 @@ class AllUniversity extends Component
     public $university_email;
     public $university_contact_no;
     public $university_logo_path;
+    public $university_logo_path_old;
     public $university_id;
     public $status;
-
     use WithPagination;
     public $perPage=10; 
     public $search='';
@@ -76,6 +76,9 @@ class AllUniversity extends Component
     }
     
     public function add(){
+        $validatedData= $this->validate();
+
+        if ($validatedData) { 
 
         $university= new University;
         $university->university_name= $this->university_name;
@@ -83,18 +86,13 @@ class AllUniversity extends Component
         $university->university_website_url=  $this->university_website_url;
         $university->university_email= $this->university_email;
         $university->university_contact_no= $this->university_contact_no;
-        $university->university_logo_path= $this->university_logo_path;
         $university->status= $this->status==1?0:1;
         
         if ($this->university_logo_path) {
            
-            $path = 'user/profile/photo/';
-            
-            $fileName = 'user-' . time(). '.' . $this->university_logo_path->getClientOriginalExtension();
-            
-           
-            $this->university_logo_path->storeAs($path, $fileName, 'public');
-          
+            $path = 'user/profile/photo/';         
+            $fileName = 'user-' . time(). '.' . $this->university_logo_path->getClientOriginalExtension();               
+            $this->university_logo_path->storeAs($path, $fileName, 'public');         
             $university->university_logo_path = 'storage/' . $path . $fileName;
             $this->reset('university_logo_path');
         }
@@ -102,26 +100,25 @@ class AllUniversity extends Component
         $university->save();
 
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->resetInputFields();
+        $this->setmode('all');
        
     }
+}
     
     public function delete( University  $university )
     {
       
         if ($university) {
-            // Delete the Sanstha and its related colleges
-            $university->university()->delete();
+         
+            $university->colleges()->delete();
             $university->delete();
-            $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
+            $this->dispatch('alert',type:'success',message:'Deleted Successfully !!' );
 
         }
     }
 
+    public function edit(University $university){
 
-    public function edit($id){
-
-        $university = University::find($id);     
 
         if ($university) {
             $this->university_id=$university->id;
@@ -139,27 +136,31 @@ class AllUniversity extends Component
 
     public function update(University  $university){
 
-        $validatedData = $this->validate();
+        $validatedData= $this->validate();
+
        
-        if ($validatedData) {
-          
-            $university->update([
-                            
-                'university_name' => $this->university_name,
-                'university_email' => $this->university_email,
-                'university_address' => $this->university_address,
-                'university_contact_no' => $this->university_contact_no,
-                'university_website_url' => $this->university_website_url,
-                'university_logo_path' => $this->university_logo_path,
-                'status' => $this->status,
-                
-                     
-            ]);
-          
+        if ($validatedData) {        
+            $university->university_name= $this->university_name;
+            $university->university_email=  $this->university_email;
+            $university->university_contact_no=  $this->university_contact_no;
+            $university->university_website_url= $this->university_website_url;
+            $university->university_address= $this->university_address;
+            $university->status= $this->status==1?0:1;
+        
+        if ($this->university_logo_path) {
+           
+            $path = 'user/profile/photo/';           
+            $fileName = 'user-' . time(). '.' . $this->university_logo_path->getClientOriginalExtension();
+            $this->university_logo_path->storeAs($path, $fileName, 'public');
+            $university->university_logo_path = 'storage/' . $path . $fileName;
+            $this->reset('university_logo_path');
+        }
+            $university->update();
+
             $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
             $this->setmode('all');
-           
-    }
+        }
+    
     }
 
     public function sort_column($column)

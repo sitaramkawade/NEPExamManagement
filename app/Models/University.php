@@ -21,7 +21,7 @@ class University extends Model
         'status',
     ];
      
-    public function university(): HasMany
+    public function colleges(): HasMany
     {
         return $this->hasMany(College::class,'university_id','id');
     }

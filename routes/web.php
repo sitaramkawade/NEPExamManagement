@@ -104,19 +104,19 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
     Route::get('dashboard', UserDashboard::class)->name('dashboard');
 
     //All College
-      Route::get('/all_college', AllCollege::class)->name('colleges');
+      Route::get('/all/college', AllCollege::class)->name('colleges');
 
     //All Sanstha  
-      Route::get('/all_sanstha', AllSanstha::class)->name('sanstha');
+      Route::get('/all/sanstha', AllSanstha::class)->name('sanstha');
 
     //All University    
-      Route::get('/all_university', AllUniversity::class)->name('university');
+      Route::get('/all/university', AllUniversity::class)->name('university');
 
     //All Pattern   
-      Route::get('/all_pattern', AllPattern::class)->name('pattern');
+      Route::get('/all/pattern', AllPattern::class)->name('pattern');
 
     //All Pattern   
-      Route::get('/all_exam', AllExam::class)->name('exam');
+      Route::get('/all/exam', AllExam::class)->name('exam');
 
     //All Student Helpline
      Route::get('/all/helpline',AllHelpline::class)->name('all_helpline');
