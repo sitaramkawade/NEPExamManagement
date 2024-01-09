@@ -88,7 +88,6 @@ class AllSubject extends Component
             'subject_intpractpassing' => ['required',],
             'subject_extpassing' => ['required',],
             'subject_optionalgroup' => ['required',],
-            'patternclass_id' => ['required',Rule::exists(Pattern::class,'id')],
             'classyear_id' => ['required',Rule::exists(Classyear::class,'id')],
             'department_id' => ['required',Rule::exists(Department::class,'id')],
             'college_id' => ['required',Rule::exists(College::class,'id')],
@@ -171,11 +170,9 @@ class AllSubject extends Component
     public function save()
     {
         $validatedData = $this->validate();
-        
-        $subject = SUbject::create($validatedData);
+        $subject = Subject::create($validatedData);
         if ($subject) {
-            $subject->facultybankaccount()->create($validatedData);
-            $this->dispatch('alert',type:'success',message:'Faculty Registered Successfully');
+            $this->dispatch('alert',type:'success',message:'Subject Added Successfully');
         } else {
             $this->dispatch('alert',type:'error',message:'Faculty Registration Unsucessful');
         }

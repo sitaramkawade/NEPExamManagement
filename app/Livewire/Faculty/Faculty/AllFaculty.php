@@ -18,6 +18,7 @@ class AllFaculty extends Component
 {
     use WithPagination;
 
+    protected $listeners = ['delete-confirmed'=>'delete'];
     public $prefix;
     public $faculty_name;
     public $email;
@@ -61,7 +62,7 @@ class AllFaculty extends Component
         return [
             'prefix' => ['required',],
             'faculty_name' => ['required', 'string', 'max:255',],
-            'email' => ['required', 'email', 'string',],
+            'email' => ['required', 'email', 'string','unique:faculties,email'],
             'mobile_no' => ['required', 'numeric','digits:10'],
             'role_id' => ['required',Rule::exists(Role::class,'id')],
             'department_id' => ['required',Rule::exists(Department::class,'id')],
@@ -134,13 +135,11 @@ class AllFaculty extends Component
         {
             $this->resetinput();
         }
+        if($mode=='edit')
+        {
+            $this->resetValidation();
+        }
         $this->mode=$mode;
-    }
-
-    public function deleteconfirmation($id)
-    {
-        $this->delete_id=$id;
-        $this->dispatch('delete-confirmation');
     }
 
     public function save()
@@ -151,6 +150,7 @@ class AllFaculty extends Component
         if ($faculty) {
             $faculty->facultybankaccount()->create($validatedData);
             $this->dispatch('alert',type:'success',message:'Faculty Registered Successfully');
+            $this->setmode('all');
         } else {
             $this->dispatch('alert',type:'error',message:'Faculty Registration Unsucessful');
         }
@@ -202,6 +202,26 @@ class AllFaculty extends Component
             $this->resetinput();
         }else{
             $this->dispatch('alert',type:'error',message:'Error To Update Faculty');
+        }
+    }
+
+    public function deleteconfirmation($id)
+    {
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
+
+    public function delete()
+    {
+        $faculty = Faculty::withTrashed()->find($this->delete_id);
+        if($faculty){
+            $faculty->forceDelete();
+            $faculty->facultybankaccount()->forceDelete();
+            $this->delete_id = null;
+            $this->setmode('all');
+            $this->dispatch('alert',type:'success',message:'"Faculty Deleted Successfully !!');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
         }
     }
 
