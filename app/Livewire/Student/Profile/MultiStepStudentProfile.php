@@ -126,8 +126,8 @@ class MultiStepStudentProfile extends Component
                 // 'student_name' => ['required','string','max:255'],
                 // 'email' => ['required','email','string','max:255'],
                 // 'mobile_no' => ['required','numeric','digits:10'],
+                // 'mother_name' => ['required','string','max:255'],
                 'memid' => ['required','numeric','min:1','digits_between:4,10','unique:students,memid,'.Auth::guard('student')->user()->id],
-                'mother_name' => ['required','string','max:255'],
                 'aadhar_name' => ['required','string','max:255'],
                 'abcid' => ['nullable','numeric','digits:12'],
                 'adharnumber' => ['required','numeric','digits:12'],
@@ -366,7 +366,6 @@ class MultiStepStudentProfile extends Component
     {
         $this->validate();
         Auth::guard('student')->user()->update([
-            'mother_name'=>$this->mother_name,
             'memid'=>$this->memid,
             'abcid'=>$this->abcid,
             'aadhar_card_no'=>$this->adharnumber,
@@ -763,9 +762,9 @@ class MultiStepStudentProfile extends Component
         }
 
 
-        if($this->obtained_marks >0  && $this->total_marks >0)
+        if(is_numeric($this->obtained_marks) >0  && is_numeric($this->total_marks) >0)
         {
-            $this->percentage =(( $this->obtained_marks/$this->total_marks  )*100);
+            $this->percentage =number_format(( $this->obtained_marks/$this->total_marks  )*100 ,2);
         }
 
         return view('livewire.student.profile.multi-step-student-profile')->extends('layouts.student')->section('student');

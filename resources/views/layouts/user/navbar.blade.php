@@ -2,10 +2,7 @@
 
   <x-slot name="AUTH">
     @auth("user")
-      <img class="inline-flex h-9 w-9 rounded-full" src="" alt="User" />
-      <span class="text-bold mx-2 inline-flex py-2 py-2">{{ auth()->guard("user")->user()->name }}</span>
-    @else
-      <img class="inline-flex h-9 w-9 rounded-full" src="{{ asset("img/no-img.png") }}" alt="User" />
+      <span class="text-bold mx-2 inline-flex py-2">{{ auth()->guard("user")->user()->name }}</span>
     @endauth
   </x-slot>
 

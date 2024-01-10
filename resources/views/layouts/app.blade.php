@@ -8,13 +8,26 @@
 
     <title>{{ config("app.name", "Laravel") }}</title>
 
-    <!-- Fonts -->
-    {{-- <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> --}}
-
     <!-- Scripts -->
     @vite(["resources/css/app.css", "resources/js/app.js"])
     @livewireStyles()
+    <style>
+     /* #nprogress .bar { height: 5px !important ; background: red !important; } */
+
+     #nprogress .bar {
+    background: var(--color-primary) !important;
+    height: 5px !important;
+}
+#nprogress .peg {
+    box-shadow: 0 0 10px var(--color-primary), 0 0 5px var(--color-primary);
+}
+#nprogress .spinner-icon {
+    border-top-color: var(--color-primary) !important;
+    border-left-color: var(--color-primary) !important;
+    display: none;
+}
+    
+    </style>
   </head>
 
   <body class="font-sans antialiased" x-data="setup()" x-init="$refs.loading.classList.add('hidden'); setColors(color);" :class="{ 'dark': isDark }">
@@ -24,7 +37,7 @@
       </main>
 
     @livewireScripts()
-
+    <x-view-image-model/>
     <script>
       var setup = () => {
         const getTheme = () => {
@@ -119,8 +132,10 @@
         }
       }
     </script>
+    <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/sweetalert/sweetalert.js') }}"></script>
     <script>
+
         document.addEventListener('livewire:init', () => {
             // Toster Config
             var Toast = Swal.mixin({

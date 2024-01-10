@@ -14,13 +14,13 @@ class SelectTo extends Component
     public $table;
     public $district_id;
 
-    public function mount($table, $key ,$value)
-    {
-        $this->table = $table;
-        $this->key = $key;
-        $this->value = $value;
+    // public function mount($table, $key ,$value)
+    // {
+    //     $this->table = $table;
+    //     $this->key = $key;
+    //     $this->value = $value;
 
-    }
+    // }
     
     public function selectDistrict($districtId)
 {
@@ -30,9 +30,9 @@ class SelectTo extends Component
 
     public function render()
     {   
-        // $this->table = 'districts';
-        // $this->key = 'id';
-        // $this->value = 'district_name';
+        $this->table = 'districts';
+        $this->key = 'id';
+        $this->value = 'district_name';
 
         $this->options =DB::table($this->table)->select($this->key ,$this->value)->where($this->value, 'LIKE', '%' . $this->filter . '%')->get();
 

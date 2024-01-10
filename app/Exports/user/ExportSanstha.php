@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\user;
+namespace App\Exports\User;
 
 use App\Models\Sanstha;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ExportSanstha implements FromCollection
+class ExportSanstha implements FromCollection, WithHeadings, WithMapping
 {   
     protected $search;
     protected $sortColumn;
@@ -25,8 +25,8 @@ class ExportSanstha implements FromCollection
     public function collection()
     {
         return Sanstha::
-        //  with('Colleges')->search($this->search)
-       orderBy($this->sortColumn, $this->sortColumnBy)
+         search($this->search)
+        ->orderBy($this->sortColumn, $this->sortColumnBy)
         ->select('id', 'sanstha_name','sanstha_chairman_name','sanstha_address','sanstha_website_url', 'status')
         ->get();
     }
@@ -44,7 +44,7 @@ class ExportSanstha implements FromCollection
             $row->sanstha_chairman_name,
             $row->sanstha_address,
             $row->sanstha_website_url,
-            $row->status,
+            $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }
 }
