@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('helpline_document_path')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('student_helpline_id')->references('id')->on('student_helplines');
-            $table->foreign('helpline_document_id')->references('id')->on('student_helpline_documents');
+            $table->foreign('student_helpline_id')->references('id')->on('student_helplines')->onDelete('cascade');
+            $table->foreign('helpline_document_id')->references('id')->on('student_helpline_documents')->onDelete('cascade');
         });
     }
 
