@@ -10,6 +10,7 @@ use App\Livewire\User\Exam\AllExam;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\User\Course\AllCourse;
 use App\Livewire\User\College\AllCollege;
 use App\Livewire\User\Pattern\AllPattern;
 use App\Livewire\User\Sanstha\AllSanstha;
@@ -22,6 +23,7 @@ use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
+use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\University\AllUniversity;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
@@ -116,8 +118,12 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Student Helpline Documnet
   Route::get('/all/helpline/document',AllHelplineDocument::class)->name('all_helpline_document');
-
-
+  
+  //All Programmes
+  Route::get('/all/programme',AllProgramme::class)->name('all_programme');
+  
+  //All Courses
+  Route::get('/all/course',AllCourse::class)->name('all_course');
 
 });
 

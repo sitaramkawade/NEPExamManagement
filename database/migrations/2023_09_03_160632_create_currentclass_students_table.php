@@ -21,19 +21,20 @@ return new class extends Migration
           
             $table->integer('is_directadmission')->default(0);//0 Means Print origal 1 Dublicate 
           
-            $table->bigInteger('patternclass_id')->unsigned();
-            $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
+            $table->unsignedBigInteger('patternclass_id');
             
-            $table->bigInteger('student_id')->unsigned();
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->unsignedBigInteger('student_id');
             $table->unique(['student_id','sem','patternclass_id']);
-            $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges');
-            $table->bigInteger('academicyear_id')->unsigned();  //Major Minor
-            $table->foreign('academicyear_id')->references('id')->on('academicyears');
-          
-          
+            $table->unsignedBigInteger('college_id')->nullable()->default(null);
+            $table->unsignedBigInteger('academicyear_id');  //Major Minor
+            
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('college_id')->references('id')->on('colleges');
+            $table->foreign('academicyear_id')->references('id')->on('academicyears');
+            
         });
     }
 
