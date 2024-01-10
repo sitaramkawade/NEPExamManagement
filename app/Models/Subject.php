@@ -73,12 +73,13 @@ class Subject extends Model
 
     public function scopeSearch(Builder $query, string $search)
     {
-        return $query->with('subjectcategory', 'subjecttype', 'classyear', 'department', 'college')
+        return $query->with('subjectcategories', 'subjecttypes', 'classyear', 'department', 'college')
             ->where('subject_name', 'like', "%{$search}%")
-            ->orWhereHas('subjectcategory', function ($query) use ($search) {
+            ->orWhere('subject_credit', 'like', "%{$search}%")
+            ->orWhereHas('subjectcategories', function ($query) use ($search) {
                 $query->where('subjectcategory', 'like', "%{$search}%");
             })
-            ->orWhereHas('subjecttype', function ($query) use ($search) {
+            ->orWhereHas('subjecttypes', function ($query) use ($search) {
                 $query->where('type_name', 'like', "%{$search}%");
             })
             ->orWhereHas('department', function ($query) use ($search) {

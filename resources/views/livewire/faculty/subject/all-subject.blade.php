@@ -28,13 +28,13 @@
                     <x-table.thead>
                       <x-table.tr>
                         <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
-                        <x-table.th wire:click="sort_column('subject_name')" name="faculty_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Name</x-table.th>
+                        <x-table.th wire:click="sort_column('subject_name')" name="subject_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Name</x-table.th>
                         <x-table.th wire:click="sort_column('subject_credit')" name="subject_credit" :sort="$sortColumn" :sort_by="$sortColumnBy">Credit</x-table.th>
                         <x-table.th wire:click="sort_column('mobile_no')" name="mobile_no" :sort="$sortColumn" :sort_by="$sortColumnBy">Department</x-table.th>
-                        <x-table.th wire:click="sort_column('department_id')" name="department_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Pattern</x-table.th>
-                        <x-table.th wire:click="sort_column('mobile_no')" name="mobile_no" :sort="$sortColumn" :sort_by="$sortColumnBy">Course</x-table.th>
-                        <x-table.th wire:click="sort_column('mobile_no')" name="mobile_no" :sort="$sortColumn" :sort_by="$sortColumnBy">Course Class</x-table.th>
-                        <x-table.th wire:click="sort_column('college')" name="college" :sort="$sortColumn" :sort_by="$sortColumnBy">College</x-table.th>
+                        <x-table.th>Pattern</x-table.th>
+                        <x-table.th>Course</x-table.th>
+                        <x-table.th>Course Class</x-table.th>
+                        <x-table.th wire:click="sort_column('college_id')" name="college_id" :sort="$sortColumn" :sort_by="$sortColumnBy">College</x-table.th>
                         <x-table.th> Action </x-table.th>
                       </x-table.tr>
                     </x-table.thead>
@@ -47,7 +47,7 @@
                           <x-table.td> {{ $subject->department->dept_name ?? '' }} </x-table.td>
                           <x-table.td> {{ $subject->patternclass->pattern->pattern_name ?? '' }} </x-table.td>
                           <x-table.td> {{ $subject->patternclass->courseclass->course->course_name ?? '' }} </x-table.td>
-                          <x-table.td> {{ $subject->classyear->classyear_name ?? '' }} </x-table.td>
+                          <x-table.td> {{ $subject->patternclass->courseclass->classyear->classyear_name ?? '' }} </x-table.td>
                           <x-table.td> {{ $subject->college->college_name ?? '' }} </x-table.td>
                           <x-table.td>
                             @if ($subject->deleted_at)

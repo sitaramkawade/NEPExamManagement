@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire\Faculty\Subject;
-
+use Excel;
 use App\Models\Course;
 use App\Models\College;
 use App\Models\Pattern;
@@ -15,6 +15,7 @@ use App\Models\Patternclass;
 use Livewire\WithPagination;
 use App\Models\Subjectcategory;
 use Illuminate\Validation\Rule;
+use App\Exports\Faculty\ExportSubject;
 use Doctrine\Inflector\Rules\Patterns;
 
 class AllSubject extends Component
@@ -357,6 +358,23 @@ class AllSubject extends Component
     public function updatedSearch()
     {
         $this->resetPage();
+    }
+
+    public function export()
+    {
+        $filename="Subject-".now();
+        switch ($this->ext) {
+            case 'xlsx':
+                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+            break;
+            case 'csv':
+                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+            break;
+            case 'pdf':
+                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+            break;
+        }
+
     }
 
     public function render()
