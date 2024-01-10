@@ -43,20 +43,20 @@
                           <x-table.td class="text-balance">{{ $role->college->college_name ?? '' }}</x-table.td>
                           <x-table.td>
                             @if ($role->deleted_at)
-                                            <x-table.restore wire:click="restore({{ $role->id }})" />
-                                            <x-table.delete wire:click="deleteconfirmation({{ $role->id }})" />
-                                        @else
-                                            <x-table.edit wire:click="edit({{ $role->id }})" />
-                                            <x-table.archive wire:click="softdelete({{ $role->id }})" />
-                                            {{-- @if ($role->status == 0)
-                                                <x-table.active wire:click="status({{ $role->id }})" />
-                                            @elseif ($role->status == 1)
-                                                <x-table.inactive wire:click="status({{ $role->id }})" />
-                                            @elseif ($role->status == 3)
-                                                <x-table.active wire:click="status({{ $role->id }})" />
-                                            @endif
-                                            <x-table.archive wire:click="delete({{ $role->id }})" /> --}}
-                                        @endif
+                                <x-table.restore wire:click="restore({{ $role->id }})" />
+                                <x-table.delete wire:click="deleteconfirmation({{ $role->id }})" />
+                            @else
+                                <x-table.edit wire:click="edit({{ $role->id }})" />
+                                <x-table.archive wire:click="softdelete({{ $role->id }})" />
+                                {{-- @if ($role->status == 0)
+                                    <x-table.active wire:click="status({{ $role->id }})" />
+                                @elseif ($role->status == 1)
+                                    <x-table.inactive wire:click="status({{ $role->id }})" />
+                                @elseif ($role->status == 3)
+                                    <x-table.active wire:click="status({{ $role->id }})" />
+                                @endif
+                                <x-table.archive wire:click="delete({{ $role->id }})" /> --}}
+                            @endif
                           </x-table.td>
                         </x-table.tr>
                       @endforeach

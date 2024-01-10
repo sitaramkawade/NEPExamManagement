@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Role;
 
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -38,12 +39,17 @@ class College extends Model
         return $this->hasMany(Role::class,'roletype_id','id')->withTrashed();
     }
 
+    public function subjects(): HasMany
+    {
+        return $this->hasMany(Subject::class, 'college_id', 'id');
+    }
+
     public function scopeSearch(Builder $query,string $search)
     {
         return $query->where('college_name', 'like', "%{$search}%")
         ->orWhere('college_email', 'like', "%{$search}%")
         ->orWhere('college_address', 'like', "%{$search}%");
     }
-            
-    
+
+
 }

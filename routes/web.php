@@ -23,10 +23,11 @@ use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\User\university\EditUniversity;
-use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
+use App\Livewire\Faculty\FacultyRole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
-use App\Livewire\Faculty\Facultyroletype\AllFacultyRoletype;
+use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
+
 
 
 // Livewire Update Route

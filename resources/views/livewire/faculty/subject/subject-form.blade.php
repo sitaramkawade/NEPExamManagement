@@ -64,8 +64,8 @@
                 <x-input-label for="subjectexam_type" :value="__('Subjectexam Type')" />
                 <x-input-select id="subjectexam_type" wire:model="subjectexam_type" name="subjectexam_type" class="text-center @error('subjectexam_type') is-invalid @enderror w-full mt-1" :value="old('subjectexam_type', $subjectexam_type)" required autofocus autocomplete="subjectexam_type">
                     <x-select-option class="text-start" hidden> -- Select Subject Exam Type -- </x-select-option>
-                    <x-select-option class="text-start" value="I">Internal</x-select-option>
-                    <x-select-option class="text-start" value="E">External</x-select-option>
+                    <x-select-option class="text-start" value="INTERNAL">Internal</x-select-option>
+                    <x-select-option class="text-start" value="EXTERNAL">External</x-select-option>
                 </x-input-select>
                 <x-input-error :messages="$errors->get('subjectexam_type')" class="mt-2" />
             </div>
@@ -185,7 +185,7 @@
                     @forelse ($courses as $course)
                         <x-select-option wire:key="{{ $course->id }}" value="{{ $course->id }}" class="text-start"> {{ $course->course_name }} </x-select-option>
                     @empty
-                        <x-select-option class="text-start">Courses Not Found</x-select-option>
+                        <x-select-option class="text-start" >Courses Not Found</x-select-option>
                     @endforelse
                 </x-input-select>
                 <x-input-error :messages="$errors->get('course_id')" class="mt-2" />
@@ -207,7 +207,7 @@
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="college_id" :value="__('Select College')" />
                 <x-input-select id="college_id" wire:model="college_id" name="college_id" class="text-center @error('college_id') is-invalid @enderror w-full mt-1" :value="old('college_id', $college_id)" required autofocus autocomplete="college_id">
-                    <x-select-option class="text-start" hidden> -- Select College -- </x-select-option>
+                    <x-select-option class="text-start" value="" hidden> -- Select College -- </x-select-option>
                     @foreach ($colleges as $college)
                         <x-select-option wire:key="{{ $college->id }}" value="{{ $college->id }}" class="text-start">{{ $college->college_name }}</x-select-option>
                     @endforeach

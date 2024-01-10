@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Faculty\Facultyrole;
+namespace App\Livewire\Faculty\FacultyRole;
 
 use App\Models\Role;
 use App\Models\College;

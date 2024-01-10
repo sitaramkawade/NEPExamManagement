@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Faculty\Facultyroletype;
+namespace App\Livewire\Faculty\FacultyRoleType;
 
 use Livewire\Component;
 use App\Models\Roletype;
