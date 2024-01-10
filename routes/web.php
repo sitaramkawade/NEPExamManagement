@@ -23,14 +23,16 @@ use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
+use App\Livewire\Faculty\FacultyRole\AllFacultyRole;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\University\AllUniversity;
-use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
+use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
-use App\Livewire\Faculty\Facultyroletype\AllFacultyRoletype;
+
+
 
 
 

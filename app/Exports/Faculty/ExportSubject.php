@@ -23,32 +23,26 @@ class ExportSubject implements FromCollection, WithHeadings, ShouldAutoSize, Wit
 
     public function collection()
     {
-        $subjects = Subject::query()->with(['subjectcategory','subjecttype', 'patternclass','classyear','department','college',])
-        ->select('subjects.id', 'subjects.subject_name', 'subjectcategories.subjectcategory' , 'subjecttypes.type_name', 'patternclasses.id' , 'classyears.classyear_name' , 'departments.dept_name' ,'colleges.college_name')
-        ->where(function ($query) {
-        $query->whereHas('subjectcategory', fn ($q) => $q->search($this->search))
-        ->orWhereHas('subjecttype', fn ($q) => $q->search($this->search))
-        ->orWhereHas('patternclass', fn ($q) => $q->search($this->search))
-        ->orWhereHas('classyear', fn ($q) => $q->search($this->search))
-        ->orWhereHas('department', fn ($q) => $q->search($this->search))
-        ->orWhereHas('college', fn ($q) => $q->search($this->search));
-    })
-    ->orderBy($this->sortColumn, $this->sortColumnBy)
-    ->get();
+        return Subject::with(['subjectcategories','subjecttypes','patternclass', 'patternclass', 'classyear', 'department', 'college', ])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
+        ->get(['id','subject_name','subject_credit','department_id','patternclass_id','college_id',]);
     }
 
     public function headings(): array
     {
-        return ['ID', 'Subject Name', 'Subject Category', 'Subject Type', 'Pattern Class','Class Year', 'Department Name', 'College Name'];
+        return ['ID', 'Subject Name', 'Subject Credit', 'Department', 'Pattern','Course', 'Course Class', 'College Name'];
     }
 
     public function map($row): array
     {
         return [
             $row->id,
-            $row->role_name,
-            $row->roletype_name,
-            $row->college_name,
+            $row->subject_name,
+            $row->subject_credit,
+            $row->department->dept_name,
+            $row->patternclass->pattern->pattern_name,
+            $row->patternclass->courseclass->course->course_name,
+            $row->patternclass->courseclass->classyear->classyear_name,
+            $row->college->college_name,
         ];
     }
 }

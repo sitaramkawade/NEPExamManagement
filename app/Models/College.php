@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Role;
-
+use App\Models\Subject;
 use App\Models\Course;
 use App\Models\Pattern;
 use Illuminate\Database\Eloquent\Model;
@@ -48,6 +48,11 @@ class College extends Model
         return $this->hasMany(Role::class,'roletype_id','id')->withTrashed();
     }
 
+    public function subjects(): HasMany
+    {
+        return $this->hasMany(Subject::class, 'college_id', 'id');
+    }
+
     public function scopeSearch(Builder $query,string $search)
     {
         return $query->where('college_name', 'like', "%{$search}%")
@@ -61,6 +66,4 @@ class College extends Model
     }
 
  
-            
-    
 }

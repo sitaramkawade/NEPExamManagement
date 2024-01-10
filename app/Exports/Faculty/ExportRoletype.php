@@ -24,25 +24,18 @@ class ExportRoletype implements FromCollection, WithHeadings, ShouldAutoSize, Wi
 
     public function collection()
     {
-        return Roletype::where(function ($query) {
-            $query->where('id', 'like', '%' . $this->search . '%')
-                  ->orWhere('roletype_name', 'like', '%' . $this->search . '%');
-        })
-        ->orderBy($this->sortColumn, $this->sortColumnBy)
-        ->select('id', 'roletype_name')
-        ->get();
+        return Roletype::search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','roletype_name',]);
     }
 
     public function headings(): array
     {
-        return ['ID', 'Role Name', 'Role Type'];
+        return ['ID', 'Roletype Name'];
     }
 
     public function map($row): array
     {
         return [
             $row->id,
-            $row->role_name,
             $row->roletype_name,
         ];
     }
