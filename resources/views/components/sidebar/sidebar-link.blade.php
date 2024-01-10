@@ -5,9 +5,7 @@
       {{ $slot }}
     </svg>
   </span>
-  <template x-if="isSidebarExpanded">
-    <span class="ml-2">{{ $name }}</span>
-  </template>
+  <span :class="{ 'hidden': !isSidebarExpanded }" class="ml-2">{{ $name }}</span>
   <div x-cloak x-show="showTooltip" :class="{ 'hidden': isSidebarExpanded }" class="absolute left-20 z-50 mt-2 rounded-md bg-black p-2 text-white">
     {{ $name }}
   </div>

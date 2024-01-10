@@ -12,21 +12,43 @@
     @vite(["resources/css/app.css", "resources/js/app.js"])
     @livewireStyles()
     <style>
-     /* #nprogress .bar { height: 5px !important ; background: red !important; } */
+      ::-webkit-scrollbar 
+      {
+        width: 2px !important;
+      }
 
-     #nprogress .bar {
-    background: var(--color-primary) !important;
-    height: 5px !important;
-}
-#nprogress .peg {
-    box-shadow: 0 0 10px var(--color-primary), 0 0 5px var(--color-primary);
-}
-#nprogress .spinner-icon {
-    border-top-color: var(--color-primary) !important;
-    border-left-color: var(--color-primary) !important;
-    display: none;
-}
-    
+      ::-moz-scrollbar {
+        width: 8px !important;
+      }
+
+      * {
+        scrollbar-width: thin !important;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color:var(--color-primary) !important;
+        border-radius: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background-color: transparent; 
+      }
+
+      #nprogress .bar 
+      {
+        background: var(--color-primary) !important;
+        height: 5px !important;
+      }
+
+      #nprogress .peg {
+        box-shadow: 0 0 10px var(--color-primary), 0 0 5px var(--color-primary);
+      }
+
+      #nprogress .spinner-icon {
+        border-top-color: var(--color-primary) !important;
+        border-left-color: var(--color-primary) !important;
+        display: none;
+      }
     </style>
   </head>
 
