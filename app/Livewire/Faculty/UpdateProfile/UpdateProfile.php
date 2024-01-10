@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Faculty\updateProfile;
+namespace App\Livewire\Faculty\UpdateProfile;
 
 use App\Models\College;
 use App\Models\Faculty;

@@ -11,6 +11,23 @@
     <!-- Scripts -->
     @vite(["resources/css/app.css", "resources/js/app.js"])
     @livewireStyles()
+    <style>
+     /* #nprogress .bar { height: 5px !important ; background: red !important; } */
+
+     #nprogress .bar {
+    background: var(--color-primary) !important;
+    height: 5px !important;
+}
+#nprogress .peg {
+    box-shadow: 0 0 10px var(--color-primary), 0 0 5px var(--color-primary);
+}
+#nprogress .spinner-icon {
+    border-top-color: var(--color-primary) !important;
+    border-left-color: var(--color-primary) !important;
+    display: none;
+}
+    
+    </style>
   </head>
 
   <body class="font-sans antialiased" x-data="setup()" x-init="$refs.loading.classList.add('hidden'); setColors(color);" :class="{ 'dark': isDark }">

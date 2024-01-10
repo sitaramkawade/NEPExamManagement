@@ -24,7 +24,7 @@ use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\User\University\AllUniversity;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
-use App\Livewire\Faculty\updateProfile\UpdateProfile;
+use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;

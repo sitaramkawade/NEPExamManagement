@@ -179,7 +179,7 @@ class AllHelpline extends Component
         $this->validate();
 
         $helpline = new Studenthelpline;
-        $helpline->create([
+        $helpline->fill([
             'student_id' => $this->student_id,
             'student_helpline_query_id' => $this->student_helpline_query_id,
             'old_query' => $this->old_query,
@@ -188,12 +188,14 @@ class AllHelpline extends Component
             'description' => $this->description,
             'status' => 0,
         ]);
-    
+        $helpline->save();
+
         $path = 'student/helpline/documents/';
         foreach ($this->uploaded_documents as $key => $document) {
             $fileName = 'document-' . time().'-'.$key.'.' .  $document->getClientOriginalExtension();
             $document->storeAs($path, $fileName, 'public');
             $helpline->studenthelplineuploadeddocuments()->create([
+                'student_helpline_id' =>  $helpline->id,
                 'helpline_document_id' =>  $key,
                 'helpline_document_path' => 'storage/' . $path . $fileName,
             ]);
@@ -248,7 +250,7 @@ class AllHelpline extends Component
     public function update(Studenthelpline $helpline)
     {
         $this->validate();
-        $helpline->update([
+         $helpline->fill([
             'student_id' => $this->student_id,
             'student_helpline_query_id' => $this->student_helpline_query_id,
             'old_query' => $this->old_query,
@@ -257,6 +259,7 @@ class AllHelpline extends Component
             'description' => $this->description,
             'status' => 0,
         ]);
+        $helpline->update();
         
         $path = 'student/helpline/documents/';
         foreach ($this->uploaded_documents as $key => $document) {
@@ -269,6 +272,7 @@ class AllHelpline extends Component
                 $existingDocument->update(['helpline_document_path' => 'storage/' . $path . $fileName]);
             } else {
                 $helpline->studenthelplineuploadeddocuments()->create([
+                    'student_helpline_id' =>  $helpline->id,
                     'helpline_document_id' => $key,
                     'helpline_document_path' => 'storage/' . $path . $fileName,
                 ]);
@@ -404,6 +408,14 @@ class AllHelpline extends Component
     public function forcedelete()
     {   
         $helpline = Studenthelpline::withTrashed()->find($this->delete_id);
+        if ($helpline->studenthelplineuploadeddocuments()->exists()) {
+            $helpline->studenthelplineuploadeddocuments->each(function ($doc) {
+                if ($doc->helpline_document_path) {
+                    File::delete($doc->helpline_document_path);
+                }
+                $doc->delete();
+            });
+        }
         $helpline->forceDelete();
         $this->dispatch('alert',type:'success',message:'Helpline Request Deleted Successfully !!');
     }
