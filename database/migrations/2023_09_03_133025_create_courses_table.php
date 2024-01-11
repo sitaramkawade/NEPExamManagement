@@ -23,9 +23,7 @@ return new class extends Migration
             $table->integer('course_category')->default('0')->comment('1 Professional 2: Non Professional');//1 Professional 2: Non Professional
          
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
             $table->bigInteger('programme_id')->nullable()->unsigned()->default(null);
-            $table->foreign('programme_id')->references('id')->on('programmes')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');

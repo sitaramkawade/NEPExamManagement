@@ -30,9 +30,7 @@ use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Faculty\FacultyRole\AllFacultyRole;
 use App\Livewire\User\Programme\AllProgramme;
-use App\Livewire\User\University\AllUniversity;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
-use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 
@@ -79,11 +77,12 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
   // Student Dashboard
   Route::get('/dashboard',StudentDashboard::class)->name('dashboard');
 
-    // Student Profile
-    Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
+  // Student Profile
+  Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
 
-    // Student View Profile
-    Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
+  // Student View Profile
+  Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
+  
   // Student Profile
   Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
  
@@ -101,23 +100,23 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   // User Dashboard
   Route::get('dashboard', UserDashboard::class)->name('dashboard');
 
-    //All College
-      Route::get('/all/college', AllCollege::class)->name('colleges');
+  //All College
+  Route::get('/all/college', AllCollege::class)->name('colleges');
 
-    //All Sanstha  
-      Route::get('/all/sanstha', AllSanstha::class)->name('sanstha');
+  //All Sanstha  
+  Route::get('/all/sanstha', AllSanstha::class)->name('sanstha');
 
-    //All University    
-      Route::get('/all/university', AllUniversity::class)->name('university');
+  //All University    
+  Route::get('/all/university', AllUniversity::class)->name('university');
 
-    //All Pattern   
-      Route::get('/all/pattern', AllPattern::class)->name('pattern');
+  //All Pattern   
+  Route::get('/all/pattern', AllPattern::class)->name('pattern');
 
-    //All Exam   
-      Route::get('/all/exam', AllExam::class)->name('exam');
+  //All Exam   
+  Route::get('/all/exam', AllExam::class)->name('exam');
 
-     //All Users 
-      Route::get('/all/users', AllUser::class)->name('user');
+  //All Users 
+  Route::get('/all/users', AllUser::class)->name('user');
 
   //All Student Helpline
   Route::get('/all/hel pline',AllHelpline::class)->name('all_helpline');
