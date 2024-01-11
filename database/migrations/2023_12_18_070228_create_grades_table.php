@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('grade_name',40)->nullable();
             $table->tinyInteger('is_active')->default('1');// 0 :not active 1:active
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

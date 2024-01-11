@@ -5,13 +5,15 @@ namespace App\Models;
 use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Patternclass extends Model
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $table='pattern_classes';
     protected $fillable=
 
@@ -24,7 +26,7 @@ class Patternclass extends Model
         'sem1_credits',
         'sem2_credits',
         'totalnosubjects',
-      
+
     ];
     public function subjects():HasMany
     {

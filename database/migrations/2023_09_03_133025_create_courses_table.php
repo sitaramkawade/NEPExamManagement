@@ -18,16 +18,18 @@ return new class extends Migration
           $table->string('course_code', 50)->default(NULL);
           $table->string('fullname',100)->default(NULL);
             $table->string('shortname',100)->default(NULL);
-            $table->string('special_subject',100);//Major Subject
-            $table->string('course_type',20)->default(NULL); //UG or PG
-            $table->integer('course_category')->default('0');//1 Professional 2: Non Professional
+            $table->string('special_subject',100)->comment('Major Subject');//Major Subject
+            $table->string('course_type',20)->default(NULL)->comment('UG or PG'); //UG or PG
+            $table->integer('course_category')->default('0')->comment('1 Professional 2: Non Professional');//1 Professional 2: Non Professional
          
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
             $table->bigInteger('programme_id')->nullable()->unsigned()->default(null);
             $table->foreign('programme_id')->references('id')->on('programmes')->onDelete('cascade');
-          
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
+            $table->foreign('programme_id')->references('id')->on('programmes')->onDelete('cascade');
         });
     }
 

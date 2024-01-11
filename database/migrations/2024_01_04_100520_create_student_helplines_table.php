@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('student_id')->unsigned();
             $table->bigInteger('student_helpline_query_id')->unsigned();
-            $table->tinyInteger('status')->nullable()->default(0);
+            $table->tinyInteger('status')->nullable()->default(0)->comment('0-pending,1-verified,2-approve,3-cancel,4-reject');
             $table->string('remark')->nullable();
             $table->string('old_query')->nullable();
             $table->string('new_query')->nullable();
@@ -24,10 +24,10 @@ return new class extends Migration
             $table->bigInteger('verified_by')->nullable()->unsigned();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');;
             $table->foreign('student_helpline_query_id')->references('id')->on('student_helpline_queries')->onDelete('cascade');
-            $table->foreign('approve_by')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('verified_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('approve_by')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('verified_by')->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

@@ -24,19 +24,20 @@
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2">
                                 <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                    <x-input-label for="student_name" :value="__('Name ( Not Editable )')" />
-                                    <x-text-input  id="student_name" type="text" wire:model="student_name" name="student_name" disabled readonly class="disabled w-full mt-1"  :value="old('student_name',$student_name)" required  autocomplete="student_name" />
-                                    <x-input-error :messages="$errors->get('student_name')" class="mt-2" />
+                                    <x-input-label for="student_name" :value="__('Student Name')" />
+                                    <x-input-show id="student_name" :value="$student_name" />
                                 </div>
                                 <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                    <x-input-label for="email" :value="__('Email ( Not Editable )')" />
-                                    <x-text-input  id="email" type="email" wire:model="email" name="email" disabled readonly class="disabled w-full mt-1"  :value="old('email',$email)" required  autocomplete="email" />
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    <x-input-label for="email" :value="__('Student Email')" />
+                                    <x-input-show id="email" :value="$email" />
                                 </div>
                                 <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                    <x-input-label for="mobile_no" :value="__('Mobile ( Not Editable )')" />
-                                    <x-text-input  id="mobile_no" type="number" wire:model="mobile_no" name="mobile_no" disabled readonly  class="disabled w-full mt-1"  :value="old('mobile_no',$mobile_no)" required  autocomplete="mobile_no" />
-                                    <x-input-error :messages="$errors->get('mobile_no')" class="mt-2" />
+                                    <x-input-label for="mobile_no" :value="__('Student Mobile')" />
+                                    <x-input-show  id="mobile_no"  :value="$mobile_no" />
+                                </div>
+                                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                    <x-input-label for="mother_name" :value="__('Mother Name')" />
+                                    <x-input-show  id="mother_name"  :value="$mother_name" />
                                 </div>
                                 <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                                     <x-input-label for="date_of_birth" :value="__('Date Of Birth')" /> <x-required/>
@@ -67,11 +68,6 @@
                                     <x-input-label for="father_name" :value="__('Father / Husband Name')" /><x-required/>
                                     <x-text-input  id="father_name" type="text" wire:model="father_name" name="father_name" class="w-full mt-1"  :value="old('father_name',$father_name)" required  autocomplete="father_name" />
                                     <x-input-error :messages="$errors->get('father_name')" class="mt-2" />
-                                </div>
-                                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                    <x-input-label for="mother_name" :value="__('Mother Name')" /><x-required/>
-                                    <x-text-input  id="mother_name" type="text" wire:model="mother_name" name="mother_name" class="w-full mt-1"  :value="old('mother_name',$mother_name)" required  autocomplete="mother_name" />
-                                    <x-input-error :messages="$errors->get('mother_name')" class="mt-2" />
                                 </div>
                                 <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                                     <x-input-label for="caste_category_id" :value="__('Cast Category')" /><x-required/>
@@ -211,7 +207,7 @@
                                 <div class="m-5   col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
                                     <div class="flex items-center justify-between border-b p-4 dark:border-primary">
                                         <h4 class="text-lg font-semibold text-gray-500 dark:text-light">  @if (isset($address_types[0]->type)) {{ $address_types[0]->type }}@endif</h4>
-                                    
+
                                     </div>
                                     <div class="relative h-auto p-4">
                                         <div class="grid grid-cols-1 md:grid-cols-2">
@@ -289,7 +285,7 @@
                                 </div>
                             @endif
                             @if (isset($address_types[1]->type))
-                                <div x-show="open" class="m-5   col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
+                                <div  x-init="{ open: true }" x-show="open" class="m-5   col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
                                     <div class="flex items-center justify-between border-b p-4 dark:border-primary">
                                         <h4 class="text-lg font-semibold text-gray-500 dark:text-light">@if (isset($address_types[1]->type)) {{ $address_types[1]->type }} @endif </h4>
                                     </div>
@@ -358,7 +354,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>   
+                                </div>
                             @endif
                             {{-- @endif --}}
                             <x-multi-step-btn :current_step="$current_step" :steps="$steps"/>

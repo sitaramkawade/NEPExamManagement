@@ -10,14 +10,18 @@
   </x-slot>
 
   <x-slot name="DROPDOWN">
-    <x-navbar.mobile-dropdown-link route="student" name="Student Home" />
+    <x-navbar.mobile-dropdown-link route="student" name="Home" />
     @auth("student")
-      <x-navbar.mobile-dropdown-link route="student.view-profile" name="Student Profile" />
-      <x-navbar.mobile-dropdown-link route="student.dashboard" name="Student Dashboard" />
-      <x-navbar.mobile-dropdown-logout-link route="student.logout" name="Student Logout" />
+      @if (auth()->guard('student')->user()->is_profile_complete)
+        <x-navbar.mobile-dropdown-link route="student.view-profile" name="Profile" />
+        <x-navbar.mobile-dropdown-link route="student.dashboard" name="Dashboard" />
+      @else
+        <x-navbar.mobile-dropdown-link route="student.profile" name="Profile" />
+      @endif
+      <x-navbar.mobile-dropdown-logout-link route="student.logout" name="Logout" />
     @else
-      <x-navbar.mobile-dropdown-link route="student.login" name="Student Login" />
-      <x-navbar.mobile-dropdown-link route="student.register" name="Student Register" />
+      <x-navbar.mobile-dropdown-link route="student.login" name="Login" />
+      <x-navbar.mobile-dropdown-link route="student.register" name="Register" />
     @endauth
   </x-slot>
 

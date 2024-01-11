@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('subjecttypes', function (Blueprint $table) {
             $table->id();
             $table->string('type_name',30);//Theory Practical
-            $table->string('type_shortname',10);//Th Pr Prj Ojt           
+            $table->string('type_shortname',10);//Th Pr Prj Ojt
             $table->tinyInteger('active')->default('0');// 0 :not active 1:active
-     
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

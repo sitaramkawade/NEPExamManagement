@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('subjectcategory')->nullable();//Major Minor
             $table->string('subjectcategory_shortname',10)->nullable();
-                      
+
             $table->tinyInteger('active')->default('0');// 0 :not active 1:active for departmet specific classes 2:active for all classes
-         
-           
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

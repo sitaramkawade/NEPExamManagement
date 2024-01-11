@@ -26,7 +26,7 @@ class Studenthelpline extends Model
         'new_query',
         'description',
         'remark',
-        'updated_by',
+        'approve_by',
         'verified_by',
     ];
 

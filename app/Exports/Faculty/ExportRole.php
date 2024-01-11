@@ -23,18 +23,13 @@ class ExportRole implements FromCollection, WithHeadings, ShouldAutoSize, WithMa
 
     public function collection()
     {
-        return Role::join('roletypes', 'roles.roletype_id', '=', 'roletypes.id')
-        ->join('colleges', 'roles.college_id', '=', 'colleges.id')
-        ->with('roletype')->search($this->search)
-        ->with('college')->search($this->search)
-        ->orderBy($this->sortColumn, $this->sortColumnBy)
-        ->select('roles.id', 'roles.role_name', 'roletypes.roletype_name', 'colleges.college_name')
-        ->get();
+        return Role::with(['roletype','college',])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
+         ->get(['id','role_name','roletype_id','college_id',]);
     }
 
     public function headings(): array
     {
-        return ['ID', 'Roletype Name'];
+        return ['ID', 'Role Name', 'Roletype Name', 'College Name'];
     }
 
     public function map($row): array
@@ -42,8 +37,8 @@ class ExportRole implements FromCollection, WithHeadings, ShouldAutoSize, WithMa
         return [
             $row->id,
             $row->role_name,
-            $row->roletype_name,
-            $row->college_name,
+            $row->roletype->roletype_name,
+            $row->college->college_name,
         ];
     }
 }

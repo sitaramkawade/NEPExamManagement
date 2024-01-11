@@ -34,6 +34,7 @@ class RegisteredUserController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'middle_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
+            'mother_name' => ['required', 'string', 'max:255'],
             'member_id' => ['required', 'numeric','unique:students,memid', 'digits_between:4,8'],
             'mobile_no' => ['required', 'numeric', 'digits:10'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.Student::class],
@@ -43,6 +44,7 @@ class RegisteredUserController extends Controller
         $user = Student::create([
             'student_name' => $request->last_name.' '.$request->first_name.' '.$request->middle_name,
             'memid' => $request->member_id,
+            'mother_name' => $request->mother_name,
             'mobile_no' => $request->mobile_no,
             'email' => $request->email,
             'password' => Hash::make($request->password),
