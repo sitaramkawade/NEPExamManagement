@@ -135,6 +135,19 @@ class AllSanstha extends Component
         }
     }
 
+    public function Status(Sanstha $sanstha)
+    {
+        if($sanstha->status)
+        {
+            $sanstha->status=0;
+        }
+        else
+        {
+            $sanstha->status=1;
+        }
+        $sanstha->update();
+    }
+
     public function export()
     {   
         $filename="Sanstha-".now();

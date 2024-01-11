@@ -17,7 +17,7 @@
     </x-form>
     @elseif($mode=='all')
     <div>
-        <x-card-header heading="All University">
+        <x-card-header heading="All University's">
                 <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
         <x-table.frame>
@@ -40,14 +40,25 @@
                             @forelse ($universities as $key => $university)
                             <x-table.tr wire:key="{{ $university->id }}">
                                 <x-table.td>{{ $key+1 }}</x-table.td>
-                                <x-table.td class="text-pretty">{{ $university->university_name }} </x-table.td>
+                                <x-table.td >{{ $university->university_name }} </x-table.td>
                                 <x-table.td> {{ $university->university_email}} </x-table.td>
                                 <x-table.td> {{ $university->university_address }} </x-table.td>
                                 <x-table.td> {{ $university->university_website_url }} </x-table.td>
-                                <x-table.td> {{ $university->status==0?"Inactive":"Active";}} </x-table.td>
+                                <x-table.td> 
+                                 @if($university->status==1)
+                                <x-status type="success">Active</x-status>
+                                @else
+                                <x-status type="danger">Inactive</x-status>
+                                @endif
+                                 </x-table.td>
                                 <x-table.td>
                                     <x-table.edit wire:click="edit({{ $university->id }})" />
                                     <x-table.delete wire:click="delete({{ $university->id }})" />
+                                      @if($university->status==1)
+                                    <x-table.inactive wire:click="Status({{ $university->id }})" />
+                                    @else
+                                    <x-table.active wire:click="Status({{ $university->id }})" />
+                                    @endif
                                 </x-table.td>
                             </x-table.tr>
                             @empty

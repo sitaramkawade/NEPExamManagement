@@ -24,10 +24,10 @@ return new class extends Migration
             $table->bigInteger('verified_by')->nullable()->unsigned();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('student_id')->references('id')->on('students');
-            $table->foreign('student_helpline_query_id')->references('id')->on('student_helpline_queries');
-            $table->foreign('approve_by')->references('id')->on('users');
-            $table->foreign('verified_by')->references('id')->on('users');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('student_helpline_query_id')->references('id')->on('student_helpline_queries')->onDelete('cascade');
+            $table->foreign('approve_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('verified_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -86,7 +86,7 @@ class AllUniversity extends Component
         $university->university_website_url=  $this->university_website_url;
         $university->university_email= $this->university_email;
         $university->university_contact_no= $this->university_contact_no;
-        $university->status= $this->status==1?0:1;
+        $university->status= $this->status;
         
         if ($this->university_logo_path) {
            
@@ -145,7 +145,7 @@ class AllUniversity extends Component
             $university->university_contact_no=  $this->university_contact_no;
             $university->university_website_url= $this->university_website_url;
             $university->university_address= $this->university_address;
-            $university->status= $this->status==1?0:1;
+            $university->status= $this->status;
         
         if ($this->university_logo_path) {
            
@@ -161,6 +161,19 @@ class AllUniversity extends Component
             $this->setmode('all');
         }
     
+    }
+
+    public function Status(University $university)
+    {
+        if($university->status)
+        {
+            $university->status=0;
+        }
+        else
+        {
+            $university->status=1;
+        }
+        $university->update();
     }
 
     public function sort_column($column)

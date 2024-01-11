@@ -10,7 +10,7 @@ use App\Models\University;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Exports\user\ExportCollege;
-use App\Livewire\User\College\AllCollege;
+
 
 class AllCollege extends Component
 {
@@ -84,11 +84,6 @@ class AllCollege extends Component
         $this->mode=$mode;
     }
 
-    public function resetInputFields()
-    {
-        // Reset the specified properties to their initial state
-        $this->reset(['college_name', 'college_email' ,'college_address','college_contact_no','college_website_url','college_logo_path','sanstha_id','university_id','status','is_default']);
-    }
 
     public function add(College  $college ){
         
@@ -103,7 +98,7 @@ class AllCollege extends Component
         $college->college_contact_no= $this->college_contact_no;
         $college->sanstha_id= $this->sanstha_id;
         $college->university_id= $this->university_id;
-        $college->status= $this->status==1?0:1;
+        $college->status= $this->status;
         $college->is_default= $this->is_default==1?0:1;
         
         if ($this->college_logo_path) {
@@ -141,6 +136,19 @@ class AllCollege extends Component
         }
     }
 
+    public function Status(College $college)
+    {
+        if($college->status)
+        {
+            $college->status=0;
+        }
+        else
+        {
+            $college->status=1;
+        }
+        $college->update();
+    }
+
     public function edit(College $college){
 
         if ($college) {
@@ -171,7 +179,7 @@ class AllCollege extends Component
             $college->college_contact_no= $this->college_contact_no;
             $college->sanstha_id= $this->sanstha_id;
             $college->university_id= $this->university_id;
-            $college->status= $this->status==1?0:1;
+            $college->status= $this->status;
             $college->is_default= $this->is_default==1?0:1;
         
         if ($this->college_logo_path) {

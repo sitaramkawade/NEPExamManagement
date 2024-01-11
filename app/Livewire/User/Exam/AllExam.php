@@ -15,7 +15,7 @@ class AllExam extends Component
     public $sortColumn="exam_name";
     public $sortColumnBy="ASC";
     public $ext;
-    public $mode;
+    public $mode='all';
     public $exam_id;
     public $current_step=1;
     public $steps=1;
@@ -66,7 +66,7 @@ class AllExam extends Component
         if ($validatedData) {
 
         $exam->exam_name= $this->exam_name;         
-        $exam->status= $this->status==1?0:1;
+        $exam->status= $this->status;
         $exam->exam_sessions= $this->exam_sessions==1?0:1;
         $exam->save();
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
@@ -94,7 +94,7 @@ class AllExam extends Component
             $exam->update([
                               
                 'exam_name' => $this->exam_name,              
-                'status' => $this->status==1?0:1,  
+                'status' => $this->status,  
                 'exam_sessions' => $this->exam_sessions==1?0:1,                    
             ]);
           
@@ -108,6 +108,19 @@ class AllExam extends Component
         $exam->delete();
        
         $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
+    }
+
+    public function Status(Exam $exam)
+    {
+        if($exam->status)
+        {
+            $exam->status=0;
+        }
+        else
+        {
+            $exam->status=1;
+        }
+        $exam->update();
     }
 
     public function sort_column($column)

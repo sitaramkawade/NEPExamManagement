@@ -92,6 +92,19 @@ class AllPattern extends Component
     }
     }
     
+    public function Status(Pattern $pattern)
+    {
+        if($pattern->status)
+        {
+            $pattern->status=0;
+        }
+        else
+        {
+            $pattern->status=1;
+        }
+        $pattern->update();
+    }
+    
     public function deletePattern(Pattern $pattern)
     {
         $pattern->delete();
@@ -122,7 +135,7 @@ class AllPattern extends Component
                 'pattern_startyear' => $this->pattern_startyear,
                 'pattern_valid' => $this->pattern_valid,
                 'college_id' => $this->college_id,
-                'status' => $this->status==1?0:1,                    
+                'status' => $this->status,                  
             ]);
             $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
             $this->setmode('all');

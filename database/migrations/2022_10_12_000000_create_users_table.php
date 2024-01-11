@@ -19,10 +19,17 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
-            $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+
+            $table->bigInteger('role_id')->nullable()->unsigned()->default(null);
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
           
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges');
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
+
+            $table->tinyInteger('is_active')->default('1');
+
+
            
             $table->timestamps();
         });

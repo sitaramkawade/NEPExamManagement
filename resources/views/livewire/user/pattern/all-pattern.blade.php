@@ -44,11 +44,24 @@
                                 <x-table.td>{{ $pattern->pattern_startyear }} </x-table.td>
                                 <x-table.td> {{ $pattern->pattern_valid }} </x-table.td>
                                 <x-table.td class="text-pretty"> {{ $pattern->college?->college_name }} </x-table.td>
-                                <x-table.td> {{ $pattern->status==0?"Inactive":"Active";}} </x-table.td>
+                              
+                                <x-table.td> 
+                                @if($pattern->status==1)
+                                <x-status type="success">Active</x-status>
+                                @else
+                                <x-status type="danger">Inactive</x-status>
+                                @endif
+                                 </x-table.td>
 
                                 <x-table.td>
                                     <x-table.edit wire:click="edit({{$pattern->id}})" />
                                     <x-table.delete wire:click="deletePattern({{$pattern->id}})" />
+
+                                    @if($pattern->status==1)
+                                    <x-table.inactive wire:click="Status({{ $pattern->id }})" />
+                                    @else
+                                    <x-table.active wire:click="Status({{ $pattern->id }})" />
+                                    @endif
 
                                 </x-table.td>
                             </x-table.tr>

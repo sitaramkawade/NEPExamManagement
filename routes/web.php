@@ -6,15 +6,16 @@ use Livewire\Livewire;
 use App\Livewire\Index;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
+
 use App\Livewire\User\Exam\AllExam;
-use App\Livewire\User\college\Edit;
+use App\Livewire\User\User\AllUser;
+
+
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
+
 use App\Livewire\Faculty\EditFaculty;
 use App\Livewire\Faculty\ViewFaculty;
-use App\Livewire\User\DeleteCollege;
-
-use App\Livewire\User\Exam\EditExam;
 use App\Livewire\Student\ViewProfile;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Faculty\UpdateProfile;
@@ -29,22 +30,22 @@ use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Faculty\SoftDeleteFaculty;
 use App\Livewire\Student\Helpline\Helpline;
+use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\Faculty\FacultyRole\AddRole;
 use App\Livewire\Faculty\FacultyRole\EditRole;
 use App\Livewire\Faculty\FacultyRole\ViewRole;
-use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\User\University\AllUniversity;
 use App\Livewire\Faculty\FacultyRole\RestoreRole;
 use App\Livewire\Faculty\FacultyRole\SoftDeleteRole;
 use App\Livewire\Faculty\FacultyRoleType\AddRoleType;
+use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Faculty\FacultyRoleType\EditRoleType;
 use App\Livewire\Faculty\FacultyRoleType\ViewRoleType;
-use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Faculty\FacultyRoleType\RestoreRoleType;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
-use App\Livewire\Faculty\FacultyRoleType\SoftDeleteRoleType;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
+use App\Livewire\Faculty\FacultyRoleType\SoftDeleteRoleType;
 
 
 // Livewire Update Route
@@ -115,8 +116,11 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
     //All Pattern   
       Route::get('/all/pattern', AllPattern::class)->name('pattern');
 
-    //All Pattern   
+    //All Exam   
       Route::get('/all/exam', AllExam::class)->name('exam');
+
+     //All Users 
+      Route::get('/all/users', AllUser::class)->name('user');
 
     //All Student Helpline
      Route::get('/all/helpline',AllHelpline::class)->name('all_helpline');

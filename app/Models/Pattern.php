@@ -48,6 +48,12 @@ class Pattern extends Model
     {
         return $this->hasMany(PatternClass::class,'pattern_id','id');
     }
+    public function colleges()
+    {
+        return $this->hasMany(College::class,'college_id','id');
+    }
+
+  
 
     public function scopeSearch(Builder $query,string $search)
     {

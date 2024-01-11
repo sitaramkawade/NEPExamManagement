@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('pattern_valid',100)->nullable();
             $table->tinyInteger('status')->default('1');  //Pattern is active 1 or not 0
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges');
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
            
             $table->timestamps();
         });

@@ -49,10 +49,21 @@
                                 <x-table.td> {{ $college->college_address }} </x-table.td>
                                 <x-table.td> {{ $college->sanstha->sanstha_name }} </x-table.td>
                                 <x-table.td> {{ $college->university->university_name }} </x-table.td>
-                                <x-table.td> {{ $college->status==0?"Inactive":"Active";}} </x-table.td>
+                                <x-table.td>
+                                    @if($college->status==1)
+                                    <x-status type="success">Active</x-status>
+                                    @else
+                                    <x-status type="danger">Inactive</x-status>
+                                    @endif
+                                </x-table.td>
                                 <x-table.td>
                                     <x-table.edit wire:click="edit({{ $college->id }})" />
                                     <x-table.delete wire:click="deleteCollege({{ $college->id }})" />
+                                    @if($college->status==1)
+                                    <x-table.inactive wire:click="Status({{ $college->id }})" />
+                                    @else
+                                    <x-table.active wire:click="Status({{ $college->id }})" />
+                                    @endif
                                 </x-table.td>
                             </x-table.tr>
                             @empty

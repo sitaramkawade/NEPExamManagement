@@ -24,9 +24,9 @@ return new class extends Migration
         $table->bigInteger('addresstype_id')->unsigned()->nullable();
         $table->boolean('is_completed')->default(0); 
         $table->timestamps();
-        $table->foreign('student_id')->references('id')->on('students');
-        $table->foreign('taluka_id')->references('id')->on('talukas');
-        $table->foreign('addresstype_id')->references('id')->on('addresstypes');    
+        $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+        $table->foreign('taluka_id')->references('id')->on('talukas')->onDelete('cascade');
+        $table->foreign('addresstype_id')->references('id')->on('addresstypes')->onDelete('cascade');    
         $table->unique(['student_id', 'addresstype_id']); //  [ 'column1', 'column2']
         });
     }

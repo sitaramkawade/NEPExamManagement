@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pattern_classes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('class_id')->unsigned();
-            $table->foreign('class_id')->references('id')->on('course_classes');
+            $table->foreign('class_id')->references('id')->on('course_classes')->onDelete('cascade');
             $table->bigInteger('pattern_id')->unsigned();           
             $table->foreign('pattern_id')->references('id')->on('patterns');          
             $table->tinyInteger('status')->default('1');//Future use

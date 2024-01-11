@@ -20,15 +20,15 @@ return new class extends Migration
             $table->integer('printstatus')->default(0);
 
             $table->bigInteger('student_id')->unsigned();
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
 
             $table->bigInteger('patternclass_id')->unsigned();
-            $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
+            $table->foreign('patternclass_id')->references('id')->on('pattern_classes')->onDelete('cascade');
 
             $table->bigInteger('exam_id')->unsigned();
-            $table->foreign('exam_id')->references('id')->on('exams');
+            $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges');
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
          
             $table->timestamps();
         });
