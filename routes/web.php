@@ -23,6 +23,12 @@ use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Helpline\Helpline;
 use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\Student\StudentViewProfile;
+use App\Livewire\User\ClassYear\AllClassYear;
+use App\Livewire\User\Programme\AllProgramme;
+use App\Livewire\User\University\AllUniversity;
+use App\Livewire\User\CourseClass\AllCourseClass;
+use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
+use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\University\AllUniversity;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
@@ -132,6 +138,12 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   
   //All Courses
   Route::get('/all/course',AllCourse::class)->name('all_course');
+
+  //All Class Years
+  Route::get('/all/class/year',AllClassYear::class)->name('all_class_year');
+
+  //All Class Years
+  Route::get('/all/course/class',AllCourseClass::class)->name('all_course_class');
 
 });
 
