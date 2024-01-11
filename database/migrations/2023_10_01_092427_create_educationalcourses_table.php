@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('course_name');         
             $table->bigInteger('programme_id')->nullable()->unsigned()->default(null);
-            $table->foreign('programme_id')->references('id')->on('programmes')->onDelete('cascade');
             $table->boolean('is_active')->default(1); //
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('programme_id')->references('id')->on('programmes')->onDelete('cascade');
         });
     }
 

@@ -8,8 +8,9 @@ use Database\Seeders\GradeSeeder;
 use Database\Seeders\LoginSeeder;
 use Database\Seeders\MonthSeeder;
 use Database\Seeders\PreviousYearSeeder;
-use Database\Seeders\StudenthelplineQuerySeeder;
-use Database\Seeders\StudenthelplineDocumentSeeder;
+use Database\Seeders\StudentProfileSeeder;
+use Database\Seeders\StudentHelplineQuerySeeder;
+use Database\Seeders\StudentHelplineDocumentSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,8 +20,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            StudenthelplineQuerySeeder::class,
-            StudenthelplineDocumentSeeder::class,
+            
+            StudentHelplineQuerySeeder::class,
+            StudentHelplineDocumentSeeder::class,
             LoginSeeder::class,
             GradeSeeder::class,
             PreviousYearSeeder::class,
@@ -54,6 +56,7 @@ class DatabaseSeeder extends Seeder
             EducationalcourseSeeder::class,
             PrefixmasterSeeder::class,
             BanknamemasterSeeder::class,
+            StudentProfileSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

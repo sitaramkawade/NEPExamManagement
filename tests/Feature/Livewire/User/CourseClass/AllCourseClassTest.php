@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Tests\TestCase;
 
-class AllCourseCalssTest extends TestCase
+class AllCourseClassTest extends TestCase
 {
     /** @test */
     public function renders_successfully()
