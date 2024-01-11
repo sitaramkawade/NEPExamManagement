@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('village_name');
             $table->string('village_name_local')->collation('utf8mb4_general_ci')->charset('utf8mb4');
             $table->bigInteger('taluka_id')->unsigned()->nullable()->default(NULL);
-            $table->foreign('taluka_id')->references('id')->on('talukas');
+            $table->foreign('taluka_id')->references('id')->on('talukas')->onDelete('cascade');
             $table->timestamps();
         });
     }

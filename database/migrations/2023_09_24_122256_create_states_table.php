@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('census_code');//2011
             $table->char('state_or_UT',2); 
             $table->bigInteger('country_id')->unsigned()->nullable()->default(NULL);
-            $table->foreign('country_id')->references('id')->on('countries');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
           
             $table->timestamps();
         });

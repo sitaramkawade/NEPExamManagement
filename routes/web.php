@@ -6,7 +6,9 @@ use Livewire\Livewire;
 use App\Livewire\Index;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
+
 use App\Livewire\User\Exam\AllExam;
+use App\Livewire\User\User\AllUser;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use Illuminate\Support\Facades\Route;
@@ -20,15 +22,17 @@ use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Helpline\Helpline;
 use App\Livewire\User\Helpline\AllHelpline;
+use App\Livewire\Student\StudentViewProfile;
+use App\Livewire\User\University\AllUniversity;
+use App\Livewire\User\HelplineQuery\AllHelplineQuery;
+use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
-use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\Faculty\FacultyRole\AllFacultyRole;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\University\AllUniversity;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
-use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 
@@ -97,20 +101,23 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   // User Dashboard
   Route::get('dashboard', UserDashboard::class)->name('dashboard');
 
-  //All College
-  Route::get('/all_college', AllCollege::class)->name('colleges');
+    //All College
+      Route::get('/all/college', AllCollege::class)->name('colleges');
 
-  //All Sanstha  
-  Route::get('/all_sanstha', AllSanstha::class)->name('sanstha');
+    //All Sanstha  
+      Route::get('/all/sanstha', AllSanstha::class)->name('sanstha');
 
-  //All University    
-  Route::get('/all_university', AllUniversity::class)->name('university');
+    //All University    
+      Route::get('/all/university', AllUniversity::class)->name('university');
 
-  //All Pattern   
-  Route::get('/all_pattern', AllPattern::class)->name('pattern');
+    //All Pattern   
+      Route::get('/all/pattern', AllPattern::class)->name('pattern');
 
-  //All Pattern   
-  Route::get('/all_exam', AllExam::class)->name('exam');
+    //All Exam   
+      Route::get('/all/exam', AllExam::class)->name('exam');
+
+     //All Users 
+      Route::get('/all/users', AllUser::class)->name('user');
 
   //All Student Helpline
   Route::get('/all/hel pline',AllHelpline::class)->name('all_helpline');

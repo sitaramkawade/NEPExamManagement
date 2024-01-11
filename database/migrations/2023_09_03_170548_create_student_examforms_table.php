@@ -29,17 +29,17 @@ return new class extends Migration
            $table->tinyInteger('oral_status')->default('0'); 
 
            $table->bigInteger('exam_id')->unsigned();
-           $table->foreign('exam_id')->references('id')->on('exams');
+           $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
            
            $table->bigInteger('student_id')->unsigned();
-           $table->foreign('student_id')->references('id')->on('students');
+           $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
          
            $table->bigInteger('subject_id')->unsigned();
-           $table->foreign('subject_id')->references('id')->on('subjects');
+           $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
            $table->bigInteger('examformmaster_id')->nullable()->unsigned();
-           $table->foreign('examformmaster_id')->references('id')->on('examformmasters');
+           $table->foreign('examformmaster_id')->references('id')->on('examformmasters')->onDelete('cascade');
            $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-           $table->foreign('college_id')->references('id')->on('colleges');
+           $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
         
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('studentpreviousexams', function (Blueprint $table) {
             $table->id();
-            $table->foreign('boarduniversity_id')->references('id')->on('boarduniversities');
+            $table->foreign('boarduniversity_id')->references('id')->on('boarduniversities')->onDelete('cascade');
             $table->bigInteger('educationalcourse_id')->nullable()->unsigned()->default(null);
             $table->bigInteger('student_id')->unsigned()->nullable();
             $table->string('passing_year');
@@ -27,8 +27,8 @@ return new class extends Migration
             $table->timestamps();
             $table->unique(['student_id', 'educationalcourse_id']); //  [ 'column1', 'column2']
             $table->bigInteger('boarduniversity_id')->nullable()->unsigned()->default(null);
-            $table->foreign('educationalcourse_id')->references('id')->on('educationalcourses');
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('educationalcourse_id')->references('id')->on('educationalcourses')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });
     }
 

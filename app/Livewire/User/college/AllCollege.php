@@ -10,7 +10,7 @@ use App\Models\University;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Exports\user\ExportCollege;
-use App\Livewire\User\College\AllCollege;
+
 
 class AllCollege extends Component
 {
@@ -31,13 +31,14 @@ class AllCollege extends Component
     public $college_email;
     public $college_contact_no;
     public $college_logo_path;
+    public $college_logo_path_old;
     public $sanstha_id;
     public $sansthas;
     public $university_id;
     public $universities;
     public $status;
     public $is_default;
-    public $mode;
+    public $mode='all';
   
 
     protected function rules()
@@ -46,7 +47,7 @@ class AllCollege extends Component
         'college_name' => ['required','string','max:255'],
         'college_address' => ['required','string','max:255'],
         'college_website_url' => ['required','string','max:255'],
-        'college_email' => ['required','unique:users,email'],
+        'college_email' => ['required','email'],
         'college_contact_no' => ['required','max:10'],
         'college_logo_path' =>['required','max:250','mimes:png,jpg,jpeg'],
         'sanstha_id' => ['required'],
@@ -83,28 +84,24 @@ class AllCollege extends Component
         $this->mode=$mode;
     }
 
-    public function resetInputFields()
-    {
-        // Reset the specified properties to their initial state
-        $this->reset(['college_name', 'college_email' ,'college_address','college_contact_no','college_website_url','college_logo_path','sanstha_id','university_id','status','is_default']);
-    }
 
     public function add(College  $college ){
+        
+        $validatedData= $this->validate();
+       
+        if ($validatedData) {
 
         $college->college_name= $this->college_name;
         $college->college_address=  $this->college_address;
         $college->college_website_url=  $this->college_website_url;
         $college->college_email= $this->college_email;
         $college->college_contact_no= $this->college_contact_no;
-        $college->college_logo_path= $this->college_logo_path;
         $college->sanstha_id= $this->sanstha_id;
         $college->university_id= $this->university_id;
-        $college->status= $this->status==1?0:1;
+        $college->status= $this->status;
         $college->is_default= $this->is_default==1?0:1;
         
-
         if ($this->college_logo_path) {
-           
             $path = 'user/profile/photo/';           
             $fileName = 'user-' . time(). '.' . $this->college_logo_path->getClientOriginalExtension();
             $this->college_logo_path->storeAs($path, $fileName, 'public');
@@ -115,7 +112,8 @@ class AllCollege extends Component
         $college->save();
 
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->resetInputFields();
+        $this->setmode('all');
+    }
     }
 
     public function mount()
@@ -138,9 +136,20 @@ class AllCollege extends Component
         }
     }
 
-    public function edit($id){
+    public function Status(College $college)
+    {
+        if($college->status)
+        {
+            $college->status=0;
+        }
+        else
+        {
+            $college->status=1;
+        }
+        $college->update();
+    }
 
-        $college = College::find($id);
+    public function edit(College $college){
 
         if ($college) {
             $this->college_id=$college->id;
@@ -161,21 +170,28 @@ class AllCollege extends Component
     public function updateCollege(College  $college){
 
         $validatedData= $this->validate();
-
        
         if ($validatedData) {        
-            $college->update([
-                             
-                'college_name' => $this->college_name,
-                'college_email' => $this->college_email,
-                'college_address' => $this->college_address,
-                'college_contact_no' => $this->college_contact_no,
-                'college_website_url' => $this->college_website_url,
-                'college_logo_path' => $this->college_logo_path,      
-                'sanstha_id' => $this->sanstha_id,
-                'university_id' => $this->university_id,
-                'status' => $this->status==1?0:1,                    
-            ]);
+            $college->college_name= $this->college_name;
+            $college->college_address=  $this->college_address;
+            $college->college_website_url=  $this->college_website_url;
+            $college->college_email= $this->college_email;
+            $college->college_contact_no= $this->college_contact_no;
+            $college->sanstha_id= $this->sanstha_id;
+            $college->university_id= $this->university_id;
+            $college->status= $this->status;
+            $college->is_default= $this->is_default==1?0:1;
+        
+        if ($this->college_logo_path) {
+           
+            $path = 'user/profile/photo/';           
+            $fileName = 'user-' . time(). '.' . $this->college_logo_path->getClientOriginalExtension();
+            $this->college_logo_path->storeAs($path, $fileName, 'public');
+            $college->college_logo_path = 'storage/' . $path . $fileName;
+            $this->reset('college_logo_path');
+        }
+            $college->update();
+
             $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
             $this->setmode('all');
         }
