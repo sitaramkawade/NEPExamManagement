@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('taluka_code');
             $table->string('taluka_name');
             $table->bigInteger('district_id')->unsigned()->nullable()->default(NULL);
-            $table->foreign('district_id')->references('id')->on('districts');
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
             $table->timestamps();
         });
     }

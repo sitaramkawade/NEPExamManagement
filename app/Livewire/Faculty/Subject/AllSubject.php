@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire\Faculty\Subject;
-
+use Excel;
 use App\Models\Course;
 use App\Models\College;
 use App\Models\Pattern;
@@ -12,12 +12,17 @@ use App\Models\Department;
 use App\Models\Courseclass;
 use App\Models\Subjecttype;
 use App\Models\Patternclass;
+use Livewire\WithPagination;
 use App\Models\Subjectcategory;
 use Illuminate\Validation\Rule;
+use App\Exports\Faculty\ExportSubject;
 use Doctrine\Inflector\Rules\Patterns;
 
 class AllSubject extends Component
 {
+    use WithPagination;
+
+    protected $listeners = ['delete-confirmed'=>'delete'];
     public $subject_sem;
     public $subjectcategory_id;
     public $subject_no;
@@ -57,6 +62,7 @@ class AllSubject extends Component
     public $patterns;
     public $courses;
     public $course_classes;
+    public $pattern_class_id;
 
     public $mode='all';
     public $per_page = 10;
@@ -88,10 +94,12 @@ class AllSubject extends Component
             'subject_intpractpassing' => ['required',],
             'subject_extpassing' => ['required',],
             'subject_optionalgroup' => ['required',],
-            'patternclass_id' => ['required',Rule::exists(Pattern::class,'id')],
             'classyear_id' => ['required',Rule::exists(Classyear::class,'id')],
             'department_id' => ['required',Rule::exists(Department::class,'id')],
             'college_id' => ['required',Rule::exists(College::class,'id')],
+            'pattern_id' => ['required',Rule::exists(Pattern::class,'id')],
+            'course_id' => ['required',Rule::exists(Course::class,'id')],
+            'course_class_id' => ['required',Rule::exists(Courseclass::class,'id')],
         ];
     }
 
@@ -120,6 +128,9 @@ class AllSubject extends Component
             'classyear_id.required' => 'Please select the class year.',
             'department_id.required' => 'Please select the department.',
             'college_id.required' => 'Please select the college.',
+            'pattern_id.required' => 'Please select the pattern.',
+            'course_id.required' => 'Please select the course.',
+            'course_class_id.required' => 'Please select the course class.',
         ];
     }
 
@@ -129,6 +140,7 @@ class AllSubject extends Component
          $this->subjectcategory_id=null;
          $this->subject_no=null;
          $this->subject_code=null;
+         $this->subjectexam_type=null;
          $this->subject_shortname=null;
          $this->subject_name=null;
          $this->subjecttype_id=null;
@@ -142,10 +154,14 @@ class AllSubject extends Component
          $this->subject_intpractpassing=null;
          $this->subject_extpassing=null;
          $this->subject_optionalgroup=null;
+
          $this->patternclass_id=null;
          $this->classyear_id=null;
          $this->department_id=null;
          $this->college_id=null;
+         $this->pattern_id=null;
+         $this->course_id=null;
+         $this->course_class_id=null;
     }
 
     public function updated($propertyName)
@@ -159,6 +175,10 @@ class AllSubject extends Component
         {
             $this->resetinput();
         }
+        if($mode=='edit')
+        {
+            $this->resetValidation();
+        }
         $this->mode=$mode;
     }
 
@@ -171,127 +191,149 @@ class AllSubject extends Component
     public function save()
     {
         $validatedData = $this->validate();
-        
-        $subject = SUbject::create($validatedData);
-        if ($subject) {
-            $subject->facultybankaccount()->create($validatedData);
-            $this->dispatch('alert',type:'success',message:'Faculty Registered Successfully');
+        $pattern_class = Patternclass::select('id')->where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->first('id');
+
+        if ($pattern_class) {
+            $validatedData['patternclass_id'] = $pattern_class->id;
+            $subject = Subject::create($validatedData);
+
+            if ($subject) {
+                $this->dispatch('alert',type:'success',message:'Subject Saved Successfully !!');
+                $this->setmode('all');
+            } else {
+                $this->dispatch('alert',type:'error',message:'Something went wrong!!');
+            }
         } else {
-            $this->dispatch('alert',type:'error',message:'Faculty Registration Unsucessful');
+            $this->dispatch('alert',type:'success',message:'Pattern Class Not Found!!');
         }
     }
 
-    // public function edit(Subject $subject)
-    // {
-    //     if ($subject)
-    //     {
-    //         $this->faculty_id = $faculty->id;
-    //         $this->prefix= $faculty->prefix;
-    //         $this->faculty_name= $faculty->faculty_name;
-    //         $this->email= $faculty->email;
-    //         $this->mobile_no= $faculty->mobile_no;
-    //         $this->role_id= $faculty->role_id;
-    //         $this->department_id= $faculty->department_id;
-    //         $this->college_id= $faculty->college_id;
 
-    //         $bankdetails = $faculty->facultybankaccount()->first();
-    //         if($bankdetails){
-    //             $this->facultybank_id= $bankdetails->id;
-    //             $this->bank_name= $bankdetails->bank_name;
-    //             $this->account_no= $bankdetails->account_no;
-    //             $this->bank_address= $bankdetails->bank_address;
-    //             $this->branch_name= $bankdetails->branch_name;
-    //             $this->branch_code= $bankdetails->branch_code;
-    //             $this->ifsc_code= $bankdetails->ifsc_code;
-    //             $this->micr_code= $bankdetails->micr_code;
-    //             $this->account_type= $bankdetails->account_type;
-    //         }else{
-    //             $this->dispatch('alert',type:'error',message:'Bank Details Not Found');
-    //         }
-    //         $this->setmode('edit');
-    //     }else{
-    //         $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
-    //     }
-    // }
+    public function edit(Subject $subject)
+    {
+        if ($subject)
+        {
+            $this->subject_id = $subject->id;
+            $this->subject_sem= $subject->subject_sem;
+            $this->subjectcategory_id= $subject->subjectcategory_id;
+            $this->subject_no= $subject->subject_no;
+            $this->subject_code= $subject->subject_code;
+            $this->subjectexam_type= $subject->subjectexam_type;
+            $this->subject_shortname= $subject->subject_shortname;
+            $this->subject_name= $subject->subject_name;
+            $this->subjecttype_id= $subject->subjecttype_id;
+            $this->subject_credit= $subject->subject_credit;
+            $this->subject_maxmarks= $subject->subject_maxmarks;
+            $this->subject_maxmarks_int= $subject->subject_maxmarks_int;
+            $this->subject_maxmarks_intpract= $subject->subject_maxmarks_intpract;
+            $this->subject_maxmarks_ext= $subject->subject_maxmarks_ext;
+            $this->subject_totalpassing= $subject->subject_totalpassing;
+            $this->subject_intpassing= $subject->subject_intpassing;
+            $this->subject_intpractpassing= $subject->subject_intpractpassing;
+            $this->subject_extpassing= $subject->subject_extpassing;
+            $this->subject_optionalgroup= $subject->subject_optionalgroup;
+            $this->patternclass_id= $subject->patternclass_id;
+            $this->classyear_id= $subject->classyear_id;
+            $this->department_id= $subject->department_id;
+            $this->college_id= $subject->college_id;
+            $this->feach();
+            $this->setmode('edit');
+        }
+        else{
+        $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        }
+    }
 
-    // public function update(Faculty $faculty)
-    // {
-    //     $validatedData = $this->validate();
+    public function update(Subject $subject)
+    {
+        $validatedData = $this->validate();
+        $pattern_class = Patternclass::select('id')
+            ->where('class_id', $this->course_class_id)
+            ->where('pattern_id', $this->pattern_id)
+            ->first('id');
 
-    //     if ($faculty) {
-    //         $faculty->update($validatedData);
-    //         $faculty->facultybankaccount()->updateOrCreate([], $validatedData);
+        if ($subject) {
+            if ($pattern_class) {
+                $validatedData['patternclass_id'] = $pattern_class->id;
+                $subject->fill($validatedData);
+                $updated = $subject->save();
+                if ($updated) {
+                    $this->dispatch('alert',type:'success',message:'Subject Updated Successfully !!');
+                    $this->setmode('all');
+                } else {
+                    $this->dispatch('alert',type:'error',message:'Something went wrong!!');
+                }
+            } else {
+                $this->dispatch('alert',type:'error',message:'Pattern Class Not Found!!');
+            }
+        }
+    }
 
-    //         $this->dispatch('alert',type:'success',message:'Faculty Updated Successfully');
-    //         $this->setmode('all');
-    //         $this->resetinput();
-    //     }else{
-    //         $this->dispatch('alert',type:'error',message:'Error To Update Faculty');
-    //     }
-    // }
+    public function delete()
+    {
+        $subject = Subject::withTrashed()->find($this->delete_id);
+        if($subject){
+            $subject->forceDelete();
+            $this->delete_id = null;
+            $this->setmode('all');
+            $this->dispatch('alert',type:'success',message:'"Subject Deleted Successfully !!');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        }
+    }
 
-    // public function softdelete($id)
-    // {
-    //     $faculty = Faculty::withTrashed()->findOrFail($id);
+    public function softdelete($id)
+    {
+        $subject = Subject::withTrashed()->findOrFail($id);
 
-    //     if ($faculty) {
-    //         $bankAccount = $faculty->facultybankaccount()->withTrashed()->first();
-    //         if ($bankAccount) {
-    //             $bankAccount->delete();
-    //         }
-    //         $faculty->delete();
-    //         $this->dispatch('alert',type:'success',message:'Faculty Deleted Successfully');
-    //         } else {
-    //             $this->dispatch('alert',type:'error',message:'Faculty Not Found !');
-    //         }
-    //         $this->setmode('all');
-    // }
+        if ($subject) {
+            $subject->delete();
+            $this->dispatch('alert',type:'success',message:'Subject Deleted Successfully');
+            } else {
+                $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+            }
+        $this->setmode('all');
+    }
 
-    // public function restore($id)
-    // {
-    //     $faculty = Faculty::withTrashed()->findOrFail($id);
+    public function restore($id)
+    {
+        $subject = Subject::withTrashed()->findOrFail($id);
 
-    //     if ($faculty) {
-    //         $faculty->restore();
-
-    //         $bankDetails = $faculty->facultybankaccount()->onlyTrashed()->get();
-
-    //         if ($bankDetails->isNotEmpty()) {
-    //             foreach ($bankDetails as $bankDetail) {
-    //                 $bankDetail->restore();
-    //             }
-    //         }
-
-    //         $this->delete_id = null;
-    //         $this->dispatch('alert',type:'success',message:'Faculty Restored Successfully');
-    //     } else {
-    //         $this->dispatch('alert',type:'error',message:'Faculty Not Found');
-    //     }
-    //     $this->setmode('all');
-    // }
+        if ($subject) {
+            $subject->restore();
+            $this->delete_id = null;
+            $this->dispatch('alert',type:'success',message:'Subject Restored Successfully');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Subject Not Found');
+        }
+        $this->setmode('all');
+    }
 
     public function feach()
     {
-        $this->pattern_class_id=$student->patternclass_id;
-        if($pattern_class=Patternclass::find($subject->patternclass_id))
-            {
-                if($pattern_class)
-                {
-                    if($pattern_class->courseclass->course)
-                    {
-                        $this->course_id=$pattern_class->courseclass->course->id;
-                    }
-                    if($pattern_class->courseclass)
-                    {
-                        $this->course_class_id=$pattern_class->courseclass->id;
-                    }
-                    if($pattern_class->pattern)
-                    {
-                        $this->pattern_id= $pattern_class->pattern->id;
-                    }
+        $subjects = Subject::all();
+
+        foreach ($subjects as $subject) {
+            $pattern_class_id = $subject->patternclass_id;
+
+            $pattern_class = Patternclass::find($pattern_class_id);
+
+            if ($pattern_class) {
+                if ($pattern_class->courseclass && $pattern_class->courseclass->course) {
+                    $this->course_id = $pattern_class->courseclass->course->id;
+                }
+
+                if ($pattern_class->courseclass) {
+                    $this->course_class_id = $pattern_class->courseclass->id;
+                }
+
+                if ($pattern_class->pattern) {
+                    $this->pattern_id = $pattern_class->pattern->id;
                 }
             }
+        }
     }
+
 
     public function mount()
     {
@@ -318,12 +360,32 @@ class AllSubject extends Component
         $this->resetPage();
     }
 
+    public function export()
+    {
+        $filename="Subject-".now();
+        switch ($this->ext) {
+            case 'xlsx':
+                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+            break;
+            case 'csv':
+                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+            break;
+            case 'pdf':
+                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+            break;
+        }
+
+    }
+
     public function render()
     {
         $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
         $this->courses=course::select('id','course_name')->get();
         $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
 
-        return view('livewire.faculty.subject.all-subject')->extends('layouts.faculty')->section('faculty');
+        $subjects = Subject::when($this->search, function($query, $search){
+            $query->search($search);
+        })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
+        return view('livewire.faculty.subject.all-subject',compact('subjects'))->extends('layouts.faculty')->section('faculty');
     }
 }

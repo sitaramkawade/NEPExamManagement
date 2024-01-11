@@ -1,34 +1,27 @@
 <div>
     @if ($mode=='add')
     <div>
-        <x-card-header>
-            Add College
-            <x-slot name="button">
-                <x-back-btn wire:click="setmode('all')" />
-            </x-slot>
+        <x-card-header heading=" Add College">
+
+            <x-back-btn wire:click="setmode('all')" />
+
         </x-card-header>
         <x-form wire:submit="add()">
             @include('livewire.user.college.college-form')
         </x-form>
     </div>
     @elseif($mode=='edit')
-    <x-card-header>
-        Edit College
-        <x-slot name="button">
-            <x-back-btn wire:click="setmode('all')" />
-        </x-slot>
+    <x-card-header heading="Edit College">
+        <x-back-btn wire:click="setmode('all')" />
     </x-card-header>
     <x-form wire:submit="updateCollege({{ $college_id  }})">
-       @include('livewire.user.college.college-form')
-       
+        @include('livewire.user.college.college-form')
+
     </x-form>
-    @elseif($mode='all')
+    @elseif($mode=='all')
     <div>
-        <x-card-header>
-            All College
-            <x-slot name="button">
-                <x-add-btn wire:click="setmode('add')" />
-            </x-slot>
+        <x-card-header heading=" All College's">
+            <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
         <x-table.frame>
             <x-slot:header>
@@ -56,10 +49,21 @@
                                 <x-table.td> {{ $college->college_address }} </x-table.td>
                                 <x-table.td> {{ $college->sanstha->sanstha_name }} </x-table.td>
                                 <x-table.td> {{ $college->university->university_name }} </x-table.td>
-                                <x-table.td> {{ $college->status==0?"Inactive":"Active";}} </x-table.td>
+                                <x-table.td>
+                                    @if($college->status==1)
+                                    <x-status type="success">Active</x-status>
+                                    @else
+                                    <x-status type="danger">Inactive</x-status>
+                                    @endif
+                                </x-table.td>
                                 <x-table.td>
                                     <x-table.edit wire:click="edit({{ $college->id }})" />
                                     <x-table.delete wire:click="deleteCollege({{ $college->id }})" />
+                                    @if($college->status==1)
+                                    <x-table.inactive wire:click="Status({{ $college->id }})" />
+                                    @else
+                                    <x-table.active wire:click="Status({{ $college->id }})" />
+                                    @endif
                                 </x-table.td>
                             </x-table.tr>
                             @empty

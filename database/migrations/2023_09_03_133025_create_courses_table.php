@@ -24,7 +24,6 @@ return new class extends Migration
          
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->bigInteger('programme_id')->nullable()->unsigned()->default(null);
-            
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');

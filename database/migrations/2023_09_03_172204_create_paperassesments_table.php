@@ -14,17 +14,17 @@ return new class extends Migration
         Schema::create('paperassesments', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('subject_id')->unsigned()->nullable();
-            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->integer('total_papers')->default('0');
             
             $table->bigInteger('examinerfaculty_id')->unsigned()->nullable();
-            $table->foreign('examinerfaculty_id')->references('id')->on('faculties');
+            $table->foreign('examinerfaculty_id')->references('id')->on('faculties')->onDelete('cascade');
             $table->integer('totalexamine')->default(0);          
             $table->float('examiner_rate',8,2)->default(0);
             $table->float('examiner_amount',8,2)->nullable()->default(null);
           
             $table->bigInteger('moderatorfaculty_id')->unsigned()->nullable();
-            $table->foreign('moderatorfaculty_id')->references('id')->on('faculties');
+            $table->foreign('moderatorfaculty_id')->references('id')->on('faculties')->onDelete('cascade');
             $table->integer('totalmoderation')->default(0);
             $table->float('moderator_rate',8,2)->default(0);
             $table->float('moderator_amount',8,2)->nullable()->default(null);

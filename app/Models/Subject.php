@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\College;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\BelongsToManyRelationship;
 
 class Subject extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table='subjects';
     protected $fillable=[
         'subject_sem',
@@ -37,46 +39,60 @@ class Subject extends Model
         'status',
         'patternclass_id',
         'classyear_id',// fy or sy or ty
+        'college_id',
     ];
 
+    public function college(): BelongsTo
+    {
+        return $this->belongsTo(College::class, 'college_id', 'id');
+    }
     public function subjectcategories(): BelongsTo
     {
-     return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id')->withTrashed();
+     return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id');
     }
     public function department(): BelongsTo
     {
-     return $this->belongsTo(Department::class,'department_id','id')->withTrashed();
+     return $this->belongsTo(Department::class,'department_id','id');
     }
     public function subjecttypes(): BelongsTo
     {
-     return $this->belongsTo(Subjecttype::class,'subjecttype_id','id')->withTrashed();
+     return $this->belongsTo(Subjecttype::class,'subjecttype_id','id');
     }
     public function patternclass(): BelongsTo
     {
-     return $this->belongsTo(Patternclass::class,'patternclass_id','id')->withTrashed();
+     return $this->belongsTo(Patternclass::class,'patternclass_id','id');
     }
     public function classyear(): BelongsTo
     {
-     return $this->belongsTo(Classyear::class,'classyear_id','id')->withTrashed();
+     return $this->belongsTo(Classyear::class,'classyear_id','id');
     }
     public function subjectbuckets():HasMany
     {
         return $this->hasMany(Subjectbucket::class,'subject_id','id');
     }
 
-    // public function scopeSearch(Builder $query,string $search)
-    // {
-    //     return $query->with('subjectcategory', 'subjecttype', 'patternclass', 'classyear', 'department', 'college')->where(function ($subquery) use ($search) {
-    //         $subquery->where('subject_name', 'like', "%{$search}%")
-    //         ->orWhereHas('roletype', function ($roletypeQuery) use ($search) {
-    //             $roletypeQuery->where('roletype_name', 'like', "%{$search}%");
-    //         })
-    //         ->orWhereHas('college', function ($collegeQuery) use ($search) {
-    //             $collegeQuery->where('college_name', 'like', "%{$search}%");
-    //         });
-    //     });
+    public function scopeSearch(Builder $query, string $search)
+    {
+        return $query->with('subjectcategories', 'subjecttypes', 'classyear', 'department', 'college')
+            ->where('subject_name', 'like', "%{$search}%")
+            ->orWhere('subject_credit', 'like', "%{$search}%")
+            ->orWhereHas('subjectcategories', function ($query) use ($search) {
+                $query->where('subjectcategory', 'like', "%{$search}%");
+            })
+            ->orWhereHas('subjecttypes', function ($query) use ($search) {
+                $query->where('type_name', 'like', "%{$search}%");
+            })
+            ->orWhereHas('department', function ($query) use ($search) {
+                $query->where('dept_name', 'like', "%{$search}%");
+            })
+            ->orWhereHas('college', function ($query) use ($search) {
+                $query->where('college_name', 'like', "%{$search}%");
+            })
+            ->orWhereHas('classyear', function ($query) use ($search) {
+                $query->where('classyear_name', 'like', "%{$search}%");
+            });
+    }
 
-    // }
 }
 
 

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->Integer('sem1_credits')->default(0);
             $table->Integer('sem2_credits')->default(0);
             $table->Integer('totalnosubjects')->default(0);
-            
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('class_id')->references('id')->on('course_classes')->onDelete('cascade');

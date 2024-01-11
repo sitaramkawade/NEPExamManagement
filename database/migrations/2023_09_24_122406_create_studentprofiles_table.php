@@ -31,20 +31,20 @@ return new class extends Migration
             $table->string('domicile',100)->nullable();
 
             $table->bigInteger('caste_id')->unsigned()->nullable()->default(null);
-            $table->foreign('caste_id')->references('id')->on('castes');
+            $table->foreign('caste_id')->references('id')->on('castes')->onDelete('cascade');
             $table->bigInteger('caste_category_id')->unsigned()->nullable()->default(null);            
-            $table->foreign('caste_category_id')->references('id')->on('caste_categories');
+            $table->foreign('caste_category_id')->references('id')->on('caste_categories')->onDelete('cascade');
             $table->tinyInteger('is_noncreamylayer')->default(0); 
             $table->tinyInteger('is_minority')->default(0); 
             $table->tinyInteger('is_handicap')->default(0); 
             $table->bigInteger('maritalstatus_id')->unsigned()->nullable()->default(null);
-            $table->foreign('maritalstatus_id')->references('id')->on('maritalstatuses');
+            $table->foreign('maritalstatus_id')->references('id')->on('maritalstatuses')->onDelete('cascade');
             $table->string('migratestud',100)->nullable();
 
             $table->text('profile_photo_path')->nullable();
             $table->text('sign_photo_path')->nullable();
             $table->bigInteger('student_id')->unsigned()->unique();
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->tinyInteger('profile_complete_status')->default(0);  //if 0 =>profile is uncompleted ,1 means not completed
             $table->boolean('is_competed')->default(1); //
             $table->timestamps();

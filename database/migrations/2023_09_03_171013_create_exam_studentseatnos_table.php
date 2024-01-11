@@ -17,13 +17,13 @@ return new class extends Migration
             $table->integer('seatno');
             
             $table->bigInteger('student_id')->unsigned();
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             
             $table->bigInteger('exam_patternclasses_id')->unsigned();
-            $table->foreign('exam_patternclasses_id')->references('id')->on('exam_patternclasses');
+            $table->foreign('exam_patternclasses_id')->references('id')->on('exam_patternclasses')->onDelete('cascade');
             $table->boolean('printstatus')->default(0);
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges');
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
          
             $table->timestamps();
         });

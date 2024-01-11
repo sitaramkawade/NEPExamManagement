@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('exam_timetables', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('subject_id')->unsigned();
-            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             
             $table->bigInteger('exam_patternclasses_id')->unsigned();
-            $table->foreign('exam_patternclasses_id')->references('id')->on('exam_patternclasses');
+            $table->foreign('exam_patternclasses_id')->references('id')->on('exam_patternclasses')->onDelete('cascade');
             $table->date('examdate')->nullable()->default(null);
 
             $table->bigInteger('timeslot_id')->unsigned();
-            $table->foreign('timeslot_id')->references('id')->on('timetableslots');
+            $table->foreign('timeslot_id')->references('id')->on('timetableslots')->onDelete('cascade');
             
             $table->tinyInteger('status')->default('0'); 
           

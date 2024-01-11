@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('exam_patternclasses', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('exam_id')->unsigned();
-            $table->foreign('exam_id')->references('id')->on('exams');
+            $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
             $table->bigInteger('patternclass_id')->unsigned();
-            $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
+            $table->foreign('patternclass_id')->references('id')->on('pattern_classes')->onDelete('cascade');
             $table->date('result_date')->nullable()->default(null);;
             $table->integer('launch_status')->default(0);
             $table->timestamp('start_date')->nullable()->default(null);
@@ -28,7 +28,7 @@ return new class extends Migration
            
              $table->timestamp('finefee_date')->nullable()->default(null);
             $table->bigInteger('capmaster_id')->unsigned()->nullable()->default(null);
-            $table->foreign('capmaster_id')->references('id')->on('capmasters');  
+            $table->foreign('capmaster_id')->references('id')->on('capmasters')->onDelete('cascade');  
             $table->date('capscheduled_date')->nullable()->default(null);
           
             $table->date('papersettingstart_date')->nullable()->default(null);

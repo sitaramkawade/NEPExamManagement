@@ -60,31 +60,31 @@
                         {{-- upload logo --}}
                         <section>
 
-                            <div class="m-5  bg-red-500 col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
-                                <div class="flex items-center justify-between border-b p-4 dark:border-primary">
-                                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Upload University Logo</h4>
-                                </div>
-                                <div class="relative h-auto p-4">
-                                    <div class=" text-sm text-gray-600 dark:text-gray-400 ">
-                                        <div class="flex flex-col items-center mx-auto space-x-6  ">
-                                            <div class="shrink-0 p-2">
-                                                @if ($university_logo_path)
-                                                <img style="width: 135px; height: 150px;" class="object-center object-fill bg-red-500 " src="{{ isset($college_logo_path)?$college_logo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
-                                                @else
-                                                <img style="width: 135px; height: 150px;" class="object-center object-fill " src="{{ isset($college_logo_path_old)?asset($college_logo_path_old):asset('img/no-img.png'); }}" alt="Current profile photo" />
-                                                @endif
-                                            </div>
-                                            <label class="block p-2">
-                                                <span class="sr-only">Choose Logo</span>
-                                                <x-text-input id="university_logo_path" wire:model.live="university_logo_path" name="university_logo_path" accept="image/png, image/jpeg , image/jpg" :value="old('university_logo_path',$university_logo_path)" autofocus autocomplete="university_logo_path" type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
-                                                <x-input-error :messages="$errors->get('university_logo_path')" class="mt-2" />
-                                            </label>
-                                            <x-input-label class="py-2" wire:loading.remove wire:target="university_logo_path" for="university_logo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
-                                            <x-input-label class="py-2" wire:loading wire:target="university_logo_path" for="university_logo_path" :value="__('Uploading...')" />
+                             <div class="m-5  col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
+                            <div class="flex items-center justify-between border-b p-4 dark:border-primary">
+                                <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Upload University Logo</h4>
+                            </div>
+                            <div class="relative h-auto p-4">
+                                <div class=" text-sm text-gray-600 dark:text-gray-400 ">
+                                    <div class="flex flex-col items-center mx-auto space-x-6  ">
+                                        <div class="shrink-0 p-2">
+                                            @if ($university_logo_path)
+                                            <img style="width: 135px; height: 150px;" class="object-center object-fill bg-red-500 " src="{{ isset($university_logo_path)?$university_logo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
+                                            @else
+                                            <img style="width: 135px; height: 150px;" class="object-center object-fill " src="{{ isset($university_logo_path_old)?asset($university_logo_path_old):asset('img/no-img.png'); }}" alt="Current profile photo" />
+                                            @endif
                                         </div>
+                                        <label class="block p-2">
+                                            <span class="sr-only">Choose profile photo</span>
+                                            <x-text-input id="university_logo_path" wire:model.live="university_logo_path" name="university_logo_path" accept="image/png, image/jpeg , image/jpg" :value="old('university_logo_path',$university_logo_path)" autofocus autocomplete="university_logo_path" type="file" class="block w-full text-sm dark:text-slate-500 text-black file:mr-4 file:py-2 file:px-4  border file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-darker" />
+                                            <x-input-error :messages="$errors->get('university_logo_path')" class="mt-2" />
+                                        </label>
+                                        <x-input-label class="py-2" wire:loading.remove wire:target="university_logo_path" for="university_logo_path" :value="__('Hint : 250KB , png , jpeg , jpg')" />
+                                        <x-input-label class="py-2" wire:loading wire:target="university_logo_path" for="university_logo_path" :value="__('Uploading...')" />
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </section>
                     </div>
 
