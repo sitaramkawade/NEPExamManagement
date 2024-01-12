@@ -15,6 +15,13 @@
         <x-form wire:submit="update({{ $faculty_id }})">
             @include('livewire.faculty.faculty.faculty-form')
         </x-form>
+    @elseif($mode == 'view')
+        <x-card-header heading="View Faculty">
+            <x-back-btn wire:click="setmode('all')" />
+        </x-card-header>
+        <x-form>
+            @include('livewire.faculty.faculty.view-form')
+        </x-form>
     @elseif($mode = 'all')
         <div>
             <x-card-header heading="All Faculties">
@@ -31,6 +38,7 @@
                                 <x-table.th wire:click="sort_column('faculty_name')" name="faculty_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Name</x-table.th>
                                 <x-table.th wire:click="sort_column('role_id')" name="role_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Designation</x-table.th>
                                 <x-table.th wire:click="sort_column('mobile_no')" name="mobile_no" :sort="$sortColumn" :sort_by="$sortColumnBy">Mobile No</x-table.th>
+                                <x-table.th> Status </x-table.th>
                                 <x-table.th> Action </x-table.th>
                             </x-table.tr>
                         </x-table.thead>
@@ -42,20 +50,25 @@
                                     <x-table.td> {{ $faculty->role->role_name ?? '' }} </x-table.td>
                                     <x-table.td> {{ $faculty->mobile_no }} </x-table.td>
                                     <x-table.td>
+                                        @if ($faculty->active == 0)
+                                            <x-status type="danger"> Inactive </x-status>
+                                        @elseif ($faculty->active == 1)
+                                            <x-status type="success">  Active </x-status>
+                                        @endif
+                                    </x-table.td>
+                                    <x-table.td>
                                         @if ($faculty->deleted_at)
                                             <x-table.restore wire:click="restore({{ $faculty->id }})" />
                                             <x-table.delete wire:click="deleteconfirmation({{ $faculty->id }})" />
                                         @else
+                                            <x-table.view wire:click="view({{ $faculty->id }})" />
                                             <x-table.edit wire:click="edit({{ $faculty->id }})" />
                                             <x-table.archive wire:click="softdelete({{ $faculty->id }})" />
-                                            {{-- @if ($faculty->status == 0)
+                                            @if ($faculty->active == 0)
                                                 <x-table.active wire:click="status({{ $faculty->id }})" />
-                                            @elseif ($faculty->status == 1)
+                                            @elseif ($faculty->active == 1)
                                                 <x-table.inactive wire:click="status({{ $faculty->id }})" />
-                                            @elseif ($faculty->status == 3)
-                                                <x-table.active wire:click="status({{ $faculty->id }})" />
                                             @endif
-                                            <x-table.archive wire:click="delete({{ $faculty->id }})" /> --}}
                                         @endif
                                     </x-table.td>
                                 </x-table.tr>

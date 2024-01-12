@@ -7,6 +7,7 @@ use App\Models\College;
 use App\Models\Pattern;
 use App\Models\Subject;
 use Livewire\Component;
+use App\Models\Semester;
 use App\Models\Classyear;
 use App\Models\Department;
 use App\Models\Courseclass;
@@ -72,6 +73,7 @@ class AllSubject extends Component
     public $sortColumn="subject_name";
     public $sortColumnBy="ASC";
     public $ext;
+    public $isDisabled = true;
 
     protected function rules()
     {
@@ -81,7 +83,7 @@ class AllSubject extends Component
             'subject_no' => ['required', 'numeric', 'digits_between:1,10'],
             'subject_code' => ['required', 'string', 'min:1', 'max:10'],
             'subject_shortname' => ['required', 'string', 'max:11',],
-            'subject_name' => ['required', 'string', 'max:11',],
+            'subject_name' => ['required', 'string', 'max:15',],
             'subjecttype_id' => ['required',Rule::exists(Subjecttype::class,'id')],
             'subjectexam_type' => ['required',],
             'subject_credit' => ['required',],
@@ -334,7 +336,6 @@ class AllSubject extends Component
         }
     }
 
-
     public function mount()
     {
         $this->subject_categories = Subjectcategory::where('active',1)->get();
@@ -377,12 +378,67 @@ class AllSubject extends Component
 
     }
 
+    public function status(Subject $subject)
+    {
+        if( $subject->status==0)
+        {
+            $subject->status=1;
+        }
+        else if( $subject->status==1)
+        {
+            $subject->status=0;
+        }
+        $subject->update();
+
+        $this->dispatch('alert',type:'success',message:'Subject Status Updated Successfully !!');
+    }
+
+    public function view(Subject $subject)
+    {
+        if ($subject)
+        {
+            $this->subject_sem= $subject->subject_sem;
+            $this->subject_no= $subject->subject_no;
+            $this->subject_code= $subject->subject_code;
+            $this->subject_shortname= $subject->subject_shortname;
+            $this->subject_name= $subject->subject_name;
+            $this->subjectexam_type= $subject->subdjectexam_type;
+            $this->subject_credit= $subject->subject_credit;
+            $this->subject_maxmarks= $subject->subject_maxmarks;
+            $this->subject_maxmarks_int= $subject->subject_maxmarks_int;
+            $this->subject_maxmarks_intpract= $subject->subject_maxmarks_intpract;
+            $this->subject_maxmarks_ext= $subject->subject_maxmarks_ext;
+            $this->subject_totalpassing= $subject->subject_totalpassing;
+            $this->subject_intpassing= $subject->subject_intpassing;
+            $this->subject_intpractpassing= $subject->subject_intpractpassing;
+            $this->subject_extpassing= $subject->subject_extpassing;
+            $this->subject_optionalgroup= $subject->subject_optionalgroup;
+            $subcatId = $subject->subjectcategories()->first();
+            $this->subjectcategory_id= $subcatId;
+            $subtypeId = $subject->subjecttypes()->first();
+            $this->subjecttype_id= $subtypeId;
+            $patternId = $subject->patternclass->pattern->first();
+            $this->pattern_id= $patternId;
+            $courseId =  $subject->patternclass->courseclass->course->first();
+            $this->course_id = $courseId;
+            $classyearId =  $subject->patternclass->courseclass->classyear->first();
+            $this->classyear_id = $classyearId;
+            $departmentId = $subject->department->first();
+            $this->department_id=  $departmentId;
+            $collegeId = $subject->college->first();
+            $this->college_id= $subject->college_id;
+            $this->setmode('view');
+        }else{
+            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        }
+    }
+
     public function render()
     {
         $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
         $this->courses=course::select('id','course_name')->get();
         $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
-
+        $this->semesters=Semester::select('id','semester','course_type')->where('status',1)->get();
         $subjects = Subject::when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
