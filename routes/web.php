@@ -13,9 +13,9 @@ use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Course\AllCourse;
-use App\Livewire\User\College\AllCollege;
+
 use App\Livewire\User\Pattern\AllPattern;
-use App\Livewire\User\Sanstha\AllSanstha;
+
 use App\Livewire\Faculty\FacultyDashboard;
 use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
@@ -25,7 +25,7 @@ use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\User\ClassYear\AllClassYear;
 use App\Livewire\User\Programme\AllProgramme;
-use App\Livewire\User\University\AllUniversity;
+
 use App\Livewire\User\CourseClass\AllCourseClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
