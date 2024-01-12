@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -25,7 +26,8 @@ class Patternclass extends Model
         'sem2_total_marks',
         'sem1_credits',
         'sem2_credits',
-        'totalnosubjects',
+        'sem1_totalnosubjects',
+        'sem2_totalnosubjects',
 
     ];
     public function subjects():HasMany
@@ -59,4 +61,25 @@ class Patternclass extends Model
     // {
     //     return $this->hasManyThrough(CourseClass::class, Course::class, 'id', 'course_id', 'id', 'class_id');
     // }
+
+    public function scopeSearch(Builder $query, string $search)
+    {
+        return $query->with('courseclass.course', 'courseclass.classyear', 'pattern')
+        ->where('sem1_total_marks', 'like', "%{$search}%")
+        ->orWhere('sem2_total_marks', 'like', "%{$search}%")
+        ->orWhere('sem1_credits', 'like', "%{$search}%")
+        ->orWhere('sem2_credits', 'like', "%{$search}%")
+        ->orWhere('sem1_totalnosubjects', 'like', "%{$search}%")
+        ->orWhere('sem2_totalnosubjects', 'like', "%{$search}%")
+        ->orWhere(function ($subquery) use ($search) {
+            $subquery->orWhereHas('courseclass.course', function ($subQuery) use ($search) {
+                $subQuery->where('course_name', 'like', "%{$search}%");
+            })->orWhereHas('pattern', function ($subQuery) use ($search) {
+                $subQuery->where('pattern_name', 'like', "%{$search}%");
+            })->orWhereHas('courseclass.classyear', function ($subQuery) use ($search) {
+                $subQuery->where('classyear_name', 'like', "%{$search}%");
+            });
+        });
+
+    }
 }

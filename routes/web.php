@@ -27,6 +27,7 @@ use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\User\ClassYear\AllClassYear;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\CourseClass\AllCourseClass;
+use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
@@ -136,7 +137,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Class Years
   Route::get('/all/course/class',AllCourseClass::class)->name('all_course_class');
-
+  
+  //All Class Years
+  Route::get('/all/pattern/class',AllPatternClass::class)->name('all_pattern_class');
 });
 
 
