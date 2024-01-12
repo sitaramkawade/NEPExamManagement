@@ -11,6 +11,8 @@ use App\Models\Prefixmaster;
 use Livewire\WithPagination;
 use App\Models\Banknamemaster;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\Faculty\ExportFaculty;
 
@@ -56,13 +58,14 @@ class AllFaculty extends Component
     public $sortColumn="faculty_name";
     public $sortColumnBy="ASC";
     public $ext;
+    public $isDisabled = true;
 
     protected function rules()
     {
         return [
             'prefix' => ['required',],
             'faculty_name' => ['required', 'string', 'max:255',],
-            'email' => ['required', 'email', 'string','unique:faculties,email'],
+            'email' => ['required', 'email', 'string','unique:faculties,email,'.($this->mode=='edit'? $this->faculty_id :'')],
             'mobile_no' => ['required', 'numeric','digits:10'],
             'role_id' => ['required',Rule::exists(Role::class,'id')],
             'department_id' => ['required',Rule::exists(Department::class,'id')],
@@ -215,6 +218,9 @@ class AllFaculty extends Component
     {
         $faculty = Faculty::withTrashed()->find($this->delete_id);
         if($faculty){
+            if($faculty->profile_photo_path){
+                File::delete($faculty->profile_photo_path);
+            }
             $faculty->forceDelete();
             $faculty->facultybankaccount()->forceDelete();
             $this->delete_id = null;
@@ -265,14 +271,14 @@ class AllFaculty extends Component
         $this->setmode('all');
     }
 
-    public function mount()
-    {
-        $this->prefixes = Prefixmaster::where('is_active',1)->get();
-        $this->banknames = Banknamemaster::where('is_active',1)->get();
-        $this->roles= Role::all();
-        $this->departments= Department::where('status',1)->get();
-        $this->colleges= College::where('status',1)->get();
-    }
+    // public function mount()
+    // {
+    //     $this->prefixes = Prefixmaster::where('is_active',1)->get();
+    //     $this->banknames = Banknamemaster::where('is_active',1)->get();
+    //     $this->roles= Role::all();
+    //     $this->departments= Department::where('status',1)->get();
+    //     $this->colleges= College::where('status',1)->get();
+    // }
 
     public function sort_column($column)
     {
@@ -307,8 +313,66 @@ class AllFaculty extends Component
 
     }
 
+    public function status(Faculty $faculty)
+    {
+        if( $faculty->active==0)
+        {
+            $faculty->active=1;
+        }
+        else if( $faculty->active==1)
+        {
+            $faculty->active=0;
+        }
+        $faculty->update();
+
+        $this->dispatch('alert',type:'success',message:'Faculty Status Updated Successfully !!');
+    }
+
+    public function view(Faculty $faculty)
+    {
+        if ($faculty)
+        {
+            $this->prefix= $faculty->prefix;
+            $this->faculty_name= $faculty->faculty_name;
+            $this->email= $faculty->email;
+            $this->mobile_no= $faculty->mobile_no;
+            $departmentId = $faculty->department()->first();
+            $this->department_id = $departmentId;
+            $roleId = $faculty->role()->first();
+            $this->role_id = $roleId;
+            $collegeId = $faculty->college()->first();
+            $this->college_id= $collegeId;
+
+            $bankdetails = $faculty->facultybankaccount()->first();
+            if($bankdetails){
+                $this->facultybank_id= $bankdetails->id;
+                $this->bank_name= $bankdetails->bank_name;
+                $this->account_no= $bankdetails->account_no;
+                $this->bank_address= $bankdetails->bank_address;
+                $this->branch_name= $bankdetails->branch_name;
+                $this->branch_code= $bankdetails->branch_code;
+                $this->ifsc_code= $bankdetails->ifsc_code;
+                $this->micr_code= $bankdetails->micr_code;
+                $this->account_type= $bankdetails->account_type;
+            }else{
+                $this->dispatch('alert',type:'error',message:'Bank Details Not Found');
+            }
+            $this->setmode('view');
+        }else{
+            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        }
+    }
+
     public function render()
     {
+        if($this->mode !== 'all'){
+            $this->prefixes = Prefixmaster::select('id','prefix','prefix_shortform')->where('is_active',1)->get();
+            $this->banknames = Banknamemaster::select('id','bank_name','bank_shortform')->where('is_active',1)->get();
+            $this->roles= Role::select('id','role_name',)->get();
+            $this->departments= Department::select('id','dept_name',)->where('status',1)->get();
+            $this->colleges= College::select('id','college_name',)->where('status',1)->get();
+        }
+
         $faculties = Faculty::when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);

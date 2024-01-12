@@ -15,14 +15,17 @@ return new class extends Migration
             $table->id();
             $table->integer('subject_sem')->default(0);   //1
             $table->bigInteger('subjectcategory_id')->unsigned();  //Major Minor for which department
-            $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories')->onDelete('cascade');
+            $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories');
             $table->integer('subject_no')->default(0);  //for sorting
             $table->string('subject_code',50)->default(NULL); //3
             $table->string('subject_shortname',20)->default(NULL); //2
             $table->string('subject_name',100)->default(NULL); //2
+
             $table->bigInteger('subjecttype_id')->unsigned();  //Theory Practical
+            $table->foreign('subjecttype_id')->references('id')->on('subjecttypes');
             $table->string('subjectexam_type',50)->default(NULL); //6  IE  - InternalExternal  IEP- Internal External Practical  IP-Internal Practical
             $table->float('subject_credit',4,1)->default(0); //7
+
             $table->integer('subject_maxmarks')->default(0);  //8
             $table->integer('subject_maxmarks_int')->default(0);//10
             $table->integer('subject_maxmarks_intpract')->default(0);
@@ -34,16 +37,18 @@ return new class extends Migration
             $table->integer('subject_extpassing')->default(0);//12
 
             $table->char('subject_optionalgroup',3)->nullable(); //6
-            $table->foreign('subjecttype_id')->references('id')->on('subjecttypes')->onDelete('cascade');
             $table->bigInteger('patternclass_id')->nullable()->unsigned()->default(null);;
             $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
             $table->bigInteger('classyear_id')->nullable()->unsigned()->default(null);;
-            $table->foreign('classyear_id')->references('id')->on('classyears')->onDelete('cascade');
+            $table->foreign('classyear_id')->references('id')->on('classyears');
+
+
             $table->bigInteger('department_id')->unsigned();  //Major Minor
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');//subject belongs to department
+            $table->foreign('department_id')->references('id')->on('departments');//subject belongs to department
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
+            $table->foreign('college_id')->references('id')->on('colleges');
             $table->tinyInteger('status')->default(1);//1 =>subject in use ,0=>not in use
+
             $table->softDeletes();
             $table->timestamps();
 

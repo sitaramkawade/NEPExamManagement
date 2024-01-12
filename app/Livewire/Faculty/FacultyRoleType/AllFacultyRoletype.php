@@ -23,6 +23,7 @@ class AllFacultyRoletype extends Component
     public $sortColumnBy="ASC";
     public $mode='all';
     public $ext;
+    public $isDisabled = true;
 
     protected function rules()
     {
@@ -174,6 +175,32 @@ class AllFacultyRoletype extends Component
         }
 
     }
+
+    public function status(Roletype $roletype)
+    {
+        if( $roletype->status==0)
+        {
+            $roletype->status=1;
+        }
+        else if( $roletype->status==1)
+        {
+            $roletype->status=0;
+        }
+        $roletype->update();
+
+        $this->dispatch('alert',type:'success',message:'Roletype Status Updated Successfully !!');
+    }
+
+    public function view(Roletype $roletype)
+    {
+        if ($roletype){
+            $this->roletype_name= $roletype->roletype_name;
+        }else{
+            $this->dispatch('alert',type:'error',message:'Role Type Details Not Found');
+        }
+        $this->setmode('view');
+    }
+
 
     public function render()
     {
