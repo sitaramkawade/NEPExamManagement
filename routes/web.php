@@ -13,28 +13,26 @@ use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Course\AllCourse;
-
+use App\Livewire\User\College\AllCollege;
 use App\Livewire\User\Pattern\AllPattern;
-
 use App\Livewire\Faculty\FacultyDashboard;
 use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Helpline\Helpline;
 use App\Livewire\User\Helpline\AllHelpline;
+use App\Livewire\Faculty\Faculty\AllFaculty;
+use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\User\ClassYear\AllClassYear;
 use App\Livewire\User\Programme\AllProgramme;
-
 use App\Livewire\User\CourseClass\AllCourseClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
-use App\Livewire\Faculty\Faculty\AllFaculty;
-use App\Livewire\Faculty\Subject\AllSubject;
-use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
+use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 
 
@@ -102,6 +100,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   // User Dashboard
   Route::get('dashboard', UserDashboard::class)->name('dashboard');
+
+  //All College   
+  Route::get('/all/college', AllCollege::class)->name('all_colleges');
 
   //All Pattern   
   Route::get('/all/pattern', AllPattern::class)->name('all_pattern');
