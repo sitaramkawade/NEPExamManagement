@@ -35,6 +35,7 @@ use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
+use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 
 
 
@@ -102,23 +103,17 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   // User Dashboard
   Route::get('dashboard', UserDashboard::class)->name('dashboard');
 
-  //All College
-  Route::get('/all/college', AllCollege::class)->name('colleges');
-
-  //All Sanstha  
-  Route::get('/all/sanstha', AllSanstha::class)->name('sanstha');
-
-  //All University    
-  Route::get('/all/university', AllUniversity::class)->name('university');
-
   //All Pattern   
-  Route::get('/all/pattern', AllPattern::class)->name('pattern');
+  Route::get('/all/pattern', AllPattern::class)->name('all_pattern');
 
   //All Exam   
-  Route::get('/all/exam', AllExam::class)->name('exam');
+  Route::get('/all/exam', AllExam::class)->name('all_exam');
 
   //All Users 
-  Route::get('/all/users', AllUser::class)->name('user');
+  Route::get('/all/users', AllUser::class)->name('all_user');
+
+  //All Educational Courses 
+  Route::get('/all/EducationalCourses', AllEducationalCourse::class)->name('all_educational_courses');
 
   //All Student Helpline
   Route::get('/all/hel pline',AllHelpline::class)->name('all_helpline');

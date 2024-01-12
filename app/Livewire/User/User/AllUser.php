@@ -117,7 +117,6 @@ class AllUser extends Component
             $this->name = $user->name;
             $this->email = $user->email;
             $this->user_contact_no = $user->user_contact_no;
-            $this->password = $user->password;
             $this->college_id = $user->college_id;
             $this->department_id = $user->department_id;          
             $this->role_id=$user->role_id;        

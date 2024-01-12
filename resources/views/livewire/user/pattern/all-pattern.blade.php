@@ -2,7 +2,7 @@
     @if ($mode=='add')
     <div>
         <x-card-header heading=" Add Pattern">
-                <x-back-btn wire:click="setmode('all')" />
+            <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
         <x-form wire:submit="add()">
             @include('livewire.user.pattern.pattern-form')
@@ -10,7 +10,7 @@
     </div>
     @elseif($mode=='edit')
     <x-card-header heading="Edit Pattern">
-            <x-back-btn wire:click="setmode('all')" />
+        <x-back-btn wire:click="setmode('all')" />
     </x-card-header>
     <x-form wire:submit="update({{ $pattern_id  }})">
         @include('livewire.user.pattern.pattern-form')
@@ -18,7 +18,7 @@
     @elseif($mode=='all')
     <div>
         <x-card-header heading="  All Pattern's">
-                <x-add-btn wire:click="setmode('add')" />
+            <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
         <x-table.frame>
             <x-slot:header>
@@ -40,18 +40,22 @@
                             @forelse ($patterns as $key => $pattern)
                             <x-table.tr wire:key="{{ $pattern->id }}">
                                 <x-table.td>{{ $key+1 }}</x-table.td>
-                                <x-table.td class="text-pretty">{{ $pattern->pattern_name }} </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll>{{ $pattern->pattern_name }}</x-table.text-scroll>
+                                </x-table.td>
                                 <x-table.td>{{ $pattern->pattern_startyear }} </x-table.td>
                                 <x-table.td> {{ $pattern->pattern_valid }} </x-table.td>
-                                <x-table.td class="text-pretty"> {{ $pattern->college?->college_name }} </x-table.td>
-                              
-                                <x-table.td> 
-                                @if($pattern->status==1)
-                                <x-status type="success">Active</x-status>
-                                @else
-                                <x-status type="danger">Inactive</x-status>
-                                @endif
-                                 </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll> {{ $pattern->college?->college_name }} </x-table.text-scroll>
+                                </x-table.td>
+
+                                <x-table.td>
+                                    @if($pattern->status==1)
+                                    <x-status type="success">Active</x-status>
+                                    @else
+                                    <x-status type="danger">Inactive</x-status>
+                                    @endif
+                                </x-table.td>
 
                                 <x-table.td>
                                     <x-table.edit wire:click="edit({{$pattern->id}})" />

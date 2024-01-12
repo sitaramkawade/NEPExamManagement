@@ -29,8 +29,9 @@
                             <x-table.tr>
                                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">No.</x-table.th>
                                 <x-table.th wire:click="sort_column('exam_name')" name="exam_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Exam Name </x-table.th>
-                                <x-table.th wire:click="sort_column('status')" name="status" :sort="$sortColumn" :sort_by="$sortColumnBy">Status</x-table.th>
                                 <x-table.th wire:click="sort_column('exam_sessions')" name="exam_sessions" :sort="$sortColumn" :sort_by="$sortColumnBy">Session</x-table.th>
+                                <x-table.th wire:click="sort_column('status')" name="status" :sort="$sortColumn" :sort_by="$sortColumnBy">Status</x-table.th>
+
                                 <x-table.th> Action </x-table.th>
                             </x-table.tr>
                         </x-table.thead>
@@ -38,7 +39,8 @@
                             @forelse ($exams as $key => $exam)
                             <x-table.tr wire:key="{{ $exam->id }}">
                                 <x-table.td>{{ $key+1 }}</x-table.td>
-                                <x-table.td class="text-pretty">{{ $exam->exam_name }} </x-table.td>
+                                <x-table.td>{{ $exam->exam_name }} </x-table.td>
+                                <x-table.td> {{ $exam->exam_sessions==0?"Session 1":"Session 2";}} </x-table.td>
                                 <x-table.td>
                                     @if($exam->status==1)
                                     <x-status type="success">Active</x-status>
@@ -46,10 +48,10 @@
                                     <x-status type="danger">Inactive</x-status>
                                     @endif
                                 </x-table.td>
-                                <x-table.td> {{ $exam->exam_sessions==0?"Session 1":"Session 2";}} </x-table.td>
+
                                 <x-table.td>
-                                    <x-table.edit wire:click="edit({{   $exam->id  }})" />
-                                    <x-table.delete wire:click="deleteExam({{   $exam->id  }})" />
+                                    <x-table.edit wire:click="edit({{ $exam->id }})" />
+                                    <x-table.delete wire:click="deleteExam({{ $exam->id }})" />
                                     @if($exam->status==1)
                                     <x-table.inactive wire:click="Status({{ $exam->id }})" />
                                     @else

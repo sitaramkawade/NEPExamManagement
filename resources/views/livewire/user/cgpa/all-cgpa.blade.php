@@ -1,28 +1,28 @@
 <div>
-    @if ($mode=='add')
+     @if ($mode=='add')
     <div>
-        <x-card-header heading=" Add College">
+        <x-card-header heading=" Add CGPA">
 
             <x-back-btn wire:click="setmode('all')" />
 
         </x-card-header>
         <x-form wire:submit="add()">
-            @include('livewire.user.college.college-form')
+            @include('livewire.user.cgpa.cgpa-form')
         </x-form>
     </div>
-    @elseif($mode=='edit')
-    <x-card-header heading="Edit College">
+     @elseif($mode=='edit')
+    <x-card-header heading="Edit CGPA">
         <x-back-btn wire:click="setmode('all')" />
     </x-card-header>
     <x-form wire:submit="updateCollege({{ $college_id  }})">
-        @include('livewire.user.college.college-form')
+       @include('livewire.user.cgpa.cgpa-form')
     </x-form>
-    @elseif($mode=='all')
+      @elseif($mode=='all')
     <div>
-        <x-card-header heading=" All College's">
+        <x-card-header heading=" All CGPA's">
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
-        <x-table.frame>
+         <x-table.frame>
             <x-slot:header>
                 </x-slot>
                 <x-slot:body>
@@ -85,6 +85,4 @@
                         <x-table.paginate :data="$colleges" />
                         </x-slot>
         </x-table.frame>
-    </div>
-    @endif
 </div>
