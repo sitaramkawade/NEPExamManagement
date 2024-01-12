@@ -64,7 +64,7 @@ Route::middleware(['guest'])->group(function () {
   // RND Pages
   Route::get('/table',DataTable::class);
   Route::get('/select',SelectTo::class)->name('select');
-    
+
 
 
 });
@@ -82,7 +82,7 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
     Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
   // Student Profile
   Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
- 
+
   // Student View Profile
   Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
 
@@ -97,19 +97,10 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   // User Dashboard
   Route::get('dashboard', UserDashboard::class)->name('dashboard');
 
-  //All College
-  Route::get('/all_college', AllCollege::class)->name('colleges');
-
-  //All Sanstha  
-  Route::get('/all_sanstha', AllSanstha::class)->name('sanstha');
-
-  //All University    
-  Route::get('/all_university', AllUniversity::class)->name('university');
-
-  //All Pattern   
+  //All Pattern
   Route::get('/all_pattern', AllPattern::class)->name('pattern');
 
-  //All Pattern   
+  //All Pattern
   Route::get('/all_exam', AllExam::class)->name('exam');
 
   //All Student Helpline
@@ -120,10 +111,10 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Student Helpline Documnet
   Route::get('/all/helpline/document',AllHelplineDocument::class)->name('all_helpline_document');
-  
+
   //All Programmes
   Route::get('/all/programme',AllProgramme::class)->name('all_programme');
-  
+
   //All Courses
   Route::get('/all/course',AllCourse::class)->name('all_course');
 
@@ -137,7 +128,7 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // Faculty Dashboard
   Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
 
-  
+
 
     // All Faculty
     Route::get('/all-faculties', AllFaculty::class)->name('all-faculties');

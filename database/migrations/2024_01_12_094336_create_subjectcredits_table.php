@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('semesters', function (Blueprint $table) {
+        Schema::create('subjectcredits', function (Blueprint $table) {
             $table->id();
-            $table->string('semester');
-            $table->tinyInteger('status')->nullable()->default(1); // 1-Active 0-Inactive
+            $table->float('credit',4,1)->default(0);
+            $table->float('marks',4,1)->default(0);
+            $table->float('passing',4,1)->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('semesters');
+        Schema::dropIfExists('subjectcredits');
     }
 };

@@ -12,6 +12,7 @@ use Livewire\WithPagination;
 use App\Models\Banknamemaster;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\Faculty\ExportFaculty;
 
@@ -217,6 +218,9 @@ class AllFaculty extends Component
     {
         $faculty = Faculty::withTrashed()->find($this->delete_id);
         if($faculty){
+            if($faculty->profile_photo_path){
+                File::delete($faculty->profile_photo_path);
+            }
             $faculty->forceDelete();
             $faculty->facultybankaccount()->forceDelete();
             $this->delete_id = null;
@@ -267,14 +271,14 @@ class AllFaculty extends Component
         $this->setmode('all');
     }
 
-    public function mount()
-    {
-        $this->prefixes = Prefixmaster::where('is_active',1)->get();
-        $this->banknames = Banknamemaster::where('is_active',1)->get();
-        $this->roles= Role::all();
-        $this->departments= Department::where('status',1)->get();
-        $this->colleges= College::where('status',1)->get();
-    }
+    // public function mount()
+    // {
+    //     $this->prefixes = Prefixmaster::where('is_active',1)->get();
+    //     $this->banknames = Banknamemaster::where('is_active',1)->get();
+    //     $this->roles= Role::all();
+    //     $this->departments= Department::where('status',1)->get();
+    //     $this->colleges= College::where('status',1)->get();
+    // }
 
     public function sort_column($column)
     {
@@ -361,6 +365,14 @@ class AllFaculty extends Component
 
     public function render()
     {
+        if($this->mode !== 'all'){
+            $this->prefixes = Prefixmaster::select('id','prefix','prefix_shortform')->where('is_active',1)->get();
+            $this->banknames = Banknamemaster::select('id','bank_name','bank_shortform')->where('is_active',1)->get();
+            $this->roles= Role::select('id','role_name',)->get();
+            $this->departments= Department::select('id','dept_name',)->where('status',1)->get();
+            $this->colleges= College::select('id','college_name',)->where('status',1)->get();
+        }
+
         $faculties = Faculty::when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);

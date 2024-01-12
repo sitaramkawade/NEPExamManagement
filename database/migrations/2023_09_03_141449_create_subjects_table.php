@@ -24,9 +24,9 @@ return new class extends Migration
             $table->bigInteger('subjecttype_id')->unsigned();  //Theory Practical
             $table->foreign('subjecttype_id')->references('id')->on('subjecttypes');
             $table->string('subjectexam_type',50)->default(NULL); //6  IE  - InternalExternal  IEP- Internal External Practical  IP-Internal Practical
-             $table->float('subject_credit',4,1)->default(0); //7
+            $table->float('subject_credit',4,1)->default(0); //7
 
-             $table->integer('subject_maxmarks')->default(0);  //8
+            $table->integer('subject_maxmarks')->default(0);  //8
             $table->integer('subject_maxmarks_int')->default(0);//10
             $table->integer('subject_maxmarks_intpract')->default(0);
             $table->integer('subject_maxmarks_ext')->default(0);//9

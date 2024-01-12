@@ -9,6 +9,7 @@ use Database\Seeders\LoginSeeder;
 use Database\Seeders\MonthSeeder;
 use Database\Seeders\SemesterSeeder;
 use Database\Seeders\PreviousYearSeeder;
+use Database\Seeders\SubjectCreditSeeder;
 use Database\Seeders\StudenthelplineQuerySeeder;
 use Database\Seeders\StudenthelplineDocumentSeeder;
 
@@ -56,6 +57,7 @@ class DatabaseSeeder extends Seeder
             // PrefixmasterSeeder::class,
             // BanknamemasterSeeder::class,
             // SemesterSeeder::class,
+            SubjectcreditSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

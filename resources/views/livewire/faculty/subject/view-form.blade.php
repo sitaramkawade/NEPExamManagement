@@ -19,43 +19,48 @@
             </div>
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subjectcategory_id" :value="__('Subject Category')" />
-                <x-input-select id="subjectcategory_id" wire:model="subjectcategory_id" name="subjectcategory_id" class="text-center @error('subjectcategory_id') is-invalid @enderror w-full mt-1" :value="old('subjectcategory_id', $subjectcategory_id)" required autofocus autocomplete="subjectcategory_id">
-                    <x-select-option class="text-start" hidden> -- Select Subject Category -- </x-select-option>
-                    @foreach ($subject_categories as $subject_category)
-                        <x-select-option wire:key="{{ $subject_category->id }}" value="{{ $subject_category->id }}" class="text-start">{{ $subject_category->subjectcategory }}</x-select-option>
-                    @endforeach
-                </x-input-select>
+                @unless ($isDisabled)
+                    <x-text-input id="subjectcategory_id" type="text" wire:model="subjectcategory_id" name="subjectcategory_id" class="@error('subjectcategory_id') is-invalid @enderror w-full mt-1" :value="$subjectcategory_id->subjectcategory" required />
+                @else
+                    <x-text-input id="subjectcategory_id" type="text" :value="$subjectcategory_id->subjectcategory" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="subjectcategory_id" />
+                @endunless
                 <x-input-error :messages="$errors->get('subjectcategory_id')" class="mt-2" />
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3">
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_no" :value="__('Subject Number')" />
-                <x-text-input id="subject_no" type="number" wire:model="subject_no" name="subject_no" placeholder="Subject Number" class=" @error('subject_no') is-invalid @enderror w-full mt-1" :value="old('subject_no', $subject_no)" required autofocus autocomplete="subject_no" />
+                @if ($isDisabled)
+                    <x-text-input id="subject_no" type="text" :value="$subject_no" disabled class="bg-gray-100 cursor-not-allowed @error('subject_no') is-invalid @enderror w-full mt-1" />
+                @endif
                 <x-input-error :messages="$errors->get('subject_no')" class="mt-2" />
             </div>
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_code" :value="__('Subject Code')" />
-                <x-text-input id="subject_code" type="number" wire:model="subject_code" name="subject_code" placeholder="Subject Code" class=" @error('subject_code') is-invalid @enderror w-full mt-1" :value="old('subject_code', $subject_code)" required autofocus autocomplete="subject_code" />
+                @if ($isDisabled)
+                    <x-text-input id="subject_code" type="text" :value="$subject_code" disabled class="bg-gray-100 cursor-not-allowed @error('subject_code') is-invalid @enderror w-full mt-1" />
+                @endif
                 <x-input-error :messages="$errors->get('subject_code')" class="mt-2" />
             </div>
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_shortname" :value="__('Subject Shortname')" />
-                <x-text-input id="subject_shortname" type="text" wire:model="subject_shortname" name="subject_shortname" placeholder="Subject Shortname" class=" @error('subject_shortname') is-invalid @enderror w-full mt-1" :value="old('subject_shortname', $subject_shortname)" required autofocus autocomplete="subject_shortname" />
+                @if ($isDisabled)
+                    <x-text-input id="subject_shortname" type="text" :value="$subject_shortname" disabled class="bg-gray-100 cursor-not-allowed @error('subject_shortname') is-invalid @enderror w-full mt-1" />
+                @endif
                 <x-input-error :messages="$errors->get('subject_shortname')" class="mt-2" />
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3">
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subjecttype_id " :value="__('Subject Type')" />
-                <x-input-select id="subjecttype_id" wire:model="subjecttype_id" name="subjecttype_id" class="text-center @error('subjecttype_id') is-invalid @enderror w-full mt-1" :value="old('subjecttype_id', $subjecttype_id)" required autofocus autocomplete="subjecttype_id">
-                    <x-select-option class="text-start" hidden> -- Select Subject Type -- </x-select-option>
-                    @foreach ($subject_types as $subject_type)
-                        <x-select-option wire:key="{{ $subject_type->id }}" value="{{ $subject_type->id }}" class="text-start">{{ $subject_type->type_name }}</x-select-option>
-                    @endforeach
-                </x-input-select>
+                @unless ($isDisabled)
+                    <x-text-input id="subjecttype_id" type="text" wire:model="subjecttype_id" name="subjecttype_id" class="@error('subjecttype_id') is-invalid @enderror w-full mt-1" :value="$subjecttype_id->type_name" required />
+                @else
+                    <x-text-input id="subjecttype_id" type="text" :value="$subjecttype_id->type_name" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="subjecttype_id" />
+                @endunless
                 <x-input-error :messages="$errors->get('subjecttype_id')" class="mt-2" />
             </div>
+            {{-- remaining --}}
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subjectexam_type" :value="__('Subjectexam Type')" />
                 <x-input-select id="subjectexam_type" wire:model="subjectexam_type" name="subjectexam_type" class="text-center @error('subjectexam_type') is-invalid @enderror w-full mt-1" :value="old('subjectexam_type', $subjectexam_type)" required autofocus autocomplete="subjectexam_type">
@@ -65,77 +70,66 @@
                 </x-input-select>
                 <x-input-error :messages="$errors->get('subjectexam_type')" class="mt-2" />
             </div>
+            {{-- remaining --}}
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_credit" :value="__('Subject Credit')" />
-                <x-input-select id="subject_credit" wire:model="subject_credit" name="subject_credit" class="text-center @error('subject_credit') is-invalid @enderror w-full mt-1" :value="old('subject_credit', $subject_credit)" required autofocus autocomplete="subject_credit">
-                    <x-select-option class="text-start" hidden> -- Select Subject Credit -- </x-select-option>
-                    <x-select-option class="text-start" value="1">1</x-select-option>
-                    <x-select-option class="text-start" value="2">2</x-select-option>
-                    <x-select-option class="text-start" value="3">3</x-select-option>
-                    <x-select-option class="text-start" value="4">4</x-select-option>
-                </x-input-select>
+                @unless ($isDisabled)
+                    <x-text-input id="subject_credit" type="text" wire:model="subject_credit" name="subject_credit" class="@error('subject_credit') is-invalid @enderror w-full mt-1" :value="$subject_credit" required />
+                @else
+                    <x-text-input id="subject_credit" type="text" :value="$subject_credit" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="subject_credit" />
+                @endunless
                 <x-input-error :messages="$errors->get('subject_credit')" class="mt-2" />
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3">
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="classyear_id" :value="__('Select Class Year')" />
-                <x-input-select id="classyear_id" wire:model="classyear_id" name="classyear_id" class="text-center @error('classyear_id') is-invalid @enderror w-full mt-1" :value="old('classyear_id', $classyear_id)" required autofocus autocomplete="classyear_id">
-                    <x-select-option class="text-start" hidden> -- Select Class Year -- </x-select-option>
-                    @foreach ($class_years as $class_year)
-                        <x-select-option wire:key="{{ $class_year->id }}" value="{{ $class_year->id }}" class="text-start">{{ $class_year->classyear_name }}</x-select-option>
-                    @endforeach
-                </x-input-select>
+                @unless ($isDisabled)
+                    <x-text-input id="classyear_id" type="text" wire:model="classyear_id" name="classyear_id" class="@error('classyear_id') is-invalid @enderror w-full mt-1" :value="$classyear_id->classyear_name" required />
+                @else
+                    <x-text-input id="classyear_id" type="text" :value="$classyear_id->classyear_name" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="classyear_id" />
+                @endunless
                 <x-input-error :messages="$errors->get('classyear_id')" class="mt-2" />
             </div>
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="department_id" :value="__('Select Department')" />
-                <x-input-select id="department_id" wire:model="department_id" name="department_id" class="text-center @error('department_id') is-invalid @enderror w-full mt-1" :value="old('department_id', $department_id)" required autofocus autocomplete="department_id">
-                    <x-select-option class="text-start" hidden> -- Select Department -- </x-select-option>
-                    @foreach ($departments as $department)
-                        <x-select-option wire:key="{{ $department->id }}" value="{{ $department->id }}" class="text-start">{{ $department->dept_name }}</x-select-option>
-                    @endforeach
-                </x-input-select>
+                @unless ($isDisabled)
+                    <x-text-input id="department_id" type="text" wire:model="department_id" name="department_id" class="@error('department_id') is-invalid @enderror w-full mt-1" :value="$department_id->dept_name" required />
+                @else
+                    <x-text-input id="department_id" type="text" :value="$department_id->dept_name" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="department_id" />
+                @endunless
                 <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
             </div>
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="pattern_id" :value="__('Pattern')" />
-                <x-input-select id="pattern_id" wire:model.live="pattern_id" name="pattern_id" class="text-center w-full mt-1" :value="old('pattern_id',$pattern_id)" required  autocomplete="pattern_id">
-                    <x-select-option class="text-start" hidden> -- Select Pattern -- </x-select-option>
-                    @forelse ($patterns as $ptn)
-                        <x-select-option wire:key="{{ $ptn->id }}" value="{{ $ptn->id }}" class="text-start"> {{ $ptn->pattern_name }} </x-select-option>
-                    @empty
-                        <x-select-option class="text-start">Patterns Not Found</x-select-option>
-                    @endforelse
-                </x-input-select>
+                @unless ($isDisabled)
+                    <x-text-input id="pattern_id" type="text" wire:model="pattern_id" name="pattern_id" class="@error('pattern_id') is-invalid @enderror w-full mt-1" :value="$pattern_id->pattern_name" required />
+                @else
+                    <x-text-input id="pattern_id" type="text" :value="$pattern_id->pattern_name" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="pattern_id" />
+                @endunless
                 <x-input-error :messages="$errors->get('pattern_id')" class="mt-2" />
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3">
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="course_id" :value="__('Course')" />
-                <x-input-select id="course_id" wire:model.live="course_id" name="course_id" class="text-center w-full mt-1" :value="old('course_id',$course_id)" required  autocomplete="course_id">
-                    <x-select-option class="text-start" hidden> -- Select Course -- </x-select-option>
-                    @forelse ($courses as $course)
-                        <x-select-option wire:key="{{ $course->id }}" value="{{ $course->id }}" class="text-start"> {{ $course->course_name }} </x-select-option>
-                    @empty
-                        <x-select-option class="text-start" >Courses Not Found</x-select-option>
-                    @endforelse
-                </x-input-select>
+                @unless ($isDisabled)
+                    <x-text-input id="course_id" type="text" wire:model="course_id" name="course_id" class="@error('course_id') is-invalid @enderror w-full mt-1" :value="$course_id->course_name" required />
+                @else
+                    <x-text-input id="course_id" type="text" :value="$course_id->course_name" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="course_id" />
+                @endunless
                 <x-input-error :messages="$errors->get('course_id')" class="mt-2" />
             </div>
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                <x-input-label for="course_class_id" :value="__('Class')" _class/>
-                <x-input-select id="course_class_id" wire:model.live="course_class_id" name="course_class_id" class="text-center w-full mt-1" :value="old('course_class_id',$course_class_id)" required  autocomplete="course_class_id">
-                    <x-select-option class="text-start" hidden> -- Select Class -- </x-select-option>
-                    @forelse ($course_classes as $course_class)
-                        <x-select-option wire:key="{{ $course_class->id }}" value="{{ $course_class->id }}" class="text-start"> {{ $course_class->classyear->classyear_name}} {{ $course_class->course->course_name ?? '' }} </x-select-option>
-                    @empty
-                        <x-select-option class="text-start"> Classes Not Found</x-select-option>
-                    @endforelse
-                </x-input-select>
+                <x-input-label for="course_class_id" :value="__('Class')" _class />
+                @unless ($isDisabled)
+                    <x-text-input id="course_class_id" type="text" wire:model="course_class_id" name="course_class_id" class="@error('course_class_id') is-invalid @enderror w-full mt-1" :value="$classyear_id->classyear_name" required />
+                @else
+                    <x-text-input id="course_class_id" type="text" :value="$classyear_id->classyear_name" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="course_class_id" />
+                @endunless
                 <x-input-error :messages="$errors->get('course_class_id')" class="mt-2" />
             </div>
+            {{-- remaining --}}
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_optionalgroup" :value="__('Subject Optional Group')" />
                 <x-input-select id="subject_optionalgroup" wire:model="subject_optionalgroup" name="subject_optionalgroup" class="text-center @error('subject_optionalgroup') is-invalid @enderror w-full mt-1" :value="old('subject_optionalgroup', $subject_optionalgroup)" required autofocus autocomplete="subject_optionalgroup">
@@ -152,16 +146,17 @@
                 </x-input-select>
                 <x-input-error :messages="$errors->get('subject_optionalgroup')" class="mt-2" />
             </div>
+            {{-- remaining --}}
         </div>
+
         <div class="grid grid-cols-1 md:grid-cols-1">
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="college_id" :value="__('Select College')" />
-                <x-input-select id="college_id" wire:model="college_id" name="college_id" class="text-center @error('college_id') is-invalid @enderror w-full mt-1" :value="old('college_id', $college_id)" required autofocus autocomplete="college_id">
-                    <x-select-option class="text-start" value="" hidden> -- Select College -- </x-select-option>
-                    @foreach ($colleges as $college)
-                        <x-select-option wire:key="{{ $college->id }}" value="{{ $college->id }}" class="text-start">{{ $college->college_name }}</x-select-option>
-                    @endforeach
-                </x-input-select>
+                @unless ($isDisabled)
+                    <x-text-input id="college_id" type="text" wire:model="college_id" name="college_id" class="@error('college_id') is-invalid @enderror w-full mt-1" :value="$college_id->college_name" required />
+                @else
+                    <x-text-input id="college_id" type="text" :value="$college_id->college_name" disabled class="bg-gray-100 cursor-not-allowed w-full mt-1" required autofocus autocomplete="college_id" />
+                @endunless
                 <x-input-error :messages="$errors->get('college_id')" class="mt-2" />
             </div>
         </div>
@@ -172,46 +167,62 @@
         <div class="grid grid-cols-1 md:grid-cols-3">
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_maxmarks" :value="__('Subject Maximum Marks')" />
-                <x-text-input id="subject_maxmarks" type="number" wire:model="subject_maxmarks" name="subject_maxmarks" placeholder="Subject Maximum Marks" class=" @error('subject_maxmarks') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks', $subject_maxmarks)" required autofocus autocomplete="subject_maxmarks" />
+                @if ($isDisabled)
+                    <x-text-input id="subject_maxmarks" type="text" :value="$subject_maxmarks" disabled class="bg-gray-100 cursor-not-allowed @error('subject_maxmarks') is-invalid @enderror w-full mt-1" />
+                @endif
                 <x-input-error :messages="$errors->get('subject_maxmarks')" class="mt-2" />
             </div>
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_maxmarks_int" :value="__('Subject Internal Maximum Marks')" />
-                <x-text-input id="subject_maxmarks_int" type="number" wire:model="subject_maxmarks_int" name="subject_maxmarks_int" placeholder="Subject Maximum Marks" class=" @error('subject_maxmarks_int') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_int', $subject_maxmarks_int)" required autofocus autocomplete="subject_maxmarks_int" />
+                @if ($isDisabled)
+                    <x-text-input id="subject_maxmarks_int" type="text" :value="$subject_maxmarks_int" disabled class="bg-gray-100 cursor-not-allowed @error('subject_maxmarks_int') is-invalid @enderror w-full mt-1" />
+                @endif
                 <x-input-error :messages="$errors->get('subject_maxmarks_int')" class="mt-2" />
             </div>
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_maxmarks_intpract" :value="__('Subject Internal Practical Maximum Marks')" />
-                <x-text-input id="subject_maxmarks_intpract" type="number" wire:model="subject_maxmarks_intpract" name="subject_maxmarks_intpract" placeholder="Subject Internal Practical Maximum Marks" class=" @error('subject_maxmarks_intpract') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_intpract', $subject_maxmarks_intpract)" required autofocus autocomplete="subject_maxmarks_intpract" />
+                @if ($isDisabled)
+                    <x-text-input id="subject_maxmarks_intpract" type="text" :value="$subject_maxmarks_intpract" disabled class="bg-gray-100 cursor-not-allowed @error('subject_maxmarks_intpract') is-invalid @enderror w-full mt-1" />
+                @endif
                 <x-input-error :messages="$errors->get('subject_maxmarks_intpract')" class="mt-2" />
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3">
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_maxmarks_ext" :value="__('Subject External Maximum Marks')" />
-                <x-text-input id="subject_maxmarks_ext" type="number" wire:model="subject_maxmarks_ext" name="subject_maxmarks_ext" placeholder="Subject External Maximum Marks" class=" @error('subject_maxmarks_ext') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_ext', $subject_maxmarks_ext)" required autofocus autocomplete="subject_maxmarks_ext" />
+                @if ($isDisabled)
+                    <x-text-input id="subject_maxmarks_ext" type="text" :value="$subject_maxmarks_ext" disabled class="bg-gray-100 cursor-not-allowed @error('subject_maxmarks_ext') is-invalid @enderror w-full mt-1" />
+                @endif
                 <x-input-error :messages="$errors->get('subject_maxmarks_ext')" class="mt-2" />
             </div>
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_totalpassing" :value="__('Subject Total Passing Marks')" />
-                <x-text-input id="subject_totalpassing" type="number" wire:model="subject_totalpassing" name="subject_totalpassing" placeholder="Subject Total Passing Marks" class=" @error('subject_totalpassing') is-invalid @enderror w-full mt-1" :value="old('subject_totalpassing', $subject_totalpassing)" required autofocus autocomplete="subject_totalpassing" />
+                @if ($isDisabled)
+                    <x-text-input id="subject_totalpassing" type="text" :value="$subject_totalpassing" disabled class="bg-gray-100 cursor-not-allowed @error('subject_totalpassing') is-invalid @enderror w-full mt-1" />
+                @endif
                 <x-input-error :messages="$errors->get('subject_totalpassing')" class="mt-2" />
             </div>
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_intpassing" :value="__('Subject Internal Passing Marks')" />
-                <x-text-input id="subject_intpassing" type="number" wire:model="subject_intpassing" name="subject_intpassing" placeholder="Subject Internal Passing Marks" class=" @error('subject_intpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpassing', $subject_intpassing)" required autofocus autocomplete="subject_intpassing" />
+                @if ($isDisabled)
+                    <x-text-input id="subject_intpassing" type="text" :value="$subject_intpassing" disabled class="bg-gray-100 cursor-not-allowed @error('subject_intpassing') is-invalid @enderror w-full mt-1" />
+                @endif
                 <x-input-error :messages="$errors->get('subject_intpassing')" class="mt-2" />
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3">
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_intpractpassing" :value="__('Subject Internal Practical Passing Marks')" />
-                <x-text-input id="subject_intpractpassing" type="number" wire:model="subject_intpractpassing" name="subject_intpractpassing" placeholder="Subject Internal Practical Passing Marks" class=" @error('subject_intpractpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpractpassing', $subject_intpractpassing)" required autofocus autocomplete="subject_intpractpassing" />
+                @if ($isDisabled)
+                    <x-text-input id="subject_intpractpassing" type="text" :value="$subject_intpractpassing" disabled class="bg-gray-100 cursor-not-allowed @error('subject_intpractpassing') is-invalid @enderror w-full mt-1" />
+                @endif
                 <x-input-error :messages="$errors->get('subject_intpractpassing')" class="mt-2" />
             </div>
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_extpassing" :value="__('Subject External Passing Marks')" />
-                <x-text-input id="subject_extpassing" type="number" wire:model="subject_extpassing" name="subject_extpassing" placeholder="Subject Internal Practical Passing Marks" class=" @error('subject_extpassing') is-invalid @enderror w-full mt-1" :value="old('subject_extpassing', $subject_extpassing)" required autofocus autocomplete="subject_extpassing" />
+                @if ($isDisabled)
+                    <x-text-input id="subject_extpassing" type="text" :value="$subject_extpassing" disabled class="bg-gray-100 cursor-not-allowed @error('subject_extpassing') is-invalid @enderror w-full mt-1" />
+                @endif
                 <x-input-error :messages="$errors->get('subject_extpassing')" class="mt-2" />
             </div>
         </div>
