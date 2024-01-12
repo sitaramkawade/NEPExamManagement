@@ -41,11 +41,17 @@
                             @forelse ($sansthas as $key => $sanstha)
                             <x-table.tr wire:key="{{ $sanstha->id }}">
                                 <x-table.td> {{ $key+1 }}</x-table.td>
-                                <x-table.td> {{ $sanstha->sanstha_name }} </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll> {{ $sanstha->sanstha_name }} </x-table.text-scroll>
+                                </x-table.td>
                                 <x-table.td>{{ $sanstha->sanstha_chairman_name }} </x-table.td>
-                                <x-table.td> {{ $sanstha->sanstha_address }} </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll>{{ $sanstha->sanstha_address }} </x-table.text-scroll>
+                                </x-table.td>
                                 <x-table.td> {{ $sanstha->sanstha_contact_no }} </x-table.td>
-                                <x-table.td> {{ $sanstha->sanstha_website_url }} </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll> {{ $sanstha->sanstha_website_url }} </x-table.text-scroll>
+                                </x-table.td>
                                 <x-table.td>
                                     @if($sanstha->status==1)
                                     <x-status type="success">Active</x-status>
