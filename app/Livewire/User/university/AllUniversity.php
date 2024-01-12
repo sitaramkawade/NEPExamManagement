@@ -9,7 +9,6 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Exports\user\ExportUniversity;
 
-
 class AllUniversity extends Component
 {
     use WithFileUploads;

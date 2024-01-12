@@ -9,11 +9,10 @@ use Livewire\Component;
 use App\Models\University;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use App\Exports\user\ExportCollege;
-
+use App\Exports\User\ExportCollege;
 
 class AllCollege extends Component
-{
+{   
     use WithFileUploads;
     use WithPagination;
     public $perPage=10;

@@ -2,9 +2,9 @@
 
 namespace App\Livewire\User\Sanstha;
 
+use Livewire\Component;
 use Excel;
 use App\Models\Sanstha;
-use Livewire\Component;
 use Livewire\WithPagination;
 use App\Exports\user\ExportSanstha;
 
