@@ -13,27 +13,36 @@ return new class extends Migration
     {
         Schema::create('faculties', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('prefix')->nullable()->default(null); //prefix
+            $table->string('faculty_name');
             $table->string('email')->unique();
             $table->string('mobile_no',20)->nullable()->default(null);
+            $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
+            $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
+            $table->bigInteger('role_id')->before('created_at')->nullable()->unsigned()->default(null);
+
+            $table->date('date_of_birth')->nullable()->default(null); // date of birth
+            $table->char('gender',1)->nullable()->default(null); // 'M-Male' 'F-Female' 'T-Transgender'
+            $table->string('category')->nullable()->default(null); // category
+            $table->text('pan',10)->unique()->nullable()->default(null); // pan
+            $table->text('current_address')->nullable()->default(null); // current-address
+            $table->text('permanant_address')->nullable()->default(null); // permanant-address
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->text('profile_photo_path')->nullable();
             $table->string('unipune_id',100)->nullable()->default(null);
             $table->string('qualification',100)->nullable()->default(null);
-            $table->bigInteger('role_id')->before('created_at')->nullable()->unsigned()->default(null);
-            $table->foreign('role_id')->references('id')->on('roles');
 
-            $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
-            $table->foreign('department_id')->references('id')->on('departments');
 
-            $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges');
             $table->tinyInteger('active')->default(1);//1 =>active ,0=>inactive
             $table->timestamp('last_login')->nullable();
-            $table->tinyInteger('faculty_verified')->default('0');  //0 means not verified
-         
+            // $table->tinyInteger('faculty_verified')->default('0');  //0 means not verified
+
+            $table->foreign('department_id')->references('id')->on('departments')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('college_id')->references('id')->on('colleges')->onUpdate('cascade')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

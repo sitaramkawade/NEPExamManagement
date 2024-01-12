@@ -46,9 +46,7 @@ Route::group(['prefix'=>'student' ,'as'=>'student.'],function (){
         // Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-        Route::get('/dashboard', function () {
-            return view('student.student-dashboard');
-        })->middleware('is_studentverified')->name('dashboard');
+
     });
 
 });

@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('cap_name')->nullable();
             $table->string('place')->nullable();
             $table->bigInteger('exam_id')->unsigned()->nullable();
-            $table->foreign('exam_id')->references('id')->on('exams');        
+            $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');        
             $table->tinyInteger('status');
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges');
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
           
             $table->timestamps();
         });

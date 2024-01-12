@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('classyear_name');
             $table->string('class_degree_name',100)->nullable();
             $table->tinyInteger('status')->default(1);//1 =>active ,0=>not active
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

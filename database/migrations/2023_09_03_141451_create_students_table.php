@@ -29,12 +29,15 @@ return new class extends Migration
             $table->string('password');
             $table->timestamp('last_login')->nullable();
             $table->bigInteger('patternclass_id')->nullable()->unsigned()->default(null);
-            $table->foreign('patternclass_id')->references('id')->on('pattern_classes');//Entry on which class
+            $table->foreign('patternclass_id')->references('id')->on('pattern_classes')->onDelete('cascade');//Entry on which class
             $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
-            $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges');
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
            
+            $table->tinyInteger('total_steps')->nullable()->default(6);   // Total Steps Of Form 
+            $table->tinyInteger('current_step')->nullable()->default(1);   // Current Step Of Form
+            $table->tinyInteger('is_profile_complete')->nullable()->default(0);   // profile  0-default , 1-completed
             $table->tinyInteger('status')->default(0);   //Approved Student only 0 not Approved and 1 is used to approve 
             $table->rememberToken();
             $table->timestamps();

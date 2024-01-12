@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('districts', function (Blueprint $table) {
-            $table->id();
-            $table->integer('district_code');
-            $table->string('district_name');
+            $table->id()->index();
+            $table->integer('district_code')->index();
+            $table->string('district_name')->index();
             $table->bigInteger('state_id')->unsigned()->nullable()->default(NULL);
-            $table->foreign('state_id')->references('id')->on('states');
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
             $table->timestamps();
         });
     }

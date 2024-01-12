@@ -1,45 +1,47 @@
-@extends('layouts.guest')
-@section('guest')
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-    <div>
-        <a href="/">
-            <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-        </a>
-    </div>
-
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-       
-        <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+@extends("layouts.guest")
+@section("guest")
+  <div class="px-8 py-24 md:p-36">
+    <div class="mx-auto my-4 h-full flex-1 overflow-hidden rounded-lg bg-white shadow-xl dark:bg-gray-800">
+      <div class="flex flex-col overflow-y-auto md:flex-row">
+        <div class="h-32 md:h-auto md:w-1/2">
+          <img aria-hidden="true" class="h-full w-full object-cover" src="{{ asset("img/login-office.jpeg") }}" alt="Office" />
         </div>
-        
-        @if (session('status') == 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+        <div class="flex items-center justify-center px-6 py-3 sm:p-12 md:w-1/2">
+          <div class="w-full">
+            <h1 class="mb-3 text-xl font-semibold text-gray-700 dark:text-gray-200">
+              Student Verify Email
+            </h1>
+            <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+              {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
             </div>
-        @endif
-        
-        <div class="mt-4 flex items-center justify-between">
-            <form method="POST" action="{{ route('student.verification.send') }}">
-                @csrf
-        
-                <div>
-                    <x-primary-button>
-                        {{ __('Resend Verification Email') }}
-                    </x-primary-button>
-                </div>
-            </form>
-        
-            <form method="POST" action="{{ route('student.logout') }}">
-                @csrf
-        
-                <button type="submit" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                    {{ __('Log Out') }}
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
-    
-@endsection
 
+            @if (session("status") == "verification-link-sent")
+              <div class="mb-4 text-sm font-medium text-green-600 dark:text-green-400">
+                {{ __("A new verification link has been sent to the email address you provided during registration.") }}
+              </div>
+            @endif
+
+            <div class="mt-4 flex items-center justify-between">
+              <form method="POST" action="{{ route("student.verification.send") }}">
+                @csrf
+
+                <div>
+                  <x-primary-button>
+                    {{ __("Resend Verification Email") }}
+                  </x-primary-button>
+                </div>
+              </form>
+
+              <form method="POST" action="{{ route("student.logout") }}">
+                @csrf
+                <x-primary-button>
+                  {{ __("Log Out") }}
+                </x-primary-button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
