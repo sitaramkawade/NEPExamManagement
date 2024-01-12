@@ -9,4 +9,11 @@ class Grade extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    protected $fillable=[
+       ' max_percentage',
+        'min_percentage',
+        'grade_point',
+        'description',
+        'grade_name',
+    ];
 }

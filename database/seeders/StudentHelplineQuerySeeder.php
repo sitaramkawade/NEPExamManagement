@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Studenthelplinequery;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class StudenthelplineQuerySeeder extends Seeder
+class StudentHelplineQuerySeeder extends Seeder
 {
     /**
      * Run the database seeds.

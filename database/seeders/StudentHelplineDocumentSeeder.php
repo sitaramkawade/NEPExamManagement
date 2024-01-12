@@ -7,7 +7,7 @@ use App\Models\Studenthelplinequery;
 use App\Models\Studenthelplinedocument;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class StudenthelplineDocumentSeeder extends Seeder
+class StudentHelplineDocumentSeeder extends Seeder
 {
     /**
      * Run the database seeds.

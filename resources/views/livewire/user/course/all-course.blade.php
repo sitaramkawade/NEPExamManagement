@@ -46,7 +46,7 @@
                     <x-table.td>{{ $course->id }} </x-table.td>
                     <x-table.td>{{ $course->course_name }} </x-table.td>
                     <x-table.td>{{ $course->course_code }} </x-table.td>
-                    <x-table.td>{{ $course->fullname }} </x-table.td>
+                    <x-table.td>  <x-table.text-scroll> {{ $course->fullname }}  </x-table.text-scroll></x-table.td>
                     <x-table.td>{{ $course->shortname }} </x-table.td>
                     <x-table.td>{{ $course->special_subject }} </x-table.td>
                     <x-table.td>{{ $course->course_type }} </x-table.td>
