@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
             EducationalcourseSeeder::class,
             PrefixmasterSeeder::class,
             BanknamemasterSeeder::class,
-            StudentProfileSeeder::class,
+            // StudentProfileSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

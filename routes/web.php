@@ -22,19 +22,20 @@ use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Helpline\Helpline;
 use App\Livewire\User\Helpline\AllHelpline;
+use App\Livewire\Faculty\Faculty\AllFaculty;
+use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\User\ClassYear\AllClassYear;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\University\AllUniversity;
 use App\Livewire\User\CourseClass\AllCourseClass;
+use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
-use App\Livewire\Faculty\Faculty\AllFaculty;
-use App\Livewire\Faculty\Subject\AllSubject;
-use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
+use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 
 
 
@@ -103,13 +104,13 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('dashboard', UserDashboard::class)->name('dashboard');
 
   //All College
-  Route::get('/all/college', AllCollege::class)->name('colleges');
+  // Route::get('/all/college', AllCollege::class)->name('colleges');
 
   //All Sanstha  
-  Route::get('/all/sanstha', AllSanstha::class)->name('sanstha');
+  // Route::get('/all/sanstha', AllSanstha::class)->name('sanstha');
 
   //All University    
-  Route::get('/all/university', AllUniversity::class)->name('university');
+  // Route::get('/all/university', AllUniversity::class)->name('university');
 
   //All Pattern   
   Route::get('/all/pattern', AllPattern::class)->name('pattern');
@@ -140,7 +141,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Class Years
   Route::get('/all/course/class',AllCourseClass::class)->name('all_course_class');
-
+  
+  //All Class Years
+  Route::get('/all/pattern/class',AllPatternClass::class)->name('all_pattern_class');
 });
 
 
