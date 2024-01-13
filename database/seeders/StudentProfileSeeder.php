@@ -62,21 +62,21 @@ class StudentProfileSeeder extends Seeder
             'village_name' => 'Sangamner Kh',
             'locality_name' => 'Sangamner Kh',
             'address' =>'Near Kuber Empire , Khandgoan Road',
-            'is_same' => 0,
+            'is_same' => 1,
             'addresstype_id' => Addresstype::inRandomOrder()->first()->id,
             'is_completed' => 1,
         ]);
 
-        $student->studentaddress()->create( [
-            'taluka_id' => Taluka::inRandomOrder()->latest()->first()->id,
-            'pincode' => 422605,
-            'village_name' => 'Akole',
-            'locality_name' => 'Akole',
-            'address' =>'Near Akole Bus Stand',
-            'is_same' => 0,
-            'addresstype_id' => Addresstype::inRandomOrder()->latest()->first()->id,
-            'is_completed' => 1,
-        ]);
+        // $student->studentaddress()->create( [
+        //     'taluka_id' => Taluka::inRandomOrder()->latest()->first()->id,
+        //     'pincode' => 422605,
+        //     'village_name' => 'Akole',
+        //     'locality_name' => 'Akole',
+        //     'address' =>'Near Akole Bus Stand',
+        //     'is_same' => 0,
+        //     'addresstype_id' => Addresstype::inRandomOrder()->latest()->first()->id,
+        //     'is_completed' => 1,
+        // ]);
 
         $student->educationalcourses()->create([
            'boarduniversity_id' =>University::inRandomOrder()->first()->id,
