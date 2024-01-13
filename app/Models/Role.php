@@ -21,7 +21,7 @@ class Role extends Model
 
     public function roletype()
     {
-     return $this->belongsTo(Roletype::class,'roletype_id','id');
+     return $this->belongsTo(Roletype::class,'roletype_id','id')->withTrashed();
     }
 
     public function college()

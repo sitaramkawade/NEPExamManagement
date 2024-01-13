@@ -428,15 +428,17 @@ class AllSubject extends Component
 
     public function render()
     {
-        $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
-        $this->courses=Course::select('id','course_name')->get();
-        $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
-        $this->semesters=Semester::select('id','semester',)->where('status',1)->get();
-        $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('active',1)->get();
-        $this->subject_types = Subjecttype::select('id','type_name')->where('active',1)->get();
-        $this->class_years= Classyear::select('id','classyear_name')->where('status',1)->get();
-        $this->departments= Department::select('id','dept_name')->where('status',1)->get();
-        $this->colleges= College::select('id','college_name')->where('status',1)->get();
+        if($this->mode !== 'all' ){
+            $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
+            $this->courses=Course::select('id','course_name')->get();
+            $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
+            $this->semesters=Semester::select('id','semester',)->where('status',1)->get();
+            $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('active',1)->get();
+            $this->subject_types = Subjecttype::select('id','type_name')->where('active',1)->get();
+            $this->class_years= Classyear::select('id','classyear_name')->where('status',1)->get();
+            $this->departments= Department::select('id','dept_name')->where('status',1)->get();
+            $this->colleges= College::select('id','college_name')->where('status',1)->get();
+        }
 
         $subjects = Subject::when($this->search, function($query, $search){
             $query->search($search);
