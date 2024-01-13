@@ -1,20 +1,19 @@
 <?php
 
-namespace Tests\Feature\Livewire\User\PatternClass;
+namespace Tests\Feature\Livewire\User\College;
 
-use App\Livewire\User\PatternClass\AllPatternClass;
+use App\Livewire\User\College\AllCollege;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Tests\TestCase;
 
-class AllPatternClassTest extends TestCase
+class AllCollegeTest extends TestCase
 {
     /** @test */
     public function renders_successfully()
     {
-
-        Livewire::test(AllPatternClass::class)
+        Livewire::test(AllCollege::class)
             ->assertStatus(200);
     }
 }

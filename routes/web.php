@@ -14,6 +14,7 @@ use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Course\AllCourse;
+
 use App\Livewire\User\College\AllCollege;
 use App\Livewire\User\Pattern\AllPattern;
 use App\Livewire\User\Sanstha\AllSanstha;
@@ -70,6 +71,7 @@ Route::middleware(['guest'])->group(function () {
 
   // RND Pages
   Route::get('/table',DataTable::class);
+  
   Route::get('/select',SelectTo::class)->name('select');
 
 
@@ -129,7 +131,6 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Users 
   Route::get('/all/users', AllUser::class)->name('all_user');
 
-
   //All Student Helpline
   Route::get('/all/hel pline',AllHelpline::class)->name('all_helpline');
 
@@ -148,11 +149,12 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Class Years
   Route::get('/all/class/year',AllClassYear::class)->name('all_class_year');
 
-  //All Corse Class
+  //All Course Class
   Route::get('/all/course/class',AllCourseClass::class)->name('all_course_class');
 
   //All Pattern Class
   Route::get('/all/pattern/class',AllPatternClass::class)->name('all_pattern_class');
+
 });
 
 
@@ -160,23 +162,24 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 // Auth Faculty Routes
 Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified:faculty.verification.notice'])->group(function () {
 
-    // Faculty Dashboard
-    Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
+  // Faculty Dashboard
+  Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
 
-    // All Faculty
-    Route::get('/all-faculties', AllFaculty::class)->name('all-faculties');
+  // All Faculty
+  Route::get('/all-faculties', AllFaculty::class)->name('all-faculties');
 
-    // All Faculty Role
-    Route::get('/all-faculty-role', AllFacultyRole::class)->name('all-roles');
+  // All Faculty Role
+  Route::get('/all-faculty-role', AllFacultyRole::class)->name('all-roles');
 
-    // All Faculty Role
-    Route::get('/all-faculty-roletype', AllFacultyRoletype::class)->name('all-roletypes');
+  // All Faculty Role
+  Route::get('/all-faculty-roletype', AllFacultyRoletype::class)->name('all-roletypes');
 
-    // Update Faculty Profile
-    Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
+  // Update Faculty Profile
+  Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
 
-    // All Subject
-    Route::get('/all-subject', AllSubject::class)->name('all-subjects');
+  // All Subject
+  Route::get('/all-subject', AllSubject::class)->name('all-subjects');
+
 });
 
 require __DIR__.'/student.php';

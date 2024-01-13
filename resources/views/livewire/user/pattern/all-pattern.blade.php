@@ -59,13 +59,13 @@
 
                                 <x-table.td>
                                     <x-table.edit wire:click="edit({{$pattern->id}})" />
+                                        @if($pattern->status==1)
+                                        <x-table.inactive wire:click="Status({{ $pattern->id }})" />
+                                        @else
+                                        <x-table.active wire:click="Status({{ $pattern->id }})" />
+                                        @endif
                                     <x-table.delete wire:click="deletePattern({{$pattern->id}})" />
 
-                                    @if($pattern->status==1)
-                                    <x-table.inactive wire:click="Status({{ $pattern->id }})" />
-                                    @else
-                                    <x-table.active wire:click="Status({{ $pattern->id }})" />
-                                    @endif
 
                                 </x-table.td>
                             </x-table.tr>

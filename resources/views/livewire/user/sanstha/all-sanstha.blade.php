@@ -63,12 +63,12 @@
 
                                 <x-table.td>
                                     <x-table.edit wire:click="edit({{ $sanstha->id }})" />
+                                        @if($sanstha->status==1)
+                                        <x-table.inactive wire:click="Status({{ $sanstha->id }})" />
+                                        @else
+                                        <x-table.active wire:click="Status({{ $sanstha->id }})" />
+                                        @endif
                                     <x-table.delete wire:click="deleteSanstha({{ $sanstha->id }})" />
-                                    @if($sanstha->status==1)
-                                    <x-table.inactive wire:click="Status({{ $sanstha->id }})" />
-                                    @else
-                                    <x-table.active wire:click="Status({{ $sanstha->id }})" />
-                                    @endif
                                 </x-table.td>
                             </x-table.tr>
                             @empty

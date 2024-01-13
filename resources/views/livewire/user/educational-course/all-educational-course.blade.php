@@ -58,12 +58,12 @@
                                     <x-table.restore wire:click="restore({{ $educationalCourse->id }})" />
                                     @else
                                     <x-table.edit wire:click="edit({{ $educationalCourse->id }})" />
+                                        @if($educationalCourse->is_active==1)
+                                        <x-table.inactive wire:click="Status({{ $educationalCourse->id }})" />
+                                        @else
+                                        <x-table.active wire:click="Status({{ $educationalCourse->id }})" />
+                                        @endif
                                     <x-table.archive wire:click="delete({{ $educationalCourse->id }})" />
-                                    @if($educationalCourse->is_active==1)
-                                    <x-table.inactive wire:click="Status({{ $educationalCourse->id }})" />
-                                    @else
-                                    <x-table.active wire:click="Status({{ $educationalCourse->id }})" />
-                                    @endif
                                     @endif
                                 </x-table.td>
                             </x-table.tr>

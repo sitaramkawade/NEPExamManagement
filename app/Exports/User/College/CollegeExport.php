@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-class ExportCollege implements  FromCollection, WithHeadings, WithMapping
+class CollegeExport implements  FromCollection, WithHeadings, WithMapping
 {
     protected $search;
     protected $sortColumn;
