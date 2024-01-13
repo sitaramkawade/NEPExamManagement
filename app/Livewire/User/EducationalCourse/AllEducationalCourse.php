@@ -7,7 +7,8 @@ use Livewire\Component;
 use App\Models\Programme;
 use Livewire\WithPagination;
 use App\Models\Educationalcourse;
-use App\Exports\User\ExportEducationalCourse;
+use App\Exports\User\EducationalCourse\ExportEducationalCourse;
+
 
 class AllEducationalCourse extends Component
 {

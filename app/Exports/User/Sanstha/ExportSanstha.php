@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Exports\User;
+namespace App\Exports\User\Sanstha;
 
-use App\Models\University;
+use App\Models\Sanstha;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ExportUniversity implements FromCollection, WithHeadings, WithMapping
-{
+class ExportSanstha implements FromCollection, WithHeadings, WithMapping
+{   
     protected $search;
     protected $sortColumn;
     protected $sortColumnBy;
@@ -24,28 +24,27 @@ class ExportUniversity implements FromCollection, WithHeadings, WithMapping
 
     public function collection()
     {
-        return University::
-          search($this->search)
+        return Sanstha::
+         search($this->search)
         ->orderBy($this->sortColumn, $this->sortColumnBy)
-        ->select('id', 'university_name','university_email','university_address','university_website_url', 'status')
+        ->select('id', 'sanstha_name','sanstha_chairman_name','sanstha_address','sanstha_website_url', 'status')
         ->get();
     }
 
     public function headings(): array
     {
-        return ['ID', 'University Name','University Email','University Address','University Website URL','Status'];
+        return ['ID', 'Sanstha Name','Sanstha Chairman Name','Sanstha Address','Sanstha website url','status'];
     }
 
     public function map($row): array
     {
         return [
             $row->id,
-            $row->university_name,
-            $row->university_email,
-            $row->university_address,
-            $row->university_address,
+            $row->sanstha_name,
+            $row->sanstha_chairman_name,
+            $row->sanstha_address,
+            $row->sanstha_website_url,
             $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }
-
 }

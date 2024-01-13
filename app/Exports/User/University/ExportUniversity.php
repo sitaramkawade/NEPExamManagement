@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Exports\User;
+namespace App\Exports\User\University;
 
-
-use App\Models\College;
+use App\Models\University;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-class ExportCollege implements  FromCollection, WithHeadings, WithMapping
+
+class ExportUniversity implements FromCollection, WithHeadings, WithMapping
 {
     protected $search;
     protected $sortColumn;
     protected $sortColumnBy;
-   
+
     public function __construct($search, $sortColumn, $sortColumnBy)
     {
         $this->search = $search;
@@ -22,30 +22,28 @@ class ExportCollege implements  FromCollection, WithHeadings, WithMapping
         $this->sortColumnBy = $sortColumnBy;
     }
 
-
     public function collection()
     {
-        return College::
-         search($this->search)->
-        orderBy($this->sortColumn, $this->sortColumnBy)
-        ->select('id', 'college_name','college_email','college_address', 'status','sanstha_id','university_id')
+        return University::
+          search($this->search)
+        ->orderBy($this->sortColumn, $this->sortColumnBy)
+        ->select('id', 'university_name','university_email','university_address','university_website_url', 'status')
         ->get();
     }
 
     public function headings(): array
     {
-        return ['ID', 'College Name','College Email','College Address','Sanstha','University','Status'];
+        return ['ID', 'University Name','University Email','University Address','University Website URL','Status'];
     }
 
     public function map($row): array
     {
         return [
             $row->id,
-            $row->college_name,
-            $row->college_email,
-            $row->college_address,
-            $row->sanstha->sanstha_name,
-            $row->university->university_name,
+            $row->university_name,
+            $row->university_email,
+            $row->university_address,
+            $row->university_address,
             $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }

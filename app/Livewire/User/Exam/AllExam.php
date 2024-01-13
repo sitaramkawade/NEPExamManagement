@@ -5,7 +5,8 @@ use Excel;
 use App\Models\Exam;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Exports\User\ExportExam;
+use App\Exports\User\Exam\ExportExam;
+
 
 class AllExam extends Component
 {

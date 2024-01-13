@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\User;
+namespace App\Exports\User\Exam;
 
 use App\Models\Exam;
 use Maatwebsite\Excel\Concerns\WithMapping;

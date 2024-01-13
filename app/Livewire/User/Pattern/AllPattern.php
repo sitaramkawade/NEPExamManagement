@@ -7,7 +7,8 @@ use App\Models\College;
 use App\Models\Pattern;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Exports\User\ExportPattern;
+use App\Exports\User\Pattern\ExportPattern;
+
 
 class AllPattern extends Component
 {
