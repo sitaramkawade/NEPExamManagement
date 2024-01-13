@@ -19,10 +19,8 @@
         <x-card-header heading="View Roletype">
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
-        <x-form>
             @include('livewire.faculty.faculty-roletype.view-form')
-        </x-form>
-    @elseif($mode = 'all')
+    @elseif($mode == 'all')
         <div>
             <x-card-header heading="All Roletypes">
                 <x-add-btn wire:click="setmode('add')" />
@@ -59,12 +57,12 @@
                                         @else
                                             <x-table.view wire:click="view({{ $roletype->id }})" />
                                             <x-table.edit wire:click="edit({{ $roletype->id }})" />
+                                                @if ($roletype->status == 0)
+                                                    <x-table.active wire:click="status({{ $roletype->id }})" />
+                                                @elseif ($roletype->status == 1)
+                                                    <x-table.inactive wire:click="status({{ $roletype->id }})" />
+                                                @endif
                                             <x-table.archive wire:click="softdelete({{ $roletype->id }})" />
-                                            @if ($roletype->status == 0)
-                                                <x-table.active wire:click="status({{ $roletype->id }})" />
-                                            @elseif ($roletype->status == 1)
-                                                <x-table.inactive wire:click="status({{ $roletype->id }})" />
-                                            @endif
                                         @endif
                                     </x-table.td>
                                 </x-table.tr>

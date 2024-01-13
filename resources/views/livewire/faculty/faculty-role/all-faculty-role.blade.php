@@ -8,6 +8,11 @@
             @include('livewire.faculty.faculty-role.role-form')
         </x-form>
     </div>
+    @elseif($mode == 'view')
+        <x-card-header heading="View Role">
+            <x-back-btn wire:click="setmode('all')" />
+        </x-card-header>
+            @include('livewire.faculty.faculty-role.view-form')
     @elseif($mode=='edit')
     <x-card-header heading="Edit Role">
             <x-back-btn wire:click="setmode('all')" />
@@ -15,7 +20,7 @@
     <x-form wire:submit="update({{ $role_id }})">
         @include('livewire.faculty.faculty-role.role-form')
     </x-form>
-    @elseif($mode='all')
+    @elseif($mode=='all')
         <div>
             <x-card-header heading="All Roles">
                     <x-add-btn wire:click="setmode('add')" />
@@ -48,10 +53,11 @@
                                 <x-table.restore wire:click="restore({{ $role->id }})" />
                                 <x-table.delete wire:click="deleteconfirmation({{ $role->id }})" />
                             @else
+                                <x-table.view wire:click="view({{ $role->id }})" />
                                 <x-table.edit wire:click="edit({{ $role->id }})" />
                                 <x-table.archive wire:click="softdelete({{ $role->id }})" />
                             @endif
-                          </x-table.td>
+                        </x-table.td>
                         </x-table.tr>
                       @endforeach
                     </x-table.tbody>

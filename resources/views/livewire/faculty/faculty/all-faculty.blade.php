@@ -19,9 +19,7 @@
         <x-card-header heading="View Faculty">
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
-        <x-form>
             @include('livewire.faculty.faculty.view-form')
-        </x-form>
     @elseif($mode = 'all')
         <div>
             <x-card-header heading="All Faculties">
@@ -63,12 +61,12 @@
                                         @else
                                             <x-table.view wire:click="view({{ $faculty->id }})" />
                                             <x-table.edit wire:click="edit({{ $faculty->id }})" />
+                                                @if ($faculty->active == 0)
+                                                    <x-table.active wire:click="status({{ $faculty->id }})" />
+                                                @elseif ($faculty->active == 1)
+                                                    <x-table.inactive wire:click="status({{ $faculty->id }})" />
+                                                @endif
                                             <x-table.archive wire:click="softdelete({{ $faculty->id }})" />
-                                            @if ($faculty->active == 0)
-                                                <x-table.active wire:click="status({{ $faculty->id }})" />
-                                            @elseif ($faculty->active == 1)
-                                                <x-table.inactive wire:click="status({{ $faculty->id }})" />
-                                            @endif
                                         @endif
                                     </x-table.td>
                                 </x-table.tr>

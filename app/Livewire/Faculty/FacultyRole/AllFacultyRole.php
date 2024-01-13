@@ -30,6 +30,7 @@ class AllFacultyRole extends Component
     public $sortColumn="role_name";
     public $sortColumnBy="ASC";
     public $ext;
+    public $isDisabled = true;
 
     protected function rules()
     {
@@ -191,14 +192,28 @@ class AllFacultyRole extends Component
 
     }
 
-    public function mount()
+    public function view(Role $role)
     {
-        $this->roletypes = Roletype::all();
-        $this->colleges= College::where('status',1)->get();
+        if ($role)
+        {
+            $this->role_name= $role->role_name;
+            $roltypeId = $role->roletype()->first();
+            $this->roletype_id = $roltypeId;
+            $collegeId = $role->college()->first();
+            $this->college_id= $collegeId;
+            $this->setmode('view');
+        }else{
+            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        }
     }
 
     public function render()
     {
+        if($this->mode !== 'all'){
+            $this->roletypes = Roletype::select('id', 'roletype_name',)->where('status', 1)->get();
+            $this->colleges= College::select('id', 'college_name')->where('status',1)->get();
+        }
+
         $roles = Role::when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
