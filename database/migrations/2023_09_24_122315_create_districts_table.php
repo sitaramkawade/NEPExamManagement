@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('district_code')->index();
             $table->string('district_name')->index();
             $table->bigInteger('state_id')->unsigned()->nullable()->default(NULL);
-            $table->foreign('state_id')->references('id')->on('states');
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
             $table->timestamps();
         });
     }

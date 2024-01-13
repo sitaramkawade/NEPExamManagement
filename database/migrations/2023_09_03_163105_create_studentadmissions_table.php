@@ -15,19 +15,19 @@ return new class extends Migration
             $table->id();
             
             $table->bigInteger('student_id')->unsigned()->nullable();
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
           
             $table->bigInteger('patternclass_id')->unsigned()->nullable();
-            $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
+            $table->foreign('patternclass_id')->references('id')->on('pattern_classes')->onDelete('cascade');
            
             $table->bigInteger('academicyear_id')->unsigned();
-            $table->foreign('academicyear_id')->references('id')->on('academicyears');
+            $table->foreign('academicyear_id')->references('id')->on('academicyears')->onDelete('cascade');
             
             $table->tinyInteger('status')->nullable();
             $table->unique(['student_id','patternclass_id','academicyear_id'],'student_pattern_academicyear');
            
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges');
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
            
             $table->timestamps();
         });

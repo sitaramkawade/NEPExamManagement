@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('sno')->default('0');
             $table->string('caste_name'); 
             $table->bigInteger('caste_category_id')->unsigned()->nullable()->default(null);
-            $table->foreign('caste_category_id')->references('id')->on('caste_categories');
+            $table->foreign('caste_category_id')->references('id')->on('caste_categories')->onDelete('cascade');
             $table->boolean('is_active')->default(1); 
             $table->timestamps();
         });

@@ -5,7 +5,8 @@ use Excel;
 use App\Models\Exam;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Exports\User\ExportExam;
+use App\Exports\User\Exam\ExportExam;
+
 
 class AllExam extends Component
 {
@@ -15,9 +16,8 @@ class AllExam extends Component
     public $sortColumn="exam_name";
     public $sortColumnBy="ASC";
     public $ext;
-    public $mode;
+    public $mode='all';
     public $exam_id;
-
     public $current_step=1;
     public $steps=1;
     public $exam_name;
@@ -61,18 +61,21 @@ class AllExam extends Component
     }
 
     public function add(Exam  $exam){
+        
+        $validatedData = $this->validate();
+       
+        if ($validatedData) {
 
         $exam->exam_name= $this->exam_name;         
-        $exam->status= $this->status==1?0:1;
+        $exam->status= $this->status;
         $exam->exam_sessions= $this->exam_sessions==1?0:1;
         $exam->save();
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->resetInputFields();
+        $this->setmode('all');
     }
+}
 
-    public function edit($id){
-
-        $exam = Exam::find($id);
+    public function edit(Exam $exam){
 
         if ($exam) {
             $this->exam_id=$exam->id;
@@ -92,7 +95,7 @@ class AllExam extends Component
             $exam->update([
                               
                 'exam_name' => $this->exam_name,              
-                'status' => $this->status==1?0:1,  
+                'status' => $this->status,  
                 'exam_sessions' => $this->exam_sessions==1?0:1,                    
             ]);
           
@@ -106,6 +109,19 @@ class AllExam extends Component
         $exam->delete();
        
         $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
+    }
+
+    public function Status(Exam $exam)
+    {
+        if($exam->status)
+        {
+            $exam->status=0;
+        }
+        else
+        {
+            $exam->status=1;
+        }
+        $exam->update();
     }
 
     public function sort_column($column)

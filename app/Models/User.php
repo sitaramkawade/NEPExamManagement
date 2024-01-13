@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Role;
+use App\Models\College;
+use App\Models\Department;
 use App\Models\Studenthelpline;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -39,6 +43,11 @@ class User extends Authenticatable  implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'user_contact_no',
+        'college_id',
+        'department_id',
+        'is_active',
+        'role_id',
     ];
 
     /**
@@ -60,6 +69,29 @@ class User extends Authenticatable  implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function college(): BelongsTo
+    {
+        return $this->belongsTo(College::class,'college_id','id');
+    }
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class,'college_id','id');
+    }
+    
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class,'department_id','id');
+    }
+
+    public function scopeSearch(Builder $query,string $search)
+    {
+        return $query->where('name', 'like', "%{$search}%")
+        ->orWhere('email', 'like', "%{$search}%");
+       
+    }
+
 
 
     // public function studenthelplines(): HasMany

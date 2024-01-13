@@ -14,11 +14,13 @@
     <style>
       ::-webkit-scrollbar 
       {
-        width: 2px !important;
+        height: 10px !important;
+        width: 3px !important;
       }
 
       ::-moz-scrollbar {
-        width: 8px !important;
+        height: 10px !important;
+        width: 3px !important;
       }
 
       * {

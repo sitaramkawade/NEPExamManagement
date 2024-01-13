@@ -756,15 +756,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="m-5   col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
-                                    <div class="flex items-center justify-between border-b p-2 dark:border-primary">
-                                    <h5 class="text-lg font-semibold text-gray-500 dark:text-light">Permanent Address</h5>
-                                    </div>
-                                    <div class="relative h-auto p-4">
-                                        @php
-                                            $tal2=App\Models\Taluka::find($taluka_id_2);
-                                        @endphp
-                                        @if (isset($tal2->id))
+                                @php
+                                    $tal2=App\Models\Taluka::find($taluka_id_2);
+                                @endphp
+                                @if (isset($tal2->id))
+                                    <div class="m-5   col-span-1 rounded-md bg-white dark:bg-darker dark:border-primary-darker border">
+                                        <div class="flex items-center justify-between border-b p-2 dark:border-primary">
+                                            <h5 class="text-lg font-semibold text-gray-500 dark:text-light">Permanent Address</h5>
+                                        </div>
+                                         <div class="relative h-auto p-4">
                                             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                                                 <x-input-label for="country_2" :value="__('Country')" />
                                                 <x-input-show  id='country_2' :value="$tal2->district->state->country->country_name" />
@@ -793,9 +793,9 @@
                                                 <x-input-label for="address_2" :value="__('Address')" />
                                                 <x-textarea-show  id='address_2' :value="$address_2" />
                                             </div>
-                                        @endif
+                                        </div>
                                     </div>
-                                </div>
+                                 @endif
                             </div>
                         </div>
                         <div class="m-2 overflow-hidden bg-white border shadow dark:border-primary-darker dark:bg-darker rounded">

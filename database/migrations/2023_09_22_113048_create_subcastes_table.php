@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('subcaste_name'); 
             $table->bigInteger('caste_id')->unsigned()->nullable()->default(null);
-            $table->foreign('caste_id')->references('id')->on('castes');
+            $table->foreign('caste_id')->references('id')->on('castes')->onDelete('cascade');
             $table->boolean('is_active')->default(1); 
             $table->timestamps();
         

@@ -14,8 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
-    use HasFactory , SoftDeletes;
-    protected $dates = ['deleted_at'];
+    use HasFactory;
     protected $table='courses';
     protected $fillable=[
         'course_code',

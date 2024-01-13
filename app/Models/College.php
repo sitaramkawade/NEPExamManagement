@@ -3,18 +3,19 @@
 namespace App\Models;
 
 use App\Models\Role;
-use App\Models\Subject;
 use App\Models\Course;
 use App\Models\Pattern;
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class College extends Model
 {
-    use HasFactory;
+    use HasFactory ;
     protected $table='colleges';
     protected $fillable=[
         'college_name',

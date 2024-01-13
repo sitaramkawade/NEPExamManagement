@@ -118,7 +118,7 @@
                   <x-table.td>{{ $helpline->id }} </x-table.td>
                   <x-table.td>{{ $helpline->student->student_name }} </x-table.td>
                   <x-table.td>{{ $helpline->studenthelplinequery->query_name }} </x-table.td>
-                  <x-table.td> {{ $helpline->remark ?? '-' }} </x-table.td>
+                  <x-table.td><x-table.text-scroll> {{ $helpline->remark ?? '-' }} </x-table.text-scroll></x-table.td>
                   <x-table.td> {{ isset($helpline->verified->name) ? $helpline->verified->name : 'N.A.' }} </x-table.td>
                   <x-table.td> {{ isset($helpline->approved->name) ? $helpline->approved->name : 'N.A.' }} </x-table.td>
                   <x-table.td>

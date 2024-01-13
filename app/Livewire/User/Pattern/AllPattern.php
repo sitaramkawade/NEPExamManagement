@@ -7,7 +7,8 @@ use App\Models\College;
 use App\Models\Pattern;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Exports\User\ExportPattern;
+use App\Exports\User\Pattern\ExportPattern;
+
 
 class AllPattern extends Component
 {
@@ -18,7 +19,7 @@ class AllPattern extends Component
     public $sortColumnBy="ASC";
     public $ext;
 
-    public $mode;
+    public $mode='all';
     public $current_step=1;
     public $steps=1;
     public $pattern_name;
@@ -71,12 +72,14 @@ class AllPattern extends Component
 
     public function mount()
     {
-        $this->colleges = College::all();
-       
+        $this->colleges = College::all();    
     }
 
     public function add(){
 
+        $validatedData = $this->validate();
+       
+        if ($validatedData) {
         $pattern= new Pattern;    
         $pattern->pattern_name= $this->pattern_name;
         $pattern->pattern_startyear= $this->pattern_startyear;
@@ -86,9 +89,23 @@ class AllPattern extends Component
         $pattern->save();
 
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->resetInputFields();
+        $this->setmode('all');
     }
-
+    }
+    
+    public function Status(Pattern $pattern)
+    {
+        if($pattern->status)
+        {
+            $pattern->status=0;
+        }
+        else
+        {
+            $pattern->status=1;
+        }
+        $pattern->update();
+    }
+    
     public function deletePattern(Pattern $pattern)
     {
         $pattern->delete();
@@ -96,8 +113,7 @@ class AllPattern extends Component
         $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
     }
 
-    public function edit($id){
-        $pattern=Pattern::find($id);
+    public function edit(Pattern $pattern){
         
         if($pattern)
         { 
@@ -120,7 +136,7 @@ class AllPattern extends Component
                 'pattern_startyear' => $this->pattern_startyear,
                 'pattern_valid' => $this->pattern_valid,
                 'college_id' => $this->college_id,
-                'status' => $this->status==1?0:1,                    
+                'status' => $this->status,                  
             ]);
             $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
             $this->setmode('all');

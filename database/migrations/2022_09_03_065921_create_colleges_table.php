@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -20,14 +20,13 @@ return new class extends Migration
             $table->string('college_contact_no',50)->default(null)->nullable();
             $table->text('college_logo_path')->nullable();
             $table->bigInteger('sanstha_id')->nullable()->unsigned()->default(null);
-            $table->foreign('sanstha_id')->references('id')->on('sansthas');
-
+            $table->foreign('sanstha_id')->references('id')->on('sansthas')->onDelete('cascade');
             $table->bigInteger('university_id')->nullable()->unsigned()->default(null);
-            $table->foreign('university_id')->references('id')->on('universities');
-
+            $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');
             $table->tinyInteger('status')->default('0');// 0 :not active 1:active
             $table->tinyInteger('is_default')->default('0');// 0 :not active 1:active
             $table->timestamps();
+            
         });
     }
 

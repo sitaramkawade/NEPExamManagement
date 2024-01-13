@@ -18,20 +18,20 @@ return new class extends Migration
             $table->string('stud_name',100);    
 
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
           
             $table->bigInteger('patternclass_id')->unsigned();
-            $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
+            $table->foreign('patternclass_id')->references('id')->on('pattern_classes')->onDelete('cascade');
 
             $table->bigInteger('subject_id')->unsigned();
-            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
            $table->bigInteger('academicyear_id')->unsigned();  //Major Minor
-            $table->foreign('academicyear_id')->references('id')->on('academicyears');
+            $table->foreign('academicyear_id')->references('id')->on('academicyears')->onDelete('cascade');
             $table->bigInteger('department_id')->unsigned();  //Major Minor
-            $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
            
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
-            $table->foreign('college_id')->references('id')->on('colleges');
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
          
           
             $table->timestamps();

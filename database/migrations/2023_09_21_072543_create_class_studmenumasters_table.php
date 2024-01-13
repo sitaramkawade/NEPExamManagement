@@ -14,14 +14,11 @@ return new class extends Migration
         Schema::create('class_studmenumasters', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('studmenumaster_id')->nullable();
-            
             $table->unsignedBigInteger('patternclass_id')->nullable();
-            
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('college_id')->nullable()->default(null);
             $table->tinyInteger('isactive')->default('1');
             $table->unique(['studmenumaster_id', 'patternclass_id','college_id'],'classwisemenu'); //  [ 'column1', 'column2']
-            
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');

@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->string('grade_name',40)->nullable();
+            $table->integer('max_percentage')->default(0);
+            $table->integer('min_percentage')->default(0);
+            $table->integer('grade_point')->default(0);
+            $table->string('grade_name',5)->nullable();
+            $table->string('description',50)->nullable();
             $table->tinyInteger('is_active')->default('1');// 0 :not active 1:active
             $table->timestamps();
             $table->softDeletes();
