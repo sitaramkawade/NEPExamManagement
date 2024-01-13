@@ -14,7 +14,6 @@ use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Course\AllCourse;
-
 use App\Livewire\User\College\AllCollege;
 use App\Livewire\User\Pattern\AllPattern;
 use App\Livewire\User\Sanstha\AllSanstha;
@@ -36,6 +35,7 @@ use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
+use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
@@ -83,12 +83,6 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
 
   // Student Dashboard
   Route::get('/dashboard',StudentDashboard::class)->name('dashboard');
-
-  // Student Profile
-  Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
-
-  // Student View Profile
-  Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
 
   // Student Profile
   Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
@@ -154,7 +148,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Pattern Class
   Route::get('/all/pattern/class',AllPatternClass::class)->name('all_pattern_class');
-
+  
+  //All Exam Pattern Class
+  Route::get('/all/exam/pattern/class',AllExamPatternClass::class)->name('all_exam_pattern_class');
 });
 
 
