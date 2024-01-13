@@ -28,8 +28,7 @@ class Faculty extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new FacultyRegisterMailNotification);
     }
-
-
+    
     protected $dates=['deleted_at'];
     protected $guard = 'faculty';
     protected $table="faculties";

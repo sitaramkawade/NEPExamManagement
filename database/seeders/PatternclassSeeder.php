@@ -36,7 +36,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:33',
               'updated_at'=>'2023-09-07 01:08:33'
               ] );
@@ -52,7 +52,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:33',
               'updated_at'=>'2023-09-07 01:08:33'
               ] );
@@ -68,7 +68,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:33',
               'updated_at'=>'2023-09-07 01:08:33'
               ] );
@@ -84,7 +84,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -100,7 +100,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -116,7 +116,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -132,7 +132,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -148,7 +148,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -164,7 +164,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -180,7 +180,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -196,7 +196,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -212,7 +212,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -228,7 +228,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -244,7 +244,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -260,7 +260,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -276,7 +276,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -292,7 +292,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -308,7 +308,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -324,7 +324,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -340,7 +340,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -356,7 +356,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -372,7 +372,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -388,7 +388,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -404,7 +404,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -420,7 +420,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -436,7 +436,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -452,7 +452,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -468,7 +468,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -484,7 +484,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -500,7 +500,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -516,7 +516,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -532,7 +532,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -548,7 +548,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -564,7 +564,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -580,7 +580,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -596,7 +596,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -612,7 +612,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -628,7 +628,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -644,7 +644,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -660,7 +660,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -676,7 +676,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -692,7 +692,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -708,7 +708,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -724,7 +724,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -740,7 +740,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -756,7 +756,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -772,7 +772,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -788,7 +788,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -804,7 +804,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -820,7 +820,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -836,7 +836,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -852,7 +852,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -868,7 +868,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -884,7 +884,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -900,7 +900,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -916,7 +916,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -932,7 +932,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -948,7 +948,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -964,7 +964,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -980,7 +980,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -996,7 +996,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1012,7 +1012,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1028,7 +1028,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1044,7 +1044,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1060,7 +1060,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1076,7 +1076,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1092,7 +1092,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1108,7 +1108,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1124,7 +1124,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1140,7 +1140,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1156,7 +1156,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1172,7 +1172,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1188,7 +1188,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1204,7 +1204,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1220,7 +1220,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1236,7 +1236,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1252,7 +1252,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1268,7 +1268,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1284,7 +1284,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1300,7 +1300,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1316,7 +1316,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1332,7 +1332,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1348,7 +1348,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1364,7 +1364,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1380,7 +1380,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1396,7 +1396,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1412,7 +1412,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1428,7 +1428,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1444,7 +1444,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1460,7 +1460,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1476,7 +1476,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1492,7 +1492,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1508,7 +1508,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1524,7 +1524,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1540,7 +1540,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1556,7 +1556,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1572,7 +1572,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1588,7 +1588,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1604,7 +1604,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1620,7 +1620,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1636,7 +1636,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1652,7 +1652,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1668,7 +1668,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1684,7 +1684,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1700,7 +1700,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1716,7 +1716,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1732,7 +1732,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1748,7 +1748,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1764,7 +1764,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1780,7 +1780,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1796,7 +1796,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1812,7 +1812,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1828,7 +1828,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1844,7 +1844,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1860,7 +1860,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1876,7 +1876,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1892,7 +1892,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1908,7 +1908,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1924,7 +1924,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1940,7 +1940,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1956,7 +1956,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1972,7 +1972,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -1988,7 +1988,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -2004,7 +2004,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -2020,7 +2020,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );
@@ -2036,7 +2036,7 @@ class PatternclassSeeder extends Seeder
               'sem2_total_marks'=>550,
               'sem1_credits'=>22,
               'sem2_credits'=>22,
-              'totalnosubjects'=>22,
+              'sem1_totalnosubjects'=>22,
               'created_at'=>'2023-09-07 01:08:00',
               'updated_at'=>'2023-09-07 01:08:00'
               ] );

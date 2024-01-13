@@ -30,6 +30,7 @@ use App\Livewire\User\ClassYear\AllClassYear;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\University\AllUniversity;
 use App\Livewire\User\CourseClass\AllCourseClass;
+use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
@@ -70,7 +71,7 @@ Route::middleware(['guest'])->group(function () {
   // RND Pages
   Route::get('/table',DataTable::class);
   Route::get('/select',SelectTo::class)->name('select');
-    
+
 
 
 });
@@ -86,10 +87,10 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
 
   // Student View Profile
   Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
-  
+
   // Student Profile
   Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
- 
+
   // Student View Profile
   Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
 
@@ -104,7 +105,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   // User Dashboard
   Route::get('dashboard', UserDashboard::class)->name('dashboard');
 
-  //All College   
+  //All College
   Route::get('/all/college', AllCollege::class)->name('all_colleges');
 
   //All Sanstha   
@@ -116,7 +117,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Pattern   
   Route::get('/all/pattern', AllPattern::class)->name('all_pattern');
 
-  //All Exam   
+  //All Exam
   Route::get('/all/exam', AllExam::class)->name('all_exam');
 
   //All Educational Course   
@@ -128,7 +129,6 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Users 
   Route::get('/all/users', AllUser::class)->name('all_user');
 
-  
 
   //All Student Helpline
   Route::get('/all/hel pline',AllHelpline::class)->name('all_helpline');
@@ -138,19 +138,21 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Student Helpline Documnet
   Route::get('/all/helpline/document',AllHelplineDocument::class)->name('all_helpline_document');
-  
+
   //All Programmes
   Route::get('/all/programme',AllProgramme::class)->name('all_programme');
-  
+
   //All Courses
   Route::get('/all/course',AllCourse::class)->name('all_course');
 
   //All Class Years
   Route::get('/all/class/year',AllClassYear::class)->name('all_class_year');
 
-  //All Class Years
+  //All Corse Class
   Route::get('/all/course/class',AllCourseClass::class)->name('all_course_class');
 
+  //All Pattern Class
+  Route::get('/all/pattern/class',AllPatternClass::class)->name('all_pattern_class');
 });
 
 
@@ -158,10 +160,8 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 // Auth Faculty Routes
 Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified:faculty.verification.notice'])->group(function () {
 
-  // Faculty Dashboard
-  Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
-
-  
+    // Faculty Dashboard
+    Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
 
     // All Faculty
     Route::get('/all-faculties', AllFaculty::class)->name('all-faculties');
