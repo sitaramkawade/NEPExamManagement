@@ -39,6 +39,7 @@ use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
+use App\Livewire\User\Grade\AllGrades;
 
 
 
@@ -121,6 +122,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All CGPA   
   Route::get('/all/cgpa', AllCgpa::class)->name('all_cgpa');
+
+  //All Grade
+  Route::get('/all/grade', AllGrades::class)->name('all_grade');
 
   //All Users 
   Route::get('/all/users', AllUser::class)->name('all_user');
