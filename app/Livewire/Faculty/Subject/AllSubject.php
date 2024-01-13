@@ -63,6 +63,7 @@ class AllSubject extends Component
     public $colleges;
     public $patterns;
     public $courses;
+    public $semesters;
     public $course_classes;
     public $pattern_class_id;
 
