@@ -1,5 +1,4 @@
-<div>
-    @if ($mode=='add')
+<div> @if ($mode=='add')
     <div>
         <x-card-header heading="Add Department">
             <x-back-btn wire:click="setmode('all')" />
@@ -8,19 +7,19 @@
             @include('livewire.user.department.department-form')
         </x-form>
     </div>
-     @elseif($mode=='edit')
+    @elseif($mode=='edit')
     <x-card-header heading="Edit Department">
         <x-back-btn wire:click="setmode('all')" />
     </x-card-header>
     <x-form wire:submit="update({{ $dept_id  }})">
         @include('livewire.user.department.department-form')
     </x-form>
-     @elseif($mode=='all')
+    @elseif($mode=='all')
     <div>
         <x-card-header heading=" All Department's">
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
-    <x-table.frame>
+        <x-table.frame>
             <x-slot:header>
                 </x-slot>
                 <x-slot:body>
@@ -45,26 +44,27 @@
                                 </x-table.td>
                                 <x-table.td> {{ $dept->short_name}} </x-table.td>
                                 <x-table.td>
-                                @if ($dept->departmenttype==0)
-                                 <x-status >Inactive</x-status>
-                                 @elseif($dept->departmenttype==1)
-                                  <x-status >UG</x-status>
-                                 @elseif($dept->departmenttype==2)
-                                  <x-status >PG</x-status>
-                                 @elseif($dept->departmenttype==3)
-                                  <x-status >UG & PG</x-status>
-                                 @elseif($dept->departmenttype==4)
-                                  <x-status >Doctorate</x-status>
-                                 @else
-                                  <x-status >All</x-status>
-                               @endif
+                                    @if ($dept->departmenttype==0)
+                                    <x-status>Inactive</x-status>
+                                    @elseif($dept->departmenttype==1)
+                                    <x-status>UG</x-status>
+                                    @elseif($dept->departmenttype==2)
+                                    <x-status>PG</x-status>
+                                    @elseif($dept->departmenttype==3)
+                                    <x-status>UG & PG</x-status>
+                                    @elseif($dept->departmenttype==4)
+                                    <x-status>Doctorate</x-status>
+                                    @else
+                                    <x-status>All</x-status>
+                                    @endif
 
                                 </x-table.td>
-                                <x-table.td><x-table.text-scroll>
-                                    {{ $dept->college->college_name }}
+                                <x-table.td>
+                                    <x-table.text-scroll>
+                                        {{ $dept->college->college_name }}
                                     </x-table.text-scroll>
                                 </x-table.td>
-                                
+
                                 <x-table.td>
                                     @if($dept->status==1)
                                     <x-status type="success">Active</x-status>
@@ -100,6 +100,6 @@
                         <x-table.paginate :data="$departments" />
                         </x-slot>
         </x-table.frame>
-</div>
-@endif
+    </div>
+    @endif
 </div>
