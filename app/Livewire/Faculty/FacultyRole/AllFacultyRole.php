@@ -56,9 +56,13 @@ class AllFacultyRole extends Component
     public function messages()
     {
         return [
-            'role_name.string' => 'Please type the role name using letters.',
-            'roletype_id.required' => 'Please select the role.',
-            'college_id.required' => 'Please select the college.',
+            'role_name.required' => 'The role name field is required.',
+            'role_name.string' => 'The role name must be a string.',
+            'role_name.max' => 'The role name must not exceed 255 characters.',
+            'roletype_id.required' => 'The role type field is required.',
+            'roletype_id.exists' => 'The selected role type is invalid.',
+            'college_id.required' => 'The college field is required.',
+            'college_id.exists' => 'The selected college is invalid.',
         ];
     }
 
@@ -177,7 +181,7 @@ class AllFacultyRole extends Component
 
     public function export()
     {
-        $filename="Role-".now();
+        $filename="Role-".time();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new FacultyRoleExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');

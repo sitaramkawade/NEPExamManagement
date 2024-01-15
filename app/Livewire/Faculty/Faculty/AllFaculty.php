@@ -71,8 +71,7 @@ class AllFaculty extends Component
             'role_id' => ['required',Rule::exists(Role::class,'id')],
             'department_id' => ['required',Rule::exists(Department::class,'id')],
             'college_id' => ['required',Rule::exists(College::class,'id')],
-            // 'active' => ['required',],
-            // 'faculty_verified' => ['required',],
+
             'account_no' => ['required', 'numeric','digits_between:8,16','unique:facultybankaccounts,account_no,'.($this->mode=='edit'? $this->facultybank_id :'')],
             'bank_address' => ['required', 'string', 'max:255',],
             'bank_name' => ['required', 'string', 'max:255',],
@@ -81,30 +80,50 @@ class AllFaculty extends Component
             'ifsc_code' => ['required', 'string', 'size:11',],
             'micr_code' => ['required', 'numeric', 'digits:9',],
             'account_type' => ['required', 'in:C,S',],
-            // 'acc_verified' => ['required', ],
+
         ];
     }
 
     public function messages()
     {
         return [
-            'prefix.required' => 'Please select the prefix.',
-            'faculty_name.string' => 'Please enter the faculty name as a string.',
-            'email.required' => 'Please enter the faculty email.',
-            'email.email' => 'Please enter a valid email address.',
-            'mobile_no.required' => 'Please enter the mobile number.',
-            'role_id.required' => 'Please select the role.',
-            'department_id.required' => 'Please select the department.',
-            'college_id.required' => 'Please select the college.',
-            'active.required' => 'Please specify the active status.',
-            'account_no.required' => 'Please enter the faculty account number.',
-            'bank_address.required' => 'Please enter the bank address.',
-            'bank_name.required' => 'Please enter the bank name.',
-            'branch_name.required' => 'Please enter the branch name.',
-            'branch_code.required' => 'Please enter the branch code.',
-            'ifsc_code.required' => 'Please enter the IFSC code.',
-            'micr_code.required' => 'Please enter the MICR code.',
-            'account_type.required' => 'Please select the account type.',
+        'prefix.required' => 'The prefix field is required.',
+        'faculty_name.required' => 'The faculty name field is required.',
+        'faculty_name.string' => 'The faculty name must be a string.',
+        'faculty_name.max' => 'The faculty name must not exceed 255 characters.',
+        'email.required' => 'The email field is required.',
+        'email.email' => 'Please enter a valid email address.',
+        'email.unique' => 'The email address is already taken.',
+        'mobile_no.required' => 'The mobile number field is required.',
+        'mobile_no.numeric' => 'The mobile number must be numeric.',
+        'mobile_no.digits' => 'The mobile number must be 10 digits.',
+        'role_id.required' => 'The role field is required.',
+        'role_id.exists' => 'The selected role is invalid.',
+        'department_id.required' => 'The department field is required.',
+        'department_id.exists' => 'The selected department is invalid.',
+        'college_id.required' => 'The college field is required.',
+        'college_id.exists' => 'The selected college is invalid.',
+        'account_no.required' => 'The account number field is required.',
+        'account_no.numeric' => 'The account number must be numeric.',
+        'account_no.digits_between' => 'The account number must be between 8 and 16 digits.',
+        'account_no.unique' => 'The account number is already taken.',
+        'bank_address.required' => 'The bank address field is required.',
+        'bank_address.string' => 'The bank address must be a string.',
+        'bank_name.required' => 'The bank name field is required.',
+        'bank_name.string' => 'The bank name must be a string.',
+        'branch_name.required' => 'The branch name field is required.',
+        'branch_name.string' => 'The branch name must be a string.',
+        'branch_code.required' => 'The branch code field is required.',
+        'branch_code.numeric' => 'The branch code must be numeric.',
+        'branch_code.digits' => 'The branch code must be 4 digits.',
+        'ifsc_code.required' => 'The IFSC code field is required.',
+        'ifsc_code.string' => 'The IFSC code must be a string.',
+        'ifsc_code.size' => 'The IFSC code must be 11 characters.',
+        'micr_code.required' => 'The MICR code field is required.',
+        'micr_code.numeric' => 'The MICR code must be numeric.',
+        'micr_code.digits' => 'The MICR code must be 9 digits.',
+        'account_type.required' => 'The account type field is required.',
+        'account_type.in' => 'The account type must be either "CURRENT" or "SAVINGS".',
         ];
     }
 
@@ -272,15 +291,6 @@ class AllFaculty extends Component
         $this->setmode('all');
     }
 
-    // public function mount()
-    // {
-    //     $this->prefixes = Prefixmaster::where('is_active',1)->get();
-    //     $this->banknames = Banknamemaster::where('is_active',1)->get();
-    //     $this->roles= Role::all();
-    //     $this->departments= Department::where('status',1)->get();
-    //     $this->colleges= College::where('status',1)->get();
-    // }
-
     public function sort_column($column)
     {
         if( $this->sortColumn === $column)
@@ -299,7 +309,7 @@ class AllFaculty extends Component
 
     public function export()
     {
-        $filename="Faculty-".now();
+        $filename="Faculty-".time();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new FacultyExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
@@ -314,7 +324,7 @@ class AllFaculty extends Component
 
     }
 
-    public function status(Faculty $faculty)
+    public function changestatus(Faculty $faculty)
     {
         if( $faculty->active==0)
         {
@@ -337,12 +347,9 @@ class AllFaculty extends Component
             $this->faculty_name= $faculty->faculty_name;
             $this->email= $faculty->email;
             $this->mobile_no= $faculty->mobile_no;
-            $departmentId = $faculty->department()->first();
-            $this->department_id = $departmentId;
-            $roleId = $faculty->role()->first();
-            $this->role_id = $roleId;
-            $collegeId = $faculty->college()->first();
-            $this->college_id= $collegeId;
+            $this->department_id = isset($faculty->department->dept_name) ? $faculty->department->dept_name : '';
+            $this->role_id = isset($faculty->role->role_name) ? $faculty->role->role_name : '';
+            $this->college_id = isset($faculty->college->college_name) ? $faculty->college->college_name : '';
 
             $bankdetails = $faculty->facultybankaccount()->first();
             if($bankdetails){

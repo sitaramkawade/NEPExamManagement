@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Faculty\FacultyRoleType;
+namespace App\Livewire\Faculty\FacultyRoletype;
 
 use Livewire\Component;
 use App\Models\Roletype;
@@ -45,7 +45,9 @@ class AllFacultyRoletype extends Component
     public function messages()
     {
         return [
-            'roletype_name.string' => 'Please type the role type name using letters.',
+        'roletype_name.required' => 'The role type name field is required.',
+        'roletype_name.string' => 'The role type name must be a string.',
+        'roletype_name.max' => 'The role type name must not exceed 255 characters.',
         ];
     }
 
@@ -111,7 +113,7 @@ class AllFacultyRoletype extends Component
             $roletype->forceDelete();
             $this->delete_id = null;
             $this->setmode('all');
-            $this->dispatch('alert',type:'success',message:'"Roletype Deleted Successfully !!');
+            $this->dispatch('alert',type:'success',message:'Roletype Deleted Successfully !!');
         } else {
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
         }
@@ -161,7 +163,7 @@ class AllFacultyRoletype extends Component
 
     public function export()
     {
-        $filename="Roletype-".now();
+        $filename="Roletype-".time();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new FacultyRoletypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');

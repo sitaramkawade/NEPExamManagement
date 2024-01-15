@@ -71,25 +71,26 @@ class AllSubjectbucket extends Component
     public function messages()
     {
         return [
-            'subject_categoryno.required' => 'The subject category number is required.',
-            'academicyear_id.required' => 'The academic year ID is required.',
+            'subject_categoryno.required' => 'The subject category number field is required.',
+            'subject_categoryno.required' => 'The subject category number field is required.',
+            'academicyear_id.required' => 'The academic year field is required.',
             'academicyear_id.exists' => 'The selected academic year is invalid.',
-            'subject_division.required' => 'The subject division is required.',
+            'subject_division.required' => 'The subject division field is required.',
             'subject_division.in' => 'The subject division must be one of: A, B, C, D.',
-            'subject_id.required' => 'The subject ID is required.',
+            'subject_id.required' => 'The subject field is required.',
             'subject_id.exists' => 'The selected subject is invalid.',
-            'subjectcategory_id.required' => 'The subject category ID is required.',
+            'subjectcategory_id.required' => 'The subject category field is required.',
             'subjectcategory_id.exists' => 'The selected subject category is invalid.',
-            'department_id.required' => 'The department ID is required.',
+            'department_id.required' => 'The department field is required.',
             'department_id.exists' => 'The selected department is invalid.',
-            'pattern_id.required' => 'The pattern ID is required.',
+            'pattern_id.required' => 'The pattern field is required.',
             'pattern_id.exists' => 'The selected pattern is invalid.',
-            'course_id.required' => 'The course ID is required.',
+            'course_id.required' => 'The course field is required.',
             'course_id.exists' => 'The selected course is invalid.',
-            'course_class_id.required' => 'The course class ID is required.',
+            'course_class_id.required' => 'The course class field is required.',
             'course_class_id.exists' => 'The selected course class is invalid.',
-            'status.required' => 'The status is required.',
-            'status.in' => 'Please select a valid status. It must be either Active or Inactive.',
+            'status.required' => 'The status field is required.',
+            'status.in' => 'The status must be either Active or Inactive.',
         ];
     }
 
@@ -227,7 +228,7 @@ class AllSubjectbucket extends Component
 
     public function export()
     {
-        $filename="Subjectbucket-".now();
+        $filename="Subjectbucket-".time();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new SubjectbucketExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');

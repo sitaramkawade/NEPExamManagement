@@ -38,7 +38,7 @@ use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Faculty\Subjectbucket\AllSubjectbucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
-use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
+use App\Livewire\Faculty\FacultyRoletype\AllFacultyRoletype;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 
 
