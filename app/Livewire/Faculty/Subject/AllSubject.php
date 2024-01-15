@@ -17,8 +17,8 @@ use Livewire\WithPagination;
 use App\Models\Subjectcredit;
 use App\Models\Subjectcategory;
 use Illuminate\Validation\Rule;
-use App\Exports\Faculty\ExportSubject;
 use Doctrine\Inflector\Rules\Patterns;
+use App\Exports\Faculty\Subject\SubjectExport;
 
 class AllSubject extends Component
 {
@@ -359,13 +359,13 @@ class AllSubject extends Component
         $filename="Subject-".now();
         switch ($this->ext) {
             case 'xlsx':
-                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                return Excel::download(new SubjectExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
             break;
             case 'csv':
-                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                return Excel::download(new SubjectExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
             case 'pdf':
-                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                return Excel::download(new SubjectExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
 

@@ -8,8 +8,8 @@ use Livewire\Component;
 use App\Models\Roletype;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
-use App\Exports\Faculty\ExportRole;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\Faculty\FacultyRole\FacultyRoleExport;
 
 class AllFacultyRole extends Component
 {
@@ -180,13 +180,13 @@ class AllFacultyRole extends Component
         $filename="Role-".now();
         switch ($this->ext) {
             case 'xlsx':
-                return Excel::download(new ExportRole($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                return Excel::download(new FacultyRoleExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
             break;
             case 'csv':
-                return Excel::download(new ExportRole($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                return Excel::download(new FacultyRoleExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
             case 'pdf':
-                return Excel::download(new ExportRole($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                return Excel::download(new FacultyRoleExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
 

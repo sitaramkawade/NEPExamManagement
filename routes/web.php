@@ -35,6 +35,7 @@ use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
+use App\Livewire\Faculty\Subjectbucket\AllSubjectbucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
@@ -71,7 +72,7 @@ Route::middleware(['guest'])->group(function () {
 
   // RND Pages
   Route::get('/table',DataTable::class);
-  
+
   Route::get('/select',SelectTo::class)->name('select');
 
 
@@ -110,25 +111,25 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All College
   Route::get('/all/college', AllCollege::class)->name('all_colleges');
 
-  //All Sanstha   
+  //All Sanstha
   Route::get('/all/sanstha', AllSanstha::class)->name('all_sanstha');
 
-  //All University   
+  //All University
   Route::get('/all/university', AllUniversity::class)->name('all_university');
 
-  //All Pattern   
+  //All Pattern
   Route::get('/all/pattern', AllPattern::class)->name('all_pattern');
 
   //All Exam
   Route::get('/all/exam', AllExam::class)->name('all_exam');
 
-  //All Educational Course   
+  //All Educational Course
   Route::get('/all/educationalCourse', AllEducationalCourse::class)->name('all_educationalcourse');
 
-  //All CGPA   
+  //All CGPA
   Route::get('/all/cgpa', AllCgpa::class)->name('all_cgpa');
 
-  //All Users 
+  //All Users
   Route::get('/all/users', AllUser::class)->name('all_user');
 
   //All Student Helpline
@@ -179,6 +180,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Subject
   Route::get('/all-subject', AllSubject::class)->name('all-subjects');
+
+  // All Subjectbucket
+  Route::get('/all-subjectbucket', AllSubjectbucket::class)->name('all-subjectbuckets');
 
 });
 

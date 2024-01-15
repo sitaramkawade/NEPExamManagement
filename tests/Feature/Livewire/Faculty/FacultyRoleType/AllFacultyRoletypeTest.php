@@ -6,12 +6,12 @@ use Tests\TestCase;
 use Livewire\Livewire;
 use App\Models\Roletype;
 use Illuminate\Foundation\Testing\WithFaker;
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 
 class AllFacultyRoletypeTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     /** @test */
     public function renders_successfully()
@@ -33,19 +33,81 @@ class AllFacultyRoletypeTest extends TestCase
         $this->assertDatabaseHas('roletypes', ['roletype_name' => 'New Roletype Name']);
     }
 
-    public function it_can_update_a_roletype()
+    /** @test */
+    public function it_can_edit_an_existing_roletype()
     {
-        // Create a faculty instance using the factory
-        $roletype = Roletype::factory()->create(['roletype_name' => 'Original Name']);
+        // Create a Roletype in the database
+        $roletype = Roletype::create(['roletype_name' => 'Original Roletype Name']);
 
-        Livewire::test(AllFacultyRoletype::class)
-            ->set('roletype_name', 'New Roletype Name')
-            ->call('update', $roletype->id) // Pass faculty ID for updating
+        // Livewire test
+        Livewire::test(AllFacultyRoletype::class, ['roletype' => $roletype])
+            ->call('edit', $roletype)
+            ->assertSet('roletype_id', $roletype->id)
+            ->assertSet('roletype_name', $roletype->roletype_name)
+            ->assertSet('mode', 'edit');
+
+    }
+
+    /** @test */
+    public function it_can_update_an_existing_roletype()
+    {
+        // Create a Roletype in the database
+        $roletype = Roletype::create(['roletype_name' => 'Original Roletype Name']);
+
+        // Livewire test
+        Livewire::test(AllFacultyRoletype::class, ['roletype' => $roletype])
+            ->set('roletype_name', 'Updated Roletype Name')
+            ->call('update', $roletype)
             ->assertStatus(200);
 
-        // Assert that the database has the updated roletype_name
-        $this->assertDatabaseHas('roletypes', ['id' => $roletype->id, 'roletype_name' => 'New Roletype Name']);
+        // Assert that the Roletype is updated in the database
+        $this->assertDatabaseHas('roletypes', ['id' => $roletype->id, 'roletype_name' => 'Updated Roletype Name']);
 
-        // Additional assertions if needed
+        // Assert that the original Roletype name is no longer in the database
+        $this->assertDatabaseMissing('roletypes', ['id' => $roletype->id, 'roletype_name' => 'Original Roletype Name']);
     }
+
+    /** @test */
+    public function it_can_perform_soft_delete_on_roletype()
+    {
+        // Create a Roletype in the database
+        $roletype = Roletype::create(['roletype_name' => 'To be soft-deleted']);
+
+        // Livewire test
+        Livewire::test(AllFacultyRoletype::class)
+            ->call('softdelete', $roletype->id)
+            ->assertStatus(200);
+
+        // Assert that the Roletype is soft-deleted in the database
+        $this->assertSoftDeleted('roletypes', ['id' => $roletype->id]);
+    }
+
+    /** @test */
+    public function it_can_restore_a_soft_deleted_roletype()
+    {
+        // Create a soft-deleted Roletype in the database
+        $roletype = Roletype::create(['roletype_name' => 'To be restored']);
+        $roletype->delete();
+
+        // Livewire test
+        Livewire::test(AllFacultyRoletype::class)
+            ->call('restore', $roletype->id)
+            ->assertStatus(200);
+
+        // Assert that the Roletype is restored in the database
+        $this->assertDatabaseHas('roletypes', ['id' => $roletype->id, 'deleted_at' => null]);
+    }
+
+   /** @test */
+    public function it_can_delete_an_existing_roletype()
+    {
+        // Create a Roletype in the database
+        $roletype = Roletype::create(['roletype_name' => 'To be deleted']);
+
+        // Livewire test
+        Livewire::test(AllFacultyRoletype::class, ['roletype' => $roletype])
+            ->call('deleteconfirmation', $roletype->id)
+            ->assertStatus(200);
+    }
+
 }

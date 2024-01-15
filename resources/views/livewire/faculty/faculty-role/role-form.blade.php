@@ -1,5 +1,5 @@
 <x-card-collapsible heading="Role Details">
-    <div class="grid grid-cols-1 md:grid-cols-3">
+    <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="role_name" :value="__('Role Name')" />
             <x-text-input id="role_name" type="text" wire:model="role_name" name="role_name" placeholder="Role Name" class=" @error('role_name') is-invalid @enderror w-full mt-1" :value="old('role_name', $role_name)" required autofocus autocomplete="role_name" />

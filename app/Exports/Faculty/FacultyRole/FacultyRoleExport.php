@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\Faculty;
+namespace App\Exports\Faculty\FacultyRole;
 
 use App\Models\Role;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ExportRole implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
+class FacultyRoleExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     protected $search;
     protected $sortColumn;
@@ -37,8 +37,9 @@ class ExportRole implements FromCollection, WithHeadings, ShouldAutoSize, WithMa
         return [
             $row->id,
             $row->role_name,
-            $row->roletype->roletype_name,
-            $row->college->college_name,
+            (isset($row->roletype->roletype_name) ? $row->roletype->roletype_name : ''),
+            (isset($row->college->college_name) ? $row->college->college_name : ''),
         ];
     }
 }
+

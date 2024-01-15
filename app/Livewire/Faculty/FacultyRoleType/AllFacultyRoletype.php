@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Roletype;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\Faculty\ExportRoletype;
+use App\Exports\Faculty\FacultyRoletype\FacultyRoletypeExport;
 
 class AllFacultyRoletype extends Component
 {
@@ -164,13 +164,13 @@ class AllFacultyRoletype extends Component
         $filename="Roletype-".now();
         switch ($this->ext) {
             case 'xlsx':
-                return Excel::download(new ExportRoletype($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                return Excel::download(new FacultyRoletypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
             break;
             case 'csv':
-                return Excel::download(new ExportRoletype($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                return Excel::download(new FacultyRoletypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
             case 'pdf':
-                return Excel::download(new ExportRoletype($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                return Excel::download(new FacultyRoletypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
 
