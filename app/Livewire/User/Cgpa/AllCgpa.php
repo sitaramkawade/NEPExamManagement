@@ -11,6 +11,7 @@ use App\Exports\User\Cgpa\ExportCgpa;
 class AllCgpa extends Component
 {
     use WithPagination;
+    protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
     public $sortColumn="max_gp";
@@ -30,8 +31,8 @@ class AllCgpa extends Component
     protected function rules()
     {
         return [
-        'max_gp' => ['required'],
-        'min_gp' => ['required'],
+        'max_gp' => ['required','numeric'],
+        'min_gp' => ['required','numeric'],
         'grade' => ['required'],
         'description' => ['required'],  
          ];
@@ -126,7 +127,7 @@ class AllCgpa extends Component
     }
 
     public function forcedelete()
-    {   
+    {  
         $cgpa = cgpa::withTrashed()->find($this->delete_id);
         $cgpa->forceDelete();
         $this->dispatch('alert',type:'success',message:'Course Deleted Successfully !!');

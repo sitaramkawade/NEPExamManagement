@@ -6,6 +6,7 @@ use Excel;
 use Livewire\Component;
 use App\Models\Programme;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
 use App\Models\Educationalcourse;
 use App\Exports\User\EducationalCourse\ExportEducationalCourse;
 
@@ -13,6 +14,7 @@ use App\Exports\User\EducationalCourse\ExportEducationalCourse;
 class AllEducationalCourse extends Component
 {
     use WithPagination;
+    protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
     public $sortColumn="course_name";
@@ -28,11 +30,11 @@ class AllEducationalCourse extends Component
     public $steps=1;
     public $current_step=1;
 
-    protected function rules()
+    public function rules()
     {
         return [
         'course_name' => ['required','string','max:255'],
-        'programme_id' => ['required'],
+        'programme_id' => ['required',Rule::exists('programmes', 'id')],
         'is_active' => ['required'],
        
          ];
@@ -175,6 +177,8 @@ class AllEducationalCourse extends Component
 
     public function render()
     {
+        $this->programmes=Programme::select('programme_name','id')->where('active',1)->get();
+        
         $educationalCourses=Educationalcourse::when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

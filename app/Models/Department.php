@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\College;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Department extends Model
 {
@@ -14,7 +17,7 @@ class Department extends Model
     protected $fillable = [
         'dept_name',
         'short_name',
-        'departmenttype',//commaseparated type/0 means not active 1=>only ug 2=>only pg 3=>ug,pg 4=>doctorate ,5 =>all
+        'departmenttype',// type/0 means not active 1=>only ug 2=>only pg 3=>ug,pg 4=>doctorate ,5 =>all
         'college_id',
         'status',
         
@@ -39,5 +42,16 @@ class Department extends Model
     public function subjectbuckets():HasMany
     {
         return $this->hasMany(Subjectbucket::class,'department_id','id');
+    }
+    public function college():BelongsTo
+    {
+        return $this->belongsTo(College::class,'college_id','id');
+    }
+
+    public function scopeSearch(Builder $query,string $search)
+    {
+        return $query->where('dept_name', 'like', "%{$search}%")
+        ->where('short_name', 'like', "%{$search}%");
+       
     }
 }

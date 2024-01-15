@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('sanstha_website_url',50)->default(null)->nullable();
             $table->string('sanstha_contact_no',20)->default(null)->nullable();
             $table->tinyInteger('status')->default('0');// 0 :not active 1:active
+            $table->SoftDeletes();
             $table->timestamps();
 
                // $table->string('city',100)->nullable();

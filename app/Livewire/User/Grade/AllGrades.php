@@ -11,11 +11,13 @@ use App\Exports\User\Grade\ExportGrade;
 class AllGrades extends Component
 {
     use WithPagination;
+    protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
     public $sortColumn="max_percentage";
     public $sortColumnBy="ASC";
     public $ext;
+    #[Locked] 
     public $delete_id;
     public $max_percentage;
     public $min_percentage;
@@ -117,21 +119,21 @@ class AllGrades extends Component
     public function delete(Grade  $grade)
     {   
         $grade->delete();
-        $this->dispatch('alert',type:'success',message:'Course Soft Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Grade Soft Deleted Successfully !!');
     }
 
     public function restore($id)
     {   
         $grade = Grade::withTrashed()->find($id);
         $grade->restore();
-        $this->dispatch('alert',type:'success',message:'Course Restored Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Grade Restored Successfully !!');
     }
 
     public function forcedelete()
     {   
         $grade = Grade::withTrashed()->find($this->delete_id);
         $grade->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Course Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Grade Deleted Successfully !!');
     }
 
 

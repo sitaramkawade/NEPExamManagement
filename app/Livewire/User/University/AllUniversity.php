@@ -13,6 +13,8 @@ use App\Exports\User\University\ExportUniversity;
 class AllUniversity extends Component
 {
     use WithFileUploads;
+    use WithPagination;
+    protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $mode='all';
     public $current_step=1;
     public $steps=1;
@@ -25,12 +27,14 @@ class AllUniversity extends Component
     public $university_logo_path_old;
     public $university_id;
     public $status;
-    use WithPagination;
+    public $can_update=0;
     public $perPage=10; 
     public $search='';
     public $sortColumn="university_name";
     public $sortColumnBy="ASC";
     public $ext;
+    #[Locked] 
+    public $delete_id;
 
     protected function rules()
     {
@@ -40,7 +44,7 @@ class AllUniversity extends Component
         'university_website_url' =>['required','string','max:255'],
         'university_email' => ['required','email'],
         'university_contact_no' =>[ 'required','max:10'],
-        'university_logo_path' =>['required','max:250','mimes:png,jpg,jpeg'],
+        'university_logo_path' =>[($this->can_update==1?'nullable':'required'),'max:250','mimes:png,jpg,jpeg'],
         ];
     }
 
@@ -105,22 +109,39 @@ class AllUniversity extends Component
     }
 }
     
-    public function delete( University  $university )
-    {
-      
-        if ($university) {
-         
-            $university->colleges()->delete();
-            $university->delete();
-            $this->dispatch('alert',type:'success',message:'Deleted Successfully !!' );
+public function deleteconfirmation($id)
+{
+    $this->delete_id=$id;
+    $this->dispatch('delete-confirmation');
+}
 
-        }
-    }
+
+public function delete(University  $university)
+{   
+    $university->delete();
+    $this->dispatch('alert',type:'success',message:'University Soft Deleted Successfully !!');
+}
+
+public function restore($id)
+{   
+    $university = University::withTrashed()->find($id);
+    $university->restore();
+    $this->dispatch('alert',type:'success',message:'University Restored Successfully !!');
+}
+
+public function forcedelete()
+{  
+    $university = University::withTrashed()->find($this->delete_id);
+    $university->forceDelete();
+    $this->dispatch('alert',type:'success',message:'University Deleted Successfully !!');
+}
 
     public function edit(University $university){
 
 
         if ($university) {
+             if($university->university_logo_path){
+               $this->can_update=1;
             $this->university_id=$university->id;
             $this->university_name = $university->university_name;
             $this->university_email = $university->university_email;
@@ -131,7 +152,8 @@ class AllUniversity extends Component
             $this->status = $university->status;
             $this->setmode('edit');
            
-        }
+             }
+    }
     }
 
     public function update(University  $university){
@@ -213,7 +235,7 @@ class AllUniversity extends Component
     {
         $universities=University::when($this->search, function ($query, $search) {
             $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+        })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
         return view('livewire.user.university.all-university',compact('universities'))->extends('layouts.user')->section('user');
     }

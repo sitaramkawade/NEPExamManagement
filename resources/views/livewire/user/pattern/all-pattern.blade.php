@@ -57,16 +57,19 @@
                                     @endif
                                 </x-table.td>
 
-                                <x-table.td>
-                                    <x-table.edit wire:click="edit({{$pattern->id}})" />
-                                        @if($pattern->status==1)
-                                        <x-table.inactive wire:click="Status({{ $pattern->id }})" />
-                                        @else
-                                        <x-table.active wire:click="Status({{ $pattern->id }})" />
-                                        @endif
-                                    <x-table.delete wire:click="deletePattern({{$pattern->id}})" />
-
-
+                               <x-table.td>
+                                    @if ($pattern->deleted_at)
+                                    <x-table.delete wire:click="deleteconfirmation({{ $pattern->id }})" />
+                                    <x-table.restore wire:click="restore({{ $pattern->id }})" />
+                                    @else
+                                    <x-table.edit wire:click="edit({{ $pattern->id }})" />
+                                    @if($pattern->status==1)
+                                    <x-table.inactive wire:click="Status({{ $pattern->id }})" />
+                                    @else
+                                    <x-table.active wire:click="Status({{ $pattern->id }})" />
+                                    @endif
+                                    <x-table.archive wire:click="delete({{ $pattern->id }})" />
+                                    @endif
                                 </x-table.td>
                             </x-table.tr>
                             @empty

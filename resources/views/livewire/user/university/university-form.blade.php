@@ -25,7 +25,7 @@
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                             <x-input-label for="university_contact_no" :value="__('University Contact No')" />
                             <x-required />
-                            <x-text-input id="university_contact_no" type="text" wire:model="university_contact_no" name="university_contact_no" class="w-full mt-1" :value="old('university_contact_no',$university_contact_no)" required autofocus autocomplete="university_contact_no" />
+                            <x-text-input id="university_contact_no" type="number" wire:model="university_contact_no" name="university_contact_no" class="w-full mt-1" :value="old('university_contact_no',$university_contact_no)" required autofocus autocomplete="university_contact_no" />
                             <x-input-error :messages="$errors->get('university_contact_no')" class="mt-2" />
                         </div>
 
@@ -39,7 +39,7 @@
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                             <x-input-label for="university_website_url" :value="__('University Website URL ')" />
                             <x-required />
-                            <x-text-input id="university_website_url" type="url" wire:model="university_website_url" name="university_website_url" class="w-full mt-1" :value="old('university_website_url',$university_website_url)" required autofocus autocomplete="university_website_url" />
+                            <x-text-input id="university_website_url" type="text" wire:model="university_website_url" name="university_website_url" class="w-full mt-1" :value="old('university_website_url',$university_website_url)" required autofocus autocomplete="university_website_url" />
                             <x-input-error :messages="$errors->get('university_website_url')" class="mt-2" />
                         </div>
 

@@ -9,19 +9,21 @@ use Livewire\Component;
 use App\Models\University;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use App\Exports\User\College\CollegeExport;
+use Illuminate\Validation\Rule;
+use App\Exports\User\College\ExportCollege;
 
 
 class AllCollege extends Component
-{
+{   
     use WithFileUploads;
     use WithPagination;
+    protected $listeners = ['delete-confirmed'=>'forcedelete'];
+    
     public $perPage=10;
     public $search='';
     public $sortColumn="college_name";
     public $sortColumnBy="ASC";
     public $ext;
-
     public $steps=1;
     public $current_step=1;
     public $college_id;
@@ -37,20 +39,24 @@ class AllCollege extends Component
     public $university_id;
     public $universities;
     public $status;
+    public $can_update=0;
+    #[Locked] 
+    public $delete_id;
     public $is_default;
     public $mode='all';
   
-    protected function rules()
+
+    public function rules()
     {
         return [
         'college_name' => ['required','string','max:255'],
         'college_address' => ['required','string','max:255'],
         'college_website_url' => ['required','string','max:255'],
         'college_email' => ['required','email'],
-        'college_contact_no' => ['required','max:10'],
-        'college_logo_path' =>['required','max:250','mimes:png,jpg,jpeg'],
-        'sanstha_id' => ['required'],
-        'university_id' => ['required'],
+        'college_contact_no' => ['required','numeric'],
+        'college_logo_path' =>[($this->can_update==1?'nullable':'required'),'max:250','mimes:png,jpg,jpeg'],
+        'sanstha_id' => ['required',Rule::exists('sansthas', 'id')],
+        'university_id' => ['required',Rule::exists('universities', 'id')],
        
          ];
     }
@@ -82,6 +88,7 @@ class AllCollege extends Component
         }
         $this->mode=$mode;
     }
+
 
     public function add(College  $college ){
         
@@ -117,21 +124,35 @@ class AllCollege extends Component
     public function mount()
     {
         $this->sansthas = Sanstha::all();
-        $this->universities = University::all();  
-       
+        $this->universities = University::all();        
       
     }
 
-    public function deleteCollege(College $college)
+    public function deleteconfirmation($id)
     {
-        if ($college) {
-            // Delete the colleges and its related patterns
-            $college->patterns()->delete();
-            $college->delete();
-            $this->mount();
-            $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
 
-        }
+   
+    public function delete(College  $college)
+    {   
+        $college->delete();
+        $this->dispatch('alert',type:'success',message:'College Soft Deleted Successfully !!');
+    }
+
+    public function restore($id)
+    {   
+        $college = College::withTrashed()->find($id);
+        $college->restore();
+        $this->dispatch('alert',type:'success',message:'College Restored Successfully !!');
+    }
+
+    public function forcedelete()
+    {  
+        $college = College::withTrashed()->find($this->delete_id);
+        $college->forceDelete();
+        $this->dispatch('alert',type:'success',message:'College Deleted Successfully !!');
     }
 
     public function Status(College $college)
@@ -150,6 +171,9 @@ class AllCollege extends Component
     public function edit(College $college){
 
         if ($college) {
+            if($college->college_logo_path){
+                $this->can_update=1;
+            }
             $this->college_id=$college->id;
             $this->college_name = $college->college_name;
             $this->college_email = $college->college_email;
@@ -165,7 +189,6 @@ class AllCollege extends Component
         }
     }
 
-    
     public function updateCollege(College  $college){
 
         $validatedData= $this->validate();
@@ -197,7 +220,6 @@ class AllCollege extends Component
     
     }
 
-    
     public function sort_column($column)
     {
         if( $this->sortColumn === $column)
@@ -214,24 +236,28 @@ class AllCollege extends Component
         $filename="College-".now();
         switch ($this->ext) {
             case 'xlsx':
-                return Excel::download(new CollegeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                return Excel::download(new ExportCollege($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
             break;
             case 'csv':
-                return Excel::download(new CollegeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                return Excel::download(new ExportCollege($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
             case 'pdf':
-                return Excel::download(new CollegeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                return Excel::download(new ExportCollege($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
        
     }
        
 
+
     public function render()
     {
+        $this->sansthas=Sanstha::select('sanstha_name','id')->where('status',1)->get();
+        $this->universities=University::select('university_name','id')->where('status',1)->get();
+
         $colleges=College::when($this->search, function ($query, $search) {
             $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+        })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
         return view('livewire.user.college.all-college',compact('colleges'))->extends('layouts.user')->section('user');
     }

@@ -12,6 +12,7 @@ use App\Exports\User\Sanstha\ExportSanstha;
 class AllSanstha extends Component
 {
     use WithPagination;
+    protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $mode='all';
     public $perPage=10;
     public $search='';
@@ -27,6 +28,8 @@ class AllSanstha extends Component
     public $sanstha_contact_no;
     public $status;
     public $sanstha_id;
+    #[Locked] 
+    public $delete_id;
 
     protected function rules()
     {
@@ -88,17 +91,32 @@ class AllSanstha extends Component
     }
 }
 
-    public function deleteSanstha(Sanstha $sanstha)
-    {
+public function deleteconfirmation($id)
+{
+    $this->delete_id=$id;
+    $this->dispatch('delete-confirmation');
+}
 
-        if ($sanstha) {
-            // Delete the Sanstha and its related colleges
-            $sanstha->colleges()->delete();
-            $sanstha->delete();
-            $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
 
-        }
-    }
+public function delete(Sanstha  $sanstha)
+{   
+    $sanstha->delete();
+    $this->dispatch('alert',type:'success',message:'Sanstha Soft Deleted Successfully !!');
+}
+
+public function restore($id)
+{   
+    $sanstha = Sanstha::withTrashed()->find($id);
+    $sanstha->restore();
+    $this->dispatch('alert',type:'success',message:'Sanstha Restored Successfully !!');
+}
+
+public function forcedelete()
+{  
+    $sanstha = Sanstha::withTrashed()->find($this->delete_id);
+    $sanstha->forceDelete();
+    $this->dispatch('alert',type:'success',message:'Sanstha Deleted Successfully !!');
+}
 
     public function edit(Sanstha $sanstha ){
 
@@ -170,7 +188,7 @@ class AllSanstha extends Component
     {
         $sansthas=Sanstha::when($this->search, function ($query, $search) {
             $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+        })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
         return view('livewire.user.sanstha.all-sanstha',compact('sansthas'))->extends('layouts.user')->section('user');
     }
