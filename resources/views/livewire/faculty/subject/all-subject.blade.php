@@ -19,10 +19,8 @@
         <x-card-header heading="View Subject">
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
-        <x-form>
             @include('livewire.faculty.subject.view-form')
-        </x-form>
-    @elseif($mode='all')
+    @elseif($mode =='all')
         <div>
             <x-card-header heading="All Subjects">
                     <x-add-btn wire:click="setmode('add')" />
@@ -63,12 +61,12 @@
                             @else
                                 <x-table.view wire:click="view({{ $subject->id }})" />
                                 <x-table.edit wire:click="edit({{ $subject->id }})" />
+                                    @if ($subject->status == 0)
+                                        <x-table.active wire:click="status({{ $subject->id }})" />
+                                    @elseif ($subject->status == 1)
+                                        <x-table.inactive wire:click="status({{ $subject->id }})" />
+                                    @endif
                                 <x-table.archive wire:click="softdelete({{ $subject->id }})" />
-                                @if ($subject->status == 0)
-                                    <x-table.active wire:click="status({{ $subject->id }})" />
-                                @elseif ($subject->status == 1)
-                                    <x-table.inactive wire:click="status({{ $subject->id }})" />
-                                @endif
                             @endif
                         </x-table.td>
                         </x-table.tr>

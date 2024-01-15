@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
           
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

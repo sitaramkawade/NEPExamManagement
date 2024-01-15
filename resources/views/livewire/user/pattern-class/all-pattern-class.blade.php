@@ -1,7 +1,7 @@
 <div>
   @if ($mode == 'add')
     <div>
-      <x-card-header heading="AddPattern Class">
+      <x-card-header heading="Add Pattern Class">
         <x-back-btn wire:click="setmode('all')" />
       </x-card-header>
       <x-form wire:submit="add()">
