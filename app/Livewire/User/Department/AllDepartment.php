@@ -7,6 +7,7 @@ use App\Models\College;
 use Livewire\Component;
 use App\Models\Department;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
 use App\Exports\User\Department\ExportDepartment;
 
 class AllDepartment extends Component
@@ -18,7 +19,6 @@ class AllDepartment extends Component
     public $sortColumn="dept_name";
     public $sortColumnBy="ASC";
     public $ext;
-    public $delete_id;
     public $mode='all';
     public $dept_name;
     public $short_name;
@@ -29,6 +29,8 @@ class AllDepartment extends Component
     public $dept_id;
     public $steps=1;
     public $current_step=1;
+    #[Locked] 
+    public $delete_id;
 
     
     protected function rules()
@@ -37,7 +39,7 @@ class AllDepartment extends Component
         'dept_name' => ['required','string','max:255'],
         'short_name' => ['required','string','max:255'],
         'departmenttype' => ['required','string','max:255'],
-        'college_id' => ['required'],
+        'college_id' => ['required',Rule::exists('colleges', 'id')],
         'status' => ['required'],
          ];
     }
@@ -120,6 +122,34 @@ class AllDepartment extends Component
         $this->setmode('all');
     }
 
+    
+    public function deleteconfirmation($id)
+    {
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
+    
+    
+    public function delete(Department  $dept)
+    {   
+        $dept->delete();
+        $this->dispatch('alert',type:'success',message:'Department Soft Deleted Successfully !!');
+    }
+    
+    public function restore($id)
+    {   
+        $dept = Department::withTrashed()->find($id);
+        $dept->restore();
+        $this->dispatch('alert',type:'success',message:'Department Restored Successfully !!');
+    }
+    
+    public function forcedelete()
+    {  
+        $dept = Department::withTrashed()->find($this->delete_id);
+        $dept->forceDelete();
+        $this->dispatch('alert',type:'success',message:'Department Deleted Successfully !!');
+    }
+
     public function Status(Department $dept)
     {
         if($dept->status)
@@ -162,9 +192,11 @@ class AllDepartment extends Component
     
     public function render()
     {
+        $this->colleges=College::select('college_name','id')->where('status',1)->get();
+
         $departments=Department::when($this->search, function ($query, $search) {
             $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+        })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
         return view('livewire.user.department.all-department',compact('departments'))->extends('layouts.user')->section('user');
     }

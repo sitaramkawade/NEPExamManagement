@@ -118,21 +118,21 @@ class AllExam extends Component
     public function delete(Exam  $exam)
     {   
         $exam->delete();
-        $this->dispatch('alert',type:'success',message:'Pattern Soft Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Soft Deleted Successfully !!');
     }
     
     public function restore($id)
     {   
         $exam = Exam::withTrashed()->find($id);
         $exam->restore();
-        $this->dispatch('alert',type:'success',message:'Pattern Restored Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Restored Successfully !!');
     }
     
     public function forcedelete()
     {  
         $exam = Exam::withTrashed()->find($this->delete_id);
         $exam->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Pattern Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Deleted Successfully !!');
     }
 
 
