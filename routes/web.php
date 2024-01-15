@@ -38,6 +38,7 @@ use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
+use App\Livewire\User\DepartmentType\AllDepartmentType;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
@@ -133,6 +134,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Departments
   Route::get('/all/department', AllDepartment::class)->name('all_department');
+
+  //All Department Types
+  Route::get('/all/departmentType', AllDepartmentType::class)->name('all_departmenttype');
 
   //All Users 
   Route::get('/all/users', AllUser::class)->name('all_user');

@@ -61,5 +61,6 @@ class DatabaseSeeder extends Seeder
             SemesterSeeder::class,
             SubjectcreditSeeder::class,
             StudentProfileSeeder::class,
+        ]);
     }
 }
