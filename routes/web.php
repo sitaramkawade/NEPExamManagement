@@ -7,6 +7,7 @@ use App\Livewire\Index;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
 
+use App\Livewire\User\Cap\AllCap;
 use App\Livewire\User\Cgpa\AllCgpa;
 use App\Livewire\User\Exam\AllExam;
 use App\Livewire\User\User\AllUser;
@@ -30,11 +31,14 @@ use App\Livewire\User\ClassYear\AllClassYear;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\University\AllUniversity;
 use App\Livewire\User\CourseClass\AllCourseClass;
+use App\Livewire\User\AcademicYear\AllAcademicYear;
 use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
+use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
+use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
@@ -151,6 +155,18 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   
   //All Exam Pattern Class
   Route::get('/all/exam/pattern/class',AllExamPatternClass::class)->name('all_exam_pattern_class');
+
+  //All Cap
+  Route::get('/all/cap',AllCap::class)->name('all_cap');
+
+  //All Academic Year
+  Route::get('/all/academicyear',AllAcademicYear::class)->name('all_academic_year');
+
+  //All Academic Year
+  Route::get('/all/boarduniversity',AllBoardUniversity::class)->name('all_board_university');
+
+  //All Time Table Slot
+  Route::get('/all/timetableslot',AllTimeTableSlot::class)->name('all_time_table_slot');
 });
 
 
