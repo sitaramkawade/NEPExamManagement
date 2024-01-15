@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('boarduniversity_name');           
             $table->boolean('is_active')->default(1); //Board 0 deactive  1 board  2 university
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
