@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('university_contact_no',50)->default(null)->nullable();
             $table->text('university_logo_path')->nullable();
             $table->tinyInteger('status')->default('0');// 0 :not active 1:active
-          
+            $table->SoftDeletes();
             $table->timestamps();
         });
     }

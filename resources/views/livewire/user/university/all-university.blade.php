@@ -58,14 +58,19 @@
                                     <x-status type="danger">Inactive</x-status>
                                     @endif
                                 </x-table.td>
-                                <x-table.td>
+                               <x-table.td>
+                                    @if ($university->deleted_at)
+                                    <x-table.delete wire:click="deleteconfirmation({{ $university->id }})" />
+                                    <x-table.restore wire:click="restore({{ $university->id }})" />
+                                    @else
                                     <x-table.edit wire:click="edit({{ $university->id }})" />
                                         @if($university->status==1)
                                         <x-table.inactive wire:click="Status({{ $university->id }})" />
                                         @else
                                         <x-table.active wire:click="Status({{ $university->id }})" />
                                         @endif
-                                    <x-table.delete wire:click="delete({{ $university->id }})" />
+                                    <x-table.archive wire:click="delete({{ $university->id }})" />
+                                    @endif
                                 </x-table.td>
                             </x-table.tr>
                             @empty

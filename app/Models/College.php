@@ -15,7 +15,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class College extends Model
 {
-    use HasFactory ;
+    use HasFactory,SoftDeletes; 
+    protected $dates = ['deleted_at'];
     protected $table='colleges';
     protected $fillable=[
         'college_name',

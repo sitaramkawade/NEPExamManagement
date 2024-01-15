@@ -21,7 +21,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2">
 
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                        <x-input-label for="password" :value="__(' password')" />
+                        <x-input-label for="password" :value="__(' Password')" />
                         <x-required />
                         <x-text-input id="password" type="password" wire:model="password" name="password" class="w-full mt-1" :value="old('password',$password)" required autofocus autocomplete="password" />
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -30,7 +30,7 @@
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="user_contact_no" :value="__(' Contact No')" />
                         <x-required />
-                        <x-text-input id="user_contact_no" type="text" wire:model="user_contact_no" name="user_contact_no" class="w-full mt-1" :value="old('user_contact_no',$user_contact_no)" required autofocus autocomplete="user_contact_no" />
+                        <x-text-input id="user_contact_no" type="number" wire:model="user_contact_no" name="user_contact_no" class="w-full mt-1" :value="old('user_contact_no',$user_contact_no)" required autofocus autocomplete="user_contact_no" />
                         <x-input-error :messages="$errors->get('user_contact_no')" class="mt-2" />
                     </div>    
 

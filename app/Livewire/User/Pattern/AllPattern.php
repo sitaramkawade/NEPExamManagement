@@ -7,12 +7,14 @@ use App\Models\College;
 use App\Models\Pattern;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
 use App\Exports\User\Pattern\ExportPattern;
 
 
 class AllPattern extends Component
 {
     use WithPagination;
+    protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10; 
     public $search='';
     public $sortColumn="pattern_name";
@@ -29,15 +31,17 @@ class AllPattern extends Component
     public $college_id ;
     public $colleges;
     public $pattern_id;
+    #[Locked] 
+    public $delete_id;
  
-    protected function rules()
+    public function rules()
     {
         return [
-        'pattern_name' => 'required|string|max:255',
-        'pattern_startyear' => 'required|string|max:4',
-        'pattern_valid' => 'required|string|max:4',
-        'status' => 'required|',
-        'college_id' => 'required|',      
+        'pattern_name' => ['required','string','max:255'],
+        'pattern_startyear' => ['required','string','max:4'],
+        'pattern_valid' =>[ 'required','string','max:4'],
+        'status' => ['required'],
+        'college_id' => ['required',Rule::exists('colleges', 'id')],      
         ];
     }
 
@@ -106,11 +110,31 @@ class AllPattern extends Component
         $pattern->update();
     }
     
-    public function deletePattern(Pattern $pattern)
+    public function deleteconfirmation($id)
     {
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
+    
+    
+    public function delete(Pattern  $pattern)
+    {   
         $pattern->delete();
-        
-        $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
+        $this->dispatch('alert',type:'success',message:'Pattern Soft Deleted Successfully !!');
+    }
+    
+    public function restore($id)
+    {   
+        $pattern = Pattern::withTrashed()->find($id);
+        $pattern->restore();
+        $this->dispatch('alert',type:'success',message:'Pattern Restored Successfully !!');
+    }
+    
+    public function forcedelete()
+    {  
+        $pattern = Pattern::withTrashed()->find($this->delete_id);
+        $pattern->forceDelete();
+        $this->dispatch('alert',type:'success',message:'Pattern Deleted Successfully !!');
     }
 
     public function edit(Pattern $pattern){
@@ -175,9 +199,10 @@ class AllPattern extends Component
 
     public function render()
     {
+        $this->colleges=College::select('college_name','id')->where('status',1)->get();
         $patterns=Pattern::when($this->search, function ($query, $search) {
             $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+        })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
         return view('livewire.user.pattern.all-pattern',compact('patterns'))->extends('layouts.user')->section('user');
     }

@@ -64,13 +64,18 @@
                                     @endif
                                 </x-table.td>
                                 <x-table.td>
+                                    @if ($college->deleted_at)
+                                    <x-table.delete wire:click="deleteconfirmation({{ $college->id }})" />
+                                    <x-table.restore wire:click="restore({{ $college->id }})" />
+                                    @else
                                     <x-table.edit wire:click="edit({{ $college->id }})" />
-                                        @if($college->status==1)
+                                        @if($college->is_active==1)
                                         <x-table.inactive wire:click="Status({{ $college->id }})" />
                                         @else
                                         <x-table.active wire:click="Status({{ $college->id }})" />
                                         @endif
-                                    <x-table.delete wire:click="deleteCollege({{ $college->id }})" />
+                                    <x-table.archive wire:click="delete({{ $college->id }})" />
+                                    @endif
                                 </x-table.td>
                             </x-table.tr>
                             @empty
