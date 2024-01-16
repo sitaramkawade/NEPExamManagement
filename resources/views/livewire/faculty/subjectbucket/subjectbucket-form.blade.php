@@ -75,7 +75,7 @@
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_id" :value="__('Subject')" />
             <x-input-select id="subject_id" wire:model="subject_id" name="subject_id" class="text-center @error('subject_id') is-invalid @enderror w-full mt-1" :value="old('subject_id', $subject_id)" required autofocus autocomplete="subject_id">
-                <x-select-option class="text-start" hidden> -- Select Subject Category -- </x-select-option>
+                <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>
                 @foreach ($subjects as $subject)
                     <x-select-option wire:key="{{ $subject->id }}" value="{{ $subject->id }}" class="text-start">{{ $subject->subject_name }}</x-select-option>
                 @endforeach
@@ -92,6 +92,8 @@
             </x-input-select>
             <x-input-error :messages="$errors->get('academicyear_id')" class="mt-2" />
         </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-1">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="status" :value="__('Status')" />
             <x-input-select id="status" wire:model="status" name="status" class="text-center @error('status') is-invalid @enderror w-full mt-1" :value="old('status', $status)" required autofocus autocomplete="status">

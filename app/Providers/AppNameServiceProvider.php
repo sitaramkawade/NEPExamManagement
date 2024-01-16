@@ -15,7 +15,7 @@ class AppNameServiceProvider extends ServiceProvider
     }
 
     public function boot(): void
-    {    
+    {
         if (Schema::hasTable('colleges')) {
             $appName = College::where('is_default', 1)->pluck('college_name')->first();
 

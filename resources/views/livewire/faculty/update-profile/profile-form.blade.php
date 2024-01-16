@@ -227,7 +227,7 @@
             <x-input-error :messages="$errors->get('ifsc_code')" class="mt-2" />
         </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3">
+    <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="micr_code" :value="__('MICR Code')" />
             @if ($isDisabled)

@@ -37,12 +37,12 @@ use App\Livewire\User\CourseClass\AllCourseClass;
 use App\Livewire\User\AcademicYear\AllAcademicYear;
 use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
+use App\Livewire\Faculty\SubjectType\AllSubjectType;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
-use App\Livewire\Faculty\Subjectbucket\AllSubjectbucket;
-use App\Livewire\User\DepartmentType\AllDepartmentType;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
+use App\Livewire\Faculty\Subjectbucket\AllSubjectbucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
@@ -170,7 +170,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Pattern Class
   Route::get('/all/pattern/class',AllPatternClass::class)->name('all_pattern_class');
-  
+
   //All Exam Pattern Class
   Route::get('/all/exam/pattern/class',AllExamPatternClass::class)->name('all_exam_pattern_class');
 
@@ -212,6 +212,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Subjectbucket
   Route::get('/all-subjectbucket', AllSubjectbucket::class)->name('all-subjectbuckets');
+
+  // All Subjecttype
+  Route::get('/all-subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
 
 });
 
