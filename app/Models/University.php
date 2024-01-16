@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\College;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\College;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class University extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes; 
+    protected $dates = ['deleted_at'];
     protected $table='universities';
     protected $fillable=[
         'university_name',

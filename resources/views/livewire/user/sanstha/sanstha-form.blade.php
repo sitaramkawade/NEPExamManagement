@@ -23,7 +23,7 @@
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="sanstha_contact_no" :value="__('Sanstha Contact No')" />
                         <x-required />
-                        <x-text-input id="sanstha_contact_no" type="text" wire:model="sanstha_contact_no" name="sanstha_contact_no" class="w-full mt-1" :value="old('sanstha_contact_no',$sanstha_contact_no)" required autofocus autocomplete="sanstha_contact_no" />
+                        <x-text-input id="sanstha_contact_no" type="number" wire:model="sanstha_contact_no" name="sanstha_contact_no" class="w-full mt-1" :value="old('sanstha_contact_no',$sanstha_contact_no)" required autofocus autocomplete="sanstha_contact_no" />
                         <x-input-error :messages="$errors->get('sanstha_contact_no')" class="mt-2" />
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">

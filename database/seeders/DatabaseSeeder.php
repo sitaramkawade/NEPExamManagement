@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+
             StudenthelplineQuerySeeder::class,
             StudenthelplineDocumentSeeder::class,
             LoginSeeder::class,
@@ -61,11 +62,5 @@ class DatabaseSeeder extends Seeder
             SubjectcreditSeeder::class,
             StudentProfileSeeder::class,
         ]);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

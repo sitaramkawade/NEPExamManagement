@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');
             $table->tinyInteger('status')->default('0');// 0 :not active 1:active
             $table->tinyInteger('is_default')->default('0');// 0 :not active 1:active
+            $table->softDeletes();
             $table->timestamps();
             
         });

@@ -7,14 +7,15 @@ use App\Livewire\Index;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
 
+use App\Livewire\User\Cap\AllCap;
 use App\Livewire\User\Cgpa\AllCgpa;
 use App\Livewire\User\Exam\AllExam;
 use App\Livewire\User\User\AllUser;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\User\Grade\AllGrades;
 use App\Livewire\User\Course\AllCourse;
-
 use App\Livewire\User\College\AllCollege;
 use App\Livewire\User\Pattern\AllPattern;
 use App\Livewire\User\Sanstha\AllSanstha;
@@ -29,14 +30,20 @@ use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\User\ClassYear\AllClassYear;
 use App\Livewire\User\Programme\AllProgramme;
+use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
 use App\Livewire\User\CourseClass\AllCourseClass;
+use App\Livewire\User\AcademicYear\AllAcademicYear;
 use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\Faculty\Subjectbucket\AllSubjectbucket;
+use App\Livewire\User\DepartmentType\AllDepartmentType;
+use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
+use App\Livewire\User\BoardUniversity\AllBoardUniversity;
+use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoletype\AllFacultyRoletype;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
@@ -91,12 +98,6 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
   // Student View Profile
   Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
 
-  // Student Profile
-  Route::get('/profile',MultiStepStudentProfile::class)->name('profile');
-
-  // Student View Profile
-  Route::get('/view/profile',StudentViewProfile::class)->name('view-profile');
-
   // Student Helpline
   Route::get('/helpline',Helpline::class)->name('helpline');
 });
@@ -129,7 +130,16 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All CGPA
   Route::get('/all/cgpa', AllCgpa::class)->name('all_cgpa');
 
-  //All Users
+  //All Grade
+  Route::get('/all/grade', AllGrades::class)->name('all_grade');
+
+  //All Departments
+  Route::get('/all/department', AllDepartment::class)->name('all_department');
+
+  //All Department Types
+  Route::get('/all/departmentType', AllDepartmentType::class)->name('all_departmenttype');
+
+  //All Users 
   Route::get('/all/users', AllUser::class)->name('all_user');
 
   //All Student Helpline
@@ -155,7 +165,21 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Pattern Class
   Route::get('/all/pattern/class',AllPatternClass::class)->name('all_pattern_class');
+  
+  //All Exam Pattern Class
+  Route::get('/all/exam/pattern/class',AllExamPatternClass::class)->name('all_exam_pattern_class');
 
+  //All Cap
+  Route::get('/all/cap',AllCap::class)->name('all_cap');
+
+  //All Academic Year
+  Route::get('/all/academicyear',AllAcademicYear::class)->name('all_academic_year');
+
+  //All Academic Year
+  Route::get('/all/boarduniversity',AllBoardUniversity::class)->name('all_board_university');
+
+  //All Time Table Slot
+  Route::get('/all/timetableslot',AllTimeTableSlot::class)->name('all_time_table_slot');
 });
 
 
