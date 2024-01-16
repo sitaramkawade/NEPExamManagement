@@ -1,4 +1,4 @@
-@props(["header" => false, "body" => false, "footer" => false, "title" => false ,"x" => true ,"p" => true ,"s" => true ,"a" => true ])
+@props(["header" => false, "body" => false, "footer" => false, "title" => false,"i" => false ,"x" => true ,"p" => true ,"s" => true ,"a" => true ])
 <div class="m-2 flex flex-col">
   <div class="-m-1.5 overflow-x-auto">
     <div class="inline-block min-w-full p-1.5 align-middle">
@@ -17,6 +17,9 @@
                         <x-table.search />
                       @endif
                       {{ $header }}
+                      @if ($i)
+                        <x-table.import />
+                      @endif
                       @if ($x)
                         <x-table.export />
                       @else

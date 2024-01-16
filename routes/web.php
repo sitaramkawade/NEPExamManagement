@@ -39,6 +39,7 @@ use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\SubjectType\AllSubjectType;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
+use App\Livewire\User\AdmissionData\AllAdmissionData;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
@@ -185,6 +186,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Time Table Slot
   Route::get('/all/timetableslot',AllTimeTableSlot::class)->name('all_time_table_slot');
+
+  //All Admission Data
+  Route::get('/all/admissiondata',AllAdmissionData::class)->name('all_admission_data');
 });
 
 
