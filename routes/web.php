@@ -14,6 +14,7 @@ use App\Livewire\User\User\AllUser;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\User\Grade\AllGrades;
 use App\Livewire\User\Course\AllCourse;
 use App\Livewire\User\College\AllCollege;
 use App\Livewire\User\Pattern\AllPattern;
@@ -35,6 +36,7 @@ use App\Livewire\User\AcademicYear\AllAcademicYear;
 use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
+use App\Livewire\User\AdmissionData\AllAdmissionData;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
@@ -43,7 +45,6 @@ use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoletype;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
-use App\Livewire\User\Grade\AllGrades;
 
 
 
@@ -171,6 +172,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Time Table Slot
   Route::get('/all/timetableslot',AllTimeTableSlot::class)->name('all_time_table_slot');
+
+  //All Admission Data
+  Route::get('/all/admissiondata',AllAdmissionData::class)->name('all_admission_data');
 });
 
 
