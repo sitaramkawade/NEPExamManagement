@@ -36,12 +36,28 @@ class AllDepartment extends Component
     public function rules()
     {
         return [
-        'dept_name' => ['required','string','max:255'],
-        'short_name' => ['required','string','max:255'],
+        'dept_name' => ['required','string','max:50'],
+        'short_name' => ['required','string','max:50'],
         'departmenttype' => ['required','string','max:255'],
         'college_id' => ['required',Rule::exists('colleges', 'id')],
         'status' => ['required'],
          ];
+    }
+
+    public function messages()
+    {   
+        $messages = [
+            'dept_name.required' => 'The Department Name field is required.',
+            'dept_name.string' => 'The Department Name must be a string.',
+            'dept_name.max' => 'The  Department Name must not exceed :max characters.',
+            'short_name.required' => 'The Short Name field is required.',
+            'short_name.string' => 'The Short Name must be a string.',
+            'short_name.max' => 'The  Short Name must not exceed :max characters.',
+            'departmenttype.required' => 'The Department Type field is required.',
+            'college_id.required' => 'The College field is required.',
+            'college_id.exists' => 'The selected Programme does not exist.',
+        ];
+        return $messages;
     }
 
     public function resetinput()

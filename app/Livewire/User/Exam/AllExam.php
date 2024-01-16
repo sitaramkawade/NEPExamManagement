@@ -31,11 +31,22 @@ class AllExam extends Component
     protected function rules()
     {
         return [
-        'exam_name' => ['required','string','max:255'],
+        'exam_name' => ['required','string','max:100'],
         'status' => ['required'],
         'exam_sessions' => ['required'],
         ];
     }
+
+    public function messages()
+    {   
+        $messages = [
+            'exam_name.required' => 'The Exam Name field is required.',
+            'exam_name.string' => 'The Exam Name must be a string.',
+            'exam_name.max' => 'The  Exam Name must not exceed :max characters.',
+            'exam_sessions.required' => 'The Exam Session field is required.',
+        ];
+        return $messages;
+        }
 
     public function resetinput()
     {

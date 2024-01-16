@@ -37,9 +37,9 @@
                             </x-table.tr>
                         </x-table.thead>
                         <x-table.tbody>
-                            @forelse ($patterns as $key => $pattern)
+                            @forelse ($patterns as  $pattern)
                             <x-table.tr wire:key="{{ $pattern->id }}">
-                                <x-table.td>{{ $key+1 }}</x-table.td>
+                                <x-table.td>{{ $pattern->id }}</x-table.td>
                                 <x-table.td>
                                     <x-table.text-scroll>{{ $pattern->pattern_name }}</x-table.text-scroll>
                                 </x-table.td>

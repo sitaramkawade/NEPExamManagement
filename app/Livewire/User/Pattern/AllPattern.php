@@ -37,12 +37,26 @@ class AllPattern extends Component
     public function rules()
     {
         return [
-        'pattern_name' => ['required','string','max:255'],
+        'pattern_name' => ['required','string','max:50'],
         'pattern_startyear' => ['required','string','max:4'],
         'pattern_valid' =>[ 'required','string','max:4'],
         'status' => ['required'],
         'college_id' => ['required',Rule::exists('colleges', 'id')],      
         ];
+    }
+
+    public function messages()
+    {   
+        $messages = [
+            'pattern_name.required' => 'The Pattern Name field is required.',
+            'pattern_name.string' => 'The Pattern Name must be a string.',
+            'pattern_name.max' => 'The  Pattern Name must not exceed :max characters.',
+            'pattern_startyear.required' => 'The Pattern Name field is required.',
+            'pattern_valid.required' => 'The Pattern Name field is required.',
+            'college_id.required' => 'The College field is required.',
+            'college_id.exists' => 'The selected Programme does not exist.',
+        ];
+        return $messages;
     }
 
     public function resetinput()
