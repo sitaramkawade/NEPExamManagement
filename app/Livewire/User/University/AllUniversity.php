@@ -41,11 +41,29 @@ class AllUniversity extends Component
         return [
         'university_name' => ['required','string','max:255'],
         'university_address' => ['required','string','max:255'],
-        'university_website_url' =>['required','string','max:255'],
+        'university_website_url' =>['required','string','max:100'],
         'university_email' => ['required','email'],
-        'university_contact_no' =>[ 'required','max:10'],
+        'university_contact_no' =>[ 'required','max:50'],
         'university_logo_path' =>[($this->can_update==1?'nullable':'required'),'max:250','mimes:png,jpg,jpeg'],
         ];
+    }
+
+    public function messages()
+    {   
+        $messages = [
+            'university_name.required' => 'The University Name field is required.',
+            'university_name.string' => 'The University Name must be a string.',
+            'university_name.max' => 'The  University Name must not exceed :max characters.',
+            'university_address.required' => 'The University Address field is required.',
+            'university_address.string' => 'The University Address must be a string.',
+            'university_address.max' => 'The  University Address must not exceed :max characters.',
+            'university_website_url.required' => 'The University Website Url field is required.',
+            'university_website_url.max' => 'The University Website Url not exceed :max characters.',
+            'university_contact_no.required' => 'The University Contact Number field is required.',
+            'university_logo_path.required' => 'The University Logo is required.',
+            'university_email.required' => 'The University Email is required.',
+        ];
+        return $messages;
     }
 
     public function resetinput()

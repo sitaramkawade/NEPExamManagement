@@ -3,7 +3,7 @@
         <section>
             <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
 
-                <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="grid grid-cols-1 md:grid-cols-3">
 
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="departmenttype" :value="__('Department Type')" />
@@ -18,9 +18,8 @@
                         <x-text-input id="description" type="text" wire:model="description" name="description" class="w-full mt-1" :value="old('description',$description)" required autofocus autocomplete="description" />
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2">
-                    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+
+                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="status" :value="__('Status')" />
                         <x-required />
                         <x-input-select id="status" wire:model="status" name="status" class="text-center  w-full mt-1" :value="old('status',$status)" required autocomplete="status">
@@ -31,7 +30,7 @@
                         <x-input-error :messages="$errors->get('status')" class="mt-2" />
                     </div>
                 </div>
-
+                
                 <div class="h-20 p-2">
                     <x-form-btn>
                         Submit

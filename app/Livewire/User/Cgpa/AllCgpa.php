@@ -22,20 +22,33 @@ class AllCgpa extends Component
     public $grade;    
     public $description;    
     public $cgpa_id;    
-
+    #[Locked] 
     public $delete_id;
     public $mode='all';
     public $steps=1;
     public $current_step=1;
 
-    protected function rules()
+    public function rules()
     {
         return [
-        'max_gp' => ['required','numeric'],
-        'min_gp' => ['required','numeric'],
-        'grade' => ['required'],
-        'description' => ['required'],  
+        'max_gp' => ['required','numeric','between:0.00,9999.99'],
+        'min_gp' =>  ['required','numeric','between:0.00,9999.99'],
+        'grade' => ['required','max:5'],
+        'description' => ['required','max:50'],  
          ];
+    }
+
+    public function messages()
+    {   
+        $messages = [
+            'max_gp.required' => 'The Maximum Grade Point field is required.',
+            'min_gp.required' => 'The Minimum Grade Point field is required.',
+            'grade.required' => 'The Grade field is required.',
+            'grade.max' => 'The Grade must not exceed :max characters.',
+            'description.required' => 'The Description field is required.',
+            'grade.max' => 'The Description must not exceed :max characters.',
+        ];
+        return $messages;
     }
 
     public function resetinput()
@@ -116,21 +129,21 @@ class AllCgpa extends Component
     public function delete(Cgpa  $cgpa)
     {   
         $cgpa->delete();
-        $this->dispatch('alert',type:'success',message:'Course Soft Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'CGPA Soft Deleted Successfully !!');
     }
 
     public function restore($id)
     {   
         $cgpa = Cgpa::withTrashed()->find($id);
         $cgpa->restore();
-        $this->dispatch('alert',type:'success',message:'Course Restored Successfully !!');
+        $this->dispatch('alert',type:'success',message:'CGPA Restored Successfully !!');
     }
 
     public function forcedelete()
     {  
         $cgpa = cgpa::withTrashed()->find($this->delete_id);
         $cgpa->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Course Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'CGPA Deleted Successfully !!');
     }
 
     public function sort_column($column)
@@ -146,7 +159,7 @@ class AllCgpa extends Component
 
     public function export()
     {
-        $filename="Class-Year-".now();
+        $filename="CGPA-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new ExportCgpa($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');

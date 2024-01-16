@@ -69,7 +69,7 @@
                                     <x-table.restore wire:click="restore({{ $college->id }})" />
                                     @else
                                     <x-table.edit wire:click="edit({{ $college->id }})" />
-                                        @if($college->is_active==1)
+                                        @if($college->status==1)
                                         <x-table.inactive wire:click="Status({{ $college->id }})" />
                                         @else
                                         <x-table.active wire:click="Status({{ $college->id }})" />

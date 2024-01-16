@@ -10,6 +10,7 @@ use App\Models\University;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
+use App\Exports\User\College\CollegeExport;
 use App\Exports\User\College\ExportCollege;
 
 
@@ -51,7 +52,7 @@ class AllCollege extends Component
         return [
         'college_name' => ['required','string','max:255'],
         'college_address' => ['required','string','max:255'],
-        'college_website_url' => ['required','string','max:255'],
+        'college_website_url' => ['required','string','max:100'],
         'college_email' => ['required','email'],
         'college_contact_no' => ['required','numeric'],
         'college_logo_path' =>[($this->can_update==1?'nullable':'required'),'max:250','mimes:png,jpg,jpeg'],
@@ -59,6 +60,27 @@ class AllCollege extends Component
         'university_id' => ['required',Rule::exists('universities', 'id')],
        
          ];
+    }
+
+    public function messages()
+    {   
+        $messages = [
+            'college_name.required' => 'The College Name field is required.',
+            'college_name.string' => 'The College Name must be a string.',
+            'college_name.max' => 'The  College Name must not exceed :max characters.',
+            'college_address.required' => 'The College Address field is required.',
+            'college_address.string' => 'The College Address must be a string.',
+            'college_address.max' => 'The  College Address must not exceed :max characters.',
+            'college_email.required' => 'The  College Email  field is required.',
+            'college_website_url.required' => 'The  College Website Url field is required.',
+            'college_contact_no.required' => 'The  College Contact Number field is required.',
+            'college_logo_path.required' => 'The  College Logo is required.',
+            'sanstha_id.required' => 'The Sanstha field is required.',
+            'sanstha_id.exists' => 'The selected Programme does not exist.',
+            'university_id.required' => 'The Sanstha field is required.',
+            'university_id.exists' => 'The selected Programme does not exist.',
+        ];
+        return $messages;
     }
 
     public function resetinput()
@@ -236,13 +258,13 @@ class AllCollege extends Component
         $filename="College-".now();
         switch ($this->ext) {
             case 'xlsx':
-                return Excel::download(new ExportCollege($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                return Excel::download(new CollegeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
             break;
             case 'csv':
-                return Excel::download(new ExportCollege($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                return Excel::download(new CollegeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
             case 'pdf':
-                return Excel::download(new ExportCollege($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                return Excel::download(new CollegeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
        

@@ -9,12 +9,14 @@ use App\Models\College;
 use Livewire\Component;
 use App\Models\Department;
 use Livewire\WithPagination;
-use App\Exports\user\ExportUser;
+use App\Exports\User\User\ExportUser;
+
 
 class AllUser extends Component
 {
   
     use WithPagination;
+    protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
     public $sortColumn="name";
@@ -36,6 +38,8 @@ class AllUser extends Component
     public $role_id;
     public $roles;
     public $mode='all';
+    #[Locked] 
+    public $delete_id;
 
     protected function rules()
     {
@@ -83,8 +87,6 @@ class AllUser extends Component
         $this->colleges = College::all();
         $this->departments = Department::all();  
         $this->roles=Role::all();
-       
-      
     }
 
     public function add(User  $user ){
@@ -150,11 +152,31 @@ class AllUser extends Component
     }
 
 
-    public function delete(User $user)
+    public function deleteconfirmation($id)
     {
-            $user->delete();
-            $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
 
+   
+    public function delete(User  $user)
+    {   
+        $user->delete();
+        $this->dispatch('alert',type:'success',message:'User Soft Deleted Successfully !!');
+    }
+
+    public function restore($id)
+    {   
+        $user = User::withTrashed()->find($id);
+        $user->restore();
+        $this->dispatch('alert',type:'success',message:'User Restored Successfully !!');
+    }
+
+    public function forcedelete()
+    {  
+        $user = User::withTrashed()->find($this->delete_id);
+        $user->forceDelete();
+        $this->dispatch('alert',type:'success',message:'User Deleted Successfully !!');
     }
 
     public function Status(User $user)
@@ -202,7 +224,7 @@ class AllUser extends Component
     {
         $users=User::when($this->search, function ($query, $search) {
             $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+        })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
         return view('livewire.user.user.all-user',compact('users'))->extends('layouts.user')->section('user');
     }

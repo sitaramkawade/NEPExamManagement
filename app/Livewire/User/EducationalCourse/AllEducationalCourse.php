@@ -35,9 +35,20 @@ class AllEducationalCourse extends Component
         return [
         'course_name' => ['required','string','max:255'],
         'programme_id' => ['required',Rule::exists('programmes', 'id')],
-        'is_active' => ['required'],
-       
+        'is_active' => ['required'], 
          ];
+    }
+
+    public function messages()
+    {   
+        $messages = [
+            'course_name.required' => 'The Course Name field is required.',
+            'course_name.string' => 'The Course Name must be a string.',
+            'course_name.max' => 'The  Course Name must not exceed :max characters.',
+            'programme_id.required' => 'The Programme field is required.',
+            'programme_id.exists' => 'The selected Programme does not exist.',
+        ];
+        return $messages;
     }
 
     public function resetinput()
