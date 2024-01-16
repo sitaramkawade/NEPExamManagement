@@ -35,11 +35,30 @@ class AllSanstha extends Component
     {
         return [
         'sanstha_name' => ['required','string','max:255'],
-        'sanstha_chairman_name' => ['required','string','max:255'],
+        'sanstha_chairman_name' => ['required','string','max:50'],
         'sanstha_address' => ['required','string','max:255'],
-        'sanstha_website_url' =>[ 'required','string','max:255'],
-        'sanstha_contact_no' => ['required','max:10'],   
+        'sanstha_website_url' =>[ 'required','string','max:50'],
+        'sanstha_contact_no' => ['required','max:20'],   
         ];
+    }
+
+    public function messages()
+    {   
+        $messages = [
+            'sanstha_name.required' => 'The Sanstha Name field is required.',
+            'sanstha_name.string' => 'The Sanstha Name must be a string.',
+            'sanstha_name.max' => 'The  Sanstha Name must not exceed :max characters.',
+            'sanstha_chairman_name.required' => 'The Sanstha Chairman Name field is required.',
+            'sanstha_chairman_name.string' => 'The Sanstha Chairman Name must be a string.',
+            'sanstha_chairman_name.max' => 'The  Sanstha Chairman Name must not exceed :max characters.',
+            'sanstha_address.required' => 'The Sanstha Address field is required.',
+            'sanstha_address.string' => 'The Sanstha Address must be a string.',
+            'sanstha_address.max' => 'The  Sanstha Address must not exceed :max characters.',
+            'sanstha_website_url.required' => 'The Sanstha Website Url field is required.',
+            'sanstha_website_url.max' => 'The Sanstha Website Url not exceed :max characters.',
+            'sanstha_contact_no.required' => 'The Sanstha Contact Number field is required.',
+        ];
+        return $messages;
     }
 
     public function resetinput()

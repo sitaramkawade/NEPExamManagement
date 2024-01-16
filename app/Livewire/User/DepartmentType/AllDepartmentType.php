@@ -25,6 +25,8 @@ class AllDepartmentType extends Component
     public $current_step=1;
     #[Locked] 
     public $delete_id;
+    #[Locked] 
+    public $dept_id;
 
     public function rules()
     {
@@ -33,6 +35,19 @@ class AllDepartmentType extends Component
         'description' => ['required','string','max:255'],
         'status' => ['required'],
          ];
+    }
+
+    public function messages()
+    {   
+        $messages = [
+            'departmenttype.required' => 'The Department Type field is required.',
+            'departmenttype.string' => 'The Department Type must be a string.',
+            'departmenttype.max' => 'The  Department Type must not exceed :max characters.',
+            'description.required' => 'The Short Name field is required.',
+            'description.string' => 'The Short Name must be a string.',
+            'description.max' => 'The  Short Name must not exceed :max characters.',
+        ];
+        return $messages;
     }
 
     public function resetinput()
@@ -72,7 +87,7 @@ class AllDepartmentType extends Component
         $this->setmode('all');
     }
 
-    public function edit(Department $dept){
+    public function edit(Departmenttype $dept){
 
         if ($dept) {
             $this->dept_id=$dept->id;
@@ -83,7 +98,7 @@ class AllDepartmentType extends Component
         }
     }
 
-    public function update(Department  $dept){
+    public function update(Departmenttype  $dept){
 
         $validatedData= $this->validate();
        

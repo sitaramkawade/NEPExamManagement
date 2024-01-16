@@ -39,9 +39,9 @@
                             </x-table.tr>
                         </x-table.thead>
                         <x-table.tbody>
-                            @forelse ($grades as $key => $grade)
+                            @forelse ($grades as $grade)
                             <x-table.tr wire:key="{{ $grade->id }}">
-                                <x-table.td> {{ $key+1 }}</x-table.td>
+                                <x-table.td> {{ $grade->id }}</x-table.td>
                                 <x-table.td>
                                     {{ $grade->max_percentage }}
                                 </x-table.td>

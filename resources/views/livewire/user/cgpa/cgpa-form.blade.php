@@ -6,7 +6,7 @@
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="max_gp" :value="__('Max Grade Point')" />
                         <x-required />
-                        <x-text-input id="max_gp" type="text" wire:model="max_gp" name="max_gp" class="w-full mt-1" :value="old('max_gp',$max_gp)" required autofocus autocomplete="max_gp" />
+                        <x-text-input id="max_gp" type="number" step="any" wire:model="max_gp" name="max_gp" class="w-full mt-1" :value="old('max_gp',$max_gp)" required autofocus autocomplete="max_gp" />
                         <x-input-error :messages="$errors->get('max_gp')" class="mt-2" />
                     </div>
 
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                        <x-input-label for="description" :value="__('Descriptiont')" />
+                        <x-input-label for="description" :value="__('Description')" />
                         <x-required />
                         <x-text-input id="description" type="text" wire:model="description" name="description" class="w-full mt-1" :value="old('description',$description)" required autofocus autocomplete="description" />
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
