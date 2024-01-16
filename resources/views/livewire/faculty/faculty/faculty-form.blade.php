@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3">
+    <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="micr_code" :value="__('MICR Code')" />
             <x-text-input id="micr_code" type="number" wire:model="micr_code" name="micr_code" placeholder="MICR Code" class=" @error('micr_code') is-invalid @enderror w-full mt-1" :value="old('micr_code', $micr_code)" required autofocus autocomplete="micr_code" />

@@ -201,10 +201,8 @@ class AllFacultyRole extends Component
         if ($role)
         {
             $this->role_name= $role->role_name;
-            $roltypeId = $role->roletype()->first();
-            $this->roletype_id = $roltypeId;
-            $collegeId = $role->college()->first();
-            $this->college_id= $collegeId;
+            $this->roletype_id = $role->roletype->roletype_name;
+            $this->college_id = $role->college->college_name;
             $this->setmode('view');
         }else{
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');

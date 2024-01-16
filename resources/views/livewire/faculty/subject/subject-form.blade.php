@@ -199,7 +199,7 @@
             <x-input-error :messages="$errors->get('subject_intpassing')" class="mt-2" />
         </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3">
+    <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_intpractpassing" :value="__('Subject Internal Practical Passing Marks')" />
             <x-text-input id="subject_intpractpassing" type="number" wire:model="subject_intpractpassing" name="subject_intpractpassing" placeholder="Subject Internal Practical Passing Marks" class=" @error('subject_intpractpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpractpassing', $subject_intpractpassing)" required autofocus autocomplete="subject_intpractpassing" />

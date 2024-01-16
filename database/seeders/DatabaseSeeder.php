@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-
             StudenthelplineQuerySeeder::class,
             StudenthelplineDocumentSeeder::class,
             LoginSeeder::class,
@@ -61,6 +60,8 @@ class DatabaseSeeder extends Seeder
             SemesterSeeder::class,
             SubjectcreditSeeder::class,
             StudentProfileSeeder::class,
+            SubjectSeeder::class,
+
         ]);
     }
 }
