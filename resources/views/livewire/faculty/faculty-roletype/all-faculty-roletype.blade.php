@@ -52,8 +52,8 @@
                                     </x-table.td>
                                     <x-table.td>
                                         @if ($roletype->deleted_at)
+                                        <x-table.delete wire:click="deleteconfirmation({{ $roletype->id }})" />
                                             <x-table.restore wire:click="restore({{ $roletype->id }})" />
-                                            <x-table.delete wire:click="deleteconfirmation({{ $roletype->id }})" />
                                         @else
                                             <x-table.view wire:click="view({{ $roletype->id }})" />
                                             <x-table.edit wire:click="edit({{ $roletype->id }})" />

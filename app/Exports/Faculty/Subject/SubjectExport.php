@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\Faculty;
+namespace App\Exports\Faculty\Subject;
 
 use App\Models\Subject;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ExportSubject implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
+class SubjectExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     protected $search;
     protected $sortColumn;
@@ -23,7 +23,7 @@ class ExportSubject implements FromCollection, WithHeadings, ShouldAutoSize, Wit
 
     public function collection()
     {
-        return Subject::with(['subjectcategories','subjecttypes','patternclass', 'patternclass', 'classyear', 'department', 'college', ])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
+        return Subject::with(['subjectcategories','subjecttypes','patternclass', 'classyear', 'department', 'college', ])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
         ->get(['id','subject_name','subject_credit','department_id','patternclass_id','college_id',]);
     }
 
@@ -38,11 +38,11 @@ class ExportSubject implements FromCollection, WithHeadings, ShouldAutoSize, Wit
             $row->id,
             $row->subject_name,
             $row->subject_credit,
-            $row->department->dept_name,
-            $row->patternclass->pattern->pattern_name,
-            $row->patternclass->courseclass->course->course_name,
-            $row->patternclass->courseclass->classyear->classyear_name,
-            $row->college->college_name,
+            (isset($row->department->dept_name) ?  $row->department->dept_name : ''),
+            (isset($row->patternclass->pattern->pattern_name) ?  $row->patternclass->pattern->pattern_name : ''),
+            (isset($row->patternclass->courseclass->course->course_name) ?  $row->patternclass->courseclass->course->course_name : ''),
+            (isset($row->patternclass->courseclass->classyear->classyear_name) ?  $row->patternclass->courseclass->classyear->classyear_name : ''),
+            (isset($row->college->college_name) ?  $row->college->college_name : ''),
         ];
     }
 }
