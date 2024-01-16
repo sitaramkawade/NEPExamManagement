@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Exports\Faculty;
+namespace App\Exports\Faculty\Faculty;
 
 use App\Models\Faculty;
-use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ExportFaculty implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
+class FacultyExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     protected $search;
     protected $sortColumn;
@@ -21,15 +20,6 @@ class ExportFaculty implements FromCollection, WithHeadings, ShouldAutoSize, Wit
         $this->sortColumn = $sortColumn;
         $this->sortColumnBy = $sortColumnBy;
     }
-
-    // public function collection()
-    // {
-    //     return Faculty::join('roles', 'faculties.role_id', '=', 'roles.id')
-    //     ->with('role')->search($this->search)
-    //     ->orderBy($this->sortColumn, $this->sortColumnBy)
-    //     ->select('faculties.id', 'faculties.faculty_name','faculties.email', 'faculties.mobile_no', 'roles.role_name')
-    //     ->get();
-    // }
 
     public function collection()
     {
@@ -52,9 +42,9 @@ class ExportFaculty implements FromCollection, WithHeadings, ShouldAutoSize, Wit
             $row->faculty_name,
             $row->email,
             $row->mobile_no,
-            $row->college->college_name,
-            $row->department->dept_name,
-            $row->role->role_name,
+            (isset($row->college->college_name) ? $row->college->college_name : ''),
+            (isset($row->department->dept_name) ? $row->department->dept_name : ''),
+            (isset($row->role->role_name) ? $row->role->role_name : ''),
             $row->date_of_birth,
             $row->gender,
             $row->category,

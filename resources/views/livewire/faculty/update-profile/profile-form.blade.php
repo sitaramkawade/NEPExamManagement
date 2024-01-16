@@ -118,7 +118,7 @@
 
 
 <x-card-collapsible heading="Working Details">
-    <div class="grid grid-cols-1 md:grid-cols-3">
+    <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="department_id" :value="__('Department')" />
             @unless ($isDisabled)
@@ -137,18 +137,6 @@
             @endunless
             <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
         </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="qualification" :value="__('Qualification')" />
-            <x-text-input id="qualification" type="text" wire:model="qualification" class="@error('qualification') is-invalid @enderror w-full mt-1" :value="old('qualification', $qualification)" required autofocus autocomplete="qualification" />
-            <x-input-error :messages="$errors->get('qualification')" class="mt-2" />
-        </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3">
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="unipune_id" :value="__('Unipune ID')" />
-            <x-text-input id="unipune_id" type="text" wire:model="unipune_id" class="@error('unipune_id') is-invalid @enderror w-full mt-1" :value="old('unipune_id', $unipune_id)" required autofocus autocomplete="unipune_id" />
-            <x-input-error :messages="$errors->get('unipune_id')" class="mt-2" />
-        </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-1">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -162,6 +150,19 @@
             <x-input-error :messages="$errors->get('college_id')" class="mt-2" />
         </div>
     </div>
+    <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="unipune_id" :value="__('Unipune ID')" />
+            <x-text-input id="unipune_id" type="text" wire:model="unipune_id" class="@error('unipune_id') is-invalid @enderror w-full mt-1" :value="old('unipune_id', $unipune_id)" required autofocus autocomplete="unipune_id" />
+            <x-input-error :messages="$errors->get('unipune_id')" class="mt-2" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="qualification" :value="__('Qualification')" />
+            <x-text-input id="qualification" type="text" wire:model="qualification" class="@error('qualification') is-invalid @enderror w-full mt-1" :value="old('qualification', $qualification)" required autofocus autocomplete="qualification" />
+            <x-input-error :messages="$errors->get('qualification')" class="mt-2" />
+        </div>
+    </div>
+
 </x-card-collapsible>
 
 

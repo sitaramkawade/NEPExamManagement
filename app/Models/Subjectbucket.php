@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Subjectbucket extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table='subjectbuckets';
     protected $fillable=[
     'department_id',
@@ -39,6 +41,21 @@ class Subjectbucket extends Model
     public function academicyear(): BelongsTo
     {
      return $this->belongsTo(Academicyear::class,'academicyear_id','id');
+    }
+
+    public function scopeSearch(Builder $query, string $search)
+    {
+        return $query->with('subject', 'department', 'academicyear',)
+            ->Where('status', 'like', "%{$search}%")
+            ->orWhereHas('academicyear', function ($query) use ($search) {
+                $query->where('year_name', 'like', "%{$search}%");
+            })
+            ->orWhereHas('department', function ($query) use ($search) {
+                $query->where('dept_name', 'like', "%{$search}%");
+            })
+            ->orWhereHas('subject', function ($query) use ($search) {
+                $query->where('subject_name', 'like', "%{$search}%");
+            });
     }
 
 }

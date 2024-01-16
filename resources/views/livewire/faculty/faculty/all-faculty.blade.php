@@ -20,7 +20,7 @@
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
             @include('livewire.faculty.faculty.view-form')
-    @elseif($mode = 'all')
+    @elseif($mode == 'all')
         <div>
             <x-card-header heading="All Faculties">
                 <x-add-btn wire:click="setmode('add')" />
@@ -56,15 +56,15 @@
                                     </x-table.td>
                                     <x-table.td>
                                         @if ($faculty->deleted_at)
+                                        <x-table.delete wire:click="deleteconfirmation({{ $faculty->id }})" />
                                             <x-table.restore wire:click="restore({{ $faculty->id }})" />
-                                            <x-table.delete wire:click="deleteconfirmation({{ $faculty->id }})" />
                                         @else
                                             <x-table.view wire:click="view({{ $faculty->id }})" />
                                             <x-table.edit wire:click="edit({{ $faculty->id }})" />
                                                 @if ($faculty->active == 0)
-                                                    <x-table.active wire:click="status({{ $faculty->id }})" />
+                                                    <x-table.active wire:click="changestatus({{ $faculty->id }})" />
                                                 @elseif ($faculty->active == 1)
-                                                    <x-table.inactive wire:click="status({{ $faculty->id }})" />
+                                                    <x-table.inactive wire:click="changestatus({{ $faculty->id }})" />
                                                 @endif
                                             <x-table.archive wire:click="softdelete({{ $faculty->id }})" />
                                         @endif

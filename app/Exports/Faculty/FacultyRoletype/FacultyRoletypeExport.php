@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\Faculty;
+namespace App\Exports\Faculty\FacultyRoletype;
 
 use App\Models\Roletype;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ExportRoletype implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
+class FacultyRoletypeExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     protected $search;
     protected $sortColumn;
