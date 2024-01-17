@@ -4,11 +4,13 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\ExamSeeder;
 use Database\Seeders\GradeSeeder;
 use Database\Seeders\LoginSeeder;
 use Database\Seeders\MonthSeeder;
 use Database\Seeders\SemesterSeeder;
 use Database\Seeders\PreviousYearSeeder;
+use Database\Seeders\ExamTimeTableSeeder;
 use Database\Seeders\SubjectCreditSeeder;
 use Database\Seeders\StudentProfileSeeder;
 use Database\Seeders\StudenthelplineQuerySeeder;
@@ -61,6 +63,8 @@ class DatabaseSeeder extends Seeder
             SemesterSeeder::class,
             SubjectcreditSeeder::class,
             StudentProfileSeeder::class,
+            ExamSeeder::class,
+            // ExamTimeTableSeeder::class
         ]);
     }
 }

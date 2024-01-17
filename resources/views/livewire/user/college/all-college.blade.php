@@ -2,9 +2,7 @@
     @if ($mode=='add')
     <div>
         <x-card-header heading=" Add College">
-
             <x-back-btn wire:click="setmode('all')" />
-
         </x-card-header>
         <x-form wire:submit="add()">
             @include('livewire.user.college.college-form')
@@ -69,11 +67,11 @@
                                     <x-table.restore wire:click="restore({{ $college->id }})" />
                                     @else
                                     <x-table.edit wire:click="edit({{ $college->id }})" />
-                                        @if($college->status==1)
-                                        <x-table.inactive wire:click="Status({{ $college->id }})" />
-                                        @else
-                                        <x-table.active wire:click="Status({{ $college->id }})" />
-                                        @endif
+                                    @if($college->status==1)
+                                    <x-table.inactive wire:click="Status({{ $college->id }})" />
+                                    @else
+                                    <x-table.active wire:click="Status({{ $college->id }})" />
+                                    @endif
                                     <x-table.archive wire:click="delete({{ $college->id }})" />
                                     @endif
                                 </x-table.td>

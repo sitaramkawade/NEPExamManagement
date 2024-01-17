@@ -10,7 +10,7 @@ class ExamTimetable extends Model
 {
     use HasFactory,SoftDeletes; 
     protected $dates = ['deleted_at'];
-    protected $table='';
+    protected $table='exam_timetables';
     protected $fillable=[
 
     ];
