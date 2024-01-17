@@ -19,7 +19,6 @@ class FacultyProfileSeeder extends Seeder
         $faker = Faker::create();
 
        $faculty = Faculty::create([
-        'id' => 1,
         'prefix' => 'Dr.',
         'faculty_name' => 'Puri Ashutosh Laxman',
         'email' => 'ashutoshpuri2000@gmail.com',
@@ -43,7 +42,6 @@ class FacultyProfileSeeder extends Seeder
         ]);
 
         $faculty->facultybankaccount()->create([
-            'id' => 1,
             'faculty_id'=> $faculty->id,
             'account_no'=>'123456789',
             'bank_address'=>'Sangamner Khurd',
