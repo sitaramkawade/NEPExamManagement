@@ -4,13 +4,44 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\CasteSeeder;
 use Database\Seeders\GradeSeeder;
 use Database\Seeders\LoginSeeder;
 use Database\Seeders\MonthSeeder;
+use Database\Seeders\StateSeeder;
+use Database\Seeders\CourseSeeder;
+use Database\Seeders\TalukaSeeder;
+use Database\Seeders\CountrySeeder;
+use Database\Seeders\SansthaSeeder;
+use Database\Seeders\SubjectSeeder;
+use Database\Seeders\DistrictSeeder;
+use Database\Seeders\ReligionSeeder;
+use Database\Seeders\RoletypeSeeder;
 use Database\Seeders\SemesterSeeder;
+use Database\Seeders\ClassyearSeeder;
+use Database\Seeders\DepatmentSeeder;
+use Database\Seeders\ProgrammeSeeder;
+use Database\Seeders\BloodgroupSeeder;
+use Database\Seeders\AddresstypeSeeder;
+use Database\Seeders\CourseclassSeeder;
+use Database\Seeders\SubjecttypeSeeder;
+use Database\Seeders\AcademicyearSeeder;
+use Database\Seeders\GendermasterSeeder;
+use Database\Seeders\PatternclassSeeder;
+use Database\Seeders\PrefixmasterSeeder;
 use Database\Seeders\PreviousYearSeeder;
+use Database\Seeders\CasteCategorySeeder;
+use Database\Seeders\DepatmenttypeSeeder;
 use Database\Seeders\SubjectCreditSeeder;
+use Database\Seeders\BanknamemasterSeeder;
 use Database\Seeders\StudentProfileSeeder;
+use Database\Seeders\StudmenumasterSeeder;
+use Database\Seeders\BoarduniversitySeeder;
+use Database\Seeders\SubjectcategorySeeder;
+use Database\Seeders\ExamPatternclassSeeder;
+use Database\Seeders\EducationalcourseSeeder;
+use Database\Seeders\ClassStudmenumasterSeeder;
 use Database\Seeders\StudenthelplineQuerySeeder;
 use Database\Seeders\StudenthelplineDocumentSeeder;
 
@@ -61,6 +92,7 @@ class DatabaseSeeder extends Seeder
             SubjectcreditSeeder::class,
             StudentProfileSeeder::class,
             SubjectSeeder::class,
+            ExamPatternclassSeeder::class
 
         ]);
     }
