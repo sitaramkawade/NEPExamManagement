@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+use Database\Seeders\ExamSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\CasteSeeder;
 use Database\Seeders\GradeSeeder;
@@ -31,6 +33,8 @@ use Database\Seeders\GendermasterSeeder;
 use Database\Seeders\PatternclassSeeder;
 use Database\Seeders\PrefixmasterSeeder;
 use Database\Seeders\PreviousYearSeeder;
+
+use Database\Seeders\ExamTimeTableSeeder;
 use Database\Seeders\CasteCategorySeeder;
 use Database\Seeders\DepatmenttypeSeeder;
 use Database\Seeders\SubjectCreditSeeder;
@@ -91,6 +95,10 @@ class DatabaseSeeder extends Seeder
             SemesterSeeder::class,
             SubjectcreditSeeder::class,
             StudentProfileSeeder::class,
+
+            ExamSeeder::class,
+            // ExamTimeTableSeeder::class
+
             SubjectSeeder::class,
             ExamPatternclassSeeder::class
             SubjectBucketSeeder::class,

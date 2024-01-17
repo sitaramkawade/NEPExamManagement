@@ -39,6 +39,7 @@ use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\SubjectType\AllSubjectType;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
+use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\AdmissionData\AllAdmissionData;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
@@ -144,6 +145,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Credits
   Route::get('/all/credits', AllCredit::class)->name('all_credit');
+
+  //All Exam Time Table
+  Route::get('/all/examTimeTable', AllExamTimeTable::class)->name('all_examTimeTable');
 
   //All Users 
   Route::get('/all/users', AllUser::class)->name('all_user');
