@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ExamPatternclass;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,5 +24,11 @@ class Exam extends Model
         return $query->where('exam_name', 'like', "%{$search}%")
         ->orWhere('status', 'like', "%{$search}%")
         ->orWhere('exam_sessions', 'like', "%{$search}%");
+    }
+
+
+    public function exampatternclasses()
+    {
+        return $this->hasMany(ExamPatternclass::class);
     }
 }

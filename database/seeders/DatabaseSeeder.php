@@ -89,9 +89,9 @@ class DatabaseSeeder extends Seeder
             StateSeeder::class,                     // CountrySeeder
             DistrictSeeder::class,                  // StateSeeder
             TalukaSeeder::class,                    // DistrictSeeder
-            CapmasterSeeder::class,                 // Exam 
             StudenthelplineDocumentSeeder::class,   // StudenthelplineQuerySeeder
             SansthaSeeder::class,                   // College , University
+            CapmasterSeeder::class,                 // College , Exam
             CourseSeeder::class,                    // College , Programme
             RoleSeeder::class,                      // College , Roletype
             EducationalcourseSeeder::class,         // Programme

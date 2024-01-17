@@ -16,7 +16,7 @@ class ExamSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             Exam::create([
                 'exam_sessions' => $faker->numberBetween(1,2),
                 'exam_name' => $faker->word,

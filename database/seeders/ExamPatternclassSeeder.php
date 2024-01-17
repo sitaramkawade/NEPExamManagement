@@ -18,13 +18,15 @@ class ExamPatternclassSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        $exams = Exam::inRandomOrder()->get();
+        $exams = Exam::with('exampatternclasses')->inRandomOrder()->get();
         $patternclasses = Patternclass::inRandomOrder()->get();
         $capmasters = Capmaster::inRandomOrder()->get();
 
-        for ($i = 0; $i < 100; $i++) {
-            $exam = $exams->random();
-            $patternclass = $patternclasses->random();
+        foreach ($exams as $exam) {
+
+            $availablePatternclasses = $patternclasses->diff($exam->examPatternclasses->pluck('patternclass_id'));
+            $patternclass = $availablePatternclasses->random();
+
             $capmaster = $capmasters->random();
 
             ExamPatternclass::create([
