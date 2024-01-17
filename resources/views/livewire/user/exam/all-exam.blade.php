@@ -36,9 +36,9 @@
                             </x-table.tr>
                         </x-table.thead>
                         <x-table.tbody>
-                            @forelse ($exams as $key => $exam)
+                            @forelse ($exams as $exam)
                             <x-table.tr wire:key="{{ $exam->id }}">
-                                <x-table.td>{{ $key+1 }}</x-table.td>
+                                <x-table.td>{{ $exam->id }}</x-table.td>
                                 <x-table.td>{{ $exam->exam_name }} </x-table.td>
                                 <x-table.td> {{ $exam->exam_sessions==0?"Session 1":"Session 2";}} </x-table.td>
                                 <x-table.td>

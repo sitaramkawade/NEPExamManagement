@@ -13,7 +13,7 @@
         <x-back-btn wire:click="setmode('all')" />
     </x-card-header>
     <x-form wire:submit="update({{ $dept_id  }})">
-        @include('livewire.user.department.department-form')
+          @include('livewire.user.department-type.department-type-form')
     </x-form>
     @elseif($mode=='all')
     <div>
@@ -35,9 +35,9 @@
                             </x-table.tr>
                         </x-table.thead>
                         <x-table.tbody>
-                            @forelse ($departmenttypes as $key => $depttype)
+                            @forelse ($departmenttypes as $depttype)
                             <x-table.tr wire:key="{{ $depttype->id }}">
-                                <x-table.td> {{ $key+1 }}</x-table.td>
+                                <x-table.td> {{$depttype->id }}</x-table.td>
                                 <x-table.td>
                                     {{ $depttype->departmenttype }}
                                 </x-table.td>

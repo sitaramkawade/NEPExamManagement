@@ -16,6 +16,7 @@ use App\Livewire\User\UserDashboard;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Grade\AllGrades;
 use App\Livewire\User\Course\AllCourse;
+use App\Livewire\User\Credit\AllCredit;
 use App\Livewire\User\College\AllCollege;
 use App\Livewire\User\Pattern\AllPattern;
 use App\Livewire\User\Sanstha\AllSanstha;
@@ -140,7 +141,10 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Department Types
   Route::get('/all/departmentType', AllDepartmentType::class)->name('all_departmenttype');
 
-  //All Users
+  //All Credits
+  Route::get('/all/credits', AllCredit::class)->name('all_credit');
+
+  //All Users 
   Route::get('/all/users', AllUser::class)->name('all_user');
 
   //All Student Helpline

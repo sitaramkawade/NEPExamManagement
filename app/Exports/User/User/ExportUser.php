@@ -41,9 +41,9 @@ class ExportUser implements FromCollection, WithHeadings, WithMapping
             $row->name,
             $row->email,
             $row->user_contact_no,
-            $row->college->colllege_name,
-            $row->department->dept_name,
-            $row->role->role_name,
+            isset($row->college->colllege_name)?$row->college->colllege_name:'',
+            isset($row->department->dept_name)?$row->department->dept_name:'',
+            isset($row->role->role_name)?$row->role->role_name:'',
            
         ];
     }

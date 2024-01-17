@@ -38,9 +38,9 @@
                             </x-table.tr>
                         </x-table.thead>
                         <x-table.tbody>
-                            @forelse ($sansthas as $key => $sanstha)
+                            @forelse ($sansthas as  $sanstha)
                             <x-table.tr wire:key="{{ $sanstha->id }}">
-                                <x-table.td> {{ $key+1 }}</x-table.td>
+                                <x-table.td> {{ $sanstha->id  }}</x-table.td>
                                 <x-table.td>
                                     <x-table.text-scroll> {{ $sanstha->sanstha_name }} </x-table.text-scroll>
                                 </x-table.td>

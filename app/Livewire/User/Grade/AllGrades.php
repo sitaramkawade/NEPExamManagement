@@ -36,11 +36,25 @@ class AllGrades extends Component
         'max_percentage' => ['required',],
         'min_percentage' => ['required'],
         'grade_point' => ['required'],
-        'grade_name' => ['required'],
-        'description' => ['required'],
+        'grade_name' => ['required','max:5'],
+        'description' => ['required','max:50'],
         'is_active' => ['required'],
        
          ];
+    }
+
+    public function messages()
+    {   
+        $messages = [
+            'max_percentage.required' => 'The Maximum Percentage field is required.',
+            'min_percentage.required' => 'The Minimum Percentage field is required.',
+            'grade_point.required' => 'The Grade Point field is required.',
+            'grade_name.required' => 'The Grade Name Field is required',
+            'grade_name.max' => 'The Grade must not exceed :max characters.',
+            'description.required' => 'The Description field is required.',
+            'description.max' => 'The Description must not exceed :max characters.',
+        ];
+        return $messages;
     }
 
     public function resetinput()

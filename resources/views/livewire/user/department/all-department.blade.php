@@ -36,9 +36,9 @@
                             </x-table.tr>
                         </x-table.thead>
                         <x-table.tbody>
-                            @forelse ($departments as $key => $dept)
+                            @forelse ($departments as $dept)
                             <x-table.tr wire:key="{{ $dept->id }}">
-                                <x-table.td> {{ $key+1 }}</x-table.td>
+                                <x-table.td> {{$dept->id }}</x-table.td>
                                 <x-table.td>
                                     {{ $dept->dept_name }}
                                 </x-table.td>

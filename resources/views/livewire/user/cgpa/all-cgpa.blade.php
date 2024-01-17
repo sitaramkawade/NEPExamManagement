@@ -39,9 +39,9 @@
                             </x-table.tr>
                         </x-table.thead>
                         <x-table.tbody>
-                            @forelse ($cgpas as $key => $cgpa)
+                            @forelse ($cgpas as  $cgpa)
                             <x-table.tr wire:key="{{ $cgpa->id }}">
-                                <x-table.td> {{ $key+1 }}</x-table.td>
+                                <x-table.td> {{  $cgpa->id  }}</x-table.td>
                                 <x-table.td>
                                     {{ $cgpa->max_gp }}
                                 </x-table.td>

@@ -44,8 +44,9 @@ class CollegeExport implements  FromCollection, WithHeadings, WithMapping
             $row->college_name,
             $row->college_email,
             $row->college_address,
-            $row->sanstha->sanstha_name,
-            $row->university->university_name,
+            isset($row->sanstha->sanstha_name)?$row->sanstha->sanstha_name:'',
+            isset($row->university->university_name)?$row->university->university_name:'',
+            $row->university?->university_name,
             $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }

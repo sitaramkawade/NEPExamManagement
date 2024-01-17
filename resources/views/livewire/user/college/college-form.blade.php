@@ -105,7 +105,7 @@
                                     <div class="flex flex-col items-center mx-auto space-x-6  ">
                                         <div class="shrink-0 p-2">
                                             @if ($college_logo_path)
-                                            <img style="width: 135px; height: 150px;" class="object-center object-fill bg-red-500 " src="{{ isset($college_logo_path)?$college_logo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
+                                            <img style="width: 135px; height: 150px;" class="object-center object-fill " src="{{ isset($college_logo_path)?$college_logo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
                                             @else
                                             <img style="width: 135px; height: 150px;" class="object-center object-fill " src="{{ isset($college_logo_path_old)?asset($college_logo_path_old):asset('img/no-img.png'); }}" alt="Current profile photo" />
                                             @endif

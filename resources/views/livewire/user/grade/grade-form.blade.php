@@ -6,14 +6,14 @@
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="max_percentage" :value="__('Max Percentage')" />
                         <x-required />
-                        <x-text-input id="max_percentage" type="number" wire:model="max_percentage" name="max_percentage" class="w-full mt-1" :value="old('max_percentage',$max_percentage)" required autofocus autocomplete="max_percentage" />
+                        <x-text-input id="max_percentage" type="number" step="any" wire:model="max_percentage" name="max_percentage" class="w-full mt-1" :value="old('max_percentage',$max_percentage)" required autofocus autocomplete="max_percentage" />
                         <x-input-error :messages="$errors->get('max_percentage')" class="mt-2" />
                     </div>
 
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="min_percentage" :value="__('Min Percentage')" />
                         <x-required />
-                        <x-text-input id="min_percentage" type="number" wire:model="min_percentage" name="min_percentage" class="w-full mt-1" :value="old('min_percentage',$min_percentage)" required autofocus autocomplete="min_percentage" />
+                        <x-text-input id="min_percentage" type="number" step="any" wire:model="min_percentage" name="min_percentage" class="w-full mt-1" :value="old('min_percentage',$min_percentage)" required autofocus autocomplete="min_percentage" />
                         <x-input-error :messages="$errors->get('min_percentage')" class="mt-2" />
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="grade_point" :value="__('Grade Point ')" />
                         <x-required />
-                        <x-text-input id="grade_point" type="number" wire:model="grade_point" name="grade_point" class="w-full mt-1" :value="old('grade_point',$grade_point)" required autofocus autocomplete="grade_point" />
+                        <x-text-input id="grade_point" type="number" step="any" wire:model="grade_point" name="grade_point" class="w-full mt-1" :value="old('grade_point',$grade_point)" required autofocus autocomplete="grade_point" />
                         <x-input-error :messages="$errors->get('grade_point')" class="mt-2" />
                     </div>
 
