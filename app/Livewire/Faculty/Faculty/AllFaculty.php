@@ -47,9 +47,9 @@ class AllFaculty extends Component
     public $departments;
     public $colleges;
     public $banknames;
-
     public $faculty_id;
     public $facultybank_id;
+
     public $mode='all';
     public $per_page = 10;
     public $delete_id;

@@ -423,20 +423,13 @@ class AllSubject extends Component
             $this->subject_intpractpassing= $subject->subject_intpractpassing;
             $this->subject_extpassing= $subject->subject_extpassing;
             $this->subject_optionalgroup= $subject->subject_optionalgroup;
-            $subcatId = $subject->subjectcategories()->first();
-            $this->subjectcategory_id= $subcatId;
-            $subtypeId = $subject->subjecttypes()->first();
-            $this->subjecttype_id= $subtypeId;
-            $patternId = $subject->patternclass->pattern->first();
-            $this->pattern_id= $patternId;
-            $courseId =  $subject->patternclass->courseclass->course->first();
-            $this->course_id = $courseId;
-            $classyearId =  $subject->patternclass->courseclass->classyear->first();
-            $this->classyear_id = $classyearId;
-            $departmentId = $subject->department->first();
-            $this->department_id=  $departmentId;
-            $collegeId = $subject->college->first();
-            $this->college_id= $collegeId;
+            $this->subjectcategory_id = $subject->subjectcategories->subjectcategory;
+            $this->subjecttype_id = $subject->subjecttypes->type_name;
+            $this->pattern_id = $subject->patternclass->pattern->pattern_name;
+            $this->course_id =  $subject->patternclass->courseclass->course->course_name;
+            $this->classyear_id =  $subject->patternclass->courseclass->classyear->classyear_name;
+            $this->department_id = $subject->department->dept_name;
+            $this->college_id = $subject->college->college_name;
             $this->setmode('view');
         }else{
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');

@@ -90,7 +90,7 @@ class AllSubjectbucket extends Component
             'course_class_id.required' => 'The course class field is required.',
             'course_class_id.exists' => 'The selected course class is invalid.',
             'status.required' => 'The status field is required.',
-            'status.in' => 'The status must be either Active or Inactive.',
+            'status.in' => 'The status must be either Inactive or Active.',
         ];
     }
 

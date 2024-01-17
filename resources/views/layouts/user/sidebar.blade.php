@@ -115,7 +115,10 @@
       <path stroke-linecap="round" stroke-width="2" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5" />
     </x-sidebar.sidebar-link>
 
-    
+    <x-sidebar.sidebar-link route="user.all_admission_data" name="Admission Data's">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12" />
+    </x-sidebar.sidebar-link>
+
 
     
   @else
