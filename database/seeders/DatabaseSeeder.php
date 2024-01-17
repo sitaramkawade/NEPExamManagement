@@ -93,6 +93,9 @@ class DatabaseSeeder extends Seeder
             StudentProfileSeeder::class,
             SubjectSeeder::class,
             ExamPatternclassSeeder::class
+            SubjectBucketSeeder::class,
+            FacultyProfileSeeder::class,
+
 
         ]);
     }
