@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subjectcredits', function (Blueprint $table) {
+        Schema::create('designations', function (Blueprint $table) {
             $table->id();
-            $table->float('credit',4,1)->default(0);
-            $table->float('marks',4,1)->default(0);
-            $table->float('passing',4,1)->default(0);
+            $table->string('designation',50);
+            $table->bigInteger('roletype_id')->nullable()->unsigned()->default(null);
+            $table->foreign('roletype_id')->references('id')->on('roletypes')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subjectcredits');
+        Schema::dropIfExists('designations');
     }
 };

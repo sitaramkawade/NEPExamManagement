@@ -1,8 +1,9 @@
 <?php
 
 namespace Database\Seeders;
-
+use Faker\Factory as Faker;
 use App\Models\Subject;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -13,91 +14,37 @@ class SubjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Subject::create( [
-            'id'=>1,
-            'subject_sem'=>1,
-            'subjectcategory_id'=>1,
-            'subject_no'=>1,
-            'subject_code'=>1,
-            'subject_shortname'=>'STAT',
-            'subject_name'=>'Statistics',
-            'subjecttype_id'=>1,
-            'subjectexam_type'=>'INTERNAL',
-            'subject_credit'=>4,
-            'subject_maxmarks'=>100,
-            'subject_maxmarks_int'=>30,
-            'subject_maxmarks_intpract'=>15,
-            'subject_maxmarks_ext'=>70,
-            'subject_totalpassing'=>40,
-            'subject_intpassing'=>18,
-            'subject_intpractpassing'=>8,
-            'subject_extpassing'=>28,
-            'subject_optionalgroup'=>'DSC',
-            'patternclass_id'=>34,
-            'classyear_id'=>4,
-            'department_id'=>4,
-            'college_id'=>1,
-            'status'=>1,
-            'created_at'=>'2023-09-25 05:10:43',
-            'updated_at'=>'2023-09-25 05:10:43'
-            ] );
+        $faker = Faker::create();
 
-        Subject::create( [
-            'id'=>2,
-            'subject_sem'=>2,
-            'subjectcategory_id'=>2,
-            'subject_no'=>2,
-            'subject_code'=>2,
-            'subject_shortname'=>'ALGE',
-            'subject_name'=>'ALGEBRA',
-            'subjecttype_id'=>2,
-            'subjectexam_type'=>'EXTERNAL',
-            'subject_credit'=>4,
-            'subject_maxmarks'=>100,
-            'subject_maxmarks_int'=>30,
-            'subject_maxmarks_intpract'=>15,
-            'subject_maxmarks_ext'=>70,
-            'subject_totalpassing'=>40,
-            'subject_intpassing'=>18,
-            'subject_intpractpassing'=>8,
-            'subject_extpassing'=>28,
-            'subject_optionalgroup'=>'DSC',
-            'patternclass_id'=>34,
-            'classyear_id'=>4,
-            'department_id'=>4,
-            'college_id'=>1,
-            'status'=>1,
-            'created_at'=>'2023-09-25 05:10:43',
-            'updated_at'=>'2023-09-25 05:10:43'
-            ] );
-
-        Subject::create( [
-            'id'=>3,
-            'subject_sem'=>3,
-            'subjectcategory_id'=>3,
-            'subject_no'=>3,
-            'subject_code'=>3,
-            'subject_shortname'=>'ELE',
-            'subject_name'=>'ELECTRONICS',
-            'subjecttype_id'=>1,
-            'subjectexam_type'=>'EXTERNAL',
-            'subject_credit'=>4,
-            'subject_maxmarks'=>100,
-            'subject_maxmarks_int'=>30,
-            'subject_maxmarks_intpract'=>15,
-            'subject_maxmarks_ext'=>70,
-            'subject_totalpassing'=>40,
-            'subject_intpassing'=>18,
-            'subject_intpractpassing'=>8,
-            'subject_extpassing'=>28,
-            'subject_optionalgroup'=>'DSC',
-            'patternclass_id'=>34,
-            'classyear_id'=>4,
-            'department_id'=>4,
-            'college_id'=>1,
-            'status'=>1,
-            'created_at'=>'2023-09-25 05:10:43',
-            'updated_at'=>'2023-09-25 05:10:43'
-            ] );
+        for ($i = 1; $i <= 50; $i++) {
+            Subject::create([
+                'id' => $i,
+                'subject_sem' => $faker->numberBetween(1, 6),
+                'subjectcategory_id' => $faker->numberBetween(1, 10),
+                'subject_no' => $faker->numberBetween(1, 100),
+                'subject_code' => $faker->numberBetween(1, 1000),
+                'subject_shortname' => $faker->lexify('???'),
+                'subject_name' => $faker->word,
+                'subjecttype_id' => $faker->numberBetween(1, 5),
+                'subjectexam_type' => $faker->randomElement(['INTERNAL', 'EXTERNAL']),
+                'subject_credit' => $faker->numberBetween(1, 5),
+                'subject_maxmarks' => $faker->numberBetween(80, 100),
+                'subject_maxmarks_int' => $faker->numberBetween(20, 30),
+                'subject_maxmarks_intpract' => $faker->numberBetween(10, 15),
+                'subject_maxmarks_ext' => $faker->numberBetween(60, 70),
+                'subject_totalpassing' => $faker->numberBetween(35, 45),
+                'subject_intpassing' => $faker->numberBetween(15, 20),
+                'subject_intpractpassing' => $faker->numberBetween(5, 10),
+                'subject_extpassing' => $faker->numberBetween(25, 35),
+                'subject_optionalgroup' => $faker->lexify('???'),
+                'patternclass_id' => $faker->numberBetween(1, 3),
+                'classyear_id' => $faker->numberBetween(1, 3),
+                'department_id' => $faker->numberBetween(1, 3),
+                'college_id' => 1,
+                'status' => $faker->numberBetween(0, 1),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

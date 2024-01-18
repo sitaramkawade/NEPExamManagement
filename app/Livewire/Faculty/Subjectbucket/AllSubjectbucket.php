@@ -28,11 +28,13 @@ class AllSubjectbucket extends Component
     public $subjectcategory_id;
     public $subject_categoryno;
     public $subject_id;
+    #[Locked] 
     public $subjectbucket_id;
     public $academicyear_id;
     public $pattern_id;
     public $course_id;
     public $course_class_id;
+    #[Locked]
     public $delete_id;
     public $mode='all';
     public $per_page = 10;

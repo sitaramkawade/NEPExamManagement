@@ -13,6 +13,7 @@ class AllSubjectType extends Component
     use WithPagination;
 
     protected $listeners = ['delete-confirmed'=>'delete'];
+    #[Locked] 
     public $subjecttype_id;
     public $type_name;
     public $type_shortname;
@@ -20,6 +21,7 @@ class AllSubjectType extends Component
 
     public $mode='all';
     public $per_page = 10;
+    #[Locked]
     public $delete_id;
 
     public $perPage=10;
