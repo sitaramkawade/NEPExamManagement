@@ -21,10 +21,10 @@ class FacultyProfileSeeder extends Seeder
         for ($i = 1; $i <= 10; $i++) {
             $faculty = Faculty::create([
                 'id' => $i,
-                'prefix' => $faker->randomElement(['Dr.', 'Eng.', 'Prof',]),
+                'prefix' => $faker->randomElement(['Dr.', 'Eng.', 'Prof.',]),
                 'faculty_name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
-                'mobile_no' => $faker->phoneNumber,
+                'mobile_no' => $faker->numberBetween(1000000000, 9999999999),
                 'college_id' => 1,
                 'department_id' => $faker->numberBetween(1, 3), // Adjust the range based on your departments
                 'role_id' => $faker->numberBetween(1, 3), // Adjust the range based on your roles
@@ -48,10 +48,10 @@ class FacultyProfileSeeder extends Seeder
                 'faculty_id' => $faculty->id,
                 'account_no' => $faker->bankAccountNumber,
                 'bank_address' => $faker->address,
-                'bank_name' => $faker->company,
+                'bank_name' => $faker->randomElement(['State Bank Of India', 'Bank Of Maharashtra','Central Bank Of India']),
                 'branch_name' => $faker->companySuffix,
                 'branch_code' => $faker->numberBetween(1000, 9999),
-                'account_type' => $faker->randomElement(['S', 'C']), // Assuming 'S' for Savings and 'C' for Current
+                'account_type' => $faker->randomElement(['S', 'C']),
                 'ifsc_code' => $faker->swiftBicNumber,
                 'micr_code' => $faker->numberBetween(100000000, 999999999),
                 'acc_verified' => $faker->numberBetween(0, 1),

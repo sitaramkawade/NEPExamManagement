@@ -22,7 +22,7 @@ class AllFacultyRole extends Component
     public $roletypes;
     public $colleges;
     public $mode='all';
-    #[Locked] 
+    #[Locked]
     public $role_id;
     #[Locked]
     public $delete_id;

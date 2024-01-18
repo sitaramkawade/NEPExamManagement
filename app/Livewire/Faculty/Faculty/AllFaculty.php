@@ -375,7 +375,7 @@ class AllFaculty extends Component
 
     public function render()
     {
-        
+
         if($this->mode !== 'all'){
             $this->prefixes = Prefixmaster::select('id','prefix','prefix_shortform')->where('is_active',1)->get();
             $this->banknames = Banknamemaster::select('id','bank_name','bank_shortform')->where('is_active',1)->get();
