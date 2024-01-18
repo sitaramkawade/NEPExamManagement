@@ -19,7 +19,11 @@
     </x-form>
     @elseif($mode=='all')
     <div>
-        <x-card-header heading=" All CGPA's">
+        <x-breadcrumb.breadcrumb>
+            <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
+            <x-breadcrumb.link name="CGPA's"/>
+        </x-breadcrumb.link>
+        <x-card-header heading="All CGPA's">
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
         <x-table.frame>
