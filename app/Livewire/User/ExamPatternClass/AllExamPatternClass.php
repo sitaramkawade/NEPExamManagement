@@ -212,7 +212,7 @@ class AllExamPatternClass extends Component
         ]);
         $this->resetinput();
         $this->setmode('all');
-        $this->dispatch('alert',type:'success',message:'Course Created Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Created Successfully !!');
     }
 
 
@@ -264,7 +264,7 @@ class AllExamPatternClass extends Component
        
         $this->resetinput();
         $this->setmode('all');
-        $this->dispatch('alert',type:'success',message:'Course Updated Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Updated Successfully !!');
 
     }
 
@@ -279,21 +279,21 @@ class AllExamPatternClass extends Component
     public function delete(ExamPatternclass $exam_pattern_class)
     {   
        $exam_pattern_class->delete();
-        $this->dispatch('alert',type:'success',message:'Course Soft Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Soft Deleted Successfully !!');
     }
     
     public function restore($id)
     {   
        $exam_pattern_class = ExamPatternclass::withTrashed()->find($id);
        $exam_pattern_class->restore();
-        $this->dispatch('alert',type:'success',message:'Course Restored Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Restored Successfully !!');
     }
 
     public function forcedelete()
     {   
        $exam_pattern_class = ExamPatternclass::withTrashed()->find($this->delete_id);
        $exam_pattern_class->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Course Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Deleted Successfully !!');
     }
 
     public function changestatus(ExamPatternclass $exam_pattern_class)
@@ -308,7 +308,7 @@ class AllExamPatternClass extends Component
         }
         $exam_pattern_class->update();
 
-        $this->dispatch('alert',type:'success',message:'Class Year Status Updated Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Status Updated Successfully !!');
     }
 
 

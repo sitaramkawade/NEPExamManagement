@@ -17,13 +17,13 @@
     </x-form>
   @elseif($mode == 'all')
     <div>
-      <x-card-header heading=" All Admission Data's">
-        <x-add-btn wire:click="setmode('add')" />
-      </x-card-header>
       <x-breadcrumb.breadcrumb>
         <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
         <x-breadcrumb.link name="Admission Data's"/>
       </x-breadcrumb.link>
+      <x-card-header heading=" All Admission Data's">
+        <x-add-btn wire:click="setmode('add')" />
+      </x-card-header>
       <x-table.frame i="1">
         <x-slot:body>
           <x-table.table>

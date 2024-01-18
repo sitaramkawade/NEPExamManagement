@@ -19,7 +19,11 @@
     </x-form>
     @elseif($mode=='all')
     <div>
-        <x-card-header heading=" All user's">
+        <x-breadcrumb.breadcrumb>
+            <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
+            <x-breadcrumb.link name="User's"/>
+        </x-breadcrumb.link>
+        <x-card-header heading="All User's">
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
         <x-table.frame>
