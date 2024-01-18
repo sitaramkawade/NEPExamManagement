@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
             BanknamemasterSeeder::class,
             SemesterSeeder::class,
             SubjectcreditSeeder::class,
-            StudmenumasterSeeder::class, 
+            StudmenumasterSeeder::class,
             DepatmenttypeSeeder::class,
             TimeTableSlotSeeder::class,
             ExamSeeder::class,

@@ -18,40 +18,44 @@ class FacultyProfileSeeder extends Seeder
     {
         $faker = Faker::create();
 
-       $faculty = Faculty::create([
-        'prefix' => 'Dr.',
-        'faculty_name' => 'Puri Ashutosh Laxman',
-        'email' => 'ashutoshpuri2000@gmail.com',
-        'mobile_no' => '9373545745',
-        'college_id' => 1,
-        'department_id' => 1,
-        'role_id' => 1,
-        'date_of_birth'=>'2000-05-25',
-        'gender'=>'M',
-        'category'=>'NT(B)',
-        'pan'=>'DXCHH00MMN',
-        'current_address' =>'Near Kuber Empire , Khandgoan Road',
-        'permanant_address' =>'Near Kuber Empire , Khandgoan Road',
-        'email_verified_at' => now(),
-        'password' => Hash::make('123456789'),
-        'remember_token' => Str::random(10),
-        'profile_photo_path'=>$faker->imageUrl($width = 640, $height = 480, 'nature'),
-        'unipune_id'=>'UNP123456789',
-        'qualification'=>'M.Sc.(Computer Science)',
-        'active'=>1,
-        ]);
+        for ($i = 1; $i <= 10; $i++) {
+            $faculty = Faculty::create([
+                'id' => $i,
+                'prefix' => $faker->randomElement(['Dr.', 'Eng.', 'Prof.',]),
+                'faculty_name' => $faker->name,
+                'email' => $faker->unique()->safeEmail,
+                'mobile_no' => $faker->numberBetween(1000000000, 9999999999),
+                'college_id' => 1,
+                'department_id' => $faker->numberBetween(1, 3), // Adjust the range based on your departments
+                'role_id' => $faker->numberBetween(1, 3), // Adjust the range based on your roles
+                'date_of_birth' => $faker->date,
+                'gender' => $faker->randomElement(['M', 'F']),
+                'category' => $faker->randomElement(['NT(B)', 'SC', 'ST', 'OBC']),
+                'pan' => $faker->regexify('[A-Z]{5}[0-9]{4}[A-Z]{1}'),
+                'current_address' => $faker->address,
+                'permanant_address' => $faker->address,
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'profile_photo_path' => $faker->imageUrl($width = 640, $height = 480, 'nature'),
+                'unipune_id' => 'UNP' . $faker->unique()->randomNumber(9),
+                'qualification' => $faker->sentence,
+                'active' => $faker->numberBetween(0, 1),
+            ]);
 
-        $faculty->facultybankaccount()->create([
-            'faculty_id'=> $faculty->id,
-            'account_no'=>'123456789',
-            'bank_address'=>'Sangamner Khurd',
-            'bank_name'=>'State Bank Of India',
-            'branch_name'=>'Sangamner Khurd',
-            'branch_code'=>'0447',
-            'account_type'=>'S',
-            'ifsc_code'=>'SBIN0001155',
-            'micr_code'=>'123456789',
-            'acc_verified'=>1,
-        ]);
+            $faculty->facultybankaccount()->create([
+                'id' => $i,
+                'faculty_id' => $faculty->id,
+                'account_no' => $faker->bankAccountNumber,
+                'bank_address' => $faker->address,
+                'bank_name' => $faker->randomElement(['State Bank Of India', 'Bank Of Maharashtra','Central Bank Of India']),
+                'branch_name' => $faker->companySuffix,
+                'branch_code' => $faker->numberBetween(1000, 9999),
+                'account_type' => $faker->randomElement(['S', 'C']),
+                'ifsc_code' => $faker->swiftBicNumber,
+                'micr_code' => $faker->numberBetween(100000000, 999999999),
+                'acc_verified' => $faker->numberBetween(0, 1),
+            ]);
+        }
     }
 }

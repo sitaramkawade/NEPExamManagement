@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('semester');
             $table->tinyInteger('status')->nullable()->default(1); // 1-Active 0-Inactive
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

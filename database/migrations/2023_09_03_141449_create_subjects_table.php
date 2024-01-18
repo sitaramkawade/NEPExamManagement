@@ -49,8 +49,8 @@ return new class extends Migration
             $table->foreign('college_id')->references('id')->on('colleges');
             $table->tinyInteger('status')->default(1);//1 =>subject in use ,0=>not in use
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

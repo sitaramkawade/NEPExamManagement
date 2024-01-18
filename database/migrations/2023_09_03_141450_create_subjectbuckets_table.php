@@ -30,8 +30,8 @@ return new class extends Migration
             $table->bigInteger('academicyear_id')->unsigned();  //Major Minor
             $table->foreign('academicyear_id')->references('id')->on('academicyears')->onDelete('cascade');
             $table->tinyInteger('status')->default('0');  //active 1 or not 0
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

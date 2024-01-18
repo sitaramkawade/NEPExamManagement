@@ -48,6 +48,7 @@ class AllSubject extends Component
     public $department_id;
     public $college_id;
 
+    #[Locked]
     public $subject_id;
     public $pattern_id;
     public $course_id;
@@ -69,6 +70,7 @@ class AllSubject extends Component
 
     public $mode='all';
     public $per_page = 10;
+    #[Locked] 
     public $delete_id;
     public $perPage=10;
     public $search='';

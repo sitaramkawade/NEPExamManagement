@@ -47,11 +47,13 @@ class AllFaculty extends Component
     public $departments;
     public $colleges;
     public $banknames;
+    #[Locked]
     public $faculty_id;
     public $facultybank_id;
 
     public $mode='all';
     public $per_page = 10;
+    #[Locked]
     public $delete_id;
 
     public $perPage=10;
@@ -373,6 +375,7 @@ class AllFaculty extends Component
 
     public function render()
     {
+
         if($this->mode !== 'all'){
             $this->prefixes = Prefixmaster::select('id','prefix','prefix_shortform')->where('is_active',1)->get();
             $this->banknames = Banknamemaster::select('id','bank_name','bank_shortform')->where('is_active',1)->get();

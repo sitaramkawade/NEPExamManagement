@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('type_shortname',10);//Th Pr Prj Ojt
             $table->tinyInteger('active')->default('0');// 0 :not active 1:active
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
