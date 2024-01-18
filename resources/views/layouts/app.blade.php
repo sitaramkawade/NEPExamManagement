@@ -12,15 +12,41 @@
     @vite(["resources/css/app.css", "resources/js/app.js"])
     @livewireStyles()
     <style>
-      ::-webkit-scrollbar 
+
+      .scrollbar-xs::-webkit-scrollbar 
       {
-        height: 10px !important;
+        height: 3px !important;
         width: 3px !important;
       }
 
-      ::-moz-scrollbar {
-        height: 10px !important;
+      .scrollbar-xs::-moz-scrollbar
+      {
+        height: 3px !important;
         width: 3px !important;
+      }
+
+
+      .scrollbar-sm::-webkit-scrollbar 
+      {
+        height: 6px !important;
+        width: 6px !important;
+      }
+
+      .scrollbar-sm::-moz-scrollbar
+      {
+        height: 6px !important;
+        width: 6px !important;
+      }
+
+      ::-webkit-scrollbar 
+      {
+        height: 12px !important;
+        width: 10px !important;
+      }
+
+      ::-moz-scrollbar {
+        height: 12px !important;
+        width: 10px !important;
       }
 
       * {

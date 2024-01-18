@@ -14,22 +14,22 @@ class StudentHelplineDocumentSeeder extends Seeder
      */
     public function run(): void
     {
-        Studenthelplinedocument::create([
-            'document_name' => 'Result',
-            'student_helpline_query_id'=>Studenthelplinequery::inRandomOrder()->first()->id,
-            'is_active' => 1,
-        ]);
+        // Studenthelplinedocument::create([
+        //     'document_name' => 'Result',
+        //     'student_helpline_query_id'=>Studenthelplinequery::inRandomOrder()->first()->id,
+        //     'is_active' => 1,
+        // ]);
 
-        Studenthelplinedocument::create([
-            'document_name' => 'Aadhar Card',
-            'student_helpline_query_id'=>Studenthelplinequery::inRandomOrder()->first()->id,
-            'is_active' => 1,
-        ]);
+        // Studenthelplinedocument::create([
+        //     'document_name' => 'Aadhar Card',
+        //     'student_helpline_query_id'=>Studenthelplinequery::inRandomOrder()->first()->id,
+        //     'is_active' => 1,
+        // ]);
 
-        Studenthelplinedocument::create([
-            'document_name' => 'Pan  Card',
-            'student_helpline_query_id'=>Studenthelplinequery::inRandomOrder()->first()->id,
-            'is_active' => 1,
-        ]);
+        // Studenthelplinedocument::create([
+        //     'document_name' => 'Pan  Card',
+        //     'student_helpline_query_id'=>Studenthelplinequery::inRandomOrder()->first()->id,
+        //     'is_active' => 1,
+        // ]);
     }
 }

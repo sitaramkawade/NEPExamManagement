@@ -6,12 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ExamTimetable extends Model
+class Notice extends Model
 {
-    use HasFactory,SoftDeletes; 
+    use HasFactory , SoftDeletes;
     protected $dates = ['deleted_at'];
-    protected $table='exam_timetables';
+    protected $table='notices';
     protected $fillable=[
-
+        'title',
+        'description',
+        'start_date',
+        'end_date',
+        'type',
+        'is_active',
+        'user_id',
     ];
 }
