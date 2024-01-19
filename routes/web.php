@@ -4,9 +4,10 @@ use Livewire\Livewire;
 
 
 use App\Livewire\Index;
+use App\Models\Faculty;
 use App\Livewire\SelectTo;
-use App\Livewire\DataTable;
 
+use App\Livewire\DataTable;
 use App\Livewire\User\Cap\AllCap;
 use App\Livewire\User\Cgpa\AllCgpa;
 use App\Livewire\User\Exam\AllExam;
@@ -39,8 +40,8 @@ use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\SubjectType\AllSubjectType;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
-use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\AdmissionData\AllAdmissionData;
+use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
@@ -149,7 +150,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Exam Time Table
   Route::get('/all/examTimeTable', AllExamTimeTable::class)->name('all_examTimeTable');
 
-  //All Users 
+  //All Users
   Route::get('/all/users', AllUser::class)->name('all_user');
 
   //All Student Helpline
@@ -204,25 +205,25 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
 
   // All Faculty
-  Route::get('/all-faculties', AllFaculty::class)->name('all-faculties');
+  Route::get('/faculties', AllFaculty::class)->name('all-faculties');
 
   // All Faculty Role
-  Route::get('/all-faculty-role', AllFacultyRole::class)->name('all-roles');
+  Route::get('/roles', AllFacultyRole::class)->name('all-roles');
 
   // All Faculty Role
-  Route::get('/all-faculty-roletype', AllFacultyRoletype::class)->name('all-roletypes');
+  Route::get('/roletypes', AllFacultyRoletype::class)->name('all-roletypes');
 
   // Update Faculty Profile
-  Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
+  Route::get('/profile', UpdateProfile::class)->name('updateprofile');
 
   // All Subject
-  Route::get('/all-subject', AllSubject::class)->name('all-subjects');
+  Route::get('/subjects', AllSubject::class)->name('all-subjects');
 
   // All Subjectbucket
-  Route::get('/all-subjectbucket', AllSubjectbucket::class)->name('all-subjectbuckets');
+  Route::get('/subjectbuckets', AllSubjectbucket::class)->name('all-subjectbuckets');
 
   // All Subjecttype
-  Route::get('/all-subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
+  Route::get('/subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
 
 });
 

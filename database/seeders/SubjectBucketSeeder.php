@@ -13,7 +13,7 @@ class SubjectBucketSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             Subjectbucket::create([
                 'id' => $i,
                 'department_id' => $faker->numberBetween(1, 4),

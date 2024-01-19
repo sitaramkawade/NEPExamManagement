@@ -16,7 +16,7 @@ class SubjectSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             Subject::create([
                 'id' => $i,
                 'subject_sem' => $faker->numberBetween(1, 6),

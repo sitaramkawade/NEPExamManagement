@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('designation',50);
             $table->bigInteger('roletype_id')->nullable()->unsigned()->default(null);
             $table->foreign('roletype_id')->references('id')->on('roletypes')->onUpdate('cascade')->onDelete('cascade');
+            $table->tinyInteger('is_active')->default(1); //1 =>active ,0=>not active
             $table->timestamps();
             $table->softDeletes();
         });

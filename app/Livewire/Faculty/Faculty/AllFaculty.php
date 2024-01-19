@@ -7,6 +7,7 @@ use App\Models\College;
 use App\Models\Faculty;
 use Livewire\Component;
 use App\Models\Department;
+use App\Models\Designation;
 use App\Models\Prefixmaster;
 use Livewire\WithPagination;
 use App\Models\Banknamemaster;
@@ -27,6 +28,7 @@ class AllFaculty extends Component
     public $email;
     public $mobile_no;
     public $role_id;
+    public $designation_id;
     public $department_id;
     public $college_id;
     public $active;
@@ -47,6 +49,7 @@ class AllFaculty extends Component
     public $departments;
     public $colleges;
     public $banknames;
+    public $designations;
     #[Locked]
     public $faculty_id;
     public $facultybank_id;
@@ -71,6 +74,7 @@ class AllFaculty extends Component
             'email' => ['required', 'email', 'string','unique:faculties,email,'.($this->mode=='edit'? $this->faculty_id :'')],
             'mobile_no' => ['required', 'numeric','digits:10'],
             'role_id' => ['required',Rule::exists(Role::class,'id')],
+            'designation_id' => ['required',Rule::exists(Designation::class,'id')],
             'department_id' => ['required',Rule::exists(Department::class,'id')],
             'college_id' => ['required',Rule::exists(College::class,'id')],
 
@@ -101,6 +105,8 @@ class AllFaculty extends Component
         'mobile_no.digits' => 'The mobile number must be 10 digits.',
         'role_id.required' => 'The role field is required.',
         'role_id.exists' => 'The selected role is invalid.',
+        'designation_id.required' => 'The designation field is required.',
+        'designation_id.exists' => 'The selected designation is invalid.',
         'department_id.required' => 'The department field is required.',
         'department_id.exists' => 'The selected department is invalid.',
         'college_id.required' => 'The college field is required.',
@@ -136,6 +142,7 @@ class AllFaculty extends Component
          $this->email=null;
          $this->mobile_no=null;
          $this->role_id=null;
+         $this->designation_id=null;
          $this->department_id=null;
          $this->college_id=null;
 
@@ -170,7 +177,6 @@ class AllFaculty extends Component
     public function save()
     {
         $validatedData = $this->validate();
-
         $faculty = Faculty::create($validatedData);
         if ($faculty) {
             $faculty->facultybankaccount()->create($validatedData);
@@ -183,6 +189,7 @@ class AllFaculty extends Component
 
     public function edit(Faculty $faculty)
     {
+        // $this->authorize('view', Faculty::class);
         if ($faculty)
         {
             $this->faculty_id = $faculty->id;
@@ -191,6 +198,7 @@ class AllFaculty extends Component
             $this->email= $faculty->email;
             $this->mobile_no= $faculty->mobile_no;
             $this->role_id= $faculty->role_id;
+            $this->designation_id= $faculty->designation_id;
             $this->department_id= $faculty->department_id;
             $this->college_id= $faculty->college_id;
 
@@ -351,6 +359,7 @@ class AllFaculty extends Component
             $this->mobile_no= $faculty->mobile_no;
             $this->department_id = isset($faculty->department->dept_name) ? $faculty->department->dept_name : '';
             $this->role_id = isset($faculty->role->role_name) ? $faculty->role->role_name : '';
+            $this->designation_id = isset($faculty->designation->designation) ? $faculty->designation->designation : '';
             $this->college_id = isset($faculty->college->college_name) ? $faculty->college->college_name : '';
 
             $bankdetails = $faculty->facultybankaccount()->first();
@@ -380,11 +389,12 @@ class AllFaculty extends Component
             $this->prefixes = Prefixmaster::select('id','prefix','prefix_shortform')->where('is_active',1)->get();
             $this->banknames = Banknamemaster::select('id','bank_name','bank_shortform')->where('is_active',1)->get();
             $this->roles= Role::select('id','role_name',)->get();
+            $this->designations= Designation::select('id','designation',)->get();
             $this->departments= Department::select('id','dept_name',)->where('status',1)->get();
             $this->colleges= College::select('id','college_name',)->where('status',1)->get();
         }
 
-        $faculties = Faculty::when($this->search, function($query, $search){
+        $faculties = Faculty::with(['role', 'designation', 'department', 'college'])->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.faculty.all-faculty',compact('faculties'))->extends('layouts.faculty')->section('faculty');

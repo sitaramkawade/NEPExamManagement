@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
             $table->bigInteger('role_id')->before('created_at')->nullable()->unsigned()->default(null);
+            $table->bigInteger('designation_id')->nullable()->unsigned()->default(null); //
 
             $table->date('date_of_birth')->nullable()->default(null); // date of birth
             $table->char('gender',1)->nullable()->default(null); // 'M-Male' 'F-Female' 'T-Transgender'
@@ -41,6 +42,7 @@ return new class extends Migration
 
             $table->foreign('department_id')->references('id')->on('departments')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('designation_id')->references('id')->on('designations')->onUpdate('cascade')->onDelete('cascade'); //
             $table->foreign('college_id')->references('id')->on('colleges')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();

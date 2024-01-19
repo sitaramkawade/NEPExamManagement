@@ -34,7 +34,8 @@
                             <x-table.tr>
                                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
                                 <x-table.th wire:click="sort_column('faculty_name')" name="faculty_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Name</x-table.th>
-                                <x-table.th wire:click="sort_column('role_id')" name="role_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Designation</x-table.th>
+                                <x-table.th wire:click="sort_column('role_id')" name="role_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Role</x-table.th>
+                                <x-table.th wire:click="sort_column('designation_id')" name="designation_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Designation</x-table.th>
                                 <x-table.th wire:click="sort_column('mobile_no')" name="mobile_no" :sort="$sortColumn" :sort_by="$sortColumnBy">Mobile No</x-table.th>
                                 <x-table.th> Status </x-table.th>
                                 <x-table.th> Action </x-table.th>
@@ -46,6 +47,7 @@
                                     <x-table.td>{{ $faculty->id }} </x-table.td>
                                     <x-table.td>{{ $faculty->faculty_name }} </x-table.td>
                                     <x-table.td> {{ $faculty->role->role_name ?? '' }} </x-table.td>
+                                    <x-table.td> {{ $faculty->designation->designation ?? '' }} </x-table.td>
                                     <x-table.td> {{ $faculty->mobile_no }} </x-table.td>
                                     <x-table.td>
                                         @if ($faculty->active == 0)
@@ -60,6 +62,9 @@
                                             <x-table.restore wire:click="restore({{ $faculty->id }})" />
                                         @else
                                             <x-table.view wire:click="view({{ $faculty->id }})" />
+                                            {{-- @can('view', $faculty)
+                                            <x-table.edit wire:click="edit({{ $faculty->id }})" />
+                                            @endcan --}}
                                             <x-table.edit wire:click="edit({{ $faculty->id }})" />
                                                 @if ($faculty->active == 0)
                                                     <x-table.active wire:click="changestatus({{ $faculty->id }})" />

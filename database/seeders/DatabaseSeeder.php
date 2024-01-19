@@ -67,6 +67,7 @@ class DatabaseSeeder extends Seeder
             AcademicyearSeeder::class,
             ProgrammeSeeder::class,
             RoletypeSeeder::class,
+            // DesignationSeeder::class,
             SubjectcategorySeeder::class,
             SubjecttypeSeeder::class,
             BloodgroupSeeder::class,

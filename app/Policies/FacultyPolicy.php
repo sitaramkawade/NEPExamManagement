@@ -19,9 +19,14 @@ class FacultyPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Faculty $faculty): bool
+    public function view(Faculty $faculty): bool
     {
-        //
+        if ($faculty->designation_id === 1) {
+            return false;
+        } elseif ($faculty->designation_id === 2) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -39,7 +44,7 @@ class FacultyPolicy
     {
         return $faculty->faculty_verified===0;
     }
-    
+
     /**
      * Determine whether the user can delete the model.
      */

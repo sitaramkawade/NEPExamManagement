@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Roletype;
-use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -15,16 +14,43 @@ class RoletypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        Roletype::create( [
+            'id'=>1,
+            'roletype_name'=>'System Admin',
+            'status'=>1,
+            'created_at'=>'2023-09-11 02:20:55',
+            'updated_at'=>'2023-09-11 02:20:55'
+            ] );
+        Roletype::create( [
+            'id'=>2,
+            'roletype_name'=>'Teaching',
+            'status'=>1,
+            'created_at'=>'2023-09-11 02:20:55',
+            'updated_at'=>'2023-09-11 02:20:55'
+            ] );
 
-        for ($i = 1; $i <= 100; $i++) {
-            Roletype::create([
-                'id' => $i,
-                'roletype_name' => $faker->word,
-                'status' => $faker->numberBetween(0,1),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+            Roletype::create( [
+            'id'=>3,
+            'roletype_name'=>'Non Teaching',
+            'status'=>1,
+            'created_at'=>'2023-09-11 02:20:55',
+            'updated_at'=>'2023-09-11 02:20:55'
+            ] );
+
+            Roletype::create( [
+            'id'=>4,
+            'roletype_name'=>'Management Member',
+            'status'=>1,
+            'created_at'=>'2023-09-11 02:20:55',
+            'updated_at'=>'2023-09-11 02:20:55'
+            ] );
+
+            Roletype::create( [
+            'id'=>5,
+            'roletype_name'=>'Other',
+            'status'=>1,
+            'created_at'=>'2023-09-11 02:20:55',
+            'updated_at'=>'2023-09-11 02:20:55'
+            ] );
     }
 }

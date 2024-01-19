@@ -26,8 +26,9 @@ class FacultyProfileSeeder extends Seeder
                 'email' => $faker->unique()->safeEmail,
                 'mobile_no' => $faker->numberBetween(1000000000, 9999999999),
                 'college_id' => 1,
-                'department_id' => $faker->numberBetween(1, 3), // Adjust the range based on your departments
-                'role_id' => $faker->numberBetween(1, 3), // Adjust the range based on your roles
+                'department_id' => $faker->numberBetween(1, 3),
+                'role_id' => $faker->numberBetween(1, 3),
+                'designation_id' => $faker->numberBetween(1, 3),
                 'date_of_birth' => $faker->date,
                 'gender' => $faker->randomElement(['M', 'F']),
                 'category' => $faker->randomElement(['NT(B)', 'SC', 'ST', 'OBC']),
