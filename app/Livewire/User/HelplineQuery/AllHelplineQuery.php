@@ -43,7 +43,7 @@ class AllHelplineQuery extends Component
         $messages = [
             'query_name.required' => 'The Query Name field is required.',
             'query_name.string' => 'The Query Name must be a string.',
-            'query_name.max' => 'The  Query Name must not exceed 255 characters.',
+            'query_name.max' => 'The  Query Name must not exceed :max characters.',
             'query_name.unique' => 'The Query Name has already been taken.',
         ];
         

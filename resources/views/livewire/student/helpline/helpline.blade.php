@@ -1,7 +1,7 @@
 <div>
   @if ($mode == 'add')
     <div>
-      <x-card-header  heading="Add Helpline Request">
+      <x-card-header heading="Add Helpline Request">
         <x-back-btn wire:click="setmode('all')" />
       </x-card-header>
       <x-form wire:submit="add()">
@@ -22,7 +22,7 @@
         </div> --}}
   @elseif($mode == 'view')
     <div>
-      <x-card-header  heading="View Helpline Request">
+      <x-card-header heading="View Helpline Request">
         <x-back-btn wire:click="setmode('all')" />
       </x-card-header>
       <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
@@ -30,7 +30,7 @@
           View Modification Request
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-          <x-input-label for="student_helpline_query_id" :value="__('Seleteed Query')" />
+          <x-input-label for="student_helpline_query_id" :value="__('Selected Query')" />
           <x-input-show id="student_helpline_query_id" :value="$current_query" />
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2">
@@ -90,7 +90,7 @@
                 <x-table.tr wire:key="{{ $helpline->id }}">
                   <x-table.td>{{ $helpline->id }} </x-table.td>
                   <x-table.td>{{ $helpline->studenthelplinequery->query_name }} </x-table.td>
-                  <x-table.td> {{ $helpline->new_query ?? '-'  }} </x-table.td>
+                  <x-table.td> {{ $helpline->new_query ?? '-' }} </x-table.td>
                   <x-table.td> {{ $helpline->remark ?? '-' }} </x-table.td>
                   <x-table.td>
                     @if ($helpline->status == 0)

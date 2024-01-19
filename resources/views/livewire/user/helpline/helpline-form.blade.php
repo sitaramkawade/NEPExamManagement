@@ -5,7 +5,7 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2">
     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-      <x-input-label for="student_id" :value="__('Selete Student')" />
+      <x-input-label for="student_id" :value="__('Select Student')" />
       <x-input-select id="student_id" wire:model.live="student_id" name="student_id" class="text-center w-full mt-1" :value="old('student_id', $student_id)" required autocomplete="student_id">
         <x-select-option class="text-start" hidden> -- Select Student -- </x-select-option>
         @forelse ($students as $student)
@@ -17,7 +17,7 @@
       <x-input-error :messages="$errors->get('student_id')" class="mt-1" />
     </div>
     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-      <x-input-label for="student_helpline_query_id" :value="__('Selete What You Want To Change')" />
+      <x-input-label for="student_helpline_query_id" :value="__('Select What You Want To Change')" />
       <x-input-select id="student_helpline_query_id" wire:model.live="student_helpline_query_id" name="student_helpline_query_id" class="text-center w-full mt-1" :value="old('student_helpline_query_id', $student_helpline_query_id)" required autocomplete="student_helpline_query_id">
         <x-select-option class="text-start" hidden> -- Select Your Query -- </x-select-option>
         @forelse ($helplinequeries as $help_query)
