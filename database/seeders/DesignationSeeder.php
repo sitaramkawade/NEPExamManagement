@@ -17,7 +17,7 @@ class DesignationSeeder extends Seeder
             'is_active'=>1,
             'created_at'=>'2021-05-20 00:02:57',
             'updated_at'=>'2021-05-19 00:02:57'
-            ] );
+        ] );
 
         Designation::create( [
             'id'=>2,
@@ -26,7 +26,7 @@ class DesignationSeeder extends Seeder
             'is_active'=>1,
             'created_at'=>'2021-05-20 00:02:57',
             'updated_at'=>'2021-05-19 00:02:57'
-            ] );
+        ] );
 
         Designation::create( [
             'id'=>3,
@@ -35,7 +35,7 @@ class DesignationSeeder extends Seeder
             'is_active'=>1,
             'created_at'=>'2021-05-20 00:02:57',
             'updated_at'=>'2021-05-19 00:02:57'
-            ] );
+        ] );
 
         Designation::create( [
             'id'=>4,
@@ -44,7 +44,7 @@ class DesignationSeeder extends Seeder
             'is_active'=>1,
             'created_at'=>'2021-05-20 00:02:57',
             'updated_at'=>'2021-05-19 00:02:57'
-            ] );
+        ] );
 
         Designation::create( [
             'id'=>5,
@@ -53,6 +53,6 @@ class DesignationSeeder extends Seeder
             'is_active'=>1,
             'created_at'=>'2021-05-20 00:02:57',
             'updated_at'=>'2021-05-19 00:02:57'
-            ] );
+        ] );
     }
 }
