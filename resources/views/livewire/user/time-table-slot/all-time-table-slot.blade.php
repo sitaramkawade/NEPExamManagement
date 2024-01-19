@@ -19,6 +19,10 @@
       </div>
     @elseif($mode == 'all')
       <div>
+        <x-breadcrumb.breadcrumb>
+          <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
+          <x-breadcrumb.link name="Time Table Slot's"/>
+        </x-breadcrumb.link>
         <x-card-header heading="All Time Table Slot's">
           <x-add-btn wire:click="setmode('add')" />
         </x-card-header>

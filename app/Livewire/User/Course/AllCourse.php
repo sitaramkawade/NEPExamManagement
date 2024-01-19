@@ -44,15 +44,14 @@ class AllCourse extends Component
     public function rules()
     {
         return [
-            'college_id' => ['required', 'numeric', Rule::exists('colleges', 'id')],
-            'programme_id' => ['required', 'numeric', Rule::exists('programmes', 'id')],
-            'course_name' => ['required', 'string','max:255',Rule::unique('courses', 'course_name')->ignore($this->edit_id, 'id')],
-            'course_code' => ['required', 'string','max:255',Rule::unique('courses', 'course_code')->ignore($this->edit_id, 'id'),],
-            'fullname' => ['required', 'string','max:255'],
-            'fullname' => ['required', 'string','max:255'],
-            'course_type' => ['required', 'string','max:255'],
+            'college_id' => ['required', 'integer', Rule::exists('colleges', 'id')],
+            'programme_id' => ['required', 'integer', Rule::exists('programmes', 'id')],
+            'course_name' => ['required', 'string','max:100',Rule::unique('courses', 'course_name')->ignore($this->edit_id, 'id')],
+            'course_code' => ['required', 'string','max:50',Rule::unique('courses', 'course_code')->ignore($this->edit_id, 'id'),],
+            'fullname' => ['required', 'string','max:100'],
+            'course_type' => ['required', 'string','max:20'],
             'shortname' => ['required', 'string','max:255'],
-            'special_subject' => ['required', 'string','max:255'],
+            'special_subject' => ['required', 'string','max:100'],
             'course_category' => ['required', 'integer', 'between:1,2'],
         ];
     }
@@ -243,15 +242,16 @@ class AllCourse extends Component
 
     public function render()
     {   
-
-        $this->colleges=College::select('college_name','id')->where('status',1)->get();
-        $this->programmes =Programme::select('programme_name','id')->where('active',1)->get();
-
-        $courses=Course::when($this->search, function ($query, $search) {
+        $courses=Course::with('programme','college')->select( 'id','course_name','course_code','fullname','shortname','special_subject','course_type','course_category','college_id','programme_id','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+        
+        if($this->mode!=='all')
+        {
+            $this->colleges=College::select('college_name','id')->where('status',1)->get();
+            $this->programmes =Programme::select('programme_name','id')->where('active',1)->get();
+        }
 
         return view('livewire.user.course.all-course',compact('courses'))->extends('layouts.user')->section('user');
     }
-
 }

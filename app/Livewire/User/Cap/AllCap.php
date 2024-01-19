@@ -41,8 +41,8 @@ class AllCap extends Component
     public function rules()
     {
         return [
-            'college_id' => ['required', 'numeric', Rule::exists('colleges', 'id')],
-            'exam_id' => ['required', 'numeric', Rule::exists('exams', 'id')],
+            'college_id' => ['required', 'integer', Rule::exists('colleges', 'id')],
+            'exam_id' => ['required', 'integer', Rule::exists('exams', 'id')],
             'cap_name' => ['required', 'string','max:255',Rule::unique('capmasters', 'cap_name')->ignore($this->edit_id, 'id')],
             'place' => ['nullable', 'string','max:255'],
         ];
@@ -52,11 +52,11 @@ class AllCap extends Component
     {   
         $messages = [
             'college_id.required' => 'The College  field is required.',
-            'college_id.numeric' => 'The College  must be a numeric value.',
+            'college_id.integer' => 'The College  must be a integer value.',
             'college_id.exists' => 'The selected College  is invalid.',
             
             'exam_id.required' => 'The Exam field is required.',
-            'exam_id.numeric' => 'The Exam must be a numeric value.',
+            'exam_id.integer' => 'The Exam must be a integer value.',
             'exam_id.exists' => 'The selected Exam is invalid.',
             
             'cap_name.required' => 'The CAP Name field is required.',
@@ -224,10 +224,13 @@ class AllCap extends Component
     public function render()
     {   
 
-        $this->colleges=College::select('college_name','id')->where('status',1)->get();
-        $this->exams =Exam::select('exam_name','id')->where('status',1)->get();
+        if($this->mode!=='all')
+        {
+            $this->colleges=College::select('college_name','id')->where('status',1)->get();
+            $this->exams =Exam::select('exam_name','id')->where('status',1)->get();
+        }
 
-        $caps=Capmaster::when($this->search, function ($query, $search) {
+        $caps=Capmaster::with('college')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

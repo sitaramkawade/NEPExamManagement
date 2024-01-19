@@ -43,10 +43,10 @@ class AllCourseClass extends Component
     public function rules()
     {
         return [
-            'college_id' => ['required', 'numeric', Rule::exists('colleges', 'id')],
-            'course_id' => ['required', 'numeric', Rule::exists('courses', 'id')],
-            'classyear_id' => ['required', 'numeric', Rule::exists('classyears', 'id')],
-            'nextyearclass_id' => ['nullable', 'numeric', Rule::exists('course_classes', 'id')],
+            'college_id' => ['required', 'integer', Rule::exists('colleges', 'id')],
+            'course_id' => ['required', 'integer', Rule::exists('courses', 'id')],
+            'classyear_id' => ['required', 'integer', Rule::exists('classyears', 'id')],
+            'nextyearclass_id' => ['nullable', 'integer', Rule::exists('course_classes', 'id')],
         ];
     }
 
@@ -54,20 +54,20 @@ class AllCourseClass extends Component
     {   
         $messages = [
             'college_id.required' => 'The College is required.',
-            'college_id.numeric' => 'The College must be a number.',
+            'college_id.integer' => 'The College must be a number.',
             'college_id.exists' => 'The selected College is invalid.',
 
             'course_id.required' => 'The Course is required.',
-            'course_id.numeric' => 'The Course must be a number.',
+            'course_id.integer' => 'The Course must be a number.',
             'course_id.exists' => 'The Selected Course is invalid.',
             'course_id.unique' => 'The Combination of College and Course must be unique.',
 
             'classyear_id.required' => 'The Class Year is required.',
-            'classyear_id.numeric' => 'The Class Year must be a number.',
+            'classyear_id.integer' => 'The Class Year must be a number.',
             'classyear_id.exists' => 'The selected Class Year is invalid.',
 
             'nextyearclass_id.required' => 'The Next Year Class is required.',
-            'nextyearclass_id.numeric' => 'The Next Year Class must be a number.',
+            'nextyearclass_id.integer' => 'The Next Year Class must be a number.',
             'nextyearclass_id.exists' => 'The selected Next Year Class is'
         ];
         
@@ -210,10 +210,10 @@ class AllCourseClass extends Component
             $this->next_classess=Courseclass::where('course_id',$this->course_id)->get();
             $this->class_years=Classyear::select('classyear_name','id')->where('status',1)->get();
             $this->courses =Course::select('course_name','id')->get();
-            $this->colleges =College::select('college_name','id')->get();
+            $this->colleges =College::select('college_name','id')->where('status',1)->get();
         }
 
-       $course_classes=Courseclass::when($this->search, function ($query, $search) {
+       $course_classes=Courseclass::with(['classyear', 'course', 'courseclass.classyear', 'courseclass.course', 'college'])->select('id','course_id','nextyearclass_id', 'college_id','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
