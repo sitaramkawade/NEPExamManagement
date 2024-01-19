@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('old_query')->nullable();
             $table->string('new_query')->nullable();
             $table->text('description')->nullable();
-            $table->bigInteger('approve_by')->nullable()->unsigned();
-            $table->bigInteger('verified_by')->nullable()->unsigned();
+            $table->bigInteger('approve_by')->nullable()->unsigned()->index();
+            $table->bigInteger('verified_by')->nullable()->unsigned()->index();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');;

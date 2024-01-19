@@ -33,7 +33,6 @@ use Database\Seeders\SubjecttypeSeeder;
 use Database\Seeders\AcademicyearSeeder;
 use Database\Seeders\GendermasterSeeder;
 use Database\Seeders\PatternclassSeeder;
-
 use Database\Seeders\PrefixmasterSeeder;
 use Database\Seeders\PreviousYearSeeder;
 use Database\Seeders\AdmissionDataSeeder;

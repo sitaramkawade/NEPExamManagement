@@ -51,8 +51,8 @@ class AllHelpline extends Component
     public function rules()
     {
         $rules = [
-            'student_id' => ['required', 'numeric', Rule::exists('students', 'id')],
-            'student_helpline_query_id' => ['required', 'numeric', Rule::exists('student_helpline_queries', 'id')],
+            'student_id' => ['required', 'integer', Rule::exists('students', 'id')],
+            'student_helpline_query_id' => ['required', 'integer', Rule::exists('student_helpline_queries', 'id')],
             'old_query' => ['required', 'string','max:255'],
             'new_query' => ['required', 'string','max:255'],
             'remark' => ['nullable', 'string','max:255'],
@@ -86,15 +86,15 @@ class AllHelpline extends Component
 
             'old_query.required' => 'The Current '.$this->current_query.' field is required.',
             'old_query.string' => 'The Current '.$this->current_query.' must be a string.',
-            'old_query.max' => 'The Current '.$this->current_query.' must not exceed 255 characters.',
+            'old_query.max' => 'The Current '.$this->current_query.' must not exceed :max characters.',
             
             'new_query.required' => 'The New '.$this->current_query.' field is required.',
             'new_query.string' => 'The New '.$this->current_query.' must be a string.',
-            'new_query.max' => 'The New '.$this->current_query.' must not exceed 255 characters.',
+            'new_query.max' => 'The New '.$this->current_query.' must not exceed :max characters.',
 
             'description.required' => 'The Description field is required.',
             'description.string' => 'The Description must be a string.',
-            'description.max' => 'The Description must not exceed 400 characters.',
+            'description.max' => 'The Description must not exceed :max characters.',
         ];
         if(count($this->documents) >0)
         {
@@ -200,7 +200,7 @@ class AllHelpline extends Component
                 'helpline_document_path' => 'storage/' . $path . $fileName,
             ]);
         }
-        
+
         $this->resetinput();
         $this->setmode('all');
         $this->dispatch('alert',type:'success',message:'Helpline Request Created Successfully !!');
@@ -421,18 +421,22 @@ class AllHelpline extends Component
     }
 
     public function render()
-    {     
-        if ($this->student_helpline_query_id) {
-
-            $query = Studenthelplinequery::findOrFail($this->student_helpline_query_id);
-            $this->current_query= $query->query_name;
-            $this->documents = $query->studenthelplinedocuments()->get(); 
+    {   
+        if($this->mode!=='all')  
+        {
+            if ($this->student_helpline_query_id) {
+    
+                $query = Studenthelplinequery::findOrFail($this->student_helpline_query_id);
+                $this->current_query= $query->query_name;
+                $this->documents = $query->studenthelplinedocuments()->get(); 
+            }
+    
+            $this->helplinequeries = Studenthelplinequery::where('is_active', 1)->get();
+            $this->students = Student::where('status', 0)->get();
         }
 
-        $this->helplinequeries = Studenthelplinequery::where('is_active', 1)->get();
-        $this->students = Student::where('status', 0)->get();
-
-        $student_helplines=Studenthelpline::when($this->search, function ($query, $search) {
+        $student_helplines=Studenthelpline::select('id','student_id','student_helpline_query_id', 'remark','verified_by','approve_by','status','deleted_at')
+        ->with(['student','studenthelplinequery','verified','approved'])->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         return view('livewire.user.helpline.all-helpline', compact('student_helplines'))->extends('layouts.user')->section('user');

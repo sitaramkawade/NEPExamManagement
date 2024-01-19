@@ -32,7 +32,7 @@
             <x-input-show id="student_id" :value="$student_name" />
           </div>
           <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="student_helpline_query_id" :value="__('Seleteed Query')" />
+            <x-input-label for="student_helpline_query_id" :value="__('Selected Query')" />
             <x-input-show id="student_helpline_query_id" :value="$current_query" />
           </div>
           <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -95,74 +95,74 @@
   @elseif($mode == 'all')
     <div>
       <x-breadcrumb.breadcrumb>
-        <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
-        <x-breadcrumb.link name="Helpline Request's"/>
-      </x-breadcrumb.link>
-      <x-card-header heading="All Helpline Request's">
-        <x-add-btn wire:click="setmode('add')" />
-      </x-card-header>
-      <x-table.frame>
-        <x-slot:body>
-          <x-table.table>
-            <x-table.thead>
-              <x-table.tr>
-                <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
-                <x-table.th wire:click="sort_column('student_id')" name="student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Student</x-table.th>
-                <x-table.th wire:click="sort_column('student_helpline_query_id')" name="student_helpline_query_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Query</x-table.th>
-                <x-table.th wire:click="sort_column('remark')" name="remark" :sort="$sortColumn" :sort_by="$sortColumnBy">Remark</x-table.th>
-                <x-table.th wire:click="sort_column('verified_by')" name="verified_by" :sort="$sortColumn" :sort_by="$sortColumnBy">Verified By</x-table.th>
-                <x-table.th wire:click="sort_column('approve_by')" name="approve_by" :sort="$sortColumn" :sort_by="$sortColumnBy">Approved By</x-table.th>
-                <x-table.th wire:click="sort_column('status')" name="status" :sort="$sortColumn" :sort_by="$sortColumnBy">Status</x-table.th>
-                <x-table.th> Action </x-table.th>
-              </x-table.tr>
-            </x-table.thead>
-            <x-table.tbody>
-              @foreach ($student_helplines as $helpline)
-                <x-table.tr wire:key="{{ $helpline->id }}">
-                  <x-table.td>{{ $helpline->id }} </x-table.td>
-                  <x-table.td>{{ $helpline->student->student_name }} </x-table.td>
-                  <x-table.td>{{ $helpline->studenthelplinequery->query_name }} </x-table.td>
-                  <x-table.td><x-table.text-scroll> {{ $helpline->remark ?? '-' }} </x-table.text-scroll></x-table.td>
-                  <x-table.td> {{ isset($helpline->verified->name) ? $helpline->verified->name : 'N.A.' }} </x-table.td>
-                  <x-table.td> {{ isset($helpline->approved->name) ? $helpline->approved->name : 'N.A.' }} </x-table.td>
-                  <x-table.td>
-                    @if ($helpline->status == 0)
-                      <x-status type="warning"> Pending </x-status>
-                    @elseif ($helpline->status == 1)
-                      <x-status type="info"> Verified </x-status>
-                    @elseif ($helpline->status == 2)
-                      <x-status type="success"> Approved </x-status>
-                    @elseif ($helpline->status == 3)
-                      <x-status type="danger"> Canceled </x-status>
-                    @elseif ($helpline->status == 4)
-                      <x-status type="danger"> Rejected </x-status>
-                    @endif
-                  </x-table.td>
-                  <x-table.td>
-
-                    @if ($helpline->deleted_at)
-                      <x-table.delete wire:click="deleteconfirmation({{ $helpline->id }})" />
-                      <x-table.restore wire:click="restore({{ $helpline->id }})" />
-                    @else
-                      <x-table.view wire:click="view({{ $helpline->id }})" />
-                      {{-- <x-table.edit wire:click="edit({{ $helpline->id }})" /> --}}
-                      @if ($helpline->status == 0)
-                        <x-table.active wire:click="status({{ $helpline->id }})" />
-                      @elseif ($helpline->status == 1)
-                        <x-table.inactive wire:click="status({{ $helpline->id }})" />
-                      @endif
-                      <x-table.archive wire:click="delete({{ $helpline->id }})" />
-                    @endif
-                  </x-table.td>
+        <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
+        <x-breadcrumb.link name="Helpline Request's" />
+        </x-breadcrumb.link>
+        <x-card-header heading="All Helpline Request's">
+          <x-add-btn wire:click="setmode('add')" />
+        </x-card-header>
+        <x-table.frame>
+          <x-slot:body>
+            <x-table.table>
+              <x-table.thead>
+                <x-table.tr>
+                  <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
+                  <x-table.th wire:click="sort_column('student_id')" name="student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Student</x-table.th>
+                  <x-table.th wire:click="sort_column('student_helpline_query_id')" name="student_helpline_query_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Query</x-table.th>
+                  <x-table.th wire:click="sort_column('remark')" name="remark" :sort="$sortColumn" :sort_by="$sortColumnBy">Remark</x-table.th>
+                  <x-table.th wire:click="sort_column('verified_by')" name="verified_by" :sort="$sortColumn" :sort_by="$sortColumnBy">Verified By</x-table.th>
+                  <x-table.th wire:click="sort_column('approve_by')" name="approve_by" :sort="$sortColumn" :sort_by="$sortColumnBy">Approved By</x-table.th>
+                  <x-table.th wire:click="sort_column('status')" name="status" :sort="$sortColumn" :sort_by="$sortColumnBy">Status</x-table.th>
+                  <x-table.th> Action </x-table.th>
                 </x-table.tr>
-              @endforeach
-            </x-table.tbody>
-          </x-table.table>
-        </x-slot>
-        <x-slot:footer>
-          <x-table.paginate :data="$student_helplines" />
-        </x-slot>
-      </x-table.frame>
+              </x-table.thead>
+              <x-table.tbody>
+                @foreach ($student_helplines as $helpline)
+                  <x-table.tr wire:key="{{ $helpline->id }}">
+                    <x-table.td>{{ $helpline->id }} </x-table.td>
+                    <x-table.td>{{ $helpline->student->student_name }} </x-table.td>
+                    <x-table.td>{{ $helpline->studenthelplinequery->query_name }} </x-table.td>
+                    <x-table.td><x-table.text-scroll> {{ $helpline->remark ?? '-' }} </x-table.text-scroll></x-table.td>
+                    <x-table.td> {{ isset($helpline->verified->name) ? $helpline->verified->name : 'N.A.' }} </x-table.td>
+                    <x-table.td> {{ isset($helpline->approved->name) ? $helpline->approved->name : 'N.A.' }} </x-table.td>
+                    <x-table.td>
+                      @if ($helpline->status == 0)
+                        <x-status type="warning"> Pending </x-status>
+                      @elseif ($helpline->status == 1)
+                        <x-status type="info"> Verified </x-status>
+                      @elseif ($helpline->status == 2)
+                        <x-status type="success"> Approved </x-status>
+                      @elseif ($helpline->status == 3)
+                        <x-status type="danger"> Canceled </x-status>
+                      @elseif ($helpline->status == 4)
+                        <x-status type="danger"> Rejected </x-status>
+                      @endif
+                    </x-table.td>
+                    <x-table.td>
+
+                      @if ($helpline->deleted_at)
+                        <x-table.delete wire:click="deleteconfirmation({{ $helpline->id }})" />
+                        <x-table.restore wire:click="restore({{ $helpline->id }})" />
+                      @else
+                        <x-table.view wire:click="view({{ $helpline->id }})" />
+                        {{-- <x-table.edit wire:click="edit({{ $helpline->id }})" /> --}}
+                        @if ($helpline->status == 0)
+                          <x-table.active wire:click="status({{ $helpline->id }})" />
+                        @elseif ($helpline->status == 1)
+                          <x-table.inactive wire:click="status({{ $helpline->id }})" />
+                        @endif
+                        <x-table.archive wire:click="delete({{ $helpline->id }})" />
+                      @endif
+                    </x-table.td>
+                  </x-table.tr>
+                @endforeach
+              </x-table.tbody>
+            </x-table.table>
+          </x-slot>
+          <x-slot:footer>
+            <x-table.paginate :data="$student_helplines" />
+          </x-slot>
+        </x-table.frame>
     </div>
   @endif
 </div>

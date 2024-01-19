@@ -212,7 +212,7 @@ class AllPattern extends Component
 
 
     public function render()
-    {
+    {   
         $this->colleges=College::select('college_name','id')->where('status',1)->get();
         $patterns=Pattern::when($this->search, function ($query, $search) {
             $query->search($search);

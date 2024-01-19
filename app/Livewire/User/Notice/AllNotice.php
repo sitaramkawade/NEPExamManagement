@@ -41,12 +41,12 @@ class AllNotice extends Component
     public function rules()
     {
         return [
-            'type' => ['required', 'integer','digits_between:0,4'],
+            'type' => ['required', 'integer','between:0,4'],
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date'],
             'title' => ['required', 'string','max:100'],
             'description' => ['nullable', 'string','max:1000'],
-            // 'user_id' => ['required', 'numeric', Rule::exists('users', 'id')],
+            // 'user_id' => ['required', 'integer', Rule::exists('users', 'id')],
 
         ];
     }
@@ -54,8 +54,8 @@ class AllNotice extends Component
     public function messages()
     {   
         $messages = [
-            'type.nullable' => 'The type Field must be either null or have a valid integer value.',
-            'type.digits_between' => 'The type field must be between :min and :max digits.',
+            'type.nullable' => 'The Notice Type Field must be either null or have a valid integer value.',
+            'type.between' => 'The Notice Type field must be between :min and :max .',
             'start_date.nullable' => 'The Start Date field must be either null or have a valid date format.',
             'end_date.nullable' => 'The End Date field must be either null or have a valid date format.',
             'title.required' => 'The Title field is required.',
@@ -65,7 +65,7 @@ class AllNotice extends Component
             'description.string' => 'The description must be a valid string.',
             'description.max' => 'The description must not exceed :max characters.',
             // 'user_id.required' => 'The User  field is required.',
-            // 'user_id.numeric' => 'The User must be a valid numeric value.',
+            // 'user_id.integer' => 'The User must be a valid integer value.',
             // 'user_id.exists' => 'The selected User is invalid, please choose a valid User.',
         ];
         
@@ -230,9 +230,8 @@ class AllNotice extends Component
 
 
     public function render()
-    {   
-
-       $notices=Notice::when($this->search, function ($query, $search) {
+    {    
+        $notices=Notice::select('id','title','type','start_date','end_date','user_id','description','is_active','deleted_at')->with('user')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

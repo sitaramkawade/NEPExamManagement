@@ -34,7 +34,7 @@ class AllClassYear extends Component
     {
         return [
             'classyear_name' => ['required', 'string','max:255','unique:classyears,classyear_name,' . ($this->mode == 'edit' ? $this->edit_id : ''),],
-            'class_degree_name' => ['required', 'string','max:255'],
+            'class_degree_name' => ['required', 'string','max:100'],
         ];
     }
 
