@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Exam;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Faker\Factory as Faker;
 
 class ExamSeeder extends Seeder
 {
@@ -13,10 +14,14 @@ class ExamSeeder extends Seeder
      */
     public function run(): void
     {
-        $data=Exam::create(
-            [ 'exam_name'=>'Nov 2022',
-             'exam_sessions'=>'1',
-             'status'=>'1',]
-         );
+        $faker = Faker::create();
+
+        for ($i = 0; $i < 200; $i++) {
+            Exam::create([
+                'exam_sessions' => $faker->numberBetween(1,2),
+                'exam_name' => $faker->word,
+                'status' =>$faker->numberBetween(1,0),
+            ]);
+        }
     }
 }

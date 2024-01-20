@@ -19,6 +19,10 @@
       </div>
     @elseif($mode == 'all')
       <div>
+        <x-breadcrumb.breadcrumb>
+          <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
+          <x-breadcrumb.link name="Cap's"/>
+        </x-breadcrumb.link>
         <x-card-header heading="All Cap's">
           <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
@@ -43,7 +47,7 @@
                     <x-table.td>{{ $cap->cap_name }} </x-table.td>
                     <x-table.td>  <x-table.text-scroll> {{ $cap->place }}  </x-table.text-scroll></x-table.td>
                     <x-table.td>{{ $cap->exam->exam_name }} </x-table.td>
-                    <x-table.td>  <x-table.text-scroll> {{ $cap->college->college_name }} </x-table.text-scroll></x-table.td>
+                    <x-table.td>  <x-table.text-scroll> {{  isset($cap->college->college_name)? $cap->college->college_name:''; }} </x-table.text-scroll></x-table.td>
                     <x-table.td>
                         @if ( $cap->status === 1)
                             <x-status type="success"> Active </x-status>

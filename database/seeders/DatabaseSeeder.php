@@ -13,6 +13,7 @@ use Database\Seeders\LoginSeeder;
 use Database\Seeders\MonthSeeder;
 use Database\Seeders\StateSeeder;
 use Database\Seeders\CourseSeeder;
+use Database\Seeders\NoticeSeeder;
 use Database\Seeders\TalukaSeeder;
 use Database\Seeders\CountrySeeder;
 use Database\Seeders\SansthaSeeder;
@@ -22,6 +23,7 @@ use Database\Seeders\DistrictSeeder;
 use Database\Seeders\ReligionSeeder;
 use Database\Seeders\RoletypeSeeder;
 use Database\Seeders\SemesterSeeder;
+use Database\Seeders\CapmasterSeeder;
 use Database\Seeders\ClassyearSeeder;
 use Database\Seeders\DepatmentSeeder;
 use Database\Seeders\ProgrammeSeeder;
@@ -33,22 +35,36 @@ use Database\Seeders\AcademicyearSeeder;
 use Database\Seeders\GendermasterSeeder;
 use Database\Seeders\PatternclassSeeder;
 use Database\Seeders\PrefixmasterSeeder;
+<<<<<<< HEAD
 
 use Database\Seeders\PreviousYearSeeder;
 use Database\Seeders\CasteCategorySeeder;
 use Database\Seeders\DepatmenttypeSeeder;
 use Database\Seeders\ExamTimeTableSeeder;
 use Database\Seeders\SubjectCreditSeeder;
+=======
+use Database\Seeders\PreviousYearSeeder;
+use Database\Seeders\AdmissionDataSeeder;
+use Database\Seeders\CasteCategorySeeder;
+use Database\Seeders\DepatmenttypeSeeder;
+use Database\Seeders\ExamTimeTableSeeder;
+use Database\Seeders\SubjectBucketSeeder;
+use Database\Seeders\SubjectcreditSeeder;
+use Database\Seeders\TimeTableSlotSeeder;
+>>>>>>> Merge
 use Database\Seeders\BanknamemasterSeeder;
+use Database\Seeders\FacultyProfileSeeder;
 use Database\Seeders\StudentProfileSeeder;
 use Database\Seeders\StudmenumasterSeeder;
 use Database\Seeders\BoarduniversitySeeder;
+use Database\Seeders\StudentHelplineSeeder;
 use Database\Seeders\SubjectcategorySeeder;
 use Database\Seeders\ExamPatternclassSeeder;
 use Database\Seeders\EducationalcourseSeeder;
 use Database\Seeders\ClassStudmenumasterSeeder;
 use Database\Seeders\StudenthelplineQuerySeeder;
 use Database\Seeders\StudenthelplineDocumentSeeder;
+use Database\Seeders\StudentHelplineUploadedDocumentSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -58,54 +74,57 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            StudenthelplineQuerySeeder::class,
-            StudenthelplineDocumentSeeder::class,
             LoginSeeder::class,
             GradeSeeder::class,
             PreviousYearSeeder::class,
             MonthSeeder::class,
-            SansthaSeeder::class,
             AcademicyearSeeder::class,
             ProgrammeSeeder::class,
-            DepatmenttypeSeeder::class,
-            DepatmentSeeder::class,
-            CourseSeeder::class,
             RoletypeSeeder::class,
-            RoleSeeder::class,
             SubjectcategorySeeder::class,
             SubjecttypeSeeder::class,
-            CourseclassSeeder::class,
-            PatternclassSeeder::class,
-            StudmenumasterSeeder::class,
-            ClassStudmenumasterSeeder::class,
             BloodgroupSeeder::class,
             ReligionSeeder::class,
-            CasteCategorySeeder::class,
-            CasteSeeder::class,
             GendermasterSeeder::class,
-            CountrySeeder::class,
-            StateSeeder::class,
-            DistrictSeeder::class,
-            TalukaSeeder::class,
             AddresstypeSeeder::class,
             ClassyearSeeder::class,
             BoarduniversitySeeder::class,
-            EducationalcourseSeeder::class,
             PrefixmasterSeeder::class,
             BanknamemasterSeeder::class,
             SemesterSeeder::class,
             SubjectcreditSeeder::class,
-            StudentProfileSeeder::class,
-
+            StudmenumasterSeeder::class,
+            DepatmenttypeSeeder::class,
+            TimeTableSlotSeeder::class,
             ExamSeeder::class,
-            // ExamTimeTableSeeder::class
-
-            SubjectSeeder::class,
-            // ExamPatternclassSeeder::class
-            SubjectBucketSeeder::class,
-          //  FacultyProfileSeeder::class,
-            BuildingSeeder::class,
-
+            StudenthelplineQuerySeeder::class,
+            CasteCategorySeeder::class,
+            CountrySeeder::class,
+            NoticeSeeder::class,                            // User
+            CasteSeeder::class,                             // CasteCategorySeeder
+            StateSeeder::class,                             // CountrySeeder
+            DistrictSeeder::class,                          // StateSeeder
+            TalukaSeeder::class,                            // DistrictSeeder
+            StudenthelplineDocumentSeeder::class,           // StudenthelplineQuerySeeder
+            SansthaSeeder::class,                           // College , University
+            CapmasterSeeder::class,                         // College , Exam
+            CourseSeeder::class,                            // College , Programme
+            RoleSeeder::class,                              // College , Roletype
+            EducationalcourseSeeder::class,                 // Programme
+            DepatmentSeeder::class,                         // College ,DepatmenttypeSeeder
+            CourseclassSeeder::class,                       // classyear,course ,courseclass,college
+            PatternclassSeeder::class,                      // Pattern , Patternclass
+            ExamPatternclassSeeder::class,                  // Exam ,Patternclass ,CapmasterSeeder
+            ClassStudmenumasterSeeder::class,               // StudmenumasterSeeder ,Pattern Class ,user , college
+            StudentProfileSeeder::class,                    // Patterncalss , caste , castecategory , Addresstype ,University, Educationalcourse
+            SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
+            SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
+            FacultyProfileSeeder::class,                    // college  ,department , role ,facultybanck account
+            AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear,Department
+            StudentHelplineSeeder::class,                   // Student , Studenthelplinequery ,User
+            StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
+            StudentSeeder::class,                           // Patternclass , Department , College
+            // ExamTimeTableSeeder::class,
 
         ]);
     }

@@ -6,11 +6,11 @@
             <x-input-error :messages="$errors->get('role_name')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="roletype_id" :value="__('Roletype')" />
-            <x-input-select id="roletype_id" wire:model.live="roletype_id" name="roletype_id" class="text-center @error('roletype_id') is-invalid @enderror w-full mt-1" :value="old('roletype_id', $roletype_id)" required autofocus autocomplete="roletype_id">
-                <x-select-option class="text-start" hidden> -- Select Roletype -- </x-select-option>
+            <x-input-label for="roletype_id" :value="__('Role Type')" />
+            <x-input-select id="roletype_id" wire:model="roletype_id" name="roletype_id" class="text-center @error('roletype_id') is-invalid @enderror w-full mt-1" :value="old('roletype_id', $roletype_id)" required autofocus autocomplete="roletype_id">
+                <x-select-option class="text-start" hidden> -- Select Role Type -- </x-select-option>
                 @foreach ($roletypes as $roletype)
-                    <x-select-option wire:key="{{ $roletype->id }}" value="{{ $roletype->id }}" class="text-start">{{ $roletype->roletype_name }}</x-select-option>
+                    <x-select-option wire:key="{{ $roletype->id }}" value="{{ $roletype->id }}" class="text-start">{{ $roletype->roletype_name}}</x-select-option>
                 @endforeach
             </x-input-select>
             <x-input-error :messages="$errors->get('roletype_id')" class="mt-2" />

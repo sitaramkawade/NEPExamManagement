@@ -20,6 +20,28 @@ class LoginSeeder extends Seeder
         User::create( [
             'name' => 'user',
             'email' => 'user@gmail.com',
+<<<<<<< HEAD
+=======
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            'remember_token' => Str::random(10),
+        ] );
+
+        Faculty::create( [
+            'faculty_name' => 'faculty',
+            'email' => 'faculty@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            'remember_token' => Str::random(10),
+        ] );
+
+        Student::create( [
+            'student_name' => 'Student Name',
+            'mother_name' => 'Mother Name',
+            'mobile_no' => '1234567890',
+            'memid' => '12345',
+            'email' => 'student@gmail.com',
+>>>>>>> Merge
             'email_verified_at' => now(),
             'password' => Hash::make('123456789'),
             'remember_token' => Str::random(10),

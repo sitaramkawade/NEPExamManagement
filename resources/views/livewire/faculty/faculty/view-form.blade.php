@@ -1,50 +1,55 @@
 <x-card-collapsible heading="Faculty Registration">
     <div class="grid grid-cols-1 md:grid-cols-3">
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="prefix" :value="__('Prefix')" />
-            @if ($isDisabled)
-                <x-text-input id="prefix" type="text" :value="$prefix" disabled class="bg-gray-100 cursor-not-allowed @error('prefix') is-invalid @enderror w-full mt-1" />
-            @endif
+        <div class="col-span-1">
+            <div class="grid grid-cols-1 md:grid-cols-1">
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                    <x-input-label for="prefix" :value="__('Prefix')" />
+                    @if ($isDisabled)
+                        <x-text-input id="prefix" type="text" :value="$prefix" disabled class="bg-gray-100 cursor-not-allowed @error('prefix') is-invalid @enderror w-full mt-1" />
+                    @endif
+                </div>
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                    <x-input-label for="mobile_no" :value="__('Mobile Number')" />
+                    @if ($isDisabled)
+                        <x-text-input id="mobile_no" type="number" wire:model="mobile_no" name="mobile_no" disabled class="bg-gray-100 cursor-not-allowed @error('mobile_no') is-invalid @enderror w-full mt-1" :value="$mobile_no" required />
+                    @endif
+                </div>
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                    <x-input-label for="role_id" :value="__('Role')" />
+                    @if ($isDisabled)
+                        <x-text-input id="role_id" type="text" wire:model="role_id" name="role_id" disabled class="bg-gray-100 cursor-not-allowed @error('role_id')is-invalid @enderror w-full mt-1" :value="$role_id" required />
+                    @endif
+                </div>
+            </div>
         </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="faculty_name" :value="__('Faculty Name')" />
-            @if ($isDisabled)
-                <x-text-input id="faculty_name" type="text" :value="$faculty_name" disabled class="bg-gray-100 cursor-not-allowed @error('faculty_name') is-invalid @enderror w-full mt-1" />
-            @endif
-        </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="email" :value="__('Email')" />
-            @if ($isDisabled)
-                <x-text-input id="email" type="text" wire:model="email" name="email" disabled class="bg-gray-100 cursor-not-allowed @error('email') is-invalid @enderror w-full mt-1" :value="$email" required />
-            @endif
-        </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3">
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="mobile_no" :value="__('Mobile Number')" />
-            @if ($isDisabled)
-                <x-text-input id="mobile_no" type="number" wire:model="mobile_no" name="mobile_no" disabled class="bg-gray-100 cursor-not-allowed @error('mobile_no') is-invalid @enderror w-full mt-1" :value="$mobile_no" required />
-            @endif
-        </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="department_id" :value="__('Department')" />
-            @if ($isDisabled)
-                <x-text-input id="department_id" type="number" wire:model="department_id" name="department_id->dept_name" disabled class="bg-gray-100 cursor-not-allowed @error('department_id')is-invalid @enderror w-full mt-1" :value="$department_id" required />
-            @endif
-        </div>
-
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="role_id" :value="__('Role')" />
-            @if ($isDisabled)
-                <x-text-input id="role_id" type="number" wire:model="role_id" name="role_id" disabled class="bg-gray-100 cursor-not-allowed @error('role_id')is-invalid @enderror w-full mt-1" :value="$role_id" required />
-            @endif
+        <div class="col-span-2">
+            <div class="grid grid-cols-1 md:grid-cols-1">
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                    <x-input-label for="faculty_name" :value="__('Faculty Name')" />
+                    @if ($isDisabled)
+                        <x-text-input id="faculty_name" type="text" :value="$faculty_name" disabled class="bg-gray-100 cursor-not-allowed @error('faculty_name') is-invalid @enderror w-full mt-1" />
+                    @endif
+                </div>
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                    <x-input-label for="email" :value="__('Email')" />
+                    @if ($isDisabled)
+                        <x-text-input id="email" type="text" wire:model="email" name="email" disabled class="bg-gray-100 cursor-not-allowed @error('email') is-invalid @enderror w-full mt-1" :value="$email" required />
+                    @endif
+                </div>
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                    <x-input-label for="department_id" :value="__('Department')" />
+                    @if ($isDisabled)
+                        <x-text-input id="department_id" type="text" wire:model="department_id" name="department_id" disabled class="bg-gray-100 cursor-not-allowed @error('department_id')is-invalid @enderror w-full mt-1" :value="$department_id" required />
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-1">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="college_id" :value="__('College')" />
             @if ($isDisabled)
-                <x-text-input id="college_id" type="number" wire:model="college_id" name="college_id" disabled class="bg-gray-100 cursor-not-allowed @error('role_id')is-invalid @enderror w-full mt-1" :value="$role_id" required />
+                <x-text-input id="college_id" type="text" wire:model="college_id" name="college_id" disabled class="bg-gray-100 cursor-not-allowed @error('role_id')is-invalid @enderror w-full mt-1" :value="$role_id" required />
             @endif
         </div>
     </div>

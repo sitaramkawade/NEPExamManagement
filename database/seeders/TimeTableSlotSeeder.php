@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use Faker\Factory as Faker;
-use App\Models\Subjectcategory;
+use App\Models\Timetableslot;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Faker\Factory as Faker;
 
-class SubjectcategorySeeder extends Seeder
+class TimeTableSlotSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,11 +16,12 @@ class SubjectcategorySeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 1; $i <= 50; $i++) {
-            Subjectcategory::create([
-                'subjectcategory' => $faker->word,
-                'subjectcategory_shortname' => $faker->lexify('???'),
-                'active' => $faker->numberBetween(0, 1),
+        for ($i = 0; $i < 100; $i++)
+         { 
+            Timetableslot::create([
+                'timeslot' => $faker->time(),
+                'slot' => $faker->randomNumber(2),
+                'isactive' => $faker->boolean(),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

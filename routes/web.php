@@ -4,9 +4,10 @@ use Livewire\Livewire;
 
 
 use App\Livewire\Index;
+use App\Models\Faculty;
 use App\Livewire\SelectTo;
-use App\Livewire\DataTable;
 
+use App\Livewire\DataTable;
 use App\Livewire\User\Cap\AllCap;
 use App\Livewire\User\Cgpa\AllCgpa;
 use App\Livewire\User\Exam\AllExam;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Grade\AllGrades;
 use App\Livewire\User\Course\AllCourse;
 use App\Livewire\User\Credit\AllCredit;
+use App\Livewire\User\Notice\AllNotice;
 use App\Livewire\User\College\AllCollege;
 use App\Livewire\User\Pattern\AllPattern;
 use App\Livewire\User\Sanstha\AllSanstha;
@@ -115,88 +117,96 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('dashboard', UserDashboard::class)->name('dashboard');
 
   //All College
-  Route::get('/all/college', AllCollege::class)->name('all_colleges');
+  Route::get('/colleges', AllCollege::class)->name('all_colleges');
 
   //All Sanstha
-  Route::get('/all/sanstha', AllSanstha::class)->name('all_sanstha');
+  Route::get('/sansthas', AllSanstha::class)->name('all_sanstha');
 
   //All University
-  Route::get('/all/university', AllUniversity::class)->name('all_university');
+  Route::get('/universities', AllUniversity::class)->name('all_university');
 
   //All Pattern
-  Route::get('/all/pattern', AllPattern::class)->name('all_pattern');
+  Route::get('/patterns', AllPattern::class)->name('all_pattern');
 
   //All Exam
-  Route::get('/all/exam', AllExam::class)->name('all_exam');
+  Route::get('/exams', AllExam::class)->name('all_exam');
 
   //All Educational Course
-  Route::get('/all/educationalCourse', AllEducationalCourse::class)->name('all_educationalcourse');
+  Route::get('/educationalCourses', AllEducationalCourse::class)->name('all_educationalcourse');
 
   //All CGPA
-  Route::get('/all/cgpa', AllCgpa::class)->name('all_cgpa');
+  Route::get('/cgpas', AllCgpa::class)->name('all_cgpa');
 
   //All Grade
-  Route::get('/all/grade', AllGrades::class)->name('all_grade');
+  Route::get('/grades', AllGrades::class)->name('all_grade');
 
   //All Departments
-  Route::get('/all/department', AllDepartment::class)->name('all_department');
+  Route::get('/departments', AllDepartment::class)->name('all_department');
 
   //All Department Types
-  Route::get('/all/departmentType', AllDepartmentType::class)->name('all_departmenttype');
+  Route::get('/departmentTypes', AllDepartmentType::class)->name('all_departmenttype');
 
   //All Credits
-  Route::get('/all/credits', AllCredit::class)->name('all_credit');
+  Route::get('/credits', AllCredit::class)->name('all_credit');
 
   //All Exam Time Table
-  Route::get('/all/examTimeTable', AllExamTimeTable::class)->name('all_examTimeTable');
+  Route::get('/examTimeTables', AllExamTimeTable::class)->name('all_examTimeTable');
 
+<<<<<<< HEAD
   //All Buildings
   Route::get('/all/building', AllBuilding::class)->name('all_builidng');
 
   //All Users 
   Route::get('/all/users', AllUser::class)->name('all_user');
+=======
+  //All Users
+  Route::get('/users', AllUser::class)->name('all_user');
+>>>>>>> Merge
 
   //All Student Helpline
-  Route::get('/all/hel pline',AllHelpline::class)->name('all_helpline');
+  Route::get('/helplines',AllHelpline::class)->name('all_helpline');
 
   //All Student Helpline Query
-  Route::get('/all/helpline/query',AllHelplineQuery::class)->name('all_helpline_query');
+  Route::get('/helpline/queries',AllHelplineQuery::class)->name('all_helpline_query');
 
   //All Student Helpline Documnet
-  Route::get('/all/helpline/document',AllHelplineDocument::class)->name('all_helpline_document');
+  Route::get('/helpline/documents',AllHelplineDocument::class)->name('all_helpline_document');
 
   //All Programmes
-  Route::get('/all/programme',AllProgramme::class)->name('all_programme');
+  Route::get('/programmes',AllProgramme::class)->name('all_programme');
 
   //All Courses
-  Route::get('/all/course',AllCourse::class)->name('all_course');
+  Route::get('/courses',AllCourse::class)->name('all_course');
 
   //All Class Years
-  Route::get('/all/class/year',AllClassYear::class)->name('all_class_year');
+  Route::get('/class/years',AllClassYear::class)->name('all_class_year');
 
   //All Course Class
-  Route::get('/all/course/class',AllCourseClass::class)->name('all_course_class');
+  Route::get('/course/classes',AllCourseClass::class)->name('all_course_class');
 
   //All Pattern Class
-  Route::get('/all/pattern/class',AllPatternClass::class)->name('all_pattern_class');
+  Route::get('/pattern/classes',AllPatternClass::class)->name('all_pattern_class');
 
   //All Exam Pattern Class
-  Route::get('/all/exam/pattern/class',AllExamPatternClass::class)->name('all_exam_pattern_class');
+  Route::get('/exam/pattern/classes',AllExamPatternClass::class)->name('all_exam_pattern_class');
 
   //All Cap
-  Route::get('/all/cap',AllCap::class)->name('all_cap');
+  Route::get('/caps',AllCap::class)->name('all_cap');
 
   //All Academic Year
-  Route::get('/all/academicyear',AllAcademicYear::class)->name('all_academic_year');
+  Route::get('/academicyears',AllAcademicYear::class)->name('all_academic_year');
 
   //All Academic Year
-  Route::get('/all/boarduniversity',AllBoardUniversity::class)->name('all_board_university');
+  Route::get('/boarduniversities',AllBoardUniversity::class)->name('all_board_university');
 
   //All Time Table Slot
-  Route::get('/all/timetableslot',AllTimeTableSlot::class)->name('all_time_table_slot');
+  Route::get('/timetableslots',AllTimeTableSlot::class)->name('all_time_table_slot');
 
   //All Admission Data
-  Route::get('/all/admissiondata',AllAdmissionData::class)->name('all_admission_data');
+  Route::get('/admissiondatas',AllAdmissionData::class)->name('all_admission_data');
+
+  //All Notice
+  Route::get('/notices',AllNotice::class)->name('all_notice');
 });
 
 
@@ -208,25 +218,25 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
 
   // All Faculty
-  Route::get('/all-faculties', AllFaculty::class)->name('all-faculties');
+  Route::get('/faculties', AllFaculty::class)->name('all-faculties');
 
   // All Faculty Role
-  Route::get('/all-faculty-role', AllFacultyRole::class)->name('all-roles');
+  Route::get('/roles', AllFacultyRole::class)->name('all-roles');
 
   // All Faculty Role
-  Route::get('/all-faculty-roletype', AllFacultyRoletype::class)->name('all-roletypes');
+  Route::get('/roletypes', AllFacultyRoletype::class)->name('all-roletypes');
 
   // Update Faculty Profile
-  Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
+  Route::get('/profile', UpdateProfile::class)->name('updateprofile');
 
   // All Subject
-  Route::get('/all-subject', AllSubject::class)->name('all-subjects');
+  Route::get('/subjects', AllSubject::class)->name('all-subjects');
 
   // All Subjectbucket
-  Route::get('/all-subjectbucket', AllSubjectbucket::class)->name('all-subjectbuckets');
+  Route::get('/subjectbuckets', AllSubjectbucket::class)->name('all-subjectbuckets');
 
   // All Subjecttype
-  Route::get('/all-subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
+  Route::get('/subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
 
 });
 
