@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Subjectcategory;
 use Faker\Factory as Faker;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Subjectcategory;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SubjectcategorySeeder extends Seeder
 {
@@ -18,7 +18,6 @@ class SubjectcategorySeeder extends Seeder
 
         for ($i = 1; $i <= 50; $i++) {
             Subjectcategory::create([
-                'id' => $i,
                 'subjectcategory' => $faker->word,
                 'subjectcategory_shortname' => $faker->lexify('???'),
                 'active' => $faker->numberBetween(0, 1),
