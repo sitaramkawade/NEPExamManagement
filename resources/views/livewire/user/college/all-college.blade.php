@@ -2,9 +2,7 @@
     @if ($mode=='add')
     <div>
         <x-card-header heading=" Add College">
-
             <x-back-btn wire:click="setmode('all')" />
-
         </x-card-header>
         <x-form wire:submit="add()">
             @include('livewire.user.college.college-form')
@@ -16,11 +14,14 @@
     </x-card-header>
     <x-form wire:submit="updateCollege({{ $college_id  }})">
         @include('livewire.user.college.college-form')
-
     </x-form>
     @elseif($mode=='all')
     <div>
-        <x-card-header heading=" All College's">
+        <x-breadcrumb.breadcrumb>
+            <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
+            <x-breadcrumb.link name="College's"/>
+        </x-breadcrumb.link>
+        <x-card-header heading="All College's">
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
         <x-table.frame>
@@ -44,11 +45,19 @@
                             @forelse ($colleges as $key => $college)
                             <x-table.tr wire:key="{{ $college->id }}">
                                 <x-table.td> {{ $key+1 }}</x-table.td>
-                                <x-table.td> {{ $college->college_name }} </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll> {{ $college->college_name }} </x-table.text-scroll>
+                                </x-table.td>
                                 <x-table.td> {{ $college->college_email}} </x-table.td>
-                                <x-table.td> {{ $college->college_address }} </x-table.td>
-                                <x-table.td> {{ $college->sanstha->sanstha_name }} </x-table.td>
-                                <x-table.td> {{ $college->university->university_name }} </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll> {{ $college->college_address }}</x-table.text-scroll>
+                                </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll> {{ $college->sanstha->sanstha_name }} </x-table.text-scroll>
+                                </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll> {{ $college->university->university_name }} </x-table.text-scroll>
+                                </x-table.td>
                                 <x-table.td>
                                     @if($college->status==1)
                                     <x-status type="success">Active</x-status>
@@ -57,12 +66,17 @@
                                     @endif
                                 </x-table.td>
                                 <x-table.td>
+                                    @if ($college->deleted_at)
+                                    <x-table.delete wire:click="deleteconfirmation({{ $college->id }})" />
+                                    <x-table.restore wire:click="restore({{ $college->id }})" />
+                                    @else
                                     <x-table.edit wire:click="edit({{ $college->id }})" />
-                                    <x-table.delete wire:click="deleteCollege({{ $college->id }})" />
                                     @if($college->status==1)
                                     <x-table.inactive wire:click="Status({{ $college->id }})" />
                                     @else
                                     <x-table.active wire:click="Status({{ $college->id }})" />
+                                    @endif
+                                    <x-table.archive wire:click="delete({{ $college->id }})" />
                                     @endif
                                 </x-table.td>
                             </x-table.tr>

@@ -37,7 +37,7 @@ class AllHelplineDocument extends Component
     public function rules()
     {
         return [
-            'student_helpline_query_id' => ['required', 'numeric', Rule::exists('student_helpline_queries', 'id')],
+            'student_helpline_query_id' => ['required', 'integer', Rule::exists('student_helpline_queries', 'id')],
             'document_name' => ['required', 'string','max:255', Rule::unique('student_helpline_documents')
             ->ignore($this->mode=='edit'?$this->edit_id:'')->where(function ($query){
                 return $query->where('student_helpline_query_id',$this->student_helpline_query_id);
@@ -53,7 +53,7 @@ class AllHelplineDocument extends Component
             'document_name.max' => 'The Document Name must not exceed :max characters.',
             'document_name.unique' => 'The Document Name must be unique for the selected Query.',
             'student_helpline_query_id.required' => 'The Query is required.',
-            'student_helpline_query_id.numeric' => 'The Query must be a number.',
+            'student_helpline_query_id.integer' => 'The Query must be a number.',
             'student_helpline_query_id.exists' => 'The selected Query does not exist.',
         ];
         
@@ -202,7 +202,7 @@ class AllHelplineDocument extends Component
     {   
         $this->student_helpline_queries=Studenthelplinequery::where('is_active',1)->get();
 
-        $student_helpline_documents=Studenthelplinedocument::select('id','student_helpline_query_id','document_name','deleted_at','is_active')->when($this->search, function ($query, $search) {
+        $student_helpline_documents=Studenthelplinedocument::select('id','student_helpline_query_id','document_name','deleted_at','is_active')->with('studenthelplinequery')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

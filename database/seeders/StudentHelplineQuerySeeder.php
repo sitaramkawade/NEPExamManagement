@@ -13,44 +13,73 @@ class StudentHelplineQuerySeeder extends Seeder
      */
     public function run(): void
     {
-        Studenthelplinequery::create([
+        $q1 = Studenthelplinequery::create([
             'query_name' => 'Student Name',
             'is_active' => 1,
         ]);
-        Studenthelplinequery::create([
-            'query_name' => 'Mother Name',
-            'is_active' => 1,
-        ]);
-        Studenthelplinequery::create([
+
+        $q2 = Studenthelplinequery::create([
             'query_name' => 'Mobile Number',
             'is_active' => 1,
         ]);
-        Studenthelplinequery::create([
+
+        $q3 = Studenthelplinequery::create([
             'query_name' => 'Email ID',
             'is_active' => 1,
         ]);
-        Studenthelplinequery::create([
+
+        $q4 = Studenthelplinequery::create([
+            'query_name' => 'Mother Name',
+            'is_active' => 1,
+        ]);
+
+        $q4->studenthelplinedocuments()->create([
+            'document_name' => 'Result / LC / .etc',
+            'is_active' => 1,
+        ]);
+
+        $q5 = Studenthelplinequery::create([
             'query_name' => 'Result Correction',
             'is_active' => 1,
         ]);
-        Studenthelplinequery::create([
+
+        $q5->studenthelplinedocuments()->create([
+            'document_name' => 'Result',
+            'is_active' => 1,
+        ]);
+
+        $q6 = Studenthelplinequery::create([
             'query_name' => 'Performance Cancel',
             'is_active' => 1,
         ]);
-        Studenthelplinequery::create([
+
+        $q7 = Studenthelplinequery::create([
             'query_name' => 'Result Activation',
             'is_active' => 1,
         ]);
-        Studenthelplinequery::create([
+
+        $q8 =  Studenthelplinequery::create([
             'query_name' => 'Pending Fee',
             'is_active' => 1,
         ]);
-        Studenthelplinequery::create([
+
+        $q9 = Studenthelplinequery::create([
             'query_name' => 'Exam Form Correction',
             'is_active' => 1,
         ]);
-        Studenthelplinequery::create([
+
+        $q9->studenthelplinedocuments()->create([
+            'document_name' => 'Exam Form',
+            'is_active' => 1,
+        ]);
+
+        $q10 =  Studenthelplinequery::create([
             'query_name' => 'Exam Form Subjcet',
+            'is_active' => 1,
+        ]);
+
+        $q10->studenthelplinedocuments()->create([
+            'document_name' => 'Exam Form',
             'is_active' => 1,
         ]);
     }

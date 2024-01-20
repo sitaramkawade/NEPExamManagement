@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('micr_code',50)->nullable();
 
             $table->tinyInteger('acc_verified')->default('0');  //0 means not verified
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

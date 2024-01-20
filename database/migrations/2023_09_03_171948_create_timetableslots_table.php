@@ -17,6 +17,7 @@ return new class extends Migration
             $table->Integer('slot')->unsigned();
             $table->integer('isactive')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

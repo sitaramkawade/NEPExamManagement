@@ -4,7 +4,7 @@
   </div>
   <div class="grid grid-cols-1 md:grid-cols-5">
     <div class="px-5 py-2 col-span-2 text-sm text-gray-600 dark:text-gray-400">
-      <x-input-label for="college_id" :value="__('Selete College')" />
+      <x-input-label for="college_id" :value="__('Select College')" />
       <x-input-select id="college_id" wire:model.live="college_id" name="college_id" class="text-center w-full mt-1" :value="old('college_id', $college_id)" required autocomplete="college_id">
         <x-select-option class="text-start" hidden> -- Select College -- </x-select-option>
         @forelse ($colleges as $college)
@@ -16,7 +16,7 @@
       <x-input-error :messages="$errors->get('college_id')" class="mt-1" />
     </div>
     <div class="px-5 py-2  col-span-2 text-sm text-gray-600 dark:text-gray-400">
-      <x-input-label for="programme_id" :value="__('Selete Programme')" />
+      <x-input-label for="programme_id" :value="__('Select Programme')" />
       <x-input-select id="programme_id" wire:model.live="programme_id" name="programme_id" class="text-center w-full mt-1" :value="old('programme_id', $programme_id)" required autocomplete="programme_id">
         <x-select-option class="text-start" hidden> -- Select Programme -- </x-select-option>
         @forelse ($programmes as $programme)
@@ -62,7 +62,7 @@
       <x-input-error :messages="$errors->get('course_type')" class="mt-1" />
     </div>
     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-      <x-input-label for="course_category" :value="__('Selete Course Category')" />
+      <x-input-label for="course_category" :value="__('Select Course Category')" />
       <x-input-select id="course_category" wire:model.live="course_category" name="course_category" class="text-center w-full mt-1" :value="old('course_category', $course_category)" required autocomplete="course_category">
         <x-select-option class="text-start" value="" hidden> -- Select Course Category -- </x-select-option>
         <x-select-option class="text-start" value="1">Professional</x-select-option>

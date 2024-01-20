@@ -180,14 +180,13 @@ class UpdateProfile extends Component
                     'pan' => $this->pan,
                     'category' => $this->category,
                     'current_address' => $this->current_address,
-                    'permanant_address' => $this->permanant_address, // corrected 'permanant_address' to 'permanent_address'
+                    'permanant_address' => $this->permanant_address,
                     'qualification' => $this->qualification,
                     'unipune_id' => $this->unipune_id,
                     'college_id' => $this->college_id,
                 ];
 
                 if ($this->profile_photo_path) {
-                    // You might need to import the File facade or use the Storage facade
                     if ($faculty->profile_photo_path) {
                         File::delete(public_path($faculty->profile_photo_path));
                     }
@@ -198,20 +197,15 @@ class UpdateProfile extends Component
                     $dataToUpdate['profile_photo_path'] = 'storage/' . $path . $fileName;
                 }
 
-                // Update faculty profile
                 $faculty->update($dataToUpdate);
 
-                // Dispatch success alert
                 $this->dispatch('alert', type: 'success', message: 'Faculty Profile Updated Successfully');
 
                 return redirect()->route('faculty.updateprofile');
             } else {
-                // Dispatch error alert if faculty data is missing
                $this->dispatch('alert', type: 'error', message: 'Error Updating Profile');
             }
         }
-
-
 
         public function mount()
         {

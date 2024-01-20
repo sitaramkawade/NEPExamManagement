@@ -17,6 +17,10 @@
     </x-form>
     @elseif($mode=='all')
     <div>
+        <x-breadcrumb.breadcrumb>
+            <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
+            <x-breadcrumb.link name="Sanstha's"/>
+        </x-breadcrumb.link>
         <x-card-header heading="  All Sanstha's">
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
@@ -38,14 +42,20 @@
                             </x-table.tr>
                         </x-table.thead>
                         <x-table.tbody>
-                            @forelse ($sansthas as $key => $sanstha)
+                            @forelse ($sansthas as  $sanstha)
                             <x-table.tr wire:key="{{ $sanstha->id }}">
-                                <x-table.td> {{ $key+1 }}</x-table.td>
-                                <x-table.td> {{ $sanstha->sanstha_name }} </x-table.td>
+                                <x-table.td> {{ $sanstha->id  }}</x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll> {{ $sanstha->sanstha_name }} </x-table.text-scroll>
+                                </x-table.td>
                                 <x-table.td>{{ $sanstha->sanstha_chairman_name }} </x-table.td>
-                                <x-table.td> {{ $sanstha->sanstha_address }} </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll>{{ $sanstha->sanstha_address }} </x-table.text-scroll>
+                                </x-table.td>
                                 <x-table.td> {{ $sanstha->sanstha_contact_no }} </x-table.td>
-                                <x-table.td> {{ $sanstha->sanstha_website_url }} </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll> {{ $sanstha->sanstha_website_url }} </x-table.text-scroll>
+                                </x-table.td>
                                 <x-table.td>
                                     @if($sanstha->status==1)
                                     <x-status type="success">Active</x-status>
@@ -53,14 +63,18 @@
                                     <x-status type="danger">Inactive</x-status>
                                     @endif
                                 </x-table.td>
-
                                 <x-table.td>
+                                    @if ($sanstha->deleted_at)
+                                    <x-table.delete wire:click="deleteconfirmation({{ $sanstha->id }})" />
+                                    <x-table.restore wire:click="restore({{ $sanstha->id }})" />
+                                    @else
                                     <x-table.edit wire:click="edit({{ $sanstha->id }})" />
-                                    <x-table.delete wire:click="deleteSanstha({{ $sanstha->id }})" />
                                     @if($sanstha->status==1)
                                     <x-table.inactive wire:click="Status({{ $sanstha->id }})" />
                                     @else
                                     <x-table.active wire:click="Status({{ $sanstha->id }})" />
+                                    @endif
+                                    <x-table.archive wire:click="delete({{ $sanstha->id }})" />
                                     @endif
                                 </x-table.td>
                             </x-table.tr>

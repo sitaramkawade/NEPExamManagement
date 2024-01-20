@@ -17,7 +17,7 @@ return new class extends Migration
             $table->float('min_gp',4,2)->default(0.0);
             $table->string('grade',5)->nullable();
             $table->string('description',50)->nullable();
-        
+            $table->softDeletes();
             $table->timestamps();
         });
     }

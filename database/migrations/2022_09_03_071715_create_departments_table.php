@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
             $table->tinyInteger('status')->default('0');// 0 :not active 1:active
+            $table->SoftDeletes();
             $table->timestamps();
         });
     }

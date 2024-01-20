@@ -14,7 +14,6 @@ class BanknamemasterSeeder extends Seeder
     public function run(): void
     {
         Banknamemaster::create( [
-        'id'=>1,
         'bank_name'=>'State Bank Of India',
         'bank_shortform'=>'SBI',
         'is_active'=>1,
@@ -23,7 +22,6 @@ class BanknamemasterSeeder extends Seeder
         ] );
 
         Banknamemaster::create( [
-        'id'=>2,
         'bank_name'=>'Bank Of Maharashtra',
         'bank_shortform'=>'BOM',
         'is_active'=>1,
@@ -32,7 +30,6 @@ class BanknamemasterSeeder extends Seeder
         ] );
 
         Banknamemaster::create( [
-        'id'=>3,
         'bank_name'=>'Central Bank Of India',
         'bank_shortform'=>'CBI',
         'is_active'=>1,

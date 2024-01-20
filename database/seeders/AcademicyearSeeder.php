@@ -19,5 +19,23 @@ class AcademicyearSeeder extends Seeder
                 'active'=>'1',
              ]
          );
+        Academicyear::create(
+            [ 
+                'year_name'=>'2022-23',
+                'active'=>'1',
+             ]
+         );
+        Academicyear::create(
+            [ 
+                'year_name'=>'2021-22',
+                'active'=>'0',
+             ]
+         );
+        Academicyear::create(
+            [ 
+                'year_name'=>'2020-21',
+                'active'=>'0',
+             ]
+         );
     }
 }

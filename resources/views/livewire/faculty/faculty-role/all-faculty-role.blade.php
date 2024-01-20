@@ -8,6 +8,11 @@
             @include('livewire.faculty.faculty-role.role-form')
         </x-form>
     </div>
+    @elseif($mode == 'view')
+        <x-card-header heading="View Role">
+            <x-back-btn wire:click="setmode('all')" />
+        </x-card-header>
+            @include('livewire.faculty.faculty-role.view-form')
     @elseif($mode=='edit')
     <x-card-header heading="Edit Role">
             <x-back-btn wire:click="setmode('all')" />
@@ -15,7 +20,7 @@
     <x-form wire:submit="update({{ $role_id }})">
         @include('livewire.faculty.faculty-role.role-form')
     </x-form>
-    @elseif($mode='all')
+    @elseif($mode=='all')
         <div>
             <x-card-header heading="All Roles">
                     <x-add-btn wire:click="setmode('add')" />
@@ -40,24 +45,19 @@
                           <x-table.td>{{ $role->id }} </x-table.td>
                           <x-table.td>{{ $role->role_name }} </x-table.td>
                           <x-table.td>{{ $role->roletype->roletype_name ?? '' }}</x-table.td>
-                          <x-table.td class="text-balance">{{ $role->college->college_name ?? '' }}</x-table.td>
+                          <x-table.td>
+                            <x-table.text-scroll>{{ $role->college->college_name ?? '' }}</x-table.text-scroll>
+                          </x-table.td>
                           <x-table.td>
                             @if ($role->deleted_at)
+                            <x-table.delete wire:click="deleteconfirmation({{ $role->id }})" />
                                 <x-table.restore wire:click="restore({{ $role->id }})" />
-                                <x-table.delete wire:click="deleteconfirmation({{ $role->id }})" />
                             @else
+                                <x-table.view wire:click="view({{ $role->id }})" />
                                 <x-table.edit wire:click="edit({{ $role->id }})" />
                                 <x-table.archive wire:click="softdelete({{ $role->id }})" />
-                                {{-- @if ($role->status == 0)
-                                    <x-table.active wire:click="status({{ $role->id }})" />
-                                @elseif ($role->status == 1)
-                                    <x-table.inactive wire:click="status({{ $role->id }})" />
-                                @elseif ($role->status == 3)
-                                    <x-table.active wire:click="status({{ $role->id }})" />
-                                @endif
-                                <x-table.archive wire:click="delete({{ $role->id }})" /> --}}
                             @endif
-                          </x-table.td>
+                        </x-table.td>
                         </x-table.tr>
                       @endforeach
                     </x-table.tbody>

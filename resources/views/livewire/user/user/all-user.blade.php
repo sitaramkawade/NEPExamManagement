@@ -19,7 +19,11 @@
     </x-form>
     @elseif($mode=='all')
     <div>
-        <x-card-header heading=" All user's">
+        <x-breadcrumb.breadcrumb>
+            <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
+            <x-breadcrumb.link name="User's"/>
+        </x-breadcrumb.link>
+        <x-card-header heading="All User's">
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
         <x-table.frame>
@@ -34,7 +38,7 @@
                                 <x-table.th wire:click="sort_column('email')" name="email" :sort="$sortColumn" :sort_by="$sortColumnBy"> Email </x-table.th>
                                 <x-table.th wire:click="sort_column('college_id')" name="college_id" :sort="$sortColumn" :sort_by="$sortColumnBy">College </x-table.th>
                                 <x-table.th wire:click="sort_column('department_id')" name="department_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Department </x-table.th>
-                                <x-table.th wire:click="sort_column('is_active')" name="is_active" :sort="$sortColumn" :sort_by="$sortColumnBy">Is Active </x-table.th>
+                                <x-table.th wire:click="sort_column('is_active')" name="is_active" :sort="$sortColumn" :sort_by="$sortColumnBy">Status </x-table.th>
                                 <x-table.th> Action </x-table.th>
                             </x-table.tr>
                         </x-table.thead>
@@ -44,23 +48,28 @@
                                 <x-table.td> {{ $key+1 }}</x-table.td>
                                 <x-table.td> {{ $user->name }} </x-table.td>
                                 <x-table.td> {{ $user->email}} </x-table.td>
-                                <x-table.td> {{ $user->college?->college_name }} </x-table.td>
+                                <x-table.td>  <x-table.text-scroll> {{ $user->college?->college_name }}  </x-table.text-scroll> </x-table.td>
                                 <x-table.td> {{ $user->department?->dept_name }} </x-table.td>
 
                                 <x-table.td>
                                     @if($user->is_active==1)
-                                    <x-status type="success">Yes</x-status>
+                                    <x-status type="success">Active</x-status>
                                     @else
-                                    <x-status type="danger">No</x-status>
+                                    <x-status type="danger">Inactive</x-status>
                                     @endif
                                 </x-table.td>
                                 <x-table.td>
-                                    <x-table.edit wire:click="edit({{ $user->id }})" />
-                                    <x-table.delete wire:click="delete({{ $user->id }})" />
-                                    @if($user->is_active==1)
-                                    <x-table.inactive wire:click="Status({{ $user->id }})" />
+                                    @if ($user->deleted_at)
+                                    <x-table.delete wire:click="deleteconfirmation({{ $user->id }})" />
+                                    <x-table.restore wire:click="restore({{ $user->id }})" />
                                     @else
-                                    <x-table.active wire:click="Status({{ $user->id }})" />
+                                    <x-table.edit wire:click="edit({{ $user->id }})" />
+                                        @if($user->is_active==1)
+                                        <x-table.inactive wire:click="Status({{ $user->id }})" />
+                                        @else
+                                        <x-table.active wire:click="Status({{ $user->id }})" />
+                                        @endif
+                                    <x-table.archive wire:click="delete({{ $user->id }})" />
                                     @endif
                                 </x-table.td>
                             </x-table.tr>

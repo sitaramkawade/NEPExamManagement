@@ -7,16 +7,18 @@ use App\Models\College;
 use App\Models\Pattern;
 use App\Models\Subject;
 use Livewire\Component;
+use App\Models\Semester;
 use App\Models\Classyear;
 use App\Models\Department;
 use App\Models\Courseclass;
 use App\Models\Subjecttype;
 use App\Models\Patternclass;
 use Livewire\WithPagination;
+use App\Models\Subjectcredit;
 use App\Models\Subjectcategory;
 use Illuminate\Validation\Rule;
-use App\Exports\Faculty\ExportSubject;
 use Doctrine\Inflector\Rules\Patterns;
+use App\Exports\Faculty\Subject\SubjectExport;
 
 class AllSubject extends Component
 {
@@ -46,6 +48,7 @@ class AllSubject extends Component
     public $department_id;
     public $college_id;
 
+    #[Locked]
     public $subject_id;
     public $pattern_id;
     public $course_id;
@@ -61,17 +64,20 @@ class AllSubject extends Component
     public $colleges;
     public $patterns;
     public $courses;
+    public $semesters;
     public $course_classes;
     public $pattern_class_id;
 
     public $mode='all';
     public $per_page = 10;
+    #[Locked]
     public $delete_id;
     public $perPage=10;
     public $search='';
     public $sortColumn="subject_name";
     public $sortColumnBy="ASC";
     public $ext;
+    public $isDisabled = true;
 
     protected function rules()
     {
@@ -81,10 +87,10 @@ class AllSubject extends Component
             'subject_no' => ['required', 'numeric', 'digits_between:1,10'],
             'subject_code' => ['required', 'string', 'min:1', 'max:10'],
             'subject_shortname' => ['required', 'string', 'max:11',],
-            'subject_name' => ['required', 'string', 'max:11',],
+            'subject_name' => ['required', 'string', 'max:15',],
             'subjecttype_id' => ['required',Rule::exists(Subjecttype::class,'id')],
             'subjectexam_type' => ['required',],
-            'subject_credit' => ['required',],
+            'subject_credit' => ['required',Rule::exists(Subjectcredit::class,'id')],
             'subject_maxmarks' => ['required',],
             'subject_maxmarks_int' => ['required',],
             'subject_maxmarks_intpract' => ['required',],
@@ -106,31 +112,48 @@ class AllSubject extends Component
     public function messages()
     {
         return [
-            'subject_sem.required' => 'Please select the subject.',
-            'subjectcategory.required' => 'Please select the subject category.',
-            'subject_no.required' => 'Please enter the subject number.',
-            'subject_code.required' => 'Please enter the subject code.',
-            'subject_shortname.required' => 'Please enter the subject shortname.',
-            'subject_name.required' => 'Please enter the subject name.',
-            'subjecttype.required' => 'Please select the subject type.',
-            'subjectexam_type.required' => 'Please select the subject exam type.',
-            'subject_credit.required' => 'Please select the subject credit.',
-            'subject_maxmarks.required' => 'Please enter the subject maximum marks.',
-            'subject_maxmarks_int.required' => 'Please enter the subjects maximum internal maximum marks.',
-            'subject_maxmarks_intpract.required' => 'Please enter the subjects maximum internal practical marks.',
-            'subject_maxmarks_ext.required' => 'Please enter subject maximum external marks.',
-            'subject_totalpassing.required' => 'Please enter the subjects total passing marks.',
-            'subject_intpassing.required' => 'Please enter the subjects internal passing marks.',
-            'subject_intpractpassing.required' => 'Please enter the internal practical passing marks.',
-            'subject_extpassing.required' => 'Please enter the external passing marks.',
-            'subject_optionalgroup.required' => 'Please select the optional group.',
-            'patternclass_id.required' => 'Please select the pattern.',
-            'classyear_id.required' => 'Please select the class year.',
-            'department_id.required' => 'Please select the department.',
-            'college_id.required' => 'Please select the college.',
-            'pattern_id.required' => 'Please select the pattern.',
-            'course_id.required' => 'Please select the course.',
-            'course_class_id.required' => 'Please select the course class.',
+            'subject_sem.required' => 'The subject semester field is required.',
+            'subjectcategory_id.required' => 'The subject category field is required.',
+            'subjectcategory_id.exists' => 'The selected subject category is invalid.',
+            'subject_no.required' => 'The subject number field is required.',
+            'subject_no.numeric' => 'The subject number must be numeric.',
+            'subject_no.digits_between' => 'The subject number must be between 1 and 10 digits.',
+            'subject_code.required' => 'The subject code field is required.',
+            'subject_code.string' => 'The subject code must be a string.',
+            'subject_code.min' => 'The subject code must be at least 1 character.',
+            'subject_code.max' => 'The subject code must not exceed 10 characters.',
+            'subject_shortname.required' => 'The subject short name field is required.',
+            'subject_shortname.string' => 'The subject short name must be a string.',
+            'subject_shortname.max' => 'The subject short name must not exceed 11 characters.',
+            'subject_name.required' => 'The subject name field is required.',
+            'subject_name.string' => 'The subject name must be a string.',
+            'subject_name.max' => 'The subject name must not exceed 15 characters.',
+            'subjecttype_id.required' => 'The subject type field is required.',
+            'subjecttype_id.exists' => 'The selected subject type is invalid.',
+            'subjectexam_type.required' => 'The subject exam type field is required.',
+            'subject_credit.required' => 'The subject credit field is required.',
+            'subject_credit.exists' => 'The selected subject credit is invalid.',
+            'subject_maxmarks.required' => 'The subject maximum marks field is required.',
+            'subject_maxmarks_int.required' => 'The subject maximum internal marks field is required.',
+            'subject_maxmarks_intpract.required' => 'The subject maximum internal practical marks field is required.',
+            'subject_maxmarks_ext.required' => 'The subject maximum external marks field is required.',
+            'subject_totalpassing.required' => 'The subject total passing marks field is required.',
+            'subject_intpassing.required' => 'The subject internal passing marks field is required.',
+            'subject_intpractpassing.required' => 'The subject internal practical passing marks field is required.',
+            'subject_extpassing.required' => 'The subject external passing marks field is required.',
+            'subject_optionalgroup.required' => 'The subject optional group field is required.',
+            'classyear_id.required' => 'The class year field is required.',
+            'classyear_id.exists' => 'The selected class year is invalid.',
+            'department_id.required' => 'The department field is required.',
+            'department_id.exists' => 'The selected department is invalid.',
+            'college_id.required' => 'The college field is required.',
+            'college_id.exists' => 'The selected college is invalid.',
+            'pattern_id.required' => 'The pattern field is required.',
+            'pattern_id.exists' => 'The selected pattern is invalid.',
+            'course_id.required' => 'The course field is required.',
+            'course_id.exists' => 'The selected course is invalid.',
+            'course_class_id.required' => 'The course class field is required.',
+            'course_class_id.exists' => 'The selected course class is invalid.',
         ];
     }
 
@@ -204,7 +227,7 @@ class AllSubject extends Component
                 $this->dispatch('alert',type:'error',message:'Something went wrong!!');
             }
         } else {
-            $this->dispatch('alert',type:'success',message:'Pattern Class Not Found!!');
+            $this->dispatch('alert',type:'error',message:'Pattern Class Not Found!!');
         }
     }
 
@@ -334,16 +357,6 @@ class AllSubject extends Component
         }
     }
 
-
-    public function mount()
-    {
-        $this->subject_categories = Subjectcategory::where('active',1)->get();
-        $this->subject_types = Subjecttype::where('active',1)->get();
-        $this->class_years= Classyear::where('status',1)->get();
-        $this->departments= Department::where('status',1)->get();
-        $this->colleges= College::where('status',1)->get();
-    }
-
     public function sort_column($column)
     {
         if( $this->sortColumn === $column)
@@ -362,28 +375,85 @@ class AllSubject extends Component
 
     public function export()
     {
-        $filename="Subject-".now();
+        $filename="Subject-".time();
         switch ($this->ext) {
             case 'xlsx':
-                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                return Excel::download(new SubjectExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
             break;
             case 'csv':
-                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                return Excel::download(new SubjectExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
             case 'pdf':
-                return Excel::download(new ExportSubject($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                return Excel::download(new SubjectExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
 
     }
 
+    public function status(Subject $subject)
+    {
+        if( $subject->status==0)
+        {
+            $subject->status=1;
+        }
+        else if( $subject->status==1)
+        {
+            $subject->status=0;
+        }
+        $subject->update();
+
+        $this->dispatch('alert',type:'success',message:'Subject Status Updated Successfully !!');
+    }
+
+    public function view(Subject $subject)
+    {
+        if ($subject)
+        {
+            $this->subject_sem= $subject->subject_sem;
+            $this->subject_no= $subject->subject_no;
+            $this->subject_code= $subject->subject_code;
+            $this->subject_shortname= $subject->subject_shortname;
+            $this->subject_name= $subject->subject_name;
+            $this->subjectexam_type= $subject->subdjectexam_type;
+            $this->subject_credit= $subject->subject_credit;
+            $this->subject_maxmarks= $subject->subject_maxmarks;
+            $this->subject_maxmarks_int= $subject->subject_maxmarks_int;
+            $this->subject_maxmarks_intpract= $subject->subject_maxmarks_intpract;
+            $this->subject_maxmarks_ext= $subject->subject_maxmarks_ext;
+            $this->subject_totalpassing= $subject->subject_totalpassing;
+            $this->subject_intpassing= $subject->subject_intpassing;
+            $this->subject_intpractpassing= $subject->subject_intpractpassing;
+            $this->subject_extpassing= $subject->subject_extpassing;
+            $this->subject_optionalgroup= $subject->subject_optionalgroup;
+            $this->subjectcategory_id = $subject->subjectcategories->subjectcategory;
+            $this->subjecttype_id = $subject->subjecttypes->type_name;
+            $this->pattern_id = $subject->patternclass->pattern->pattern_name;
+            $this->course_id =  $subject->patternclass->courseclass->course->course_name;
+            $this->classyear_id =  $subject->patternclass->courseclass->classyear->classyear_name;
+            $this->department_id = $subject->department->dept_name;
+            $this->college_id = $subject->college->college_name;
+            $this->setmode('view');
+        }else{
+            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        }
+    }
+
     public function render()
     {
-        $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
-        $this->courses=course::select('id','course_name')->get();
-        $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
+        if($this->mode !== 'all' ){
+            $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
+            $this->courses=Course::select('id','course_name')->get();
+            $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
+            $this->semesters=Semester::select('id','semester',)->where('status',1)->get();
+            $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('active',1)->get();
+            $this->subject_types = Subjecttype::select('id','type_name')->where('active',1)->get();
+            $this->class_years= Classyear::select('id','classyear_name')->where('status',1)->get();
+            $this->departments= Department::select('id','dept_name')->where('status',1)->get();
+            $this->colleges= College::select('id','college_name')->where('status',1)->get();
+        }
 
-        $subjects = Subject::when($this->search, function($query, $search){
+        $subjects = Subject::with(['college', 'subjectcategories', 'department', 'subjecttypes', 'patternclass', 'classyear',])
+        ->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.subject.all-subject',compact('subjects'))->extends('layouts.faculty')->section('faculty');

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreign('timeslot_id')->references('id')->on('timetableslots')->onDelete('cascade');
             
             $table->tinyInteger('status')->default('0'); 
-          
+            $table->SoftDeletes();
             $table->timestamps();
         });
     }

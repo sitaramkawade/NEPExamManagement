@@ -9,6 +9,7 @@ use App\Models\Studenthelpline;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,7 +20,8 @@ use App\Notifications\User\UserResetPasswordNotification;
 
 class User extends Authenticatable  implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     public function sendPasswordResetNotification($token)
     {
@@ -77,7 +79,7 @@ class User extends Authenticatable  implements MustVerifyEmail
 
     public function role(): BelongsTo
     {
-        return $this->belongsTo(Role::class,'college_id','id');
+        return $this->belongsTo(Role::class,'role_id','id');
     }
     
     public function department(): BelongsTo

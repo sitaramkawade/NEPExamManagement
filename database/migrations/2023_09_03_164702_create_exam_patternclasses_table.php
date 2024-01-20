@@ -38,6 +38,7 @@ return new class extends Migration
 
             //$table->string('year_name',50)->nullable();
             $table->timestamps();
+            $table->softDeletes();
            
            
           

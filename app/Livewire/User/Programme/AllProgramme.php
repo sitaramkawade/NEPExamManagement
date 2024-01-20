@@ -32,7 +32,7 @@ class AllProgramme extends Component
     public function rules()
     {
         return [
-            'programme_name' => ['required', 'string','max:255','unique:programmes,programme_name,' . ($this->mode == 'edit' ? $this->edit_id : ''),],
+            'programme_name' => ['required', 'string','max:100','unique:programmes,programme_name,' . ($this->mode == 'edit' ? $this->edit_id : ''),],
         ];
     }
 
@@ -41,7 +41,7 @@ class AllProgramme extends Component
         $messages = [
             'programme_name.required' => 'The Programme Name field is required.',
             'programme_name.string' => 'The Programme Name must be a string.',
-            'programme_name.max' => 'The  Programme Name must not exceed 255 characters.',
+            'programme_name.max' => 'The  Programme Name must not exceed :max characters.',
             'programme_name.unique' => 'The Programme Name has already been taken.',
         ];
         

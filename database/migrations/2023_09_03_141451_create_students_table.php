@@ -34,7 +34,6 @@ return new class extends Migration
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
-           
             $table->tinyInteger('total_steps')->nullable()->default(6);   // Total Steps Of Form 
             $table->tinyInteger('current_step')->nullable()->default(1);   // Current Step Of Form
             $table->tinyInteger('is_profile_complete')->nullable()->default(0);   // profile  0-default , 1-completed

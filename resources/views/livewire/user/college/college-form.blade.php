@@ -23,13 +23,13 @@
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="college_contact_no" :value="__('College Contact No')" />
                         <x-required />
-                        <x-text-input id="college_contact_no" type="text" wire:model="college_contact_no" name="college_contact_no" class="w-full mt-1" :value="old('college_contact_no',$college_contact_no)" required autofocus autocomplete="college_contact_no" />
+                        <x-text-input id="college_contact_no" type="number" wire:model="college_contact_no" name="college_contact_no" class="w-full mt-1" :value="old('college_contact_no',$college_contact_no)" required autofocus autocomplete="college_contact_no" />
                         <x-input-error :messages="$errors->get('college_contact_no')" class="mt-2" />
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="college_website_url" :value="__('College Website URL ')" />
                         <x-required />
-                        <x-text-input id="college_website_url" type="url" wire:model="college_website_url" name="college_website_url" class="w-full mt-1" :value="old('college_website_url',$college_website_url)" required autofocus autocomplete="college_website_url" />
+                        <x-text-input id="college_website_url" type="text" wire:model="college_website_url" name="college_website_url" class="w-full mt-1" :value="old('college_website_url',$college_website_url)" required autofocus autocomplete="college_website_url" />
                         <x-input-error :messages="$errors->get('college_website_url')" class="mt-2" />
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                                     <div class="flex flex-col items-center mx-auto space-x-6  ">
                                         <div class="shrink-0 p-2">
                                             @if ($college_logo_path)
-                                            <img style="width: 135px; height: 150px;" class="object-center object-fill bg-red-500 " src="{{ isset($college_logo_path)?$college_logo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
+                                            <img style="width: 135px; height: 150px;" class="object-center object-fill " src="{{ isset($college_logo_path)?$college_logo_path->temporaryUrl():asset('img/no-img.png'); }}" alt="Current profile photo" />
                                             @else
                                             <img style="width: 135px; height: 150px;" class="object-center object-fill " src="{{ isset($college_logo_path_old)?asset($college_logo_path_old):asset('img/no-img.png'); }}" alt="Current profile photo" />
                                             @endif

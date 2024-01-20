@@ -18,13 +18,13 @@
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="pattern_startyear" :value="__('Pattern Start Year')" />
                         <x-required />
-                        <x-text-input id="pattern_startyear" type="text" wire:model="pattern_startyear" name="pattern_startyear" class="w-full mt-1" :value="old('pattern_startyear',$pattern_startyear)" required autofocus autocomplete="pattern_startyear" />
+                        <x-text-input id="pattern_startyear" type="number" wire:model="pattern_startyear" name="pattern_startyear" class="w-full mt-1" :value="old('pattern_startyear',$pattern_startyear)" required autofocus autocomplete="pattern_startyear" />
                         <x-input-error :messages="$errors->get('pattern_startyear')" class="mt-2" />
                     </div>
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="pattern_valid" :value="__('Pattern Valid ')" />
                         <x-required />
-                        <x-text-input id="pattern_valid" type="text" wire:model="pattern_valid" name="pattern_valid" class="w-full mt-1" :value="old('pattern_valid',$pattern_valid)" required autofocus autocomplete="pattern_valid" />
+                        <x-text-input id="pattern_valid" type="number" wire:model="pattern_valid" name="pattern_valid" class="w-full mt-1" :value="old('pattern_valid',$pattern_valid)" required autofocus autocomplete="pattern_valid" />
                         <x-input-error :messages="$errors->get('pattern_valid')" class="mt-2" />
                     </div>
 

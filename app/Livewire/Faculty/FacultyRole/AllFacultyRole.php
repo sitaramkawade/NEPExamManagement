@@ -8,8 +8,8 @@ use Livewire\Component;
 use App\Models\Roletype;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
-use App\Exports\Faculty\ExportRole;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\Faculty\FacultyRole\FacultyRoleExport;
 
 class AllFacultyRole extends Component
 {
@@ -22,7 +22,9 @@ class AllFacultyRole extends Component
     public $roletypes;
     public $colleges;
     public $mode='all';
+    #[Locked]
     public $role_id;
+    #[Locked]
     public $delete_id;
 
     public $perPage=10;
@@ -30,6 +32,7 @@ class AllFacultyRole extends Component
     public $sortColumn="role_name";
     public $sortColumnBy="ASC";
     public $ext;
+    public $isDisabled = true;
 
     protected function rules()
     {
@@ -55,9 +58,13 @@ class AllFacultyRole extends Component
     public function messages()
     {
         return [
-            'role_name.string' => 'Please type the role name using letters.',
-            'roletype_id.required' => 'Please select the role.',
-            'college_id.required' => 'Please select the college.',
+            'role_name.required' => 'The role name field is required.',
+            'role_name.string' => 'The role name must be a string.',
+            'role_name.max' => 'The role name must not exceed 255 characters.',
+            'roletype_id.required' => 'The role type field is required.',
+            'roletype_id.exists' => 'The selected role type is invalid.',
+            'college_id.required' => 'The college field is required.',
+            'college_id.exists' => 'The selected college is invalid.',
         ];
     }
 
@@ -176,30 +183,42 @@ class AllFacultyRole extends Component
 
     public function export()
     {
-        $filename="Role-".now();
+        $filename="Role-".time();
         switch ($this->ext) {
             case 'xlsx':
-                return Excel::download(new ExportRole($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                return Excel::download(new FacultyRoleExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
             break;
             case 'csv':
-                return Excel::download(new ExportRole($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                return Excel::download(new FacultyRoleExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
             case 'pdf':
-                return Excel::download(new ExportRole($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                return Excel::download(new FacultyRoleExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
 
     }
 
-    public function mount()
+    public function view(Role $role)
     {
-        $this->roletypes = Roletype::all();
-        $this->colleges= College::where('status',1)->get();
+        if ($role)
+        {
+            $this->role_name= $role->role_name;
+            $this->roletype_id = $role->roletype->roletype_name;
+            $this->college_id = $role->college->college_name;
+            $this->setmode('view');
+        }else{
+            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        }
     }
 
     public function render()
     {
-        $roles = Role::when($this->search, function($query, $search){
+        if($this->mode !== 'all'){
+            $this->roletypes = Roletype::select('id', 'roletype_name',)->where('status', 1)->get();
+            $this->colleges= College::select('id', 'college_name')->where('status',1)->get();
+        }
+
+        $roles = Role::with('roletype','college')->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.faculty-role.all-faculty-role' ,compact('roles'))->extends('layouts.faculty')->section('faculty');

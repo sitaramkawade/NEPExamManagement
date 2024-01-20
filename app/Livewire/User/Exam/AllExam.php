@@ -5,11 +5,13 @@ use Excel;
 use App\Models\Exam;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Exports\User\ExportExam;
+use App\Exports\User\Exam\ExportExam;
+
 
 class AllExam extends Component
 {
     use WithPagination;
+    protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
     public $sortColumn="exam_name";
@@ -22,15 +24,29 @@ class AllExam extends Component
     public $exam_name;
     public $status;
     public $exam_sessions;
+    #[Locked] 
+    public $delete_id;
+ 
 
     protected function rules()
     {
         return [
-        'exam_name' => ['required','string','max:255'],
+        'exam_name' => ['required','string','max:100'],
         'status' => ['required'],
         'exam_sessions' => ['required'],
         ];
     }
+
+    public function messages()
+    {   
+        $messages = [
+            'exam_name.required' => 'The Exam Name field is required.',
+            'exam_name.string' => 'The Exam Name must be a string.',
+            'exam_name.max' => 'The  Exam Name must not exceed :max characters.',
+            'exam_sessions.required' => 'The Exam Session field is required.',
+        ];
+        return $messages;
+        }
 
     public function resetinput()
     {
@@ -103,12 +119,33 @@ class AllExam extends Component
     }
     }
 
-    public function deleteExam(Exam $exam)
+    public function deleteconfirmation($id)
     {
-        $exam->delete();
-       
-        $this->dispatch('alert',type:'success',message:'Deleted Successfully !!'  );
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
     }
+    
+    
+    public function delete(Exam  $exam)
+    {   
+        $exam->delete();
+        $this->dispatch('alert',type:'success',message:'Exam Soft Deleted Successfully !!');
+    }
+    
+    public function restore($id)
+    {   
+        $exam = Exam::withTrashed()->find($id);
+        $exam->restore();
+        $this->dispatch('alert',type:'success',message:'Exam Restored Successfully !!');
+    }
+    
+    public function forcedelete()
+    {  
+        $exam = Exam::withTrashed()->find($this->delete_id);
+        $exam->forceDelete();
+        $this->dispatch('alert',type:'success',message:'Exam Deleted Successfully !!');
+    }
+
 
     public function Status(Exam $exam)
     {
@@ -154,7 +191,7 @@ class AllExam extends Component
     {
         $exams=Exam::when($this->search, function ($query, $search) {
             $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+        })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
         return view('livewire.user.exam.all-exam',compact('exams'))->extends('layouts.user')->section('user');
     }
