@@ -28,7 +28,7 @@ class AllSubjectbucket extends Component
     public $subjectcategory_id;
     public $subject_categoryno;
     public $subject_id;
-    #[Locked] 
+    #[Locked]
     public $subjectbucket_id;
     public $academicyear_id;
     public $pattern_id;
@@ -333,7 +333,8 @@ class AllSubjectbucket extends Component
             $this->departments= Department::select('id','dept_name')->where('status',1)->get();
         }
 
-        $subjectbuckets = Subjectbucket::when($this->search, function($query, $search){
+        $subjectbuckets = Subjectbucket::with('department', 'patternclass', 'subjectcategory', 'subject', 'academicyear')
+        ->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.subjectbucket.all-subjectbucket',compact('subjectbuckets'))->extends('layouts.faculty')->section('faculty');

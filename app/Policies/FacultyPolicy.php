@@ -14,6 +14,12 @@ class FacultyPolicy
     public function viewAny(User $user): bool
     {
         //
+        $allowedRoles = ['System Admin'];
+
+        // Check if the faculty has any permission related to actions
+        $hasActionPermission = in_array(auth('faculty')->user()->role->roletype->roletype_name, $allowedRoles);
+
+        return $hasActionPermission;
     }
 
     /**
@@ -21,7 +27,8 @@ class FacultyPolicy
      */
     public function view(User $user, Faculty $faculty): bool
     {
-        //
+        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
+        return in_array($faculty, ['System Admin','Non Teaching', 'Management Member',]);
     }
 
     /**
@@ -29,7 +36,8 @@ class FacultyPolicy
      */
     public function create(User $user): bool
     {
-        //
+        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
+        return in_array($faculty, ['System Admin',]);
     }
 
     /**
@@ -37,15 +45,17 @@ class FacultyPolicy
      */
     public function update(Faculty $user, Faculty $faculty): bool
     {
-        return $faculty->faculty_verified===0;
+        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
+        return in_array($faculty, ['System Admin',]);
     }
-    
+
     /**
      * Determine whether the user can delete the model.
      */
     public function delete(User $user, Faculty $faculty): bool
     {
-        //
+        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
+        return in_array($faculty, ['System Admin',]);
     }
 
     /**
@@ -53,7 +63,14 @@ class FacultyPolicy
      */
     public function restore(User $user, Faculty $faculty): bool
     {
-        //
+        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
+        return in_array($faculty, ['System Admin',]);
+    }
+
+    public function changestatus(): bool
+    {
+        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
+        return in_array($faculty, ['System Admin',]);
     }
 
     /**
@@ -61,6 +78,7 @@ class FacultyPolicy
      */
     public function forceDelete(User $user, Faculty $faculty): bool
     {
-        //
+        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
+        return in_array($faculty, ['System Admin',]);
     }
 }

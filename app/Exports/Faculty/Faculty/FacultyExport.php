@@ -38,7 +38,7 @@ class FacultyExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
     {
         return [
             $row->id,
-            $row->Prefix,
+            $row->prefix,
             $row->faculty_name,
             $row->email,
             $row->mobile_no,

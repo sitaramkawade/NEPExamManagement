@@ -16,9 +16,8 @@ class SubjecttypeSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             Subjecttype::create([
-                'id' => $i,
                 'type_name' => $faker->word,
                 'type_shortname' => $faker->lexify('??'),
                 'active' => $faker->numberBetween(0, 1),
