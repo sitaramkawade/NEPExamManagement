@@ -2,11 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
+use App\Models\College;
 use App\Models\Faculty;
+use App\Models\Department;
 use Faker\Factory as Faker;
 use Illuminate\Support\Str;
+use App\Models\Gendermaster;
+use App\Models\Banknamemaster;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class FacultyProfileSeeder extends Seeder
@@ -18,18 +24,23 @@ class FacultyProfileSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        $collegeIds = College::pluck('id')->toArray();
+        $departmentIds = Department::pluck('id')->toArray();
+        $roleIds = Role::pluck('id')->toArray();
+        $genders = Gendermaster::pluck('gender_shortform')->toArray();
+        $bankNames = Banknamemaster::pluck('bank_name')->toArray();
+
         for ($i = 1; $i <= 10; $i++) {
             $faculty = Faculty::create([
-                'id' => $i,
                 'prefix' => $faker->randomElement(['Dr.', 'Eng.', 'Prof.',]),
                 'faculty_name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'mobile_no' => $faker->numberBetween(1000000000, 9999999999),
-                'college_id' => 1,
-                'department_id' => $faker->numberBetween(1, 3), // Adjust the range based on your departments
-                'role_id' => $faker->numberBetween(1, 3), // Adjust the range based on your roles
+                'college_id' => $faker->randomElement($collegeIds),
+                'department_id' =>  $faker->randomElement($departmentIds),
+                'role_id' =>  $faker->randomElement($roleIds),
                 'date_of_birth' => $faker->date,
-                'gender' => $faker->randomElement(['M', 'F']),
+                'gender' => $faker->randomElement($genders),
                 'category' => $faker->randomElement(['NT(B)', 'SC', 'ST', 'OBC']),
                 'pan' => $faker->regexify('[A-Z]{5}[0-9]{4}[A-Z]{1}'),
                 'current_address' => $faker->address,
@@ -44,11 +55,10 @@ class FacultyProfileSeeder extends Seeder
             ]);
 
             $faculty->facultybankaccount()->create([
-                'id' => $i,
                 'faculty_id' => $faculty->id,
                 'account_no' => $faker->bankAccountNumber,
                 'bank_address' => $faker->address,
-                'bank_name' => $faker->randomElement(['State Bank Of India', 'Bank Of Maharashtra','Central Bank Of India']),
+                'bank_name' => $faker->randomElement($bankNames),
                 'branch_name' => $faker->companySuffix,
                 'branch_code' => $faker->numberBetween(1000, 9999),
                 'account_type' => $faker->randomElement(['S', 'C']),

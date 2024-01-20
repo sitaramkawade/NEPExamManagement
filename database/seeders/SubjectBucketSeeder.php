@@ -2,8 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Subjectbucket;
+use App\Models\Subject;
+use App\Models\Department;
 use Faker\Factory as Faker;
+use App\Models\Academicyear;
+use App\Models\Patternclass;
+use App\Models\Subjectbucket;
+use App\Models\Subjectcategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -13,16 +18,21 @@ class SubjectBucketSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 1; $i <= 50; $i++) {
+        $subjectCategoryIds = Subjectcategory::pluck('id')->toArray();
+        $patternClassIds = Patternclass::pluck('id')->toArray();
+        $departmentIds = Department::pluck('id')->toArray();
+        $subjectIds = Subject::pluck('id')->toArray();
+        $academicYearIds = Academicyear::pluck('id')->toArray();
+
+        for ($i = 1; $i <= 20; $i++) {
             Subjectbucket::create([
-                'id' => $i,
-                'department_id' => $faker->numberBetween(1, 4),
-                'patternclass_id' => $faker->numberBetween(1, 3),
+                'department_id' =>  $faker->randomElement($departmentIds),
+                'patternclass_id' => $faker->randomElement($patternClassIds),
                 'subject_division' => $faker->randomElement(['A', 'B','C','D']),
-                'subjectcategory_id' => $faker->numberBetween(1, 10),
+                'subjectcategory_id' => $faker->randomElement($subjectCategoryIds),
                 'subject_categoryno' => $faker->numberBetween(1, 3),
-                'subject_id' => $faker->numberBetween(1, 10),
-                'academicyear_id' => $faker->numberBetween(1, 4),
+                'subject_id' => $faker->randomElement($subjectIds),
+                'academicyear_id' => $faker->randomElement($academicYearIds),
                 'status' => $faker->numberBetween(0, 1),
                 'created_at' => now(),
                 'updated_at' => now(),
