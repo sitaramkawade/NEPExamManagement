@@ -70,7 +70,7 @@ class AllSubject extends Component
 
     public $mode='all';
     public $per_page = 10;
-    #[Locked] 
+    #[Locked]
     public $delete_id;
     public $perPage=10;
     public $search='';
@@ -452,7 +452,8 @@ class AllSubject extends Component
             $this->colleges= College::select('id','college_name')->where('status',1)->get();
         }
 
-        $subjects = Subject::when($this->search, function($query, $search){
+        $subjects = Subject::with(['college', 'subjectcategories', 'department', 'subjecttypes', 'patternclass', 'classyear',])
+        ->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.subject.all-subject',compact('subjects'))->extends('layouts.faculty')->section('faculty');
