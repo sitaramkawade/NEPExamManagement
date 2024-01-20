@@ -19,6 +19,7 @@
     </x-form>
     @elseif($mode=='all')
     <div>
+      
         <x-card-header heading=" All Educational Course's">
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>

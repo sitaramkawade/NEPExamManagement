@@ -25,6 +25,7 @@ use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Helpline\Helpline;
+use App\Livewire\User\Building\AllBuilding;
 use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
@@ -39,8 +40,8 @@ use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\SubjectType\AllSubjectType;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
-use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\AdmissionData\AllAdmissionData;
+use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
@@ -148,6 +149,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Exam Time Table
   Route::get('/all/examTimeTable', AllExamTimeTable::class)->name('all_examTimeTable');
+
+  //All Buildings
+  Route::get('/all/building', AllBuilding::class)->name('all_builidng');
 
   //All Users 
   Route::get('/all/users', AllUser::class)->name('all_user');

@@ -40,7 +40,7 @@ class AllExamTimeTable extends Component
     {
         return [
         'subject_id' => ['required',Rule::exists('subjects', 'id')],
-        'exam_patternclasses_id' => ['required',Rule::exists('examPatternClasses', 'id')],
+        'exam_patternclasses_id' => ['required',Rule::exists('exam_patternclasses', 'id')],
         'timeslot_id' => ['required',Rule::exists('timetableslots', 'id')],
         'examdate' => ['nullable', 'date'],
        

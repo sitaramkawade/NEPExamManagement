@@ -17,6 +17,7 @@ use Database\Seeders\TalukaSeeder;
 use Database\Seeders\CountrySeeder;
 use Database\Seeders\SansthaSeeder;
 use Database\Seeders\SubjectSeeder;
+use Database\Seeders\BuildingSeeder;
 use Database\Seeders\DistrictSeeder;
 use Database\Seeders\ReligionSeeder;
 use Database\Seeders\RoletypeSeeder;
@@ -32,11 +33,11 @@ use Database\Seeders\AcademicyearSeeder;
 use Database\Seeders\GendermasterSeeder;
 use Database\Seeders\PatternclassSeeder;
 use Database\Seeders\PrefixmasterSeeder;
-use Database\Seeders\PreviousYearSeeder;
 
-use Database\Seeders\ExamTimeTableSeeder;
+use Database\Seeders\PreviousYearSeeder;
 use Database\Seeders\CasteCategorySeeder;
 use Database\Seeders\DepatmenttypeSeeder;
+use Database\Seeders\ExamTimeTableSeeder;
 use Database\Seeders\SubjectCreditSeeder;
 use Database\Seeders\BanknamemasterSeeder;
 use Database\Seeders\StudentProfileSeeder;
@@ -100,9 +101,10 @@ class DatabaseSeeder extends Seeder
             // ExamTimeTableSeeder::class
 
             SubjectSeeder::class,
-            ExamPatternclassSeeder::class
+            // ExamPatternclassSeeder::class
             SubjectBucketSeeder::class,
-            FacultyProfileSeeder::class,
+          //  FacultyProfileSeeder::class,
+            BuildingSeeder::class,
 
 
         ]);
