@@ -18,7 +18,6 @@ class FacultyPolicy
     {
         $allowedRoles = ['System Admin'];
 
-        // Check if the faculty has any permission related to actions
         $hasActionPermission = in_array(auth('faculty')->user()->role->roletype->roletype_name, $allowedRoles);
 
         return $hasActionPermission;
