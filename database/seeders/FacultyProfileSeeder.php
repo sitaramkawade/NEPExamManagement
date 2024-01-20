@@ -6,7 +6,6 @@ use App\Models\Role;
 use App\Models\College;
 use App\Models\Faculty;
 use App\Models\Department;
-use App\Models\Designation;
 use Faker\Factory as Faker;
 use Illuminate\Support\Str;
 use App\Models\Gendermaster;
@@ -28,7 +27,6 @@ class FacultyProfileSeeder extends Seeder
         $collegeIds = College::pluck('id')->toArray();
         $departmentIds = Department::pluck('id')->toArray();
         $roleIds = Role::pluck('id')->toArray();
-        $designationIds = Designation::pluck('id')->toArray();
         $genders = Gendermaster::pluck('gender_shortform')->toArray();
         $bankNames = Banknamemaster::pluck('bank_name')->toArray();
 
@@ -41,7 +39,6 @@ class FacultyProfileSeeder extends Seeder
                 'college_id' => $faker->randomElement($collegeIds),
                 'department_id' =>  $faker->randomElement($departmentIds),
                 'role_id' =>  $faker->randomElement($roleIds),
-                'designation_id' =>  $faker->randomElement($designationIds),
                 'date_of_birth' => $faker->date,
                 'gender' => $faker->randomElement($genders),
                 'category' => $faker->randomElement(['NT(B)', 'SC', 'ST', 'OBC']),

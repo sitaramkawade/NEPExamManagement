@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Role;
-use App\Models\Designation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,11 +21,6 @@ class Roletype extends Model
     public function roles()
     {
         return $this->hasMany(Role::class,'roletype_id','id')->withTrashed();
-    }
-
-    public function designations()
-    {
-        return $this->hasMany(Designation::class, 'roletype_id','id')>withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

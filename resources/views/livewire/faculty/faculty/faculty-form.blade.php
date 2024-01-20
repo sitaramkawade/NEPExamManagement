@@ -42,29 +42,19 @@
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
                 <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                    <x-input-label for="designation_id" :value="__('Designation')" />
-                    <x-input-select id="designation_id" wire:model="designation_id" name="designation_id" class="text-center @error('designation_id') is-invalid @enderror w-full mt-1" :value="old('designation_id', $designation_id)" required autofocus autocomplete="designation_id">
-                        <x-select-option class="text-start" hidden> -- Select Designation -- </x-select-option>
-                        @foreach ($designations as $designation)
-                            <x-select-option wire:key="{{ $designation->id }}" value="{{ $designation->id }}" class="text-start">{{ $designation->designation }}</x-select-option>
+                    <x-input-label for="department_id" :value="__('Department')" />
+                    <x-input-select id="department_id" wire:model="department_id" name="department_id" class="text-center @error('department_id') is-invalid @enderror w-full mt-1" :value="old('department_id', $department_id)" required autofocus autocomplete="department_id">
+                        <x-select-option class="text-start" hidden> -- Select Department -- </x-select-option>
+                        @foreach ($departments as $department)
+                            <x-select-option wire:key="{{ $department->id }}" value="{{ $department->id }}" class="text-start">{{ $department->dept_name }}</x-select-option>
                         @endforeach
                     </x-input-select>
-                    <x-input-error :messages="$errors->get('designation_id')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
                 </div>
             </div>
         </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-1">
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="department_id" :value="__('Department')" />
-            <x-input-select id="department_id" wire:model="department_id" name="department_id" class="text-center @error('department_id') is-invalid @enderror w-full mt-1" :value="old('department_id', $department_id)" required autofocus autocomplete="department_id">
-                <x-select-option class="text-start" hidden> -- Select Department -- </x-select-option>
-                @foreach ($departments as $department)
-                    <x-select-option wire:key="{{ $department->id }}" value="{{ $department->id }}" class="text-start">{{ $department->dept_name }}</x-select-option>
-                @endforeach
-            </x-input-select>
-            <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
-        </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="college_id" :value="__('College')" />
             <x-input-select id="college_id" wire:model="college_id" name="college_id" class="text-center @error('college_id') is-invalid @enderror w-full mt-1" :value="old('college_id', $college_id)" required autofocus autocomplete="college_id">
