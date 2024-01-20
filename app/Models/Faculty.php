@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Designation;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -28,7 +29,7 @@ class Faculty extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new FacultyRegisterMailNotification);
     }
-    
+
     protected $dates=['deleted_at'];
     protected $guard = 'faculty';
     protected $table="faculties";
@@ -97,9 +98,6 @@ class Faculty extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Facultybankaccount::class,'faculty_id','id')->withTrashed();
     }
-
-
-
 
     // public function facultyhead()
     // {

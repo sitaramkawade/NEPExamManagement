@@ -18,8 +18,8 @@ return new class extends Migration
 
             $table->tinyInteger('active')->default('0');// 0 :not active 1:active for departmet specific classes 2:active for all classes
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

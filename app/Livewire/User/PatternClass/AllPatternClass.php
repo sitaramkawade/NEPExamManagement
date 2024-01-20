@@ -43,31 +43,43 @@ class AllPatternClass extends Component
     public function rules()
     {
         return [
-            'sem1_total_marks' => ['required', 'numeric'],
-            'sem2_total_marks' => ['required', 'numeric'],
-            'sem1_credits' => ['required', 'numeric'],
-            'sem2_credits' => ['required', 'numeric'],
-            'sem1_totalnosubjects' => ['required', 'numeric'],
-            'sem2_totalnosubjects' => ['required', 'numeric'],
-            'class_id' => ['required', 'numeric', Rule::exists('course_classes', 'id')],
-            'pattern_id' => ['required', 'numeric', Rule::exists('patterns', 'id')],
+            'sem1_total_marks' => ['required', 'integer','digits_between:1,4'],
+            'sem2_total_marks' => ['required', 'integer','digits_between:1,4'],
+            'sem1_credits' => ['required', 'integer','digits_between:1,3'],
+            'sem2_credits' => ['required', 'integer','digits_between:1,3'],
+            'sem1_totalnosubjects' => ['required', 'integer','digits_between:1,3'],
+            'sem2_totalnosubjects' => ['required', 'integer','digits_between:1,3'],
+            'class_id' => ['required', 'integer', Rule::exists('course_classes', 'id')],
+            'pattern_id' => ['required', 'integer', Rule::exists('patterns', 'id')],
         ];
     }
 
     public function messages()
     {   
         $messages = [
-            'sem1_total_marks.required' => 'Semester 1 Total Marks are required.',
-            'sem2_total_marks.required' => 'Semester 2 Total Marks are required.',
-            'sem1_credits.required' => 'Semester 1 Credits are required.',
-            'sem2_credits.required' => 'Semester 2 Credits are required.',
-            'sem1_totalnosubjects.required' => 'Total Subjects in Semester 1 is required.',
-            'sem2_totalnosubjects.required' => 'Total Subjects in Semester 2 is required.',
+            'sem1_total_marks.required' => 'Semester 1 total marks is required.',
+            'sem1_total_marks.integer' => 'Semester 1 total marks must be an integer.',
+            'sem1_total_marks.digits_between' => 'Semester 1 total marks must have between :min and :max digits.',
+            'sem2_total_marks.required' => 'Semester 2 total marks is required.',
+            'sem2_total_marks.integer' => 'Semester 2 total marks must be an integer.',
+            'sem2_total_marks.digits_between' => 'Semester 2 total marks must have between :min and :max digits.',
+            'sem1_credits.required' => 'Semester 1 credits is required.',
+            'sem1_credits.integer' => 'Semester 1 credits must be an integer.',
+            'sem1_credits.digits_between' => 'Semester 1 credits must have between :min and :max digits.',
+            'sem2_credits.required' => 'Semester 2 credits is required.',
+            'sem2_credits.integer' => 'Semester 2 credits must be an integer.',
+            'sem2_credits.digits_between' => 'Semester 2 credits must have between :min and :max digits.',
+            'sem1_totalnosubjects.required' => 'Semester 1 total number of subjects is required.',
+            'sem1_totalnosubjects.integer' => 'Semester 1 total number of subjects must be an integer.',
+            'sem1_totalnosubjects.digits_between' => 'Semester 1 total number of subjects must have between :min and :max digits.',
+            'sem2_totalnosubjects.required' => 'Semester 2 total number of subjects is required.',
+            'sem2_totalnosubjects.integer' => 'Semester 2 total number of subjects must be an integer.',
+            'sem2_totalnosubjects.digits_between' => 'Semester 2 total number of subjects must have between :min and :max digits.',
             'class_id.required' => 'Course Class is required.',
-            'class_id.numeric' => 'Course Class must be a numeric value.',
+            'class_id.integer' => 'Course Class must be a integer value.',
             'class_id.exists' => 'The selected Course Class does not exist.',
             'pattern_id.required' => 'Pattern is required.',
-            'pattern_id.numeric' => 'Pattern must be a numeric value.',
+            'pattern_id.integer' => 'Pattern must be a integer value.',
             'pattern_id.exists' => 'The selected pattern does not exist.',
         ];
         
@@ -240,14 +252,13 @@ class AllPatternClass extends Component
 
     public function render()
     {   
-
         if($this->mode!=='all')
         {
-            $this->patterns=Pattern::select('pattern_name','id')->get();
+            $this->patterns=Pattern::select('pattern_name','id')->where('status',1)->get();
             $this->course_classes=Courseclass::select('classyear_id','course_id','id')->get();
         }
 
-       $pattern_classes=Patternclass::when($this->search, function ($query, $search) {
+       $pattern_classes=Patternclass::select('id','pattern_id','class_id','sem1_total_marks','sem2_total_marks','sem1_credits','sem2_credits','sem1_totalnosubjects','sem2_totalnosubjects','status','deleted_at')->with('getclass.course','getclass.classyear','pattern')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

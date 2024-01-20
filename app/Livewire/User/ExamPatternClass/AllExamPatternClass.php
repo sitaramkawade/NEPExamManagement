@@ -68,11 +68,11 @@ class AllExamPatternClass extends Component
             'papersubmission_date' => ['nullable', 'date'],
             'placeofmeeting' => ['nullable', 'string','max:100'],
             'description' => ['nullable', 'string','max:50'],
-            'patternclass_id' => ['required', 'numeric', Rule::exists('pattern_classes', 'id'), Rule::unique('exam_patternclasses')->where(function ($query) {
+            'patternclass_id' => ['required', 'integer', Rule::exists('pattern_classes', 'id'), Rule::unique('exam_patternclasses')->where(function ($query) {
                 return $query->where('exam_id', $this->exam_id);
             })],
-            'exam_id' => ['required', 'numeric', Rule::exists('exams', 'id')],
-            'capmaster_id' => ['nullable', 'numeric', Rule::exists('capmasters', 'id')],
+            'exam_id' => ['required', 'integer', Rule::exists('exams', 'id')],
+            'capmaster_id' => ['nullable', 'integer', Rule::exists('capmasters', 'id')],
         ];
     }
 
@@ -106,13 +106,13 @@ class AllExamPatternClass extends Component
             'description.string' => 'The Description must be a string.',
             'description.max' => 'The Description must not exceed :max characters.',
             'patternclass_id.required' => 'The Pattern Class field is required.',
-            'patternclass_id.numeric' => 'The Pattern Class must be a number.',
+            'patternclass_id.integer' => 'The Pattern Class must be a number.',
             'patternclass_id.exists' => 'The selected Pattern Class is invalid.',
             'capmaster_id.required' => 'The CAP field is required.',
-            'capmaster_id.numeric' => 'The CAP must be a number.',
+            'capmaster_id.integer' => 'The CAP must be a number.',
             'capmaster_id.exists' => 'The selected CAP is invalid.',
             'exam_id.required' => 'The Exam field is required.',
-            'exam_id.numeric' => 'The Exam must be a number.',
+            'exam_id.integer' => 'The Exam must be a number.',
             'exam_id.exists' => 'The selected Exam is invalid.',
             'patternclass_id.unique' => 'The Pattern Class Has already Been Taken For This Exam.',
         ];
@@ -212,7 +212,7 @@ class AllExamPatternClass extends Component
         ]);
         $this->resetinput();
         $this->setmode('all');
-        $this->dispatch('alert',type:'success',message:'Course Created Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Created Successfully !!');
     }
 
 
@@ -264,7 +264,7 @@ class AllExamPatternClass extends Component
        
         $this->resetinput();
         $this->setmode('all');
-        $this->dispatch('alert',type:'success',message:'Course Updated Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Updated Successfully !!');
 
     }
 
@@ -279,21 +279,21 @@ class AllExamPatternClass extends Component
     public function delete(ExamPatternclass $exam_pattern_class)
     {   
        $exam_pattern_class->delete();
-        $this->dispatch('alert',type:'success',message:'Course Soft Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Soft Deleted Successfully !!');
     }
     
     public function restore($id)
     {   
        $exam_pattern_class = ExamPatternclass::withTrashed()->find($id);
        $exam_pattern_class->restore();
-        $this->dispatch('alert',type:'success',message:'Course Restored Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Restored Successfully !!');
     }
 
     public function forcedelete()
     {   
        $exam_pattern_class = ExamPatternclass::withTrashed()->find($this->delete_id);
        $exam_pattern_class->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Course Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Deleted Successfully !!');
     }
 
     public function changestatus(ExamPatternclass $exam_pattern_class)
@@ -308,13 +308,12 @@ class AllExamPatternClass extends Component
         }
         $exam_pattern_class->update();
 
-        $this->dispatch('alert',type:'success',message:'Class Year Status Updated Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Status Updated Successfully !!');
     }
 
 
     public function render()
     {   
-
         if($this->mode!=='all')
         {
             $this->exams=Exam::select('id','exam_name')->where('status',1)->get();
@@ -322,7 +321,8 @@ class AllExamPatternClass extends Component
             $this->capmasters=Capmaster::select('id','cap_name')->get();
         }
 
-       $pattern_exam_classes=ExamPatternclass::when($this->search, function ($query, $search) {
+       $pattern_exam_classes=ExamPatternclass::select('exam_id','patternclass_id','result_date','launch_status','start_date','end_date','latefee_date','intmarksstart_date','intmarksend_date','finefee_date','capmaster_id','capscheduled_date','papersettingstart_date','papersubmission_date','placeofmeeting','description',)
+       ->with(['exam','patternclass.courseclass.course','capmaster'])->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

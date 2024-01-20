@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('description',1000)->nullable()->default(null);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->tinyInteger('type')->nullable()->default(0)->commment('0-Guest ,1-student,2-faculty,3-User,4-All');
-            $table->tinyInteger('is_active')->nullable()->default(0)->commment('0-inactive ,1-active ');
+            $table->tinyInteger('type')->nullable()->default(0)->comment('0-Guest ,1-student,2-faculty,3-User,4-All');
+            $table->tinyInteger('is_active')->nullable()->default(0)->comment('0-inactive ,1-active ');
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();

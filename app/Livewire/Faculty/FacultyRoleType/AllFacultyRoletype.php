@@ -14,7 +14,9 @@ class AllFacultyRoletype extends Component
 
     protected $listeners = ['delete-confirmed'=>'delete'];
     public $roletype_name;
+    #[Locked]
     public $roletype_id;
+    #[Locked] 
     public $delete_id;
 
     public $perPage=10;

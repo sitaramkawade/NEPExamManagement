@@ -16,8 +16,8 @@ return new class extends Migration
             $table->float('credit',4,1)->default(0);
             $table->float('marks',4,1)->default(0);
             $table->float('passing',4,1)->default(0);
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

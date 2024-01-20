@@ -22,7 +22,9 @@ class AllFacultyRole extends Component
     public $roletypes;
     public $colleges;
     public $mode='all';
+    #[Locked]
     public $role_id;
+    #[Locked]
     public $delete_id;
 
     public $perPage=10;
@@ -216,7 +218,7 @@ class AllFacultyRole extends Component
             $this->colleges= College::select('id', 'college_name')->where('status',1)->get();
         }
 
-        $roles = Role::when($this->search, function($query, $search){
+        $roles = Role::with('roletype','college')->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.faculty-role.all-faculty-role' ,compact('roles'))->extends('layouts.faculty')->section('faculty');
