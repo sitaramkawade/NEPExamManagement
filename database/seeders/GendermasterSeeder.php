@@ -14,22 +14,25 @@ class GendermasterSeeder extends Seeder
     public function run(): void
     {
         Gendermaster::create( [
+            'id'=>1,
             'gender'=>'Male',
             'gender_shortform'=>'M',
             'is_active'=>1,
             'created_at'=>'2023-09-25 05:10:43',
             'updated_at'=>'2023-09-25 05:10:43'
             ] );
-
+                        
             Gendermaster::create( [
+            'id'=>2,
             'gender'=>'Female',
             'gender_shortform'=>'F',
             'is_active'=>1,
             'created_at'=>'2023-09-25 05:10:43',
             'updated_at'=>'2023-09-25 05:10:43'
             ] );
-
+                        
             Gendermaster::create( [
+            'id'=>3,
             'gender'=>'Transgender',
             'gender_shortform'=>'T',
             'is_active'=>0,

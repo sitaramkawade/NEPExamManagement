@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roletypes', function (Blueprint $table) {
+        Schema::create('designations', function (Blueprint $table) {
             $table->id();
-            $table->string('roletype_name');
-            // $table->boolean('status');
-            $table->boolean('status')->default(1); // 1-Active 0-Inactive
-            $table->softDeletes();
+            $table->string('designation',50);
+            $table->bigInteger('roletype_id')->nullable()->unsigned()->default(null);
+            $table->foreign('roletype_id')->references('id')->on('roletypes')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roletypes');
+        Schema::dropIfExists('designations');
     }
 };
