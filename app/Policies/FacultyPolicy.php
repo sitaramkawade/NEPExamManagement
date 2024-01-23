@@ -11,74 +11,77 @@ class FacultyPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(Faculty $faculty): bool
     {
-        //
         $allowedRoles = ['System Admin'];
-
-        // Check if the faculty has any permission related to actions
-        $hasActionPermission = in_array(auth('faculty')->user()->role->roletype->roletype_name, $allowedRoles);
-
-        return $hasActionPermission;
+        $roleType = $faculty->role->roletype->roletype_name;
+        return in_array($roleType, $allowedRoles);
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Faculty $faculty): bool
+    public function view(Faculty $faculty): bool
     {
-        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
-        return in_array($faculty, ['System Admin','Non Teaching', 'Management Member',]);
+        $allowedRoles = ['System Admin','Non Teaching', 'Management Member',];
+        $roleType = $faculty->role->roletype->roletype_name;
+        return in_array($roleType, $allowedRoles);
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(Faculty $faculty): bool
     {
-        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
-        return in_array($faculty, ['System Admin',]);
+        $allowedRoles = ['System Admin'];
+        $roleType = $faculty->role->roletype->roletype_name;
+        return in_array($roleType, $allowedRoles);
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(Faculty $user, Faculty $faculty): bool
+    public function update(Faculty $faculty): bool
     {
-        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
-        return in_array($faculty, ['System Admin',]);
+        $allowedRoles = ['System Admin'];
+        $roleType = $faculty->role->roletype->roletype_name;
+        return in_array($roleType, $allowedRoles);
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Faculty $faculty): bool
+    public function delete(Faculty $faculty): bool
     {
-        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
-        return in_array($faculty, ['System Admin',]);
+        $allowedRoles = ['System Admin'];
+        $roleType = $faculty->role->roletype->roletype_name;
+        return in_array($roleType, $allowedRoles);
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Faculty $faculty): bool
+    public function restore(Faculty $faculty): bool
     {
-        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
-        return in_array($faculty, ['System Admin',]);
+        $allowedRoles = ['System Admin'];
+        $roleType = $faculty->role->roletype->roletype_name;
+        return in_array($roleType, $allowedRoles);
     }
 
-    public function changestatus(): bool
+    public function changestatus(Faculty $faculty): bool
     {
-        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
-        return in_array($faculty, ['System Admin',]);
+        $allowedRoles = ['System Admin'];
+        $roleType = $faculty->role->roletype->roletype_name;
+        return in_array($roleType, $allowedRoles);
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Faculty $faculty): bool
+    public function forceDelete(Faculty $faculty): bool
     {
-        $faculty = auth('faculty')->user()->role->roletype->roletype_name;
-        return in_array($faculty, ['System Admin',]);
+        $allowedRoles = ['System Admin'];
+        $roleType = $faculty->role->roletype->roletype_name;
+        return in_array($roleType, $allowedRoles);
     }
 }

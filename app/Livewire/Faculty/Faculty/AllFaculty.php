@@ -375,16 +375,14 @@ class AllFaculty extends Component
 
     public function render()
     {
-
         if($this->mode !== 'all'){
             $this->prefixes = Prefixmaster::select('id','prefix','prefix_shortform')->where('is_active',1)->get();
             $this->banknames = Banknamemaster::select('id','bank_name','bank_shortform')->where('is_active',1)->get();
             $this->roles= Role::select('id','role_name',)->get();
-            $this->roletypes= Roletype::select('id','roletype_name',)->where('status',1)->get();
             $this->departments= Department::select('id','dept_name',)->where('status',1)->get();
             $this->colleges= College::select('id','college_name',)->where('status',1)->get();
         }
-        $authFaculty = auth('faculty')->user()->role->roletype->roletype_name;
+        $authFaculty = auth('faculty')->user();
         $faculties = Faculty::with(['role', 'department', 'college'])->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
