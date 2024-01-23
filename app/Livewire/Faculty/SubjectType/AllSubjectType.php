@@ -13,7 +13,7 @@ class AllSubjectType extends Component
     use WithPagination;
 
     protected $listeners = ['delete-confirmed'=>'delete'];
-    #[Locked]
+    #[Locked] 
     public $subjecttype_id;
     public $type_name;
     public $type_shortname;
@@ -230,7 +230,7 @@ class AllSubjectType extends Component
 
     public function render()
     {
-        $subjecttypes = Subjecttype::with('subject')->when($this->search, function($query, $search){
+        $subjecttypes = Subjecttype::when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.subject-type.all-subject-type',compact('subjecttypes'))->extends('layouts.faculty')->section('faculty');

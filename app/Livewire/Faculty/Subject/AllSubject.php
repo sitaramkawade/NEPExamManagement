@@ -227,7 +227,7 @@ class AllSubject extends Component
                 $this->dispatch('alert',type:'error',message:'Something went wrong!!');
             }
         } else {
-            $this->dispatch('alert',type:'error',message:'Pattern Class Not Found!!');
+            $this->dispatch('alert',type:'success',message:'Pattern Class Not Found!!');
         }
     }
 

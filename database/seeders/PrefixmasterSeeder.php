@@ -14,6 +14,7 @@ class PrefixmasterSeeder extends Seeder
     public function run(): void
     {
         Prefixmaster::create( [
+        'id'=>1,
         'prefix'=>'Doctorate',
         'prefix_shortform'=>'Dr.',
         'is_active'=>1,
@@ -22,6 +23,7 @@ class PrefixmasterSeeder extends Seeder
         ] );
 
         Prefixmaster::create( [
+        'id'=>2,
         'prefix'=>'Professor',
         'prefix_shortform'=>'Prof.',
         'is_active'=>1,
@@ -30,6 +32,7 @@ class PrefixmasterSeeder extends Seeder
         ] );
 
         Prefixmaster::create( [
+        'id'=>3,
         'prefix'=>'Engineer',
         'prefix_shortform'=>'Eng.',
         'is_active'=>1,
