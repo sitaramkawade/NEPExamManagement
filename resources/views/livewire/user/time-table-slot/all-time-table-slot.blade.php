@@ -46,9 +46,9 @@
                     <x-table.td>{{ $time_table_slot->slot }} </x-table.td>
                     <x-table.td>
                       @if ($time_table_slot->isactive === 1)
-                      <x-status type="success"> Active </x-status>
+                        <x-table.active  wire:click="status({{ $time_table_slot->id }})" />
                       @else
-                      <x-status type="danger"> Inactive </x-status>
+                        <x-table.inactive wire:click="status({{ $time_table_slot->id }})" />
                       @endif
                     </x-table.td>
                     <x-table.td>
@@ -57,11 +57,6 @@
                         <x-table.restore  wire:click="restore({{ $time_table_slot->id }})" />
                       @else
                         <x-table.edit wire:click="edit({{ $time_table_slot->id }})" />
-                        @if ($time_table_slot->isactive === 1)
-                          <x-table.inactive wire:click="status({{ $time_table_slot->id }})" />
-                        @else
-                          <x-table.active  wire:click="status({{ $time_table_slot->id }})" />
-                        @endif
                         <x-table.archive  wire:click="delete({{ $time_table_slot->id }})" />
                       @endif
                     </x-table.td>

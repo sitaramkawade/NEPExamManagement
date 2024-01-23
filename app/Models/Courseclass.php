@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\College;
+use App\Models\Classyear;
 use App\Models\Courseclass;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;

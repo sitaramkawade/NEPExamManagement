@@ -43,11 +43,11 @@
                     <x-table.td>{{ $helpline_query->id }} </x-table.td>
                     <x-table.td>{{ $helpline_query->query_name }} </x-table.td>
                     <x-table.td>
-                      @if ($helpline_query->is_active === 1)
-                      <x-status type="success"> Active </x-status>
-                      @else
-                      <x-status type="danger"> Inactive </x-status>
-                      @endif
+                        @if ($helpline_query->is_active === 1)
+                          <x-table.active  wire:click="status({{ $helpline_query->id }})" />
+                        @else
+                          <x-table.inactive wire:click="status({{ $helpline_query->id }})" />
+                        @endif
                     </x-table.td>
                     <x-table.td>
                       @if ($helpline_query->deleted_at)
@@ -55,11 +55,6 @@
                         <x-table.restore  wire:click="restore({{ $helpline_query->id }})" />
                       @else
                         <x-table.edit wire:click="edit({{ $helpline_query->id }})" />
-                        @if ($helpline_query->is_active === 1)
-                          <x-table.inactive wire:click="status({{ $helpline_query->id }})" />
-                        @else
-                          <x-table.active  wire:click="status({{ $helpline_query->id }})" />
-                        @endif
                         <x-table.archive  wire:click="delete({{ $helpline_query->id }})" />
                       @endif
                     </x-table.td>
