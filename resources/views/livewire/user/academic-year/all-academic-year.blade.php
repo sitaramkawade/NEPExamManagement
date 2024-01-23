@@ -44,9 +44,9 @@
                     <x-table.td>{{ $academicyear->year_name	 }} </x-table.td>
                     <x-table.td>
                       @if ($academicyear->active === 1)
-                      <x-status type="success"> Active </x-status>
+                        <x-table.active  wire:click="status({{ $academicyear->id }})" />
                       @else
-                      <x-status type="danger"> Inactive </x-status>
+                        <x-table.inactive wire:click="status({{ $academicyear->id }})" />
                       @endif
                     </x-table.td>
                     <x-table.td>
@@ -55,11 +55,6 @@
                         <x-table.restore  wire:click="restore({{ $academicyear->id }})" />
                       @else
                         <x-table.edit wire:click="edit({{ $academicyear->id }})" />
-                        @if ($academicyear->active === 1)
-                          <x-table.inactive wire:click="status({{ $academicyear->id }})" />
-                        @else
-                          <x-table.active  wire:click="status({{ $academicyear->id }})" />
-                        @endif
                         <x-table.archive  wire:click="delete({{ $academicyear->id }})" />
                       @endif
                     </x-table.td>

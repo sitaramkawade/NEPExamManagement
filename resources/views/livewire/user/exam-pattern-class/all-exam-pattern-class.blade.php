@@ -56,7 +56,7 @@
                   <x-table.tr wire:key="{{ $pattern_exam_class->id }}">
                     <x-table.td>{{ $pattern_exam_class->id }} </x-table.td>
                     <x-table.td>{{ $pattern_exam_class->exam->exam_name }} </x-table.td>
-                    <x-table.td>{{ isset($pattern_exam_class->patternclass->courseclass->course->course_name)?$pattern_exam_class->patternclass->courseclass->course->course_name:''; }}</x-table.td>
+                    <x-table.td> <x-table.text-scroll> {{ isset($pattern_exam_class->patternclass->courseclass->course->course_name)?$pattern_exam_class->patternclass->courseclass->course->course_name:''; }} </x-table.text-scroll></x-table.td>
                     <x-table.td>{{ isset($pattern_exam_class->capmaster->cap_name)?$pattern_exam_class->capmaster->cap_name:''; }} </x-table.td>
                     <x-table.td>{{ $pattern_exam_class->result_date }} </x-table.td>
                     <x-table.td>{{ isset($pattern_exam_class->start_date)?date('d-m-Y', strtotime($pattern_exam_class->start_date)):''; }} </x-table.td>
@@ -72,9 +72,9 @@
                     <x-table.td>{{ $pattern_exam_class->description }} </x-table.td>
                     <x-table.td>
                       @if ($pattern_exam_class->launch_status == 1)
-                        <x-status type="success"> Launched </x-status>
+                        <x-table.active  wire:click="changestatus({{ $pattern_exam_class->id }})" />
                       @else
-                        <x-status type="danger"> Not Launched </x-status>
+                        <x-table.inactive wire:click="changestatus({{ $pattern_exam_class->id }})" />
                       @endif
                     </x-table.td>
                     <x-table.td>
@@ -83,11 +83,7 @@
                         <x-table.restore wire:click="restore({{ $pattern_exam_class->id }})" />
                       @else
                         <x-table.edit wire:click="edit({{ $pattern_exam_class->id }})" />
-                          @if ($pattern_exam_class->launch_status == 1)
-                          <x-table.inactive wire:click="changestatus({{ $pattern_exam_class->id }})" />
-                        @else
-                          <x-table.active  wire:click="changestatus({{ $pattern_exam_class->id }})" />
-                        @endif
+                         
                         <x-table.archive wire:click="delete({{ $pattern_exam_class->id }})" />
                       @endif
                     </x-table.td>

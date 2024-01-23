@@ -5,7 +5,7 @@
      <div class="overflow-hidden">
        <span class="truncate inline-block max-w-full font-bold">{{ $title }}</span>
      </div>
-     <svg data-accordion-icon class="w-3 h-3 transition-transform" :class="{ 'rotate-180': openTab === {{ $tab }}, 'rotate-0': openTab !== {{ $tab }} }" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+     <svg data-accordion-icon class="w-3 h-3 transition-transform" :class="{ 'rotate-0': openTab === {{ $tab }}, 'rotate-180': openTab !== {{ $tab }} }" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
      </svg>
    </button>

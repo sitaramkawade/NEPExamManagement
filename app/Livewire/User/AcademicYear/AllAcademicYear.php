@@ -20,7 +20,7 @@ class AllAcademicYear extends Component
     public $perPage=10;
     public $search='';
     public $sortColumn="year_name";
-    public $sortColumnBy="ASC";
+    public $sortColumnBy="DESC";
     public $ext;
 
     public $year_name;

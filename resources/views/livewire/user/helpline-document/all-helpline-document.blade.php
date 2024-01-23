@@ -46,9 +46,9 @@
                     <x-table.td>{{ $helpline_document->document_name }} </x-table.td>
                     <x-table.td>
                       @if ($helpline_document->is_active === 1)
-                      <x-status type="success"> Active </x-status>
+                        <x-table.active wire:click="status({{ $helpline_document->id }})" />
                       @else
-                      <x-status type="danger"> Inactive </x-status>
+                        <x-table.inactive wire:click="status({{ $helpline_document->id }})" />
                       @endif
                     </x-table.td>
                     <x-table.td>
@@ -57,11 +57,6 @@
                         <x-table.restore  wire:click="restore({{ $helpline_document->id }})" />
                       @else
                         <x-table.edit wire:click="edit({{ $helpline_document->id }})" />
-                        @if ($helpline_document->is_active === 1)
-                          <x-table.inactive wire:click="status({{ $helpline_document->id }})" />
-                        @else
-                          <x-table.active wire:click="status({{ $helpline_document->id }})" />
-                        @endif
                         <x-table.archive  wire:click="delete({{ $helpline_document->id }})" />
                       @endif
                     </x-table.td>

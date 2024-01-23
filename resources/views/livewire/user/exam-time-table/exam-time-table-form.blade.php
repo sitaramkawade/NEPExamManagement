@@ -19,8 +19,8 @@
             <x-input-label for="exam_patternclasses_id" :value="__('Select Pattern Class')" />
             <x-input-select id="exam_patternclasses_id" wire:model="exam_patternclasses_id" name="exam_patternclasses_id" class="text-center w-full mt-1" :value="old('exam_patternclasses_id', $exam_patternclasses_id)" required autocomplete="exam_patternclasses_id">
                 <x-select-option class="text-start" hidden> -- Select Pattern Classes -- </x-select-option>
-                @forelse ($pattern_classes as $pattern_class)
-                <x-select-option wire:key="{{ $pattern_class->id }}" value="{{ $pattern_class->id }}" class="text-start"> {{ $pattern_class->pattern->pattern_name ?? '-' }} {{ $pattern_class->courseclass->classyear->classyear_name ?? '-' }} {{ $pattern_class->courseclass->course->course_name ?? '-' }} </x-select-option>
+                @forelse ($pattern_classes as $pattern_class) 
+                <x-select-option wire:key="{{ $pattern_class->id }}" value="{{ $pattern_class->id }}" class="text-start">{{ $pattern_class->patternclass->pattern->pattern_name ??'-'  }} {{ $pattern_class->patternclass->courseclass->classyear->classyear_name ??'-'  }} {{ $pattern_class->patternclass->courseclass->course->course_name ??'-'  }} - {{ $pattern_class->exam->exam_name??'-'  }}  </x-select-option>
                 @empty
                 <x-select-option class="text-start">Pattern Classes Not Found</x-select-option>
                 @endforelse

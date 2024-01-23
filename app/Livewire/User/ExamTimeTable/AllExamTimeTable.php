@@ -208,7 +208,8 @@ class AllExamTimeTable extends Component
         if($this->mode!=='all')
         {
             $this->subjects = Subject::all();
-            $this->pattern_classes = ExamPatternclass::all();               
+            $this->pattern_classes = ExamPatternclass::all();        
+            // dd($this->pattern_classes[0]->exam) ;      
             $this->timeslots = Timetableslot::all(); 
                 
         }
