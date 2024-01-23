@@ -1,12 +1,8 @@
 @props(["disabled" => false, "slot" => false ,"i"=>true])
-
-<button type="button" {{ $disabled ? "disabled" : "" }} {!! $attributes->merge(["class" => "inline-flex text-white  cursor-pointer"]) !!}>
-  <span class="inline-flex items-center justify-center rounded-md bg-green-700 p-1.5 shadow-lg">
-    @if ($i)
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mx-1 h-5 w-5 dark:text-white">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z" />
-      </svg>
-    @endif
-    {{ $slot }}
-  </span>
+<button type="button" {{ $disabled ? "disabled" : "" }} {!! $attributes->merge(["class" => "inline-flex text-white cursor-pointer"]) !!}>
+  <span class="relative">
+    <input  class = 'hidden peer'  type="checkbox" checked />
+    <div class="w-14 h-8 rounded-full bg-green-700 dark:bg-green-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-lighter dark:peer-focus:ring-primary-darker  peer-checked:bg-green-700 peer-checked:dark:bg-green-700 transition-all duration-300"></div>
+    <div class="absolute inset-y-0 left-0 w-6 h-6 m-1 rounded-full peer-checked:right-0 peer-checked:left-auto  bg-white transition-all duration-300 transform translate-x-0"></div>
+</span>
 </button>

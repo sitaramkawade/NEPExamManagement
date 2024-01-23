@@ -21,6 +21,7 @@
                 <x-select-option class="text-start" hidden> -- Select Exam Pattern Classes -- </x-select-option>
                 @forelse ($exam_pattern_classes as $exam_pattern_class)
                 <x-select-option wire:key="{{ $exam_pattern_class->id }}" value="{{ $exam_pattern_class->id }}" class="text-start"> {{ $exam_pattern_class->pattern->pattern_name ?? '-' }} {{ $exam_pattern_class->courseclass->classyear->classyear_name ?? '-' }} {{ $exam_pattern_class->courseclass->course->course_name ?? '-' }} </x-select-option>
+
                 @empty
                 <x-select-option class="text-start">Exam Pattern Classes Not Found</x-select-option>
                 @endforelse

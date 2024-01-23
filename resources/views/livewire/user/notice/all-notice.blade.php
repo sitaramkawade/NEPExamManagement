@@ -66,9 +66,9 @@
                     <x-table.td><x-table.text-scroll> {{ $notice->description }}  </x-table.text-scroll></x-table.td>
                     <x-table.td>
                       @if ($notice->is_active == 1)
-                        <x-status type="success"> Active </x-status>
+                        <x-table.active  wire:click="changestatus({{ $notice->id }})" />
                       @else
-                        <x-status type="danger"> Inactive </x-status>
+                        <x-table.inactive wire:click="changestatus({{ $notice->id }})" />
                       @endif
                     </x-table.td>
                     <x-table.td>
@@ -77,11 +77,6 @@
                         <x-table.restore wire:click="restore({{ $notice->id }})" />
                       @else
                         <x-table.edit wire:click="edit({{ $notice->id }})" />
-                          @if ($notice->is_active == 1)
-                          <x-table.inactive wire:click="changestatus({{ $notice->id }})" />
-                        @else
-                          <x-table.active  wire:click="changestatus({{ $notice->id }})" />
-                        @endif
                         <x-table.archive wire:click="delete({{ $notice->id }})" />
                       @endif
                     </x-table.td>

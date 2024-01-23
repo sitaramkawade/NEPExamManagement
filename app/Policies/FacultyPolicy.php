@@ -14,7 +14,7 @@ class FacultyPolicy
     public function viewAny(Faculty $faculty): bool
     {
         $allowedRoles = ['System Admin'];
-        $roleType = $faculty->role->roletype->roletype_name;
+        $roleType = isset( $faculty->role->roletype->roletype_name ) ?  $faculty->role->roletype->roletype_name : '';
         return in_array($roleType, $allowedRoles);
     }
 
@@ -24,7 +24,7 @@ class FacultyPolicy
     public function view(Faculty $faculty): bool
     {
         $allowedRoles = ['System Admin','Non Teaching', 'Management Member',];
-        $roleType = $faculty->role->roletype->roletype_name;
+        $roleType = isset( $faculty->role->roletype->roletype_name ) ?  $faculty->role->roletype->roletype_name : '';
         return in_array($roleType, $allowedRoles);
     }
 
@@ -34,7 +34,7 @@ class FacultyPolicy
     public function create(Faculty $faculty): bool
     {
         $allowedRoles = ['System Admin'];
-        $roleType = $faculty->role->roletype->roletype_name;
+        $roleType = isset( $faculty->role->roletype->roletype_name ) ?  $faculty->role->roletype->roletype_name : '';
         return in_array($roleType, $allowedRoles);
     }
 
@@ -44,7 +44,7 @@ class FacultyPolicy
     public function update(Faculty $faculty): bool
     {
         $allowedRoles = ['System Admin'];
-        $roleType = $faculty->role->roletype->roletype_name;
+        $roleType = isset( $faculty->role->roletype->roletype_name ) ?  $faculty->role->roletype->roletype_name : '';
         return in_array($roleType, $allowedRoles);
     }
 
@@ -54,7 +54,7 @@ class FacultyPolicy
     public function delete(Faculty $faculty): bool
     {
         $allowedRoles = ['System Admin'];
-        $roleType = $faculty->role->roletype->roletype_name;
+        $roleType = isset( $faculty->role->roletype->roletype_name ) ?  $faculty->role->roletype->roletype_name : '';
         return in_array($roleType, $allowedRoles);
     }
 
@@ -64,14 +64,14 @@ class FacultyPolicy
     public function restore(Faculty $faculty): bool
     {
         $allowedRoles = ['System Admin'];
-        $roleType = $faculty->role->roletype->roletype_name;
+        $roleType = isset( $faculty->role->roletype->roletype_name ) ?  $faculty->role->roletype->roletype_name : '';
         return in_array($roleType, $allowedRoles);
     }
 
     public function changestatus(Faculty $faculty): bool
     {
         $allowedRoles = ['System Admin'];
-        $roleType = $faculty->role->roletype->roletype_name;
+        $roleType = isset( $faculty->role->roletype->roletype_name ) ?  $faculty->role->roletype->roletype_name : '';
         return in_array($roleType, $allowedRoles);
     }
 
@@ -81,7 +81,7 @@ class FacultyPolicy
     public function forceDelete(Faculty $faculty): bool
     {
         $allowedRoles = ['System Admin'];
-        $roleType = $faculty->role->roletype->roletype_name;
+        $roleType = isset( $faculty->role->roletype->roletype_name ) ?  $faculty->role->roletype->roletype_name : '';
         return in_array($roleType, $allowedRoles);
     }
 }
