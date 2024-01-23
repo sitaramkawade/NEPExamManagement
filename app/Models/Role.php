@@ -33,11 +33,11 @@ class Role extends Model
     {
         return $query->with('college', 'roletype')->where(function ($subquery) use ($search) {
             $subquery->where('role_name', 'like', "%{$search}%")
-                ->orWhereHas('college', function ($collegeQuery) use ($search) {
-                    $collegeQuery->where('college_name', 'like', "%{$search}%");
+                ->orWhereHas('college', function ($subquery) use ($search) {
+                    $subquery->where('college_name', 'like', "%{$search}%");
                 })
-                ->orWhereHas('roletype', function ($roletypeQuery) use ($search) {
-                    $roletypeQuery->where('roletype_name', 'like', "%{$search}%");
+                ->orWhereHas('roletype', function ($subquery) use ($search) {
+                    $subquery->where('roletype_name', 'like', "%{$search}%");
                 });
         });
 

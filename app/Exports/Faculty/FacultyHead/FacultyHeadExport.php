@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Exports\Faculty\FacultyRoleType;
+namespace App\Exports\Faculty\FacultyHead;
 
-use App\Models\Roletype;
+use App\Models\Facultyhead;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class FacultyRoleTypeExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
+class FacultyHeadExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     protected $search;
     protected $sortColumn;
@@ -24,19 +24,22 @@ class FacultyRoleTypeExport implements FromCollection, WithHeadings, ShouldAutoS
 
     public function collection()
     {
-        return Roletype::search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','roletype_name',]);
+        return Facultyhead::with(['faculty','department',])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
+         ->get(['id','faculty_id','department_id','status',]);
     }
 
     public function headings(): array
     {
-        return ['ID', 'Roletype Name'];
+        return ['ID', 'Faculty Name', 'Department Name', 'Status',];
     }
 
     public function map($row): array
     {
         return [
             $row->id,
-            $row->roletype_name,
+            (isset($row->faculty->faculty_name) ? $row->faculty->faculty_name : ''),
+            (isset($row->department->dept_name) ? $row->department->dept_name : ''),
+            $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }
 }

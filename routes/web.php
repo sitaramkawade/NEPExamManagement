@@ -39,6 +39,7 @@ use App\Livewire\User\University\AllUniversity;
 use App\Livewire\User\CourseClass\AllCourseClass;
 use App\Livewire\User\AcademicYear\AllAcademicYear;
 use App\Livewire\User\PatternClass\AllPatternClass;
+use App\Livewire\Faculty\FacultyHead\AllFacultyHead;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\SubjectType\AllSubjectType;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
@@ -48,12 +49,12 @@ use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
-use App\Livewire\Faculty\Subjectbucket\AllSubjectbucket;
+use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
-use App\Livewire\Faculty\FacultyRoletype\AllFacultyRoletype;
+use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\ExamBacklogFeeCourse\AllExamBacklogFeeCourse;
 
@@ -154,7 +155,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Exam Time Table
   Route::get('/examTimeTables', AllExamTimeTable::class)->name('all_examTimeTable');
 
-  //All Users 
+  //All Users
   Route::get('/users', AllUser::class)->name('all_user');
 
   //All Student Helpline
@@ -227,7 +228,7 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   Route::get('/all-faculty-role', AllFacultyRole::class)->name('all-roles');
 
   // All Faculty Role
-  Route::get('/all-faculty-roletype', AllFacultyRoletype::class)->name('all-roletypes');
+  Route::get('/all-faculty-roletype', AllFacultyRoleType::class)->name('all-roletypes');
 
   // Update Faculty Profile
   Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
@@ -235,11 +236,14 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All Subject
   Route::get('/all-subject', AllSubject::class)->name('all-subjects');
 
-  // All Subjectbucket
-  Route::get('/all-subjectbucket', AllSubjectbucket::class)->name('all-subjectbuckets');
+  // All SubjectBucket
+  Route::get('/all-subjectbucket', AllSubjectBucket::class)->name('all-subjectbuckets');
 
-  // All Subjecttype
+  // All SubjectType
   Route::get('/all-subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
+
+  // All FacultyHead
+  Route::get('/all-facultyheads', AllFacultyHead::class)->name('all-facultyheads');
 
 });
 

@@ -64,9 +64,9 @@ class UpdateProfile extends Component
         {
             $rules = [
                 // 'prefix' => ['required',],
-                'date_of_birth' => ['required','unique:faculties,pan', 'string', 'size:10',],
+                'date_of_birth' => ['required', 'date', 'before_or_equal:today'],
                 'gender' => ['required',],
-                'pan' => ['required',],
+                'pan' => ['required','unique:faculties,pan', 'string', 'size:10'],
                 'permanant_address' => ['required',],
                 'current_address' => ['required',],
                 'college_id' => ['required',Rule::exists(College::class,'id')],
@@ -104,27 +104,18 @@ class UpdateProfile extends Component
         public function messages()
         {
             return [
-                'date_of_birth.required' => 'Please enter date of birth.',
-                'gender.required' => 'Please select the gender.',
-                'current_address.required' => 'Please enter the current address.',
-                'permanant_address.required' => 'Please enter the permanant address.',
-                'profile_photo_path.required' => 'Please choose the profile photo.',
-                'college_id.required' => 'Please select the college.',
-                // 'prefix.required' => 'Please select the prefix.',
-                // 'faculty_name.string' => 'Please enter the faculty name as a string.',
-                // 'email.required' => 'Please enter the faculty email.',
-                // 'email.email' => 'Please enter a valid email address.',
-                // 'mobile_no.required' => 'Please enter the mobile number.',
-                // 'role_id.required' => 'Please select the role.',
-                // 'department_id.required' => 'Please select the department.',
-                // 'account_no.required' => 'Please enter the faculty account number.',
-                // 'bank_address.required' => 'Please enter the bank address.',
-                // 'bank_name.required' => 'Please enter the bank name.',
-                // 'branch_name.required' => 'Please enter the branch name.',
-                // 'branch_code.required' => 'Please enter the branch code.',
-                // 'ifsc_code.required' => 'Please enter the IFSC code.',
-                // 'micr_code.required' => 'Please enter the MICR code.',
-                // 'account_type.required' => 'Please select the account type.',
+                'date_of_birth.required' => 'Please provide your date of birth.',
+                'date_of_birth.date' => 'Invalid date format for date of birth.',
+                'date_of_birth.before_or_equal' => 'The date of birth must be before or equal to today.',
+                'gender.required' => 'Please select your gender.',
+                'pan.required' => 'Please provide your PAN number.',
+                'pan.unique' => 'The PAN number has already been taken.',
+                'pan.string' => 'Invalid PAN format.',
+                'pan.size' => 'The PAN number must be exactly 10 characters long.',
+                'permanant_address.required' => 'Please provide your permanent address.',
+                'current_address.required' => 'Please provide your current address.',
+                'college_id.required' => 'Please select your college.',
+                'college_id.exists' => 'The selected college is invalid.',
             ];
         }
 
