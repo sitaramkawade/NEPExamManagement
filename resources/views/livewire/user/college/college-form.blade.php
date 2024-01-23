@@ -1,7 +1,9 @@
 <div>
-    <div class="mx-auto max-w-7xl sm:px-6 lg:p-2">
         <section>
             <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
+                <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
+                    College
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="college_name" :value="__('College Name')" />
@@ -129,7 +131,6 @@
                         Submit
                     </x-form-btn>
                 </div>
-                
+
             </div>
-    </div>
 </div>

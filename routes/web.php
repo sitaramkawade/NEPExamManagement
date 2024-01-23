@@ -28,6 +28,7 @@ use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Helpline\Helpline;
+use App\Livewire\User\Building\AllBuilding;
 use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
@@ -56,6 +57,7 @@ use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
+use App\Livewire\User\Block\AllBlock;
 use App\Livewire\User\ExamBacklogFeeCourse\AllExamBacklogFeeCourse;
 
 
@@ -155,7 +157,13 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Exam Time Table
   Route::get('/examTimeTables', AllExamTimeTable::class)->name('all_examTimeTable');
 
-  //All Users
+  //All Buildings
+  Route::get('/building', AllBuilding::class)->name('all_builidng');
+
+  //All Blocks
+  Route::get('/blocks', AllBlock::class)->name('all_block');
+
+  //All Users 
   Route::get('/users', AllUser::class)->name('all_user');
 
   //All Student Helpline

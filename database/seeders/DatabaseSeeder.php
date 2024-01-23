@@ -18,6 +18,7 @@ use Database\Seeders\TalukaSeeder;
 use Database\Seeders\CountrySeeder;
 use Database\Seeders\SansthaSeeder;
 use Database\Seeders\SubjectSeeder;
+use Database\Seeders\BuildingSeeder;
 use Database\Seeders\DistrictSeeder;
 use Database\Seeders\ReligionSeeder;
 use Database\Seeders\RoletypeSeeder;
