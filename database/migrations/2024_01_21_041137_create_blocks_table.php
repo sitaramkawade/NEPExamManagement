@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('building_id')->unsigned();
+            $table->foreign('building_id')->references('id')->on('buildings');
+          
+            $table->string('classname',80);
+            $table->string('block',4)->nullable()->default(null);
+            $table->Integer('capacity')->unsigned();
+            $table->Integer('noofblocks')->unsigned();
+            $table->Integer('status')->unsigned()->default(0);
+            $table->SoftDeletes();
             $table->timestamps();
         });
     }

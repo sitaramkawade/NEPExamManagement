@@ -54,6 +54,7 @@ use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoletype\AllFacultyRoletype;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
+use App\Livewire\User\Block\AllBlock;
 
 
 
@@ -152,16 +153,16 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Exam Time Table
   Route::get('/examTimeTables', AllExamTimeTable::class)->name('all_examTimeTable');
 
-<<<<<<< HEAD
   //All Buildings
   Route::get('/all/building', AllBuilding::class)->name('all_builidng');
 
+  //All Blocks
+  Route::get('/all/blocks', AllBlock::class)->name('all_block');
+
   //All Users 
   Route::get('/all/users', AllUser::class)->name('all_user');
-=======
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');
->>>>>>> Merge
 
   //All Student Helpline
   Route::get('/helplines',AllHelpline::class)->name('all_helpline');

@@ -35,14 +35,6 @@ use Database\Seeders\AcademicyearSeeder;
 use Database\Seeders\GendermasterSeeder;
 use Database\Seeders\PatternclassSeeder;
 use Database\Seeders\PrefixmasterSeeder;
-<<<<<<< HEAD
-
-use Database\Seeders\PreviousYearSeeder;
-use Database\Seeders\CasteCategorySeeder;
-use Database\Seeders\DepatmenttypeSeeder;
-use Database\Seeders\ExamTimeTableSeeder;
-use Database\Seeders\SubjectCreditSeeder;
-=======
 use Database\Seeders\PreviousYearSeeder;
 use Database\Seeders\AdmissionDataSeeder;
 use Database\Seeders\CasteCategorySeeder;
@@ -51,7 +43,6 @@ use Database\Seeders\ExamTimeTableSeeder;
 use Database\Seeders\SubjectBucketSeeder;
 use Database\Seeders\SubjectcreditSeeder;
 use Database\Seeders\TimeTableSlotSeeder;
->>>>>>> Merge
 use Database\Seeders\BanknamemasterSeeder;
 use Database\Seeders\FacultyProfileSeeder;
 use Database\Seeders\StudentProfileSeeder;

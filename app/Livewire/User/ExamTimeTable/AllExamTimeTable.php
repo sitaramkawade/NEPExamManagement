@@ -209,9 +209,9 @@ class AllExamTimeTable extends Component
         {
             $this->subjects = Subject::all();
             $this->pattern_classes = ExamPatternclass::all();               
-            $this->timeslots = Timetableslot::all(); 
-                
+            $this->timeslots = Timetableslot::all();           
         }
+        
         $ExamTimeTables=ExamTimetable::when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

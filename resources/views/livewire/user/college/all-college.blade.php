@@ -17,16 +17,11 @@
     </x-form>
     @elseif($mode=='all')
     <div>
-<<<<<<< HEAD
-
-        <x-card-header heading=" All College's">
-=======
         <x-breadcrumb.breadcrumb>
             <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
             <x-breadcrumb.link name="College's"/>
         </x-breadcrumb.link>
         <x-card-header heading="All College's">
->>>>>>> Merge
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
             <x-table.frame>
@@ -47,9 +42,9 @@
                                 </x-table.tr>
                             </x-table.thead>
                             <x-table.tbody>
-                                @forelse ($colleges as $key => $college)
+                                @forelse ($colleges as  $college)
                                 <x-table.tr wire:key="{{ $college->id }}">
-                                    <x-table.td> {{ $key+1 }}</x-table.td>
+                                    <x-table.td> {{  $college->id }}</x-table.td>
                                     <x-table.td>
                                         <x-table.text-scroll> {{ $college->college_name }} </x-table.text-scroll>
                                     </x-table.td>
