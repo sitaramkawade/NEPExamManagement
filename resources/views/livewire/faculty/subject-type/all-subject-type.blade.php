@@ -22,6 +22,10 @@
         @include('livewire.faculty.subject-type.view-form')
     @elseif($mode == 'all')
         <div>
+            <x-breadcrumb.breadcrumb>
+                <x-breadcrumb.link route="faculty.dashboard" name="Dashboard"/>
+                <x-breadcrumb.link name="Subject Types"/>
+            </x-breadcrumb.link>
             <x-card-header heading="All Subject Types">
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>

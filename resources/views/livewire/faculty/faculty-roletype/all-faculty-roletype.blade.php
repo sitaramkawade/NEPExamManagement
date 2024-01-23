@@ -22,6 +22,10 @@
             @include('livewire.faculty.faculty-roletype.view-form')
     @elseif($mode == 'all')
         <div>
+            <x-breadcrumb.breadcrumb>
+                <x-breadcrumb.link route="faculty.dashboard" name="Dashboard"/>
+                <x-breadcrumb.link name="Roletypes"/>
+            </x-breadcrumb.link>
             <x-card-header heading="All Roletypes">
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
