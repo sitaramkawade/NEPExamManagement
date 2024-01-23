@@ -117,12 +117,11 @@
                   Prof. (Dr.) Arun Gaikwad Principal
                   <hr>
                 </h2>
-                <p class="my-2 indent-8 text-sm text-slate-500 dark:text-slate-400">
+                <x-read-more limit="160">
                   I am very happy to present the profile of our college. Established with the aim to spread knowledge unto the last, we have tried to be the lighthouse for the rural youth. The college started with the generous donations of those after whom the three faculties have been named and those to whom we are indebted for the huge campus, and also with the donations of coolies and workers. We have never lost sight of the grass root level, but we have always aspired for wider horizons. College has developed infrastructure necessary for an overall development of the students – classrooms, laboratories, library, gymnasium, a big playground, auditorium, audio-visual aids etc. At the same time, we have been educating first generation learners and we have also been equipping our students with the caliber required for a global competition. With the vision of ex-Principal M.V. Kaundinya and the ex-Chairman late Shri Omkarnathji Malpnai, the college has striven for academic excellence and also established firm linkages with the society around. In our rural development projects, N.S.S. activities, Learn to Earn scheme etc. we express our social commitment. We look forward to higher levels of achievement for the students and for the college. We are sure that we can keep pace with the changing times.
-                </p>
+                </x-read-more>
               </div>
             </div>
-    
             <!-- Sub Principal  card -->
             <div class="flex items-center justify-between rounded-md dark:bg-darker dark:border-primary-darker border">
               <div class="min-h-full w-full rounded-lg bg-white dark:bg-slate-800  ring-1 ring-slate-900/5  px-6 py-5 shadow-xl ">
@@ -135,9 +134,9 @@
                   Dr.Rajendra Laddha Controller of Examination
                   <hr>
                 </h2>
-                <p class="my-2 indent-8 text-sm text-slate-500 dark:text-slate-400">
+                <x-read-more limit="160">
                   I am very happy to present the profile of our college. Established with the aim to spread knowledge unto the last, we have tried to be the lighthouse for the rural youth. The college started with the generous donations of those after whom the three faculties have been named and those to whom we are indebted for the huge campus, and also with the donations of coolies and workers. We have never lost sight of the grass root level, but we have always aspired for wider horizons. College has developed infrastructure necessary for an overall development of the students – classrooms, laboratories, library, gymnasium, a big playground, auditorium, audio-visual aids etc. At the same time, we have been educating first generation learners and we have also been equipping our students with the caliber required for a global competition. With the vision of ex-Principal M.V. Kaundinya and the ex-Chairman late Shri Omkarnathji Malpnai, the college has striven for academic excellence and also established firm linkages with the society around. In our rural development projects, N.S.S. activities, Learn to Earn scheme etc. we express our social commitment. We look forward to higher levels of achievement for the students and for the college. We are sure that we can keep pace with the changing times.
-                </p>
+                </x-read-more>
               </div>
             </div>
     
@@ -148,9 +147,12 @@
                   Recent Updates
                   <hr>
                 </h2>
-                <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">
-                  comming soon....
-                </p>
+                <x-accordion.accordion tab="0"> 
+                  @foreach ($guest_notices as $key => $notice)
+                    <x-accordion.accordion-item tab="{{ $key+1 }}" title="{{ $notice->title }}">{{ $notice->description }}</x-accordion.accordion-item>
+                  @endforeach
+                </x-accordion.accordion>
+                {{ $guest_notices->links() }}
               </div>
             </div>
           </div>
