@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire\Faculty\FacultyRoletype;
+namespace App\Livewire\Faculty\FacultyRoleType;
 
 use Livewire\Component;
 use App\Models\Roletype;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\Faculty\FacultyRoletype\FacultyRoletypeExport;
+use App\Exports\Faculty\FacultyRoleType\FacultyRoleTypeExport;
 
-class AllFacultyRoletype extends Component
+class AllFacultyRoleType extends Component
 {
     use WithPagination;
 
@@ -16,7 +16,7 @@ class AllFacultyRoletype extends Component
     public $roletype_name;
     #[Locked]
     public $roletype_id;
-    #[Locked] 
+    #[Locked]
     public $delete_id;
 
     public $perPage=10;
@@ -165,16 +165,16 @@ class AllFacultyRoletype extends Component
 
     public function export()
     {
-        $filename="Roletype-".time();
+        $filename="RoleType-".time();
         switch ($this->ext) {
             case 'xlsx':
-                return Excel::download(new FacultyRoletypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                return Excel::download(new FacultyRoleTypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
             break;
             case 'csv':
-                return Excel::download(new FacultyRoletypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                return Excel::download(new FacultyRoleTypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
             case 'pdf':
-                return Excel::download(new FacultyRoletypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                return Excel::download(new FacultyRoleTypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
 

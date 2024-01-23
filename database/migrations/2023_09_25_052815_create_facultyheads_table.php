@@ -18,8 +18,8 @@ return new class extends Migration
             $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');//head of the department
             $table->tinyInteger('status')->default(1);//1 =>active ,0=>inactive
-            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
