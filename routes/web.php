@@ -7,6 +7,7 @@ use App\Livewire\Index;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
 
+use App\Livewire\HomeIndex;
 use App\Livewire\User\Cap\AllCap;
 use App\Livewire\User\Cgpa\AllCgpa;
 use App\Livewire\User\Exam\AllExam;
@@ -71,7 +72,7 @@ Livewire::setScriptRoute(function ($handle) {
 Route::middleware(['guest'])->group(function () {
 
   // Guest Home
-  Route::get('/',Index::class)->name('home');
+  Route::get('/',HomeIndex::class)->name('home');
 
   // Student Home
   Route::get('/student',StudentHome::class)->name('student');
