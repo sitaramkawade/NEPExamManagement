@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Facultybankaccount extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory,SoftDeletes;
     protected $table="facultybankaccounts";
     protected $fillable = [
         'faculty_id',

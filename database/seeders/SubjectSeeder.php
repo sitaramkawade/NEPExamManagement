@@ -26,19 +26,21 @@ class SubjectSeeder extends Seeder
 
         $semisters = Semester::pluck('semester')->toArray();
         $subjectCategoryIds = Subjectcategory::pluck('id')->toArray();
+        $subjectCategories = Subjectcategory::pluck('subjectcategory_shortname')->toArray();
         $subjectTypeIds = Subjecttype::pluck('id')->toArray();
         $subjectCredits = Subjectcredit::pluck('credit')->toArray();
         $patternClassIds = Patternclass::pluck('id')->toArray();
         $classYearIds = Classyear::pluck('id')->toArray();
         $departmentIds = Department::pluck('id')->toArray();
         $collegeIds = College::pluck('id')->toArray();
-
         for ($i = 1; $i <= 20; $i++) {
             Subject::create([
                 'subject_sem' => $faker->randomElement($semisters),
                 'subjectcategory_id' => $faker->randomElement($subjectCategoryIds),
                 'subject_no' => $faker->numberBetween(1, 100),
+                'subject_order' => $faker->numberBetween(1, 100),
                 'subject_code' => $faker->numberBetween(1, 1000),
+                'subject_name_prefix' => $faker->randomElement($subjectCategories).'-'.$faker->numberBetween(1, 10),
                 'subject_shortname' => $faker->lexify('???'),
                 'subject_name' => $faker->word,
                 'subjecttype_id' => $faker->randomElement($subjectTypeIds),

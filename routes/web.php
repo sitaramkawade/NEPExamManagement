@@ -58,7 +58,9 @@ use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
+use App\Livewire\Faculty\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\User\ExamBacklogFeeCourse\AllExamBacklogFeeCourse;
+
 
 
 
@@ -252,6 +254,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All FacultyHead
   Route::get('/all-facultyheads', AllFacultyHead::class)->name('all-facultyheads');
+
+  // All Subject Hod
+  Route::get('/all-hodappointsubject', AllHodAppointSubject::class)->name('all-hodappointsubjects');
 
 });
 
