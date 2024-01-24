@@ -97,7 +97,7 @@
       <x-breadcrumb.breadcrumb>
         <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
         <x-breadcrumb.link name="Helpline Request's" />
-        </x-breadcrumb.link>
+      </x-breadcrumb.breadcrumb>
         <x-card-header heading="All Helpline Request's">
           <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
@@ -120,11 +120,11 @@
                 @foreach ($student_helplines as $helpline)
                   <x-table.tr wire:key="{{ $helpline->id }}">
                     <x-table.td>{{ $helpline->id }} </x-table.td>
-                    <x-table.td>{{ $helpline->student->student_name }} </x-table.td>
-                    <x-table.td>{{ $helpline->studenthelplinequery->query_name }} </x-table.td>
-                    <x-table.td><x-table.text-scroll> {{ $helpline->remark ?? '-' }} </x-table.text-scroll></x-table.td>
-                    <x-table.td> {{ isset($helpline->verified->name) ? $helpline->verified->name : 'N.A.' }} </x-table.td>
-                    <x-table.td> {{ isset($helpline->approved->name) ? $helpline->approved->name : 'N.A.' }} </x-table.td>
+                    <x-table.td> <x-table.text-scroll> {{ $helpline->student->student_name }} </x-table.text-scroll></x-table.td>
+                    <x-table.td> <x-table.text-scroll> {{ $helpline->studenthelplinequery->query_name }} </x-table.text-scroll> </x-table.td>
+                    <x-table.td> <x-table.text-scroll> {{ $helpline->remark ?? '-' }} </x-table.text-scroll></x-table.td>
+                    <x-table.td> <x-table.text-scroll> {{ isset($helpline->verified->name) ? $helpline->verified->name : 'N.A.' }} </x-table.text-scroll> </x-table.td>
+                    <x-table.td> <x-table.text-scroll> {{ isset($helpline->approved->name) ? $helpline->approved->name : 'N.A.' }} </x-table.text-scroll> </x-table.td>
                     <x-table.td>
                       @if ($helpline->status == 0)
                         <x-status type="warning"> Pending </x-status>
@@ -139,18 +139,17 @@
                       @endif
                     </x-table.td>
                     <x-table.td>
-
                       @if ($helpline->deleted_at)
                         <x-table.delete wire:click="deleteconfirmation({{ $helpline->id }})" />
                         <x-table.restore wire:click="restore({{ $helpline->id }})" />
                       @else
                         <x-table.view wire:click="view({{ $helpline->id }})" />
-                        {{-- <x-table.edit wire:click="edit({{ $helpline->id }})" /> --}}
-                        @if ($helpline->status == 0)
-                          <x-table.active wire:click="status({{ $helpline->id }})" />
+                          @if ($helpline->status == 0)
+                          <x-table.approve wire:click="status({{ $helpline->id }})" />
                         @elseif ($helpline->status == 1)
-                          <x-table.inactive wire:click="status({{ $helpline->id }})" />
+                          <x-table.reject wire:click="status({{ $helpline->id }})" />
                         @endif
+                        {{-- <x-table.edit wire:click="edit({{ $helpline->id }})" /> --}}
                         <x-table.archive wire:click="delete({{ $helpline->id }})" />
                       @endif
                     </x-table.td>

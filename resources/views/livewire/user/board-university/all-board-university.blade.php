@@ -22,7 +22,7 @@
         <x-breadcrumb.breadcrumb>
           <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
           <x-breadcrumb.link name="Board's / University's"/>
-        </x-breadcrumb.link>
+        </x-breadcrumb.breadcrumb>
         <x-card-header heading="All Board's / University's">
           <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
@@ -44,9 +44,9 @@
                     <x-table.td>{{ $board_university->boarduniversity_name }} </x-table.td>
                     <x-table.td>
                       @if ($board_university->is_active === 1)
-                      <x-status type="success"> Active </x-status>
+                        <x-table.active  wire:click="status({{ $board_university->id }})" />
                       @else
-                      <x-status type="danger"> Inactive </x-status>
+                        <x-table.inactive wire:click="status({{ $board_university->id }})" />
                       @endif
                     </x-table.td>
                     <x-table.td>
@@ -55,11 +55,6 @@
                         <x-table.restore  wire:click="restore({{ $board_university->id }})" />
                       @else
                         <x-table.edit wire:click="edit({{ $board_university->id }})" />
-                        @if ($board_university->is_active === 1)
-                          <x-table.inactive wire:click="status({{ $board_university->id }})" />
-                        @else
-                          <x-table.active  wire:click="status({{ $board_university->id }})" />
-                        @endif
                         <x-table.archive  wire:click="delete({{ $board_university->id }})" />
                       @endif
                     </x-table.td>

@@ -27,18 +27,15 @@ class AdmissionDataSeeder extends Seeder
         $patternClassIds = Patternclass::pluck('id')->toArray();
         $subjectIds = Subject::pluck('id')->toArray();
         $academicYearIds = Academicyear::pluck('id')->toArray();
-        $departmentIds = Department::pluck('id')->toArray();
 
         for ($i = 0; $i < 100; $i++) {
             AdmissionData::create([
-                'subject_code' => $faker->text(10),
                 'memid' => $faker->randomNumber(),
                 'stud_name' => $faker->name,
                 'user_id' => $faker->randomElement($userIds),
                 'patternclass_id' => $faker->randomElement($patternClassIds),
                 'subject_id' => $faker->randomElement($subjectIds),
                 'academicyear_id' => $faker->randomElement($academicYearIds),
-                'department_id' => $faker->randomElement($departmentIds),
                 'college_id' => $faker->optional()->randomElement($collegeIds),
                 'created_at' => now(),
                 'updated_at' => now(),

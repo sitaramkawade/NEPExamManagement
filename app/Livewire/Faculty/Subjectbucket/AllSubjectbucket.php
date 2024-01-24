@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Faculty\Subjectbucket;
+namespace App\Livewire\Faculty\SubjectBucket;
 
 use App\Models\Course;
 use App\Models\Pattern;
@@ -15,9 +15,9 @@ use App\Models\Subjectbucket;
 use App\Models\Subjectcategory;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\Faculty\Subjectbucket\SubjectbucketExport;
+use App\Exports\Faculty\SubjectBucket\SubjectBucketExport;
 
-class AllSubjectbucket extends Component
+class AllSubjectBucket extends Component
 {
     use WithPagination;
 
@@ -233,13 +233,13 @@ class AllSubjectbucket extends Component
         $filename="Subjectbucket-".time();
         switch ($this->ext) {
             case 'xlsx':
-                return Excel::download(new SubjectbucketExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                return Excel::download(new SubjectBucketExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
             break;
             case 'csv':
-                return Excel::download(new SubjectbucketExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                return Excel::download(new SubjectBucketExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
             case 'pdf':
-                return Excel::download(new SubjectbucketExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                return Excel::download(new SubjectBucketExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
 
@@ -309,12 +309,9 @@ class AllSubjectbucket extends Component
             $this->department_id= $subjectbucket->department->dept_name;
             $this->academicyear_id= $subjectbucket->academicyear->year_name;
             $this->status= $subjectbucket->status;
-            $patternId = $subjectbucket->patternclass->pattern->pattern_name;
-            $this->pattern_id= $patternId;
-            $courseId =  $subjectbucket->patternclass->courseclass->course->course_name;
-            $this->course_id = $courseId;
-            $courseclassId =  $subjectbucket->patternclass->courseclass->classyear->classyear_name;
-            $this->course_class_id = $courseclassId;
+            $this->pattern_id = $subjectbucket->patternclass->pattern->pattern_name;
+            $this->course_id =  $subjectbucket->patternclass->courseclass->course->course_name;
+            $this->course_class_id =  $subjectbucket->patternclass->courseclass->classyear->classyear_name;
             $this->setmode('view');
         }else{
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');

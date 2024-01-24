@@ -20,7 +20,7 @@ class AllAcademicYear extends Component
     public $perPage=10;
     public $search='';
     public $sortColumn="year_name";
-    public $sortColumnBy="ASC";
+    public $sortColumnBy="DESC";
     public $ext;
 
     public $year_name;
@@ -103,12 +103,10 @@ class AllAcademicYear extends Component
     public function add()
     {
         $this->validate();
-
+        Academicyear::query()->update(['active' => 0]);
         $academic_year =  new Academicyear;
-        $academic_year->create([
-            'year_name' => $this->year_name,
-            'active' => $this->active==true?0:1,
-        ]);
+        $academic_year->year_name=$this->year_name;
+        $academic_year->active = $this->active==true?0:1;
         $this->resetinput();
         $this->setmode('all');
         $this->dispatch('alert',type:'success',message:'Academic Year Created Successfully !!');
@@ -127,7 +125,7 @@ class AllAcademicYear extends Component
     public function update(Academicyear $academic_year)
     {
         $this->validate();
-
+        Academicyear::query()->update(['active' => 0]);
         $academic_year->update([
             'year_name' => $this->year_name,
             'active' => $this->active == true ? 0 : 1,
@@ -146,7 +144,8 @@ class AllAcademicYear extends Component
             $academic_year->active=0;
         }
         else 
-        {
+        {   
+            Academicyear::query()->update(['active' => 0]);
             $academic_year->active=1;
         }
         $academic_year->update();

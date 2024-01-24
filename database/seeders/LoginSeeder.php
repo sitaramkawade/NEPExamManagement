@@ -25,6 +25,7 @@ class LoginSeeder extends Seeder
             'remember_token' => Str::random(10),
         ] );
 
+
         Faculty::create( [
             'faculty_name' => 'faculty',
             'email' => 'faculty@gmail.com',
@@ -43,5 +44,7 @@ class LoginSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'remember_token' => Str::random(10),
         ] );
+
+       
     }
 }

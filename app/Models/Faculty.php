@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Designation;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -99,10 +98,10 @@ class Faculty extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Facultybankaccount::class,'faculty_id','id')->withTrashed();
     }
 
-    // public function facultyhead()
-    // {
-    //     return $this->hasMany(Facultyhead::class,'faculty_id','id');
-    // }
+    public function facultyhead()
+    {
+        return $this->hasMany(Facultyhead::class,'faculty_id','id');
+    }
     public function departments(): BelongsToMany
     {
         // return $this->belongsToMany(Department::class, Facultyhead::class,

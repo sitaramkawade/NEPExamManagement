@@ -18,6 +18,7 @@ use Database\Seeders\TalukaSeeder;
 use Database\Seeders\CountrySeeder;
 use Database\Seeders\SansthaSeeder;
 use Database\Seeders\SubjectSeeder;
+use Database\Seeders\BuildingSeeder;
 use Database\Seeders\DistrictSeeder;
 use Database\Seeders\ReligionSeeder;
 use Database\Seeders\RoletypeSeeder;
@@ -38,11 +39,13 @@ use Database\Seeders\PreviousYearSeeder;
 use Database\Seeders\AdmissionDataSeeder;
 use Database\Seeders\CasteCategorySeeder;
 use Database\Seeders\DepatmenttypeSeeder;
+use Database\Seeders\ExamFeeMasterSeeder;
 use Database\Seeders\ExamTimeTableSeeder;
 use Database\Seeders\SubjectBucketSeeder;
 use Database\Seeders\SubjectcreditSeeder;
 use Database\Seeders\TimeTableSlotSeeder;
 use Database\Seeders\BanknamemasterSeeder;
+use Database\Seeders\ExamFeeCoursesSeeder;
 use Database\Seeders\FacultyProfileSeeder;
 use Database\Seeders\StudentProfileSeeder;
 use Database\Seeders\StudmenumasterSeeder;
@@ -53,6 +56,7 @@ use Database\Seeders\ExamPatternclassSeeder;
 use Database\Seeders\EducationalcourseSeeder;
 use Database\Seeders\ClassStudmenumasterSeeder;
 use Database\Seeders\StudenthelplineQuerySeeder;
+use Database\Seeders\ExamBacklogFeeCoursesSeeder;
 use Database\Seeders\StudenthelplineDocumentSeeder;
 use Database\Seeders\StudentHelplineUploadedDocumentSeeder;
 
@@ -89,6 +93,7 @@ class DatabaseSeeder extends Seeder
             ExamSeeder::class,
             StudenthelplineQuerySeeder::class,
             CasteCategorySeeder::class,
+            ExamFeeMasterSeeder::class,
             CountrySeeder::class,
             NoticeSeeder::class,                            // User
             CasteSeeder::class,                             // CasteCategorySeeder
@@ -110,10 +115,12 @@ class DatabaseSeeder extends Seeder
             SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
             SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
             FacultyProfileSeeder::class,                    // college  ,department , role ,facultybanck account
-            AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear,Department
+            AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
             StudentHelplineSeeder::class,                   // Student , Studenthelplinequery ,User
             StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
             StudentSeeder::class,                           // Patternclass , Department , College
+            ExamBacklogFeeCoursesSeeder::class,             // Patternclass, Examfeemaster
+            ExamFeeCoursesSeeder::class,                    // Patternclass, Examfeemaster
             // ExamTimeTableSeeder::class,
 
         ]);

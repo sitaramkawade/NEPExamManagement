@@ -1,28 +1,28 @@
 <div>
-    @if ($mode == 'add')
-      <div>
-        <x-card-header  heading="Add Class Year">
-          <x-back-btn wire:click="setmode('all')" />
-        </x-card-header>
-        <x-form wire:submit="add()">
-          @include('livewire.user.class-year.class-year-form')
-        </x-form>
-      </div>
-    @elseif($mode=='edit')
-      <div>
-          <x-card-header  heading="Edit Class Year">
-            <x-back-btn wire:click="setmode('all')" />
-          </x-card-header>
-          <x-form wire:submit="update({{ $edit_id }})" >
-             @include('livewire.user.class-year.class-year-form')
-          </x-form>
-      </div>
-    @elseif($mode == 'all')
-      <div>
-        <x-breadcrumb.breadcrumb>
-          <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
-          <x-breadcrumb.link name="Class Year's"/>
-        </x-breadcrumb.link>
+  @if ($mode == 'add')
+    <div>
+      <x-card-header heading="Add Class Year">
+        <x-back-btn wire:click="setmode('all')" />
+      </x-card-header>
+      <x-form wire:submit="add()">
+        @include('livewire.user.class-year.class-year-form')
+      </x-form>
+    </div>
+  @elseif($mode == 'edit')
+    <div>
+      <x-card-header heading="Edit Class Year">
+        <x-back-btn wire:click="setmode('all')" />
+      </x-card-header>
+      <x-form wire:submit="update({{ $edit_id }})">
+        @include('livewire.user.class-year.class-year-form')
+      </x-form>
+    </div>
+  @elseif($mode == 'all')
+    <div>
+      <x-breadcrumb.breadcrumb>
+        <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
+        <x-breadcrumb.link name="Class Year's" />
+      </x-breadcrumb.breadcrumb>
         <x-card-header heading="All Class Year's">
           <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
@@ -46,23 +46,18 @@
                     <x-table.td>{{ $class_year->class_degree_name }} </x-table.td>
                     <x-table.td>
                       @if ($class_year->status == 1)
-                      <x-status type="success"> Active </x-status>
+                        <x-table.active wire:click="changestatus({{ $class_year->id }})" />
                       @else
-                      <x-status type="danger"> Inactive </x-status>
+                        <x-table.inactive wire:click="changestatus({{ $class_year->id }})" />
                       @endif
                     </x-table.td>
                     <x-table.td>
                       @if ($class_year->deleted_at)
-                        <x-table.delete  wire:click="deleteconfirmation({{ $class_year->id }})" />
-                        <x-table.restore  wire:click="restore({{ $class_year->id }})" />
+                        <x-table.delete wire:click="deleteconfirmation({{ $class_year->id }})" />
+                        <x-table.restore wire:click="restore({{ $class_year->id }})" />
                       @else
                         <x-table.edit wire:click="edit({{ $class_year->id }})" />
-                        @if ($class_year->status == 1)
-                          <x-table.inactive wire:click="changestatus({{ $class_year->id }})" />
-                        @else
-                          <x-table.active  wire:click="changestatus({{ $class_year->id }})" />
-                        @endif
-                        <x-table.archive  wire:click="delete({{ $class_year->id }})" />
+                        <x-table.archive wire:click="delete({{ $class_year->id }})" />
                       @endif
                     </x-table.td>
                   </x-table.tr>
@@ -74,7 +69,6 @@
             <x-table.paginate :data="$class_years" />
           </x-slot>
         </x-table.frame>
-      </div>
-    @endif
-  </div>
-  
+    </div>
+  @endif
+</div>

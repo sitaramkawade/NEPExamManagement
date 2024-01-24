@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('roletypes', function (Blueprint $table) {
             $table->id();
             $table->string('roletype_name');
+            // $table->boolean('status');
             $table->boolean('status')->default(1); // 1-Active 0-Inactive
             $table->softDeletes();
             $table->timestamps();

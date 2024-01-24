@@ -4,22 +4,24 @@ use Livewire\Livewire;
 
 
 use App\Livewire\Index;
-use App\Models\Faculty;
 use App\Livewire\SelectTo;
-
 use App\Livewire\DataTable;
+
+use App\Livewire\HomeIndex;
 use App\Livewire\User\Cap\AllCap;
 use App\Livewire\User\Cgpa\AllCgpa;
 use App\Livewire\User\Exam\AllExam;
 use App\Livewire\User\User\AllUser;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
+use App\Livewire\User\Block\AllBlock;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Grade\AllGrades;
 use App\Livewire\User\Course\AllCourse;
 use App\Livewire\User\Credit\AllCredit;
 use App\Livewire\User\Notice\AllNotice;
 use App\Livewire\User\College\AllCollege;
+use App\Livewire\User\ExamFee\AllExamFee;
 use App\Livewire\User\Pattern\AllPattern;
 use App\Livewire\User\Sanstha\AllSanstha;
 use App\Livewire\Faculty\FacultyDashboard;
@@ -27,6 +29,7 @@ use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Helpline\Helpline;
+use App\Livewire\User\Building\AllBuilding;
 use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
@@ -38,21 +41,24 @@ use App\Livewire\User\University\AllUniversity;
 use App\Livewire\User\CourseClass\AllCourseClass;
 use App\Livewire\User\AcademicYear\AllAcademicYear;
 use App\Livewire\User\PatternClass\AllPatternClass;
+use App\Livewire\Faculty\FacultyHead\AllFacultyHead;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\SubjectType\AllSubjectType;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\AdmissionData\AllAdmissionData;
+use App\Livewire\User\ExamFeeCourse\AllExamFeeCourse;
 use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
-use App\Livewire\Faculty\Subjectbucket\AllSubjectbucket;
+use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
-use App\Livewire\Faculty\FacultyRoletype\AllFacultyRoletype;
+use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
+use App\Livewire\User\ExamBacklogFeeCourse\AllExamBacklogFeeCourse;
 
 
 
@@ -72,7 +78,7 @@ Livewire::setScriptRoute(function ($handle) {
 Route::middleware(['guest'])->group(function () {
 
   // Guest Home
-  Route::get('/',Index::class)->name('home');
+  Route::get('/',HomeIndex::class)->name('home');
 
   // Student Home
   Route::get('/student',StudentHome::class)->name('student');
@@ -151,7 +157,13 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Exam Time Table
   Route::get('/examTimeTables', AllExamTimeTable::class)->name('all_examTimeTable');
 
-  //All Users
+  //All Buildings
+  Route::get('/building', AllBuilding::class)->name('all_builidng');
+
+  //All Blocks
+  Route::get('/blocks', AllBlock::class)->name('all_block');
+
+  //All Users 
   Route::get('/users', AllUser::class)->name('all_user');
 
   //All Student Helpline
@@ -198,6 +210,15 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Notice
   Route::get('/notices',AllNotice::class)->name('all_notice');
+
+  //All Exam Fee
+  Route::get('/exam/fees',AllExamFee::class)->name('all_exam_fee');
+  
+  //All Exam Fee Course
+  Route::get('/exam/fee/course',AllExamFeeCourse::class)->name('all_exam_fee_course');
+
+  //All Exam Backlog Fee Course
+  Route::get('/exam/backlog/fee/course',AllExamBacklogFeeCourse::class)->name('all_exam_backlog_fee_course');
 });
 
 
@@ -209,25 +230,28 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
 
   // All Faculty
-  Route::get('/faculties', AllFaculty::class)->name('all-faculties');
+  Route::get('/all-faculties', AllFaculty::class)->name('all-faculties');
 
   // All Faculty Role
-  Route::get('/roles', AllFacultyRole::class)->name('all-roles');
+  Route::get('/all-faculty-role', AllFacultyRole::class)->name('all-roles');
 
   // All Faculty Role
-  Route::get('/roletypes', AllFacultyRoletype::class)->name('all-roletypes');
+  Route::get('/all-faculty-roletype', AllFacultyRoleType::class)->name('all-roletypes');
 
   // Update Faculty Profile
-  Route::get('/profile', UpdateProfile::class)->name('updateprofile');
+  Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
 
   // All Subject
-  Route::get('/subjects', AllSubject::class)->name('all-subjects');
+  Route::get('/all-subject', AllSubject::class)->name('all-subjects');
 
-  // All Subjectbucket
-  Route::get('/subjectbuckets', AllSubjectbucket::class)->name('all-subjectbuckets');
+  // All SubjectBucket
+  Route::get('/all-subjectbucket', AllSubjectBucket::class)->name('all-subjectbuckets');
 
-  // All Subjecttype
-  Route::get('/subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
+  // All SubjectType
+  Route::get('/all-subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
+
+  // All FacultyHead
+  Route::get('/all-facultyheads', AllFacultyHead::class)->name('all-facultyheads');
 
 });
 
