@@ -12,7 +12,7 @@ use App\Models\Examfeemaster;
 use Illuminate\Validation\Rule;
 use App\Exports\User\ExamFeeCourse\ExamFeeCourseExport;
 
-class AllExamFeeCourses extends Component
+class AllExamFeeCourse extends Component
 {
     use WithPagination;
 
@@ -236,9 +236,9 @@ class AllExamFeeCourses extends Component
 
         if($this->mode!=='all')
         {
-            $this->semesters=Semester::select('semester')->where('status',1)->get();
-            $this->patternclasses=Patternclass::select('class_id','pattern_id')->where('status',1)->get();
-            $this->examfees=Examfeemaster::select('fee_type')->where('active_status',1)->get();
+            $this->semesters=Semester::select('id','semester')->where('status',1)->get();
+            $this->patternclasses=Patternclass::select('id','class_id','pattern_id')->where('status',1)->get();
+            $this->examfees=Examfeemaster::select('id','fee_type')->where('active_status',1)->get();
         }
         
         $examfeecourses=Examfeecourse::select('id','fee','sem','approve_status','patternclass_id','examfees_id','active_status','deleted_at')
