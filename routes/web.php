@@ -14,6 +14,7 @@ use App\Livewire\User\Exam\AllExam;
 use App\Livewire\User\User\AllUser;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
+use App\Livewire\User\Block\AllBlock;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Grade\AllGrades;
 use App\Livewire\User\Course\AllCourse;
@@ -45,10 +46,10 @@ use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
 use App\Livewire\Faculty\SubjectType\AllSubjectType;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\AdmissionData\AllAdmissionData;
-use App\Livewire\User\ExamFeeCourse\AllExamFeeCourse;
 use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
+use App\Livewire\User\ExamFeeCourse\AllExamFeeCourses;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
@@ -57,7 +58,6 @@ use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
-use App\Livewire\User\Block\AllBlock;
 use App\Livewire\User\ExamBacklogFeeCourse\AllExamBacklogFeeCourse;
 
 
@@ -215,7 +215,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('/exam/fees',AllExamFee::class)->name('all_exam_fee');
   
   //All Exam Fee Course
-  Route::get('/exam/fee/course',AllExamFeeCourse::class)->name('all_exam_fee_course');
+  Route::get('/exam/fee/course',AllExamFeeCourses::class)->name('all_exam_fee_course');
 
   //All Exam Backlog Fee Course
   Route::get('/exam/backlog/fee/course',AllExamBacklogFeeCourse::class)->name('all_exam_backlog_fee_course');
