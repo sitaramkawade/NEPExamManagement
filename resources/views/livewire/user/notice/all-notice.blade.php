@@ -22,7 +22,7 @@
         <x-breadcrumb.breadcrumb>
           <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
           <x-breadcrumb.link name="Notice's"/>
-        </x-breadcrumb.link>
+        </x-breadcrumb.breadcrumb>
         <x-card-header heading="All Notice's">
           <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
@@ -66,9 +66,9 @@
                     <x-table.td><x-table.text-scroll> {{ $notice->description }}  </x-table.text-scroll></x-table.td>
                     <x-table.td>
                       @if ($notice->is_active == 1)
-                        <x-status type="success"> Active </x-status>
+                        <x-table.active  wire:click="changestatus({{ $notice->id }})" />
                       @else
-                        <x-status type="danger"> Inactive </x-status>
+                        <x-table.inactive wire:click="changestatus({{ $notice->id }})" />
                       @endif
                     </x-table.td>
                     <x-table.td>
@@ -77,11 +77,6 @@
                         <x-table.restore wire:click="restore({{ $notice->id }})" />
                       @else
                         <x-table.edit wire:click="edit({{ $notice->id }})" />
-                          @if ($notice->is_active == 1)
-                          <x-table.inactive wire:click="changestatus({{ $notice->id }})" />
-                        @else
-                          <x-table.active  wire:click="changestatus({{ $notice->id }})" />
-                        @endif
                         <x-table.archive wire:click="delete({{ $notice->id }})" />
                       @endif
                     </x-table.td>

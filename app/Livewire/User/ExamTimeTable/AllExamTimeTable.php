@@ -40,7 +40,7 @@ class AllExamTimeTable extends Component
     {
         return [
         'subject_id' => ['required',Rule::exists('subjects', 'id')],
-        'exam_patternclasses_id' => ['required',Rule::exists('examPatternClasses', 'id')],
+        'exam_patternclasses_id' => ['required',Rule::exists('exam_patternclasses', 'id')],
         'timeslot_id' => ['required',Rule::exists('timetableslots', 'id')],
         'examdate' => ['nullable', 'date'],
        
@@ -209,9 +209,9 @@ class AllExamTimeTable extends Component
         {
             $this->subjects = Subject::all();
             $this->pattern_classes = ExamPatternclass::all();               
-            $this->timeslots = Timetableslot::all(); 
-                
+            $this->timeslots = Timetableslot::all();           
         }
+        
         $ExamTimeTables=ExamTimetable::when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

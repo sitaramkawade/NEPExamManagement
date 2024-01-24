@@ -38,6 +38,7 @@
                                 <x-table.th wire:click="sort_column('email')" name="email" :sort="$sortColumn" :sort_by="$sortColumnBy"> Email </x-table.th>
                                 <x-table.th wire:click="sort_column('college_id')" name="college_id" :sort="$sortColumn" :sort_by="$sortColumnBy">College </x-table.th>
                                 <x-table.th wire:click="sort_column('department_id')" name="department_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Department </x-table.th>
+                                <x-table.th wire:click="sort_column('role_id')" name="role_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Role </x-table.th>
                                 <x-table.th wire:click="sort_column('is_active')" name="is_active" :sort="$sortColumn" :sort_by="$sortColumnBy">Status </x-table.th>
                                 <x-table.th> Action </x-table.th>
                             </x-table.tr>
@@ -49,7 +50,8 @@
                                 <x-table.td> {{ $user->name }} </x-table.td>
                                 <x-table.td> {{ $user->email}} </x-table.td>
                                 <x-table.td>  <x-table.text-scroll> {{ $user->college?->college_name }}  </x-table.text-scroll> </x-table.td>
-                                <x-table.td> {{ $user->department?->dept_name }} </x-table.td>
+                                <x-table.td>  <x-table.text-scroll>{{ $user->department?->dept_name }}  </x-table.text-scroll></x-table.td>
+                                <x-table.td> {{ $user->role?->role_name }} </x-table.td>
 
                                 <x-table.td>
                                     @if($user->is_active==1)

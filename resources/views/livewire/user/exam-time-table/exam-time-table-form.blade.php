@@ -16,13 +16,14 @@
             <x-input-error :messages="$errors->get('subject_id')" class="mt-1" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="exam_patternclasses_id" :value="__('Select Pattern Class')" />
+            <x-input-label for="exam_patternclasses_id" :value="__('Select Exam Pattern Class')" />
             <x-input-select id="exam_patternclasses_id" wire:model="exam_patternclasses_id" name="exam_patternclasses_id" class="text-center w-full mt-1" :value="old('exam_patternclasses_id', $exam_patternclasses_id)" required autocomplete="exam_patternclasses_id">
-                <x-select-option class="text-start" hidden> -- Select Pattern Classes -- </x-select-option>
-                @forelse ($pattern_classes as $pattern_class)
-                <x-select-option wire:key="{{ $pattern_class->id }}" value="{{ $pattern_class->id }}" class="text-start"> {{ $pattern_class->pattern->pattern_name ?? '-' }} {{ $pattern_class->courseclass->classyear->classyear_name ?? '-' }} {{ $pattern_class->courseclass->course->course_name ?? '-' }} </x-select-option>
+                <x-select-option class="text-start" hidden> -- Select Exam Pattern Classes -- </x-select-option>
+                @forelse ($exam_pattern_classes as $exam_pattern_class)
+                <x-select-option wire:key="{{ $exam_pattern_class->id }}" value="{{ $exam_pattern_class->id }}" class="text-start"> {{ $exam_pattern_class->pattern->pattern_name ?? '-' }} {{ $exam_pattern_class->courseclass->classyear->classyear_name ?? '-' }} {{ $exam_pattern_class->courseclass->course->course_name ?? '-' }} </x-select-option>
+
                 @empty
-                <x-select-option class="text-start">Pattern Classes Not Found</x-select-option>
+                <x-select-option class="text-start">Exam Pattern Classes Not Found</x-select-option>
                 @endforelse
             </x-input-select>
             <x-input-error :messages="$errors->get('exam_patternclasses_id')" class="mt-1" />

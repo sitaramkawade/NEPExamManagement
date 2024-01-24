@@ -83,6 +83,8 @@ class AllCollege extends Component
         return $messages;
     }
 
+    
+
     public function resetinput()
     {
         $this->college_name=null;
