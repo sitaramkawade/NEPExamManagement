@@ -25,7 +25,7 @@ class ClassYearExport implements FromCollection, WithHeadings, ShouldAutoSize, W
     {
         return Classyear::search($this->search)
         ->orderBy($this->sortColumn, $this->sortColumnBy)
-        ->select('id', 'building_id','class_degree_name', 'status')
+        ->select('id', 'classyear_name','class_degree_name', 'status')
         ->get();
     }
 
