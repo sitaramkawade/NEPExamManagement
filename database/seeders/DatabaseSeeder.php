@@ -115,7 +115,7 @@ class DatabaseSeeder extends Seeder
             SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
             SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
             FacultyProfileSeeder::class,                    // college  ,department , role ,facultybanck account
-            AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear,Department
+            AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
             StudentHelplineSeeder::class,                   // Student , Studenthelplinequery ,User
             StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
             StudentSeeder::class,                           // Patternclass , Department , College

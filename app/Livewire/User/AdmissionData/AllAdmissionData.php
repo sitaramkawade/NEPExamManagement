@@ -12,17 +12,14 @@ use App\Models\Academicyear;
 use App\Models\Patternclass;
 use Livewire\WithPagination;
 use App\Models\Admissiondata;
-use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use App\Exports\User\AdmissionData\AdmissionDataExport;
 use App\Imports\User\AdmissionData\AdmissionDataImport;
 
 class AllAdmissionData extends Component
 {  
     use WithPagination;
-    use WithFileUploads;
-
-
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
     #[Locked] 
     public $delete_id;
@@ -37,21 +34,13 @@ class AllAdmissionData extends Component
     public $importfile;
     public $ext;
 
-    public $college_id;
-    public $department_id;
-    public $academicyear_id;
     public $patternclass_id;
     public $subject_id;
-    public $user_id;
     public $stud_name;
     public $memid;
-    public $subject_code;
     public $pattern_classes;
-    public $users;
     public $subjects;
-    public $academic_years;
-    public $departments;
-    public $colleges;
+
 
 
 
@@ -60,42 +49,22 @@ class AllAdmissionData extends Component
 
 
         return [
-            'college_id' => ['required', 'integer', Rule::exists('colleges', 'id')],
-            'department_id' => ['required', 'integer', Rule::exists('departments', 'id')],
-            'academicyear_id' => ['required', 'integer',Rule::exists('academicyears', 'id')],
             'patternclass_id' => ['required', 'integer', Rule::exists('pattern_classes', 'id')],
             'subject_id' => ['required', 'integer', Rule::exists('subjects', 'id')],
-            'user_id' => ['required', 'integer', Rule::exists('users', 'id')],
-            'subject_code' => ['required', 'string','max:100'],
             'stud_name' => ['required', 'string','max:100'],
-            'memid' => ['required', 'integer','digits_between:1,11'],
+            'memid' => ['required', 'integer','digits_between:1,11',Rule::unique('admissiondatas', 'memid')->ignore($this->edit_id, 'id')],
         ];
     }
 
     public function messages()
     {   
         return [
-            'college_id.required' => 'The College field is required.',
-            'college_id.integer' => 'The College must be a number.',
-            'college_id.exists' => 'The selected College is invalid.',
-            'department_id.required' => 'The Department field is required.',
-            'department_id.integer' => 'The Department must be a number.',
-            'department_id.exists' => 'The selected Department is invalid.',
-            'academicyear_id.required' => 'The Academic Year field is required.',
-            'academicyear_id.integer' => 'The Academic Year must be a number.',
-            'academicyear_id.exists' => 'The selected Academic Year is invalid.',
             'patternclass_id.required' => 'The Pattern Class field is required.',
             'patternclass_id.integer' => 'The Pattern Class must be a number.',
             'patternclass_id.exists' => 'The selected Pattern Class is invalid.',
             'subject_id.required' => 'The Subject field is required.',
             'subject_id.integer' => 'The Subject must be a number.',
             'subject_id.exists' => 'The selected Subject is invalid.',
-            'user_id.required' => 'The User field is required.',
-            'user_id.integer' => 'The User must be a number.',
-            'user_id.exists' => 'The selected User is invalid.',
-            'subject_code.required' => 'The Subject Code field is required.',
-            'subject_code.string' => 'The Subject Code must be a string.',
-            'subject_code.max' => 'The subject Code may not be greater than :max characters.',
             'stud_name.required' => 'The Student Name field is required.',
             'stud_name.string' => 'The Student Name must be a string.',
             'stud_name.max' => 'The Student Name may not be greater than :max characters.',
@@ -108,20 +77,11 @@ class AllAdmissionData extends Component
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
-
-        if($propertyName=='memid'){
-            $this->uploaded_documents=[];
-        }
     }
     public function resetinput()
     {
-        $this->subject_code=null;
-        $this->college_id=null;
-        $this->department_id=null;
-        $this->academicyear_id=null;
         $this->patternclass_id=null;
         $this->subject_id=null;
-        $this->user_id=null;
         $this->stud_name=null;
         $this->memid=null;
         $this->edit_id =null;
@@ -186,23 +146,27 @@ class AllAdmissionData extends Component
     public function add()
     {
         $this->validate();
+        $academic_year=Academicyear::where('active',1)->first();
+        if($academic_year)
+        {
+            $admission_data = new Admissiondata;
+            $admission_data->create([
+               'user_id'=> Auth::guard('user')->user()->id,
+               'college_id'=> Auth::guard('user')->user()->college_id,
+               'academicyear_id'=> $academic_year->id,
+               'patternclass_id'=> $this->patternclass_id,
+               'subject_id'=> $this->subject_id,
+               'stud_name'=> $this->stud_name,
+               'memid'=> $this->memid,
+            ]);
+            $this->resetinput();
+            $this->setmode('all');
+            $this->dispatch('alert',type:'success',message:'Admission Data Entry Created Successfully !!');
 
-        $admission_data = new Admissiondata;
-        $admission_data->create([
-           'subject_code'=> $this->subject_code,
-           'college_id'=> $this->college_id,
-           'department_id'=> $this->department_id,
-           'academicyear_id'=> $this->academicyear_id,
-           'patternclass_id'=> $this->patternclass_id,
-           'subject_id'=> $this->subject_id,
-           'user_id'=> $this->user_id,
-           'stud_name'=> $this->stud_name,
-           'memid'=> $this->memid,
-        ]);
-
-        $this->resetinput();
-        $this->setmode('all');
-        $this->dispatch('alert',type:'success',message:'Admission Data Entry Created Successfully !!');
+        }else{
+            $this->dispatch('alert',type:'error',message:'Academic Year Not Found !!');
+        }
+        
     }
 
 
@@ -210,13 +174,9 @@ class AllAdmissionData extends Component
     {   
         $this->resetinput();
         $this->edit_id=$admission_data->id;
-        $this->subject_code=$admission_data->subject_code;
-        $this->college_id=$admission_data->college_id;
-        $this->department_id=$admission_data->department_id;
-        $this->academicyear_id=$admission_data->academicyear_id;
+
         $this->patternclass_id=$admission_data->patternclass_id;
         $this->subject_id=$admission_data->subject_id;
-        $this->user_id=$admission_data->user_id;
         $this->stud_name=$admission_data->stud_name;
         $this->memid=$admission_data->memid;
         $this->setmode('edit');
@@ -225,22 +185,26 @@ class AllAdmissionData extends Component
     public function update(Admissiondata $admission_data)
     {
         $this->validate();
-         $admission_data->fill([
-           'subject_code'=> $this->subject_code,
-           'college_id'=> $this->college_id,
-           'department_id'=> $this->department_id,
-           'academicyear_id'=> $this->academicyear_id,
-           'patternclass_id'=> $this->patternclass_id,
-           'subject_id'=> $this->subject_id,
-           'user_id'=> $this->user_id,
-           'stud_name'=> $this->stud_name,
-           'memid'=> $this->memid,
-        ]);
-        $admission_data->update();
-        $this->resetinput();
-        $this->setmode('all');
-        $this->dispatch('alert',type:'success',message:'Admission Data Entry Updated Successfully !!');
-
+        $academic_year=Academicyear::where('active',1)->first();
+        if($academic_year)
+        {
+            $admission_data->fill([
+                'user_id'=> Auth::guard('user')->user()->id,
+                'college_id'=> Auth::guard('user')->user()->college_id,
+                'academicyear_id'=> $academic_year->id,
+                'patternclass_id'=> $this->patternclass_id,
+                'subject_id'=> $this->subject_id,
+                'stud_name'=> $this->stud_name,
+                'memid'=> $this->memid,
+            ]);
+            $admission_data->update();
+            $this->resetinput();
+            $this->setmode('all');
+            $this->dispatch('alert',type:'success',message:'Admission Data Entry Updated Successfully !!');
+        }else
+        {
+            $this->dispatch('alert',type:'error',message:'Academic Year Not Found !!');
+        }
     }
 
     public function deleteconfirmation($id)
@@ -272,7 +236,7 @@ class AllAdmissionData extends Component
 
     public function render()
     {   
-        $admissionDataQuery = Admissiondata::with(['college', 'department', 'academicyear', 'patternclass.courseclass.course', 'subject', 'user'])
+        $admissionDataQuery = Admissiondata::with(['college', 'academicyear', 'patternclass.courseclass.course', 'subject', 'user'])
         ->when($this->search, function ($query, $search) {
                 $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy);
@@ -280,11 +244,7 @@ class AllAdmissionData extends Component
         if ($this->mode !== 'all') 
         {
             $this->pattern_classes = Patternclass::select('class_id', 'pattern_id', 'id')->get();
-            $this->users = User::select('name', 'id')->where('is_active', 1)->get();
             $this->subjects = Subject::select('subject_name', 'id')->where('status', 1)->get();
-            $this->academic_years = Academicyear::select('year_name', 'id')->where('active', 1)->get();
-            $this->departments = Department::select('dept_name', 'id')->where('status', 1)->get();
-            $this->colleges = College::select('college_name', 'id')->where('status', 1)->get();
         }
 
         $admission_datas = $admissionDataQuery->paginate($this->perPage);
