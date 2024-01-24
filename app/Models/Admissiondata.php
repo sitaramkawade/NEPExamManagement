@@ -20,14 +20,12 @@ class Admissiondata extends Model
     protected $dates = ['deleted_at'];
     protected $table='admissiondatas';
     protected $fillable=[
-        'subject_code',
         'memid',
         'stud_name',
         'user_id',
         'patternclass_id',
         'subject_id',
         'academicyear_id',
-        'department_id',
         'college_id',
     ];
 
@@ -47,10 +45,6 @@ class Admissiondata extends Model
         return $this->belongsTo(Academicyear::class, 'academicyear_id', 'id');
     }
 
-    public function department(): BelongsTo
-    {
-        return $this->belongsTo(Department::class, 'department_id', 'id');
-    }
 
     public function college(): BelongsTo
     {
@@ -66,8 +60,7 @@ class Admissiondata extends Model
 
     public function scopeSearch(Builder $query, string $search)
     {
-        return $query->with('patternclass.courseclass.course', 'patternclass.courseclass.classyear', 'user','academicyear','department','college','subject')
-        ->where('subject_code', 'like', "%{$search}%")
+        return $query->with('patternclass.courseclass.course', 'patternclass.courseclass.classyear', 'user','academicyear','college','subject')
         ->orWhere('memid', 'like', "%{$search}%")
         ->orWhere('stud_name', 'like', "%{$search}%")
         ->orWhere(function ($subquery) use ($search) {
@@ -81,8 +74,6 @@ class Admissiondata extends Model
                 $subQuery->where('name', 'like', "%{$search}%");
             })->orWhereHas('academicyear', function ($subQuery) use ($search) {
                 $subQuery->where('year_name', 'like', "%{$search}%");
-            })->orWhereHas('department', function ($subQuery) use ($search) {
-                $subQuery->where('dept_name', 'like', "%{$search}%");
             })->orWhereHas('college', function ($subQuery) use ($search) {
                 $subQuery->where('college_name', 'like', "%{$search}%");
             })->orWhereHas('subject', function ($subQuery) use ($search) {

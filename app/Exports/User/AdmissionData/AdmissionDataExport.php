@@ -30,7 +30,7 @@ class AdmissionDataExport implements FromCollection, WithHeadings, ShouldAutoSiz
 
     public function headings(): array
     {
-        return ['ID', 'Member ID', 'Student','Subject Code','Subject','User','Pattern Class','Academic Year','Department', 'College'];
+        return ['ID', 'Member ID', 'Student','Subject','User','Pattern Class','Academic Year','College'];
     }
 
     public function map($row): array
@@ -39,12 +39,10 @@ class AdmissionDataExport implements FromCollection, WithHeadings, ShouldAutoSiz
             $row->id,
             $row->memid??'-',
             $row->stud_name??'-',
-            $row->subject_code??'-',
             isset($row->subject->subject_name) ? $row->subject->subject_name : '-',
             isset($row->user->name) ? $row->user->name : '-',
             (isset($row->patternclass->courseclass->classyear->classyear_name ) ? $row->patternclass->courseclass->classyear->classyear_name : '-').''.(isset($row->patternclass->courseclass->course->course_name) ? $row->patternclass->courseclass->course->course_name : '-'),
             isset($row->academicyear->year_name) ? $row->academicyear->year_name : '-',
-            isset($row->department->dept_name) ? $row->department->dept_name : '-',
             isset($row->college->college_name) ? $row->college->college_name : '-',
         ];
     }
