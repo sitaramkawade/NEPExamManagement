@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Faker\Factory as Faker;
 use App\Models\Subjectcategory;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class SubjectcategorySeeder extends Seeder
 {
@@ -14,16 +13,76 @@ class SubjectcategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        Subjectcategory::create( [
+            'subjectcategory'=>'Major',
+            'subjectcategory_shortname'=>'DSC',
+            'active'=>1,
+            'created_at'=>'2023-09-06 02:53:21',
+            'updated_at'=>'2023-09-06 02:53:21'
+            ] );
 
-        for ($i = 1; $i <= 50; $i++) {
+            Subjectcategory::create( [
+            'subjectcategory'=>'Vocational Skill Course (VSC)',
+            'subjectcategory_shortname'=>'VSC',
+            'active'=>1,
+            'created_at'=>'2023-09-06 02:53:21',
+            'updated_at'=>'2023-09-06 02:53:21'
+            ] );
+
+            Subjectcategory::create( [
+            'subjectcategory'=>'Indian Knowledge System',
+            'subjectcategory_shortname'=>'IKS',
+            'active'=>1,
+            'created_at'=>'2023-09-06 02:53:21',
+            'updated_at'=>'2023-09-06 02:53:21'
+            ] );
+
+            Subjectcategory::create( [
+            'subjectcategory'=>'MINOR',
+            'subjectcategory_shortname'=>'M',
+            'active'=>2,
+            'created_at'=>'2023-09-06 02:53:21',
+            'updated_at'=>'2023-09-06 02:53:21'
+            ] );
+
+            Subjectcategory::create( [
+            'subjectcategory'=>'Co-curricular Course',
+            'subjectcategory_shortname'=>'CC',
+            'active'=>2,
+            'created_at'=>'2023-09-06 02:53:21',
+            'updated_at'=>'2023-09-06 02:53:21'
+            ] );
+
+            Subjectcategory::create( [
+            'subjectcategory'=>'Open Elective',
+            'subjectcategory_shortname'=>'OE',
+            'active'=>2,
+            'created_at'=>'2023-09-06 02:53:21',
+            'updated_at'=>'2023-09-06 02:53:21'
+            ] );
+
+            Subjectcategory::create( [
+            'subjectcategory'=>'Skill Enhancement Course (SEC)',
+            'subjectcategory_shortname'=>'SEC',
+            'active'=>2,
+            'created_at'=>'2023-09-06 02:53:21',
+            'updated_at'=>'2023-09-06 02:53:21'
+            ] );
+
             Subjectcategory::create([
-                'subjectcategory' => $faker->word,
-                'subjectcategory_shortname' => $faker->lexify('???'),
-                'active' => $faker->numberBetween(0, 1),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+            'subjectcategory'=>'Ability Enhancement Course',
+            'subjectcategory_shortname'=>'AEC',
+            'active'=>2,
+            'created_at'=>'2023-09-06 02:53:21',
+            'updated_at'=>'2023-09-06 02:53:21'
+            ] );
+
+            Subjectcategory::create( [
+            'subjectcategory'=>'Value Education Courses',
+            'subjectcategory_shortname'=>'VEC',
+            'active'=>2,
+            'created_at'=>'2023-09-06 02:53:21',
+            'updated_at'=>'2023-09-06 02:53:21'
+            ] );
     }
 }

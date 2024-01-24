@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Department extends Model
 {
-    use HasFactory,SoftDeletes; 
+    use HasFactory,SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $table="departments";
     protected $fillable = [
@@ -22,7 +22,7 @@ class Department extends Model
         'departmenttype',// type/0 means not active 1=>only ug 2=>only pg 3=>ug,pg 4=>doctorate ,5 =>all
         'college_id',
         'status',
-        
+
     ];
     public function faculty():HasMany
     {
@@ -32,10 +32,10 @@ class Department extends Model
     {
         return $this->hasMany(Facultyhead::class,'department_id','id');
     }
-    public function faculties(): BelongsToMany 
+    public function faculties(): BelongsToMany
     {
         return $this->belongsToMany(Faculty::class,'facultyheads','faculty_id', 'department_id','id');
-         
+        
     }
     public function subject():HasMany
     {
@@ -54,6 +54,6 @@ class Department extends Model
     {
         return $query->where('dept_name', 'like', "%{$search}%")
         ->where('short_name', 'like', "%{$search}%");
-       
+
     }
 }

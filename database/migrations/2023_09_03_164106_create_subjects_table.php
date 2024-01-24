@@ -17,7 +17,9 @@ return new class extends Migration
             $table->bigInteger('subjectcategory_id')->unsigned();  //Major Minor for which department
             $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories');
             $table->integer('subject_no')->default(0);  //for sorting
+            $table->integer('subject_order')->default(NULL); //for maintaning the order of subject
             $table->string('subject_code',50)->default(NULL); //3
+            $table->string('subject_name_prefix',50)->default(NULL); //DSC-1
             $table->string('subject_shortname',20)->default(NULL); //2
             $table->string('subject_name',100)->default(NULL); //2
 
@@ -37,11 +39,16 @@ return new class extends Migration
             $table->integer('subject_extpassing')->default(0);//12
 
             $table->char('subject_optionalgroup',3)->nullable(); //6
-            $table->bigInteger('patternclass_id')->nullable()->unsigned()->default(null);;
+            $table->bigInteger('patternclass_id')->nullable()->unsigned()->default(null);
             $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
-            $table->bigInteger('classyear_id')->nullable()->unsigned()->default(null);;
+            $table->bigInteger('classyear_id')->nullable()->unsigned()->default(null);
             $table->foreign('classyear_id')->references('id')->on('classyears');
 
+
+            $table->bigInteger('user_id')->unsigned()->nullable()->default(null);  //User who add the subject
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('faculty_id')->unsigned()->nullable()->default(null);  //Faculty who add the subject
+            $table->foreign('faculty_id')->references('id')->on('faculties');
 
             $table->bigInteger('department_id')->unsigned();  //Major Minor
             $table->foreign('department_id')->references('id')->on('departments');//subject belongs to department

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\College;
+use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,7 +21,9 @@ class Subject extends Model
         'subject_sem',
         'subjectcategory_id',
         'subject_no',
+        'subject_order',
         'subject_code',
+        'subject_name_prefix',
         'subject_shortname',
         'subject_name',
         'subjecttype_id',
@@ -39,6 +42,8 @@ class Subject extends Model
         'status',
         'patternclass_id',
         'classyear_id',// fy or sy or ty
+        'user_id',// user who add
+        'faculty_id',// faculty who add
         'college_id',
     ];
 
@@ -69,6 +74,10 @@ class Subject extends Model
     public function subjectbuckets():HasMany
     {
         return $this->hasMany(Subjectbucket::class,'subject_id','id');
+    }
+    public function hodappointsubjects():HasMany
+    {
+        return $this->hasMany(Hodappointsubject::class,'subject_id','id');
     }
 
     public function scopeSearch(Builder $query, string $search)

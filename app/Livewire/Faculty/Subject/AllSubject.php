@@ -28,7 +28,9 @@ class AllSubject extends Component
     public $subject_sem;
     public $subjectcategory_id;
     public $subject_no;
+    public $subject_order;
     public $subject_code;
+    public $subject_name_prefix;
     public $subject_shortname;
     public $subject_name;
     public $subjecttype_id;
@@ -82,12 +84,14 @@ class AllSubject extends Component
     protected function rules()
     {
         return [
-            'subject_sem' => ['required',],
-            'subjectcategory_id' => ['required',Rule::exists(Subjectcategory::class,'id')],
+            'subject_sem' => ['required', Rule::exists(Semester::class,'id')],
+            'subjectcategory_id' => ['required', Rule::exists(Subjectcategory::class,'id')],
             'subject_no' => ['required', 'numeric', 'digits_between:1,10'],
-            'subject_code' => ['required', 'string', 'min:1', 'max:10'],
-            'subject_shortname' => ['required', 'string', 'max:11',],
-            'subject_name' => ['required', 'string', 'max:15',],
+            'subject_order' => ['required', 'numeric','digits_between:1,10'],
+            'subject_code' => ['required', 'string', 'min:1', 'max:50'],
+            'subject_name_prefix' => ['required', 'string', 'min:1', 'max:50'],
+            'subject_shortname' => ['required', 'string', 'min:1', 'max:20',],
+            'subject_name' => ['required', 'string','min:1', 'max:100',],
             'subjecttype_id' => ['required',Rule::exists(Subjecttype::class,'id')],
             'subjectexam_type' => ['required',],
             'subject_credit' => ['required',Rule::exists(Subjectcredit::class,'id')],
@@ -113,21 +117,31 @@ class AllSubject extends Component
     {
         return [
             'subject_sem.required' => 'The subject semester field is required.',
+            'subject_sem.integer' => 'The semester must be an integer.',
+            'subject_sem.exists' => 'The selected semester invalid.',
             'subjectcategory_id.required' => 'The subject category field is required.',
+            'subjectcategory_id.integer' => 'The subject category must be an integer.',
             'subjectcategory_id.exists' => 'The selected subject category is invalid.',
             'subject_no.required' => 'The subject number field is required.',
             'subject_no.numeric' => 'The subject number must be numeric.',
             'subject_no.digits_between' => 'The subject number must be between 1 and 10 digits.',
+            'subject_order.required' => 'The subject order field is required.',
+            'subject_order.numeric' => 'The subject order must be numeric.',
+            'subject_order.digits_between' => 'The order number must be between 1 and 10 digits.',
             'subject_code.required' => 'The subject code field is required.',
             'subject_code.string' => 'The subject code must be a string.',
             'subject_code.min' => 'The subject code must be at least 1 character.',
-            'subject_code.max' => 'The subject code must not exceed 10 characters.',
+            'subject_code.max' => 'The subject code must not exceed 50 characters.',
+            'subject_name_prefix.required' => 'The subject name prefix field is required.',
+            'subject_name_prefix.string' => 'The subject name prefix must be a string.',
+            'subject_name_prefix.min' => 'The subject name prefix must be at least 1 character.',
+            'subject_name_prefix.max' => 'The subject name prefix must not exceed 50 characters.',
             'subject_shortname.required' => 'The subject short name field is required.',
             'subject_shortname.string' => 'The subject short name must be a string.',
             'subject_shortname.max' => 'The subject short name must not exceed 11 characters.',
             'subject_name.required' => 'The subject name field is required.',
             'subject_name.string' => 'The subject name must be a string.',
-            'subject_name.max' => 'The subject name must not exceed 15 characters.',
+            'subject_name.max' => 'The subject name must not exceed 100 characters.',
             'subjecttype_id.required' => 'The subject type field is required.',
             'subjecttype_id.exists' => 'The selected subject type is invalid.',
             'subjectexam_type.required' => 'The subject exam type field is required.',
@@ -162,11 +176,13 @@ class AllSubject extends Component
          $this->subject_sem=null;
          $this->subjectcategory_id=null;
          $this->subject_no=null;
+         $this->subject_order=null;
          $this->subject_code=null;
-         $this->subjectexam_type=null;
+         $this->subject_name_prefix=null;
          $this->subject_shortname=null;
          $this->subject_name=null;
          $this->subjecttype_id=null;
+         $this->subjectexam_type=null;
          $this->subject_credit=null;
          $this->subject_maxmarks=null;
          $this->subject_maxmarks_int=null;
@@ -177,7 +193,6 @@ class AllSubject extends Component
          $this->subject_intpractpassing=null;
          $this->subject_extpassing=null;
          $this->subject_optionalgroup=null;
-
          $this->patternclass_id=null;
          $this->classyear_id=null;
          $this->department_id=null;
@@ -218,8 +233,22 @@ class AllSubject extends Component
 
         if ($pattern_class) {
             $validatedData['patternclass_id'] = $pattern_class->id;
-            $subject = Subject::create($validatedData);
+            // Check the current authentication guard
+            $guard = auth()->guard();
 
+            // Set user_id and faculty_id based on the guard
+            if ($guard->name == 'user') {
+                $validatedData['user_id'] = $guard->id();
+                $validatedData['faculty_id'] = null;
+            } elseif ($guard->name == 'faculty') {
+                $validatedData['user_id'] = null;
+                $validatedData['faculty_id'] = $guard->id();
+            } else {
+                // Handle the case when the user is not authenticated or doesn't match any guard
+                $validatedData['user_id'] = null;
+                $validatedData['faculty_id'] = null;
+            }
+            $subject = Subject::create($validatedData);
             if ($subject) {
                 $this->dispatch('alert',type:'success',message:'Subject Saved Successfully !!');
                 $this->setmode('all');
@@ -240,7 +269,9 @@ class AllSubject extends Component
             $this->subject_sem= $subject->subject_sem;
             $this->subjectcategory_id= $subject->subjectcategory_id;
             $this->subject_no= $subject->subject_no;
+            $this->subject_order= $subject->subject_order;
             $this->subject_code= $subject->subject_code;
+            $this->subject_name_prefix= $subject->subject_name_prefix;
             $this->subjectexam_type= $subject->subjectexam_type;
             $this->subject_shortname= $subject->subject_shortname;
             $this->subject_name= $subject->subject_name;
@@ -259,6 +290,22 @@ class AllSubject extends Component
             $this->classyear_id= $subject->classyear_id;
             $this->department_id= $subject->department_id;
             $this->college_id= $subject->college_id;
+            // Check the current authentication guard
+            $guard = auth()->guard();
+
+            // Set user_id and faculty_id based on the guard
+            if ($guard->name == 'user') {
+                $this->user_id = $guard->id();
+                $this->faculty_id = null;
+            } elseif ($guard->name == 'faculty') {
+                $this->user_id = null;
+                $this->faculty_id = $guard->id();
+            } else {
+                // Handle the case when the user is not authenticated or doesn't match any guard
+                $this->user_id = null;
+                $this->faculty_id = null;
+            }
+
             $this->feach();
             $this->setmode('edit');
         }
@@ -270,14 +317,26 @@ class AllSubject extends Component
     public function update(Subject $subject)
     {
         $validatedData = $this->validate();
-        $pattern_class = Patternclass::select('id')
-            ->where('class_id', $this->course_class_id)
-            ->where('pattern_id', $this->pattern_id)
-            ->first('id');
+        $pattern_class = Patternclass::select('id')->where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->first('id');
 
         if ($subject) {
             if ($pattern_class) {
                 $validatedData['patternclass_id'] = $pattern_class->id;
+                // Check the current authentication guard
+                $guard = auth()->guard();
+
+                // Set user_id and faculty_id based on the guard
+                if ($guard->name == 'user') {
+                    $validatedData['user_id'] = $guard->id();
+                    $validatedData['faculty_id'] = null;
+                } elseif ($guard->name == 'faculty') {
+                    $validatedData['user_id'] = null;
+                    $validatedData['faculty_id'] = $guard->id();
+                } else {
+                    // Handle the case when the user is not authenticated or doesn't match any guard
+                    $validatedData['user_id'] = null;
+                    $validatedData['faculty_id'] = null;
+                }
                 $subject->fill($validatedData);
                 $updated = $subject->save();
                 if ($updated) {
@@ -299,7 +358,7 @@ class AllSubject extends Component
             $subject->forceDelete();
             $this->delete_id = null;
             $this->setmode('all');
-            $this->dispatch('alert',type:'success',message:'"Subject Deleted Successfully !!');
+            $this->dispatch('alert',type:'success',message:'Subject Deleted Successfully !!');
         } else {
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
         }
@@ -311,7 +370,7 @@ class AllSubject extends Component
 
         if ($subject) {
             $subject->delete();
-            $this->dispatch('alert',type:'success',message:'Subject Deleted Successfully');
+            $this->dispatch('alert',type:'success',message:'Subject Soft Deleted Successfully !!');
             } else {
                 $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
             }
@@ -325,9 +384,9 @@ class AllSubject extends Component
         if ($subject) {
             $subject->restore();
             $this->delete_id = null;
-            $this->dispatch('alert',type:'success',message:'Subject Restored Successfully');
+            $this->dispatch('alert',type:'success',message:'Subject Restored Successfully !!');
         } else {
-            $this->dispatch('alert',type:'error',message:'Subject Not Found');
+            $this->dispatch('alert',type:'error',message:'Subject Not Found !!');
         }
         $this->setmode('all');
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Course;
 use App\Models\Student;
+use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -34,7 +35,10 @@ class Patternclass extends Model
     {
         return $this->hasMany(Subject::class,'patternclass_id','id');
     }
-
+    public function hodappointsubjects():HasMany
+    {
+        return $this->hasMany(Hodappointsubject::class,'patternclass_id','id');
+    }
     public function pattern()
     {
         return $this->belongsTo(Pattern::class,'pattern_id','id');
