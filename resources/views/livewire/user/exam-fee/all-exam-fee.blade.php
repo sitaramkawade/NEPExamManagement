@@ -1,28 +1,28 @@
 <div>
-    @if ($mode == 'add')
-      <div>
-        <x-card-header  heading="Add Exam Fee">
-          <x-back-btn wire:click="setmode('all')" />
-        </x-card-header>
-        <x-form wire:submit="add()">
-          @include('livewire.user.exam-fee.exam-fee-form')
-        </x-form>
-      </div>
-    @elseif($mode=='edit')
-      <div>
-          <x-card-header  heading="Edit Exam Fee">
-            <x-back-btn wire:click="setmode('all')" />
-          </x-card-header>
-          <x-form wire:submit="update({{ $edit_id }})" >
-             @include('livewire.user.exam-fee.exam-fee-form')
-          </x-form>
-      </div>
-    @elseif($mode == 'all')
-      <div>
-        <x-breadcrumb.breadcrumb>
-          <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
-          <x-breadcrumb.link name="Exam Fee's"/>
-        </x-breadcrumb.link>
+  @if ($mode == 'add')
+    <div>
+      <x-card-header heading="Add Exam Fee">
+        <x-back-btn wire:click="setmode('all')" />
+      </x-card-header>
+      <x-form wire:submit="add()">
+        @include('livewire.user.exam-fee.exam-fee-form')
+      </x-form>
+    </div>
+  @elseif($mode == 'edit')
+    <div>
+      <x-card-header heading="Edit Exam Fee">
+        <x-back-btn wire:click="setmode('all')" />
+      </x-card-header>
+      <x-form wire:submit="update({{ $edit_id }})">
+        @include('livewire.user.exam-fee.exam-fee-form')
+      </x-form>
+    </div>
+  @elseif($mode == 'all')
+    <div>
+      <x-breadcrumb.breadcrumb>
+        <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
+        <x-breadcrumb.link name="Exam Fee's" />
+      </x-breadcrumb.breadcrumb>
         <x-card-header heading="All Exam Fee's">
           <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
@@ -46,26 +46,31 @@
                     <x-table.td> <x-table.text-scroll> {{ $exam_fee_master->fee_type }} </x-table.text-scroll></x-table.td>
                     <x-table.td>{{ $exam_fee_master->remark }} </x-table.td>
                     <x-table.td>
-                      @if ($exam_fee_master->approve_status === 1)
-                      <x-status type="success"> Approved </x-status>
+                      @if ($exam_fee_master->approve_status==1)
+                        <x-status type="success"> Yes </x-status>
                       @else
-                      <x-status type="danger"> Not Approved </x-status>
+                        <x-status type="danger"> No </x-status>
                       @endif
                     </x-table.td>
                     <x-table.td>
-                      @if ($exam_fee_master->active_status === 1)
-                        <x-table.active  wire:click="status({{ $exam_fee_master->id }})" />
+                      @if ($exam_fee_master->active_status)
+                        <x-table.active wire:click="status({{ $exam_fee_master->id }})" />
                       @else
                         <x-table.inactive wire:click="status({{ $exam_fee_master->id }})" />
                       @endif
                     </x-table.td>
                     <x-table.td>
                       @if ($exam_fee_master->deleted_at)
-                        <x-table.delete  wire:click="deleteconfirmation({{ $exam_fee_master->id }})" />
-                        <x-table.restore  wire:click="restore({{ $exam_fee_master->id }})" />
+                        <x-table.delete wire:click="deleteconfirmation({{ $exam_fee_master->id }})" />
+                        <x-table.restore wire:click="restore({{ $exam_fee_master->id }})" />
                       @else
                         <x-table.edit wire:click="edit({{ $exam_fee_master->id }})" />
-                        <x-table.archive  wire:click="delete({{ $exam_fee_master->id }})" />
+                        @if ($exam_fee_master->approve_status==1)
+                          <x-table.reject wire:click="approve({{ $exam_fee_master->id }})" />
+                        @else
+                          <x-table.approve wire:click="approve({{ $exam_fee_master->id }})" />
+                        @endif
+                        <x-table.archive wire:click="delete({{ $exam_fee_master->id }})" />
                       @endif
                     </x-table.td>
                   </x-table.tr>
@@ -77,7 +82,6 @@
             <x-table.paginate :data="$exam_fee_masters" />
           </x-slot>
         </x-table.frame>
-      </div>
-    @endif
-  </div>
-  
+    </div>
+  @endif
+</div>

@@ -6,7 +6,7 @@ use Excel;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Examfeemaster;
-use App\Exports\User\ExamFeeMaster\ExamFeeMasterExport;
+use App\Exports\User\ExamFee\ExamFeeExport;
 
 class AllExamFee extends Component
 {   
@@ -24,6 +24,7 @@ class AllExamFee extends Component
     public $ext;
 
     public $fee_type;
+    public $remark;
     public $approve_status;
     public $active_status;
     #[Locked] 
@@ -34,16 +35,20 @@ class AllExamFee extends Component
     {
         return [
             'fee_type' => ['required', 'string','max:200','unique:examfeemasters,fee_type,' . ($this->mode == 'edit' ? $this->edit_id : ''),],
+            'remark' => ['nullable', 'string','max:50'],
         ];
     }
 
     public function messages()
     {   
         $messages = [
-            'fee_type.required' => 'The Query Name field is required.',
-            'fee_type.string' => 'The Query Name must be a string.',
-            'fee_type.max' => 'The  Query Name must not exceed :max characters.',
-            'fee_type.unique' => 'The Query Name has already been taken.',
+            'fee_type.required' => 'The Fee Type field is required.',
+            'fee_type.string' => 'The Fee Type must be a string.',
+            'fee_type.max' => 'The  Fee Type must not exceed :max characters.',
+            'fee_type.unique' => 'The Fee Type has already been taken.',
+            'remark.required' => 'The Remark field is required.',
+            'remark.string' => 'The Remark must be a string.',
+            'remark.max' => 'The  Remark must not exceed :max characters.',
         ];
         
         return $messages;
@@ -56,6 +61,7 @@ class AllExamFee extends Component
 
     public function resetinput()
     {
+        $this->remark=null;
         $this->fee_type=null;
         $this->active_status=null;
         $this->approve_status=null;
@@ -88,16 +94,16 @@ class AllExamFee extends Component
 
     public function export()
     {
-        $filename="Exam-Fee-Master-".now();
+        $filename="Exam-Fee-".now();
         switch ($this->ext) {
             case 'xlsx':
-                return Excel::download(new ExamFeeMasterExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                return Excel::download(new ExamFeeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
             break;
             case 'csv':
-                return Excel::download(new ExamFeeMasterExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                return Excel::download(new ExamFeeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
             case 'pdf':
-                return Excel::download(new ExamFeeMasterExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                return Excel::download(new ExamFeeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
     }
@@ -109,6 +115,7 @@ class AllExamFee extends Component
         $examfee =  new Examfeemaster;
         $examfee->create([
             'fee_type' => $this->fee_type,
+            'remark' => $this->remark,
             'active_status' => $this->active_status==true?0:1,
         ]);
         $this->resetinput();
@@ -122,6 +129,7 @@ class AllExamFee extends Component
         $this->resetinput();
         $this->edit_id=$examfee->id;
         $this->fee_type= $examfee->fee_type;
+        $this->remark= $examfee->remark;
         $this->active_status=$examfee->active_status==1?0:true;
   
         $this->setmode('edit');
@@ -133,6 +141,7 @@ class AllExamFee extends Component
 
         $examfee->update([
             'fee_type' => $this->fee_type,
+            'remark' => $this->remark,
             'active_status' => $this->active_status == true ? 0 : 1,
         ]);
        
@@ -155,6 +164,22 @@ class AllExamFee extends Component
         $examfee->update();
 
         $this->dispatch('alert',type:'success',message:'Exam Fee Status Updated Successfully !!');
+    }
+
+    public function approve(Examfeemaster $examfee)
+    {   
+        
+        if( $examfee->approve_status==1)
+        {
+            $examfee->approve_status=0;
+            $this->dispatch('alert',type:'success',message:'Exam Fee Not Approved Successfully !!');
+        }
+        else 
+        {
+            $examfee->approve_status=1;
+            $this->dispatch('alert',type:'success',message:'Exam Fee Approved Successfully !!');
+        }
+        $examfee->update();
     }
 
     public function deleteconfirmation($id)
@@ -186,7 +211,7 @@ class AllExamFee extends Component
 
     public function render()
     {   
-        $exam_fee_masters=Examfeemaster::select('id','fee_type','active_status','deleted_at')->when($this->search, function ($query, $search) {
+        $exam_fee_masters=Examfeemaster::select('id','fee_type','remark','approve_status','active_status','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

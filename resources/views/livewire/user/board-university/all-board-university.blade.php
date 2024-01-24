@@ -22,7 +22,7 @@
         <x-breadcrumb.breadcrumb>
           <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
           <x-breadcrumb.link name="Board's / University's"/>
-        </x-breadcrumb.link>
+        </x-breadcrumb.breadcrumb>
         <x-card-header heading="All Board's / University's">
           <x-add-btn wire:click="setmode('add')" />
         </x-card-header>

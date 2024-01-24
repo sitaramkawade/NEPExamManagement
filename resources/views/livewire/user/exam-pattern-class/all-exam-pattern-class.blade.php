@@ -22,7 +22,7 @@
         <x-breadcrumb.breadcrumb>
           <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
           <x-breadcrumb.link name="Exam Pattern Class's"/>
-        </x-breadcrumb.link>
+        </x-breadcrumb.breadcrumb>
         <x-card-header heading="All Exam Pattern Class's">
           <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
@@ -83,7 +83,6 @@
                         <x-table.restore wire:click="restore({{ $pattern_exam_class->id }})" />
                       @else
                         <x-table.edit wire:click="edit({{ $pattern_exam_class->id }})" />
-                         
                         <x-table.archive wire:click="delete({{ $pattern_exam_class->id }})" />
                       @endif
                     </x-table.td>
