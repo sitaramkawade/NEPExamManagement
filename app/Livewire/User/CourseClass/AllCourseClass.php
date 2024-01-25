@@ -213,7 +213,7 @@ class AllCourseClass extends Component
             $this->colleges =College::select('college_name','id')->where('status',1)->get();
         }
 
-       $course_classes=Courseclass::with(['classyear', 'course', 'courseclass.classyear', 'courseclass.course', 'college'])->select('id','course_id','nextyearclass_id', 'college_id','deleted_at')->when($this->search, function ($query, $search) {
+       $course_classes=Courseclass::with(['classyear', 'course', 'courseclass.classyear', 'courseclass.course', 'college'])->select('id','course_id','classyear_id','nextyearclass_id', 'college_id','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

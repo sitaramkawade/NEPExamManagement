@@ -23,11 +23,11 @@ return new class extends Migration
             $table->foreign('sanstha_id')->references('id')->on('sansthas')->onDelete('cascade');
             $table->bigInteger('university_id')->nullable()->unsigned()->default(null);
             $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');
-            $table->tinyInteger('status')->default('0');// 0 :not active 1:active
-            $table->tinyInteger('is_default')->default('0');// 0 :not active 1:active
+           
             $table->softDeletes();
             $table->timestamps();
-            
+             $table->tinyInteger('status')->default('0');// 0 :not active 1:active
+            $table->tinyInteger('is_default')->default('0');// 0 :not active 1:active
         });
     }
 
