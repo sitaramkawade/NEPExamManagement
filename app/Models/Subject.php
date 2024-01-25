@@ -80,6 +80,15 @@ class Subject extends Model
         return $this->hasMany(Hodappointsubject::class,'subject_id','id');
     }
 
+    public function faculty()
+    {
+        return $this->belongsTo(Faculty::class,'faculty_id','id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+
     public function scopeSearch(Builder $query, string $search)
     {
         return $query->with('subjectcategories', 'subjecttypes', 'classyear', 'department', 'college')
