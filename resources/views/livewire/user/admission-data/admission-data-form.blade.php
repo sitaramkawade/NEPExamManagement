@@ -5,7 +5,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2">
     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
       <x-input-label for="patternclass_id" :value="__('Select Pattern Class')" />
-      <x-input-select id="patternclass_id" wire:model="patternclass_id" name="patternclass_id" class="text-center w-full mt-1" :value="old('patternclass_id', $patternclass_id)" required autocomplete="patternclass_id">
+      <x-input-select id="patternclass_id" wire:model.live="patternclass_id" name="patternclass_id" class="text-center w-full mt-1" :value="old('patternclass_id', $patternclass_id)" required autocomplete="patternclass_id">
         <x-select-option class="text-start" hidden> -- Select Pattern Classes -- </x-select-option>
         @forelse ($pattern_classes as $pattern_calss)
           <x-select-option wire:key="{{ $pattern_calss->id }}" value="{{ $pattern_calss->id }}" class="text-start"> {{ $pattern_calss->pattern->pattern_name ?? '-' }} {{ $pattern_calss->courseclass->classyear->classyear_name ?? '-' }} {{ $pattern_calss->courseclass->course->course_name ?? '-' }} </x-select-option>

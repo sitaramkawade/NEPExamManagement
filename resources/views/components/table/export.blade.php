@@ -1,7 +1,7 @@
 @props(["disabled" => false])
 <div class="float-right mx-1 inline-flex h-10 z-0">
   <div class="relative inline-flex h-10 flex-wrap items-stretch z-0">
-    <button wire:loading class="mx-2 h-10 w-10 rounded bg-primary-darker py-2 text-white">
+    <button wire:loading class="mx-2 h-10 w-10 rounded-md bg-primary-darker py-2 text-white">
       <span wire:loading>
         <span role="status">
           <svg aria-hidden="true" class="h-6 w-6 animate-spin fill-white text-black dark:text-black" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,13 +11,13 @@
         </span>
       </span>
     </button>
-    <select wire:model="ext" class="z-0 relative m-0 block flex-auto h-10 rounded-l border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:border-primary-darker dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600">
+    <select wire:model="ext" class="z-0 relative m-0 block flex-auto h-10 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:border-primary-darker dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600">
       <option hidden>Select</option>
       <option value="xlsx">XLSX</option>
       <option value="csv">CSV</option>
       <option value="pdf">PDF</option>
     </select>
-    <button wire:loading.attr="disabled" wire:click="export()" class="z-0 hover:bg-primary-600 focus:bg-primary-600 active:bg-primary-700 inline-block h-10 rounded-r bg-primary px-3 pb-2 pt-2.5 text-xs font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]" data-te-ripple-init type="button" id="button-addon2">
+    <button wire:loading.attr="disabled" wire:click="export()" class="z-0 hover:bg-primary-600 focus:bg-primary-600 active:bg-primary-700 inline-block h-10 rounded-r-md bg-primary px-3 pb-2 pt-2.5 text-xs font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]" data-te-ripple-init type="button" id="button-addon2">
       <span>Export</span>
     </button>
   </div>
