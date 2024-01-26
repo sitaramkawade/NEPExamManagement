@@ -25,65 +25,60 @@
             <x-breadcrumb.breadcrumb>
                 <x-breadcrumb.link route="faculty.dashboard" name="Dashboard" />
                 <x-breadcrumb.link name="Faculty Heads" />
-                </x-breadcrumb.breadcrumb>
-                <x-card-header heading="All Faculty Heads">
-                    <x-add-btn wire:click="setmode('add')" />
-                </x-card-header>
-                <x-table.frame>
-                    <x-slot:header>
-                    </x-slot>
-                    <x-slot:body>
-                        <x-table.table>
-                            <x-table.thead>
-                                <x-table.tr>
-                                    <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
-                                    <x-table.th wire:click="sort_column('faculty_id')" name="faculty_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Faculty Name</x-table.th>
-                                    <x-table.th wire:click="sort_column('department_id')" name="department_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Department Name</x-table.th>
-                                    <x-table.th> Status </x-table.th>
-                                    <x-table.th> Action </x-table.th>
+            </x-breadcrumb.breadcrumb>
+            <x-card-header heading="All Faculty Heads">
+                <x-add-btn wire:click="setmode('add')" />
+            </x-card-header>
+            <x-table.frame>
+                <x-slot:header>
+                </x-slot>
+                <x-slot:body>
+                    <x-table.table>
+                        <x-table.thead>
+                            <x-table.tr>
+                                <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
+                                <x-table.th wire:click="sort_column('faculty_id')" name="faculty_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Faculty Name</x-table.th>
+                                <x-table.th wire:click="sort_column('department_id')" name="department_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Department Name</x-table.th>
+                                <x-table.th> Status </x-table.th>
+                                <x-table.th> Action </x-table.th>
+                            </x-table.tr>
+                        </x-table.thead>
+                        <x-table.tbody>
+                            @forelse ($facultyheads as $facultyhead)
+                                <x-table.tr wire:key="{{ $facultyhead->id }}">
+                                    <x-table.td>{{ $facultyhead->id }} </x-table.td>
+                                    <x-table.td>{{ $facultyhead->faculty->faculty_name }} </x-table.td>
+                                    <x-table.td>{{ $facultyhead->department->dept_name }} </x-table.td>
+                                    <x-table.td>
+                                        @if ($facultyhead->status === 1)
+                                            <x-table.active wire:click="changestatus({{ $facultyhead->id }})" />
+                                        @else
+                                            <x-table.inactive wire:click="changestatus({{ $facultyhead->id }})" />
+                                        @endif
+                                    </x-table.td>
+                                    <x-table.td>
+                                        @if ($facultyhead->deleted_at)
+                                            <x-table.delete wire:click="deleteconfirmation({{ $facultyhead->id }})" />
+                                            <x-table.restore wire:click="restore({{ $facultyhead->id }})" />
+                                        @else
+                                            <x-table.view wire:click="view({{ $facultyhead->id }})" />
+                                            <x-table.edit wire:click="edit({{ $facultyhead->id }})" />
+                                            <x-table.archive wire:click="softdelete({{ $facultyhead->id }})" />
+                                        @endif
+                                    </x-table.td>
                                 </x-table.tr>
-                            </x-table.thead>
-                            <x-table.tbody>
-                                @forelse ($facultyheads as $facultyhead)
-                                    <x-table.tr wire:key="{{ $facultyhead->id }}">
-                                        <x-table.td>{{ $facultyhead->id }} </x-table.td>
-                                        <x-table.td>{{ $facultyhead->faculty->faculty_name }} </x-table.td>
-                                        <x-table.td>{{ $facultyhead->department->dept_name }} </x-table.td>
-                                        <x-table.td>
-                                            @if ($facultyhead->status == 0)
-                                                <x-status type="danger"> Inactive </x-status>
-                                            @elseif ($facultyhead->status == 1)
-                                                <x-status type="success"> Active </x-status>
-                                            @endif
-                                        </x-table.td>
-                                        <x-table.td>
-                                            @if ($facultyhead->deleted_at)
-                                                <x-table.delete wire:click="deleteconfirmation({{ $facultyhead->id }})" />
-                                                <x-table.restore wire:click="restore({{ $facultyhead->id }})" />
-                                            @else
-                                                <x-table.view wire:click="view({{ $facultyhead->id }})" />
-                                                <x-table.edit wire:click="edit({{ $facultyhead->id }})" />
-                                                @if ($facultyhead->status == 0)
-                                                    <x-table.active wire:click="changestatus({{ $facultyhead->id }})" />
-                                                @elseif ($facultyhead->status == 1)
-                                                    <x-table.inactive wire:click="changestatus({{ $facultyhead->id }})" />
-                                                @endif
-                                                <x-table.archive wire:click="softdelete({{ $facultyhead->id }})" />
-                                            @endif
-                                        </x-table.td>
-                                    </x-table.tr>
-                                @empty
-                                    <x-table.tr>
-                                        <x-table.td colSpan='8' class="text-center">No Data Found</x-table.td>
-                                    </x-table.tr>
-                                @endforelse
-                            </x-table.tbody>
-                        </x-table.table>
-                    </x-slot>
-                    <x-slot:footer>
-                        <x-table.paginate :data="$facultyheads" />
-                    </x-slot>
-                </x-table.frame>
+                            @empty
+                                <x-table.tr>
+                                    <x-table.td colSpan='8' class="text-center">No Data Found</x-table.td>
+                                </x-table.tr>
+                            @endforelse
+                        </x-table.tbody>
+                    </x-table.table>
+                </x-slot>
+                <x-slot:footer>
+                    <x-table.paginate :data="$facultyheads" />
+                </x-slot>
+            </x-table.frame>
         </div>
     @endif
 </div>

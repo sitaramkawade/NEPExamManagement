@@ -32,6 +32,7 @@ use Database\Seeders\ProgrammeSeeder;
 use Database\Seeders\BloodgroupSeeder;
 use Database\Seeders\AddresstypeSeeder;
 use Database\Seeders\CourseclassSeeder;
+use Database\Seeders\FacultyHeadSeeder;
 use Database\Seeders\SubjecttypeSeeder;
 use Database\Seeders\AcademicyearSeeder;
 use Database\Seeders\GendermasterSeeder;
@@ -56,6 +57,7 @@ use Database\Seeders\StudentHelplineSeeder;
 use Database\Seeders\SubjectcategorySeeder;
 use Database\Seeders\ExamPatternclassSeeder;
 use Database\Seeders\EducationalcourseSeeder;
+use Database\Seeders\HodAppointSubjectSeeder;
 use Database\Seeders\ClassStudmenumasterSeeder;
 use Database\Seeders\StudenthelplineQuerySeeder;
 use Database\Seeders\ExamBacklogFeeCoursesSeeder;
@@ -127,7 +129,8 @@ class DatabaseSeeder extends Seeder
             RateheadSeeder::class,                     
             // BlockSeeder::class,                            //Buildingclass
             // ExamTimeTableSeeder::class,
-
+            FacultyHeadSeeder::class,                       // Faculty, Department
+            HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
         ]);
     }
 }

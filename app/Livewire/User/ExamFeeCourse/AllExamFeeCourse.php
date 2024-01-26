@@ -23,16 +23,16 @@ class AllExamFeeCourse extends Component
     public $mode='all';
     public $perPage=10;
     public $search='';
-    public $sortColumn="fee";
+    public $sortColumn="patternclass_id";
     public $sortColumnBy="ASC";
     public $ext;
 
-    public $fee;
+    public $fees=[];
     public $sem;
     public $patternclass_id;
     public $examfees_id;
     public $approve_status;
-    public $active_status;
+    public $active_status=[];
     public $semesters;
     public $patternclasses;
     public $examfees;
@@ -42,29 +42,42 @@ class AllExamFeeCourse extends Component
 
     public function rules()
     {
-        return [
-            'fee' => ['required', 'integer','digits_between:1,11'],
+        $rules = [
             'sem' => ['required', 'integer','digits_between:1,11'],
             'patternclass_id' => ['required',Rule::exists('pattern_classes', 'id')],
-            'examfees_id' => ['required',Rule::exists('examfeemasters', 'id')],
         ];
+
+        if(count($this->examfees) >0)
+        {   
+            foreach ($this->examfees as $fee) {
+                $rules["fees.".$fee->id] = ['nullable','integer', 'digits_between:1,11'];
+
+            }
+        }
+
+        return $rules;
     }
 
     public function messages()
     {   
         $messages = [
-            'fee.required' => 'The Fee field is required.',
-            'fee.integer' => 'The Fee must be an integer.',
-            'fee.digits_between' => 'The Fee must be between 1 and 11 digits.',
             'sem.required' => 'The SEM field is required.',
             'sem.integer' => 'The SEM must be an integer.',
             'sem.digits_between' => 'The SEM must be between 1 and 11 digits.',
             'patternclass_id.required' => 'The Pattern Class field is required.',
             'patternclass_id.exists' => 'The selected Pattern Class is invalid.',
-            'examfees_id.required' => 'The Exam Fee field is required.',
-            'examfees_id.exists' => 'The selected Exam Fee is invalid.',
         ];
-        
+        if(count($this->examfees) >0)
+        {
+            foreach ($this->examfees as $fee) {
+                $messages["fees.".$fee->id.".required"] = "The ".$fee->fee_type." Fee field is required.";
+                $messages["fees.".$fee->id.".integer"] = "The ".$fee->fee_type."Fee must be an integer.";
+                $messages["fees.".$fee->id.".digits_between"] = "The ".$fee->fee_type." Fee must be between :min and :max digits.";
+
+            }   
+
+        }    
+
         return $messages;
     }
 
@@ -76,11 +89,10 @@ class AllExamFeeCourse extends Component
     public function resetinput()
     {
         $this->sem=null;
-        $this->fee=null;
-        $this->examfees_id=null;
+        $this->fees=[];
+        $this->active_status=[];
         $this->patternclass_id=null;
         $this->approve_status=null;
-        $this->active_status=null;
     }
 
     public function sort_column($column)
@@ -127,18 +139,22 @@ class AllExamFeeCourse extends Component
     public function add()
     {   
         $this->validate();
-
-       $examfeecourse =  new Examfeecourse;
-       $examfeecourse->create([
-            'fee' => $this->fee,
-            'sem' => $this->sem,
-            'examfees_id' => $this->examfees_id,
-            'patternclass_id' => $this->patternclass_id,
-            'active_status' => $this->active_status==true?0:1,
-        ]);
+        foreach ($this->fees as $key => $fee) {
+            if (isset($key) && $fee !== "" && $fee !== null)
+            {
+                $activeStatus = isset($this->active_status[$key]) ? ($this->active_status[$key] == true ? 0 : 1) : 1;
+                Examfeecourse::create([
+                    'examfees_id' => $key,
+                    'fee' => $fee==""?0:$fee,
+                    'sem' => $this->sem,
+                    'patternclass_id' => $this->patternclass_id,
+                    'active_status' =>   $activeStatus,
+                ]);
+            }
+        }
         $this->resetinput();
         $this->setmode('all');
-        $this->dispatch('alert',type:'success',message:'Exam Fee Created Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Fee Course Created Successfully !!');
     }
 
 
@@ -146,11 +162,15 @@ class AllExamFeeCourse extends Component
     {   
         $this->resetinput();
         $this->edit_id= $examfeecourse->id;
-        $this->fee=$examfeecourse->fee;
-        $this->sem=$examfeecourse->sem;
-        $this->examfees_id=$examfeecourse->examfees_id;
         $this->patternclass_id=$examfeecourse->patternclass_id;
-        $this->active_status=$examfeecourse->active_status==1?0:true;
+        $this->sem=$examfeecourse->sem;
+        
+        $examfeecourses=Examfeecourse::where('patternclass_id',$examfeecourse->patternclass_id)->where('sem',$examfeecourse->sem)->get();
+        foreach($examfeecourses as $fee)
+        {   
+            $this->fees[$fee->examfees_id]=$fee->fee;
+            $this->active_status[$fee->examfees_id]=$fee->active_status==1?false:true;
+        }
   
         $this->setmode('edit');
     }
@@ -159,18 +179,48 @@ class AllExamFeeCourse extends Component
     {
         $this->validate();
 
-       $examfeecourse->update([
-            'fee' => $this->fee,
-            'sem' => $this->sem,
-            'examfees_id' => $this->examfees_id,
-            'patternclass_id' => $this->patternclass_id,
-            'active_status' => $this->active_status == true ? 0 : 1,
-        ]);
-       
+        
+        foreach ($this->fees as $key => $fee) {
+            if (isset($key) && $fee !== "" && $fee !== null)
+            {   
+                $modify = Examfeecourse::where('sem',$this->sem)->where('patternclass_id',$this->patternclass_id)->where('examfees_id', $key)->latest()->first();
+
+                if (isset($modify) && $modify->fee != $fee) 
+                {
+                    Examfeecourse::create([
+                        'examfees_id' => $key,
+                        'fee' => $fee ?? 0,
+                        'sem' => $this->sem,
+                        'patternclass_id' => $this->patternclass_id,
+                        'active_status' => isset($this->active_status[$key]) ? ($this->active_status[$key] == true ? 0 : 1) : 1,
+                    ]);
+                        
+                    $modify->active_status=0;
+                    $modify->update();
+                    $modify=null;
+                } else 
+                {
+                    Examfeecourse::updateOrCreate(
+                        [
+                            'examfees_id' => $key,
+                            'sem' => $examfeecourse->sem,
+                            'patternclass_id' => $examfeecourse->patternclass_id,
+                        ],
+                        [
+                            'examfees_id' => $key,
+                            'fee' =>$fee ?? 0,
+                            'sem' => $this->sem,
+                            'patternclass_id' => $this->patternclass_id,
+                            'active_status' =>  isset($this->active_status[$key]) ? ($this->active_status[$key] == true ? 0 : 1) : 1,
+                        ]
+                    );
+                }
+            }
+        }
+        $activeStatus=null;
         $this->resetinput();
         $this->setmode('all');
-        $this->dispatch('alert',type:'success',message:'Exam Fee Updated Successfully !!');
-
+        $this->dispatch('alert',type:'success',message:'Exam Fee Course Updated Successfully !!');
     }
 
     public function status(Examfeecourse $examfeecourse)
@@ -185,7 +235,7 @@ class AllExamFeeCourse extends Component
         }
        $examfeecourse->update();
 
-        $this->dispatch('alert',type:'success',message:'Exam Fee Status Updated Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Fee Course Status Updated Successfully !!');
     }
 
     public function approve(Examfeecourse $examfeecourse)
@@ -193,13 +243,13 @@ class AllExamFeeCourse extends Component
         
         if($examfeecourse->approve_status==1)
         {
-           $examfeecourse->approve_status=0;
-            $this->dispatch('alert',type:'success',message:'Exam Fee Not Approved Successfully !!');
+            $examfeecourse->approve_status=0;
+            $this->dispatch('alert',type:'success',message:'Exam Fee Course Not Approved Successfully !!');
         }
         else 
         {
-           $examfeecourse->approve_status=1;
-            $this->dispatch('alert',type:'success',message:'Exam Fee Approved Successfully !!');
+            $examfeecourse->approve_status=1;
+            $this->dispatch('alert',type:'success',message:'Exam Fee Course Approved Successfully !!');
         }
        $examfeecourse->update();
     }
@@ -213,22 +263,22 @@ class AllExamFeeCourse extends Component
 
     public function delete(Examfeecourse $examfeecourse)
     {   
-       $examfeecourse->delete();
-        $this->dispatch('alert',type:'success',message:'Exam Fee Soft Deleted Successfully !!');
+        $examfeecourse->delete();
+        $this->dispatch('alert',type:'success',message:'Exam Fee Course Soft Deleted Successfully !!');
     }
     
     public function restore($id)
     {   
-       $examfeecourse = Examfeecourse::withTrashed()->find($id);
-       $examfeecourse->restore();
-        $this->dispatch('alert',type:'success',message:'Exam Fee Restored Successfully !!');
+        $examfeecourse = Examfeecourse::withTrashed()->find($id);
+        $examfeecourse->restore();
+        $this->dispatch('alert',type:'success',message:'Exam Fee Course Restored Successfully !!');
     }
 
     public function forcedelete()
     {   
-       $examfeecourse = Examfeecourse::withTrashed()->find($this->delete_id);
-       $examfeecourse->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Exam Fee Deleted Successfully !!');
+        $examfeecourse = Examfeecourse::withTrashed()->find($this->delete_id);
+        $examfeecourse->forceDelete();
+        $this->dispatch('alert',type:'success',message:'Exam Fee Course Deleted Successfully !!');
     }
 
     public function render()
@@ -236,13 +286,24 @@ class AllExamFeeCourse extends Component
 
         if($this->mode!=='all')
         {
-            $this->semesters=Semester::select('id','semester')->where('status',1)->get();
-            $this->patternclasses=Patternclass::select('id','class_id','pattern_id')->where('status',1)->get();
-            $this->examfees=Examfeemaster::select('id','fee_type')->where('active_status',1)->get();
+            $this->semesters = Semester::select('id', 'semester')->where('status', 1)->get();
+            $this->patternclasses = Patternclass::select('id', 'class_id', 'pattern_id')->with(['pattern:pattern_name,id','courseclass.classyear:classyear_name,id','courseclass.course:course_name,id'])->where('status', 1)->get();
+
+            if($this->mode=='add')
+            {
+                $examfeeids = Examfeecourse::select('examfees_id')->where('patternclass_id', $this->patternclass_id)->where('sem', $this->sem)->get();
+            }else
+            {
+                $examfeeids=null; 
+            }
+
+            $this->examfees = Examfeemaster::select('id', 'fee_type')->when($examfeeids, function ($query) use ($examfeeids) {
+                    return $query->whereNotIn('id', $examfeeids);
+            })->where('active_status', 1)->get();
         }
         
         $examfeecourses=Examfeecourse::select('id','fee','sem','approve_status','patternclass_id','examfees_id','active_status','deleted_at')
-        ->with(['patternclass.pattern','examfee','patternclass.courseclass.classyear','patternclass.courseclass.course'])
+        ->with(['patternclass.pattern:pattern_name,id','examfee:fee_type,id','patternclass.courseclass.classyear:classyear_name,id','patternclass.courseclass.course:course_name,id'])
         ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

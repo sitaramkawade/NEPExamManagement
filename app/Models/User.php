@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Role;
 use App\Models\College;
+use App\Models\Subject;
 use App\Models\Department;
 use App\Models\Studenthelpline;
 use Laravel\Sanctum\HasApiTokens;
@@ -81,19 +82,23 @@ class User extends Authenticatable  implements MustVerifyEmail
     {
         return $this->belongsTo(Role::class,'role_id','id');
     }
-    
+
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class,'department_id','id');
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class, 'user_id','id');
     }
 
     public function scopeSearch(Builder $query,string $search)
     {
         return $query->where('name', 'like', "%{$search}%")
         ->orWhere('email', 'like', "%{$search}%");
-       
-    }
 
+    }
 
 
     // public function studenthelplines(): HasMany
