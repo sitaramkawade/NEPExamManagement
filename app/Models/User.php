@@ -7,6 +7,7 @@ use App\Models\College;
 use App\Models\Subject;
 use App\Models\Department;
 use App\Models\Studenthelpline;
+use App\Models\Hodappointsubject;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
@@ -88,9 +89,9 @@ class User extends Authenticatable  implements MustVerifyEmail
         return $this->belongsTo(Department::class,'department_id','id');
     }
 
-    public function subjects()
+    public function hodappointsubjects():HasMany
     {
-        return $this->hasMany(Subject::class, 'user_id','id');
+        return $this->hasMany(Hodappointsubject::class,'appointby_id','id');
     }
 
     public function scopeSearch(Builder $query,string $search)
