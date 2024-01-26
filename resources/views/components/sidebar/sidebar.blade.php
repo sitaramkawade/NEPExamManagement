@@ -7,7 +7,7 @@
       <x-sidebar.logo />
       {{ $header }}
       <!-- Sidebar links -->
-      <nav aria-label="Main" class="scrollbar-xs flex-1 items-center space-y-2 overflow-x-hidden overflow-y-hidden border-r p-2 hover:overflow-y-auto dark:border-primary-darker dark:bg-darker">
+      <nav aria-label="Main" class="scrollbar-xs flex-1 items-center space-y-1 overflow-x-hidden overflow-y-hidden border-r p-2 hover:overflow-y-auto dark:border-primary-darker dark:bg-darker">
         {{ $slot }}
       </nav>
       <!-- Sidebar footer -->
