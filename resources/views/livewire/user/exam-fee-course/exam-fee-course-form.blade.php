@@ -47,7 +47,9 @@
         @enderror
       </div>
     </div>
-  @endforeach
+  @empty
+  <span class="flex items-center justify-center text-center mx-auto">Exam course fees not found or all fees are assigned to the current pattern class and semester.</span>
+  @endforelse
 
   <x-form-btn wire:loading.attr="disabled">Submit</x-form-btn>
 </div>

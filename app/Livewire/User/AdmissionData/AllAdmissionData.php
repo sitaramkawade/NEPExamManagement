@@ -20,7 +20,7 @@ use App\Imports\User\AdmissionData\AdmissionDataImport;
 class AllAdmissionData extends Component
 {  
     use WithPagination;
-    protected $listeners = ['delete-confirmed'=>'forcedelete'];
+    protected $listeners = ['delete-confirmed'=>'forcedelete','refreshAllAdmissionData' => '$refresh'];
     #[Locked] 
     public $delete_id;
     #[Locked] 
@@ -79,6 +79,7 @@ class AllAdmissionData extends Component
     {
         $this->validateOnly($propertyName);
     }
+
     public function resetinput()
     {
         $this->patternclass_id=null;
@@ -237,14 +238,14 @@ class AllAdmissionData extends Component
 
     public function render()
     {   
-        $admissionDataQuery = Admissiondata::with(['college', 'academicyear', 'patternclass.courseclass.course', 'subject', 'user'])
+        $admissionDataQuery = Admissiondata::with(['college:college_name,id', 'academicyear:year_name,id', 'patternclass.courseclass.course:course_name,id', 'patternclass.pattern:pattern_name,id','patternclass.courseclass.classyear:classyear_name,id', 'subject:subject_name,id', 'user:name,id'])
         ->when($this->search, function ($query, $search) {
                 $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy);
 
         if ($this->mode !== 'all' || $this->mode !== 'import') 
         {
-            $this->pattern_classes = Patternclass::select('class_id', 'pattern_id', 'id')->get();
+            $this->pattern_classes = Patternclass::select('class_id', 'pattern_id', 'id')->with(['courseclass.course:course_name,id', 'pattern:pattern_name,id','courseclass.classyear:classyear_name,id'])->get();
             $this->subjects = Subject::select('subject_name', 'id')->when($this->patternclass_id, function ($query) {
                 return $query->where('patternclass_id', $this->patternclass_id);
             })->where('status', 1)->get();
