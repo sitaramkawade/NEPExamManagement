@@ -1,4 +1,4 @@
-<x-card-collapsible heading="Subject Appoint Details">
+<x-card-collapsible heading="Hod Appointment Details">
     <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="faculty_id" :value="__('Faculty Name')" />
@@ -9,16 +9,6 @@
                 @endforeach
             </x-input-select>
             <x-input-error :messages="$errors->get('faculty_id')" class="mt-2" />
-        </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_id" :value="__('Subject Name')" />
-            <x-input-select id="subject_id" wire:model="subject_id" name="subject_id" class="text-center @error('subject_id') is-invalid @enderror w-full mt-1" :value="old('subject_id', $subject_id)" required autofocus autocomplete="subject_id">
-                <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>
-                @foreach ($subjects as $subject)
-                    <x-select-option wire:key="{{ $subject->id }}" value="{{ $subject->id }}" class="text-start">{{ $subject->subject_name }}</x-select-option>
-                @endforeach
-            </x-input-select>
-            <x-input-error :messages="$errors->get('subject_id')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="pattern_id" :value="__('Pattern')" />
@@ -32,6 +22,8 @@
             </x-input-select>
             <x-input-error :messages="$errors->get('pattern_id')" class="mt-2" />
         </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="course_id" :value="__('Course')" />
             <x-input-select id="course_id" wire:model.live="course_id" name="course_id" class="text-center w-full mt-1" :value="old('course_id', $course_id)" required autocomplete="course_id">
@@ -48,8 +40,8 @@
             <x-input-label for="course_class_id" :value="__('Class')" _class />
             <x-input-select id="course_class_id" wire:model.live="course_class_id" name="course_class_id" class="text-center w-full mt-1" :value="old('course_class_id', $course_class_id)" required autocomplete="course_class_id">
                 <x-select-option class="text-start" hidden> -- Select Class -- </x-select-option>
-                @forelse ($course_classes as $course_class)
-                    <x-select-option wire:key="{{ $course_class->id }}" value="{{ $course_class->id }}" class="text-start"> {{ $course_class->classyear->classyear_name }} {{ $course_class->course->course_name ?? '' }} </x-select-option>
+                @forelse ($pattern_classes as $pattern_class)
+                    <x-select-option wire:key="{{ $pattern_class->id }}" value="{{ $pattern_class->id }}" class="text-start"> {{ $pattern_class->courseclass->classyear->classyear_name }} {{ $pattern_class->courseclass->course->course_name ?? '' }} </x-select-option>
                 @empty
                     <x-select-option class="text-start"> Classes Not Found</x-select-option>
                 @endforelse
@@ -57,13 +49,16 @@
             <x-input-error :messages="$errors->get('course_class_id')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="status" :value="__('Status')" />
-            <x-input-select id="status" wire:model="status" name="status" class="text-center @error('status') is-invalid @enderror w-full mt-1" :value="old('status', $status)" required autofocus autocomplete="status">
-                <x-select-option class="text-start" hidden> -- Select Status -- </x-select-option>
-                <x-select-option class="text-start" value=0>Inactive</x-select-option>
-                <x-select-option class="text-start" value=1>Active</x-select-option>
+            <x-input-label for="courseclass_subject_id" :value="__('Subject Name')" />
+            <x-input-select id="courseclass_subject_id" wire:model="courseclass_subject_id" name="courseclass_subject_id" class="text-center @error('courseclass_subject_id') is-invalid @enderror w-full mt-1" :value="old('courseclass_subject_id', $courseclass_subject_id)" required autofocus autocomplete="courseclass_subject_id">
+                <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>
+                @forelse ($courseclass_subjects as $courseclass_subject)
+                    <x-select-option wire:key="{{ $courseclass_subject->id }}" value="{{ $courseclass_subject->id }}" class="text-start"> {{ $courseclass_subject->subject_name }} </x-select-option>
+                @empty
+                    <x-select-option class="text-start"> Subject Not Found</x-select-option>
+                @endforelse
             </x-input-select>
-            <x-input-error :messages="$errors->get('status')" class="mt-2" />
+            <x-input-error :messages="$errors->get('courseclass_subject_id')" class="mt-2" />
         </div>
     </div>
     <x-form-btn>Submit</x-form-btn>

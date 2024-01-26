@@ -18,7 +18,6 @@ class Hodappointsubject extends Model
         'subject_id',
         'patternclass_id',
         'appointby_id',
-        'status',
     ];
 
     public function faculty()

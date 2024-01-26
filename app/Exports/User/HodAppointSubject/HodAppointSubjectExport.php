@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\Faculty\HodAppointSubject;
+namespace App\Exports\User\HodAppointSubject;
 
 use App\Models\Hodappointsubject;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -26,12 +26,12 @@ class HodAppointSubjectExport implements FromCollection, WithHeadings, ShouldAut
     public function collection()
     {
         return Hodappointsubject::with(['faculty','subject',])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
-         ->get(['id','faculty_id','subject_id','status',]);
+         ->get(['id','faculty_id','subject_id',]);
     }
 
     public function headings(): array
     {
-        return ['ID', 'Faculty Name', 'Subject Name', 'Status',];
+        return ['ID', 'Faculty Name', 'Subject Name',];
     }
 
     public function map($row): array
@@ -40,7 +40,6 @@ class HodAppointSubjectExport implements FromCollection, WithHeadings, ShouldAut
             $row->id,
             (isset($row->faculty->faculty_name) ? $row->faculty->faculty_name : ''),
             (isset($row->subject->subject_name) ? $row->subject->subject_name : ''),
-            $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }
 }
