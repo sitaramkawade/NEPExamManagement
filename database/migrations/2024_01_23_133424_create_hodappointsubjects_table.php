@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
 
             $table->bigInteger('appointby_id')->unsigned();
-            $table->foreign('appointby_id')->references('id')->on('faculties');
+            $table->foreign('appointby_id')->references('id')->on('faculties'); // users
 
             $table->Integer('status')->unsigned()->default(0); // 0-Inactive 1-Active
             $table->timestamps();

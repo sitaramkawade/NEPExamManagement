@@ -25,65 +25,60 @@
             <x-breadcrumb.breadcrumb>
                 <x-breadcrumb.link route="faculty.dashboard" name="Dashboard" />
                 <x-breadcrumb.link name="Subject Types" />
-                </x-breadcrumb.breadcrumb>
-                <x-card-header heading="All Subject Types">
-                    <x-add-btn wire:click="setmode('add')" />
-                </x-card-header>
-                <x-table.frame>
-                    <x-slot:header>
-                    </x-slot>
-                    <x-slot:body>
-                        <x-table.table>
-                            <x-table.thead>
-                                <x-table.tr>
-                                    <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
-                                    <x-table.th wire:click="sort_column('type_name')" name="type_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Type Name</x-table.th>
-                                    <x-table.th wire:click="sort_column('type_shortname')" name="type_shortname" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Type Shortname</x-table.th>
-                                    <x-table.th wire:click="sort_column('active')" name="active" :sort="$sortColumn" :sort_by="$sortColumnBy"> Status </x-table.th>
-                                    <x-table.th> Action </x-table.th>
+            </x-breadcrumb.breadcrumb>
+            <x-card-header heading="All Subject Types">
+                <x-add-btn wire:click="setmode('add')" />
+            </x-card-header>
+            <x-table.frame>
+                <x-slot:header>
+                </x-slot>
+                <x-slot:body>
+                    <x-table.table>
+                        <x-table.thead>
+                            <x-table.tr>
+                                <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
+                                <x-table.th wire:click="sort_column('type_name')" name="type_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Type Name</x-table.th>
+                                <x-table.th wire:click="sort_column('type_shortname')" name="type_shortname" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Type Shortname</x-table.th>
+                                <x-table.th> Status </x-table.th>
+                                <x-table.th> Action </x-table.th>
+                            </x-table.tr>
+                        </x-table.thead>
+                        <x-table.tbody>
+                            @forelse ($subjecttypes as $subjecttype)
+                                <x-table.tr wire:key="{{ $subjecttype->id }}">
+                                    <x-table.td> {{ $subjecttype->id }} </x-table.td>
+                                    <x-table.td> {{ $subjecttype->type_name }} </x-table.td>
+                                    <x-table.td> {{ $subjecttype->type_shortname }} </x-table.td>
+                                    <x-table.td>
+                                        @if ($subjecttype->active === 1)
+                                            <x-table.active wire:click="changestatus({{ $subjecttype->id }})" />
+                                        @else
+                                            <x-table.inactive wire:click="changestatus({{ $subjecttype->id }})" />
+                                        @endif
+                                    </x-table.td>
+                                    <x-table.td>
+                                        @if ($subjecttype->deleted_at)
+                                            <x-table.delete wire:click="deleteconfirmation({{ $subjecttype->id }})" />
+                                            <x-table.restore wire:click="restore({{ $subjecttype->id }})" />
+                                        @else
+                                            <x-table.view wire:click="view({{ $subjecttype->id }})" />
+                                            <x-table.edit wire:click="edit({{ $subjecttype->id }})" />
+                                            <x-table.archive wire:click="softdelete({{ $subjecttype->id }})" />
+                                        @endif
+                                    </x-table.td>
                                 </x-table.tr>
-                            </x-table.thead>
-                            <x-table.tbody>
-                                @forelse ($subjecttypes as $subjecttype)
-                                    <x-table.tr wire:key="{{ $subjecttype->id }}">
-                                        <x-table.td> {{ $subjecttype->id }} </x-table.td>
-                                        <x-table.td> {{ $subjecttype->type_name }} </x-table.td>
-                                        <x-table.td> {{ $subjecttype->type_shortname }} </x-table.td>
-                                        <x-table.td>
-                                            @if ($subjecttype->active == 0)
-                                                <x-status type="danger"> Inactive </x-status>
-                                            @elseif ($subjecttype->active == 1)
-                                                <x-status type="success"> Active </x-status>
-                                            @endif
-                                        </x-table.td>
-                                        <x-table.td>
-                                            @if ($subjecttype->deleted_at)
-                                                <x-table.delete wire:click="deleteconfirmation({{ $subjecttype->id }})" />
-                                                <x-table.restore wire:click="restore({{ $subjecttype->id }})" />
-                                            @else
-                                                <x-table.view wire:click="view({{ $subjecttype->id }})" />
-                                                <x-table.edit wire:click="edit({{ $subjecttype->id }})" />
-                                                @if ($subjecttype->active == 0)
-                                                    <x-table.active wire:click="changestatus({{ $subjecttype->id }})" />
-                                                @elseif ($subjecttype->active == 1)
-                                                    <x-table.inactive wire:click="changestatus({{ $subjecttype->id }})" />
-                                                @endif
-                                                <x-table.archive wire:click="softdelete({{ $subjecttype->id }})" />
-                                            @endif
-                                        </x-table.td>
-                                    </x-table.tr>
-                                @empty
-                                    <x-table.tr>
-                                        <x-table.td colSpan='8' class="text-center">No Data Found</x-table.td>
-                                    </x-table.tr>
-                                @endforelse
-                            </x-table.tbody>
-                        </x-table.table>
-                    </x-slot>
-                    <x-slot:footer>
-                        <x-table.paginate :data="$subjecttypes" />
-                    </x-slot>
-                </x-table.frame>
+                            @empty
+                                <x-table.tr>
+                                    <x-table.td colSpan='8' class="text-center">No Data Found</x-table.td>
+                                </x-table.tr>
+                            @endforelse
+                        </x-table.tbody>
+                    </x-table.table>
+                </x-slot>
+                <x-slot:footer>
+                    <x-table.paginate :data="$subjecttypes" />
+                </x-slot>
+            </x-table.frame>
         </div>
     @endif
 </div>

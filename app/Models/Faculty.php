@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Subject;
 use App\Models\Hodappointsubject;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
@@ -107,6 +108,11 @@ class Faculty extends Authenticatable implements MustVerifyEmail
     public function hodappointsubjects()
     {
         return $this->hasMany(Hodappointsubject::class,'faculty_id','id');
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class, 'faculty_id','id');
     }
 
     public function departments(): BelongsToMany

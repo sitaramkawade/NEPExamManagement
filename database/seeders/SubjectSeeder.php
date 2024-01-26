@@ -55,7 +55,7 @@ class SubjectSeeder extends Seeder
                 'subject_intpractpassing' => $faker->numberBetween(5, 10),
                 'subject_extpassing' => $faker->numberBetween(25, 35),
                 'subject_optionalgroup' => $faker->lexify('???'),
-                'patternclass_id' => $faker->numberBetween(1, 3),
+                'patternclass_id' => $faker->randomElement($patternClassIds),
                 'classyear_id' => $faker->randomElement($classYearIds),
                 'department_id' => $faker->randomElement($departmentIds),
                 'college_id' =>  $faker->randomElement($collegeIds),
