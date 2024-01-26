@@ -21,12 +21,12 @@ class AdmissionDataImportComponent extends Component
     public $subject_ids=[];
     public $subject_id;
     public $subjectcategory_id;
-    public $mode="import";
-
-
-
+ 
     public function import()
     {
+        $this->validate([
+            'importfile'=>['required','file','mimes:csv,xlsx']
+        ]);
         $filters = [];
 
         if ($this->patternclass_id && $this->subjectcategory_id && $this->subject_id) {
@@ -85,8 +85,7 @@ class AdmissionDataImportComponent extends Component
             Excel::import($import, $this->importfile->getRealPath());
 
             $this->dispatch('alert',type:'success',message:'Admission Data Imported Successfully !!');
-            $this->mode='all';
-            // return $this->redirect('/user/admissiondatas',navigate:true);
+            $this->dispatch('refreshAllAdmissionData');
         } else {
             $this->dispatch('alert',type:'info',message:'Please choose a file to Import !!');
         }
@@ -94,7 +93,7 @@ class AdmissionDataImportComponent extends Component
 
     public function render()
     {   
-        $patternclasses = Patternclass::select('class_id', 'pattern_id', 'id')->with(['pattern','courseclass.course','courseclass.classyear'])->get();
+        $patternclasses = Patternclass::select('class_id', 'pattern_id', 'id')->with(['pattern:pattern_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->get();
         $subject_categories = Subjectcategory::select('subjectcategory', 'id')->whereIn('active', [1, 2])->get();
         $this->subjects = Subject::select('subject_name', 'id')->where('status', 1)->when($this->patternclass_id, function ($query) {
             return $query->where('patternclass_id', $this->patternclass_id);
