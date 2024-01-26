@@ -18,12 +18,12 @@
     @elseif($mode=='all')
     <div>
         <x-breadcrumb.breadcrumb>
-            <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
-            <x-breadcrumb.link name="College's"/>
-        </x-breadcrumb.link>
-        <x-card-header heading="All College's">
-            <x-add-btn wire:click="setmode('add')" />
-        </x-card-header>
+            <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
+            <x-breadcrumb.link name="College's" />
+            </x-breadcrumb.link>
+            <x-card-header heading="All College's">
+                <x-add-btn wire:click="setmode('add')" />
+            </x-card-header>
             <x-table.frame>
                 <x-slot:header>
                     </x-slot>
@@ -42,9 +42,9 @@
                                 </x-table.tr>
                             </x-table.thead>
                             <x-table.tbody>
-                                @forelse ($colleges as  $college)
+                                @forelse ($colleges as $college)
                                 <x-table.tr wire:key="{{ $college->id }}">
-                                    <x-table.td> {{  $college->id }}</x-table.td>
+                                    <x-table.td> {{ $college->id }}</x-table.td>
                                     <x-table.td>
                                         <x-table.text-scroll> {{ $college->college_name }} </x-table.text-scroll>
                                     </x-table.td>
@@ -60,9 +60,9 @@
                                     </x-table.td>
                                     <x-table.td>
                                         @if($college->status==1)
-                                        <x-status type="success">Active</x-status>
+                                        <x-table.inactive wire:click="Status({{ $college->id }})" />
                                         @else
-                                        <x-status type="danger">Inactive</x-status>
+                                        <x-table.active wire:click="Status({{ $college->id }})" />
                                         @endif
                                     </x-table.td>
                                     <x-table.td>
@@ -71,11 +71,6 @@
                                         <x-table.restore wire:click="restore({{ $college->id }})" />
                                         @else
                                         <x-table.edit wire:click="edit({{ $college->id }})" />
-                                        @if($college->status==1)
-                                        <x-table.inactive wire:click="Status({{ $college->id }})" />
-                                        @else
-                                        <x-table.active wire:click="Status({{ $college->id }})" />
-                                        @endif
                                         <x-table.archive wire:click="delete({{ $college->id }})" />
                                         @endif
                                     </x-table.td>

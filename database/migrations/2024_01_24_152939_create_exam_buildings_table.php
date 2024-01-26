@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blocks', function (Blueprint $table) {
+        Schema::create('exambuildings', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('exam_id')->unsigned();
+            $table->foreign('exam_id')->references('id')->on('exams');
+
             $table->bigInteger('building_id')->unsigned();
             $table->foreign('building_id')->references('id')->on('buildings')->onDelete('cascade');;
-          
-            $table->string('classname',80);
-            $table->string('block',4)->nullable()->default(null);
-            $table->Integer('capacity')->unsigned();
-            $table->Integer('noofblocks')->unsigned();
+            
             $table->Integer('status')->unsigned()->default(0);
-            $table->SoftDeletes();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blocks');
+        Schema::dropIfExists('exam_buildings');
     }
 };

@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 use Database\Seeders\ExamSeeder;
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\BlockSeeder;
 use Database\Seeders\CasteSeeder;
 use Database\Seeders\GradeSeeder;
 use Database\Seeders\LoginSeeder;
@@ -20,6 +21,7 @@ use Database\Seeders\SansthaSeeder;
 use Database\Seeders\SubjectSeeder;
 use Database\Seeders\BuildingSeeder;
 use Database\Seeders\DistrictSeeder;
+use Database\Seeders\RateheadSeeder;
 use Database\Seeders\ReligionSeeder;
 use Database\Seeders\RoletypeSeeder;
 use Database\Seeders\SemesterSeeder;
@@ -120,7 +122,10 @@ class DatabaseSeeder extends Seeder
             StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
             StudentSeeder::class,                           // Patternclass , Department , College
             ExamBacklogFeeCoursesSeeder::class,             // Patternclass, Examfeemaster
-            ExamFeeCoursesSeeder::class,                    // Patternclass, Examfeemaster
+            ExamFeeCoursesSeeder::class,   
+            BuildingSeeder::class , 
+            RateheadSeeder::class,                     
+            // BlockSeeder::class,                            //Buildingclass
             // ExamTimeTableSeeder::class,
 
         ]);

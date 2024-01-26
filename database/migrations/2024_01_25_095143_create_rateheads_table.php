@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('buildings', function (Blueprint $table) {
+        Schema::create('rateheads', function (Blueprint $table) {
             $table->id();
-            $table->string('building_name',50);
-            $table->string('Priority')->default(null);
-            $table->tinyInteger('status')->default('0');// 0 :not active 1:active
+            $table->string('headname');
+            $table->string('type',2);
+            $table->tinyInteger('status')->default(1);
+            $table->string('noofcredit',11)->nullable()->default(null);
+            $table->string('course_type',20);
+            $table->double('amount',8,2)->default(null);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('buildings');
+        Schema::dropIfExists('rateheads');
     }
 };

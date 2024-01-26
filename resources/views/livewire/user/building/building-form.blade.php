@@ -10,17 +10,14 @@
                 <x-text-input id="building_name" type="text" wire:model="building_name" name="building_name" class="w-full mt-1" :value="old('building_name',$building_name)" required autofocus autocomplete="building_name" />
                 <x-input-error :messages="$errors->get('building_name')" class="mt-2" />
             </div>
+
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                <x-input-label for="priority" :value="__('Priority')" />
+                <x-input-label for="priority" :value="__(' Priority')" />
                 <x-required />
-                <x-input-select id="priority" wire:model="priority" name="priority" class="text-center  w-full mt-1" :value="old('priority',$priority)" required autocomplete="priority">
-                    <x-select-option class="text-start" hidden> -- Select -- </x-select-option>
-                    <x-select-option class="text-start" value="0">High</x-select-option>
-                    <x-select-option class="text-start" value="1">Medium</x-select-option>
-                    <x-select-option class="text-start" value="2">Low</x-select-option>
-                </x-input-select>
+                <x-text-input id="priority" type="text" wire:model="priority" name="priority" class="w-full mt-1" :value="old('priority',$priority)" required autofocus autocomplete="priority" />
                 <x-input-error :messages="$errors->get('priority')" class="mt-2" />
             </div>
+           
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="status" :value="__('Status')" />
                 <x-required />
