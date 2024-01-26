@@ -52,7 +52,8 @@ class AllAdmissionData extends Component
             'patternclass_id' => ['required', 'integer', Rule::exists('pattern_classes', 'id')],
             'subject_id' => ['required', 'integer', Rule::exists('subjects', 'id')],
             'stud_name' => ['required', 'string','max:100'],
-            'memid' => ['required', 'integer','digits_between:1,11',Rule::unique('admissiondatas', 'memid')->ignore($this->edit_id, 'id')],
+            'memid' => ['required', 'integer'],
+            // 'memid' => ['required', 'integer','digits_between:1,11',Rule::unique('admissiondatas', 'memid')->ignore($this->edit_id, 'id')],
         ];
     }
 
@@ -241,10 +242,12 @@ class AllAdmissionData extends Component
                 $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy);
 
-        if ($this->mode !== 'all') 
+        if ($this->mode !== 'all' || $this->mode !== 'import') 
         {
             $this->pattern_classes = Patternclass::select('class_id', 'pattern_id', 'id')->get();
-            $this->subjects = Subject::select('subject_name', 'id')->where('status', 1)->get();
+            $this->subjects = Subject::select('subject_name', 'id')->when($this->patternclass_id, function ($query) {
+                return $query->where('patternclass_id', $this->patternclass_id);
+            })->where('status', 1)->get();
         }
 
         $admission_datas = $admissionDataQuery->paginate($this->perPage);

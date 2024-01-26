@@ -1,4 +1,4 @@
-@props(["header" => false, "body" => false, "footer" => false, "title" => false,"i" => false ,"x" => true ,"p" => true ,"s" => true ,"a" => true ])
+@props(["header" => false,'mode'=>'all', "body" => false, "footer" => false, "title" => false,"i" => false ,"x" => true ,"p" => true ,"s" => true ,"a" => true ])
 <div class="m-2 flex flex-col">
   <div class="-m-1.5 overflow-x-auto">
     <div class="inline-block min-w-full p-1.5 align-middle">
@@ -18,7 +18,13 @@
                       @endif
                       {{ $header }}
                       @if ($i)
-                        <x-table.import />
+                        @if (isset($mode))
+                          @if ($mode=='all')
+                            <x-table.import-btn wire:click="setmode('import')"/>
+                          @elseif($mode=='import')
+                            <x-table.import-close-btn wire:click="setmode('all')"/>
+                          @endif
+                        @endif
                       @endif
                       @if ($x)
                         <x-table.export />
