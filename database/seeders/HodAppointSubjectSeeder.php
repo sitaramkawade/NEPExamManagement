@@ -28,7 +28,6 @@ class HodAppointSubjectSeeder extends Seeder
                 'subject_id' => $faker->randomElement($subjectIds),
                 'patternclass_id' => $faker->randomElement($patternClassIds),
                 'appointby_id' => $faker->randomElement($userIds),
-                'status' => $faker->randomElement([0,1]),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

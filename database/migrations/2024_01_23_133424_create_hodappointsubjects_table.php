@@ -25,7 +25,7 @@ return new class extends Migration
             $table->bigInteger('appointby_id')->unsigned();
             $table->foreign('appointby_id')->references('id')->on('users'); // users
 
-            $table->Integer('status')->unsigned()->default(0); // 0-Inactive 1-Active
+            $table->Integer('status')->unsigned()->default(1); // 0-Inactive 1-Active
             $table->timestamps();
             $table->softDeletes();
         });

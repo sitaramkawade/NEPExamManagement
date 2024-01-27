@@ -119,66 +119,23 @@ class AllHodAppointSubject extends Component
         $this->resetPage();
     }
 
-    // public function save()
-    // {
-    //     $validatedData = $this->validate();
-
-    //     // Check if a record already exists for the given subject and pattern class
-    //     $courseclass_subject = Hodappointsubject::where('patternclass_id', $this->course_class_id)->where('subject_id', $this->courseclass_subject_id)->first();
-
-    //     if ($courseclass_subject) {
-    //         $this->dispatch('alert', type: 'error', message: 'Hod is already assigned for that subject');
-    //         return;
-    //     }
-
-    //     // Find the pattern class
-    //     $pattern_class = Patternclass::select('id')->where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->first();
-
-    //     if ($pattern_class) {
-    //         $validatedData['patternclass_id'] = $pattern_class->id;
-    //         $validatedData['subject_id'] = $this->courseclass_subject_id;
-
-    //         // Check the current authentication guard
-    //         $guard = auth()->guard();
-
-    //         // Set appointby_id based on the guard
-    //         if ($guard->name == 'user') {
-    //             $validatedData['appointby_id'] = $guard->id();
-    //             $hodappointsubject = Hodappointsubject::create($validatedData);
-
-    //             if ($hodappointsubject) {
-    //                 $this->dispatch('alert', type: 'success', message: 'Hod Appointed Successfully !!');
-    //                 $this->setmode('all');
-    //             } else {
-    //                 $this->dispatch('alert', type: 'error', message: 'Something went wrong!!');
-    //             }
-    //         } else {
-    //             // User is not authenticated or doesn't match any guard
-    //             $this->dispatch('alert', type: 'error', message: 'You are not allowed to add Hod. Please log in as a user.');
-    //             $this->setmode('all');
-    //         }
-    //     } else {
-    //         $this->dispatch('alert', type: 'error', message: 'Pattern Class Not Found!!');
-    //     }
-    // }
-
     public function save()
     {
         $validatedData = $this->validate();
 
         // Check if a record already exists for the given subject and pattern class with an active status
-        $existingRecord = Hodappointsubject::where('patternclass_id', $this->course_class_id)->where('subject_id', $this->courseclass_subject_id)->where('status', 1)->latest('updated_at')->first();
-        dd($existingRecord);
-        if ($existingRecord) {
-            $this->dispatch('alert', type: 'error', message: 'Hod is already assigned for that subject');
+        $existing_record = Hodappointsubject::where('patternclass_id', $this->course_class_id)->where('subject_id', $this->courseclass_subject_id)->where('status', 1)->latest('updated_at')->first();
+
+        if ($existing_record) {
+            $this->dispatch('alert', type: 'error', message: 'HOD is active and already assigned for that subject');
             return;
         }
 
         // Find the pattern class
-        $patternClass = Patternclass::select('id')->where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->first();
+        $pattern_class = Patternclass::select('id')->where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->first();
 
-        if ($patternClass) {
-            $validatedData['patternclass_id'] = $patternClass->id;
+        if ($pattern_class) {
+            $validatedData['patternclass_id'] = $pattern_class->id;
             $validatedData['subject_id'] = $this->courseclass_subject_id;
 
             // Check the current authentication guard
@@ -190,14 +147,14 @@ class AllHodAppointSubject extends Component
                 $hodappointsubject = Hodappointsubject::create($validatedData);
 
                 if ($hodappointsubject) {
-                    $this->dispatch('alert', type: 'success', message: 'Hod Appointed Successfully !!');
+                    $this->dispatch('alert', type: 'success', message: 'HOD Appointed Successfully !!');
                     $this->setmode('all');
                 } else {
                     $this->dispatch('alert', type: 'error', message: 'Something went wrong!!');
                 }
             } else {
                 // User is not authenticated or doesn't match any guard
-                $this->dispatch('alert', type: 'error', message: 'You are not allowed to add Hod. Please log in as a user.');
+                $this->dispatch('alert', type: 'error', message: 'You are not allowed to add HOD. Please log in as a user.');
                 $this->setmode('all');
             }
         } else {
@@ -228,10 +185,16 @@ class AllHodAppointSubject extends Component
 
         foreach ($hodappointsubjects as $hodappointsubject) {
             $pattern_class_id = $hodappointsubject->patternclass_id;
+            $courseclass_subject_id = $hodappointsubject->subject_id;
 
             $pattern_class = Patternclass::find($pattern_class_id);
+            $courseclass_subject = Subject::find($courseclass_subject_id);
 
-            if ($pattern_class) {
+            if ($pattern_class && $courseclass_subject) {
+                if ($pattern_class->courseclass && $pattern_class->courseclass->course && $courseclass_subject) {
+                    $this->courseclass_subject_id = $courseclass_subject->id;
+                }
+
                 if ($pattern_class->courseclass && $pattern_class->courseclass->course) {
                     $this->course_id = $pattern_class->courseclass->course->id;
                 }
@@ -252,24 +215,43 @@ class AllHodAppointSubject extends Component
         $validatedData = $this->validate();
 
         if ($hodappointsubject) {
-            // Check the current authentication guard
-            $guard = auth()->guard();
+            // Check if a record already exists for the updated subject and pattern class with an active status
+            $existing_record = Hodappointsubject::where('patternclass_id', $this->course_class_id)->where('subject_id', $this->courseclass_subject_id)->where('status', 1)->where('id', '!=', $hodappointsubject->id)->latest('updated_at')->first();
 
-            // Set appointby_id based on the guard
-            if ($guard->name == 'user') {
-                $validatedData['appointby_id'] = $guard->id();
-                $hodappointsubject->update($validatedData);
-                $this->dispatch('alert', type: 'success', message: 'Appointed Hod Updated Successfully');
+            if ($existing_record) {
+                $this->dispatch('alert', type: 'error', message: 'Hod is already assigned for that subject');
+                return;
+            }
+
+            // Find the pattern class
+            $pattern_class = Patternclass::select('id')->where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->first();
+
+            if ($pattern_class) {
+                $validatedData['patternclass_id'] = $pattern_class->id;
+                $validatedData['subject_id'] = $this->courseclass_subject_id;
+
+                // Check the current authentication guard
+                $guard = auth()->guard();
+
+                // Set appointby_id based on the guard
+                if ($guard->name == 'user') {
+                    $validatedData['appointby_id'] = $guard->id();
+                    $hodappointsubject->update($validatedData);
+                    $this->dispatch('alert', type: 'success', message: 'Appointed HOD Updated Successfully');
+                } else {
+                    // User is not authenticated or doesn't match any guard
+                    $this->dispatch('alert', type: 'error', message: 'You are not allowed to update Appointed HOD. Please log in as a user.');
+                }
             } else {
-                // User is not authenticated or doesn't match any guard
-                $this->dispatch('alert', type: 'error', message: 'You are not allowed to update Appointed Hod. Please log in as a user.');
+                $this->dispatch('alert', type: 'error', message: 'Pattern Class Not Found!!');
             }
         } else {
-            $this->dispatch('alert', type: 'error', message: 'Error To Update Appointed Hod');
+            $this->dispatch('alert', type: 'error', message: 'Error To Update Appointed HOD');
         }
 
         $this->setmode('all');
     }
+
 
     public function sort_column($column)
     {
@@ -311,7 +293,7 @@ class AllHodAppointSubject extends Component
         }
         $hodappointsubject->update();
 
-        $this->dispatch('alert',type:'success',message:'Appointed Hod Status Updated Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Appointed HOD Status Updated Successfully !!');
     }
 
     public function delete()
@@ -320,7 +302,7 @@ class AllHodAppointSubject extends Component
         if($hodappointsubject){
             $hodappointsubject->forceDelete();
             $this->delete_id = null;
-            $this->dispatch('alert',type:'success',message:'Appointed Hod Deleted Successfully !!');
+            $this->dispatch('alert',type:'success',message:'Appointed HOD Deleted Successfully !!');
         } else {
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
         }
@@ -332,9 +314,9 @@ class AllHodAppointSubject extends Component
         $hodappointsubject = Hodappointsubject::withTrashed()->findOrFail($id);
         if ($hodappointsubject) {
             $hodappointsubject->delete();
-            $this->dispatch('alert',type:'success',message:'Appointed Hod Soft Deleted Successfully');
+            $this->dispatch('alert',type:'success',message:'Appointed HOD Soft Deleted Successfully');
             } else {
-                $this->dispatch('alert',type:'error',message:'Appointed Hod Not Found !');
+                $this->dispatch('alert',type:'error',message:'Appointed HOD Not Found !');
             }
         $this->setmode('all');
     }
@@ -346,9 +328,9 @@ class AllHodAppointSubject extends Component
         if ($hodappointsubject) {
             $hodappointsubject->restore();
             $this->delete_id = null;
-            $this->dispatch('alert',type:'success',message:'Appointed Hod Restored Successfully');
+            $this->dispatch('alert',type:'success',message:'Appointed HOD Restored Successfully');
         } else {
-            $this->dispatch('alert',type:'error',message:'Appointed Hod Not Found');
+            $this->dispatch('alert',type:'error',message:'Appointed HOD Not Found');
         }
         $this->setmode('all');
     }
@@ -370,17 +352,27 @@ class AllHodAppointSubject extends Component
 
     public function render()
     {
-        if($this->mode !== 'all' ){
-            $this->faculties=Faculty::select('id','faculty_name')->where('active',1)->get();
-            $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
-            $this->courses=Course::select('id','course_name')->get();
-            $course_classes=Courseclass::where('course_id', $this->course_id)->pluck('id')->toArray();
-            $this->pattern_classes=Patternclass::select('id','class_id','pattern_id')->whereIn('class_id', $course_classes)->where('pattern_id', $this->pattern_id)->get();
-            $this->courseclass_subjects=Subject::select('id', 'subject_name',)->where('patternclass_id',$this->course_class_id)->get();
+        if ($this->mode !== 'all') {
+            $this->faculties = Faculty::select('id', 'faculty_name')->where('active', 1)->get();
+            $this->patterns = Pattern::select('id', 'pattern_name')->where('status', 1)->get();
+            $this->courses = Course::select('id', 'course_name')->get();
+
+            $course_classes = Courseclass::where('course_id', $this->course_id)->pluck('id')->toArray();
+
+            $this->pattern_classes = Patternclass::select('id', 'class_id', 'pattern_id')->whereIn('class_id', $course_classes)->where('pattern_id', $this->pattern_id)->get();
+
+            // If in edit mode, include all subjects associated with the current course class
+            if ($this->mode === 'edit') {
+                $this->courseclass_subjects = Subject::select('id', 'subject_name')->where('patternclass_id', $this->course_class_id)->get();
+            } else {
+                // Exclude subjects that are already assigned and active in Hodappointsubject table
+                $existing_subject_ids = Hodappointsubject::where('patternclass_id', $this->course_class_id)->where('status', 1)->pluck('subject_id')->toArray(); // Only consider active records
+
+                $this->courseclass_subjects = Subject::select('id', 'subject_name')->where('patternclass_id', $this->course_class_id)->whereNotIn('id', $existing_subject_ids)->get();
+            }
         }
 
-        $hodappointsubjects = Hodappointsubject::with('faculty','subject', 'patternclass',)
-        ->when($this->search, function($query, $search){
+        $hodappointsubjects = Hodappointsubject::with('faculty','subject', 'patternclass',)->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.user.hodappointsubject.all-hodappointsubject',compact('hodappointsubjects'))->extends('layouts.user')->section('user');
