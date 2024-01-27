@@ -55,9 +55,9 @@
 
                                     <x-table.td>
                                         @if($pattern->status==1)
-                                        <x-table.inactive wire:click="Status({{ $pattern->id }})" />
-                                        @else
                                         <x-table.active wire:click="Status({{ $pattern->id }})" />
+                                        @else
+                                        <x-table.inactive wire:click="Status({{ $pattern->id }})" />
                                         @endif
                                     </x-table.td>
 

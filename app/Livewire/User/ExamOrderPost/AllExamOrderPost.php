@@ -95,7 +95,7 @@ class AllExamOrderPost extends Component
 
     public function export()
     {
-        $filename="Course-".now();
+        $filename="Exam-Order-Post-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new ExportExamOrderPost($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
@@ -118,9 +118,7 @@ class AllExamOrderPost extends Component
             'post_name' => $this->post_name,
             'start_date'=>$this->start_date,
             'end_date'=>$this->end_date,
-            'status'=>$this->status,
-        
-           
+            'status'=>$this->status,          
         ]);
         $this->resetinput();
         $this->setmode('all');

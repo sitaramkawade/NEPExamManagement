@@ -36,6 +36,7 @@ use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
 use App\Livewire\User\ClassYear\AllClassYear;
+use App\Livewire\User\ExamPanel\AllExamPanel;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
@@ -176,6 +177,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //AllvExam Order Post
   Route::get('/examorderpost', AllExamOrderPost::class)->name('all_exam_order_post');
+
+  //All Exam Panel
+  Route::get('/exampanel', AllExamPanel::class)->name('all_exam_panel');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');

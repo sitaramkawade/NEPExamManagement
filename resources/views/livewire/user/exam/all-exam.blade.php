@@ -46,9 +46,9 @@
                                     <x-table.td> {{ $exam->exam_sessions==0?"Session 1":"Session 2";}} </x-table.td>
                                     <x-table.td>
                                         @if($exam->status==1)
-                                        <x-table.inactive wire:click="Status({{ $exam->id }})" />
-                                        @else
                                         <x-table.active wire:click="Status({{ $exam->id }})" />
+                                        @else
+                                        <x-table.inactive wire:click="Status({{ $exam->id }})" />
                                         @endif
                                     </x-table.td>
                                     <x-table.td>

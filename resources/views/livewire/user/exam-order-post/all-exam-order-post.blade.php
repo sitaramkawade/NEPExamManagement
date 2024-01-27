@@ -50,9 +50,9 @@
                                     <x-table.td>{{ isset($post->end_date)?date('d-m-Y', strtotime($post->end_date)):''; }} </x-table.td>
                                     <x-table.td>
                                         @if($post->status==1)
-                                        <x-table.inactive wire:click="Status({{ $post->id }})" />
-                                        @else
                                         <x-table.active wire:click="Status({{ $post->id }})" />
+                                        @else
+                                        <x-table.inactive wire:click="Status({{ $post->id }})" />
                                         @endif
                                     </x-table.td>
                                     <x-table.td>

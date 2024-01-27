@@ -49,9 +49,9 @@
                                     <x-table.td> {{ $depttype->description}} </x-table.td>
                                     <x-table.td>
                                         @if($depttype->status==1)
-                                        <x-table.inactive wire:click="Status({{ $depttype->id }})" />
-                                        @else
                                         <x-table.active wire:click="Status({{ $depttype->id }})" />
+                                        @else
+                                        <x-table.inactive wire:click="Status({{ $depttype->id }})" />
                                         @endif
 
                                     </x-table.td>

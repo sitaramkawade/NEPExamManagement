@@ -51,9 +51,9 @@
 
                                 <x-table.td>
                                     @if($educationalCourse->is_active==1)
-                                        <x-table.inactive wire:click="Status({{ $educationalCourse->id }})" />
-                                        @else
                                         <x-table.active wire:click="Status({{ $educationalCourse->id }})" />
+                                        @else
+                                        <x-table.inactive wire:click="Status({{ $educationalCourse->id }})" />
                                         @endif
                                 </x-table.td>
                                 <x-table.td>
