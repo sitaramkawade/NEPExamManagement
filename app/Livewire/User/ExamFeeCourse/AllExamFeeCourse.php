@@ -28,11 +28,11 @@ class AllExamFeeCourse extends Component
     public $ext;
 
     public $fees=[];
+    public $active_status=[];
     public $sem;
     public $patternclass_id;
     public $examfees_id;
     public $approve_status;
-    public $active_status=[];
     public $semesters;
     public $patternclasses;
     public $examfees;
@@ -75,7 +75,6 @@ class AllExamFeeCourse extends Component
                 $messages["fees.".$fee->id.".digits_between"] = "The ".$fee->fee_type." Fee must be between :min and :max digits.";
 
             }   
-
         }    
 
         return $messages;
@@ -179,7 +178,6 @@ class AllExamFeeCourse extends Component
     {
         $this->validate();
 
-        
         foreach ($this->fees as $key => $fee) {
             if (isset($key) && $fee !== "" && $fee !== null)
             {   
