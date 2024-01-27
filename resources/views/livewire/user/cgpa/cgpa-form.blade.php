@@ -13,7 +13,7 @@
                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="min_gp" :value="__('Min Grade Point')" />
                         <x-required />
-                        <x-text-input id="min_gp" type="text" wire:model="min_gp" name="min_gp" class="w-full mt-1" :value="old('min_gp',$min_gp)" required autofocus autocomplete="min_gp" />
+                        <x-text-input id="min_gp" type="number" step="any" wire:model="min_gp" name="min_gp" class="w-full mt-1" :value="old('min_gp',$min_gp)" required autofocus autocomplete="min_gp" />
                         <x-input-error :messages="$errors->get('min_gp')" class="mt-2" />
                     </div>
                 </div>

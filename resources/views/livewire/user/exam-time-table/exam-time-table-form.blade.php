@@ -6,7 +6,7 @@
         <div class="px-5 py-2  text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_id" :value="__('Select Subject')" />
             <x-input-select id="subject_id" wire:model="subject_id" name="subject_id" class="text-center w-full mt-1" :value="old('subject_id', $subject_id)" required autocomplete="subject_id">
-                <x-select-option class="text-start" hidden> -- Select Exam -- </x-select-option>
+                <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>
                 @forelse ($subjects as $subject)
                 <x-select-option wire:key="{{ $subject->id }}" value="{{ $subject->id }}" class="text-start"> {{ $subject->subject_name }} </x-select-option>
                 @empty
@@ -19,9 +19,8 @@
             <x-input-label for="exam_patternclasses_id" :value="__('Select Exam Pattern Class')" />
             <x-input-select id="exam_patternclasses_id" wire:model="exam_patternclasses_id" name="exam_patternclasses_id" class="text-center w-full mt-1" :value="old('exam_patternclasses_id', $exam_patternclasses_id)" required autocomplete="exam_patternclasses_id">
                 <x-select-option class="text-start" hidden> -- Select Exam Pattern Classes -- </x-select-option>
-                @forelse ($exam_pattern_classes as $exam_pattern_class)
-                <x-select-option wire:key="{{ $exam_pattern_class->id }}" value="{{ $exam_pattern_class->id }}" class="text-start"> {{ $exam_pattern_class->pattern->pattern_name ?? '-' }} {{ $exam_pattern_class->courseclass->classyear->classyear_name ?? '-' }} {{ $exam_pattern_class->courseclass->course->course_name ?? '-' }} </x-select-option>
-
+                @forelse ($exampatternclasses as $exam_pattern_class)
+                <x-select-option wire:key="{{ $exam_pattern_class->id }}" value="{{ $exam_pattern_class->id }}" class="text-start"> {{ $exam_pattern_class->exam->exam_name ?? '-' }} {{ $exam_pattern_class->patternclass->pattern->pattern_name ?? '-' }} {{ $exam_pattern_class->patternclass->courseclass->classyear->classyear_name ?? '-' }} {{ $exam_pattern_class->patternclass->courseclass->course->course_name ?? '-' }} </x-select-option>
                 @empty
                 <x-select-option class="text-start">Exam Pattern Classes Not Found</x-select-option>
                 @endforelse

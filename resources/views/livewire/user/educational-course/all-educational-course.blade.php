@@ -19,14 +19,10 @@
     </x-form>
     @elseif($mode=='all')
     <div>
-<<<<<<< HEAD
-      
-=======
         <x-breadcrumb.breadcrumb>
             <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
             <x-breadcrumb.link name="Educational Course's"/>
         </x-breadcrumb.link>
->>>>>>> Merge
         <x-card-header heading=" All Educational Course's">
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
@@ -55,10 +51,10 @@
 
                                 <x-table.td>
                                     @if($educationalCourse->is_active==1)
-                                    <x-status type="success">Active</x-status>
-                                    @else
-                                    <x-status type="danger">Inactive</x-status>
-                                    @endif
+                                        <x-table.inactive wire:click="Status({{ $educationalCourse->id }})" />
+                                        @else
+                                        <x-table.active wire:click="Status({{ $educationalCourse->id }})" />
+                                        @endif
                                 </x-table.td>
                                 <x-table.td>
                                     @if ($educationalCourse->deleted_at)
@@ -66,11 +62,6 @@
                                     <x-table.restore wire:click="restore({{ $educationalCourse->id }})" />
                                     @else
                                     <x-table.edit wire:click="edit({{ $educationalCourse->id }})" />
-                                        @if($educationalCourse->is_active==1)
-                                        <x-table.inactive wire:click="Status({{ $educationalCourse->id }})" />
-                                        @else
-                                        <x-table.active wire:click="Status({{ $educationalCourse->id }})" />
-                                        @endif
                                     <x-table.archive wire:click="delete({{ $educationalCourse->id }})" />
                                     @endif
                                 </x-table.td>

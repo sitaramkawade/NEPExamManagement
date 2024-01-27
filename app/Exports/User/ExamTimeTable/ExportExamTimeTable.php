@@ -38,10 +38,10 @@ class ExportExamTimeTable implements FromCollection, WithHeadings, WithMapping
     {
         return [
             $row->id,
-            isset($row->subject->subject_id)?$row->subject->subject_id:'',
-            isset($row->timetableslot->timeslot_id)?$row->timetableslot->timeslot_id:'',
-            (isset($row->patternclass->pattern->pattern_name) ? $row->patternclass->pattern->pattern_name : '-').' '.(isset($row->patternclass->courseclass->classyear->classyear_name) ? $row->patternclass->courseclass->classyear->classyear_name : '-').''.(isset($row->patternclass->courseclass->course->course_name) ? $row->patternclass->courseclass->course->course_name : '-'),
+            isset($row->subject->subject_name)?$row->subject->subject_name:'',
+            (isset($row->exampatternclass->exam->exam_name) ? $row->exampatternclass->exam->exam_name : '-').' '. (isset($row->exampatternclass->patternclass->pattern->pattern_name) ? $row->exampatternclass->patternclass->pattern->pattern_name : '-').' '.(isset($row->exampatternclass->patternclass->courseclass->classyear->classyear_name) ? $row->exampatternclass->patternclass->courseclass->classyear->classyear_name : '-').''.(isset($row->exampatternclass->patternclass->courseclass->course->course_name) ? $row->exampatternclass->patternclass->courseclass->course->course_name : '-'),
             isset($row->examdate)?date('Y-m-d', strtotime($row->examdate)):'',
+            isset($row->timetableslot->timeslot)?$row->timetableslot->timeslot:'',
             $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }
