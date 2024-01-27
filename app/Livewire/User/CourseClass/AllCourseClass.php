@@ -207,13 +207,13 @@ class AllCourseClass extends Component
 
         if($this->mode!=='all')
         {
-            $this->next_classess=Courseclass::where('course_id',$this->course_id)->get();
+            $this->next_classess=Courseclass::select('classyear_id','course_id','nextyearclass_id','id')->with(['classyear:classyear_name,id','courseclass.classyear:classyear_name,id', 'courseclass.course:course_name,id','courseclass:course_id,classyear_id,nextyearclass_id,id'])->where('course_id',$this->course_id)->get();
             $this->class_years=Classyear::select('classyear_name','id')->where('status',1)->get();
             $this->courses =Course::select('course_name','id')->get();
             $this->colleges =College::select('college_name','id')->where('status',1)->get();
         }
 
-       $course_classes=Courseclass::with(['classyear', 'course', 'courseclass.classyear', 'courseclass.course', 'college'])->select('id','course_id','classyear_id','nextyearclass_id', 'college_id','deleted_at')->when($this->search, function ($query, $search) {
+       $course_classes=Courseclass::with(['classyear:classyear_name,id', 'course:course_name,id', 'courseclass.classyear:classyear_name,id', 'courseclass.course:course_name,id', 'college:college_name,id'])->select('id','course_id','classyear_id','nextyearclass_id', 'college_id','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

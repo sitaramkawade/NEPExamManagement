@@ -24,16 +24,16 @@ class AllExamBacklogFeeCourse extends Component
     public $mode='all';
     public $perPage=10;
     public $search='';
-    public $sortColumn="backlogfee";
+    public $sortColumn="patternclass_id";
     public $sortColumnBy="ASC";
     public $ext;
 
-    public $backlogfee;
+    public $active_status=[];
+    public $backlogfees=[];
     public $sem;
     public $patternclass_id;
     public $examfees_id;
     public $approve_status;
-    public $active_status;
     public $semesters;
     public $patternclasses;
     public $examfees;
@@ -41,31 +41,45 @@ class AllExamBacklogFeeCourse extends Component
     public $edit_id;
 
 
-    public function rules()
+   public function rules()
     {
-        return [
-            'backlogfee' => ['required', 'integer','digits_between:1,11'],
+        $rules = [
             'sem' => ['required', 'integer','digits_between:1,11'],
             'patternclass_id' => ['required',Rule::exists('pattern_classes', 'id')],
-            'examfees_id' => ['required',Rule::exists('examfeemasters', 'id')],
         ];
+
+        if(count($this->examfees) >0)
+        {   
+            foreach ($this->examfees as $fee) {
+                $rules["backlogfees.".$fee->id] = ['nullable','integer', 'digits_between:1,11'];
+
+            }
+        }
+
+        return $rules;
     }
 
     public function messages()
     {   
         $messages = [
-            'backlogfee.required' => 'The Backlog Fee field is required.',
-            'backlogfee.integer' => 'The Backlog  Fee must be an integer.',
-            'backlogfee.digits_between' => 'The Backlog  Fee must be between 1 and 11 digits.',
             'sem.required' => 'The SEM field is required.',
             'sem.integer' => 'The SEM must be an integer.',
             'sem.digits_between' => 'The SEM must be between 1 and 11 digits.',
             'patternclass_id.required' => 'The Pattern Class field is required.',
             'patternclass_id.exists' => 'The selected Pattern Class is invalid.',
-            'examfees_id.required' => 'The Exam Fee field is required.',
-            'examfees_id.exists' => 'The selected Exam Fee is invalid.',
         ];
-        
+
+        if(count($this->examfees) >0)
+        {
+            foreach ($this->examfees as $fee) {
+                $messages["backlogfees.".$fee->id.".required"] = "The ".$fee->fee_type." Backlog Fee field is required.";
+                $messages["backlogfees.".$fee->id.".integer"] = "The ".$fee->fee_type." BacklogFee must be an integer.";
+                $messages["backlogfees.".$fee->id.".digits_between"] = "The ".$fee->fee_type." Backlog Fee must be between :min and :max digits.";
+
+            }   
+
+        }    
+
         return $messages;
     }
 
@@ -77,11 +91,11 @@ class AllExamBacklogFeeCourse extends Component
     public function resetinput()
     {
         $this->sem=null;
-        $this->backlogfee=null;
+        $this->backlogfees=[];
         $this->examfees_id=null;
         $this->patternclass_id=null;
         $this->approve_status=null;
-        $this->active_status=null;
+        $this->active_status=[];
     }
 
     public function sort_column($column)
@@ -128,15 +142,20 @@ class AllExamBacklogFeeCourse extends Component
     public function add()
     {   
         $this->validate();
+        foreach ($this->backlogfees as $key => $fee) {
+            if (isset($key) && $fee !== "" && $fee !== null)
+            {
+                $activeStatus = isset($this->active_status[$key]) ? ($this->active_status[$key] == true ? 0 : 1) : 1;
+                Exambacklogfeecourse::create([
+                    'examfees_id' => $key,
+                    'backlogfee' => $fee==""?0:$fee,
+                    'sem' => $this->sem,
+                    'patternclass_id' => $this->patternclass_id,
+                    'active_status' =>   $activeStatus,
+                ]);
+            }
+        }
 
-       $exambacklogfeecourse =  new Exambacklogfeecourse;
-       $exambacklogfeecourse->create([
-            'backlogfee' => $this->backlogfee,
-            'sem' => $this->sem,
-            'examfees_id' => $this->examfees_id,
-            'patternclass_id' => $this->patternclass_id,
-            'active_status' => $this->active_status==true?0:1,
-        ]);
         $this->resetinput();
         $this->setmode('all');
         $this->dispatch('alert',type:'success',message:'Exam Fee Created Successfully !!');
@@ -146,12 +165,17 @@ class AllExamBacklogFeeCourse extends Component
     public function edit(Exambacklogfeecourse $exambacklogfeecourse)
     {   
         $this->resetinput();
+
         $this->edit_id= $exambacklogfeecourse->id;
-        $this->backlogfee=$exambacklogfeecourse->backlogfee;
         $this->sem=$exambacklogfeecourse->sem;
-        $this->examfees_id=$exambacklogfeecourse->examfees_id;
         $this->patternclass_id=$exambacklogfeecourse->patternclass_id;
-        $this->active_status=$exambacklogfeecourse->active_status==1?0:true;
+        
+        $exambacklogfeecourses=Exambacklogfeecourse::where('patternclass_id',$exambacklogfeecourse->patternclass_id)->where('sem',$exambacklogfeecourse->sem)->get();
+        foreach($exambacklogfeecourses as $fee)
+        {   
+            $this->backlogfees[$fee->examfees_id]=$fee->backlogfee;
+            $this->active_status[$fee->examfees_id]=$fee->active_status==1?false:true;
+        }
   
         $this->setmode('edit');
     }
@@ -159,14 +183,44 @@ class AllExamBacklogFeeCourse extends Component
     public function update(Exambacklogfeecourse $exambacklogfeecourse)
     {
         $this->validate();
+        foreach ($this->backlogfees as $key => $fee) {
+            if (isset($key) && $fee !== "" && $fee !== null)
+            {   
+                $modify = Exambacklogfeecourse::where('sem',$this->sem)->where('patternclass_id',$this->patternclass_id)->where('examfees_id', $key)->latest()->first();
 
-       $exambacklogfeecourse->update([
-            'backlogfee' => $this->backlogfee,
-            'sem' => $this->sem,
-            'examfees_id' => $this->examfees_id,
-            'patternclass_id' => $this->patternclass_id,
-            'active_status' => $this->active_status == true ? 0 : 1,
-        ]);
+                if (isset($modify) && $modify->backlogfee != $fee) 
+                {
+                    Exambacklogfeecourse::create([
+                        'examfees_id' => $key,
+                        'backlogfee' => $fee ?? 0,
+                        'sem' => $this->sem,
+                        'patternclass_id' => $this->patternclass_id,
+                        'active_status' => isset($this->active_status[$key]) ? ($this->active_status[$key] == true ? 0 : 1) : 1,
+                    ]);
+                        
+                    $modify->active_status=0;
+                    $modify->update();
+                    $modify=null;
+                } else 
+                {
+                    Exambacklogfeecourse::updateOrCreate(
+                        [
+                            'examfees_id' => $key,
+                            'sem' => $exambacklogfeecourse->sem,
+                            'patternclass_id' => $exambacklogfeecourse->patternclass_id,
+                        ],
+                        [
+                            'examfees_id' => $key,
+                            'backlogfee' =>$fee ?? 0,
+                            'sem' => $this->sem,
+                            'patternclass_id' => $this->patternclass_id,
+                            'active_status' =>  isset($this->active_status[$key]) ? ($this->active_status[$key] == true ? 0 : 1) : 1,
+                        ]
+                    );
+                }
+            }
+        }
+        $activeStatus=null;
        
         $this->resetinput();
         $this->setmode('all');
@@ -234,16 +288,26 @@ class AllExamBacklogFeeCourse extends Component
 
     public function render()
     {   
-
         if($this->mode!=='all')
         {
-            $this->semesters=Semester::select('id','semester')->where('status',1)->get();
-            $this->patternclasses=Patternclass::select('id','class_id','pattern_id')->where('status',1)->get();
-            $this->examfees=Examfeemaster::select('id','fee_type')->where('active_status',1)->get();
+            $this->semesters = Semester::select('id', 'semester')->where('status', 1)->get();
+            $this->patternclasses = Patternclass::select('id', 'class_id', 'pattern_id')->with(['pattern:pattern_name,id','courseclass.classyear:classyear_name,id','courseclass.course:course_name,id'])->where('status', 1)->get();
+
+            if($this->mode=='add')
+            {
+                $examfeeids = Exambacklogfeecourse::select('examfees_id')->where('patternclass_id', $this->patternclass_id)->where('sem', $this->sem)->get();
+            }else
+            {
+                $examfeeids=null; 
+            }
+
+            $this->examfees = Examfeemaster::select('id', 'fee_type')->when($examfeeids, function ($query) use ($examfeeids) {
+                    return $query->whereNotIn('id', $examfeeids);
+            })->where('active_status', 1)->get();
         }
         
         $exambacklogfeecourses=Exambacklogfeecourse::select('id','backlogfee','sem','approve_status','patternclass_id','examfees_id','active_status','deleted_at')
-        ->with(['patternclass.pattern','examfee','patternclass.courseclass.classyear','patternclass.courseclass.course'])
+        ->with(['patternclass.pattern:pattern_name,id','examfee:fee_type,id','patternclass.courseclass.classyear:classyear_name,id','patternclass.courseclass.course:course_name,id'])
         ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
