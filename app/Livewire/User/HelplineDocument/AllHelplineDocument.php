@@ -200,9 +200,12 @@ class AllHelplineDocument extends Component
 
     public function render()
     {   
-        $this->student_helpline_queries=Studenthelplinequery::where('is_active',1)->get();
+        if($this->mode!=='all')
+        {
+            $this->student_helpline_queries=Studenthelplinequery::select('query_name','id')->where('is_active',1)->get();
+        }
 
-        $student_helpline_documents=Studenthelplinedocument::select('id','student_helpline_query_id','document_name','deleted_at','is_active')->with('studenthelplinequery')->when($this->search, function ($query, $search) {
+        $student_helpline_documents=Studenthelplinedocument::select('id','student_helpline_query_id','document_name','deleted_at','is_active')->with('studenthelplinequery:query_name,id')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

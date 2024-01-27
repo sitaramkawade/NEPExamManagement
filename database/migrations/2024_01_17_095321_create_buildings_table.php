@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('building_name',50);
             $table->string('Priority')->default(null);
             $table->tinyInteger('status')->default('0');// 0 :not active 1:active
-           $table->SoftDeletes();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

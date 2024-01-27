@@ -242,7 +242,7 @@ class AllCourse extends Component
 
     public function render()
     {   
-        $courses=Course::with('programme','college')->select( 'id','course_name','course_code','fullname','shortname','special_subject','course_type','course_category','college_id','programme_id','deleted_at')->when($this->search, function ($query, $search) {
+        $courses=Course::with('programme:programme_name,id','college:college_name,id')->select( 'id','course_name','course_code','fullname','shortname','special_subject','course_type','course_category','college_id','programme_id','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         

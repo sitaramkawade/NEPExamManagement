@@ -60,11 +60,11 @@
                                     {{ $grade->description }}
                                 </x-table.td>
                                 <x-table.td>
-                                    @if($grade->is_active==1)
-                                    <x-status type="success">Active</x-status>
-                                    @else
-                                    <x-status type="danger">Inactive</x-status>
-                                    @endif
+                                     @if($grade->is_active==1)
+                                        <x-table.active wire:click="Status({{ $grade->id }})" />
+                                        @else
+                                        <x-table.inactive wire:click="Status({{ $grade->id }})" />
+                                        @endif
                                 </x-table.td>
                                 <x-table.td>
                                     @if ($grade->deleted_at)
@@ -72,11 +72,6 @@
                                     <x-table.restore wire:click="restore({{ $grade->id }})" />
                                     @else
                                     <x-table.edit wire:click="edit({{ $grade->id }})" />
-                                    @if($grade->is_active==1)
-                                    <x-table.inactive wire:click="Status({{ $grade->id }})" />
-                                    @else
-                                    <x-table.active wire:click="Status({{ $grade->id }})" />
-                                    @endif
                                     <x-table.archive wire:click="delete({{ $grade->id }})" />
 
                                     @endif

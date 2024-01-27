@@ -2,27 +2,10 @@
   <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
     Exam Backlog Fee Course
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2">
-    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-      <x-input-label for="backlogfee" :value="__('Backlog Fee')" />
-      <x-text-input id="backlogfee" type="number" wire:model="backlogfee" placeholder="{{ __('Enter Backlog Fee') }}" name="backlogfee" class="w-full mt-1" :value="old('backlogfee', $backlogfee)" autocomplete="backlogfee" />
-      <x-input-error :messages="$errors->get('backlogfee')" class="mt-1" />
-    </div>
-    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-      <x-input-label for="sem" :value="__('Select Semester')" />
-      <x-input-select id="sem" wire:model="sem" name="sem" class="text-center w-full mt-1" :value="old('sem', $sem)" required autocomplete="sem">
-        <x-select-option class="text-start" hidden> -- Select Semester -- </x-select-option>
-        @forelse ($semesters as $semester)
-          <x-select-option wire:key="{{ $semester->id }}" value="{{ $semester->semester }}" class="text-start"> {{ $semester->semester ?? '-' }} </x-select-option>
-        @empty
-          <x-select-option class="text-start"> Semesters Not Found</x-select-option>
-        @endforelse
-      </x-input-select>
-      <x-input-error :messages="$errors->get('sem')" class="mt-1" />
-    </div>
-    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+  <div class="grid grid-cols-1 md:grid-cols-3">
+    <div class="px-5 col-span-2 py-2 text-sm text-gray-600 dark:text-gray-400">
       <x-input-label for="patternclass_id" :value="__('Select Pattern Class')" />
-      <x-input-select id="patternclass_id" wire:model="patternclass_id" name="patternclass_id" class="text-center w-full mt-1" :value="old('patternclass_id', $patternclass_id)" required autocomplete="patternclass_id">
+      <x-input-select id="patternclass_id" wire:model.live="patternclass_id" name="patternclass_id" class="text-center w-full mt-1" :value="old('patternclass_id', $patternclass_id)" required autocomplete="patternclass_id">
         <x-select-option class="text-start" hidden> -- Select Pattern Classes -- </x-select-option>
         @forelse ($patternclasses as $pattern_calss)
           <x-select-option wire:key="{{ $pattern_calss->id }}" value="{{ $pattern_calss->id }}" class="text-start"> {{ $pattern_calss->pattern->pattern_name ?? '-' }} {{ $pattern_calss->courseclass->classyear->classyear_name ?? '-' }} {{ $pattern_calss->courseclass->course->course_name ?? '-' }} </x-select-option>
@@ -32,24 +15,40 @@
       </x-input-select>
       <x-input-error :messages="$errors->get('patternclass_id')" class="mt-1" />
     </div>
-    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-      <x-input-label for="examfees_id" :value="__('Select Exam Fee Type')" />
-      <x-input-select id="examfees_id" wire:model="examfees_id" name="examfees_id" class="text-center w-full mt-1" :value="old('examfees_id', $examfees_id)" required autocomplete="examfees_id">
-        <x-select-option class="text-start" hidden> -- Select Exam Fee Type -- </x-select-option>
-        @forelse ($examfees as $exam_fee)
-          <x-select-option wire:key="{{ $exam_fee->id }}" value="{{ $exam_fee->id }}" class="text-start"> {{ $exam_fee->fee_type ?? '-' }} </x-select-option>
+    <div class="px-5  py-2 text-sm text-gray-600 dark:text-gray-400">
+      <x-input-label for="sem" :value="__('Select Semester')" />
+      <x-input-select id="sem" wire:model.live="sem" name="sem" class="text-center w-full mt-1" :value="old('sem', $sem)" required autocomplete="sem">
+        <x-select-option class="text-start" hidden> -- Select Semester -- </x-select-option>
+        @forelse ($semesters as $semester)
+          <x-select-option wire:key="{{ $semester->id }}" value="{{ $semester->semester }}" class="text-start"> {{ $semester->semester ?? '-' }} </x-select-option>
         @empty
-          <x-select-option class="text-start"> Exam Fee Types Not Found</x-select-option>
+          <x-select-option class="text-start"> Semesters Not Found</x-select-option>
         @endforelse
       </x-input-select>
-      <x-input-error :messages="$errors->get('examfees_id')" class="mt-1" />
-    </div>
-    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-      <x-input-label for="active_status" :value="__('Status')" /> <br>
-      <x-input-checkbox id="active_status" wire:model="active_status" name="active_status" :value="old('active_status', $active_status)" />
-      <x-input-label for="active_status" class="inline mb-1 mx-2" :value="__('Make In Active')" />
-      <x-input-error :messages="$errors->get('active_status')" class="mt-2" />
+      <x-input-error :messages="$errors->get('sem')" class="mt-1" />
     </div>
   </div>
+  @forelse ($examfees as $exam_fee)
+    <div class="grid grid-cols-1 md:grid-cols-6">
+      <div class="px-5 col-span-2 py-2 text-sm text-gray-600 dark:text-gray-400">
+        <x-input-show :value="$exam_fee->fee_type" />
+      </div>
+      <div class="px-5 col-span-2 py-2 text-sm text-gray-600 dark:text-gray-400">
+        <x-text-input id="backlogfees.{{ $exam_fee->id }}" type="number" name="backlogfees.{{ $exam_fee->id }}"  wire:model="backlogfees.{{ $exam_fee->id }}" placeholder="{{ __('Enter '.$exam_fee->fee_type.' Fee') }}"  class="w-full mt-1" :value="old('backlogfees.{{ $exam_fee->id }}')"/>
+          @error("backlogfees.{$exam_fee->id}")
+            <div class="text-sm text-red-600 dark:text-red-400 space-y-1">{{ $message }}</div>
+          @enderror
+      </div>
+      <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+        <x-input-checkbox id="active_status.{{ $exam_fee->id }}" wire:model="active_status.{{ $exam_fee->id }}" name="active_status.{{ $exam_fee->id }}" :value="old('active_status.{{ $exam_fee->id }}')" />
+        <x-input-label for="active_status.{{ $exam_fee->id }}" class="inline mb-1 mx-2" :value="__('Make In Active')" />
+          @error("active_status.{$exam_fee->id}")
+          <div class="text-sm text-red-600 dark:text-red-400 space-y-1">{{ $message }}</div>
+        @enderror
+      </div>
+    </div>
+  @empty
+  <span class="flex items-center justify-center text-center mx-auto">Exam course Backlog Fees not found or all Backlog Fees are assigned to the current pattern class and semester.</span>
+  @endforelse
   <x-form-btn wire:loading.attr="disabled">Submit</x-form-btn>
 </div>

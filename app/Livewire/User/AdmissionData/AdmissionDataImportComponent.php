@@ -26,6 +26,10 @@ class AdmissionDataImportComponent extends Component
     {
         $this->validate([
             'importfile'=>['required','file','mimes:csv,xlsx']
+        ],[
+            'importfile.required'=>"Please Select csv, xlsx File To Import",
+            'importfile.file'=>"Please Select Valid File",
+            'importfile.mimes'=>"Only csv, xlsx File Are Allowed",
         ]);
         $filters = [];
 

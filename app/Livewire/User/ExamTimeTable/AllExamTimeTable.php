@@ -24,9 +24,12 @@ class AllExamTimeTable extends Component
     public $mode='all';
     public $subject_id;
     public $exam_patternclasses_id;
+    public $exam_pattern_classes;
+    public $exampatternclasses;
     public $examdate;
     public $timeslot_id;
     public $status;
+    public $time_id;
     public $subjects;
     public $timeslots;
     public $pattern_classes;
@@ -115,21 +118,21 @@ class AllExamTimeTable extends Component
     public function delete(ExamTimetable  $examTimeTable)
     {   
         $examTimeTable->delete();
-        $this->dispatch('alert',type:'success',message:'College Soft Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Time Table Soft Deleted Successfully !!');
     }
 
     public function restore($id)
     {   
         $examTimeTable = ExamTimetable::withTrashed()->find($id);
         $examTimeTable->restore();
-        $this->dispatch('alert',type:'success',message:'College Restored Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Time Table Restored Successfully !!');
     }
 
     public function forcedelete()
     {  
         $examTimeTable = ExamTimetable::withTrashed()->find($this->delete_id);
         $examTimeTable->forceDelete();
-        $this->dispatch('alert',type:'success',message:'College Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Exam Time Table Deleted Successfully !!');
     }
 
     public function Status(ExamTimetable $examTimeTable)
@@ -158,7 +161,7 @@ class AllExamTimeTable extends Component
         }
     }
 
-    public function update(Department  $dept){
+    public function update(ExamTimetable  $examTimeTable){
 
         $validatedData= $this->validate();
        
@@ -167,7 +170,7 @@ class AllExamTimeTable extends Component
             $examTimeTable->exam_patternclasses_id= $this->exam_patternclasses_id;
             $examTimeTable->timeslot_id= $this->timeslot_id;
             $examTimeTable->examdate= $this->examdate;
-            $dept->status= $this->status;
+            $examTimeTable->status= $this->status;
         }
 
         $examTimeTable->update();
@@ -207,12 +210,14 @@ class AllExamTimeTable extends Component
     {
         if($this->mode!=='all')
         {
-            $this->subjects = Subject::all();
-            $this->pattern_classes = ExamPatternclass::all();               
-            $this->timeslots = Timetableslot::all();           
+            $this->subjects = Subject::select('id','subject_name')->where('status',1)->get();
+            $this->exampatternclasses = ExamPatternclass::select('id','exam_id','patternclass_id')->get();             
+            $this->timeslots = Timetableslot::select('id','timeslot')->where('isactive',1)->get();         
         }
         
-        $ExamTimeTables=ExamTimetable::when($this->search, function ($query, $search) {
+        $ExamTimeTables=ExamTimetable::select('id','subject_id','timeslot_id','examdate','exam_patternclasses_id','status','deleted_at')
+        ->with(['exampatternclass.patternclass.pattern','exampatternclass.patternclass.courseclass.classyear','exampatternclass.patternclass.courseclass.course'])
+        -> when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

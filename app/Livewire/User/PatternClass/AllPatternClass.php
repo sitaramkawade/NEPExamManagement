@@ -255,10 +255,10 @@ class AllPatternClass extends Component
         if($this->mode!=='all')
         {
             $this->patterns=Pattern::select('pattern_name','id')->where('status',1)->get();
-            $this->course_classes=Courseclass::select('classyear_id','course_id','id')->get();
+            $this->course_classes=Courseclass::select('classyear_id','course_id','id')->with(['classyear:classyear_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->get();
         }
 
-       $pattern_classes=Patternclass::select('id','pattern_id','class_id','sem1_total_marks','sem2_total_marks','sem1_credits','sem2_credits','sem1_totalnosubjects','sem2_totalnosubjects','status','deleted_at')->with('getclass.course','getclass.classyear','pattern')->when($this->search, function ($query, $search) {
+        $pattern_classes=Patternclass::select('id','pattern_id','class_id','sem1_total_marks','sem2_total_marks','sem1_credits','sem2_credits','sem1_totalnosubjects','sem2_totalnosubjects','status','deleted_at')->with('courseclass.course:course_name,id','courseclass.classyear:classyear_name,id','pattern:pattern_name,id')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

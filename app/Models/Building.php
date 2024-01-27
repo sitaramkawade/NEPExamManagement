@@ -14,8 +14,9 @@ class Building extends Model
     protected $table='buildings';
     protected $fillable=[
         'building_name',
+        'priority',
         'status',
-        'priority'
+        
     ];
 
     public function scopeSearch(Builder $query,string $search)

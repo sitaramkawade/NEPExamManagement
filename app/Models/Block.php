@@ -24,19 +24,22 @@ class Block extends Model
         'noofblocks',
         'status'
     ];
-    public function buildings(): BelongsTo
+    public function building(): BelongsTo
     {
         return $this->belongsTo(Building::class,'building_id','id');
     }
 
     public function scopeSearch(Builder $query,string $search)
     {
-        return $query->where('classname', 'like', "%{$search}%")
-        ->orWhere('block', 'like', "%{$search}%")
+        return $query->with( 'building')->where(function ($subquery) use ($search) {
+            $subquery->orWhereHas('building', function ($subQuery) use ($search) {
+                $subQuery->where('building_name', 'like', "%{$search}%");
+             }) ->orWhere('block', 'like', "%{$search}%")
         ->orWhere('capacity', 'like', "%{$search}%")
-        ->orWhere('noofblocks', 'like', "%{$search}%");
-        // ->orWhereHas('building', function ($subQuery) use ($search) {
-        //     $subQuery->where('building_name', 'like', "%{$search}%");
-        // });
-    }
+        ->orWhere('noofblocks', 'like', "%{$search}%");         
+        });
+        }  
+    
 }
+
+

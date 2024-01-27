@@ -39,22 +39,13 @@
                         <x-table.tr wire:key="{{ $building->id }}">
                             <x-table.td>{{ $building->id }} </x-table.td>
                             <x-table.td>{{ $building->building_name }} </x-table.td>
-                            <x-table.td>
-                                    @if ($building->priority==0)
-                                    <x-status>High</x-status>
-                                    @elseif($building->priority==1)
-                                    <x-status>Medium</x-status>
-                                    @else
-                                    <x-status>Low</x-status>
-                                    @endif
-
-                                </x-table.td>
+                            <x-table.td>{{ $building->priority }} </x-table.td>
                             <x-table.td>
                                 @if($building->status==1)
-                                <x-status type="success">Active</x-status>
-                                @else
-                                <x-status type="danger">Inactive</x-status>
-                                @endif
+                                        <x-table.active wire:click="Status({{ $building->id }})" />
+                                        @else
+                                        <x-table.inactive wire:click="Status({{ $building->id }})" />
+                                        @endif                                     
                             </x-table.td>
                             <x-table.td>
                                         @if ($building->deleted_at)
@@ -62,13 +53,9 @@
                                         <x-table.restore wire:click="restore({{ $building->id }})" />
                                         @else
                                         <x-table.edit wire:click="edit({{ $building->id }})" />
-                                        @if($building->status==1)
-                                        <x-table.inactive wire:click="Status({{ $building->id }})" />
-                                        @else
-                                        <x-table.active wire:click="Status({{ $building->id }})" />
-                                        @endif
                                         <x-table.archive wire:click="delete({{ $building->id }})" />
                                         @endif
+                                       
                                     </x-table.td>
                         </x-table.tr>
                         @endforeach
