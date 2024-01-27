@@ -42,9 +42,9 @@
                             <x-table.td>{{ $building->priority }} </x-table.td>
                             <x-table.td>
                                 @if($building->status==1)
-                                        <x-table.inactive wire:click="Status({{ $building->id }})" />
-                                        @else
                                         <x-table.active wire:click="Status({{ $building->id }})" />
+                                        @else
+                                        <x-table.inactive wire:click="Status({{ $building->id }})" />
                                         @endif                                     
                             </x-table.td>
                             <x-table.td>

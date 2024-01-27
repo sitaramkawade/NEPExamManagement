@@ -28,6 +28,7 @@ use Database\Seeders\SemesterSeeder;
 use Database\Seeders\CapmasterSeeder;
 use Database\Seeders\ClassyearSeeder;
 use Database\Seeders\DepatmentSeeder;
+use Database\Seeders\ExamPanelSeeder;
 use Database\Seeders\ProgrammeSeeder;
 use Database\Seeders\BloodgroupSeeder;
 use Database\Seeders\AddresstypeSeeder;
@@ -130,6 +131,7 @@ class DatabaseSeeder extends Seeder
             FacultyHeadSeeder::class,                       // Faculty, Department
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
             ExamOrderPostSeeder::class,
+            ExamPanelSeeder::class,
         ]);
     }
 }

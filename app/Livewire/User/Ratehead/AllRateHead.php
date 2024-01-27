@@ -39,7 +39,7 @@ class AllRateHead extends Component
         'type' => ['required','string','max:2'],      
         'noofcredit' => ['required','numeric','max:11'],      
         'course_type' => ['required','string','max:20'],      
-        'amount' => ['required','numeric',],      
+        'amount' => ['required','numeric','digits_between:8,2'],      
          ];
     }
 
@@ -60,7 +60,7 @@ class AllRateHead extends Component
             'noofcredit.max' => 'The  No of Credit must not exceed :max characters.',
             'amount.required' => 'The amount field is required.',
             'amount.numeric' => 'The amount must be a numeric.',
-            // 'amount.digits_between' => 'The  amount must not exceed :digits_between characters.',
+             'amount.digits_between' => 'The  amount must not exceed :digits_between characters.',
              ];
         return $messages;
     }
