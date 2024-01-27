@@ -49,6 +49,7 @@ use App\Livewire\Faculty\SubjectType\AllSubjectType;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\AdmissionData\AllAdmissionData;
 use App\Livewire\User\ExamFeeCourse\AllExamFeeCourse;
+use App\Livewire\User\ExamOrderPost\AllExamOrderPost;
 use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
@@ -172,6 +173,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Ratehead
   Route::get('/ratehead', AllRateHead::class)->name('all_ratehead');
+
+  //AllvExam Order Post
+  Route::get('/examorderpost', AllExamOrderPost::class)->name('all_exam_order_post');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');

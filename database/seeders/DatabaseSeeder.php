@@ -43,6 +43,7 @@ use Database\Seeders\AdmissionDataSeeder;
 use Database\Seeders\CasteCategorySeeder;
 use Database\Seeders\DepatmenttypeSeeder;
 use Database\Seeders\ExamFeeMasterSeeder;
+use Database\Seeders\ExamOrderPostSeeder;
 use Database\Seeders\ExamTimeTableSeeder;
 use Database\Seeders\SubjectBucketSeeder;
 use Database\Seeders\SubjectcreditSeeder;
@@ -126,11 +127,9 @@ class DatabaseSeeder extends Seeder
             ExamBacklogFeeCoursesSeeder::class,             // Patternclass, Examfeemaster
             ExamFeeCoursesSeeder::class,   
             BuildingSeeder::class , 
-            RateheadSeeder::class,                     
-            // BlockSeeder::class,                            //Buildingclass
-            // ExamTimeTableSeeder::class,
             FacultyHeadSeeder::class,                       // Faculty, Department
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
+            ExamOrderPostSeeder::class,
         ]);
     }
 }
