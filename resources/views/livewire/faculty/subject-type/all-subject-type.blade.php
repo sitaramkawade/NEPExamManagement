@@ -24,9 +24,9 @@
         <div>
             <x-breadcrumb.breadcrumb>
                 <x-breadcrumb.link route="faculty.dashboard" name="Dashboard" />
-                <x-breadcrumb.link name="Subject Types" />
+                <x-breadcrumb.link name="Subject Type's" />
             </x-breadcrumb.breadcrumb>
-            <x-card-header heading="All Subject Types">
+            <x-card-header heading="All Subject Type's">
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
             <x-table.frame>

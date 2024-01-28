@@ -18,7 +18,6 @@ class AllFacultyHead extends Component
     protected $listeners = ['delete-confirmed'=>'delete'];
     public $faculty_id;
     public $department_id;
-    public $status;
 
     #[Locked]
     public $facultyhead_id;
@@ -44,7 +43,6 @@ class AllFacultyHead extends Component
         return [
             'faculty_id' => ['required',Rule::exists(Faculty::class,'id')],
             'department_id' => ['required',Rule::exists(Department::class,'id')],
-            'status' => ['required', 'in:0,1',],
         ];
     }
 
@@ -55,8 +53,6 @@ class AllFacultyHead extends Component
             'faculty_id.exists' => 'The selected faculty is invalid.',
             'department_id.required' => 'Please select a department.',
             'department_id.exists' => 'The selected department is invalid.',
-            'status.required' => 'Please select a status.',
-            'status.in' => 'The status must be either Inactive or Active.',
         ];
     }
 
@@ -64,7 +60,6 @@ class AllFacultyHead extends Component
     {
          $this->faculty_id = null;
          $this->department_id = null;
-         $this->status = null;
     }
 
     public function deleteconfirmation($id)
@@ -115,7 +110,6 @@ class AllFacultyHead extends Component
             $this->facultyhead_id = $facultyhead->id;
             $this->faculty_id = $facultyhead->faculty_id;
             $this->department_id= $facultyhead->department_id;
-            $this->status= $facultyhead->status;
         }else{
             $this->dispatch('alert',type:'error',message:'Faculty Head Details Not Found');
         }
@@ -221,7 +215,6 @@ class AllFacultyHead extends Component
         if ($facultyhead){
             $this->faculty_id= isset($facultyhead->faculty->faculty_name) ? $facultyhead->faculty->faculty_name : '';
             $this->department_id= isset($facultyhead->department->dept_name) ? $facultyhead->department->dept_name : '';
-            $this->status= $facultyhead->status;
         }else{
             $this->dispatch('alert',type:'error',message:'Faculty Head Details Not Found');
         }

@@ -62,7 +62,7 @@
     </div>
 </x-card-collapsible>
 
-<x-card-collapsible heading="Bank Account Details">
+<x-card-collapsible heading="Bank Account Detail's">
     <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="account_no" :value="__('Account Number')" />

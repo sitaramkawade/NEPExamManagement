@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Patternclass;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,6 +24,11 @@ class Hodappointsubject extends Model
     public function faculty()
     {
         return $this->belongsTo(Faculty::class,'faculty_id','id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'appointby_id','id');
     }
 
     public function subject()

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Faculty;
 use App\Models\Subject;
 use Faker\Factory as Faker;
@@ -17,6 +18,7 @@ class HodAppointSubjectSeeder extends Seeder
         $faker = Faker::create();
 
         $facultyIds = Faculty::pluck('id')->toArray();
+        $userIds = User::pluck('id')->toArray();
         $subjectIds = Subject::pluck('id')->toArray();
         $patternClassIds = Patternclass::pluck('id')->toArray();
 
@@ -25,8 +27,7 @@ class HodAppointSubjectSeeder extends Seeder
                 'faculty_id' =>  $faker->randomElement($facultyIds),
                 'subject_id' => $faker->randomElement($subjectIds),
                 'patternclass_id' => $faker->randomElement($patternClassIds),
-                'appointby_id' => $faker->randomElement($facultyIds),
-                'status' => $faker->randomElement([0,1]),
+                'appointby_id' => $faker->randomElement($userIds),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

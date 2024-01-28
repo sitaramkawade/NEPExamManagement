@@ -28,14 +28,18 @@ class AllSubjectBucket extends Component
     public $subjectcategory_id;
     public $subject_categoryno;
     public $subject_id;
+
     #[Locked]
     public $subjectbucket_id;
+
     public $academicyear_id;
     public $pattern_id;
     public $course_id;
     public $course_class_id;
+
     #[Locked]
     public $delete_id;
+    
     public $mode='all';
     public $per_page = 10;
     public $perPage=10;
@@ -43,7 +47,6 @@ class AllSubjectBucket extends Component
     public $sortColumn="subject_categoryno";
     public $sortColumnBy="ASC";
     public $ext;
-    public $status;
     public $departments;
     public $subject_categories;
     public $patterns;
@@ -66,7 +69,6 @@ class AllSubjectBucket extends Component
             'pattern_id' => ['required',Rule::exists(Pattern::class,'id')],
             'course_id' => ['required',Rule::exists(Course::class,'id')],
             'course_class_id' => ['required',Rule::exists(Courseclass::class,'id')],
-            'status' => ['required', 'in:0,1',],
         ];
     }
 
@@ -91,8 +93,6 @@ class AllSubjectBucket extends Component
             'course_id.exists' => 'The selected course is invalid.',
             'course_class_id.required' => 'The course class field is required.',
             'course_class_id.exists' => 'The selected course class is invalid.',
-            'status.required' => 'The status field is required.',
-            'status.in' => 'The status must be either Inactive or Active.',
         ];
     }
 
@@ -106,7 +106,6 @@ class AllSubjectBucket extends Component
          $this->department_id = null;
          $this->pattern_id = null;
          $this->course_id = null;
-         $this->status = null;
          $this->course_class_id = null;
     }
 
@@ -165,7 +164,6 @@ class AllSubjectBucket extends Component
             $this->subjectcategory_id= $subjectbucket->subjectcategory_id;
             $this->subject_id= $subjectbucket->subject_id;
             $this->department_id= $subjectbucket->department_id;
-            $this->status= $subjectbucket->status;
             $this->patternclass_id= $subjectbucket->patternclass_id;
             $this->feach();
             $this->setmode('edit');
@@ -308,7 +306,6 @@ class AllSubjectBucket extends Component
             $this->subjectcategory_id= $subjectbucket->subjectcategory->subjectcategory;
             $this->department_id= $subjectbucket->department->dept_name;
             $this->academicyear_id= $subjectbucket->academicyear->year_name;
-            $this->status= $subjectbucket->status;
             $this->pattern_id = $subjectbucket->patternclass->pattern->pattern_name;
             $this->course_id =  $subjectbucket->patternclass->courseclass->course->course_name;
             $this->course_class_id =  $subjectbucket->patternclass->courseclass->classyear->classyear_name;

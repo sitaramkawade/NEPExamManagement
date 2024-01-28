@@ -1,4 +1,7 @@
-<x-card-collapsible heading="Faculty Head Details">
+<div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
+    <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
+        Faculty Head Detail's
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="faculty_id" :value="__('Faculty Name')" />
@@ -21,16 +24,5 @@
             <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
         </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-1">
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="status" :value="__('Status')" />
-            <x-input-select id="status" wire:model="status" name="status" class="text-center @error('status') is-invalid @enderror w-full mt-1" :value="old('status', $status)" required autofocus autocomplete="status">
-                <x-select-option class="text-start" hidden> -- Select Status -- </x-select-option>
-                <x-select-option class="text-start" value=0>Inactive</x-select-option>
-                <x-select-option class="text-start" value=1>Active</x-select-option>
-            </x-input-select>
-            <x-input-error :messages="$errors->get('status')" class="mt-2" />
-        </div>
-    </div>
     <x-form-btn>Submit</x-form-btn>
-</x-card-collapsible>
+  </div>
