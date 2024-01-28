@@ -21,6 +21,7 @@ use Database\Seeders\SansthaSeeder;
 use Database\Seeders\SubjectSeeder;
 use Database\Seeders\BuildingSeeder;
 use Database\Seeders\DistrictSeeder;
+use Database\Seeders\FormTypeSeeder;
 use Database\Seeders\RateheadSeeder;
 use Database\Seeders\ReligionSeeder;
 use Database\Seeders\RoletypeSeeder;
@@ -50,6 +51,7 @@ use Database\Seeders\SubjectBucketSeeder;
 use Database\Seeders\SubjectcreditSeeder;
 use Database\Seeders\TimeTableSlotSeeder;
 use Database\Seeders\BanknamemasterSeeder;
+use Database\Seeders\CourseCategorySeeder;
 use Database\Seeders\ExamFeeCoursesSeeder;
 use Database\Seeders\FacultyProfileSeeder;
 use Database\Seeders\StudentProfileSeeder;
@@ -99,8 +101,11 @@ class DatabaseSeeder extends Seeder
             ExamSeeder::class,
             StudenthelplineQuerySeeder::class,
             CasteCategorySeeder::class,
-            ExamFeeMasterSeeder::class,
+            ApplyFeeSeeder::class,
+            FormTypeSeeder::class,
             CountrySeeder::class,
+            CourseCategorySeeder::class,
+            ExamFeeMasterSeeder::class,                     // ApplyFeeSeeder , FormTypeSeeder
             NoticeSeeder::class,                            // User
             CasteSeeder::class,                             // CasteCategorySeeder
             StateSeeder::class,                             // CountrySeeder

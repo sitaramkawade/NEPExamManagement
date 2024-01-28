@@ -26,7 +26,7 @@ class StudentSeeder extends Seeder
         $departmentIds = Department::pluck('id')->toArray();
         $collegeIds = College::pluck('id')->toArray();
 
-        for ($i = 0; $i < 500; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             Student::create([
                 'prn' => $faker->unique()->randomNumber(),
                 'memid' => $faker->unique()->randomNumber(),

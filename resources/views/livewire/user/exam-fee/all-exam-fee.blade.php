@@ -32,7 +32,11 @@
               <x-table.thead>
                 <x-table.tr>
                   <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
-                  <x-table.th wire:click="sort_column('fee_type')" name="fee_type" :sort="$sortColumn" :sort_by="$sortColumnBy">Fee Type</x-table.th>
+                  <x-table.th wire:click="sort_column('fee_name')" name="fee_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Fee Name</x-table.th>
+                  <x-table.th wire:click="sort_column('default_professional_fee')" name="default_professional_fee" :sort="$sortColumn" :sort_by="$sortColumnBy">Professional Fee</x-table.th>
+                  <x-table.th wire:click="sort_column('default_non_professional_fee')" name="default_non_professional_fee" :sort="$sortColumn" :sort_by="$sortColumnBy">Non Professional Fee</x-table.th>
+                  <x-table.th wire:click="sort_column('form_type_id')" name="form_type_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Form Type</x-table.th>
+                  <x-table.th wire:click="sort_column('apply_fee_id')" name="apply_fee_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Apply Fee</x-table.th>
                   <x-table.th wire:click="sort_column('remark')" name="remark" :sort="$sortColumn" :sort_by="$sortColumnBy">Remark</x-table.th>
                   <x-table.th wire:click="sort_column('approve_status')" name="approve_status" :sort="$sortColumn" :sort_by="$sortColumnBy">Approved</x-table.th>
                   <x-table.th wire:click="sort_column('active_status')" name="active_status" :sort="$sortColumn" :sort_by="$sortColumnBy">Status</x-table.th>
@@ -43,8 +47,12 @@
                 @foreach ($exam_fee_masters as $exam_fee_master)
                   <x-table.tr wire:key="{{ $exam_fee_master->id }}">
                     <x-table.td>{{ $exam_fee_master->id }} </x-table.td>
-                    <x-table.td> <x-table.text-scroll> {{ $exam_fee_master->fee_type }} </x-table.text-scroll></x-table.td>
-                    <x-table.td>{{ $exam_fee_master->remark }} </x-table.td>
+                    <x-table.td> <x-table.text-scroll> {{ $exam_fee_master->fee_name }} </x-table.text-scroll></x-table.td>
+                    <x-table.td>{{ isset($exam_fee_master->default_professional_fee)?$exam_fee_master->default_professional_fee:'-'; }} </x-table.td>
+                    <x-table.td>{{ isset($exam_fee_master->default_non_professional_fee)?$exam_fee_master->default_non_professional_fee:'-'; }} </x-table.td>
+                    <x-table.td><x-table.text-scroll> {{ isset($exam_fee_master->formtype->form_name)?$exam_fee_master->formtype->form_name:'-'; }} </x-table.text-scroll></x-table.td>
+                    <x-table.td> <x-table.text-scroll> {{ isset($exam_fee_master->applyfee->name)?$exam_fee_master->applyfee->name:'-'; }} </x-table.text-scroll></x-table.td>
+                    <x-table.td><x-table.text-scroll>{{ $exam_fee_master->remark }} </x-table.text-scroll> </x-table.td>
                     <x-table.td>
                       @if ($exam_fee_master->approve_status==1)
                         <x-status type="success"> Yes </x-status>

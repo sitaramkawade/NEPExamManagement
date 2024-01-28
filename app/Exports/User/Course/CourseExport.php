@@ -37,7 +37,7 @@ class CourseExport implements FromCollection, WithHeadings, ShouldAutoSize, With
                 'shortname',
                 'special_subject',
                 'course_type',
-                'course_category',
+                'course_category_id',
                 'college_id',
                 'programme_id',
             ]);
@@ -69,7 +69,7 @@ class CourseExport implements FromCollection, WithHeadings, ShouldAutoSize, With
             $row->shortname,
             $row->special_subject,
             $row->course_type,
-            $row->course_category == 1 ? 'Professional' : 'Non Professional' ,
+            isset($row->coursecategory->course_category)?$row->coursecategory->course_category:'-' ,
             $row->college->college_name,
             $row->programme->programme_name,
         ];
