@@ -61,14 +61,17 @@
       <x-text-input id="course_type" type="text" wire:model="course_type" placeholder="{{ __('Enter Course Type') }}" name="course_type" class="w-full mt-1" :value="old('course_type', $course_type)" autocomplete="course_type" />
       <x-input-error :messages="$errors->get('course_type')" class="mt-1" />
     </div>
-    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-      <x-input-label for="course_category" :value="__('Select Course Category')" />
-      <x-input-select id="course_category" wire:model.live="course_category" name="course_category" class="text-center w-full mt-1" :value="old('course_category', $course_category)" required autocomplete="course_category">
-        <x-select-option class="text-start" value="" hidden> -- Select Course Category -- </x-select-option>
-        <x-select-option class="text-start" value="1">Professional</x-select-option>
-        <x-select-option class="text-start" value="2">Non Professional</x-select-option>
+    <div class="px-5 py-2  text-sm text-gray-600 dark:text-gray-400">
+      <x-input-label for="course_category_id" :value="__('Select Course Category')" />
+      <x-input-select id="course_category_id" wire:model.live="course_category_id" name="course_category_id" class="text-center w-full mt-1" :value="old('course_category_id', $course_category_id)" required autocomplete="course_category_id">
+        <x-select-option class="text-start" hidden> -- Select Course Category -- </x-select-option>
+        @forelse ($courescategories as $courescategory)
+          <x-select-option wire:key="{{ $courescategory->id }}" value="{{ $courescategory->id }}" class="text-start"> {{$courescategory->course_category??'-' }} </x-select-option>
+        @empty
+          <x-select-option class="text-start">Course Categories Not Found</x-select-option>
+        @endforelse
       </x-input-select>
-      <x-input-error :messages="$errors->get('course_category')" class="mt-1" />
+      <x-input-error :messages="$errors->get('course_category_id')" class="mt-1" />
     </div>
   </div>
   <x-form-btn wire:loading.attr="disabled">Submit</x-form-btn>

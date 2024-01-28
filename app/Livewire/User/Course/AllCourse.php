@@ -8,6 +8,7 @@ use App\Models\College;
 use Livewire\Component;
 use App\Models\Programme;
 use Livewire\WithPagination;
+use App\Models\Coursecategory;
 use Illuminate\Validation\Rule;
 use App\Exports\User\Course\CourseExport;
 
@@ -32,11 +33,12 @@ class AllCourse extends Component
     public $course_type;
     public $shortname;
     public $special_subject;
-    public $course_category;
+    public $course_category_id;
     public $college_id;
     public $programme_id;
     public $colleges;
     public $programmes;
+    public $courescategories;
     #[Locked] 
     public $edit_id;
 
@@ -52,7 +54,7 @@ class AllCourse extends Component
             'course_type' => ['required', 'string','max:20'],
             'shortname' => ['required', 'string','max:255'],
             'special_subject' => ['required', 'string','max:100'],
-            'course_category' => ['required', 'integer', 'between:1,2'],
+            'course_category_id' => ['required', 'integer', Rule::exists('coursecategories', 'id')],
         ];
     }
 
@@ -83,9 +85,10 @@ class AllCourse extends Component
             'special_subject.required' => 'The Special Subject is required.',
             'special_subject.string' => 'The Special Subject must be a string.',
             'special_subject.max' => 'The Special Subject must not exceed :max characters.',
-            'course_category.required' => 'The Course Category is required.',
-            'course_category.integer' => 'The Course Category must be a Integer.',
-            'course_category.between' => 'The Course Category  must be between Professional Or Non Professional.',
+            'course_category_id.required' => 'The Course Category is required.',
+            'course_category_id.integer' => 'The Course Category must be a Integer.',
+            'course_category_id.between' => 'The Course Category  must be between Professional Or Non Professional.',
+            'course_category_id.exists' => 'The selected Course Category does not exist.',
         ];
         
         return $messages;
@@ -105,7 +108,7 @@ class AllCourse extends Component
         $this->course_type=null;
         $this->shortname=null;
         $this->special_subject=null;
-        $this->course_category=null;
+        $this->course_category_id=null;
         $this->college_id=null;
         $this->programme_id=null;
     }
@@ -163,7 +166,7 @@ class AllCourse extends Component
             'course_type' => $this->course_type,
             'shortname' => $this->shortname,
             'special_subject' => $this->special_subject,
-            'course_category' => $this->course_category,
+            'course_category_id' => $this->course_category_id,
             'college_id' => $this->college_id,
             'programme_id' => $this->programme_id,
         ]);
@@ -183,7 +186,7 @@ class AllCourse extends Component
         $this->course_type=$course->course_type;
         $this->shortname=$course->shortname;
         $this->special_subject=$course->special_subject;
-        $this->course_category=$course->course_category;
+        $this->course_category_id=$course->course_category_id;
         $this->college_id=$course->college_id;
         $this->programme_id=$course->programme_id;
   
@@ -201,7 +204,7 @@ class AllCourse extends Component
             'course_type' => $this->course_type,
             'shortname' => $this->shortname,
             'special_subject' => $this->special_subject,
-            'course_category' => $this->course_category,
+            'course_category_id' => $this->course_category_id,
             'college_id' => $this->college_id,
             'programme_id' => $this->programme_id,
         ]);
@@ -242,7 +245,7 @@ class AllCourse extends Component
 
     public function render()
     {   
-        $courses=Course::with('programme:programme_name,id','college:college_name,id')->select( 'id','course_name','course_code','fullname','shortname','special_subject','course_type','course_category','college_id','programme_id','deleted_at')->when($this->search, function ($query, $search) {
+        $courses=Course::with('programme:programme_name,id','college:college_name,id')->select( 'id','course_name','course_code','fullname','shortname','special_subject','course_type','course_category_id','college_id','programme_id','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         
@@ -250,6 +253,7 @@ class AllCourse extends Component
         {
             $this->colleges=College::select('college_name','id')->where('status',1)->get();
             $this->programmes =Programme::select('programme_name','id')->where('active',1)->get();
+            $this->courescategories =Coursecategory::select('course_category','id')->get();
         }
 
         return view('livewire.user.course.all-course',compact('courses'))->extends('layouts.user')->section('user');

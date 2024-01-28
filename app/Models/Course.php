@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Course;
 use App\Models\College;
 use App\Models\Programme;
+use App\Models\Coursecategory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,7 +25,7 @@ class Course extends Model
         'shortname',
         'special_subject',
         'course_type',
-        'course_category',
+        'course_category_id',
         'college_id',
         'programme_id',
         
@@ -43,6 +44,11 @@ class Course extends Model
     public function programme(): BelongsTo
     {
         return $this->belongsTo(Programme::class, 'programme_id', 'id');
+    }
+
+    public function coursecategory(): BelongsTo
+    {
+        return $this->belongsTo(Coursecategory::class, 'course_category_id', 'id');
     }
 
 
