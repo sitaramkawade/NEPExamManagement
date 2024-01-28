@@ -13,11 +13,10 @@ class AllSubjectType extends Component
     use WithPagination;
 
     protected $listeners = ['delete-confirmed'=>'delete'];
-    #[Locked] 
+    #[Locked]
     public $subjecttype_id;
     public $type_name;
     public $type_shortname;
-    public $active;
 
     public $mode='all';
     public $per_page = 10;
@@ -37,7 +36,6 @@ class AllSubjectType extends Component
         return [
             'type_name' => ['required', 'string', 'min:2','max:255',],
             'type_shortname' => ['required', 'string', 'min:2','max:10',],
-            'active' => ['required', 'in:0,1',],
         ];
     }
 
@@ -53,9 +51,6 @@ class AllSubjectType extends Component
             'type_shortname.string' => 'The type short name must be a string.',
             'type_shortname.min' => 'The type short name must be at least :min characters.',
             'type_shortname.max' => 'The type short name must not exceed :max characters.',
-
-            'active.required' => 'The status is required.',
-            'active.in' => 'The status must be either Inactive or Active.',
         ];
     }
 
@@ -63,7 +58,6 @@ class AllSubjectType extends Component
     {
          $this->type_name = null;
          $this->type_shortname = null;
-         $this->status = null;
     }
 
     public function deleteconfirmation($id)
@@ -110,7 +104,6 @@ class AllSubjectType extends Component
             $this->subjecttype_id = $subjecttype->id;
             $this->type_name= $subjecttype->type_name;
             $this->type_shortname= $subjecttype->type_shortname;
-            $this->active= $subjecttype->active;
         }else{
             $this->dispatch('alert',type:'error',message:'Subject Type Details Not Found');
         }
@@ -221,7 +214,6 @@ class AllSubjectType extends Component
         if ($subjecttype){
             $this->type_name= $subjecttype->type_name;
             $this->type_shortname= $subjecttype->type_shortname;
-            $this->active= $subjecttype->active;
         }else{
             $this->dispatch('alert',type:'error',message:'Subject Type Details Not Found');
         }

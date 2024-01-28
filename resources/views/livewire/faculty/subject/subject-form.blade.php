@@ -151,7 +151,7 @@
             <x-input-error :messages="$errors->get('subject_optionalgroup')" class="mt-2" />
         </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2">
+    <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_order" :value="__('Subject Order')" />
             <x-text-input id="subject_order" type="number" wire:model="subject_order" name="subject_order" placeholder="Subject Order" class=" @error('subject_order') is-invalid @enderror w-full mt-1" :value="old('subject_order', $subject_order)" required autofocus autocomplete="subject_order" />
@@ -161,6 +161,15 @@
             <x-input-label for="subject_name_prefix" :value="__('Subject Name Prefix')" />
             <x-text-input id="subject_name_prefix" type="text" wire:model="subject_name_prefix" name="subject_name_prefix" placeholder="Subject Name Prefix" class=" @error('subject_name_prefix') is-invalid @enderror w-full mt-1" :value="old('subject_name_prefix', $subject_name_prefix)" required autofocus autocomplete="subject_name_prefix" />
             <x-input-error :messages="$errors->get('subject_name_prefix')" class="mt-2" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="is_project" :value="__('Is Project/Dissertion/Other')" />
+            <x-input-select id="is_project" wire:model="is_project" name="is_project" class="text-center @error('is_project') is-invalid @enderror w-full mt-1" :value="old('is_project', $is_project)" required autofocus autocomplete="is_project">
+                <x-select-option class="text-start" hidden> -- Select Status -- </x-select-option>
+                <x-select-option class="text-start" value=1>YES</x-select-option>
+                <x-select-option class="text-start" value=0>NO</x-select-option>
+            </x-input-select>
+            <x-input-error :messages="$errors->get('is_project')" class="mt-2" />
         </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-1">

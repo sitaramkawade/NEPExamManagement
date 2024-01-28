@@ -1,7 +1,7 @@
 <div>
     @if ($mode == 'add')
         <div>
-            <x-card-header heading="Add Subjectbucket">
+            <x-card-header heading="Add Subject Bucket">
                 <x-back-btn wire:click="setmode('all')" />
             </x-card-header>
             <x-form wire:submit="save()">
@@ -9,24 +9,24 @@
             </x-form>
         </div>
     @elseif($mode == 'edit')
-        <x-card-header heading="Edit Subjectbucket">
+        <x-card-header heading="Edit Subject Bucket">
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
         <x-form wire:submit="update({{ $subjectbucket_id }})">
             @include('livewire.faculty.subjectbucket.subjectbucket-form')
         </x-form>
     @elseif($mode == 'view')
-        <x-card-header heading="View Subjectbucket">
+        <x-card-header heading="View Subject Bucket">
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
-        @include('livewire.faculty.subjectbucket.view-subjectbucket-form')
+        @include('livewire.faculty.subjectbucket.view-form')
     @elseif($mode == 'all')
         <div>
             <x-breadcrumb.breadcrumb>
                 <x-breadcrumb.link route="faculty.dashboard" name="Dashboard" />
-                <x-breadcrumb.link name="Subject Buckets" />
+                <x-breadcrumb.link name="Subject Bucket's" />
             </x-breadcrumb.breadcrumb>
-            <x-card-header heading="All Subjects Buckets">
+            <x-card-header heading="All Subjects Bucket's">
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
             <x-table.frame>
