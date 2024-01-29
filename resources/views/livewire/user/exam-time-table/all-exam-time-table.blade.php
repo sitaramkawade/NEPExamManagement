@@ -11,7 +11,7 @@
         </x-form>
     </div>
     @elseif($mode=='edit')
-    <x-card-header heading="Edit Educational Course">
+    <x-card-header heading="Edit Exam Time Table">
         <x-back-btn wire:click="setmode('all')" />
     </x-card-header>
     <x-form wire:submit="update({{ $time_id }})">
