@@ -29,6 +29,7 @@ use Database\Seeders\SemesterSeeder;
 use Database\Seeders\CapmasterSeeder;
 use Database\Seeders\ClassyearSeeder;
 use Database\Seeders\DepatmentSeeder;
+use Database\Seeders\ExamorderSeeder;
 use Database\Seeders\ExamPanelSeeder;
 use Database\Seeders\ProgrammeSeeder;
 use Database\Seeders\BloodgroupSeeder;
@@ -137,6 +138,7 @@ class DatabaseSeeder extends Seeder
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
             ExamOrderPostSeeder::class,
             ExamPanelSeeder::class,
+            ExamorderSeeder::class,
         ]);
     }
 }
