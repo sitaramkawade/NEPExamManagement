@@ -30,7 +30,7 @@ class Course extends Model
         'programme_id',
         
     ];
-    public function course_classes():HasMany
+    public function courseclasses():HasMany
     {
         return $this->hasMany(Courseclass::class,'course_id','id');
     }
