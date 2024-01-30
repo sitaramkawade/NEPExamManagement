@@ -230,7 +230,7 @@ class AllCap extends Component
             $this->exams =Exam::select('exam_name','id')->where('status',1)->get();
         }
 
-        $caps=Capmaster::with('college')->when($this->search, function ($query, $search) {
+        $caps=Capmaster::with('college:college_name,id')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

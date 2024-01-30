@@ -6,6 +6,9 @@ use Excel;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Examfeemaster;
+use App\Models\Applyfeemaster;
+use App\Models\Formtypemaster;
+use Illuminate\Validation\Rule;
 use App\Exports\User\ExamFee\ExamFeeExport;
 
 class AllExamFee extends Component
@@ -19,11 +22,17 @@ class AllExamFee extends Component
     public $mode='all';
     public $perPage=10;
     public $search='';
-    public $sortColumn="fee_type";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
 
-    public $fee_type;
+    public $fee_name;
+    public $default_professional_fee;
+    public $default_non_professional_fee;
+    public $form_type_id;
+    public $formtypes;
+    public $apply_fee_id;
+    public $applyfees;
     public $remark;
     public $approve_status;
     public $active_status;
@@ -34,21 +43,37 @@ class AllExamFee extends Component
     public function rules()
     {
         return [
-            'fee_type' => ['required', 'string','max:200','unique:examfeemasters,fee_type,' . ($this->mode == 'edit' ? $this->edit_id : ''),],
+            'fee_name' => ['required', 'string','max:200','unique:examfeemasters,fee_name,' . ($this->mode == 'edit' ? $this->edit_id : ''),],
             'remark' => ['nullable', 'string','max:50'],
+            'default_professional_fee' => ['nullable', 'integer','digits_between:1,11'],
+            'default_non_professional_fee' => ['nullable', 'integer','digits_between:1,11'],
+            'form_type_id' => ['required', 'integer',Rule::exists('formtypemasters', 'id')],
+            'apply_fee_id' => ['required', 'integer',Rule::exists('applyfeemasters', 'id')],
         ];
     }
 
     public function messages()
     {   
         $messages = [
-            'fee_type.required' => 'The Fee Type field is required.',
-            'fee_type.string' => 'The Fee Type must be a string.',
-            'fee_type.max' => 'The  Fee Type must not exceed :max characters.',
-            'fee_type.unique' => 'The Fee Type has already been taken.',
+            'fee_name.required' => 'The Fee Name field is required.',
+            'fee_name.string' => 'The Fee Name must be a string.',
+            'fee_name.max' => 'The Fee Name must not exceed :max characters.',
+            'fee_name.unique' => 'The Fee Name has already been taken.',
             'remark.required' => 'The Remark field is required.',
             'remark.string' => 'The Remark must be a string.',
             'remark.max' => 'The  Remark must not exceed :max characters.',
+            'default_professional_fee.required' => 'The Default Professional Course Fee field is required.',
+            'default_professional_fee.integer' => 'The Default Professional Course Fee must be an integer.',
+            'default_professional_fee.digits_between' => 'The Default Professional Course Fee must be between :min and :max digits.',
+            'default_non_professional_fee.required' => 'The Default Non Professional Course Fee field is required.',
+            'default_non_professional_fee.integer' => 'The Default Non Professional Course Fee must be an integer.',
+            'default_non_professional_fee.digits_between' => 'The Default Non Professional Course Fee must be between :min and :max digits.',
+            'form_type_id.required' => 'The Form Type field is required.',
+            'form_type_id.integer' => 'The Form Type must be an integer.',
+            'form_type_id.exists' => 'The selected Form Type does not exist.',
+            'apply_fee_id.required' => 'The Apply Fee field is required.',
+            'apply_fee_id.integer' => 'The Apply Fee must be an integer.',
+            'apply_fee_id.exists' => 'The selected Apply Fee does not exist.',
         ];
         
         return $messages;
@@ -62,7 +87,11 @@ class AllExamFee extends Component
     public function resetinput()
     {
         $this->remark=null;
-        $this->fee_type=null;
+        $this->fee_name=null;
+        $this->default_professional_fee=null;
+        $this->default_non_professional_fee=null;
+        $this->form_type_id=null;
+        $this->apply_fee_id=null;
         $this->active_status=null;
         $this->approve_status=null;
     }
@@ -114,7 +143,11 @@ class AllExamFee extends Component
 
         $examfee =  new Examfeemaster;
         $examfee->create([
-            'fee_type' => $this->fee_type,
+            'fee_name' => $this->fee_name,
+            'default_professional_fee' => $this->default_professional_fee,
+            'default_non_professional_fee' => $this->default_non_professional_fee,
+            'form_type_id' => $this->form_type_id,
+            'apply_fee_id' => $this->apply_fee_id,
             'remark' => $this->remark,
             'active_status' => $this->active_status==true?0:1,
         ]);
@@ -128,7 +161,11 @@ class AllExamFee extends Component
     {   
         $this->resetinput();
         $this->edit_id=$examfee->id;
-        $this->fee_type= $examfee->fee_type;
+        $this->fee_name= $examfee->fee_name;
+        $this->default_professional_fee= $examfee->default_professional_fee;
+        $this->default_non_professional_fee= $examfee->default_non_professional_fee;
+        $this->form_type_id= $examfee->form_type_id;
+        $this->apply_fee_id= $examfee->apply_fee_id;
         $this->remark= $examfee->remark;
         $this->active_status=$examfee->active_status==1?0:true;
   
@@ -140,7 +177,11 @@ class AllExamFee extends Component
         $this->validate();
 
         $examfee->update([
-            'fee_type' => $this->fee_type,
+            'fee_name' => $this->fee_name,
+            'default_professional_fee' => $this->default_professional_fee,
+            'default_non_professional_fee' => $this->default_non_professional_fee,
+            'form_type_id' => $this->form_type_id,
+            'apply_fee_id' => $this->apply_fee_id,
             'remark' => $this->remark,
             'active_status' => $this->active_status == true ? 0 : 1,
         ]);
@@ -211,7 +252,12 @@ class AllExamFee extends Component
 
     public function render()
     {   
-        $exam_fee_masters=Examfeemaster::select('id','fee_type','remark','approve_status','active_status','deleted_at')->when($this->search, function ($query, $search) {
+        if($this->mode!=='all')
+        {
+            $this->formtypes=Formtypemaster::select('id','form_name')->get();
+            $this->applyfees=Applyfeemaster::select('id','name')->get();
+        }
+        $exam_fee_masters=Examfeemaster::select('id','fee_name','default_professional_fee','default_non_professional_fee','form_type_id','apply_fee_id','remark','approve_status','active_status','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

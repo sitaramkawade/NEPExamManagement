@@ -231,7 +231,7 @@ class AllNotice extends Component
 
     public function render()
     {    
-        $notices=Notice::select('id','title','type','start_date','end_date','user_id','description','is_active','deleted_at')->with('user')->when($this->search, function ($query, $search) {
+        $notices=Notice::select('id','title','type','start_date','end_date','user_id','description','is_active','deleted_at')->with('user:name,id')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

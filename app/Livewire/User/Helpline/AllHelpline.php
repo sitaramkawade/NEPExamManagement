@@ -431,12 +431,12 @@ class AllHelpline extends Component
                 $this->documents = $query->studenthelplinedocuments()->get(); 
             }
     
-            $this->helplinequeries = Studenthelplinequery::where('is_active', 1)->get();
-            $this->students = Student::where('status', 0)->get();
+            $this->helplinequeries = Studenthelplinequery::select('query_name','id')->where('is_active', 1)->get();
+            $this->students = Student::select('student_name','id')->where('status', 0)->get();
         }
 
         $student_helplines=Studenthelpline::select('id','student_id','student_helpline_query_id', 'remark','verified_by','approve_by','status','deleted_at')
-        ->with(['student','studenthelplinequery','verified','approved'])->when($this->search, function ($query, $search) {
+        ->with(['student:student_name,id','studenthelplinequery:query_name,id','verified:name,id','approved:name,id'])->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         return view('livewire.user.helpline.all-helpline', compact('student_helplines'))->extends('layouts.user')->section('user');

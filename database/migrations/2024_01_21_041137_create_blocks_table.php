@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('building_id')->unsigned();
-            $table->foreign('building_id')->references('id')->on('buildings');
+            $table->foreign('building_id')->references('id')->on('buildings')->onDelete('cascade');;
           
             $table->string('classname',80);
             $table->string('block',4)->nullable()->default(null);

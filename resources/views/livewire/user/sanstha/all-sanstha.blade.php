@@ -57,11 +57,11 @@
                                     <x-table.text-scroll> {{ $sanstha->sanstha_website_url }} </x-table.text-scroll>
                                 </x-table.td>
                                 <x-table.td>
-                                    @if($sanstha->status==1)
-                                    <x-status type="success">Active</x-status>
-                                    @else
-                                    <x-status type="danger">Inactive</x-status>
-                                    @endif
+                                     @if($sanstha->status==1)
+                                        <x-table.inactive wire:click="Status({{ $sanstha->id }})" />
+                                        @else
+                                        <x-table.active wire:click="Status({{ $sanstha->id }})" />
+                                        @endif
                                 </x-table.td>
                                 <x-table.td>
                                     @if ($sanstha->deleted_at)
@@ -69,11 +69,6 @@
                                     <x-table.restore wire:click="restore({{ $sanstha->id }})" />
                                     @else
                                     <x-table.edit wire:click="edit({{ $sanstha->id }})" />
-                                    @if($sanstha->status==1)
-                                    <x-table.inactive wire:click="Status({{ $sanstha->id }})" />
-                                    @else
-                                    <x-table.active wire:click="Status({{ $sanstha->id }})" />
-                                    @endif
                                     <x-table.archive wire:click="delete({{ $sanstha->id }})" />
                                     @endif
                                 </x-table.td>

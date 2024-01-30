@@ -14,14 +14,35 @@ class ExamSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-
-        for ($i = 0; $i < 200; $i++) {
-            Exam::create([
-                'exam_sessions' => $faker->numberBetween(1,2),
-                'exam_name' => $faker->word,
-                'status' =>$faker->numberBetween(1,0),
-            ]);
-        }
+       Exam::create(
+            [ 'exam_name'=>'Oct-2022',
+             'exam_sessions'=>'1',
+             'status'=>'0',]
+         );
+        Exam::create(
+            [ 'exam_name'=>'Mar-2023',
+             'exam_sessions'=>'2',
+             'status'=>'0',]
+         );
+         Exam::create(
+            [ 'exam_name'=>'Oct-2023',
+             'exam_sessions'=>'2',
+             'status'=>'0',]
+         );
+        Exam::create(
+            [ 'exam_name'=>'Mar-2024',
+             'exam_sessions'=>'1',
+             'status'=>'0',]
+         );
+         Exam::create(
+            [ 'exam_name'=>'Oct-2024',
+             'exam_sessions'=>'2',
+             'status'=>'0',]
+         );
+         Exam::create(
+            [ 'exam_name'=>'Mar-2025',
+             'exam_sessions'=>'1',
+             'status'=>'1',]
+         );
     }
 }

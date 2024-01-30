@@ -88,6 +88,7 @@
 
     @livewireScripts()
     <x-view-image-model/>
+    <script src="{{ asset('assets/chart/Chart.bundle.min.js') }}"></script>
     <script>
       var setup = () => {
         const getTheme = () => {

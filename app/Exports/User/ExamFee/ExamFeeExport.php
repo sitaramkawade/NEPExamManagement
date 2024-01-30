@@ -25,21 +25,25 @@ class ExamFeeExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
     {
         return Examfeemaster::search($this->search)
         ->orderBy($this->sortColumn, $this->sortColumnBy)
-        ->select('id', 'fee_type','remark','approve_status','active_status')
+        ->select('id', 'fee_name','remark','default_professional_fee','default_non_professional_fee','form_type_id','apply_fee_id','approve_status','active_status')
         ->get();
     }
 
     public function headings(): array
     {
-        return ['ID', 'Fee Type', 'Remark','Approved','Status'];
+        return ['ID', 'Fee Name', 'Remark','Default Professional Fee','Default Non Professional Fee','Form Fee','Apply Fee','Approved','Status'];
     }
 
     public function map($row): array
     {
         return [
             $row->id,
-            $row->fee_type,
+            $row->fee_name,
             $row->remark,
+            isset($row->default_professional_fee)?$row->default_professional_fee:'-',
+            isset($row->default_non_professional_fee)?$row->default_non_professional_fee:'-',
+            isset($row->formtype->form_name)?$row->formtype->form_name:'-',
+            isset($row->applyfee->name)?$row->applyfee->name:'-',
             $row->approve_status == 1 ? 'Yes' : 'No',
             $row->active_status == 1 ? 'Active' : 'Inactive',
         ];

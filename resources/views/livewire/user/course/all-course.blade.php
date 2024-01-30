@@ -54,7 +54,7 @@
                     <x-table.td>{{ $course->shortname }} </x-table.td>
                     <x-table.td>{{ $course->special_subject }} </x-table.td>
                     <x-table.td>{{ $course->course_type }} </x-table.td>
-                    <x-table.td>{{ $course->course_category==1?'Professional':'Non Professional'; }} </x-table.td>
+                    <x-table.td>{{ $course->coursecategory->course_category }} </x-table.td>
                     <x-table.td >
                       <x-table.text-scroll> {{ $course->college->college_name }}</x-table.text-scroll>
                     </x-table.td>

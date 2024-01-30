@@ -31,6 +31,7 @@ use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Helpline\Helpline;
 use App\Livewire\User\Building\AllBuilding;
 use App\Livewire\User\Helpline\AllHelpline;
+use App\Livewire\User\Ratehead\AllRateHead;
 use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
@@ -40,6 +41,7 @@ use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
 use App\Livewire\User\CourseClass\AllCourseClass;
 use App\Livewire\User\AcademicYear\AllAcademicYear;
+use App\Livewire\User\ExamBuilding\AllExamBuilding;
 use App\Livewire\User\PatternClass\AllPatternClass;
 use App\Livewire\Faculty\FacultyHead\AllFacultyHead;
 use App\Livewire\Faculty\Facultyrole\AllFacultyRole;
@@ -47,6 +49,7 @@ use App\Livewire\Faculty\SubjectType\AllSubjectType;
 use App\Livewire\Faculty\UpdateProfile\UpdateProfile;
 use App\Livewire\User\AdmissionData\AllAdmissionData;
 use App\Livewire\User\ExamFeeCourse\AllExamFeeCourse;
+use App\Livewire\User\ExamOrderPost\AllExamOrderPost;
 use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
@@ -58,7 +61,9 @@ use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
+use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\User\ExamBacklogFeeCourse\AllExamBacklogFeeCourse;
+
 
 
 
@@ -163,7 +168,16 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Blocks
   Route::get('/blocks', AllBlock::class)->name('all_block');
 
-  //All Users 
+  //All Exam Building
+  Route::get('/exam/building', AllExamBuilding::class)->name('all_exam_building');
+
+  //All Ratehead
+  Route::get('/ratehead', AllRateHead::class)->name('all_ratehead');
+
+  //AllvExam Order Post
+  Route::get('/examorderpost', AllExamOrderPost::class)->name('all_exam_order_post');
+
+  //All Users
   Route::get('/users', AllUser::class)->name('all_user');
 
   //All Student Helpline
@@ -213,12 +227,16 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Exam Fee
   Route::get('/exam/fees',AllExamFee::class)->name('all_exam_fee');
-  
+
   //All Exam Fee Course
   Route::get('/exam/fee/course',AllExamFeeCourse::class)->name('all_exam_fee_course');
 
   //All Exam Backlog Fee Course
   Route::get('/exam/backlog/fee/course',AllExamBacklogFeeCourse::class)->name('all_exam_backlog_fee_course');
+
+  //All Subject Hod
+  Route::get('/all-hodappointsubject',  AllHodAppointSubject::class)->name('all-hodappointsubjects');
+
 });
 
 

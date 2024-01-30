@@ -18,15 +18,11 @@
         @include('livewire.user.credit.credit-form')
     </x-form>
       @elseif($mode=='all')
-    <div>
-<<<<<<< HEAD
-     
-=======
+    <div>   
         <x-breadcrumb.breadcrumb>
             <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
             <x-breadcrumb.link name="Credit's"/>
         </x-breadcrumb.link>
->>>>>>> Merge
         <x-card-header heading=" All Credit's">
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>

@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 use Database\Seeders\ExamSeeder;
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\BlockSeeder;
 use Database\Seeders\CasteSeeder;
 use Database\Seeders\GradeSeeder;
 use Database\Seeders\LoginSeeder;
@@ -20,6 +21,8 @@ use Database\Seeders\SansthaSeeder;
 use Database\Seeders\SubjectSeeder;
 use Database\Seeders\BuildingSeeder;
 use Database\Seeders\DistrictSeeder;
+use Database\Seeders\FormTypeSeeder;
+use Database\Seeders\RateheadSeeder;
 use Database\Seeders\ReligionSeeder;
 use Database\Seeders\RoletypeSeeder;
 use Database\Seeders\SemesterSeeder;
@@ -30,6 +33,7 @@ use Database\Seeders\ProgrammeSeeder;
 use Database\Seeders\BloodgroupSeeder;
 use Database\Seeders\AddresstypeSeeder;
 use Database\Seeders\CourseclassSeeder;
+use Database\Seeders\FacultyHeadSeeder;
 use Database\Seeders\SubjecttypeSeeder;
 use Database\Seeders\AcademicyearSeeder;
 use Database\Seeders\GendermasterSeeder;
@@ -40,11 +44,13 @@ use Database\Seeders\AdmissionDataSeeder;
 use Database\Seeders\CasteCategorySeeder;
 use Database\Seeders\DepatmenttypeSeeder;
 use Database\Seeders\ExamFeeMasterSeeder;
+use Database\Seeders\ExamOrderPostSeeder;
 use Database\Seeders\ExamTimeTableSeeder;
 use Database\Seeders\SubjectBucketSeeder;
 use Database\Seeders\SubjectcreditSeeder;
 use Database\Seeders\TimeTableSlotSeeder;
 use Database\Seeders\BanknamemasterSeeder;
+use Database\Seeders\CourseCategorySeeder;
 use Database\Seeders\ExamFeeCoursesSeeder;
 use Database\Seeders\FacultyProfileSeeder;
 use Database\Seeders\StudentProfileSeeder;
@@ -54,6 +60,7 @@ use Database\Seeders\StudentHelplineSeeder;
 use Database\Seeders\SubjectcategorySeeder;
 use Database\Seeders\ExamPatternclassSeeder;
 use Database\Seeders\EducationalcourseSeeder;
+use Database\Seeders\HodAppointSubjectSeeder;
 use Database\Seeders\ClassStudmenumasterSeeder;
 use Database\Seeders\StudenthelplineQuerySeeder;
 use Database\Seeders\ExamBacklogFeeCoursesSeeder;
@@ -93,8 +100,11 @@ class DatabaseSeeder extends Seeder
             ExamSeeder::class,
             StudenthelplineQuerySeeder::class,
             CasteCategorySeeder::class,
-            ExamFeeMasterSeeder::class,
+            ApplyFeeSeeder::class,
+            FormTypeSeeder::class,
             CountrySeeder::class,
+            CourseCategorySeeder::class,
+            ExamFeeMasterSeeder::class,                     // ApplyFeeSeeder , FormTypeSeeder
             NoticeSeeder::class,                            // User
             CasteSeeder::class,                             // CasteCategorySeeder
             StateSeeder::class,                             // CountrySeeder
@@ -120,9 +130,11 @@ class DatabaseSeeder extends Seeder
             StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
             StudentSeeder::class,                           // Patternclass , Department , College
             ExamBacklogFeeCoursesSeeder::class,             // Patternclass, Examfeemaster
-            ExamFeeCoursesSeeder::class,                    // Patternclass, Examfeemaster
-            // ExamTimeTableSeeder::class,
-
+            ExamFeeCoursesSeeder::class,   
+            BuildingSeeder::class , 
+            FacultyHeadSeeder::class,                       // Faculty, Department
+            HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
+            ExamOrderPostSeeder::class,
         ]);
     }
 }

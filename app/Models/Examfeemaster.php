@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Applyfeemaster;
+use App\Models\Formtypemaster;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Examfeemaster extends Model
@@ -13,15 +16,36 @@ class Examfeemaster extends Model
     protected $dates = ['deleted_at'];
     protected $table='examfeemasters';
     protected $fillable=[
-        'fee_type',
+        'fee_name',
         'remark',
+        'default_professional_fee',
+        'default_non_professional_fee',
+        'form_type_id',
+        'apply_fee_id' ,
         'active_status',
         'approve_status',
     ];
 
+    public function formtype(): BelongsTo
+    {
+        return $this->belongsTo(Formtypemaster::class, 'form_type_id', 'id');
+    }
+
+    public function applyfee(): BelongsTo
+    {
+        return $this->belongsTo(Applyfeemaster::class, 'apply_fee_id', 'id');
+    }
 
     public function scopeSearch(Builder $query,string $search)
     {
-        return $query->where('fee_type', 'like', "%{$search}%")->orWhere('remark', 'like', "%{$search}%");
+        return $query->with('formtype')->where(function ($subquery) use ($search) {
+            $subquery->where('fee_name', 'like', "%{$search}%")
+            ->orWhere('remark', 'like', "%{$search}%")
+            ->orWhere('default_professional_fee', 'like', "%{$search}%")
+            ->orWhere('default_non_professional_fee', 'like', "%{$search}%")
+            ->orWhereHas('formtype', function ($subQuery) use ($search) { $subQuery->where('form_name', 'like', "%{$search}%"); })
+            ->orWhereHas('applyfee', function ($subQuery) use ($search) { $subQuery->where('name', 'like', "%{$search}%"); });
+        });
     }
+
 }

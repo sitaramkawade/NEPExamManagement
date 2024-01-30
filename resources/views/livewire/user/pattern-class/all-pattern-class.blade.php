@@ -49,7 +49,7 @@
                   <x-table.tr wire:key="{{ $pattern_class->id }}">
                     <x-table.td>{{ $pattern_class->id }} </x-table.td>
                     <x-table.td>{{ $pattern_class->pattern->pattern_name }} </x-table.td>
-                    <x-table.td>{{ $pattern_class->getclass->classyear->classyear_name ?? '' }} {{ $pattern_class->getclass->course->course_name ?? '' }} </x-table.td>
+                    <x-table.td>{{ $pattern_class->courseclass->classyear->classyear_name ?? '' }} {{ $pattern_class->courseclass->course->course_name ?? '' }} </x-table.td>
                     <x-table.td>{{ $pattern_class->sem1_total_marks }} </x-table.td>
                     <x-table.td>{{ $pattern_class->sem2_total_marks }} </x-table.td>
                     <x-table.td>{{ $pattern_class->sem1_credits }} </x-table.td>
