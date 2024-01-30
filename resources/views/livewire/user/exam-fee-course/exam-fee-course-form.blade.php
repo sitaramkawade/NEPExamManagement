@@ -28,7 +28,7 @@
       <x-input-error :messages="$errors->get('apply_fee_id')" class="mt-1" />
     </div>
   </div>
-  <div class="grid grid-cols-1 @if ($is_course_class) md:grid-cols-2 @else  md:grid-cols-1 @endif "> 
+  <div class="grid grid-cols-1 @if ($is_course_class || $is_sem) md:grid-cols-2  @endif "> 
     @if ($is_course)
       <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
         <x-input-label for="course_id" :value="__('Select Course')" />
@@ -58,6 +58,18 @@
       </div>
     @endif
     @if ($is_sem)
+    <div class="px-5  py-2 text-sm text-gray-600 dark:text-gray-400">
+      <x-input-label for="patternclass_id" :value="__('Select Pattern Class')" />
+      <x-input-select id="patternclass_id" wire:model.live="patternclass_id" name="patternclass_id" class="text-center w-full mt-1" :value="old('patternclass_id', $patternclass_id)" required autocomplete="patternclass_id">
+        <x-select-option class="text-start" hidden> -- Select Pattern Classes -- </x-select-option>
+        @forelse ($patternclasses as $pattern_calss)
+          <x-select-option wire:key="{{ $pattern_calss->id }}" value="{{ $pattern_calss->id }}" class="text-start"> {{ $pattern_calss->pattern->pattern_name ?? '-' }} {{ $pattern_calss->courseclass->classyear->classyear_name ?? '-' }} {{ $pattern_calss->courseclass->course->course_name ?? '-' }} </x-select-option>
+        @empty
+          <x-select-option class="text-start">Pattern Classes Not Found</x-select-option>
+        @endforelse
+      </x-input-select>
+      <x-input-error :messages="$errors->get('patternclass_id')" class="mt-1" />
+    </div>
       <div class="px-5  py-2 text-sm text-gray-600 dark:text-gray-400">
         <x-input-label for="sem" :value="__('Select Semester')" />
         <x-input-select id="sem" wire:model.live="sem" name="sem" class="text-center w-full mt-1" :value="old('sem', $sem)" required autocomplete="sem">

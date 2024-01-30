@@ -20,7 +20,7 @@ class ApplyFeeSeeder extends Seeder
 
         Applyfeemaster::create([
             'id'=>2,
-            'name' => 'Subject & SEM Wise',
+            'name' => 'Per Subject & SEM Wise',
         ]);
 
         Applyfeemaster::create([

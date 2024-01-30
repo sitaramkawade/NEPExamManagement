@@ -28,5 +28,10 @@ class FormTypeSeeder extends Seeder
             'id'=>3,
             'form_name' => 'Revaluation Form',
         ]);
+
+        Formtypemaster::create([
+            'id'=>4,
+            'form_name' => 'Backlog Form',
+        ]);
     }
 }
