@@ -14,13 +14,14 @@ class AllCgpa extends Component
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
-    public $sortColumn="max_gp";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;    
     public $max_gp;    
     public $min_gp;    
     public $grade;    
-    public $description;    
+    public $description;  
+    #[Locked]   
     public $cgpa_id;    
     #[Locked] 
     public $delete_id;
@@ -175,7 +176,8 @@ class AllCgpa extends Component
     
     public function render()
     {
-        $cgpas=Cgpa::when($this->search, function ($query, $search) {
+        $cgpas=Cgpa::select('id','max_gp','min_gp','grade','description','deleted_at')
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         return view('livewire.user.cgpa.all-cgpa',compact('cgpas'))->extends('layouts.user')->section('user');

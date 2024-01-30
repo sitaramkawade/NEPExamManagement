@@ -14,7 +14,7 @@ class Building extends Model
     protected $table='buildings';
     protected $fillable=[
         'building_name',
-        'priority',
+        'Priority',
         'status',
         
     ];
@@ -22,7 +22,7 @@ class Building extends Model
     public function scopeSearch(Builder $query,string $search)
     {
         return $query->where('building_name', 'like', "%{$search}%")
-        ->orWhere('priority', 'like', "%{$search}%")
+        ->orWhere('Priority', 'like', "%{$search}%")
         ->orWhere('status', 'like', "%{$search}%");
     }
 }

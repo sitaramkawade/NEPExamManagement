@@ -14,7 +14,7 @@ class AllDepartmentType extends Component
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
-    public $sortColumn="departmenttype";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
     public $departmenttype;
@@ -122,21 +122,21 @@ class AllDepartmentType extends Component
     public function delete(Departmenttype  $dept)
     {   
         $dept->delete();
-        $this->dispatch('alert',type:'success',message:'Department Soft Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Department Type Soft Deleted Successfully !!');
     }
 
     public function restore($id)
     {   
         $dept = Departmenttype::withTrashed()->find($id);
         $dept->restore();
-        $this->dispatch('alert',type:'success',message:'Department Restored Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Department Type Restored Successfully !!');
     }
 
     public function forcedelete()
     {  
         $dept = Departmenttype::withTrashed()->find($this->delete_id);
         $dept->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Department Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Department Type Deleted Successfully !!');
     }
 
     public function Status(Departmenttype $dept)
@@ -181,7 +181,8 @@ class AllDepartmentType extends Component
 
     public function render()
     {
-        $departmenttypes=Departmenttype::when($this->search, function ($query, $search) {
+        $departmenttypes=Departmenttype::select('id','departmenttype','description','status','deleted_at')
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

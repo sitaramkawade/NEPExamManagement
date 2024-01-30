@@ -57,9 +57,20 @@ class College extends Model
 
     public function scopeSearch(Builder $query,string $search)
     {
-        return $query->where('college_name', 'like', "%{$search}%")
+        return $query->with('sanstha','university')
+       -> where('college_name', 'like', "%{$search}%")
         ->orWhere('college_email', 'like', "%{$search}%")
-        ->orWhere('college_address', 'like', "%{$search}%");
+        ->orWhere('college_address', 'like', "%{$search}%")
+        ->orWhere('college_website_url', 'like', "%{$search}%")
+        ->orWhere('college_contact_no', 'like', "%{$search}%")
+        ->orWhere(function ($subquery) use ($search) {
+            $subquery->orWhereHas('sanstha', function ($subQuery) use ($search) {
+                $subQuery->where('sanstha_name', 'like', "%{$search}%");
+            });
+            $subquery->orWhereHas('university', function ($subQuery) use ($search) {
+                $subQuery->where('university_name', 'like', "%{$search}%");
+            });
+        });
     }
 
     public function patterns()

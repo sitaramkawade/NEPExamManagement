@@ -34,6 +34,8 @@ class University extends Model
     {
         return $query->where('university_name', 'like', "%{$search}%")
         ->orWhere('university_email', 'like', "%{$search}%")
-        ->orWhere('university_address', 'like', "%{$search}%");
+        ->orWhere('university_address', 'like', "%{$search}%")
+        ->orWhere('university_website_url', 'like', "%{$search}%")
+        ->orWhere('university_contact_no', 'like', "%{$search}%");
     }
 }

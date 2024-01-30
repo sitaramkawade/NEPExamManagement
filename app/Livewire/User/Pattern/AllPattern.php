@@ -17,7 +17,7 @@ class AllPattern extends Component
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10; 
     public $search='';
-    public $sortColumn="pattern_name";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
 
@@ -30,9 +30,10 @@ class AllPattern extends Component
     public $status;
     public $college_id ;
     public $colleges;
-    public $pattern_id;
     #[Locked] 
     public $delete_id;
+    #[Locked] 
+    public $pattern_id;
  
     public function rules()
     {
@@ -214,7 +215,9 @@ class AllPattern extends Component
     public function render()
     {   
         $this->colleges=College::select('college_name','id')->where('status',1)->get();
-        $patterns=Pattern::when($this->search, function ($query, $search) {
+
+        $patterns=Pattern::select('id','pattern_name','pattern_startyear','pattern_valid','college_id','status','deleted_at')
+       -> when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

@@ -26,7 +26,7 @@ class ExportBuilding implements FromCollection, WithHeadings, ShouldAutoSize, Wi
         return Building::
          search($this->search)->
         orderBy($this->sortColumn, $this->sortColumnBy)
-        ->select('id', 'building_name','priority', 'status')
+        ->select('id', 'building_name','Priority', 'status')
         ->get();
     }
 
@@ -41,8 +41,7 @@ class ExportBuilding implements FromCollection, WithHeadings, ShouldAutoSize, Wi
         return [
             $row->id,
             $row->building_name,
-            $row->priority == 1 ? 'High' :'Low',
-
+            $row->Priority,
             $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }

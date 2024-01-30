@@ -22,7 +22,7 @@ class AllCollege extends Component
     
     public $perPage=10;
     public $search='';
-    public $sortColumn="college_name";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
     public $steps=1;
@@ -275,11 +275,14 @@ class AllCollege extends Component
 
 
     public function render()
+
     {
         $this->sansthas=Sanstha::select('sanstha_name','id')->where('status',1)->get();
         $this->universities=University::select('university_name','id')->where('status',1)->get();
 
-        $colleges=College::when($this->search, function ($query, $search) {
+        $colleges=College::select('id','college_name','college_email','college_address','college_website_url','college_contact_no','sanstha_id','university_id','college_logo_path','status','deleted_at')
+       ->with(['sanstha:sanstha_name,id','university:university_name,id'])
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

@@ -17,7 +17,7 @@ class AllEducationalCourse extends Component
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
-    public $sortColumn="course_name";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
     public $delete_id;
@@ -89,11 +89,6 @@ class AllEducationalCourse extends Component
         $this->setmode('all');
     }
 
-    public function mount()
-    {
-        $this->programs = Programme::all();   
-    }
-
     public function Status(Educationalcourse $educationalCourse)
     {
         if($educationalCourse->is_active)
@@ -142,14 +137,14 @@ class AllEducationalCourse extends Component
     public function delete(Educationalcourse  $educationalCourse)
     {   
         $educationalCourse->delete();
-        $this->dispatch('alert',type:'success',message:'Course Soft Deleted Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Educational Course Soft Deleted Successfully !!');
     }
 
     public function restore($id)
     {   
         $educationalCourse = Educationalcourse::withTrashed()->find($id);
         $educationalCourse->restore();
-        $this->dispatch('alert',type:'success',message:'Course Restored Successfully !!');
+        $this->dispatch('alert',type:'success',message:'Educational Course Restored Successfully !!');
     }
 
     public function forcedelete()
@@ -188,9 +183,11 @@ class AllEducationalCourse extends Component
 
     public function render()
     {
-        $this->programmes=Programme::select('programme_name','id')->where('active',1)->get();
+        $this->programs=Programme::select('programme_name','id')->where('active',1)->get();
         
-        $educationalCourses=Educationalcourse::when($this->search, function ($query, $search) {
+        $educationalCourses=Educationalcourse::select('id','course_name','programme_id','is_active','deleted_at')
+        ->with(['programme:programme_name,id'])
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

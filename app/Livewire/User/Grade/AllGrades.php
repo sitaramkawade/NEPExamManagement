@@ -14,7 +14,7 @@ class AllGrades extends Component
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
-    public $sortColumn="max_percentage";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
     #[Locked] 
@@ -23,6 +23,7 @@ class AllGrades extends Component
     public $min_percentage;
     public $grade_point;
     public $grade_name;
+    #[Locked] 
     public $grade_id;
     public $description;
     public $is_active;
@@ -213,7 +214,8 @@ class AllGrades extends Component
 
     public function render()
     {
-        $grades=Grade::when($this->search, function ($query, $search) {
+        $grades=Grade::select('id','max_percentage','min_percentage','grade_point','grade_name','description','is_active','deleted_at')
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

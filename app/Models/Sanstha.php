@@ -31,7 +31,9 @@ class Sanstha extends Model
     {
         return $query->where('sanstha_name', 'like', "%{$search}%")
         ->orWhere('sanstha_chairman_name', 'like', "%{$search}%")
-        ->orWhere('sanstha_address', 'like', "%{$search}%");
+        ->orWhere('sanstha_address', 'like', "%{$search}%")
+        ->orWhere('sanstha_website_url', 'like', "%{$search}%")
+        ->orWhere('sanstha_contact_no', 'like', "%{$search}%");
     }
 
     

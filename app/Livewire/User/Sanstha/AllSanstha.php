@@ -16,7 +16,7 @@ class AllSanstha extends Component
     public $mode='all';
     public $perPage=10;
     public $search='';
-    public $sortColumn="sanstha_name";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
     public $steps=1;
@@ -27,9 +27,10 @@ class AllSanstha extends Component
     public $sanstha_website_url;
     public $sanstha_contact_no;
     public $status;
-    public $sanstha_id;
     #[Locked] 
     public $delete_id;
+    #[Locked] 
+    public $sanstha_id;
 
     protected function rules()
     {
@@ -205,7 +206,8 @@ public function forcedelete()
 
     public function render()
     {
-        $sansthas=Sanstha::when($this->search, function ($query, $search) {
+        $sansthas=Sanstha::select('id','sanstha_name','sanstha_chairman_name','sanstha_address','sanstha_website_url','sanstha_contact_no','status','deleted_at')
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
