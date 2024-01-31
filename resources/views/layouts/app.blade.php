@@ -49,8 +49,16 @@
         width: 10px !important;
       }
 
-      * {
-        scrollbar-width: thin !important;
+      .scrollbar-sm {
+        scrollbar-width: 6px !important;
+      }
+
+      .scrollbar-xm {
+        scrollbar-width: 3px !important;
+      }
+
+    * {
+        scrollbar-width: 10px !important;
       }
 
       ::-webkit-scrollbar-thumb {

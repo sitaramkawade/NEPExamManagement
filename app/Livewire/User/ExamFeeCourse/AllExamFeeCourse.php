@@ -52,6 +52,7 @@ class AllExamFeeCourse extends Component
     public $is_sem=0;
     public $is_course=0;
     public $is_course_class=0;
+    public $is_ptrn_class=0;
     #[Locked] 
     public $edit_id;
 
@@ -60,12 +61,16 @@ class AllExamFeeCourse extends Component
     {
         $rules = [
             'form_type_id' => ['required'],
-            'apply_fee_id' => ['required'],
+            'apply_fee_id' => [($this->mode == 'edit' ?'nullable' : 'required')],
         ];
 
         if($this->is_sem)
         {
             $rules['sem'] = ['required', 'integer','digits_between:1,11'];
+        }
+
+        if($this->is_ptrn_class)
+        {
             $rules['patternclass_id'] = ['required',Rule::exists('pattern_classes', 'id')];
         }
 
@@ -122,9 +127,19 @@ class AllExamFeeCourse extends Component
 
     public function resetinput()
     {
-        $this->sem=null;
         $this->fees=[];
         $this->active_status=[];
+        $this->course_id=null;
+        $this->course_class_id=null;
+        $this->patternclass_id=null;
+        $this->sem=null;
+
+        $this->form_type_id=null;
+        $this->apply_fee_id=null;
+        $this->is_sem=null;
+        $this->is_course=null;
+        $this->is_course_class=null;
+        $this->is_sptrn_class=null;
         $this->patternclass_id=null;
         $this->approve_status=null;
     }
@@ -255,11 +270,30 @@ class AllExamFeeCourse extends Component
     public function edit(Examfeecourse $examfeecourse)
     {   
         $this->resetinput();
+        $this->is_ptrn_class=1;
         $this->edit_id= $examfeecourse->id;
         $this->patternclass_id=$examfeecourse->patternclass_id;
-        $this->sem=$examfeecourse->sem;
+        if(isset($examfeecourse->examfee->form_type_id))
+        {
+            $this->form_type_id=$examfeecourse->examfee->form_type_id;
+        }
+
+        if(isset($examfeecourse->sem) && $examfeecourse->sem!==null)
+        {   
+            $this->sem=$examfeecourse->sem;
+            $this->is_sem=1;
+        }else
+        {
+            $this->is_sem=0;
+        }
         
-        $examfeecourses=Examfeecourse::where('patternclass_id',$examfeecourse->patternclass_id)->where('sem',$examfeecourse->sem)->get();
+        $examfeecourses=Examfeecourse::where('patternclass_id',$examfeecourse->patternclass_id)->when($examfeecourse->sem, function ($query, $sem) {
+            return $query->where('sem', $sem);
+        })->get();
+
+
+        // dd( $examfeecourses);
+
         foreach($examfeecourses as $fee)
         {   
             $this->fees[$fee->examfees_id]=$fee->fee;
@@ -276,8 +310,8 @@ class AllExamFeeCourse extends Component
         foreach ($this->fees as $key => $fee) {
             if (isset($key) && $fee !== "" && $fee !== null)
             {   
-                $modify = Examfeecourse::where('sem',$this->sem)->where('patternclass_id',$this->patternclass_id)->where('examfees_id', $key)->latest()->first();
-
+                $modify = Examfeecourse::when($this->sem, function ($query, $sem) { return $query->where('sem', $sem); })->where('patternclass_id',$this->patternclass_id)->where('examfees_id', $key)->latest()->first();
+                
                 if (isset($modify) && $modify->fee != $fee) 
                 {
                     Examfeecourse::create([
@@ -376,93 +410,114 @@ class AllExamFeeCourse extends Component
 
     public function render()
     {   
-        if ($this->apply_fee_id) {
-            $sem = Applyfeemaster::find($this->apply_fee_id);
-            if ($sem && $sem->name === "Per Subject & SEM Wise") {
-                $this->is_sem = 1;
-                $this->is_course = 0;
-                $this->is_course_class = 0;
-            }
-
-            if ($sem && $sem->name === "Course Wise") {
-
-                $this->is_course = 1;
-                $this->is_course_class = 0;
-                $this->is_sem = 0;
-                if($this->course_id)
-                {   
-                    $cour=Course::find($this->course_id);
-                    if(isset($cour->coursecategory->course_category) && $cour->coursecategory->course_category=='Professional')
-                    {
-                        if(count($this->examfees) >0)
+        if($this->mode=='add')
+        {   
+            $this->is_ptrn_class = 0;
+            if ($this->apply_fee_id) {
+                $sem = Applyfeemaster::find($this->apply_fee_id);
+                if ($sem && $sem->name === "Per Subject & SEM Wise") {
+                    $this->is_sem = 1;
+                    $this->is_ptrn_class = 1;
+                    $this->is_course = 0;
+                    $this->is_course_class = 0;
+                }
+    
+                if ($sem && $sem->name === "Course Wise") {
+    
+                    $this->is_course = 1;
+                    $this->is_course_class = 0;
+                    $this->is_ptrn_class = 0;
+                    $this->is_sem = 0;
+                    if($this->course_id)
+                    {   
+                        $cour=Course::find($this->course_id);
+                        if(isset($cour->coursecategory->course_category) && $cour->coursecategory->course_category=='Professional')
                         {
-                            foreach ($this->examfees as $fee) {
-                                $this->fees[$fee->id]=$fee->default_professional_fee;
+                            if(count($this->examfees) >0)
+                            {
+                                foreach ($this->examfees as $fee) {
+                                    $this->fees[$fee->id]=$fee->default_professional_fee;
+                                }   
                             }   
-                        }   
-                    }
-                    if(isset($cour->coursecategory->course_category) && $cour->coursecategory->course_category=='Non Professional')
-                    {
-                        if(count($this->examfees) >0)
+                        }
+                        if(isset($cour->coursecategory->course_category) && $cour->coursecategory->course_category=='Non Professional')
                         {
-                            foreach ($this->examfees as $fee) {
-                                $this->fees[$fee->id]=$fee->default_non_professional_fee;
+                            if(count($this->examfees) >0)
+                            {
+                                foreach ($this->examfees as $fee) {
+                                    $this->fees[$fee->id]=$fee->default_non_professional_fee;
+                                }   
                             }   
-                        }   
+                        }
                     }
                 }
-               
-            }
-
-            if ($sem && $sem->name === "Class Wise") {
-                $this->is_course = 1;
-                $this->is_course_class = 1;
-                $this->is_sem = 0;
-                if($this->course_id)
-                {   
-                    $cour=Course::find($this->course_id);
-                    if(isset($cour->coursecategory->course_category) && $cour->coursecategory->course_category=='Professional')
-                    {
-                        if(count($this->examfees) >0)
+    
+                if ($sem && $sem->name === "Class Wise") {
+                    $this->is_course = 1;
+                    $this->is_course_class = 1;
+                    $this->is_ptrn_class = 0;
+                    $this->is_sem = 0;
+                    if($this->course_id)
+                    {   
+                        $cour=Course::find($this->course_id);
+                        if(isset($cour->coursecategory->course_category) && $cour->coursecategory->course_category=='Professional')
                         {
-                            foreach ($this->examfees as $fee) {
-                                $this->fees[$fee->id]=$fee->default_professional_fee;
-
+                            if(count($this->examfees) >0)
+                            {
+                                foreach ($this->examfees as $fee) {
+                                    $this->fees[$fee->id]=$fee->default_professional_fee;
+                                }   
                             }   
-                        }   
-                    }
-                    if(isset($cour->coursecategory->course_category) && $cour->coursecategory->course_category=='Non Professional')
-                    {
-                        if(count($this->examfees) >0)
+                        }
+                        if(isset($cour->coursecategory->course_category) && $cour->coursecategory->course_category=='Non Professional')
                         {
-                            foreach ($this->examfees as $fee) {
-                                $this->fees[$fee->id]=$fee->default_non_professional_fee;
-
+                            if(count($this->examfees) >0)
+                            {
+                                foreach ($this->examfees as $fee) {
+                                    $this->fees[$fee->id]=$fee->default_non_professional_fee;
+                                }   
                             }   
-                        }   
-                    }
-                }  
+                        }
+                    }  
+                }
             }
         }
 
 
         if($this->mode!=='all')
         {   
-            $this->applyfees=Applyfeemaster::select('id','name')->get();
-            $this->formtypes=Formtypemaster::select('id','form_name')->get();
-            if($this->is_course && $this->is_course_class)
+            $this->examfees = Examfeemaster::select('id', 'fee_name')->where('form_type_id', $this->form_type_id)->where('active_status', 1)->get();
+            
+            if($this->mode=='add')
             {
-                $this->courses = Course::select('id', 'course_name')->get();
-                $this->courseclasses= Courseclass::select('id', 'course_id','classyear_id')->with(['course:course_name,id','classyear:classyear_name,id'])->where('course_id',$this->course_id)->get();
-            }elseif($this->is_course )
-            {
-                $this->courses = Course::select('id', 'course_name')->get();
-            }elseif($this->is_sem)
-            {
-                $this->semesters = Semester::select('id', 'semester')->where('status', 1)->get();
-                $this->patternclasses = Patternclass::select('id', 'class_id', 'pattern_id')->with(['pattern:pattern_name,id','courseclass.classyear:classyear_name,id','courseclass.course:course_name,id'])->where('status', 1)->get();
+                $this->applyfees=Applyfeemaster::select('id','name')->get();
+                $this->formtypes=Formtypemaster::select('id','form_name')->get();
+
+                if($this->is_course && $this->is_course_class)
+                {
+                    $this->courses = Course::select('id', 'course_name')->get();
+                    $this->courseclasses= Courseclass::select('id', 'course_id','classyear_id')->with(['course:course_name,id','classyear:classyear_name,id'])->where('course_id',$this->course_id)->get();
+                }elseif($this->is_course )
+                {
+                    $this->courses = Course::select('id', 'course_name')->get();
+                }elseif($this->is_sem)
+                {
+                    $this->semesters = Semester::select('id', 'semester')->where('status', 1)->get();
+                    $this->patternclasses = Patternclass::select('id', 'class_id', 'pattern_id')->with(['pattern:pattern_name,id','courseclass.classyear:classyear_name,id','courseclass.course:course_name,id'])->where('status', 1)->get();
+                }
             }
-      
+
+            if($this->mode=="edit")
+            {   
+                $this->formtypes=Formtypemaster::select('id','form_name')->get();
+                $this->patternclasses = Patternclass::select('id', 'class_id', 'pattern_id')->with(['pattern:pattern_name,id','courseclass.classyear:classyear_name,id','courseclass.course:course_name,id'])->where('status', 1)->get();
+                
+                if($this->is_sem)
+                {
+                    $this->semesters = Semester::select('id', 'semester')->where('status', 1)->get();
+                }
+            }
+         
 
             // if($this->mode=='add')
             // {
@@ -472,7 +527,6 @@ class AllExamFeeCourse extends Component
             //     $examfeeids=null; 
             // }
 
-            $this->examfees = Examfeemaster::select('id', 'fee_name')->where('form_type_id', $this->form_type_id)->where('active_status', 1)->get();
         }
         
         $examfeecourses=Examfeecourse::select('id','fee','sem','approve_status','patternclass_id','examfees_id','active_status','deleted_at')
