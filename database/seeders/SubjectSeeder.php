@@ -46,6 +46,7 @@ class SubjectSeeder extends Seeder
                 'subjecttype_id' => $faker->randomElement($subjectTypeIds),
                 'subjectexam_type' => $faker->randomElement(['INTERNAL', 'EXTERNAL']),
                 'subject_credit' => $faker->randomElement($subjectCredits),
+                'is_project' => $faker->randomElement([0, 1]),
                 'subject_maxmarks' => $faker->numberBetween(80, 100),
                 'subject_maxmarks_int' => $faker->numberBetween(20, 30),
                 'subject_maxmarks_intpract' => $faker->numberBetween(10, 15),
@@ -59,7 +60,7 @@ class SubjectSeeder extends Seeder
                 'classyear_id' => $faker->randomElement($classYearIds),
                 'department_id' => $faker->randomElement($departmentIds),
                 'college_id' =>  $faker->randomElement($collegeIds),
-                'status' => $faker->numberBetween(0, 1),
+                'status' => $faker->randomElement([0, 1]),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

@@ -36,6 +36,7 @@ class AllSubject extends Component
     public $subjecttype_id;
     public $subjectexam_type;
     public $subject_credit;
+    public $is_project;
     public $subject_maxmarks;
     public $subject_maxmarks_int;
     public $subject_maxmarks_intpract;
@@ -92,6 +93,7 @@ class AllSubject extends Component
             'subject_name_prefix' => ['required', 'string', 'min:1', 'max:50'],
             'subject_shortname' => ['required', 'string', 'min:1', 'max:20',],
             'subject_name' => ['required', 'string','min:1', 'max:100',],
+            'is_project' => ['required', 'in:0,1',],
             'subjecttype_id' => ['required',Rule::exists(Subjecttype::class,'id')],
             'subjectexam_type' => ['required',],
             'subject_credit' => ['required',Rule::exists(Subjectcredit::class,'id')],
@@ -147,6 +149,8 @@ class AllSubject extends Component
             'subjectexam_type.required' => 'The subject exam type field is required.',
             'subject_credit.required' => 'The subject credit field is required.',
             'subject_credit.exists' => 'The selected subject credit is invalid.',
+            'is_project.required' => 'Please select subject is project or not.',
+            'is_project.in' => 'The subject is project must be either YES or NO.',
             'subject_maxmarks.required' => 'The subject maximum marks field is required.',
             'subject_maxmarks_int.required' => 'The subject maximum internal marks field is required.',
             'subject_maxmarks_intpract.required' => 'The subject maximum internal practical marks field is required.',
@@ -184,6 +188,7 @@ class AllSubject extends Component
          $this->subjecttype_id=null;
          $this->subjectexam_type=null;
          $this->subject_credit=null;
+         $this->is_project=null;
          $this->subject_maxmarks=null;
          $this->subject_maxmarks_int=null;
          $this->subject_maxmarks_intpract=null;
@@ -248,6 +253,7 @@ class AllSubject extends Component
                 $validatedData['user_id'] = null;
                 $validatedData['faculty_id'] = null;
             }
+
             $subject = Subject::create($validatedData);
             if ($subject) {
                 $this->dispatch('alert',type:'success',message:'Subject Saved Successfully !!');
@@ -275,6 +281,7 @@ class AllSubject extends Component
             $this->subjectexam_type= $subject->subjectexam_type;
             $this->subject_shortname= $subject->subject_shortname;
             $this->subject_name= $subject->subject_name;
+            $this->is_project= $subject->is_project;
             $this->subjecttype_id= $subject->subjecttype_id;
             $this->subject_credit= $subject->subject_credit;
             $this->subject_maxmarks= $subject->subject_maxmarks;
@@ -475,6 +482,7 @@ class AllSubject extends Component
             $this->subject_name= $subject->subject_name;
             $this->subjectexam_type= $subject->subdjectexam_type;
             $this->subject_credit= $subject->subject_credit;
+            $this->is_project= $subject->is_project;
             $this->subject_maxmarks= $subject->subject_maxmarks;
             $this->subject_maxmarks_int= $subject->subject_maxmarks_int;
             $this->subject_maxmarks_intpract= $subject->subject_maxmarks_intpract;

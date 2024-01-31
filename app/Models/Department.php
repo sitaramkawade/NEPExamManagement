@@ -52,8 +52,13 @@ class Department extends Model
 
     public function scopeSearch(Builder $query,string $search)
     {
-        return $query->where('dept_name', 'like', "%{$search}%")
-        ->where('short_name', 'like', "%{$search}%");
-
-    }
+        return $query->with('college',)
+        ->where('dept_name', 'like', "%{$search}%")
+        ->orWhere('short_name', 'like', "%{$search}%")
+        ->orWhere(function ($subquery) use ($search) {
+            $subquery->orWhereHas('college', function ($subQuery) use ($search) {
+                $subQuery->where('college_name', 'like', "%{$search}%");
+            });
+    });
+}
 }

@@ -25,13 +25,13 @@ class ExportExamOrderPost implements FromCollection,WithHeadings, WithMapping
         return ExamOrderPost::
         search($this->search)->
        orderBy($this->sortColumn, $this->sortColumnBy)
-       ->select('id', 'post_name','start_date','end_date','status')
+       ->select('id', 'post_name','status')
        ->get();
     }
 
     public function headings(): array
     {
-        return ['ID', ' Post Name','Start Date' , 'End Date' ,'Status'];
+        return ['ID', ' Post Name','Status'];
     }
 
     public function map($row): array
@@ -39,8 +39,6 @@ class ExportExamOrderPost implements FromCollection,WithHeadings, WithMapping
         return [
             $row->id,
             $row->post_name,
-            isset($row->start_date)?date('Y-m-d', strtotime($row->start_date)):'',
-            isset($row->end_date)?date('Y-m-d', strtotime($row->end_date)):'',
             $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }

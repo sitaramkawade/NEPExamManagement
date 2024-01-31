@@ -28,13 +28,13 @@ class CollegeExport implements  FromCollection, WithHeadings, WithMapping
         return College::
          search($this->search)->
         orderBy($this->sortColumn, $this->sortColumnBy)
-        ->select('id', 'college_name','college_email','college_address', 'status','sanstha_id','university_id')
+        ->select('id', 'college_name','college_email','college_address','college_contact_no','sanstha_id','university_id','status')
         ->get();
     }
 
     public function headings(): array
     {
-        return ['ID', 'College Name','College Email','College Address','Sanstha','University','Status'];
+        return ['ID', 'College Name','College Email','College Address','Contact Number','Sanstha','University','Status'];
     }
 
     public function map($row): array
@@ -44,6 +44,7 @@ class CollegeExport implements  FromCollection, WithHeadings, WithMapping
             $row->college_name,
             $row->college_email,
             $row->college_address,
+            $row->college_contact_no,
             isset($row->sanstha->sanstha_name)?$row->sanstha->sanstha_name:'',
             isset($row->university->university_name)?$row->university->university_name:'',
             $row->university?->university_name,

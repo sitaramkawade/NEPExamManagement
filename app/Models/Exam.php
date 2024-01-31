@@ -22,7 +22,6 @@ class Exam extends Model
     public function scopeSearch(Builder $query,string $search)
     {
         return $query->where('exam_name', 'like', "%{$search}%")
-        ->orWhere('status', 'like', "%{$search}%")
         ->orWhere('exam_sessions', 'like', "%{$search}%");
     }
 

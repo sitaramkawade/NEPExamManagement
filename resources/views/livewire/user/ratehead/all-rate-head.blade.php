@@ -54,9 +54,9 @@
                                 <x-table.td>{{ $ratehead->amount }} </x-table.td>
                                 <x-table.td>
                                      @if($ratehead->status==1)
-                                        <x-table.inactive wire:click="Status({{ $ratehead->id }})" />
-                                        @else
                                         <x-table.active wire:click="Status({{ $ratehead->id }})" />
+                                        @else
+                                        <x-table.inactive wire:click="Status({{ $ratehead->id }})" />
                                         @endif
                                 </x-table.td>
                                 <x-table.td>

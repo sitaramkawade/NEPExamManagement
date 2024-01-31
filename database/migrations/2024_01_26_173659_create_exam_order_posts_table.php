@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('exam_order_posts', function (Blueprint $table) {
             $table->id();
             $table->string('post_name',50)->nullable();
-            $table->timestamp('start_date')->nullable()->default(null);
-            $table->timestamp('end_date')->nullable()->default(null);
             $table->tinyInteger('status')->default('0');// 0 :not active 1:active
             $table->softDeletes();
             $table->timestamps();

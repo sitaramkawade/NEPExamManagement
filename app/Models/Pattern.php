@@ -59,7 +59,14 @@ class Pattern extends Model
 
     public function scopeSearch(Builder $query,string $search)
     {
-        return $query->where('pattern_name', 'like', "%{$search}%");
-       
+        return  $query->with('college')
+       ->where('pattern_name', 'like', "%{$search}%")
+       ->orWhere('pattern_startyear', 'like', "%{$search}%")
+       ->orWhere('pattern_valid', 'like', "%{$search}%")
+       ->orWhere(function ($subquery) use ($search) {
+        $subquery->orWhereHas('college', function ($subQuery) use ($search) {
+            $subQuery->where('college_name', 'like', "%{$search}%");
+         });
+         });
+        }
     }
-}

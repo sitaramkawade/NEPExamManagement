@@ -29,6 +29,7 @@ class Subject extends Model
         'subjecttype_id',
         'subjectexam_type',
         'subject_credit',
+        'is_project',
         'subject_maxmarks',
         'subject_maxmarks_int',
         'subject_maxmarks_intpract',

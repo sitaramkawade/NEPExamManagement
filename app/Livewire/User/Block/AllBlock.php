@@ -16,7 +16,7 @@ class AllBlock extends Component
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
-    public $sortColumn="classname";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
     #[Locked] 
@@ -218,7 +218,9 @@ class AllBlock extends Component
             $this->buildings = Building::select('building_name','id')->where('status',1)->get();
         }
 
-        $blocks=Block::when($this->search, function ($query, $search) {
+        $blocks=Block::select('id','building_id','classname','block','capacity','noofblocks','status','deleted_at')
+        ->with('building:building_name,id')
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
