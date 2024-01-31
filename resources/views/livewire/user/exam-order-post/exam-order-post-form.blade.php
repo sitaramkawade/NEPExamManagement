@@ -10,16 +10,7 @@
                 <x-text-input id="post_name" type="text" wire:model="post_name" name="post_name" class="w-full mt-1" :value="old('post_name',$post_name)" required autofocus autocomplete="post_name" />
                 <x-input-error :messages="$errors->get('post_name')" class="mt-2" />
             </div>
-            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                <x-input-label for="start_date" :value="__('Start Date')" />
-                <x-text-input id="start_date" type="date" wire:model="start_date" placeholder="{{ __('Start Date') }}" name="start_date" class="w-full mt-1" :value="old('start_date', $start_date)" autocomplete="start_date" />
-                <x-input-error :messages="$errors->get('start_date')" class="mt-1" />
-            </div>
-            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                <x-input-label for="end_date" :value="__('End Date')" />
-                <x-text-input id="end_date" type="date" wire:model="end_date" placeholder="{{ __('End Date') }}" name="end_date" class="w-full mt-1" :value="old('end_date', $end_date)" autocomplete="end_date" />
-                <x-input-error :messages="$errors->get('end_date')" class="mt-1" />
-            </div>
+           
              <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                             <x-input-label for="status" :value="__('Status')" />
                             <x-required />

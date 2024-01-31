@@ -18,12 +18,12 @@ class AllBuilding extends Component
     public $delete_id;
 
     public $building_name;
-    public $priority;
+    public $Priority;
     public $status;
     public $mode='all';
     public $perPage=10;
     public $search='';
-    public $sortColumn="building_name";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
 
@@ -34,7 +34,7 @@ class AllBuilding extends Component
     {
         return [
         'building_name' => ['required','string','max:255',Rule::unique('buildings', 'building_name')->ignore($this->building_id,)],
-        'priority' => ['required'],
+        'Priority' => ['required'],
         'status' => ['required'],     
          ];
     }
@@ -59,7 +59,7 @@ class AllBuilding extends Component
     {
         $this->edit_id=null;
         $this->building_name= null;
-        $this->priority= null;
+        $this->Priority= null;
         $this->status= null;
        
     }
@@ -110,7 +110,7 @@ class AllBuilding extends Component
         $building =  new Building;
         $building->create([
             'building_name' => $this->building_name,
-            'priority' => $this->priority,
+            'Priority' => $this->Priority,
             'status' => $this->status,
             
         ]);
@@ -124,7 +124,7 @@ class AllBuilding extends Component
         if ($building) {
             $this->building_id=$building->id;
             $this->building_name = $building->building_name;
-            $this->priority = $building->priority;
+            $this->Priority = $building->Priority;
             $this->status = $building->status;                    
             $this->setmode('edit');
         }
@@ -136,7 +136,7 @@ class AllBuilding extends Component
 
         $building->update([
             'building_name' => $this->building_name,
-            'priority' => $this->priority,
+            'Priority' => $this->Priority,
             'status' => $this->status,
             
         ]);      
@@ -192,7 +192,8 @@ class AllBuilding extends Component
     public function render()
     {
         
-        $buildings=Building::when($this->search, function ($query, $search) {
+        $buildings=Building::select('id','building_name','Priority','status','deleted_at')
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

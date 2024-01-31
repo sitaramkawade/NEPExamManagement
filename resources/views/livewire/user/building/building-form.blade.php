@@ -12,10 +12,10 @@
             </div>
 
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                <x-input-label for="priority" :value="__(' Priority')" />
+                <x-input-label for="Priority" :value="__(' Priority')" />
                 <x-required />
-                <x-text-input id="priority" type="text" wire:model="priority" name="priority" class="w-full mt-1" :value="old('priority',$priority)" required autofocus autocomplete="priority" />
-                <x-input-error :messages="$errors->get('priority')" class="mt-2" />
+                <x-text-input id="Priority" type="text" wire:model="Priority" name="Priority" class="w-full mt-1" :value="old('Priority',$Priority)" required autofocus autocomplete="Priority" />
+                <x-input-error :messages="$errors->get('Priority')" class="mt-2" />
             </div>
            
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">

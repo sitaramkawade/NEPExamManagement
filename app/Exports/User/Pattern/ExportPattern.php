@@ -25,13 +25,13 @@ class ExportPattern implements FromCollection, WithHeadings, WithMapping
         return Pattern::
         search($this->search)
       ->orderBy($this->sortColumn, $this->sortColumnBy)
-      ->select('id', 'pattern_name','pattern_startyear','pattern_valid','status')
+      ->select('id', 'pattern_name','pattern_startyear','pattern_valid','college_id','status')
       ->get();
     }
 
     public function headings(): array
     {
-        return ['ID', 'Pattern Name','Pattern Start Year','Pattern Valid','status'];
+        return ['ID', 'Pattern Name','Pattern Start Year','Pattern Valid','College ID','status'];
     }
 
     public function map($row): array
@@ -41,6 +41,7 @@ class ExportPattern implements FromCollection, WithHeadings, WithMapping
             $row->pattern_name,
             $row->pattern_startyear,
             $row->pattern_valid,
+            isset($row->college->college_name)?$row->college->college_name:'',
             $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }

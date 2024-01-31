@@ -28,9 +28,11 @@ class Educationalcourse extends Model
 
     public function scopeSearch(Builder $query,string $search)
     {
-        return $query->where('course_name', 'like', "%{$search}%");
-        // ->orWhere('college_email', 'like', "%{$search}%")
-        // ->orWhere('college_address', 'like', "%{$search}%");
+        return $query->with('programme')
+        ->where('course_name', 'like', "%{$search}%");
+        $subquery->orWhereHas('programme', function ($subQuery) use ($search) {
+            $subQuery->where('programme_name', 'like', "%{$search}%");
+        });
     }
    
 }

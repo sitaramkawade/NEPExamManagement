@@ -133,9 +133,9 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,                           // Patternclass , Department , College
             ExamBacklogFeeCoursesSeeder::class,             // Patternclass, Examfeemaster
             ExamFeeCoursesSeeder::class,   
-            BuildingSeeder::class , 
             FacultyHeadSeeder::class,                       // Faculty, Department
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
+            ExamTimeTableSeeder::class,
             ExamOrderPostSeeder::class,
             ExamPanelSeeder::class,
             ExamorderSeeder::class,

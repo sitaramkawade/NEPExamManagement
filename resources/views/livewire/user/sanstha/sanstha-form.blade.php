@@ -31,7 +31,7 @@
                 <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                     <x-input-label for="sanstha_website_url" :value="__('Sanstha Website URL ')" />
                     <x-required />
-                    <x-text-input id="sanstha_website_url" type="url" wire:model="sanstha_website_url" name="sanstha_website_url" class="w-full mt-1" :value="old('sanstha_website_url',$sanstha_website_url)" required autofocus autocomplete="sanstha_website_url" />
+                    <x-text-input id="sanstha_website_url" type="text" wire:model="sanstha_website_url" name="sanstha_website_url" class="w-full mt-1" :value="old('sanstha_website_url',$sanstha_website_url)" required autofocus autocomplete="sanstha_website_url" />
                     <x-input-error :messages="$errors->get('sanstha_website_url')" class="mt-2" />
                 </div>
 

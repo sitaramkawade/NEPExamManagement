@@ -14,7 +14,7 @@ class AllExam extends Component
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
-    public $sortColumn="exam_name";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
     public $mode='all';
@@ -83,7 +83,7 @@ class AllExam extends Component
 
         $exam->exam_name= $this->exam_name;         
         $exam->status= $this->status;
-        $exam->exam_sessions= $this->exam_sessions==1?0:1;
+        $exam->exam_sessions= $this->exam_sessions;
         $exam->save();
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
         $this->setmode('all');
@@ -111,7 +111,7 @@ class AllExam extends Component
                               
                 'exam_name' => $this->exam_name,              
                 'status' => $this->status,  
-                'exam_sessions' => $this->exam_sessions==1?0:1,                    
+                'exam_sessions' => $this->exam_sessions,                    
             ]);
           
             $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
@@ -189,7 +189,8 @@ class AllExam extends Component
 
     public function render()
     {
-        $exams=Exam::when($this->search, function ($query, $search) {
+        $exams=Exam::select('id','exam_name','exam_sessions','status','deleted_at')
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

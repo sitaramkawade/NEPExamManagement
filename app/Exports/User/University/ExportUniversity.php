@@ -27,13 +27,13 @@ class ExportUniversity implements FromCollection, WithHeadings, WithMapping
         return University::
           search($this->search)
         ->orderBy($this->sortColumn, $this->sortColumnBy)
-        ->select('id', 'university_name','university_email','university_address','university_website_url', 'status')
+        ->select('id', 'university_name','university_email','university_address','university_contact_no','university_website_url', 'status')
         ->get();
     }
 
     public function headings(): array
     {
-        return ['ID', 'University Name','University Email','University Address','University Website URL','Status'];
+        return ['ID', 'University Name','University Email','University Address','University Contact Number','University Website URL','Status'];
     }
 
     public function map($row): array
@@ -43,7 +43,8 @@ class ExportUniversity implements FromCollection, WithHeadings, WithMapping
             $row->university_name,
             $row->university_email,
             $row->university_address,
-            $row->university_address,
+            $row->university_contact_no,
+            $row->university_website_url,
             $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }

@@ -16,7 +16,7 @@ class AllDepartment extends Component
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
-    public $sortColumn="dept_name";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
     public $mode='all';
@@ -26,6 +26,7 @@ class AllDepartment extends Component
     public $departmenttype;
     public $college_id;
     public $status;
+    #[Locked] 
     public $dept_id;
     public $steps=1;
     public $current_step=1;
@@ -81,13 +82,6 @@ class AllDepartment extends Component
             $this->resetinput();
         }
         $this->mode=$mode;
-    }
-
-    public function mount()
-    {
-        $this->colleges = College::all();
-           
-      
     }
     
     public function add(Department  $dept ){
@@ -210,7 +204,9 @@ class AllDepartment extends Component
     {
         $this->colleges=College::select('college_name','id')->where('status',1)->get();
 
-        $departments=Department::when($this->search, function ($query, $search) {
+        $departments=Department::select('id','dept_name','short_name','departmenttype','college_id','status','deleted_at')
+       ->with('college:college_name,id')
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

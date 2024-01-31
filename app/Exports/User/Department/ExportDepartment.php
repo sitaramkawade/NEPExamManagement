@@ -40,7 +40,7 @@ class ExportDepartment implements FromCollection ,WithHeadings, WithMapping
             $row->id,
             $row->dept_name,
             $row->short_name,
-            $row->departmenttype,
+            $row->departmenttype==1?'UG': 'PG',
             isset($row->college->college_name)?$row->college->college_name:'',
             $row->status == 1 ? 'Active' : 'Inactive',
         ];

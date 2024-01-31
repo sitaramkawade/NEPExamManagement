@@ -29,7 +29,7 @@
                         <x-table.tr>
                             <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
                             <x-table.th wire:click="sort_column('building_name')" name="building_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Building</x-table.th>
-                            <x-table.th wire:click="sort_column('priority')" name="priority" :sort="$sortColumn" :sort_by="$sortColumnBy">Priority</x-table.th>
+                            <x-table.th wire:click="sort_column('Priority')" name="Priority" :sort="$sortColumn" :sort_by="$sortColumnBy">Priority</x-table.th>
                             <x-table.th wire:click="sort_column('status')" name="status" :sort="$sortColumn" :sort_by="$sortColumnBy">Status</x-table.th>
                             <x-table.th> Action </x-table.th>
                         </x-table.tr>
@@ -39,7 +39,7 @@
                         <x-table.tr wire:key="{{ $building->id }}">
                             <x-table.td>{{ $building->id }} </x-table.td>
                             <x-table.td>{{ $building->building_name }} </x-table.td>
-                            <x-table.td>{{ $building->priority }} </x-table.td>
+                            <x-table.td>{{ $building->Priority }} </x-table.td>
                             <x-table.td>
                                 @if($building->status==1)
                                         <x-table.active wire:click="Status({{ $building->id }})" />
