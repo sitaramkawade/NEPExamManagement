@@ -64,7 +64,6 @@ use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
-use App\Livewire\User\ExamBacklogFeeCourse\AllExamBacklogFeeCourse;
 
 
 
@@ -238,9 +237,6 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Exam Fee Course
   Route::get('/exam/fee/course',AllExamFeeCourse::class)->name('all_exam_fee_course');
-
-  //All Exam Backlog Fee Course
-  Route::get('/exam/backlog/fee/course',AllExamBacklogFeeCourse::class)->name('all_exam_backlog_fee_course');
 
   //All Subject Hod
   Route::get('/all-hodappointsubject',  AllHodAppointSubject::class)->name('all-hodappointsubjects');
