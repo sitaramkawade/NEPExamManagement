@@ -1,9 +1,11 @@
 <?php
 
 namespace Database\Seeders;
+use App\Models\User;
 use App\Models\College;
-use App\Models\Subject;
 
+use App\Models\Faculty;
+use App\Models\Subject;
 use App\Models\Semester;
 use App\Models\Classyear;
 use App\Models\Department;
@@ -26,6 +28,8 @@ class SubjectSeeder extends Seeder
 
         $semisters = Semester::pluck('semester')->toArray();
         $subjectCategoryIds = Subjectcategory::pluck('id')->toArray();
+        $userIds = User::pluck('id')->toArray();
+        $facultyIds = Faculty::pluck('id')->toArray();
         $subjectCategories = Subjectcategory::pluck('subjectcategory_shortname')->toArray();
         $subjectTypeIds = Subjecttype::pluck('id')->toArray();
         $subjectCredits = Subjectcredit::pluck('credit')->toArray();
@@ -58,6 +62,8 @@ class SubjectSeeder extends Seeder
                 'subject_optionalgroup' => $faker->lexify('???'),
                 'patternclass_id' => $faker->randomElement($patternClassIds),
                 'classyear_id' => $faker->randomElement($classYearIds),
+                'user_id' => $faker->randomElement($userIds),
+                'faculty_id' => $faker->randomElement($facultyIds),
                 'department_id' => $faker->randomElement($departmentIds),
                 'college_id' =>  $faker->randomElement($collegeIds),
                 'status' => $faker->randomElement([0, 1]),

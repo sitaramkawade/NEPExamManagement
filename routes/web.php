@@ -40,6 +40,7 @@ use App\Livewire\User\ExamPanel\AllExamPanel;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
+use App\Livewire\Faculty\ExamPanel\ViewExamPanel;
 use App\Livewire\User\CourseClass\AllCourseClass;
 use App\Livewire\User\AcademicYear\AllAcademicYear;
 use App\Livewire\User\ExamBuilding\AllExamBuilding;
@@ -274,6 +275,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All FacultyHead
   Route::get('/all-facultyheads', AllFacultyHead::class)->name('all-facultyheads');
+
+  // All ExamPanels
+  Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
 
 });
 
