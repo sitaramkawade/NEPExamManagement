@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\Faculty\SubjectBucket;
+namespace App\Exports\Faculty\Subjectbucket;
 
 use App\Models\Subjectbucket;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class SubjectBucketExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
+class SubjectbucketExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     protected $search;
     protected $sortColumn;

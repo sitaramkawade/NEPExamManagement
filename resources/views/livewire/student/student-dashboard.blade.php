@@ -18,14 +18,16 @@
                     <div class="text-lg font-bold leading-none text-gray-800">Action</div>
                     <div class="mt-2">
                       <div class="grid grid-cols-3 gap-1 md:grid-cols-4 ">
+                        <a href="{{ route('student.student_exam_form') }}">
+                          <button type="button" class="inline-flex items-center justify-center rounded-xl border-2 bg-white px-3 py-2 my-2 text-md font-semibold text-gray-800 transition hover:text-green-500 dark:border-primary">
+                            Exam Form
+                          </button>
+                        </a>
                         <button type="button" class="inline-flex items-center justify-center rounded-xl border-2 bg-white px-3 py-2 my-2 text-md font-semibold text-gray-800 transition hover:text-green-500 dark:border-primary">
                           Hall Tiket
                         </button>
                         <button type="button" class="inline-flex items-center justify-center rounded-xl border-2 bg-white px-3 py-2 my-2 text-md font-semibold text-gray-800 transition hover:text-green-500 dark:border-primary">
                           Result
-                        </button>
-                        <button type="button" class="inline-flex items-center justify-center rounded-xl border-2 bg-white px-3 py-2 my-2 text-md font-semibold text-gray-800 transition hover:text-green-500 dark:border-primary">
-                          Exam Form
                         </button>
                       </div>
                     </div>
