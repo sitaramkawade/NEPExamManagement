@@ -48,7 +48,7 @@
                   <x-table.td>{{ $exam_fee_course->fee }} </x-table.td>
                   <x-table.td>{{ $exam_fee_course->sem }} </x-table.td>
                   <x-table.td> <x-table.text-scroll>{{ isset($exam_fee_course->patternclass->pattern->pattern_name) ? $exam_fee_course->patternclass->pattern->pattern_name : '-' }} {{ isset($exam_fee_course->patternclass->courseclass->classyear->classyear_name) ? $exam_fee_course->patternclass->courseclass->classyear->classyear_name : '-' }} {{ isset($exam_fee_course->patternclass->courseclass->course->course_name) ? $exam_fee_course->patternclass->courseclass->course->course_name : '-' }} </x-table.text-scroll></x-table.td>
-                  <x-table.td> <x-table.text-scroll>{{isset($exam_fee_course->examfee->fee_type)? $exam_fee_course->examfee->fee_type:'-'; }} </x-table.text-scroll></x-table.td>
+                  <x-table.td> <x-table.text-scroll>{{isset($exam_fee_course->examfee->fee_name)? $exam_fee_course->examfee->fee_name:'-'; }} </x-table.text-scroll></x-table.td>
                   <x-table.td>
                     @if ($exam_fee_course->approve_status == 1)
                       <x-status type="success"> Yes </x-status>

@@ -35,8 +35,6 @@
                                 <x-table.tr>
                                     <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">No.</x-table.th>
                                     <x-table.th wire:click="sort_column('post_name')" name="post_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Post Name </x-table.th>
-                                    <x-table.th wire:click="sort_column('start_date')" name="start_date" :sort="$sortColumn" :sort_by="$sortColumnBy">Start Date </x-table.th>
-                                    <x-table.th wire:click="sort_column('end_date')" name="end_date" :sort="$sortColumn" :sort_by="$sortColumnBy">End Date </x-table.th>
                                     <x-table.th wire:click="sort_column('status')" name="status" :sort="$sortColumn" :sort_by="$sortColumnBy">Status </x-table.th>
                                     <x-table.th> Action </x-table.th>
                                 </x-table.tr>
@@ -46,8 +44,6 @@
                                 <x-table.tr wire:key="{{ $post->id }}">
                                     <x-table.td> {{ $post->id }}</x-table.td>
                                     <x-table.td> {{ $post->post_name }} </x-table.td>
-                                    <x-table.td>{{ isset($post->start_date)?date('d-m-Y', strtotime($post->start_date)):''; }} </x-table.td>
-                                    <x-table.td>{{ isset($post->end_date)?date('d-m-Y', strtotime($post->end_date)):''; }} </x-table.td>
                                     <x-table.td>
                                         @if($post->status==1)
                                         <x-table.active wire:click="Status({{ $post->id }})" />

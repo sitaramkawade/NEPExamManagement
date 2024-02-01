@@ -19,8 +19,6 @@ class ExamOrderPostSeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             ExamOrderPost::create([
                 'post_name' => $faker->word,
-                // 'start_date' => $faker->dateTimeBetween('now', '+30 days'),
-                // 'end_date' => $faker->dateTimeBetween('now', '+60 days'),
                 'status' =>$faker->numberBetween(1,0),
             ]);
         }

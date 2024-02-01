@@ -48,7 +48,7 @@ class Examfeecourse extends Model
             })->orWhereHas('patternclass.courseclass.classyear', function ($subQuery) use ($search) {
                 $subQuery->where('classyear_name', 'like', "%{$search}%");
             })->orWhereHas('examfee', function ($subQuery) use ($search) {
-                $subQuery->where('fee_type', 'like', "%{$search}%");
+                $subQuery->where('fee_name', 'like', "%{$search}%");
             });
         });
 

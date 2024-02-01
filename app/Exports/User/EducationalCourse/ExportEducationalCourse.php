@@ -31,7 +31,7 @@ class ExportEducationalCourse implements FromCollection, WithHeadings, WithMappi
 
     public function headings(): array
     {
-        return ['ID', 'Course Name','Programme Email','Status'];
+        return ['ID', 'Course Name','Programme Name','Status'];
     }
 
     public function map($row): array

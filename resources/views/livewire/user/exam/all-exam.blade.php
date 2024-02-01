@@ -21,7 +21,7 @@
             <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
             <x-breadcrumb.link name="Exam's" />
             </x-breadcrumb.link>
-            <x-card-header heading="  All Sanstha's">
+            <x-card-header heading="  All Exam's">
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
             <x-table.frame>
@@ -43,7 +43,7 @@
                                 <x-table.tr wire:key="{{ $exam->id }}">
                                     <x-table.td>{{ $exam->id }}</x-table.td>
                                     <x-table.td>{{ $exam->exam_name }} </x-table.td>
-                                    <x-table.td> {{ $exam->exam_sessions==0?"Session 1":"Session 2";}} </x-table.td>
+                                    <x-table.td> {{ $exam->exam_sessions==1?"Session 1":"Session 2";}} </x-table.td>
                                     <x-table.td>
                                         @if($exam->status==1)
                                         <x-table.active wire:click="Status({{ $exam->id }})" />

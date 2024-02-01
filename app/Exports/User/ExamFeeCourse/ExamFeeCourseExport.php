@@ -31,7 +31,7 @@ class ExamFeeCourseExport implements FromCollection, WithHeadings, ShouldAutoSiz
 
     public function headings(): array
     {
-        return ['ID', 'Fee','SEM', 'Pattern Class','Fee Type','Approved','Status'];
+        return ['ID', 'Fee','SEM', 'Pattern Class','Fee Name','Approved','Status'];
     }
 
     public function map($row): array
@@ -39,11 +39,11 @@ class ExamFeeCourseExport implements FromCollection, WithHeadings, ShouldAutoSiz
         return [
             $row->id,
             $row->fee,
-            $row->sem,
-            (isset($row->patternclass->pattern->pattern_name) ? $row->patternclass->pattern->pattern_name : '-') . 
+            isset($row->sem)?$row->sem:'',
+            (isset($row->patternclass->pattern->pattern_name) ? $row->patternclass->pattern->pattern_name : '-') . ' '.
             (isset($row->patternclass->courseclass->classyear->classyear_name) ? $row->patternclass->courseclass->classyear->classyear_name : '-') . 
             (isset($row->patternclass->courseclass->course->course_name) ? $row->patternclass->courseclass->course->course_name : '-'),
-            (isset($row->examfee->fee_type) ? $row->examfee->fee_type : '-'),
+            (isset($row->examfee->fee_name) ? $row->examfee->fee_name : '-'),
             $row->approve_status == 1 ? 'Yes' : 'No',
             $row->active_status == 1 ? 'Active' : 'Inactive',
         ];

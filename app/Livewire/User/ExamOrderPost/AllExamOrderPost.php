@@ -23,8 +23,6 @@ class AllExamOrderPost extends Component
     public $sortColumnBy="ASC";
     public $ext;
     public $post_name;
-    public $start_date;
-    public $end_date;
     public $status;
 
     #[Locked] 
@@ -34,9 +32,6 @@ class AllExamOrderPost extends Component
     {
         return [
             'post_name' => ['required', 'string','max:50'],
-            'start_date' => ['nullable', 'date'],
-            'end_date' => ['nullable', 'date'],
-            
              ];
     }
 
@@ -46,10 +41,6 @@ class AllExamOrderPost extends Component
             'post_name.required' => 'The Post Name is required.',
             'post_name.string' => 'The Post Name must be a string.',
             'post_name.max' => 'The Post Name must not exceed :max characters.',
-            'start_date.required' => 'The Start Date field is required.',
-            'start_date.date' => 'The Start Date must be a valid Date.',
-            'end_date.required' => 'The End Date field is required.',
-            'end_date.date' => 'The End Date must be a valid Date.',
            
         ];
         return $messages;
@@ -64,8 +55,6 @@ class AllExamOrderPost extends Component
     {
         $this->edit_id=null;
         $this->post_name= null;
-        $this->start_date=null;
-        $this->end_date=null;
     }
 
     public function sort_column($column)
@@ -116,8 +105,6 @@ class AllExamOrderPost extends Component
         $examorderpost =  new ExamOrderPost;
         $examorderpost->create([
             'post_name' => $this->post_name,
-            'start_date'=>$this->start_date,
-            'end_date'=>$this->end_date,
             'status'=>$this->status,          
         ]);
         $this->resetinput();
@@ -130,8 +117,6 @@ class AllExamOrderPost extends Component
         $this->resetinput();
         $this->post_id=$examorderpost->id;
         $this->post_name= $examorderpost->post_name;
-        $this->start_date = date('Y-m-d', strtotime($examorderpost->start_date));
-        $this->end_date=date('Y-m-d', strtotime($examorderpost->end_date));
         $this->status= $examorderpost->status;
       
         $this->setmode('edit');
@@ -143,8 +128,6 @@ class AllExamOrderPost extends Component
 
         $examorderpost->update([
             'post_name' => $this->post_name,
-            'start_date'=>$this->start_date,
-            'end_date'=>$this->end_date,
             'status'=>$this->status,
            
         ]);
@@ -197,7 +180,8 @@ class AllExamOrderPost extends Component
     
     public function render()
     {
-        $Posts=ExamOrderPost::when($this->search, function ($query, $search) {
+        $Posts=ExamOrderPost::select('id','post_name','deleted_at')
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         

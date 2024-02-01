@@ -25,16 +25,17 @@ class AllUniversity extends Component
     public $university_contact_no;
     public $university_logo_path;
     public $university_logo_path_old;
-    public $university_id;
     public $status;
     public $can_update=0;
     public $perPage=10; 
     public $search='';
-    public $sortColumn="university_name";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
     #[Locked] 
     public $delete_id;
+    #[Locked] 
+    public $university_id;
 
     protected function rules()
     {
@@ -251,7 +252,8 @@ public function forcedelete()
 
     public function render()
     {
-        $universities=University::when($this->search, function ($query, $search) {
+        $universities=University::select('id','university_name','university_email','university_address','university_website_url','university_contact_no','university_logo_path','status','deleted_at')
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

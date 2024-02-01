@@ -4,14 +4,15 @@
             <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
                 Exam
             </div>
-            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                <x-input-label for="exam_name" :value="__('Exam Name')" />
-                <x-required />
-                <x-text-input id="exam_name" type="text" wire:model="exam_name" name="exam_name" class="w-full mt-1" :value="old('exam_name',$exam_name)" required autofocus autocomplete="exam_name" />
-                <x-input-error :messages="$errors->get('exam_name')" class="mt-2" />
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="grid grid-cols-1 md:grid-cols-3">
+                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                    <x-input-label for="exam_name" :value="__('Exam Name')" />
+                    <x-required />
+                    <x-text-input id="exam_name" type="text" wire:model="exam_name" name="exam_name" class="w-full mt-1" :value="old('exam_name',$exam_name)" required autofocus autocomplete="exam_name" />
+                    <x-input-error :messages="$errors->get('exam_name')" class="mt-2" />
+                </div>
+
                 <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                     <x-input-label for="status" :value="__('Status')" />
                     <x-required />
@@ -29,7 +30,7 @@
                     <x-input-select id="exam_sessions" wire:model="exam_sessions" name="exam_sessions" class="text-center  w-full mt-1" :value="old('exam_sessions',$exam_sessions)" required autocomplete="exam_sessions">
                         <x-select-option class="text-start" hidden> -- Select -- </x-select-option>
                         <x-select-option class="text-start" value="1">Session 1</x-select-option>
-                        <x-select-option class="text-start" value="0">Session 2</x-select-option>
+                        <x-select-option class="text-start" value="2">Session 2</x-select-option>
                     </x-input-select>
                     <x-input-error :messages="$errors->get('exam_sessions')" class="mt-2" />
                 </div>

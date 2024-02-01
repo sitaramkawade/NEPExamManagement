@@ -29,6 +29,7 @@ use Database\Seeders\SemesterSeeder;
 use Database\Seeders\CapmasterSeeder;
 use Database\Seeders\ClassyearSeeder;
 use Database\Seeders\DepatmentSeeder;
+use Database\Seeders\ExamorderSeeder;
 use Database\Seeders\ExamPanelSeeder;
 use Database\Seeders\ProgrammeSeeder;
 use Database\Seeders\BloodgroupSeeder;
@@ -132,11 +133,12 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,                           // Patternclass , Department , College
             ExamBacklogFeeCoursesSeeder::class,             // Patternclass, Examfeemaster
             ExamFeeCoursesSeeder::class,   
-            BuildingSeeder::class , 
             FacultyHeadSeeder::class,                       // Faculty, Department
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
+            ExamTimeTableSeeder::class,
             ExamOrderPostSeeder::class,
             ExamPanelSeeder::class,
+            ExamorderSeeder::class,
         ]);
     }
 }

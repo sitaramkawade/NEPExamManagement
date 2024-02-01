@@ -14,15 +14,12 @@ class ExamOrderPost extends Model
     protected $table='exam_order_posts';
     protected $fillable=[
         'post_name',
-        'start_date',
-        'end_date',
         'status'
     ];
 
     public function scopeSearch(Builder $query,string $search)
     {
-        return $query->where('post_name', 'like', "%{$search}%")
-        ->orWhere('start_date', 'like', "%{$search}%")
-        ->orWhere('end_date', 'like', "%{$search}%");
+        return $query->where('post_name', 'like', "%{$search}%");
+      
     }
 }
