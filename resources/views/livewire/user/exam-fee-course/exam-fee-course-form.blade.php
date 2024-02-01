@@ -2,7 +2,7 @@
   <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
     Exam Fee Course
   </div>
-  <div class="grid grid-cols-1 @if ($is_course_class || $is_sem || $mode=='edit' || $mode=='add') md:grid-cols-2 @elseif ($is_sem && $mode=='edit')  md:grid-cols-3 @endif">
+  <div class="grid grid-cols-1 @if ($is_course_class || $is_sem || $mode=='edit' || $mode=='add') md:grid-cols-2 @endif @if ($is_sem && $mode=='edit')  md:grid-cols-3 @endif ">
     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
       <x-input-label for="form_type_id" :value="__('Select Form Type')" />
       <x-input-select id="form_type_id" wire:model.live="form_type_id" name="form_type_id" class="text-center w-full mt-1" :value="old('form_type_id', $form_type_id)" required autocomplete="form_type_id">
@@ -109,6 +109,7 @@
       </div>
     </div>
   @empty
+    <span class="flex items-center justify-center text-center mx-auto">Exam course fees not found or all fees are assigned to the current pattern class and semester.</span>
   @endforelse
 
   <x-form-btn wire:loading.attr="disabled">Submit</x-form-btn>

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire\Faculty\FacultyRoleType;
+namespace App\Livewire\Faculty\FacultyRoletype;
 
 use Livewire\Component;
 use App\Models\Roletype;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\Faculty\FacultyRoleType\FacultyRoleTypeExport;
+use App\Exports\Faculty\FacultyRoletype\FacultyRoletypeExport;
 
-class AllFacultyRoleType extends Component
+class AllFacultyRoletype extends Component
 {
     use WithPagination;
 

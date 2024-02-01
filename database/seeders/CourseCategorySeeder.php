@@ -6,7 +6,7 @@ use App\Models\Coursecategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class CoursecategorySeeder extends Seeder
+class CourseCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.

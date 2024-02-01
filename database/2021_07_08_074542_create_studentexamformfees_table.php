@@ -11,27 +11,27 @@ class CreateStudentexamformfeesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('studentexamformfees', function (Blueprint $table) {
-            $table->id();
+    // public function up()
+    // {
+    //     Schema::create('studentexamformfees', function (Blueprint $table) {
+    //         $table->id();
 
-            $table->bigInteger('examformmaster_id')->unsigned();
-            $table->foreign('examformmaster_id')->references('id')->on('examformmasters');
-            $table->bigInteger('examfees_id')->unsigned();
-            $table->foreign('examfees_id')->references('id')->on('examfeemasters');
-            $table->integer('fee_amount')->default(0);;
-            $table->timestamps();
-        });
-    }
+    //         $table->bigInteger('examformmaster_id')->unsigned();
+    //         $table->foreign('examformmaster_id')->references('id')->on('examformmasters');
+    //         $table->bigInteger('examfees_id')->unsigned();
+    //         $table->foreign('examfees_id')->references('id')->on('examfeemasters');
+    //         $table->integer('fee_amount')->default(0);;
+    //         $table->timestamps();
+    //     });
+    // }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('studentexamformfees');
-    }
+    // /**
+    //  * Reverse the migrations.
+    //  *
+    //  * @return void
+    //  */
+    // public function down()
+    // {
+    //     Schema::dropIfExists('studentexamformfees');
+    // }
 }
