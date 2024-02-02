@@ -9,36 +9,21 @@ use Illuminate\Database\Seeder;
 
 class SubjecttypeSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        User::create( [
-            'name' => 'user',
-            'email' => 'user@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => Str::random(10),
-        ] );
+        $faker = Faker::create();
 
-
-        Faculty::create( [
-            'faculty_name' => 'faculty',
-            'email' => 'faculty@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => Str::random(10),
-        ] );
-
-        Student::create( [
-            'student_name' => 'Student Name',
-            'mother_name' => 'Mother Name',
-            'mobile_no' => '1234567890',
-            'memid' => '12345',
-            'email' => 'student@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => Str::random(10),
-        ] );
-
-
+        for ($i = 1; $i <= 20; $i++) {
+            Subjecttype::create([
+                'type_name' => $faker->word,
+                'type_shortname' => $faker->lexify('??'),
+                'active' => $faker->numberBetween(0, 1),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }
