@@ -139,6 +139,7 @@ class DatabaseSeeder extends Seeder
             ExamOrderPostSeeder::class,
             ExamPanelSeeder::class,
             ExamorderSeeder::class,
+            BuildingSeeder::class,
         ]);
     }
 }

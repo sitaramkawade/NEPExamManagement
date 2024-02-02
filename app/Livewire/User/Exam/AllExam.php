@@ -4,7 +4,9 @@ namespace App\Livewire\User\Exam;
 use Excel;
 use App\Models\Exam;
 use Livewire\Component;
+use App\Models\Academicyear;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
 use App\Exports\User\Exam\ExportExam;
 
 
@@ -18,12 +20,15 @@ class AllExam extends Component
     public $sortColumnBy="ASC";
     public $ext;
     public $mode='all';
+    #[Locked] 
     public $exam_id;
     public $current_step=1;
     public $steps=1;
     public $exam_name;
     public $status;
     public $exam_sessions;
+    public $academicyear_id;
+    public $academics;
     #[Locked] 
     public $delete_id;
  
@@ -32,6 +37,7 @@ class AllExam extends Component
     {
         return [
         'exam_name' => ['required','string','max:100'],
+        'academicyear_id' => ['required',Rule::exists('academicyears', 'id')],
         'status' => ['required'],
         'exam_sessions' => ['required'],
         ];
@@ -42,6 +48,8 @@ class AllExam extends Component
         $messages = [
             'exam_name.required' => 'The Exam Name field is required.',
             'exam_name.string' => 'The Exam Name must be a string.',
+            'academicyear_id.required' => 'The Academic Year field is required.',
+            'academicyear_id.exists' => 'The selected Academic Year does not exist.',
             'exam_name.max' => 'The  Exam Name must not exceed :max characters.',
             'exam_sessions.required' => 'The Exam Session field is required.',
         ];
@@ -51,14 +59,9 @@ class AllExam extends Component
     public function resetinput()
     {
         $this->exam_name=null;
+        $this->academicyear_id=null;
         $this->status=null;
         $this->exam_sessions=null;
-    }
-
-    public function resetInputFields()
-    {
-        // Reset the specified properties to their initial state
-        $this->reset(['exam_name', 'status' ,'exam_sessions']);
     }
 
     public function updated($property)
@@ -82,6 +85,7 @@ class AllExam extends Component
         if ($validatedData) {
 
         $exam->exam_name= $this->exam_name;         
+        $exam->academicyear_id= $this->academicyear_id;         
         $exam->status= $this->status;
         $exam->exam_sessions= $this->exam_sessions;
         $exam->save();
@@ -95,6 +99,7 @@ class AllExam extends Component
         if ($exam) {
             $this->exam_id=$exam->id;
             $this->exam_name = $exam->exam_name;
+            $this->academicyear_id = $exam->academicyear_id;
             $this->status = $exam->status;          
             $this->exam_sessions = $exam->exam_sessions;          
             $this->setmode('edit');
@@ -110,6 +115,7 @@ class AllExam extends Component
             $exam->update([
                               
                 'exam_name' => $this->exam_name,              
+                'academicyear_id' => $this->academicyear_id,              
                 'status' => $this->status,  
                 'exam_sessions' => $this->exam_sessions,                    
             ]);
@@ -189,7 +195,10 @@ class AllExam extends Component
 
     public function render()
     {
-        $exams=Exam::select('id','exam_name','exam_sessions','status','deleted_at')
+        $this->academics=Academicyear::select('year_name','id')->where('active',1)->get();
+
+        $exams=Exam::select('id','exam_name','exam_sessions','academicyear_id','status','deleted_at')
+        // ->with(['academicyear:year_name,id'])
         ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

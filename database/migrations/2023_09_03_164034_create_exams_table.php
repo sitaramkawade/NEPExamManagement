@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('exam_name',100)->nullable();
             $table->tinyInteger('status')->default(0); //1 means Active 0 means not active
+            $table->unsignedBigInteger('academicyear_id');
+            $table->foreign('academicyear_id')->references('id')->on('academicyears');
             $table->tinyInteger('exam_sessions')->default(0); //0 means only Creared 1 means first Half 2 Means Second Half
-            $table->SoftDeletes();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

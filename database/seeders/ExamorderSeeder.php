@@ -18,7 +18,7 @@ class ExamorderSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1; $i++) {
 
             $exampatternclassIds = ExamPatternclass::pluck('id')->toArray();
             $exampanelIds = ExamPanel::pluck('id')->toArray();
