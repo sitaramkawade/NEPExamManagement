@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Faculty\Subjectbucket;
+namespace App\Livewire\Faculty\SubjectBucket;
 
 use App\Models\Course;
 use App\Models\Pattern;
@@ -15,9 +15,9 @@ use App\Models\Subjectbucket;
 use App\Models\Subjectcategory;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\Faculty\Subjectbucket\SubjectbucketExport;
+use App\Exports\Faculty\SubjectBucket\SubjectBucketExport;
 
-class AllSubjectbucket extends Component
+class AllSubjectBucket extends Component
 {
     use WithPagination;
 
@@ -39,7 +39,7 @@ class AllSubjectbucket extends Component
 
     #[Locked]
     public $delete_id;
-    
+
     public $mode='all';
     public $per_page = 10;
     public $perPage=10;
