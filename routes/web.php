@@ -59,6 +59,7 @@ use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
+use App\Livewire\Student\StudentExamForm\StudentExamForm;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
@@ -119,6 +120,9 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
 
   // Student Helpline
   Route::get('/helpline',Helpline::class)->name('helpline');
+
+  // Student Exam Form
+  Route::get('/exam/form',StudentExamForm::class)->name('student_exam_form');
 });
 
 

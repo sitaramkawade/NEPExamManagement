@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Faculty\SubjectBucket;
+namespace App\Livewire\Faculty\Subjectbucket;
 
 use App\Models\Course;
 use App\Models\Pattern;
@@ -15,9 +15,9 @@ use App\Models\Subjectbucket;
 use App\Models\Subjectcategory;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\Faculty\SubjectBucket\SubjectBucketExport;
+use App\Exports\Faculty\Subjectbucket\SubjectbucketExport;
 
-class AllSubjectBucket extends Component
+class AllSubjectbucket extends Component
 {
     use WithPagination;
 
