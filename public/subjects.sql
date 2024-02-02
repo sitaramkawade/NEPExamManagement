@@ -2009,13 +2009,15 @@ INSERT INTO `subjects` (`id`, `subject_sem`, `subjectcategory_id`, `subject_no`,
 (2033, 2, 1, 0, 0, '', NULL, NULL, 'Environment Awareness', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 78, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2034, 2, 1, 0, 0, '', NULL, NULL, 'Physical Education', 1, 'IP', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 78, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2035, 2, 1, 0, 0, '', NULL, NULL, 'ORGANIC FARMING', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 78, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL);
+
+
 INSERT INTO `subjects` (`id`, `subject_sem`, `subjectcategory_id`, `subject_no`, `subject_order`, `subject_code`, `subject_name_prefix`, `subject_shortname`, `subject_name`, `subjecttype_id`, `subjectexam_type`, `subject_credit`, `is_project`, `subject_maxmarks`, `subject_maxmarks_int`, `subject_maxmarks_intpract`, `subject_maxmarks_ext`, `subject_totalpassing`, `subject_intpassing`, `subject_intpractpassing`, `subject_extpassing`, `subject_optionalgroup`, `patternclass_id`, `classyear_id`, `user_id`, `faculty_id`, `department_id`, `college_id`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2036, 2, 1, 0, 0, '', NULL, NULL, 'MUSHROOM CULTIVATION', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 78, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2037, 2, 1, 0, 0, '', NULL, NULL, 'JANTAR MANTAR-ANCIENT INDIAN ASTRONOMICAL OBSERVATORY', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 78, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2038, 2, 1, 0, 0, '', NULL, NULL, 'PHYSICS WORKSHOP SKILLS-I', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 78, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2039, 2, 1, 0, 0, '', NULL, NULL, 'MINOR FORMS OF LITERATURE', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2040, 2, 1, 0, 0, '', NULL, NULL, 'SHORT FILMS', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(2041, 2, 1, 0, 0, '', NULL, NULL, 'Let\'s Learn Everyday English', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(2041, 2, 1, 0, 0, '', NULL, NULL, 'Lets Learn Everyday English', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2042, 2, 1, 0, 0, '', NULL, NULL, 'ENGLISH FOR COMPETITIVE EXAMINATIONS', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2043, 2, 1, 0, 0, '', NULL, NULL, 'Financial Literacy-II', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2044, 2, 1, 0, 0, '', NULL, NULL, 'Digital Financial Services-II', 1, 'IP', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
@@ -2030,7 +2032,7 @@ INSERT INTO `subjects` (`id`, `subject_sem`, `subjectcategory_id`, `subject_no`,
 (2053, 2, 1, 0, 0, '', NULL, NULL, 'PHYSICS WORKSHOP SKILLS-I', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2054, 2, 1, 0, 0, '', NULL, NULL, 'MINOR FORMS OF LITERATURE', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2055, 2, 1, 0, 0, '', NULL, NULL, 'SHORT FILMS', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(2056, 2, 1, 0, 0, '', NULL, NULL, 'Let\'s Learn Everyday English', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(2056, 2, 1, 0, 0, '', NULL, NULL, 'Lets Learn Everyday English', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2057, 2, 1, 0, 0, '', NULL, NULL, 'ENGLISH FOR COMPETITIVE EXAMINATIONS', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2058, 2, 1, 0, 0, '', NULL, NULL, 'Financial Literacy-II', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2059, 2, 1, 0, 0, '', NULL, NULL, 'Digital Financial Services-II', 1, 'IP', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
@@ -2040,6 +2042,11 @@ INSERT INTO `subjects` (`id`, `subject_sem`, `subjectcategory_id`, `subject_no`,
 (2063, 2, 1, 0, 0, '', NULL, NULL, 'Environment Awareness', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2064, 2, 1, 0, 0, '', NULL, NULL, 'Physical Education', 1, 'IP', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2065, 2, 1, 0, 0, '', NULL, NULL, 'ORGANIC FARMING', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+
+
+
+
+
 (2066, 2, 1, 0, 0, '', NULL, NULL, 'MUSHROOM CULTIVATION', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2067, 2, 1, 0, 0, '', NULL, NULL, 'JANTAR MANTAR-ANCIENT INDIAN ASTRONOMICAL OBSERVATORY', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2068, 2, 1, 0, 0, '', NULL, NULL, 'PHYSICS WORKSHOP SKILLS-I', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 79, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
@@ -2075,6 +2082,8 @@ INSERT INTO `subjects` (`id`, `subject_sem`, `subjectcategory_id`, `subject_no`,
 (2098, 2, 1, 0, 0, '', NULL, NULL, 'PHYSICS WORKSHOP SKILLS-I', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 81, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2099, 2, 1, 0, 0, '', NULL, NULL, 'INDIAN ECONOMY-II', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 82, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2100, 2, 1, 0, 0, '', NULL, NULL, 'AGRICULTURAL ECONOMICS-II', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 82, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+
+
 (2101, 2, 1, 0, 0, '', NULL, NULL, 'INDUSTRIAL ECONOMICS-II', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 82, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2102, 2, 1, 0, 0, '', NULL, NULL, 'DEMOGRAPHY', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 82, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2103, 2, 1, 0, 0, '', NULL, NULL, 'Financial Literacy-II', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 82, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
@@ -2258,13 +2267,15 @@ INSERT INTO `subjects` (`id`, `subject_sem`, `subjectcategory_id`, `subject_no`,
 (2281, 2, 1, 0, 0, '', NULL, NULL, 'ENGLISH', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 96, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2282, 2, 1, 0, 0, '', NULL, NULL, 'ENVIRONMENT AWARENESS', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 96, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2283, 2, 1, 0, 0, '', NULL, NULL, 'PHYSICAL EDUCATION', 1, 'IP', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 96, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(2284, 2, 1, 0, 0, '', NULL, NULL, 'ADVANCED \'C\' PROGRAMMING', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 97, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(2284, 2, 1, 0, 0, '', NULL, NULL, 'ADVANCED \ C \ PROGRAMMING', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 97, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2285, 2, 1, 0, 0, '', NULL, NULL, 'RELATIONAL DATABASE MANAGEMENT SYSTEMS', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 97, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2286, 2, 1, 0, 0, '', NULL, NULL, 'COMPUTER 2 -II', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 97, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2287, 2, 1, 0, 0, '', NULL, NULL, 'COMPUTER FUNDAMENTALS', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 97, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2288, 2, 1, 0, 0, '', NULL, NULL, 'PERSONALITY DEVELOPMENT', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 97, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2289, 2, 1, 0, 0, '', NULL, NULL, 'ORGANISATIONAL BEHAVIOUR', 1, 'IP', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 97, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2290, 2, 1, 0, 0, '', NULL, NULL, 'DATA SCIENCE', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 97, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL);
+
+
 INSERT INTO `subjects` (`id`, `subject_sem`, `subjectcategory_id`, `subject_no`, `subject_order`, `subject_code`, `subject_name_prefix`, `subject_shortname`, `subject_name`, `subjecttype_id`, `subjectexam_type`, `subject_credit`, `is_project`, `subject_maxmarks`, `subject_maxmarks_int`, `subject_maxmarks_intpract`, `subject_maxmarks_ext`, `subject_totalpassing`, `subject_intpassing`, `subject_intpractpassing`, `subject_extpassing`, `subject_optionalgroup`, `patternclass_id`, `classyear_id`, `user_id`, `faculty_id`, `department_id`, `college_id`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2291, 2, 1, 0, 0, '', NULL, NULL, 'SOFTSKILLS - II', 1, 'IP', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 97, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (2292, 2, 1, 0, 0, '', NULL, NULL, 'ENGLISH', 1, 'IE', 2.0, 0, 50, 20, 0, 30, 20, 8, 0, 12, 'C', 97, NULL, NULL, NULL, 1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
