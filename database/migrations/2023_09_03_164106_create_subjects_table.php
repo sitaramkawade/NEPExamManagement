@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('subject_no')->default(0);  //for sorting
             $table->integer('subject_order')->default(NULL); //for maintaning the order of subject
             $table->string('subject_code',50)->default(NULL); //3
-            $table->string('subject_name_prefix',50)->default(NULL); //DSC-1
-            $table->string('subject_shortname',20)->default(NULL); //2
+            $table->string('subject_name_prefix',50)->nullable()->default(NULL); //DSC-1
+            $table->string('subject_shortname',20)->nullable()->default(NULL); //2
             $table->string('subject_name',100)->default(NULL); //2
 
             $table->bigInteger('subjecttype_id')->unsigned();  //Theory Practical
@@ -31,7 +31,7 @@ return new class extends Migration
 
             $table->integer('subject_maxmarks')->default(0);  //8
             $table->integer('subject_maxmarks_int')->default(0);//10
-            $table->integer('subject_maxmarks_intpract')->default(0);
+            $table->integer('subject_maxmarks_intpract')->nullable()->default(0);
             $table->integer('subject_maxmarks_ext')->default(0);//9
 
             $table->integer('subject_totalpassing')->default(0); //11

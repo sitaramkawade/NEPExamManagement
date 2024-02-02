@@ -131,8 +131,7 @@ class DatabaseSeeder extends Seeder
             StudentHelplineSeeder::class,                   // Student , Studenthelplinequery ,User
             StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
             StudentSeeder::class,                           // Patternclass , Department , College
-            ExamBacklogFeeCoursesSeeder::class,             // Patternclass, Examfeemaster
-            ExamFeeCoursesSeeder::class,   
+            ExamFeeCoursesSeeder::class,                    // Patternclass, Examfeemaster
             FacultyHeadSeeder::class,                       // Faculty, Department
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
             ExamTimeTableSeeder::class,

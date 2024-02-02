@@ -59,6 +59,7 @@ use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
+use App\Livewire\Student\StudentExamForm\StudentExamForm;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\GenerateExamOrder\GenerateExamOrder;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
@@ -66,7 +67,6 @@ use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
-use App\Livewire\User\ExamBacklogFeeCourse\AllExamBacklogFeeCourse;
 
 
 
@@ -121,6 +121,9 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
 
   // Student Helpline
   Route::get('/helpline',Helpline::class)->name('helpline');
+
+  // Student Exam Form
+  Route::get('/exam/form',StudentExamForm::class)->name('student_exam_form');
 });
 
 
@@ -245,9 +248,6 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Exam Fee Course
   Route::get('/exam/fee/course',AllExamFeeCourse::class)->name('all_exam_fee_course');
-
-  //All Exam Backlog Fee Course
-  Route::get('/exam/backlog/fee/course',AllExamBacklogFeeCourse::class)->name('all_exam_backlog_fee_course');
 
   //All Subject Hod
   Route::get('/all-hodappointsubject',  AllHodAppointSubject::class)->name('all-hodappointsubjects');
