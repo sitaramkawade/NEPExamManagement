@@ -21,12 +21,10 @@ class CreateExampanelsTable extends Migration
 
             $table->bigInteger('examorderpost_id')->unsigned();
             $table->foreign('examorderpost_id')->references('id')->on('examorderposts');
-         
+
             $table->bigInteger('subject_id')->unsigned();
             $table->foreign('subject_id')->references('id')->on('subjects');
 
-            $table->string('description',50)->nullable();
-            
             $table->tinyInteger('active_status')->default('1');  //0 means not active
             $table->timestamps();
         });
