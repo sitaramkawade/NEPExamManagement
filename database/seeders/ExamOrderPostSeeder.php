@@ -16,7 +16,7 @@ class ExamOrderPostSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 200; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             ExamOrderPost::create([
                 'post_name' => $faker->word,
                 'status' =>$faker->numberBetween(1,0),

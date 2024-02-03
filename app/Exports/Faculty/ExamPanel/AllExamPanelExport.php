@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Exports\Faculty\FacultyRoleType;
+namespace App\Exports\Faculty\ExamPanel;
 
-use App\Models\Roletype;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class FacultyRoleTypeExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
+class AllExamPanelExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     protected $search;
     protected $sortColumn;
     protected $sortColumnBy;
 
-
-    public function __construct($search, $sortColumn, $sortColumnBy)
+     public function __construct($search, $sortColumn, $sortColumnBy)
     {
         $this->search = $search;
         $this->sortColumn = $sortColumn;

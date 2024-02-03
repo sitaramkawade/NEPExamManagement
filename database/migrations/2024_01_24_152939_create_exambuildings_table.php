@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->bigInteger('building_id')->unsigned();
             $table->foreign('building_id')->references('id')->on('buildings')->onDelete('cascade');;
-            
+
             $table->Integer('status')->unsigned()->default(0);
             $table->softDeletes();
             $table->timestamps();
