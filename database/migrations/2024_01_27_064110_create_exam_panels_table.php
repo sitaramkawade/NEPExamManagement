@@ -18,13 +18,11 @@ return new class extends Migration
 
             $table->bigInteger('examorderpost_id')->unsigned();
             $table->foreign('examorderpost_id')->references('id')->on('exam_order_posts');
-         
+
             $table->bigInteger('subject_id')->unsigned();
             $table->foreign('subject_id')->references('id')->on('subjects');
 
-            $table->string('description',50)->nullable();
-            
-            $table->tinyInteger('active_status')->default('1');  
+            $table->tinyInteger('active_status')->default('1');
             $table->softDeletes();
             $table->timestamps();
         });

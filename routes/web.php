@@ -57,13 +57,13 @@ use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
-use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
+// use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\Student\StudentExamForm\StudentExamForm;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
-use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
+// use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 
@@ -263,7 +263,7 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   Route::get('/all-faculty-role', AllFacultyRole::class)->name('all-roles');
 
   // All Faculty Role
-  Route::get('/all-faculty-roletype', AllFacultyRoleType::class)->name('all-roletypes');
+//   Route::get('/all-faculty-roletype', AllFacultyRoleType::class)->name('all-roletypes');
 
   // Update Faculty Profile
   Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
@@ -272,7 +272,7 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   Route::get('/all-subject', AllSubject::class)->name('all-subjects');
 
   // All SubjectBucket
-  Route::get('/all-subjectbucket', AllSubjectBucket::class)->name('all-subjectbuckets');
+//   Route::get('/all-subjectbucket', AllSubjectBucket::class)->name('all-subjectbuckets');
 
   // All SubjectType
   Route::get('/all-subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
@@ -280,7 +280,7 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All FacultyHead
   Route::get('/all-facultyheads', AllFacultyHead::class)->name('all-facultyheads');
 
-  // All ExamPanels
+  // All ViewExamPanel
   Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
 
 });
