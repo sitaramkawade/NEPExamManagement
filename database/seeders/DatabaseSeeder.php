@@ -114,6 +114,7 @@ class DatabaseSeeder extends Seeder
             TalukaSeeder::class,                            // DistrictSeeder
             StudenthelplineDocumentSeeder::class,           // StudenthelplineQuerySeeder
             SansthaSeeder::class,                           // College , University
+            PatternSeeder::class,                           // College
             CapmasterSeeder::class,                         // College , Exam
             CourseSeeder::class,                            // College , Programme
             RoleSeeder::class,                              // College , Roletype
@@ -122,7 +123,7 @@ class DatabaseSeeder extends Seeder
             CourseclassSeeder::class,                       // classyear,course ,courseclass,college
             PatternclassSeeder::class,                      // Pattern , Patternclass
             ExamPatternclassSeeder::class,                  // Exam ,Patternclass ,CapmasterSeeder
-            ClassStudmenumasterSeeder::class,               // StudmenumasterSeeder ,Pattern Class ,user , college
+            // ClassStudmenumasterSeeder::class,               // StudmenumasterSeeder ,Pattern Class ,user , college
             StudentProfileSeeder::class,                    // Patterncalss , caste , castecategory , Addresstype ,University, Educationalcourse
             SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
             SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
