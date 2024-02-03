@@ -180,7 +180,7 @@ class AllExamOrderPost extends Component
     
     public function render()
     {
-        $Posts=ExamOrderPost::select('id','post_name','deleted_at')
+        $Posts=ExamOrderPost::select('id','post_name','status','deleted_at')
         ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

@@ -76,9 +76,9 @@ class AllCollege extends Component
             'college_contact_no.required' => 'The  College Contact Number field is required.',
             'college_logo_path.required' => 'The  College Logo is required.',
             'sanstha_id.required' => 'The Sanstha field is required.',
-            'sanstha_id.exists' => 'The selected Programme does not exist.',
+            'sanstha_id.exists' => 'The selected Sanstha does not exist.',
             'university_id.required' => 'The Sanstha field is required.',
-            'university_id.exists' => 'The selected Programme does not exist.',
+            'university_id.exists' => 'The selected Sanstha does not exist.',
         ];
         return $messages;
     }
@@ -145,12 +145,7 @@ class AllCollege extends Component
     }
     }
 
-    public function mount()
-    {
-        $this->sansthas = Sanstha::all();
-        $this->universities = University::all();        
-      
-    }
+   
 
     public function deleteconfirmation($id)
     {

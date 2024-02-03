@@ -23,7 +23,9 @@ return new class extends Migration
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->bigInteger('exam_id')->unsigned();
             $table->bigInteger('patternclass_id')->unsigned();
+            $table->string('medium_instruction',100);
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
             $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');

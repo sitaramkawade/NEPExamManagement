@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\College;
+use App\Models\ExamPanel;
 use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -52,30 +53,37 @@ class Subject extends Model
     {
         return $this->belongsTo(College::class, 'college_id', 'id');
     }
+
     public function subjectcategories(): BelongsTo
     {
      return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id');
     }
+
     public function department(): BelongsTo
     {
      return $this->belongsTo(Department::class,'department_id','id');
     }
+
     public function subjecttypes(): BelongsTo
     {
      return $this->belongsTo(Subjecttype::class,'subjecttype_id','id');
     }
+
     public function patternclass(): BelongsTo
     {
      return $this->belongsTo(Patternclass::class,'patternclass_id','id');
     }
+
     public function classyear(): BelongsTo
     {
      return $this->belongsTo(Classyear::class,'classyear_id','id');
     }
+
     public function subjectbuckets():HasMany
     {
         return $this->hasMany(Subjectbucket::class,'subject_id','id');
     }
+
     public function hodappointsubjects():HasMany
     {
         return $this->hasMany(Hodappointsubject::class,'subject_id','id');
@@ -85,9 +93,15 @@ class Subject extends Model
     {
         return $this->belongsTo(Faculty::class,'faculty_id','id');
     }
+
     public function user()
     {
         return $this->belongsTo(User::class,'user_id','id');
+    }
+
+    public function exampanels()
+    {
+        return $this->hasMany(ExamPanel::class,'subject_id','id');
     }
 
     public function scopeSearch(Builder $query, string $search)
