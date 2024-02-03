@@ -19,7 +19,7 @@ class Examformmaster extends Model
      'feepaidstatus',
      'printstatus',
       'hallticketstatus',
-       'student_id',
+      'student_id',
       'college_id',
       'exam_id',
       'patternclass_id',
