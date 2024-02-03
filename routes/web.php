@@ -41,7 +41,7 @@ use App\Livewire\User\ExamPanel\AllExamPanel;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
-use App\Livewire\Faculty\ExamPanel\ViewExamPanel;
+use App\Http\Controllers\ExamOrderPdfController;
 use App\Livewire\User\CourseClass\AllCourseClass;
 use App\Livewire\User\AcademicYear\AllAcademicYear;
 use App\Livewire\User\ExamBuilding\AllExamBuilding;
@@ -61,6 +61,7 @@ use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\Student\StudentExamForm\StudentExamForm;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
+use App\Livewire\User\GenerateExamOrder\GenerateExamOrder;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
@@ -188,6 +189,11 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Exam Order
   Route::get('/examorder', AllExamOrder::class)->name('all_exam_order');
+
+  //Generate Exam Order
+  Route::get('/generate/exam/order', GenerateExamOrder::class)->name('generate_exam_order');
+
+  Route::get('/pdf/{id}',[ExamOrderPdfController::class,'order'])->name('examorder');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');

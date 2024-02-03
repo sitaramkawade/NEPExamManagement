@@ -25,13 +25,13 @@ class ExportExam implements FromCollection, WithHeadings, WithMapping
         return Exam::
         search($this->search)
       ->orderBy($this->sortColumn, $this->sortColumnBy)
-      ->select('id', 'exam_name','exam_sessions','status')
+      ->select('id', 'exam_name','academicyear_id','exam_sessions','status')
       ->get();
     }
 
     public function headings(): array
     {
-        return ['ID', 'Exam Name','Exam Session','status'];
+        return ['ID', 'Exam Name','Academic Year','Exam Session','status'];
     }
 
     public function map($row): array
@@ -39,6 +39,7 @@ class ExportExam implements FromCollection, WithHeadings, WithMapping
         return [
             $row->id,
             $row->exam_name,
+            isset($row->academicyear->year_name)?$row->academicyear->year_name:'',
             $row->exam_sessions == 1 ? 'Session 1' : 'Session 2',
             $row->status == 1 ? 'Active' : 'Inactive',
         ];

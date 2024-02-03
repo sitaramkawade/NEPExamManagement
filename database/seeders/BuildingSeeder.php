@@ -16,27 +16,27 @@ class BuildingSeeder extends Seeder
         Building::create( [
             'id'=>1,
             'building_name'=>'Bandulal',
-            'priority'=>High,
+            'priority'=>'High',
             'status'=>1
         ] );
         Building::create( [
             'id'=>2,
             'building_name'=>'Bandulal',
-            'priority'=>Low,
+            'priority'=>'Low',
             'status'=>1
         ] );
 
         Building::create( [
             'id'=>3,
             'building_name'=>'Kaudinya1',
-            'priority'=>min,
+            'priority'=>'min',
             'status'=>0
         ] );
 
         Building::create( [
             'id'=>4,
             'building_name'=>'Parak16',
-            'priority'=>max,
+            'priority'=>'max',
             'status'=>0
         ] );
     }

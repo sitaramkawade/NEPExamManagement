@@ -14,7 +14,7 @@ class ExamBuilding extends Model
 {
     use HasFactory,SoftDeletes; 
     protected $dates = ['deleted_at'];
-    protected $table='exambuildings';
+    protected $table='exam_buildings';
     protected $fillable=[
         'exam_id',
         'building_id',

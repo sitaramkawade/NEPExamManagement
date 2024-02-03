@@ -35,7 +35,7 @@
                                 <x-table.tr>
                                     <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">No.</x-table.th>
                                     <x-table.th wire:click="sort_column('exampanel_id')" name="exampanel_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Exam Panel </x-table.th>
-                                    <x-table.th wire:click="sort_column('exam_patternclasses_id')" name="exam_patternclasses_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Exam Pattern Class</x-table.th>
+                                    <x-table.th wire:click="sort_column('exam_patternclass_id')" name="exam_patternclass_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Exam Pattern Class</x-table.th>
                                     <x-table.th wire:click="sort_column('description')" name="description" :sort="$sortColumn" :sort_by="$sortColumnBy"> Description</x-table.th>
                                     <x-table.th wire:click="sort_column('email_status')" name="email_status" :sort="$sortColumn" :sort_by="$sortColumnBy">Email Send</x-table.th>
                                     <x-table.th> Action </x-table.th>
