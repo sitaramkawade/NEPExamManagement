@@ -138,10 +138,10 @@
                       <span class="font-bold">Pattern : {{ Auth::guard('student')->user()->patternclass->pattern->pattern_name }}</span>
                     </div>
                     <div class="space-y-2 rounded-xl border-2 bg-white px-3 py-2 text-gray-800 dark:border-primary">
-                      <span class="font-bold"> Course : {{ Auth::guard('student')->user()->patternclass->getclass->course->course_name }}</span>
+                      <span class="font-bold"> Course : {{ isset(Auth::guard('student')->user()->patternclass->getclass->course->course_name)?Auth::guard('student')->user()->patternclass->getclass->course->course_name:''; }}</span>
                     </div>
                     <div class="space-y-2 rounded-xl border-2 bg-white px-3 py-2 text-gray-800 dark:border-primary">
-                      <span class="font-bold">Current Class : {{ Auth::guard('student')->user()->patternclass->getclass->classyear->classyear_name }} {{ Auth::guard('student')->user()->patternclass->getclass->course->course_name }}</span>
+                      <span class="font-bold">Current Class : {{ isset(Auth::guard('student')->user()->patternclass->getclass->classyear->classyear_name)?Auth::guard('student')->user()->patternclass->getclass->classyear->classyear_name:''; }} {{ isset(Auth::guard('student')->user()->patternclass->getclass->course->course_name)?Auth::guard('student')->user()->patternclass->getclass->course->course_name:''; }}</span>
                     </div>
                   </div>
                 </div>
