@@ -19,7 +19,7 @@ class ExamPanelSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 20; $i++) {
 
             $faculty = Faculty::pluck('id')->toArray();
             $examorderpost = ExamOrderPost::pluck('id')->toArray();
@@ -32,7 +32,7 @@ class ExamPanelSeeder extends Seeder
                 'subject_id' => rand(1, count($subject)),
                 'description' => $faker->word,
                 'active_status' => $faker->boolean,
-               
+
             ]);
         }
     }

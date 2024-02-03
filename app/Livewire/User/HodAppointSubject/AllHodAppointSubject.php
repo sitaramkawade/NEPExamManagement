@@ -372,7 +372,7 @@ class AllHodAppointSubject extends Component
             }
         }
 
-        $hodappointsubjects = Hodappointsubject::with('faculty','subject', 'patternclass',)->when($this->search, function($query, $search){
+        $hodappointsubjects = Hodappointsubject::with('faculty','subject', 'patternclass')->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.user.hodappointsubject.all-hodappointsubject',compact('hodappointsubjects'))->extends('layouts.user')->section('user');

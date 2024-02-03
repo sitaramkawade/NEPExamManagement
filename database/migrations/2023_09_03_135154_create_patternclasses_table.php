@@ -18,8 +18,9 @@ return new class extends Migration
             $table->tinyInteger('status')->default('1');//Future use
             $table->Integer('sem1_total_marks')->default(0);
             $table->Integer('sem2_total_marks')->default(0);
-            $table->Integer('sem1_credits')->default(0);
-            $table->Integer('sem2_credits')->default(0);
+            $table->Integer('sem1_credits')->nullable()->default(0);
+            $table->Integer('sem2_credits')->nullable()->default(0);
+            $table->Integer('credit')->nullable()->default(0)->comment('ATKT');
             $table->Integer('sem1_totalnosubjects')->nullable()->default(0);
             $table->Integer('sem2_totalnosubjects')->nullable()->default(0);
             $table->softDeletes();

@@ -286,6 +286,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All FacultyHead
   Route::get('/all-facultyheads', AllFacultyHead::class)->name('all-facultyheads');
 
+  // All ExamPanels
+  Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
+
 });
 
 require __DIR__.'/student.php';

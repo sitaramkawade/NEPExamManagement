@@ -17,8 +17,7 @@ return new class extends Migration
            
           $table->string('course_code', 50)->default(NULL);
           $table->string('fullname',100)->default(NULL);
-            $table->string('shortname',100)->default(NULL);
-            $table->string('special_subject',100)->comment('Major Subject');//Major Subject
+            $table->string('special_subject',100)->nullable()->comment('Major Subject');//Major Subject
             $table->string('course_type',20)->default(NULL)->comment('UG or PG'); //UG or PG
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->bigInteger('programme_id')->nullable()->unsigned()->default(null);

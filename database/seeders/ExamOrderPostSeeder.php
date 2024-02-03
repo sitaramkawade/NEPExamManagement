@@ -20,6 +20,7 @@ class ExamOrderPostSeeder extends Seeder
                      'status'=>'1',               
                      ] );
 
+
         ExamOrderPost::create( [
                      'id'=>2,
                      'post_name'=>' Moderator',

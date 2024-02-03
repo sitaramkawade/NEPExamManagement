@@ -27,6 +27,7 @@ class Patternclass extends Model
         'sem2_total_marks',
         'sem1_credits',
         'sem2_credits',
+        'credit',
         'sem1_totalnosubjects',
         'sem2_totalnosubjects',
 
