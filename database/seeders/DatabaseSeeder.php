@@ -123,7 +123,6 @@ class DatabaseSeeder extends Seeder
             CourseclassSeeder::class,                       // classyear,course ,courseclass,college
             PatternclassSeeder::class,                      // Pattern , Patternclass
             ExamPatternclassSeeder::class,                  // Exam ,Patternclass ,CapmasterSeeder
-            // ClassStudmenumasterSeeder::class,               // StudmenumasterSeeder ,Pattern Class ,user , college
             StudentProfileSeeder::class,                    // Patterncalss , caste , castecategory , Addresstype ,University, Educationalcourse
             SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
             SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
@@ -135,11 +134,17 @@ class DatabaseSeeder extends Seeder
             ExamFeeCoursesSeeder::class,                    // Patternclass, Examfeemaster
             FacultyHeadSeeder::class,                       // Faculty, Department
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
-            ExamTimeTableSeeder::class,
+            // ExamTimeTableSeeder::class,
+<<<<<<< Updated upstream
             ExamOrderPostSeeder::class,
             ExamPanelSeeder::class,
             ExamorderSeeder::class,
-            BuildingSeeder::class,
+=======
+            // ExamOrderPostSeeder::class,
+            // ExamPanelSeeder::class,
+            // ExamorderSeeder::class,
+>>>>>>> Stashed changes
+            // BuildingSeeder::class,
         ]);
     }
 }

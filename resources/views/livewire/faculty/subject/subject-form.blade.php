@@ -34,7 +34,7 @@
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_code" :value="__('Subject Code')" />
-            <x-text-input id="subject_code" type="number" wire:model="subject_code" name="subject_code" placeholder="Subject Code" class=" @error('subject_code') is-invalid @enderror w-full mt-1" :value="old('subject_code', $subject_code)" required autofocus autocomplete="subject_code" />
+            <x-text-input id="subject_code" type="text" wire:model="subject_code" name="subject_code" placeholder="Subject Code" class=" @error('subject_code') is-invalid @enderror w-full mt-1" :value="old('subject_code', $subject_code)" required autofocus autocomplete="subject_code" />
             <x-input-error :messages="$errors->get('subject_code')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">

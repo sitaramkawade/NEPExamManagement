@@ -89,13 +89,17 @@ class StudentExamForm extends Component
         return  Subject::where('subject_sem',1)->whereIn('id',$subjectids)->where('patternclass_id',Auth::guard('student')->user()->patternclass_id)->get();
     }
 
-
     // Get SEM Wise Subjects
     public function get_sem_subjects($sem)
     {
         return Subject::where('subject_sem',$sem)->where('patternclass_id',Auth::guard('student')->user()->patternclass_id)->get();
     }
 
+    // Exam Form Save
+    public function student_exam_form_save()
+    {   
+
+    }
 
 
     public function render()
