@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('student_examforms', function (Blueprint $table) {
             $table->id();
-            $table->string('prn',100)->nullable();
 
             //All field denotes student chosen the int ext practical project for that subject 
          
@@ -42,6 +41,7 @@ return new class extends Migration
            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
         
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
