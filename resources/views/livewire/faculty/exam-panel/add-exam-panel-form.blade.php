@@ -1,9 +1,10 @@
 <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
     <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
         @if($mode == 'add')
-            Create Exam Panel
+            <span>Create Exam Panel</span>
         @elseif($mode == 'edit')
-            Edit Exam Panel
+           <span>Edit Exam Panel</span>
+           <x-table.download i="0" class="float-end text-xs text-white" wire:click="setmode('add')">Back</x-table.download>
         @endif
     </div>
     <x-form wire:submit="save()">

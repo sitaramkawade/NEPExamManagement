@@ -30,8 +30,7 @@ class ExamPanelSeeder extends Seeder
                 'faculty_id' => rand(1, count($faculty)),
                 'examorderpost_id' => rand(1, count($examorderpost)),
                 'subject_id' => rand(1, count($subject)),
-                'description' => $faker->word,
-                'active_status' => $faker->boolean,
+                'active_status' => $faker->randomNumber(1),
 
             ]);
         }

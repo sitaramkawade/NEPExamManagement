@@ -51,7 +51,7 @@ class FacultyProfileSeeder extends Seeder
                 'profile_photo_path' => $faker->imageUrl($width = 640, $height = 480, 'nature'),
                 'unipune_id' => 'UNP' . $faker->unique()->randomNumber(9),
                 'qualification' => $faker->sentence,
-                'active' => $faker->numberBetween(0, 1),
+                'active' => $faker->randomNumber(1),
             ]);
 
             $faculty->facultybankaccount()->create([

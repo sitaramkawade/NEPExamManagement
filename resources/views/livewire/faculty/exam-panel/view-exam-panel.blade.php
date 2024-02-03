@@ -11,10 +11,9 @@
                     @include('livewire.faculty.exam-panel.add-exam-panel-form')
                 </x-form>
             @elseif($mode == 'view')
-                <x-card-header heading="View Exam Panel">
-                    <x-back-btn wire:click="setmode('all')" />
-                </x-card-header>
-                @include('livewire.faculty.exam-panel.add-exam-panel-form')
+            <x-form wire:submit="update({{ $exampanel_id }})">
+                @include('livewire.faculty.exam-panel.view-form')
+            </x-form>
             @endif
         </div>
         <div class="col-span-3">

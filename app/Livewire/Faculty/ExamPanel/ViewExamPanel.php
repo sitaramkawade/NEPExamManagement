@@ -11,12 +11,14 @@ use App\Models\Patternclass;
 use Livewire\WithPagination;
 use App\Models\ExamOrderPost;
 use Illuminate\Validation\Rule;
+use App\Models\Hodappointsubject;
 
 class ViewExamPanel extends Component
 {
     use WithPagination;
     protected $listeners = ['delete-confirmed'=>'delete'];
     public $post_id;
+
     public $selected_faculties=[];
     public $faculty_id;
     public $patternclass_id;
@@ -38,6 +40,7 @@ class ViewExamPanel extends Component
     public $per_page = 10;
     public $search='';
     public $mode='add';
+    public $isDisabled = true;
     public $sortColumn="faculty_name";
     public $sortColumnBy="ASC";
     public $ext;
@@ -222,18 +225,37 @@ class ViewExamPanel extends Component
         }
     }
 
+    public function view(ExamPanel $exampanel)
+    {
+        if ($exampanel){
+            $this->patternclass_id = $exampanel->subject->patternclass->pattern->pattern_name.' '.$exampanel->subject->patternclass->courseclass->classyear->classyear_name.' '.$exampanel->subject->patternclass->courseclass->course->course_name;
+            $this->subject_id=$exampanel->subject->subject_name;
+            $this->post_id=$exampanel->examorderpost->post_name;
+            $this->department_id=$exampanel->faculty->department->dept_name;
+            $this->faculty_id=$exampanel->faculty->faculty_name;
+        }else{
+            $this->dispatch('alert',type:'error',message:'Role Type Details Not Found');
+        }
+        $this->setmode('view');
+    }
+
     public function render()
     {
-        $this->pattern_classes=Patternclass::select('id','class_id','pattern_id')->with(['pattern:pattern_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->where('status',1)->get();
+        $auth_faculty = auth('faculty')->user()->id;
+
+        $appointed_subjects = Hodappointsubject::where('faculty_id', $auth_faculty)->where('status', 1)->pluck('subject_id')->toArray();
+        $patternclass_id = Subject::whereIn('id', $appointed_subjects) ->pluck('patternclass_id')->toArray();
+
+        $this->pattern_classes = Patternclass::whereIn('id', $patternclass_id)->select('id', 'class_id', 'pattern_id')->with(['pattern:pattern_name,id', 'courseclass.course:course_name,id', 'courseclass.classyear:classyear_name,id'])->where('status', 1)->get();
         $this->posts=ExamOrderPost::select('id','post_name')->where('status',1)->get();
 
-        $this->subjects = Subject::select('id', 'subject_name')->where('patternclass_id', $this->patternclass_id)->get();
+        $this->subjects = Subject::whereIn('id', $appointed_subjects)->select('id', 'subject_name')->where('patternclass_id', $this->patternclass_id)->where('status', 1)->get();
 
         $this->departments = Department::select('id','dept_name')->where('status',1)->get();
 
         $this->faculties = Faculty::select('id','faculty_name')->where('department_id', $this->department_id)->where('active',1)->whereNotNull('department_id')->get();
 
-        $examPanels = ExamPanel::with('subject', 'faculty', 'examorderpost')->withTrashed()->paginate($this->perPage);
+        $examPanels = ExamPanel::with('subject', 'faculty', 'examorderpost')->withTrashed()->whereIn('subject_id', $appointed_subjects)->paginate($this->perPage);
         $groupedExamPanels = $examPanels->groupBy('subject_id');
 
         return view('livewire.faculty.exam-panel.view-exam-panel', compact('groupedExamPanels','examPanels'))->extends('layouts.faculty')->section('faculty');

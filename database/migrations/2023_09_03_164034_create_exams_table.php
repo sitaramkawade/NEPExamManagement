@@ -20,7 +20,6 @@ return new class extends Migration
             $table->tinyInteger('exam_sessions')->default(0); //0 means only Creared 1 means first Half 2 Means Second Half
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('academicyear_id')->references('id')->on('academicyears');
         });
     }
 
