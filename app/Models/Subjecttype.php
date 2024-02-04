@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Subjecttype extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $table="subjecttypes";
     protected $fillable = [
         'type_name',
