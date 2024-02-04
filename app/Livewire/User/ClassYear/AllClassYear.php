@@ -19,7 +19,7 @@ class AllClassYear extends Component
     public $mode='all';
     public $perPage=10;
     public $search='';
-    public $sortColumn="classyear_name";
+    public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
 

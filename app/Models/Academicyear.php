@@ -20,7 +20,7 @@ class Academicyear extends Model
     ];
     public function subjectbuckets():HasMany
     {
-        return $this->hasMany(Subjectbucket::class,'academicyear_id','id');
+        return $this->hasMany(Subjectbucket::class,'academicyear_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

@@ -10,6 +10,7 @@ use App\Models\Capmaster;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
 use App\Exports\User\Cap\CapExport;
+use Illuminate\Support\Facades\Auth;
 
 class AllCap extends Component
 {   
@@ -230,7 +231,7 @@ class AllCap extends Component
             $this->exams =Exam::select('exam_name','id')->where('status',1)->get();
         }
 
-        $caps=Capmaster::with('college:college_name,id')->when($this->search, function ($query, $search) {
+        $caps=Capmaster::where('college_id',Auth::guard('user')->user()->college_id)->with('college:college_name,id')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

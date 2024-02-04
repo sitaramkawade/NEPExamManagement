@@ -26,7 +26,7 @@ class Extracreditsubject extends Model
     ];
         public function studentextracreditexamforms()
         {
-            return $this->hasMany(Extracreditsubjectexamform::class,'subject_id','id');
+            return $this->hasMany(Extracreditsubjectexamform::class,'subject_id','id')->withTrashed();
         }
         public function hodappointextracreditsubjects()
         {

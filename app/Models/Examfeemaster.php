@@ -28,12 +28,12 @@ class Examfeemaster extends Model
 
     public function formtype(): BelongsTo
     {
-        return $this->belongsTo(Formtypemaster::class, 'form_type_id', 'id');
+        return $this->belongsTo(Formtypemaster::class, 'form_type_id', 'id')->withTrashed();
     }
 
     public function applyfee(): BelongsTo
     {
-        return $this->belongsTo(Applyfeemaster::class, 'apply_fee_id', 'id');
+        return $this->belongsTo(Applyfeemaster::class, 'apply_fee_id', 'id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

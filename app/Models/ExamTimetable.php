@@ -28,15 +28,15 @@ class ExamTimetable extends Model
 
     public function exampatternclass(): BelongsTo
     {
-        return $this->belongsTo(ExamPatternclass::class, 'exam_patternclasses_id', 'id');
+        return $this->belongsTo(ExamPatternclass::class, 'exam_patternclasses_id', 'id')->withTrashed();
     }
     public function timetableslot(): BelongsTo
     {
-        return $this->belongsTo(Timetableslot::class, 'timeslot_id','id');
+        return $this->belongsTo(Timetableslot::class, 'timeslot_id','id')->withTrashed();
     }
     public function subject(): BelongsTo
     {
-        return $this->belongsTo(Subject::class, 'subject_id', 'id');
+        return $this->belongsTo(Subject::class, 'subject_id', 'id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

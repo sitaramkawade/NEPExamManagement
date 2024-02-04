@@ -27,7 +27,7 @@ class Studentaddress extends Model
 
     public function student():BelongsTo
     {
-    return $this->belongsTo(Student::class,'student_id','id');
+    return $this->belongsTo(Student::class,'student_id','id')->withTrashed();
     }
     public function taluka():BelongsTo
     {

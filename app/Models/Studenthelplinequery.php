@@ -21,7 +21,7 @@ class Studenthelplinequery extends Model
 
     public function studenthelplinedocuments(): HasMany
     {
-        return $this->hasMany(Studenthelplinedocument::class, 'student_helpline_query_id', 'id');
+        return $this->hasMany(Studenthelplinedocument::class, 'student_helpline_query_id', 'id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

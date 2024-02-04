@@ -20,9 +20,9 @@ return new class extends Migration
             $table->tinyInteger('type')->nullable()->default(0)->comment('0-Guest ,1-student,2-faculty,3-User,4-All');
             $table->tinyInteger('is_active')->nullable()->default(0)->comment('0-inactive ,1-active ');
             $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

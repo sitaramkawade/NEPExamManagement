@@ -20,13 +20,13 @@ return new class extends Migration
             $table->string('special_subject',100)->nullable()->comment('Major Subject');//Major Subject
             $table->string('course_type',20)->default(NULL)->comment('UG or PG'); //UG or PG
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
+            $table->foreign('college_id')->references('id')->on('colleges');
             $table->bigInteger('programme_id')->nullable()->unsigned()->default(null);
+            $table->foreign('programme_id')->references('id')->on('programmes');
             $table->bigInteger('course_category_id')->unsigned();
+            $table->foreign('course_category_id')->references('id')->on('coursecategories');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('course_category_id')->references('id')->on('coursecategories')->onDelete('cascade');
-            $table->foreign('programme_id')->references('id')->on('programmes')->onDelete('cascade');
-            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
         });
     }
 

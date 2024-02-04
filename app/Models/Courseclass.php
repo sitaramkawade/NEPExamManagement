@@ -25,11 +25,11 @@ class Courseclass extends Model
     ];
     public function course(): BelongsTo
     {
-     return $this->belongsTo(Course::class,'course_id','id');
+     return $this->belongsTo(Course::class,'course_id','id')->withTrashed();
     }
     public function courseclass(): BelongsTo
     {
-     return $this->belongsTo(Courseclass::class,'nextyearclass_id','id');
+     return $this->belongsTo(Courseclass::class,'nextyearclass_id','id')->withTrashed();
     }
     public function patterns(): BelongsToMany
     {
@@ -41,21 +41,21 @@ class Courseclass extends Model
         'sem2_credits',
         'totalnosubjects',
         'id')
-        ->wherePivot('status','1');
+        ->wherePivot('status','1')->withTrashed();
        
     }
     public function patternclasses()
     {
-        return $this->hasMany(PatternClass::class,'class_id','id');
+        return $this->hasMany(PatternClass::class,'class_id','id')->withTrashed();
     }
     public function classyear(): BelongsTo
     {
-     return $this->belongsTo(Classyear::class,'classyear_id','id');
+     return $this->belongsTo(Classyear::class,'classyear_id','id')->withTrashed();
     }
 
     public function college(): BelongsTo
     {
-        return $this->belongsTo(College::class,'college_id','id');
+        return $this->belongsTo(College::class,'college_id','id')->withTrashed();
     }
     public function scopeSearch(Builder $query, string $search)
     {

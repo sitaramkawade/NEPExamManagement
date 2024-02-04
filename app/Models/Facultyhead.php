@@ -22,11 +22,11 @@ class Facultyhead extends Pivot
     ];
     public function faculty()
     {
-        return $this->belongsTo(Faculty::class,'faculty_id','id');
+        return $this->belongsTo(Faculty::class,'faculty_id','id')->withTrashed();
     }
     public function department()
     {
-     return $this->belongsTo(Department::class,'department_id','id');
+     return $this->belongsTo(Department::class,'department_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

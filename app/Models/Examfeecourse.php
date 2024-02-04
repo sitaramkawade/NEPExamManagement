@@ -27,12 +27,12 @@ class Examfeecourse extends Model
 
     public function patternclass(): BelongsTo
     {
-        return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id');
+        return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id')->withTrashed();
     }
 
     public function examfee(): BelongsTo
     {
-        return $this->belongsTo(Examfeemaster::class, 'examfees_id', 'id');
+        return $this->belongsTo(Examfeemaster::class, 'examfees_id', 'id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

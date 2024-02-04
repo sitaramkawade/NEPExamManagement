@@ -19,7 +19,7 @@ return new class extends Migration
             $table->tinyInteger('is_active')->nullable()->default(1);
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('student_helpline_query_id')->references('id')->on('student_helpline_queries')->onDelete('cascade');
+            $table->foreign('student_helpline_query_id')->references('id')->on('student_helpline_queries');
         });
     }
 
