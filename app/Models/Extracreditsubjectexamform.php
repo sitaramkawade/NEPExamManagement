@@ -25,25 +25,25 @@ class Extracreditsubjectexamform extends Model
     ];
     public function exam()
     {
-        return $this->belongsTo(Exam::class,'exam_id','id');
+        return $this->belongsTo(Exam::class,'exam_id','id')->withTrashed();
     }
     public function student()
     {
-        return $this->belongsTo(Student::class, 'student_id', 'id');
+        return $this->belongsTo(Student::class, 'student_id', 'id')->withTrashed();
     }
 
     public function subject()
     {
-        return $this->belongsTo(Extracreditsubject::class,'subject_id','id');
+        return $this->belongsTo(Extracreditsubject::class,'subject_id','id')->withTrashed();
     }
 
     public function examformmaster()
     {         
-        return $this->belongsTo(Examformmaster::class,'examformmaster_id','id');
+        return $this->belongsTo(Examformmaster::class,'examformmaster_id','id')->withTrashed();
 
     }
     public function course()
     {
-        return $this->belongsTo(Course::class, 'course_id', 'id');
+        return $this->belongsTo(Course::class, 'course_id', 'id')->withTrashed();
     }
 }

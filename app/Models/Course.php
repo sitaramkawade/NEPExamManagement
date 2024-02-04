@@ -22,7 +22,6 @@ class Course extends Model
         'course_code',
         'course_name',
         'fullname',
-        'shortname',
         'special_subject',
         'course_type',
         'course_category_id',
@@ -58,7 +57,6 @@ class Course extends Model
             $subquery->where('course_code', 'like', "%{$search}%")
                 ->orWhere('course_name', 'like', "%{$search}%")
                 ->orWhere('fullname', 'like', "%{$search}%")
-                ->orWhere('shortname', 'like', "%{$search}%")
                 ->orWhere('course_type', 'like', "%{$search}%")
                 ->orWhere('special_subject', 'like', "%{$search}%")
                 ->orWhereHas('college', function ($subQuery) use ($search) {

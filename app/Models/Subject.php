@@ -16,7 +16,8 @@ use Illuminate\Database\Eloquent\Factories\BelongsToManyRelationship;
 
 class Subject extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory,SoftDeletes; 
+    protected $dates = ['deleted_at'];
     protected $table='subjects';
     protected $fillable=[
         'subject_sem',
@@ -48,57 +49,57 @@ class Subject extends Model
 
     public function college(): BelongsTo
     {
-        return $this->belongsTo(College::class, 'college_id', 'id');
+        return $this->belongsTo(College::class, 'college_id', 'id')->withTrashed();
     }
 
     public function subjectcategories(): BelongsTo
     {
-     return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id');
+     return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id')->withTrashed();
     }
 
     public function department(): BelongsTo
     {
-     return $this->belongsTo(Department::class,'department_id','id');
+     return $this->belongsTo(Department::class,'department_id','id')->withTrashed();
     }
 
     public function subjecttypes(): BelongsTo
     {
-     return $this->belongsTo(Subjecttype::class,'subjecttype_id','id');
+     return $this->belongsTo(Subjecttype::class,'subjecttype_id','id')->withTrashed();
     }
 
     public function patternclass(): BelongsTo
     {
-     return $this->belongsTo(Patternclass::class,'patternclass_id','id');
+     return $this->belongsTo(Patternclass::class,'patternclass_id','id')->withTrashed();
     }
 
     public function classyear(): BelongsTo
     {
-     return $this->belongsTo(Classyear::class,'classyear_id','id');
+     return $this->belongsTo(Classyear::class,'classyear_id','id')->withTrashed();
     }
 
     public function subjectbuckets():HasMany
     {
-        return $this->hasMany(Subjectbucket::class,'subject_id','id');
+        return $this->hasMany(Subjectbucket::class,'subject_id','id')->withTrashed();
     }
 
     public function hodappointsubjects():HasMany
     {
-        return $this->hasMany(Hodappointsubject::class,'subject_id','id');
+        return $this->hasMany(Hodappointsubject::class,'subject_id','id')->withTrashed();
     }
 
     public function faculty()
     {
-        return $this->belongsTo(Faculty::class,'faculty_id','id');
+        return $this->belongsTo(Faculty::class,'faculty_id','id')->withTrashed();
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class,'user_id','id')->withTrashed();
     }
 
     public function exampanels()
     {
-        return $this->hasMany(ExamPanel::class,'subject_id','id');
+        return $this->hasMany(ExamPanel::class,'subject_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

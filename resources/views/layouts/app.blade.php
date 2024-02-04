@@ -38,6 +38,18 @@
         width: 6px !important;
       }
 
+      .scrollbar-md::-webkit-scrollbar 
+      {
+        height: 6px !important;
+        width: 8px !important;
+      }
+
+      .scrollbar-md::-moz-scrollbar
+      {
+        height: 6px !important;
+        width: 8px !important;
+      }
+
       ::-webkit-scrollbar 
       {
         height: 12px !important;
@@ -53,7 +65,11 @@
         scrollbar-width: 6px !important;
       }
 
-      .scrollbar-xm {
+      .scrollbar-md {
+        scrollbar-width: 8px !important;
+      }
+
+      .scrollbar-xs {
         scrollbar-width: 3px !important;
       }
 
@@ -85,6 +101,15 @@
         border-left-color: var(--color-primary) !important;
         display: none;
       }
+
+     .dark input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+      }
+
+      .dark input[type="time"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+      }
+
     </style>
   </head>
 

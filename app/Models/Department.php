@@ -26,28 +26,28 @@ class Department extends Model
     ];
     public function faculty():HasMany
     {
-        return $this->hasMany(Faculty::class,'department_id','id');
+        return $this->hasMany(Faculty::class,'department_id','id')->withTrashed();
     }
     public function facultyhead()
     {
-        return $this->hasMany(Facultyhead::class,'department_id','id');
+        return $this->hasMany(Facultyhead::class,'department_id','id')->withTrashed();
     }
     public function faculties(): BelongsToMany
     {
-        return $this->belongsToMany(Faculty::class,'facultyheads','faculty_id', 'department_id','id');
+        return $this->belongsToMany(Faculty::class,'facultyheads','faculty_id', 'department_id','id')->withTrashed();
         
     }
     public function subject():HasMany
     {
-        return $this->hasMany(Subject::class,'department_id','id');
+        return $this->hasMany(Subject::class,'department_id','id')->withTrashed();
     }
     public function subjectbuckets():HasMany
     {
-        return $this->hasMany(Subjectbucket::class,'department_id','id');
+        return $this->hasMany(Subjectbucket::class,'department_id','id')->withTrashed();
     }
     public function college():BelongsTo
     {
-        return $this->belongsTo(College::class,'college_id','id');
+        return $this->belongsTo(College::class,'college_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

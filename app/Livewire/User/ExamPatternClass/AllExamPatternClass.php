@@ -321,7 +321,7 @@ class AllExamPatternClass extends Component
             $this->capmasters=Capmaster::select('id','cap_name')->get();
         }
 
-       $pattern_exam_classes=ExamPatternclass::select('exam_id','patternclass_id','result_date','launch_status','start_date','end_date','latefee_date','intmarksstart_date','intmarksend_date','finefee_date','capmaster_id','capscheduled_date','papersettingstart_date','papersubmission_date','placeofmeeting','description',)
+       $pattern_exam_classes=ExamPatternclass::select('id','exam_id','patternclass_id','result_date','launch_status','start_date','end_date','latefee_date','intmarksstart_date','intmarksend_date','finefee_date','capmaster_id','capscheduled_date','papersettingstart_date','papersubmission_date','placeofmeeting','description','deleted_at')
        ->with(['exam:exam_name,id','patternclass.courseclass.course:course_name,id','capmaster:cap_name,id'])->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

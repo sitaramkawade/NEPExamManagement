@@ -294,7 +294,6 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All ViewExamPanel
   Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
 
-
 });
 
 require __DIR__.'/student.php';

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Subjectcategory extends Model
 {
     use HasFactory,SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $table="subjectcategories";
     protected $fillable = [
     'subjectcategory',
@@ -25,7 +26,7 @@ class Subjectcategory extends Model
     }
     public function subjectbuckets():HasMany
     {
-        return $this->hasMany(Subjectbucket::class,'subjectcategory_id','id');
+        return $this->hasMany(Subjectbucket::class,'subjectcategory_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

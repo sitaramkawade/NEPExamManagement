@@ -26,7 +26,7 @@ class Role extends Model
 
     public function college()
     {
-     return $this->belongsTo(College::class,'college_id','id');
+     return $this->belongsTo(College::class,'college_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

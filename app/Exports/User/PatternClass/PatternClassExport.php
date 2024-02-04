@@ -30,7 +30,7 @@ class PatternClassExport implements FromCollection, WithHeadings, ShouldAutoSize
 
     public function headings(): array
     {
-        return ['ID', 'Pattern', 'Course Class','Sem 1 Total Marks','Sem 2 Total Mark','Sem 1 Credits','Sem 2 Credits','Sem 1 Total Subjects','Sem 2 Total Subjects', 'Status'];
+        return ['ID', 'Pattern', 'Course Class','Sem 1 Total Marks','Sem 2 Total Mark','Sem 1 Credits','Sem 2 Credits','ATKT Credit','Sem 1 Total Subjects','Sem 2 Total Subjects', 'Status'];
     }
 
     public function map($row): array
@@ -43,6 +43,7 @@ class PatternClassExport implements FromCollection, WithHeadings, ShouldAutoSize
             $row->sem2_total_marks,
             $row->sem1_credits,
             $row->sem2_credits,
+            $row->credit,
             $row->sem1_totalnosubjects,
             $row->sem2_totalnosubjects,
             $row->status == 1 ? 'Active' : 'Inactive',

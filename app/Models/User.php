@@ -76,22 +76,22 @@ class User extends Authenticatable  implements MustVerifyEmail
 
     public function college(): BelongsTo
     {
-        return $this->belongsTo(College::class,'college_id','id');
+        return $this->belongsTo(College::class,'college_id','id')->withTrashed();
     }
 
     public function role(): BelongsTo
     {
-        return $this->belongsTo(Role::class,'role_id','id');
+        return $this->belongsTo(Role::class,'role_id','id')->withTrashed();
     }
 
     public function department(): BelongsTo
     {
-        return $this->belongsTo(Department::class,'department_id','id');
+        return $this->belongsTo(Department::class,'department_id','id')->withTrashed();
     }
 
     public function hodappointsubjects():HasMany
     {
-        return $this->hasMany(Hodappointsubject::class,'appointby_id','id');
+        return $this->hasMany(Hodappointsubject::class,'appointby_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)
@@ -104,7 +104,7 @@ class User extends Authenticatable  implements MustVerifyEmail
 
     // public function studenthelplines(): HasMany
     // {
-    //     return $this->hasMany(Studenthelpline::class, 'approve_by', 'id');
+    //     return $this->hasMany(Studenthelpline::class, 'approve_by', 'id')->withTrashed();
     // }
 
 }

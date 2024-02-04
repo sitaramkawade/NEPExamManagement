@@ -35,7 +35,6 @@
                   <x-table.th wire:click="sort_column('course_name')" name="course_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Course</x-table.th>
                   <x-table.th wire:click="sort_column('course_code')" name="course_code" :sort="$sortColumn" :sort_by="$sortColumnBy">Code</x-table.th>
                   <x-table.th wire:click="sort_column('fullname')" name="fullname" :sort="$sortColumn" :sort_by="$sortColumnBy">Full Name</x-table.th>
-                  <x-table.th wire:click="sort_column('shortname')" name="shortname" :sort="$sortColumn" :sort_by="$sortColumnBy">Short Name</x-table.th>
                   <x-table.th wire:click="sort_column('special_subject')" name="special_subject" :sort="$sortColumn" :sort_by="$sortColumnBy">Special Subject</x-table.th>
                   <x-table.th wire:click="sort_column('course_type')" name="course_type" :sort="$sortColumn" :sort_by="$sortColumnBy">Course Type</x-table.th>
                   <x-table.th wire:click="sort_column('course_category')" name="course_category" :sort="$sortColumn" :sort_by="$sortColumnBy">Course Category</x-table.th>
@@ -51,14 +50,13 @@
                     <x-table.td>{{ $course->course_name }} </x-table.td>
                     <x-table.td>{{ $course->course_code }} </x-table.td>
                     <x-table.td>  <x-table.text-scroll> {{ $course->fullname }}  </x-table.text-scroll></x-table.td>
-                    <x-table.td>{{ $course->shortname }} </x-table.td>
                     <x-table.td>{{ $course->special_subject }} </x-table.td>
                     <x-table.td>{{ $course->course_type }} </x-table.td>
                     <x-table.td>{{ $course->coursecategory->course_category }} </x-table.td>
                     <x-table.td >
-                      <x-table.text-scroll> {{ $course->college->college_name }}</x-table.text-scroll>
+                      <x-table.text-scroll> {{ isset($course->college->college_name)?$course->college->college_name:''; }}</x-table.text-scroll>
                     </x-table.td>
-                    <x-table.td>{{ $course->programme->programme_name }} </x-table.td>
+                    <x-table.td>{{ isset($course->programme->programme_name)?$course->programme->programme_name:''; }} </x-table.td>
                     <x-table.td>
                       @if ($course->deleted_at)
                         <x-table.delete  wire:click="deleteconfirmation({{ $course->id }})" />

@@ -14,7 +14,7 @@ class ExamBuilding extends Model
 {
     use HasFactory,SoftDeletes; 
     protected $dates = ['deleted_at'];
-    protected $table='exam_buildings';
+    protected $table='exambuildings';
     protected $fillable=[
         'exam_id',
         'building_id',
@@ -23,11 +23,11 @@ class ExamBuilding extends Model
 
     public function exam(): BelongsTo
     {
-        return $this->belongsTo(Exam::class,'exam_id','id');
+        return $this->belongsTo(Exam::class,'exam_id','id')->withTrashed();
     }
     public function building(): BelongsTo
     {
-        return $this->belongsTo(Building::class,'building_id','id');
+        return $this->belongsTo(Building::class,'building_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)
