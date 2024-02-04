@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('facultyheads', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('faculty_id')->unsigned();
-            $table->foreign('faculty_id')->references('id');
+            $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->bigInteger('department_id')->nullable()->unsigned()->default(null);
-            $table->foreign('department_id')->references('id');//head of the department
+            $table->foreign('department_id')->references('id')->on('departments');//head of the department
             $table->tinyInteger('status')->default(1);//1 =>active ,0=>inactive
             $table->timestamps();
             $table->softDeletes();

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('subject_code',50)->default(NULL); //3
             $table->string('subject_name_prefix',50)->nullable()->default(NULL); //DSC-1
             $table->string('subject_name',100)->default(NULL); //2
-            $table->bigInteger('subjecttype_id')->unsigned();  //Theory Practical, Project
+            $table->bigInteger('subjecttype_id')->nullable()->unsigned();  //Theory Practical, Project
             $table->foreign('subjecttype_id')->references('id')->on('subjecttypes');
             $table->string('subjectexam_type',50)->default(NULL); //6  IE  - InternalExternal  IEP- Internal External Practical  IP-Internal Practical
             $table->float('subject_credit',4,1)->default(0); //7
