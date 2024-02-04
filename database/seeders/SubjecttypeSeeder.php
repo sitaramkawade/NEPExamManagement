@@ -14,16 +14,37 @@ class SubjecttypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-
-        for ($i = 1; $i <= 20; $i++) {
-            Subjecttype::create([
-                'type_name' => $faker->word,
-                'type_shortname' => $faker->lexify('??'),
-                'active' => $faker->numberBetween(0, 1),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+        Subjecttype::create( [
+            'id'=>1,
+            'type_name'=>'Theory',
+            'type_shortname'=>'TH',
+            'active'=>1,
+            'created_at'=>'2023-09-05 21:23:00',
+            'updated_at'=>'2023-09-05 21:23:00'
+        ] );
+        Subjecttype::create( [
+            'id'=>2,
+            'type_name'=>'Practical',
+            'type_shortname'=>'PR',
+            'active'=>1,
+            'created_at'=>'2023-09-05 21:23:00',
+            'updated_at'=>'2023-09-05 21:23:00'
+        ] );
+        Subjecttype::create( [
+            'id'=>3,
+            'type_name'=>'Project',
+            'type_shortname'=>'PRJ',
+            'active'=>1,
+            'created_at'=>'2023-09-05 21:23:00',
+            'updated_at'=>'2023-09-05 21:23:00'
+        ] );
+        Subjecttype::create( [
+            'id'=>4,
+            'type_name'=>'Skill',
+            'type_shortname'=>'SKILL',
+            'active'=>1,
+            'created_at'=>'2023-09-05 21:23:00',
+            'updated_at'=>'2023-09-05 21:23:00'
+        ] );
     }
 }

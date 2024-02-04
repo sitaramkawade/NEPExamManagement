@@ -140,6 +140,9 @@ class DatabaseSeeder extends Seeder
             ExamPanelSeeder::class,
             ExamorderSeeder::class,
             // BuildingSeeder::class,
+            CollegeSeeder::class,                            // Sanstha, University
+            SubjectExamTypeSeeder::class,
+            BucketTypeSeeder::class,
         ]);
     }
 }

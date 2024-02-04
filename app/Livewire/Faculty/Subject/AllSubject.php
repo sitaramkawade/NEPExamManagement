@@ -16,6 +16,7 @@ use App\Models\Patternclass;
 use Livewire\WithPagination;
 use App\Models\Subjectcredit;
 use App\Models\Subjectcategory;
+use App\Models\Subjectexamtype;
 use Illuminate\Validation\Rule;
 use Doctrine\Inflector\Rules\Patterns;
 use App\Exports\Faculty\Subject\SubjectExport;
@@ -27,16 +28,16 @@ class AllSubject extends Component
     protected $listeners = ['delete-confirmed'=>'delete'];
     public $subject_sem;
     public $subjectcategory_id;
-    public $subject_no;
+
     public $subject_order;
     public $subject_code;
     public $subject_name_prefix;
-    public $subject_shortname;
+
     public $subject_name;
     public $subjecttype_id;
     public $subjectexam_type;
     public $subject_credit;
-    public $is_project;
+
     public $subject_maxmarks;
     public $subject_maxmarks_int;
     public $subject_maxmarks_intpract;
@@ -61,6 +62,7 @@ class AllSubject extends Component
     public $subject_categories;
     public $subject_types;
     public $subjectexam_types;
+    public $subject_credits;
     public $pattern_classes;
     public $class_years;
     public $departments;
@@ -87,15 +89,12 @@ class AllSubject extends Component
         return [
             'subject_sem' => ['required', Rule::exists(Semester::class,'id')],
             'subjectcategory_id' => ['required', Rule::exists(Subjectcategory::class,'id')],
-            'subject_no' => ['required', 'numeric', 'digits_between:1,10'],
-            'subject_order' => ['required', 'numeric','digits_between:1,10'],
+            'subject_order' => ['required', 'numeric'],
             'subject_code' => ['required', 'string', 'min:1', 'max:50'],
             'subject_name_prefix' => ['required', 'string', 'min:1', 'max:50'],
-            'subject_shortname' => ['required', 'string', 'min:1', 'max:20',],
             'subject_name' => ['required', 'string','min:1', 'max:100',],
-            'is_project' => ['required', 'in:0,1',],
             'subjecttype_id' => ['required',Rule::exists(Subjecttype::class,'id')],
-            'subjectexam_type' => ['required',],
+            'subjectexam_type' => ['required',Rule::exists(Subjectexamtype::class,'id')],
             'subject_credit' => ['required',Rule::exists(Subjectcredit::class,'id')],
             'subject_maxmarks' => ['required',],
             'subject_maxmarks_int' => ['required',],
@@ -105,7 +104,7 @@ class AllSubject extends Component
             'subject_intpassing' => ['required',],
             'subject_intpractpassing' => ['required',],
             'subject_extpassing' => ['required',],
-            'subject_optionalgroup' => ['required',],
+            // 'subject_optionalgroup' => ['required',],
             'classyear_id' => ['required',Rule::exists(Classyear::class,'id')],
             'department_id' => ['required',Rule::exists(Department::class,'id')],
             'college_id' => ['required',Rule::exists(College::class,'id')],
@@ -124,12 +123,8 @@ class AllSubject extends Component
             'subjectcategory_id.required' => 'The subject category field is required.',
             'subjectcategory_id.integer' => 'The subject category must be an integer.',
             'subjectcategory_id.exists' => 'The selected subject category is invalid.',
-            'subject_no.required' => 'The subject number field is required.',
-            'subject_no.numeric' => 'The subject number must be numeric.',
-            'subject_no.digits_between' => 'The subject number must be between 1 and 10 digits.',
             'subject_order.required' => 'The subject order field is required.',
             'subject_order.numeric' => 'The subject order must be numeric.',
-            'subject_order.digits_between' => 'The order number must be between 1 and 10 digits.',
             'subject_code.required' => 'The subject code field is required.',
             'subject_code.string' => 'The subject code must be a string.',
             'subject_code.min' => 'The subject code must be at least 1 character.',
@@ -138,19 +133,15 @@ class AllSubject extends Component
             'subject_name_prefix.string' => 'The subject name prefix must be a string.',
             'subject_name_prefix.min' => 'The subject name prefix must be at least 1 character.',
             'subject_name_prefix.max' => 'The subject name prefix must not exceed 50 characters.',
-            'subject_shortname.required' => 'The subject short name field is required.',
-            'subject_shortname.string' => 'The subject short name must be a string.',
-            'subject_shortname.max' => 'The subject short name must not exceed 11 characters.',
             'subject_name.required' => 'The subject name field is required.',
             'subject_name.string' => 'The subject name must be a string.',
             'subject_name.max' => 'The subject name must not exceed 100 characters.',
             'subjecttype_id.required' => 'The subject type field is required.',
             'subjecttype_id.exists' => 'The selected subject type is invalid.',
             'subjectexam_type.required' => 'The subject exam type field is required.',
+            'subjectexam_type.exists' => 'The selected subject exam type is invalid.',
             'subject_credit.required' => 'The subject credit field is required.',
             'subject_credit.exists' => 'The selected subject credit is invalid.',
-            'is_project.required' => 'Please select subject is project or not.',
-            'is_project.in' => 'The subject is project must be either YES or NO.',
             'subject_maxmarks.required' => 'The subject maximum marks field is required.',
             'subject_maxmarks_int.required' => 'The subject maximum internal marks field is required.',
             'subject_maxmarks_intpract.required' => 'The subject maximum internal practical marks field is required.',
@@ -159,7 +150,7 @@ class AllSubject extends Component
             'subject_intpassing.required' => 'The subject internal passing marks field is required.',
             'subject_intpractpassing.required' => 'The subject internal practical passing marks field is required.',
             'subject_extpassing.required' => 'The subject external passing marks field is required.',
-            'subject_optionalgroup.required' => 'The subject optional group field is required.',
+            // 'subject_optionalgroup.required' => 'The subject optional group field is required.',
             'classyear_id.required' => 'The class year field is required.',
             'classyear_id.exists' => 'The selected class year is invalid.',
             'department_id.required' => 'The department field is required.',
@@ -179,16 +170,13 @@ class AllSubject extends Component
     {
          $this->subject_sem=null;
          $this->subjectcategory_id=null;
-         $this->subject_no=null;
          $this->subject_order=null;
          $this->subject_code=null;
          $this->subject_name_prefix=null;
-         $this->subject_shortname=null;
          $this->subject_name=null;
          $this->subjecttype_id=null;
          $this->subjectexam_type=null;
          $this->subject_credit=null;
-         $this->is_project=null;
          $this->subject_maxmarks=null;
          $this->subject_maxmarks_int=null;
          $this->subject_maxmarks_intpract=null;
@@ -274,14 +262,11 @@ class AllSubject extends Component
             $this->subject_id = $subject->id;
             $this->subject_sem= $subject->subject_sem;
             $this->subjectcategory_id= $subject->subjectcategory_id;
-            $this->subject_no= $subject->subject_no;
             $this->subject_order= $subject->subject_order;
             $this->subject_code= $subject->subject_code;
             $this->subject_name_prefix= $subject->subject_name_prefix;
             $this->subjectexam_type= $subject->subjectexam_type;
-            $this->subject_shortname= $subject->subject_shortname;
             $this->subject_name= $subject->subject_name;
-            $this->is_project= $subject->is_project;
             $this->subjecttype_id= $subject->subjecttype_id;
             $this->subject_credit= $subject->subject_credit;
             $this->subject_maxmarks= $subject->subject_maxmarks;
@@ -297,6 +282,7 @@ class AllSubject extends Component
             $this->classyear_id= $subject->classyear_id;
             $this->department_id= $subject->department_id;
             $this->college_id= $subject->college_id;
+
             // Check the current authentication guard
             $guard = auth()->guard();
 
@@ -476,13 +462,19 @@ class AllSubject extends Component
         if ($subject)
         {
             $this->subject_sem= $subject->subject_sem;
-            $this->subject_no= $subject->subject_no;
+            $this->subjectcategory_id = $subject->subjectcategories->subjectcategory;
+            $this->subject_order= $subject->subject_order;
             $this->subject_code= $subject->subject_code;
-            $this->subject_shortname= $subject->subject_shortname;
+            $this->subject_name_prefix= $subject->subject_name_prefix;
             $this->subject_name= $subject->subject_name;
-            $this->subjectexam_type= $subject->subdjectexam_type;
+            $this->subjecttype_id = $subject->subjecttypes->type_name;
+            $this->subjectexam_type= $subject->subjectexam_type;
             $this->subject_credit= $subject->subject_credit;
-            $this->is_project= $subject->is_project;
+            $this->pattern_id = isset($subject->patternclass->pattern->pattern_name) ? $subject->patternclass->pattern->pattern_name : '';
+            $this->course_id =  isset($subject->patternclass->courseclass->course->course_name) ? $subject->patternclass->courseclass->course->course_name : '';
+            $this->classyear_id =  isset($subject->patternclass->courseclass->classyear->classyear_name) ? $subject->patternclass->courseclass->classyear->classyear_name : '';
+            $this->department_id = isset($subject->department->dept_name) ? $subject->department->dept_name : '';
+            $this->college_id = isset($subject->college->college_name) ? $subject->college->college_name : '';
             $this->subject_maxmarks= $subject->subject_maxmarks;
             $this->subject_maxmarks_int= $subject->subject_maxmarks_int;
             $this->subject_maxmarks_intpract= $subject->subject_maxmarks_intpract;
@@ -492,13 +484,6 @@ class AllSubject extends Component
             $this->subject_intpractpassing= $subject->subject_intpractpassing;
             $this->subject_extpassing= $subject->subject_extpassing;
             $this->subject_optionalgroup= $subject->subject_optionalgroup;
-            $this->subjectcategory_id = $subject->subjectcategories->subjectcategory;
-            $this->subjecttype_id = $subject->subjecttypes->type_name;
-            $this->pattern_id = $subject->patternclass->pattern->pattern_name;
-            $this->course_id =  $subject->patternclass->courseclass->course->course_name;
-            $this->classyear_id =  $subject->patternclass->courseclass->classyear->classyear_name;
-            $this->department_id = $subject->department->dept_name;
-            $this->college_id = $subject->college->college_name;
             $this->setmode('view');
         }else{
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
@@ -512,7 +497,9 @@ class AllSubject extends Component
             $this->courses=Course::select('id','course_name')->get();
             $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
             $this->semesters=Semester::select('id','semester',)->where('status',1)->get();
-            $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('active',1)->get();
+            $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('is_active',1)->get();
+            $this->subjectexam_types = Subjectexamtype::select('id','examtype')->where('is_active',1)->get();
+            $this->subject_credits = Subjectcredit::select('id','credit')->get();
             $this->subject_types = Subjecttype::select('id','type_name')->where('active',1)->get();
             $this->class_years= Classyear::select('id','classyear_name')->where('status',1)->get();
             $this->departments= Department::select('id','dept_name')->where('status',1)->get();

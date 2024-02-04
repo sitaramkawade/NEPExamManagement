@@ -241,9 +241,9 @@ class ViewExamPanel extends Component
 
     public function render()
     {
-        $auth_faculty = auth('faculty')->user()->id;
+        $auth_faculty = auth('faculty')->user();
 
-        $appointed_subjects = Hodappointsubject::where('faculty_id', $auth_faculty)->where('status', 1)->pluck('subject_id')->toArray();
+        $appointed_subjects = Hodappointsubject::where('faculty_id', $auth_faculty->id)->where('status', 1)->pluck('subject_id')->toArray();
         $patternclass_id = Subject::whereIn('id', $appointed_subjects) ->pluck('patternclass_id')->toArray();
 
         $this->pattern_classes = Patternclass::whereIn('id', $patternclass_id)->select('id', 'class_id', 'pattern_id')->with(['pattern:pattern_name,id', 'courseclass.course:course_name,id', 'courseclass.classyear:classyear_name,id'])->where('status', 1)->get();
@@ -251,7 +251,7 @@ class ViewExamPanel extends Component
 
         $this->subjects = Subject::whereIn('id', $appointed_subjects)->select('id', 'subject_name')->where('patternclass_id', $this->patternclass_id)->where('status', 1)->get();
 
-        $this->departments = Department::select('id','dept_name')->where('status',1)->get();
+        $this->departments = Department::select('id','dept_name')->where('id',$auth_faculty->department_id)->where('status',1)->get();
 
         $this->faculties = Faculty::select('id','faculty_name')->where('department_id', $this->department_id)->where('active',1)->whereNotNull('department_id')->get();
 
