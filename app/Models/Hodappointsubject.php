@@ -23,22 +23,22 @@ class Hodappointsubject extends Model
 
     public function faculty()
     {
-        return $this->belongsTo(Faculty::class,'faculty_id','id');
+        return $this->belongsTo(Faculty::class,'faculty_id','id')->withTrashed();
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class,'appointby_id','id');
+        return $this->belongsTo(User::class,'appointby_id','id')->withTrashed();
     }
 
     public function subject()
     {
-        return $this->belongsTo(Subject::class,'subject_id','id');
+        return $this->belongsTo(Subject::class,'subject_id','id')->withTrashed();
     }
 
     public function patternclass(): BelongsTo
     {
-        return $this->belongsTo(Patternclass::class,'patternclass_id','id');
+        return $this->belongsTo(Patternclass::class,'patternclass_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

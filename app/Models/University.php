@@ -26,7 +26,7 @@ class University extends Model
      
     public function colleges(): HasMany
     {
-        return $this->hasMany(College::class,'university_id','id');
+        return $this->hasMany(College::class,'university_id','id')->withTrashed();
     }
 
 

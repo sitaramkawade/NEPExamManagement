@@ -45,10 +45,12 @@
                     <x-table.td>{{ $helpline_document->studenthelplinequery->query_name }} </x-table.td>
                     <x-table.td>{{ $helpline_document->document_name }} </x-table.td>
                     <x-table.td>
-                      @if ($helpline_document->is_active === 1)
-                        <x-table.active wire:click="status({{ $helpline_document->id }})" />
-                      @else
-                        <x-table.inactive wire:click="status({{ $helpline_document->id }})" />
+                      @if (!$helpline_document->deleted_at)
+                        @if ($helpline_document->is_active === 1)
+                          <x-table.active wire:click="status({{ $helpline_document->id }})" />
+                        @else
+                          <x-table.inactive wire:click="status({{ $helpline_document->id }})" />
+                        @endif 
                       @endif
                     </x-table.td>
                     <x-table.td>

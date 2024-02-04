@@ -48,6 +48,11 @@
       <x-input-error :messages="$errors->get('sem2_credits')" class="mt-1" />
     </div>
     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+      <x-input-label for="credit" :value="__('Credit')" />
+      <x-text-input id="credit" type="number" wire:model="credit" placeholder="{{ __('Enter SEM 2 Credits') }}" name="credit" class="w-full mt-1" :value="old('credit', $credit)" autocomplete="credit" />
+      <x-input-error :messages="$errors->get('credit')" class="mt-1" />
+    </div>
+    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
       <x-input-label for="sem1_totalnosubjects" :value="__('SEM 1 Total Subjects')" />
       <x-text-input id="sem1_totalnosubjects" type="number" wire:model="sem1_totalnosubjects" placeholder="{{ __('SEM 1 Total Subjects') }}" name="sem1_totalnosubjects" class="w-full mt-1" :value="old('sem1_totalnosubjects', $sem2_credits)" autocomplete="sem1_totalnosubjects" />
       <x-input-error :messages="$errors->get('sem1_totalnosubjects')" class="mt-1" />

@@ -24,12 +24,12 @@ class Examorder extends Model
 
     public function exampanel(): BelongsTo
     {
-        return $this->belongsTo(ExamPanel::class,'exampanel_id','id');
+        return $this->belongsTo(ExamPanel::class,'exampanel_id','id')->withTrashed();
     }
 
     public function exampatternclass(): BelongsTo
     {
-        return $this->belongsTo(ExamPatternclass::class, 'exam_patternclass_id', 'id');
+        return $this->belongsTo(ExamPatternclass::class, 'exam_patternclass_id', 'id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

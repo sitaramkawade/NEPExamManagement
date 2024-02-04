@@ -23,7 +23,7 @@ class Studenthelplinedocument extends Model
 
     public function studenthelplinequery(): BelongsTo
     {
-        return $this->belongsTo(Studenthelplinequery::class, 'student_helpline_query_id', 'id');
+        return $this->belongsTo(Studenthelplinequery::class, 'student_helpline_query_id', 'id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

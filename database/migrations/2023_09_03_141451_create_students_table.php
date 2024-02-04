@@ -40,6 +40,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default(0);   //Approved Student only 0 not Approved and 1 is used to approve 
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

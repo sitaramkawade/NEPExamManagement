@@ -28,7 +28,7 @@ class Programme extends Model
 
     public function courses():HasMany
     {
-        return $this->hasMany(Course::class,'programme_id','id');
+        return $this->hasMany(Course::class,'programme_id','id')->withTrashed();
     }
 
 }

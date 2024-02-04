@@ -32,17 +32,17 @@ class College extends Model
     ];
     public function sanstha(): BelongsTo
     {
-        return $this->belongsTo(Sanstha::class,'sanstha_id','id');
+        return $this->belongsTo(Sanstha::class,'sanstha_id','id')->withTrashed();
     }
     public function university(): BelongsTo
     {
-        return $this->belongsTo(University::class,'university_id','id');
+        return $this->belongsTo(University::class,'university_id','id')->withTrashed();
     }
 
 
     public function courses():HasMany
     {
-        return $this->hasMany(Course::class,'college_id','id');
+        return $this->hasMany(Course::class,'college_id','id')->withTrashed();
     }
     
     public function roles()
@@ -52,9 +52,13 @@ class College extends Model
 
     public function subjects(): HasMany
     {
-        return $this->hasMany(Subject::class, 'college_id', 'id');
+        return $this->hasMany(Subject::class, 'college_id', 'id')->withTrashed();
     }
-
+    
+    public function patterns()
+    {
+        return $this->hasMany(Pattern::class)->withTrashed();
+    }
     public function scopeSearch(Builder $query,string $search)
     {
         return $query->with('sanstha','university')
@@ -73,10 +77,6 @@ class College extends Model
         });
     }
 
-    public function patterns()
-    {
-        return $this->hasMany(Pattern::class);
-    }
 
  
 }

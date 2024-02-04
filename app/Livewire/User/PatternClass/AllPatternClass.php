@@ -32,6 +32,7 @@ class AllPatternClass extends Component
     public $sem2_total_marks;
     public $sem1_credits;
     public $sem2_credits;
+    public $credit;
     public $sem1_totalnosubjects;
     public $sem2_totalnosubjects;
     public $patterns;
@@ -47,6 +48,7 @@ class AllPatternClass extends Component
             'sem2_total_marks' => ['required', 'integer','digits_between:1,4'],
             'sem1_credits' => ['required', 'integer','digits_between:1,3'],
             'sem2_credits' => ['required', 'integer','digits_between:1,3'],
+            'credit' => ['required', 'integer','digits_between:1,3'],
             'sem1_totalnosubjects' => ['required', 'integer','digits_between:1,3'],
             'sem2_totalnosubjects' => ['required', 'integer','digits_between:1,3'],
             'class_id' => ['required', 'integer', Rule::exists('course_classes', 'id')],
@@ -69,6 +71,9 @@ class AllPatternClass extends Component
             'sem2_credits.required' => 'Semester 2 credits is required.',
             'sem2_credits.integer' => 'Semester 2 credits must be an integer.',
             'sem2_credits.digits_between' => 'Semester 2 credits must have between :min and :max digits.',
+            'credit.required' => 'Credit is required.',
+            'credit.integer' => 'Credit must be an integer.',
+            'credit.digits_between' => 'Credit must have between :min and :max digits.',
             'sem1_totalnosubjects.required' => 'Semester 1 total number of subjects is required.',
             'sem1_totalnosubjects.integer' => 'Semester 1 total number of subjects must be an integer.',
             'sem1_totalnosubjects.digits_between' => 'Semester 1 total number of subjects must have between :min and :max digits.',
@@ -101,6 +106,7 @@ class AllPatternClass extends Component
         $this->sem2_total_marks=null;
         $this->sem1_credits=null;
         $this->sem2_credits=null;
+        $this->credit=null;
         $this->sem1_totalnosubjects=null;
         $this->sem2_totalnosubjects=null;
     }
@@ -159,6 +165,7 @@ class AllPatternClass extends Component
             'sem2_total_marks' => $this->sem2_total_marks,
             'sem1_credits' => $this->sem1_credits,
             'sem2_credits' => $this->sem2_credits,
+            'credit' => $this->credit,
             'sem1_totalnosubjects' => $this->sem1_totalnosubjects,
             'sem2_totalnosubjects' => $this->sem2_totalnosubjects,
         ]);
@@ -179,6 +186,7 @@ class AllPatternClass extends Component
         $this->sem2_total_marks=$pattern_class->sem2_total_marks;
         $this->sem1_credits=$pattern_class->sem1_credits;
         $this->sem2_credits=$pattern_class->sem2_credits;
+        $this->credit=$pattern_class->credit;
         $this->sem1_totalnosubjects=$pattern_class->sem1_totalnosubjects;
         $this->sem2_totalnosubjects=$pattern_class->sem2_totalnosubjects;
         $this->setmode('edit');
@@ -196,6 +204,7 @@ class AllPatternClass extends Component
             'sem2_total_marks' => $this->sem2_total_marks,
             'sem1_credits' => $this->sem1_credits,
             'sem2_credits' => $this->sem2_credits,
+            'credit' => $this->credit,
             'sem1_totalnosubjects' => $this->sem1_totalnosubjects,
             'sem2_totalnosubjects' => $this->sem2_totalnosubjects,
         ]);
@@ -258,7 +267,7 @@ class AllPatternClass extends Component
             $this->course_classes=Courseclass::select('classyear_id','course_id','id')->with(['classyear:classyear_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->get();
         }
 
-        $pattern_classes=Patternclass::select('id','pattern_id','class_id','sem1_total_marks','sem2_total_marks','sem1_credits','sem2_credits','sem1_totalnosubjects','sem2_totalnosubjects','status','deleted_at')->with('courseclass.course:course_name,id','courseclass.classyear:classyear_name,id','pattern:pattern_name,id')->when($this->search, function ($query, $search) {
+        $pattern_classes=Patternclass::select('id','pattern_id','class_id','sem1_total_marks','sem2_total_marks','credit','sem1_credits','sem2_credits','sem1_totalnosubjects','sem2_totalnosubjects','status','deleted_at')->with('courseclass.course:course_name,id','courseclass.classyear:classyear_name,id','pattern:pattern_name,id')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\CurrentclassStudents;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -20,7 +21,8 @@ use App\Notifications\Student\StudentResetPasswordNotification;
 
 class Student extends  Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable ,SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $guard="student";
     protected $broker = 'students';
     protected $fillable = [
@@ -83,17 +85,17 @@ class Student extends  Authenticatable implements MustVerifyEmail
 
     public function patternclass()
     {
-        return $this->belongsTo(Patternclass::class,'patternclass_id','id');
+        return $this->belongsTo(Patternclass::class,'patternclass_id','id')->withTrashed();
     }
 
     public function studenthelplines(): HasMany
     {
-        return $this->HasMany(Studenthelpline::class, 'student_id', 'id');
+        return $this->HasMany(Studenthelpline::class, 'student_id', 'id')->withTrashed();
     }
 
     public function currentclassstudents()
     {
-        return $this->hasMany(CurrentclassStudents::class,'student_id','id');
+        return $this->hasMany(CurrentclassStudents::class,'student_id','id')->withTrashed();
     }
 
 

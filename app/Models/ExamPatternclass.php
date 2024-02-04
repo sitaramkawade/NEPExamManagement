@@ -38,17 +38,17 @@ class ExamPatternclass extends Model
 
     public function patternclass(): BelongsTo
     {
-        return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id');
+        return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id')->withTrashed();
     }
 
     public function exam(): BelongsTo
     {
-        return $this->belongsTo(Exam::class, 'exam_id', 'id');
+        return $this->belongsTo(Exam::class, 'exam_id', 'id')->withTrashed();
     }
 
     public function capmaster(): BelongsTo
     {
-        return $this->belongsTo(Capmaster::class, 'capmaster_id', 'id');
+        return $this->belongsTo(Capmaster::class, 'capmaster_id', 'id')->withTrashed();
     }
 
 

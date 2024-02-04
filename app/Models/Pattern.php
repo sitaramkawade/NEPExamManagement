@@ -36,23 +36,23 @@ class Pattern extends Model
         'totalnosubjects',
         'id'
         )
-        ->wherePivot('status','1');
+        ->wherePivot('status','1')->withTrashed();
        
     
     }
 
     public function college(): BelongsTo
     {
-        return $this->belongsTo(College::class,'college_id','id');
+        return $this->belongsTo(College::class,'college_id','id')->withTrashed();
     }
 
     public function patternclass()
     {
-        return $this->hasMany(PatternClass::class,'pattern_id','id');
+        return $this->hasMany(PatternClass::class,'pattern_id','id')->withTrashed();
     }
     public function colleges()
     {
-        return $this->hasMany(College::class,'college_id','id');
+        return $this->hasMany(College::class,'college_id','id')->withTrashed();
     }
 
   

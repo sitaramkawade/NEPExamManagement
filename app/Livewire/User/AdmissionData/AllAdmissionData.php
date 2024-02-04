@@ -238,7 +238,7 @@ class AllAdmissionData extends Component
 
     public function render()
     {   
-        $admissionDataQuery = Admissiondata::with(['college:college_name,id', 'academicyear:year_name,id', 'patternclass.courseclass.course:course_name,id', 'patternclass.pattern:pattern_name,id','patternclass.courseclass.classyear:classyear_name,id', 'subject:subject_name,id', 'user:name,id'])
+        $admissionDataQuery = Admissiondata::where('college_id',Auth::guard('user')->user()->college_id)->with(['college:college_name,id', 'academicyear:year_name,id', 'patternclass.courseclass.course:course_name,id', 'patternclass.pattern:pattern_name,id','patternclass.courseclass.classyear:classyear_name,id', 'subject:subject_name,id', 'user:name,id'])
         ->when($this->search, function ($query, $search) {
                 $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy);

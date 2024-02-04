@@ -34,28 +34,28 @@ class Patternclass extends Model
     ];
     public function subjects():HasMany
     {
-        return $this->hasMany(Subject::class,'patternclass_id','id');
+        return $this->hasMany(Subject::class,'patternclass_id','id')->withTrashed();
     }
     public function hodappointsubjects():HasMany
     {
-        return $this->hasMany(Hodappointsubject::class,'patternclass_id','id');
+        return $this->hasMany(Hodappointsubject::class,'patternclass_id','id')->withTrashed();
     }
     public function pattern()
     {
-        return $this->belongsTo(Pattern::class,'pattern_id','id');
+        return $this->belongsTo(Pattern::class,'pattern_id','id')->withTrashed();
     }
     public function courseclass()
     {
-         return $this->belongsTo(CourseClass::class,'class_id','id');
+         return $this->belongsTo(CourseClass::class,'class_id','id')->withTrashed();
     }
     public function subjectbuckets():HasMany
     {
-        return $this->hasMany(Subjectbucket::class,'patternclass_id','id');
+        return $this->hasMany(Subjectbucket::class,'patternclass_id','id')->withTrashed();
     }
 
     public function getclass()
     {
-        return $this->belongsTo(CourseClass::class,'class_id','id');
+        return $this->belongsTo(CourseClass::class,'class_id','id')->withTrashed();
     }
 
     // public function getclass(): HasManyThrough

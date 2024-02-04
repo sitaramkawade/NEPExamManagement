@@ -24,7 +24,7 @@ class Exam extends Model
 
     public function academicyear(): BelongsTo
     {
-        return $this->belongsTo(Academicyear::class,'academicyear_id','id');
+        return $this->belongsTo(Academicyear::class,'academicyear_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)
@@ -42,6 +42,6 @@ class Exam extends Model
 
     public function exampatternclasses()
     {
-        return $this->hasMany(ExamPatternclass::class);
+        return $this->hasMany(ExamPatternclass::class)->withTrashed();
     }
 }
