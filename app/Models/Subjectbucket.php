@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Subjectbucket extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $table='subjectbuckets';
     protected $fillable=[
     'department_id',
