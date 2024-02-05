@@ -80,19 +80,19 @@ class Faculty extends Authenticatable implements MustVerifyEmail
     ];
     public function role(): BelongsTo
     {
-     return $this->belongsTo(Role::class,'role_id','id');
+     return $this->belongsTo(Role::class,'role_id','id')->withTrashed();
     }
     public function exampanels()
     {
-        return $this->hasMany(Exampanel::class,'faculty_id','id');
+        return $this->hasMany(Exampanel::class,'faculty_id','id')->withTrashed();
     }
     public function department(): BelongsTo
     {
-     return $this->belongsTo(Department::class,'department_id','id');
+     return $this->belongsTo(Department::class,'department_id','id')->withTrashed();
     }
     public function college(): BelongsTo
     {
-     return $this->belongsTo(College::class,'college_id','id');
+     return $this->belongsTo(College::class,'college_id','id')->withTrashed();
     }
 
     public function facultybankaccount()
@@ -102,17 +102,17 @@ class Faculty extends Authenticatable implements MustVerifyEmail
 
     public function facultyhead()
     {
-        return $this->hasMany(Facultyhead::class,'faculty_id','id');
+        return $this->hasMany(Facultyhead::class,'faculty_id','id')->withTrashed();
     }
 
     public function hodappointsubjects()
     {
-        return $this->hasMany(Hodappointsubject::class,'faculty_id','id');
+        return $this->hasMany(Hodappointsubject::class,'faculty_id','id')->withTrashed();
     }
 
     public function subjects()
     {
-        return $this->hasMany(Subject::class, 'faculty_id','id');
+        return $this->hasMany(Subject::class, 'faculty_id','id')->withTrashed();
     }
 
     public function departments(): BelongsToMany
@@ -121,12 +121,12 @@ class Faculty extends Authenticatable implements MustVerifyEmail
         // 'faculty_id', 'department_id','id');
         return $this->belongsToMany(Department::class,'facultyheads','faculty_id', 'department_id','id')
         ->withPivot('status','department_id')
-        ->wherePivot('status','1');
+        ->wherePivot('status','1')->withTrashed();
 
     }
     public function getdepartment($deptid)
     {
-        return Department::where('id',$deptid)->first()->dept_name;
+        return Department::withTrashed()->where('id',$deptid)->first()->dept_name;
     }
 
     public function scopeSearch(Builder $query,string $search)

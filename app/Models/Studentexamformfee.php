@@ -22,13 +22,13 @@ class Studentexamformfee extends Model
 
     public function examformmaster()
     {         
-        return $this->belongsTo(Examformmaster::class,'examformmaster_id','id');
+        return $this->belongsTo(Examformmaster::class,'examformmaster_id','id')->withTrashed();
 
     }
     
     public function examfees()
     {         
-        return $this->belongsTo(Examfeemaster::class,'examfees_id','id');
+        return $this->belongsTo(Examfeemaster::class,'examfees_id','id')->withTrashed();
 
     }
 }

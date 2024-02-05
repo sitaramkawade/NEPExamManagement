@@ -47,7 +47,7 @@
                     <x-table.td>  {{ isset($course_class->courseclass->classyear->classyear_name)?  $course_class->courseclass->classyear->classyear_name:'-'; }}  {{ isset($course_class->courseclass->course->course_name) ?$course_class->courseclass->course->course_name :'-' }} </x-table.td>
                     <x-table.td>
                         <x-table.text-scroll>
-                            {{  $course_class->college->college_name }} 
+                            {{  isset($course_class->college->college_name)?$course_class->college->college_name:''; }} 
                         </x-table.text-scroll>
                     </x-table.td>
                     <x-table.td>

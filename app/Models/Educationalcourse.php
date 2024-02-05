@@ -23,7 +23,7 @@ class Educationalcourse extends Model
 
     public function programme():BelongsTo
     {
-    return $this->belongsTo(Programme::class,'programme_id','id');
+    return $this->belongsTo(Programme::class,'programme_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

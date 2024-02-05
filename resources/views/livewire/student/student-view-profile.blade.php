@@ -228,7 +228,7 @@
           </div>
           <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="class" :value="__("Class")" />
-            <x-input-show id='class' :value="$ptn_class->getclass->classyear->classyear_name . ' '. $ptn_class->getclass->course->course_name" />
+            <x-input-show id='class' value="{{ isset($ptn_class->getclass->classyear->classyear_name)?$ptn_class->getclass->classyear->classyear_name:''; }} {{  isset($ptn_class->getclass->course->course_name)?$ptn_class->getclass->course->course_name:''; }}" />
           </div>
         @endif
       </div>

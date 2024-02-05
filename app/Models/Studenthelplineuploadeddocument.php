@@ -22,12 +22,12 @@ class Studenthelplineuploadeddocument extends Model
     
     public function studenthelpline(): BelongsTo
     {
-        return $this->belongsTo(Studenthelpline::class, 'student_helpline_id', 'id');
+        return $this->belongsTo(Studenthelpline::class, 'student_helpline_id', 'id')->withTrashed();
     }
 
     public function studenthelplinedocument(): BelongsTo
     {
-        return $this->belongsTo(Studenthelplinedocument::class, 'helpline_document_id', 'id');
+        return $this->belongsTo(Studenthelplinedocument::class, 'helpline_document_id', 'id')->withTrashed();
     }
 
 }

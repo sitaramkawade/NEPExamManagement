@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Studenthelpline extends Model
 {
     use HasFactory , SoftDeletes;
-    protected $table= 'student_helplines';
     protected $dates = ['deleted_at'];
+    protected $table= 'student_helplines';
     protected $fillable=[
         'student_id',
         'student_helpline_query_id',
@@ -33,17 +33,17 @@ class Studenthelpline extends Model
 
     public function student(): BelongsTo
     {
-        return $this->belongsTo(Student::class, 'student_id', 'id');
+        return $this->belongsTo(Student::class, 'student_id', 'id')->withTrashed();
     }
 
     public function studenthelplinequery(): BelongsTo
     {
-        return $this->belongsTo(Studenthelplinequery::class, 'student_helpline_query_id', 'id');
+        return $this->belongsTo(Studenthelplinequery::class, 'student_helpline_query_id', 'id')->withTrashed();
     }
 
     public function studenthelplineuploadeddocuments(): HasMany
     {
-        return $this->hasMany(Studenthelplineuploadeddocument::class, 'student_helpline_id', 'id');
+        return $this->hasMany(Studenthelplineuploadeddocument::class, 'student_helpline_id', 'id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)
@@ -66,11 +66,11 @@ class Studenthelpline extends Model
 
     public function approved(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'approve_by', 'id');
+        return $this->belongsTo(User::class, 'approve_by', 'id')->withTrashed();
     }
 
     public function verified(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'verified_by', 'id');
+        return $this->belongsTo(User::class, 'verified_by', 'id')->withTrashed();
     }
 }

@@ -52,17 +52,17 @@ class StudentViewProfile extends Component
             $this->pattern_class_id=$student->patternclass_id;
             if($pattern_class=Patternclass::find($student->patternclass_id))
             {
-                if($pattern_class)
+                if(isset($pattern_class))
                 {
-                    if($pattern_class->courseclass->course)
+                    if(isset($pattern_class->courseclass->course))
                     {
                         $this->course_id=$pattern_class->courseclass->course->id;
                     }
-                    if($pattern_class->courseclass)
+                    if(isset($pattern_class->courseclass))
                     {
                         $this->course_class_id=$pattern_class->courseclass->id;
                     }
-                    if($pattern_class->pattern)
+                    if(isset($pattern_class->pattern))
                     {
                         $this->pattern_id= $pattern_class->pattern->id;
                     }

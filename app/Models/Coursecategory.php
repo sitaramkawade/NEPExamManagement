@@ -20,7 +20,7 @@ class Coursecategory extends Model
     
     public function coursecategories():HasMany
     {
-        return $this->hasMany(Course::class,'course_category_id','id');
+        return $this->hasMany(Course::class,'course_category_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

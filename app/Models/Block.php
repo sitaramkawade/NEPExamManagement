@@ -26,7 +26,7 @@ class Block extends Model
     ];
     public function building(): BelongsTo
     {
-        return $this->belongsTo(Building::class,'building_id','id');
+        return $this->belongsTo(Building::class,'building_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

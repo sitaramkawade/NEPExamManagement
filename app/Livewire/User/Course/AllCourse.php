@@ -10,6 +10,7 @@ use App\Models\Programme;
 use Livewire\WithPagination;
 use App\Models\Coursecategory;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use App\Exports\User\Course\CourseExport;
 
 class AllCourse extends Component
@@ -31,7 +32,6 @@ class AllCourse extends Component
     public $course_code;
     public $fullname;
     public $course_type;
-    public $shortname;
     public $special_subject;
     public $course_category_id;
     public $college_id;
@@ -52,7 +52,6 @@ class AllCourse extends Component
             'course_code' => ['required', 'string','max:50',Rule::unique('courses', 'course_code')->ignore($this->edit_id, 'id'),],
             'fullname' => ['required', 'string','max:100'],
             'course_type' => ['required', 'string','max:20'],
-            'shortname' => ['required', 'string','max:255'],
             'special_subject' => ['required', 'string','max:100'],
             'course_category_id' => ['required', 'integer', Rule::exists('coursecategories', 'id')],
         ];
@@ -79,9 +78,6 @@ class AllCourse extends Component
             'course_type.required' => 'The Course Type is required.',
             'course_type.string' => 'The Course Type must be a string.',
             'course_type.max' => 'The Course Type must not exceed :max characters.',
-            'shortname.required' => 'The Short Name is required.',
-            'shortname.string' => 'The Short Name must be a string.',
-            'shortname.max' => 'The Short Name must not exceed :max characters.',
             'special_subject.required' => 'The Special Subject is required.',
             'special_subject.string' => 'The Special Subject must be a string.',
             'special_subject.max' => 'The Special Subject must not exceed :max characters.',
@@ -106,7 +102,6 @@ class AllCourse extends Component
         $this->course_code=null;
         $this->fullname=null;
         $this->course_type=null;
-        $this->shortname=null;
         $this->special_subject=null;
         $this->course_category_id=null;
         $this->college_id=null;
@@ -164,7 +159,6 @@ class AllCourse extends Component
             'course_code' => $this->course_code,
             'fullname' => $this->fullname,
             'course_type' => $this->course_type,
-            'shortname' => $this->shortname,
             'special_subject' => $this->special_subject,
             'course_category_id' => $this->course_category_id,
             'college_id' => $this->college_id,
@@ -184,7 +178,6 @@ class AllCourse extends Component
         $this->course_code=$course->course_code;
         $this->fullname=$course->fullname;
         $this->course_type=$course->course_type;
-        $this->shortname=$course->shortname;
         $this->special_subject=$course->special_subject;
         $this->course_category_id=$course->course_category_id;
         $this->college_id=$course->college_id;
@@ -202,7 +195,6 @@ class AllCourse extends Component
             'course_code' => $this->course_code,
             'fullname' => $this->fullname,
             'course_type' => $this->course_type,
-            'shortname' => $this->shortname,
             'special_subject' => $this->special_subject,
             'course_category_id' => $this->course_category_id,
             'college_id' => $this->college_id,
@@ -245,7 +237,7 @@ class AllCourse extends Component
 
     public function render()
     {   
-        $courses=Course::with('programme:programme_name,id','college:college_name,id')->select( 'id','course_name','course_code','fullname','shortname','special_subject','course_type','course_category_id','college_id','programme_id','deleted_at')->when($this->search, function ($query, $search) {
+        $courses=Course::where('college_id',Auth::guard('user')->user()->college_id)->with('programme:programme_name,id','college:college_name,id')->select( 'id','course_name','course_code','fullname','special_subject','course_type','course_category_id','college_id','programme_id','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         

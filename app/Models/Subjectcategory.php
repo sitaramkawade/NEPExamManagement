@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Subjectcategory extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes; 
+    protected $dates = ['deleted_at'];
     protected $table="subjectcategories";
     protected $fillable = [
     'subjectcategory',
@@ -22,6 +24,6 @@ class Subjectcategory extends Model
     }
     public function subjectbuckets():HasMany
     {
-        return $this->hasMany(Subjectbucket::class,'subjectcategory_id','id');
+        return $this->hasMany(Subjectbucket::class,'subjectcategory_id','id')->withTrashed();
     }
 }

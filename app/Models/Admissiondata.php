@@ -32,28 +32,28 @@ class Admissiondata extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id')->withTrashed();
     }
 
     public function subject(): BelongsTo
     {
-        return $this->belongsTo(Subject::class, 'subject_id', 'id');
+        return $this->belongsTo(Subject::class, 'subject_id', 'id')->withTrashed();
     }
 
     public function academicyear(): BelongsTo
     {
-        return $this->belongsTo(Academicyear::class, 'academicyear_id', 'id');
+        return $this->belongsTo(Academicyear::class, 'academicyear_id', 'id')->withTrashed();
     }
 
 
     public function college(): BelongsTo
     {
-        return $this->belongsTo(College::class, 'college_id', 'id');
+        return $this->belongsTo(College::class, 'college_id', 'id')->withTrashed();
     }
 
     public function patternclass(): BelongsTo
     {
-        return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id');
+        return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id')->withTrashed();
     }
 
 

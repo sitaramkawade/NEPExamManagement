@@ -26,17 +26,17 @@ class ExamPanel extends Model
 
     public function faculty(): BelongsTo
     {
-        return $this->belongsTo(Faculty::class,'faculty_id','id');
+        return $this->belongsTo(Faculty::class,'faculty_id','id')->withTrashed();
     }
 
     public function examorderpost(): BelongsTo
     {
-        return $this->belongsTo(ExamOrderPost::class,'examorderpost_id','id');
+        return $this->belongsTo(ExamOrderPost::class,'examorderpost_id','id')->withTrashed();
     }
 
     public function subject(): BelongsTo
     {
-        return $this->belongsTo(Subject::class,'subject_id','id');
+        return $this->belongsTo(Subject::class,'subject_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

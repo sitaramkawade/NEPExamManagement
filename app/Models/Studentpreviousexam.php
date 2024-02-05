@@ -30,15 +30,15 @@ class Studentpreviousexam extends Model
     ];
     public function student():BelongsTo
     {
-    return $this->belongsTo(Student::class,'student_id','id');
+    return $this->belongsTo(Student::class,'student_id','id')->withTrashed();
     }
     public function boarduniversity():BelongsTo
     {
-    return $this->belongsTo(Boarduniversity::class,'boarduniversity_id','id');
+    return $this->belongsTo(Boarduniversity::class,'boarduniversity_id','id')->withTrashed();
     }
     public function educationalcourse():BelongsTo
     {
-    return $this->belongsTo(Educationalcourse::class,'educationalcourse_id','id');
+    return $this->belongsTo(Educationalcourse::class,'educationalcourse_id','id')->withTrashed();
     }
 }
 

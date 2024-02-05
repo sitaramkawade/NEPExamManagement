@@ -26,12 +26,12 @@ class Capmaster extends Model
 
     public function college(): BelongsTo
     {
-        return $this->belongsTo(College::class, 'college_id', 'id');
+        return $this->belongsTo(College::class, 'college_id', 'id')->withTrashed();
     }
 
     public function exam(): BelongsTo
     {
-        return $this->belongsTo(Exam::class, 'exam_id', 'id');
+        return $this->belongsTo(Exam::class, 'exam_id', 'id')->withTrashed();
     }
 
 

@@ -20,7 +20,7 @@ class Formtypemaster extends Model
 
     public function examfees():HasMany
     {
-        return $this->hasMany(Examfeemaster::class,'form_type_id','id');
+        return $this->hasMany(Examfeemaster::class,'form_type_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

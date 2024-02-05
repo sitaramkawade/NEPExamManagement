@@ -10,6 +10,7 @@ use App\Models\Classyear;
 use App\Models\Courseclass;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use App\Exports\User\CourseClass\CourseClassExport;
 
 class AllCourseClass extends Component
@@ -213,7 +214,7 @@ class AllCourseClass extends Component
             $this->colleges =College::select('college_name','id')->where('status',1)->get();
         }
 
-       $course_classes=Courseclass::with(['classyear:classyear_name,id', 'course:course_name,id', 'courseclass.classyear:classyear_name,id', 'courseclass.course:course_name,id', 'college:college_name,id'])->select('id','course_id','classyear_id','nextyearclass_id', 'college_id','deleted_at')->when($this->search, function ($query, $search) {
+       $course_classes=Courseclass::where('college_id',Auth::guard('user')->user()->college_id)->with(['classyear:classyear_name,id', 'course:course_name,id', 'courseclass.classyear:classyear_name,id', 'courseclass.course:course_name,id', 'college:college_name,id'])->select('id','course_id','classyear_id','nextyearclass_id', 'college_id','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

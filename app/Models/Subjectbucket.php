@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Subjectbucket extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $table='subjectbuckets';
     protected $fillable=[
     'department_id',
@@ -24,11 +25,11 @@ class Subjectbucket extends Model
     ];
     public function department(): BelongsTo
     {
-     return $this->belongsTo(Department::class,'department_id','id');
+     return $this->belongsTo(Department::class,'department_id','id')->withTrashed();
     }
     public function patternclass(): BelongsTo
     {
-     return $this->belongsTo(Patternclass::class,'patternclass_id','id');
+     return $this->belongsTo(Patternclass::class,'patternclass_id','id')->withTrashed();
     }
     public function subjectcategory(): BelongsTo
     {
@@ -36,11 +37,11 @@ class Subjectbucket extends Model
     }
     public function subject(): BelongsTo
     {
-     return $this->belongsTo(Subject::class,'subject_id','id');
+     return $this->belongsTo(Subject::class,'subject_id','id')->withTrashed();
     }
     public function academicyear(): BelongsTo
     {
-     return $this->belongsTo(Academicyear::class,'academicyear_id','id');
+     return $this->belongsTo(Academicyear::class,'academicyear_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

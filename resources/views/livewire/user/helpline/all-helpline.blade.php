@@ -83,9 +83,9 @@
                 <x-input-error :messages="$errors->get('query')" class="mt-1" />
               </div>
               <div class="px-5  py-12 text-sm text-gray-600 dark:text-gray-400">
-                <x-table.active wire:click="approve({{ $edit_id }})" i="0">Approve</x-table.active>
-                <x-table.active wire:click="verify({{ $edit_id }})" i="0">Verify</x-table.active>
-                <x-table.inactive wire:click="reject({{ $edit_id }})" i="0">Reject</x-table.inactive>
+                <x-table.approve wire:click="approve({{ $edit_id }})" >Approve</x-table.approve>
+                <x-table.verify wire:click="verify({{ $edit_id }})" >Verify</x-table.verify>
+                <x-table.reject wire:click="reject({{ $edit_id }})" >Reject</x-table.reject>
               </div>
             </div>
           </x-form>
