@@ -33,6 +33,7 @@ use Database\Seeders\ExamorderSeeder;
 use Database\Seeders\ExamPanelSeeder;
 use Database\Seeders\ProgrammeSeeder;
 use Database\Seeders\BloodgroupSeeder;
+use Database\Seeders\BucketTypeSeeder;
 use Database\Seeders\AddresstypeSeeder;
 use Database\Seeders\CourseclassSeeder;
 use Database\Seeders\FacultyHeadSeeder;
@@ -105,6 +106,10 @@ class DatabaseSeeder extends Seeder
             ApplyFeeSeeder::class,
             FormTypeSeeder::class,
             CountrySeeder::class,
+            SubjectExamTypeSeeder::class,
+            ExamOrderPostSeeder::class,
+            BucketTypeSeeder::class,
+            BuildingSeeder::class,
             CourseCategorySeeder::class,
             ExamFeeMasterSeeder::class,                     // ApplyFeeSeeder , FormTypeSeeder
             NoticeSeeder::class,                            // User
@@ -113,7 +118,7 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,                          // StateSeeder
             TalukaSeeder::class,                            // DistrictSeeder
             StudenthelplineDocumentSeeder::class,           // StudenthelplineQuerySeeder
-            CollegeSeeder::class,                            // Sanstha, University
+            CollegeSeeder::class,                           // Sanstha, University
             SansthaSeeder::class,                           // College , University
             PatternSeeder::class,                           // College
             CapmasterSeeder::class,                         // College , Exam
@@ -125,9 +130,9 @@ class DatabaseSeeder extends Seeder
             PatternclassSeeder::class,                      // Pattern , Patternclass
             ExamPatternclassSeeder::class,                  // Exam ,Patternclass ,CapmasterSeeder
             StudentProfileSeeder::class,                    // Patterncalss , caste , castecategory , Addresstype ,University, Educationalcourse
+            FacultyProfileSeeder::class,                    // college  ,department , role ,facultybanck account
             SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
             SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
-            FacultyProfileSeeder::class,                    // college  ,department , role ,facultybanck account
             AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
             StudentHelplineSeeder::class,                   // Student , Studenthelplinequery ,User
             StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
@@ -135,13 +140,9 @@ class DatabaseSeeder extends Seeder
             ExamFeeCoursesSeeder::class,                    // Patternclass, Examfeemaster
             FacultyHeadSeeder::class,                       // Faculty, Department
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
-            ExamPanelSeeder::class,
-            ExamorderSeeder::class,
-            BuildingSeeder::class,
-            // ExamTimeTableSeeder::class,
-            ExamOrderPostSeeder::class,
-            SubjectExamTypeSeeder::class,
-            BucketTypeSeeder::class,
+            // ExamPanelSeeder::class,                         // ExamOrderPost,Subject
+            // ExamorderSeeder::class,                         // ExamPatternclass , ExamPanel
+            // ExamTimeTableSeeder::class,                     // ExamPatternclass , Subject ,Timetableslot
 
         ]);
     }

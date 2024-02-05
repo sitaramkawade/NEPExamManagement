@@ -42,7 +42,7 @@ class GenerateExamOrder extends Component
         $this->sortColumn=$column;
         $this->sortColumnBy=="ASC";
     }    
-    }
+
 
     
 
