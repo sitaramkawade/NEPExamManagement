@@ -44,5 +44,13 @@ class ProgrammeSeeder extends Seeder
             'created_at'=>'2023-09-05 23:37:01',
             'updated_at'=>'2023-09-05 23:37:01'
             ] );
+            
+            Programme::create( [
+            'id'=>5,
+            'programme_name'=>'Other',
+            'active'=>1,
+            'created_at'=>'2023-09-05 23:37:01',
+            'updated_at'=>'2023-09-05 23:37:01'
+            ] );
     }
 }

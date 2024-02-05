@@ -1,11 +1,12 @@
 <div class="">
+
   <x-card-header heading="Student Exam Form" />
   <x-form wire:submit="student_exam_form_save()">
     <div class="grid grid-cols-1 md:grid-cols-2">
       <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-        <x-input-label for="medium_instruction" :value="__('Select Medium')" /><x-required />
+        <x-input-label for="medium_instruction" :value="__('Select Medium Of Instruction')" /><x-required />
         <x-input-select id="medium_instruction" wire:model="medium_instruction" name="medium_instruction" class="text-center  w-full mt-1" :value="old('medium_instruction', $medium_instruction)" required autocomplete="medium_instruction">
-          <x-select-option class="text-start" hidden> -- Select Medium -- </x-select-option>
+          <x-select-option class="text-start" hidden> -- Select Medium Of Instruction -- </x-select-option>
           <x-select-option class="text-start" value="E">English</x-select-option>
           <x-select-option class="text-start" value="M">Marathi</x-select-option>
           <x-select-option class="text-start" value="H">Hindi</x-select-option>
@@ -14,7 +15,7 @@
       </div>
       <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
         <x-input-label for="abcid" :value="__('ABC ID')" /><x-required />
-        <x-text-input id="abcid" type="number" wire:model="abcid" name="abcid" class="w-full mt-1" :value="old('abcid', $abcid)" required autofocus autocomplete="abcid" />
+        <x-text-input id="abcid" type="number" wire:model="abcid" name="abcid" class="w-full mt-1" :value="old('abcid', $abcid)"  autofocus autocomplete="abcid" />
         <x-input-error :messages="$errors->get('abcid')" class="mt-2" />
       </div>
     </div>

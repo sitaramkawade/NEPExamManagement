@@ -39,7 +39,7 @@ class StudentProfileSeeder extends Seeder
         'remember_token' => Str::random(10),
         'current_step'=>6,
         'is_profile_complete'=>1,
-        'patternclass_id'=>53,
+        'patternclass_id'=>118,
         ]);
 
         $student->studentprofile()->create([
