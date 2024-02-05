@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('colleges', function (Blueprint $table) {
             $table->id();
             $table->string('college_name')->nullable();
+            $table->string('principal_name')->nullable();
             $table->string('college_address')->default(null)->nullable();
             $table->string('college_website_url',100)->default(null)->nullable();
             $table->string('college_email',100)->default(null)->nullable();

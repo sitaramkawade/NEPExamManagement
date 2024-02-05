@@ -74,5 +74,15 @@ class SubjectExamTypeSeeder extends Seeder
             'created_at'=>'2023-09-05 21:23:00',
             'updated_at'=>'2023-09-05 21:23:00'
         ] );
+
+
+        Subjectexamtype::create( [
+            'id'=>9,
+            'examtype'=>'E',
+            'description'=>'ONLY EXTERNAL',
+            'is_active'=>1,
+            'created_at'=>'2023-09-05 21:23:00',
+            'updated_at'=>'2023-09-05 21:23:00'
+        ] );
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->integer('subject_sem')->default(0);   //1
-            $table->bigInteger('subjectcategory_id')->unsigned();  //Major Minor for which department
+            $table->bigInteger('subjectcategory_id')->unsigned()->nullable();  //Major Minor for which department
             $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories');
             $table->integer('subject_order')->default(NULL); //for maintaning the order of subject
             $table->string('subject_code',50)->default(NULL); //3
