@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Exam;
 use App\Models\Capmaster;
+use App\Models\Examorder;
 use App\Models\Patternclass;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -35,10 +36,14 @@ class ExamPatternclass extends Model
         'description',
     ];
 
-
     public function patternclass(): BelongsTo
     {
         return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id');
+    }
+
+    public function order()
+    {
+        return $this->hasMany(Examorder::class,'exam_patternclass_id','id');
     }
 
     public function exam(): BelongsTo

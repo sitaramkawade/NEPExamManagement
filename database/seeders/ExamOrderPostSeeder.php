@@ -14,13 +14,27 @@ class ExamOrderPostSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        ExamOrderPost::create( [
+                     'id'=>1,
+                     'post_name'=>'Chairman & Moderator',
+                     'status'=>'1',               
+                     ] );
 
-        for ($i = 0; $i < 50; $i++) {
-            ExamOrderPost::create([
-                'post_name' => $faker->word,
-                'status' =>$faker->numberBetween(1,0),
-            ]);
-        }
+
+        ExamOrderPost::create( [
+                     'id'=>2,
+                     'post_name'=>' Moderator',
+                     'status'=>'1',               
+                     ] );
+        ExamOrderPost::create( [
+                     'id'=>3,
+                     'post_name'=>' Paper Setter',
+                     'status'=>'1',               
+                     ] );
+        ExamOrderPost::create( [
+                     'id'=>4,
+                     'post_name'=>' Examiner',
+                     'status'=>'1',               
+                     ] );
     }
 }
