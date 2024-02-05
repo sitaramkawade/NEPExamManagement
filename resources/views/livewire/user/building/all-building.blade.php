@@ -41,7 +41,8 @@
                             <x-table.td>{{ $building->building_name }} </x-table.td>
                             <x-table.td>{{ $building->Priority }} </x-table.td>
                             <x-table.td>
-                                @if($building->status==1)
+                             @if ($building->deleted_at)
+                                @elseif($building->status==1)
                                         <x-table.active wire:click="Status({{ $building->id }})" />
                                         @else
                                         <x-table.inactive wire:click="Status({{ $building->id }})" />

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('dept_name',50)->nullable();
             $table->string('short_name',50)->nullable();           
-            $table->string('departmenttype')->default(null);
+            $table->string('departmenttype')->default(null)->nullable();
             $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
             $table->tinyInteger('status')->default('0');// 0 :not active 1:active

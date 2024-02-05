@@ -54,7 +54,8 @@
                                     <x-table.td> {{ isset($ExamTimeTable->timetableslot->timeslot) ? $ExamTimeTable->timetableslot->timeslot : '-' }} </x-table.td>
 
                                     <x-table.td>
-                                        @if($ExamTimeTable->status==1)
+                                     @if ($ExamTimeTable->deleted_at)
+                                        @elseif($ExamTimeTable->status==1)
                                         <x-table.active wire:click="Status({{ $ExamTimeTable->id }})" />
                                         @else
                                         <x-table.inactive wire:click="Status({{ $ExamTimeTable->id }})" />

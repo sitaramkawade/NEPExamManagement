@@ -53,7 +53,8 @@
                                 <x-table.td>{{ $ratehead->course_type }} </x-table.td>
                                 <x-table.td>{{ $ratehead->amount }} </x-table.td>
                                 <x-table.td>
-                                     @if($ratehead->status==1)
+                                @if ($ratehead->deleted_at)
+                                     @elseif($ratehead->status==1)
                                         <x-table.active wire:click="Status({{ $ratehead->id }})" />
                                         @else
                                         <x-table.inactive wire:click="Status({{ $ratehead->id }})" />

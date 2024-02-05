@@ -54,11 +54,12 @@
                                 <x-table.td> {{ $user->role?->role_name }} </x-table.td>
 
                                 <x-table.td>
-                                    @if($user->is_active==1)
-                                    <x-status type="success">Active</x-status>
-                                    @else
-                                    <x-status type="danger">Inactive</x-status>
-                                    @endif
+                                 @if ($user->deleted_at)
+                                    @elseif($user->is_active==1)
+                                        <x-table.active wire:click="Status({{ $user->id }})" />
+                                        @else
+                                        <x-table.inactive wire:click="Status({{ $user->id }})" />
+                                        @endif
                                 </x-table.td>
                                 <x-table.td>
                                     @if ($user->deleted_at)
@@ -66,11 +67,6 @@
                                     <x-table.restore wire:click="restore({{ $user->id }})" />
                                     @else
                                     <x-table.edit wire:click="edit({{ $user->id }})" />
-                                        @if($user->is_active==1)
-                                        <x-table.inactive wire:click="Status({{ $user->id }})" />
-                                        @else
-                                        <x-table.active wire:click="Status({{ $user->id }})" />
-                                        @endif
                                     <x-table.archive wire:click="delete({{ $user->id }})" />
                                     @endif
                                 </x-table.td>

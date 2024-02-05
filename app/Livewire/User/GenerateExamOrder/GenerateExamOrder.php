@@ -41,24 +41,9 @@ class GenerateExamOrder extends Component
         }
         $this->sortColumn=$column;
         $this->sortColumnBy=="ASC";
+    }    
     }
 
-
-    public function createExamOrder($id,$exam_id,$patternclass_id)
-    {
-        $exampanelId = ExamPanel::select('id')->where('exam_id',$exam_id)->where('patternclass_id',$patternclass_id)->first();
-        if($exampanelId)
-        {
-        $examorder=new Examorder;
-        $examorder->exampanel_id= $exampanelId->id;
-        $examorder->exam_patternclass_id=  $this->exam_patternclass_id;
-        }
-
-            
-                           
-        
-
-    }
     
 
     public function render()

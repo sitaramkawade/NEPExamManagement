@@ -55,7 +55,8 @@
                                         <x-table.text-scroll>{{ $university->university_website_url }} </x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
-                                        @if($university->status==1)
+                                      @if ($university->deleted_at)
+                                        @elseif($university->status==1)
                                         <x-table.active wire:click="Status({{ $university->id }})" />
                                         @else
                                         <x-table.inactive wire:click="Status({{ $university->id }})" />

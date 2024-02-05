@@ -128,21 +128,21 @@ class DatabaseSeeder extends Seeder
             SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
             SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
             FacultyProfileSeeder::class,                    // college  ,department , role ,facultybanck account
-            // AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
+            AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
             StudentHelplineSeeder::class,                   // Student , Studenthelplinequery ,User
             StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
             StudentSeeder::class,                           // Patternclass , Department , College
             ExamFeeCoursesSeeder::class,                    // Patternclass, Examfeemaster
             FacultyHeadSeeder::class,                       // Faculty, Department
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
-            ExamOrderPostSeeder::class,
-            // ExamPanelSeeder::class,
-            // ExamorderSeeder::class,
+            ExamPanelSeeder::class,
+            ExamorderSeeder::class,
+            BuildingSeeder::class,
             // ExamTimeTableSeeder::class,
-            // BuildingSeeder::class,
             ExamOrderPostSeeder::class,
             SubjectExamTypeSeeder::class,
             BucketTypeSeeder::class,
+
         ]);
     }
 }

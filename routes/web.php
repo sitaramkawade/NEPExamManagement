@@ -195,7 +195,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Generate Exam Order
   Route::get('/generate/exam/order', GenerateExamOrder::class)->name('generate_exam_order');
 
-  Route::get('/pdf/{id}',[ExamOrderPdfController::class,'order'])->name('examorder');
+  Route::get('/pdf/{id}',[ExamOrderPdfController::class,'generateExamPanel'])->name('examorder');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');
@@ -271,7 +271,7 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   Route::get('/all-faculty-role', AllFacultyRole::class)->name('all-roles');
 
   // All Faculty Role
-  Route::get('/all-faculty-roletype', AllFacultyRoleType::class)->name('all-roletypes');
+//   Route::get('/all-faculty-roletype', AllFacultyRoleType::class)->name('all-roletypes');
 
   // Update Faculty Profile
   Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
@@ -283,7 +283,7 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   Route::get('/all-subject', AllSubject::class)->name('all-subjects');
 
   // All SubjectBucket
-  Route::get('/all-subjectbucket', AllSubjectBucket::class)->name('all-subjectbuckets');
+//   Route::get('/all-subjectbucket', AllSubjectBucket::class)->name('all-subjectbuckets');
 
   // All SubjectType
   Route::get('/all-subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
