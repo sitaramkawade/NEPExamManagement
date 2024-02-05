@@ -30,8 +30,6 @@
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
             <x-table.frame>
-                <x-slot:header>
-                </x-slot>
                 <x-slot:body>
                     <x-table.table>
                         <x-table.thead>
@@ -52,10 +50,12 @@
                                         <x-table.text-scroll> {{ $subject->college->college_name ?? '' }} </x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
-                                        @if ($subject->status === 1)
-                                            <x-table.active wire:click="status({{ $subject->id }})" />
-                                        @else
-                                            <x-table.inactive wire:click="status({{ $subject->id }})" />
+                                        @if (!$subject->deleted_at)
+                                            @if ($subject->status === 1)
+                                                <x-table.active wire:click="status({{ $subject->id }})" />
+                                            @else
+                                                <x-table.inactive wire:click="status({{ $subject->id }})" />
+                                            @endif
                                         @endif
                                     </x-table.td>
                                     <x-table.td>

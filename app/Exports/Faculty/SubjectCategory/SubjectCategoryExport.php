@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Exports\Faculty\FacultyRoleType;
+namespace App\Exports\Faculty\SubjectCategory;
 
-use App\Models\Roletype;
+use App\Models\Subjectcategory;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class FacultyRoleTypeExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
+class SubjectCategoryExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     protected $search;
     protected $sortColumn;
@@ -24,20 +24,22 @@ class FacultyRoleTypeExport implements FromCollection, WithHeadings, ShouldAutoS
 
     public function collection()
     {
-        return Roletype::search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','roletype_name', 'status']);
+        return Subjectcategory::search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','subjectcategory', 'subjectcategory_shortname', 'subjectbucket_type', 'is_active']);
     }
 
     public function headings(): array
     {
-        return ['ID', 'Roletype Name', 'Status'];
+        return ['ID', 'Subject Category', 'Subject Category Shortname', 'Subject Bucket Type', 'Status'];
     }
 
     public function map($row): array
     {
         return [
             $row->id,
-            $row->roletype_name,
-            $row->status == 1 ? 'Active' : 'Inactive',
+            $row->subjectcategory,
+            $row->subjectcategory_shortname,
+            $row->subjectbucket_type,
+            $row->is_active == 1 ? 'Active' : 'Inactive',
         ];
     }
 }

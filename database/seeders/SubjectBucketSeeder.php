@@ -33,7 +33,7 @@ class SubjectBucketSeeder extends Seeder
                 'subject_categoryno' => $faker->numberBetween(1, 3),
                 'subject_id' => $faker->randomElement($subjectIds),
                 'academicyear_id' => $faker->randomElement($academicYearIds),
-                'status' => $faker->numberBetween(0, 1),
+                'status' => $faker->randomElement([1]),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

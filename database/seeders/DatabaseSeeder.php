@@ -113,6 +113,7 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,                          // StateSeeder
             TalukaSeeder::class,                            // DistrictSeeder
             StudenthelplineDocumentSeeder::class,           // StudenthelplineQuerySeeder
+            CollegeSeeder::class,                            // Sanstha, University
             SansthaSeeder::class,                           // College , University
             PatternSeeder::class,                           // College
             CapmasterSeeder::class,                         // College , Exam
@@ -127,7 +128,7 @@ class DatabaseSeeder extends Seeder
             SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
             SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
             FacultyProfileSeeder::class,                    // college  ,department , role ,facultybanck account
-            AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
+            // AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
             StudentHelplineSeeder::class,                   // Student , Studenthelplinequery ,User
             StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
             StudentSeeder::class,                           // Patternclass , Department , College
@@ -139,6 +140,9 @@ class DatabaseSeeder extends Seeder
             // ExamorderSeeder::class,
             // ExamTimeTableSeeder::class,
             // BuildingSeeder::class,
+            ExamOrderPostSeeder::class,
+            SubjectExamTypeSeeder::class,
+            BucketTypeSeeder::class,
         ]);
     }
 }

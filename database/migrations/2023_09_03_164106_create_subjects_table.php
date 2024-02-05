@@ -16,19 +16,14 @@ return new class extends Migration
             $table->integer('subject_sem')->default(0);   //1
             $table->bigInteger('subjectcategory_id')->unsigned();  //Major Minor for which department
             $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories');
-            $table->integer('subject_no')->default(0);  //for sorting
             $table->integer('subject_order')->default(NULL); //for maintaning the order of subject
             $table->string('subject_code',50)->default(NULL); //3
             $table->string('subject_name_prefix',50)->nullable()->default(NULL); //DSC-1
-            $table->string('subject_shortname',20)->nullable()->default(NULL); //2
             $table->string('subject_name',100)->default(NULL); //2
-
-            $table->bigInteger('subjecttype_id')->unsigned();  //Theory Practical
+            $table->bigInteger('subjecttype_id')->nullable()->unsigned();  //Theory Practical, Project
             $table->foreign('subjecttype_id')->references('id')->on('subjecttypes');
             $table->string('subjectexam_type',50)->default(NULL); //6  IE  - InternalExternal  IEP- Internal External Practical  IP-Internal Practical
             $table->float('subject_credit',4,1)->default(0); //7
-            $table->tinyInteger('is_project')->default(0); //1 => Yes, 0=> No
-
             $table->integer('subject_maxmarks')->default(0);  //8
             $table->integer('subject_maxmarks_int')->default(0);//10
             $table->integer('subject_maxmarks_intpract')->nullable()->default(0);
@@ -39,7 +34,7 @@ return new class extends Migration
             $table->Integer('subject_intpractpassing')->default(0);
             $table->integer('subject_extpassing')->default(0);//12
 
-            $table->char('subject_optionalgroup',3)->nullable(); //6
+            $table->char('subject_optionalgroup',3)->nullable(); //6 not confirmed
             $table->bigInteger('patternclass_id')->nullable()->unsigned()->default(null);
             $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
             $table->bigInteger('classyear_id')->nullable()->unsigned()->default(null);

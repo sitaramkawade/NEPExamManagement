@@ -30,8 +30,6 @@
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
             <x-table.frame>
-                <x-slot:header>
-                </x-slot>
                 <x-slot:body>
                     <x-table.table>
                         <x-table.thead>
@@ -48,14 +46,20 @@
                             @forelse ($subjectbuckets as $subjectbucket)
                                 <x-table.tr wire:key="{{ $subjectbucket->id }}">
                                     <x-table.td> {{ $subjectbucket->id }} </x-table.td>
-                                    <x-table.td> {{ $subjectbucket->subject->subject_name }} </x-table.td>
-                                    <x-table.td> {{ $subjectbucket->department->dept_name }} </x-table.td>
+                                    <x-table.td>
+                                        <x-table.text-scroll> {{ $subjectbucket->subject->subject_name }} </x-table.text-scroll>
+                                    </x-table.td>
+                                    <x-table.td>
+                                        <x-table.text-scroll> {{ $subjectbucket->department->dept_name }} </x-table.text-scroll>
+                                    </x-table.td>
                                     <x-table.td> {{ $subjectbucket->academicyear->year_name }} </x-table.td>
                                     <x-table.td>
-                                        @if ($subjectbucket->status === 1)
-                                            <x-table.active wire:click="changestatus({{ $subjectbucket->id }})" />
-                                        @else
-                                            <x-table.inactive wire:click="changestatus({{ $subjectbucket->id }})" />
+                                        @if (!$subjectbucket->deleted_at)
+                                            @if ($subjectbucket->status === 1)
+                                                <x-table.active wire:click="changestatus({{ $subjectbucket->id }})" />
+                                            @else
+                                                <x-table.inactive wire:click="changestatus({{ $subjectbucket->id }})" />
+                                            @endif
                                         @endif
                                     </x-table.td>
                                     <x-table.td>

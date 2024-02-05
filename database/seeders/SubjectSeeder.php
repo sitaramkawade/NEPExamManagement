@@ -53,9 +53,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>2,
             'subject_sem'=>1,
@@ -87,9 +87,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>3,
             'subject_sem'=>2,
@@ -121,9 +121,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>4,
             'subject_sem'=>2,
@@ -155,9 +155,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>5,
             'subject_sem'=>1,
@@ -189,9 +189,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>6,
             'subject_sem'=>2,
@@ -223,9 +223,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>7,
             'subject_sem'=>1,
@@ -257,9 +257,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>8,
             'subject_sem'=>2,
@@ -291,9 +291,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>9,
             'subject_sem'=>1,
@@ -325,9 +325,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>10,
             'subject_sem'=>2,
@@ -359,9 +359,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>11,
             'subject_sem'=>1,
@@ -393,9 +393,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>12,
             'subject_sem'=>2,
@@ -427,9 +427,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>13,
             'subject_sem'=>1,
@@ -461,9 +461,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>14,
             'subject_sem'=>2,
@@ -495,9 +495,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>15,
             'subject_sem'=>1,
@@ -529,9 +529,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>16,
             'subject_sem'=>2,
@@ -563,9 +563,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>17,
             'subject_sem'=>1,
@@ -597,9 +597,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>18,
             'subject_sem'=>2,
@@ -631,9 +631,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>19,
             'subject_sem'=>1,
@@ -665,9 +665,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>20,
             'subject_sem'=>2,
@@ -699,9 +699,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>21,
             'subject_sem'=>1,
@@ -733,9 +733,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>22,
             'subject_sem'=>2,
@@ -767,9 +767,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>23,
             'subject_sem'=>2,
@@ -801,9 +801,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>24,
             'subject_sem'=>1,
@@ -835,9 +835,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>25,
             'subject_sem'=>1,
@@ -869,9 +869,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>26,
             'subject_sem'=>1,
@@ -903,9 +903,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>27,
             'subject_sem'=>1,
@@ -937,9 +937,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>28,
             'subject_sem'=>1,
@@ -971,9 +971,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>29,
             'subject_sem'=>1,
@@ -1005,9 +1005,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>30,
             'subject_sem'=>1,
@@ -1039,9 +1039,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>31,
             'subject_sem'=>1,
@@ -1073,9 +1073,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>32,
             'subject_sem'=>1,
@@ -1107,9 +1107,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>33,
             'subject_sem'=>1,
@@ -1141,9 +1141,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>34,
             'subject_sem'=>1,
@@ -1175,9 +1175,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>35,
             'subject_sem'=>1,
@@ -1209,9 +1209,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>36,
             'subject_sem'=>1,
@@ -1243,9 +1243,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>37,
             'subject_sem'=>2,
@@ -1277,9 +1277,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>38,
             'subject_sem'=>2,
@@ -1311,9 +1311,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>39,
             'subject_sem'=>2,
@@ -1345,9 +1345,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>40,
             'subject_sem'=>2,
@@ -1379,9 +1379,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>41,
             'subject_sem'=>2,
@@ -1413,9 +1413,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>42,
             'subject_sem'=>2,
@@ -1447,9 +1447,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>43,
             'subject_sem'=>2,
@@ -1481,9 +1481,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>44,
             'subject_sem'=>2,
@@ -1515,9 +1515,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>45,
             'subject_sem'=>2,
@@ -1549,9 +1549,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>46,
             'subject_sem'=>2,
@@ -1583,9 +1583,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>47,
             'subject_sem'=>2,
@@ -1617,9 +1617,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>48,
             'subject_sem'=>2,
@@ -1651,9 +1651,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>51,
             'subject_sem'=>1,
@@ -1685,9 +1685,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>52,
             'subject_sem'=>1,
@@ -1719,9 +1719,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>53,
             'subject_sem'=>1,
@@ -1753,9 +1753,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>54,
             'subject_sem'=>2,
@@ -1787,9 +1787,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>55,
             'subject_sem'=>2,
@@ -1821,9 +1821,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>56,
             'subject_sem'=>2,
@@ -1855,9 +1855,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>57,
             'subject_sem'=>1,
@@ -1889,9 +1889,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>58,
             'subject_sem'=>1,
@@ -1923,9 +1923,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>59,
             'subject_sem'=>1,
@@ -1957,9 +1957,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>60,
             'subject_sem'=>2,
@@ -1991,9 +1991,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>61,
             'subject_sem'=>2,
@@ -2025,9 +2025,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>62,
             'subject_sem'=>2,
@@ -2059,9 +2059,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>63,
             'subject_sem'=>1,
@@ -2093,9 +2093,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>64,
             'subject_sem'=>1,
@@ -2127,9 +2127,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>65,
             'subject_sem'=>1,
@@ -2161,9 +2161,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>66,
             'subject_sem'=>2,
@@ -2195,9 +2195,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>67,
             'subject_sem'=>2,
@@ -2229,9 +2229,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>68,
             'subject_sem'=>2,
@@ -2263,9 +2263,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>69,
             'subject_sem'=>1,
@@ -2297,9 +2297,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>70,
             'subject_sem'=>1,
@@ -2331,9 +2331,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>71,
             'subject_sem'=>1,
@@ -2365,9 +2365,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>72,
             'subject_sem'=>2,
@@ -2399,9 +2399,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>73,
             'subject_sem'=>2,
@@ -2433,9 +2433,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>74,
             'subject_sem'=>2,
@@ -2467,9 +2467,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>75,
             'subject_sem'=>1,
@@ -2501,9 +2501,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>76,
             'subject_sem'=>1,
@@ -2535,9 +2535,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>77,
             'subject_sem'=>1,
@@ -2569,9 +2569,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>78,
             'subject_sem'=>2,
@@ -2603,9 +2603,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>79,
             'subject_sem'=>2,
@@ -2637,9 +2637,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>80,
             'subject_sem'=>2,
@@ -2671,9 +2671,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>81,
             'subject_sem'=>1,
@@ -2705,9 +2705,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>82,
             'subject_sem'=>1,
@@ -2739,9 +2739,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>83,
             'subject_sem'=>1,
@@ -2773,9 +2773,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>84,
             'subject_sem'=>2,
@@ -2807,9 +2807,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>85,
             'subject_sem'=>2,
@@ -2841,9 +2841,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>86,
             'subject_sem'=>2,
@@ -2875,9 +2875,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>87,
             'subject_sem'=>1,
@@ -2909,9 +2909,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>88,
             'subject_sem'=>1,
@@ -2943,9 +2943,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>89,
             'subject_sem'=>1,
@@ -2977,9 +2977,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>90,
             'subject_sem'=>2,
@@ -3011,9 +3011,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>91,
             'subject_sem'=>2,
@@ -3045,9 +3045,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>92,
             'subject_sem'=>2,
@@ -3079,9 +3079,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>93,
             'subject_sem'=>1,
@@ -3113,9 +3113,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>94,
             'subject_sem'=>1,
@@ -3147,9 +3147,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>95,
             'subject_sem'=>1,
@@ -3181,9 +3181,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>96,
             'subject_sem'=>2,
@@ -3215,9 +3215,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>97,
             'subject_sem'=>2,
@@ -3249,9 +3249,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>98,
             'subject_sem'=>2,
@@ -3283,9 +3283,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>99,
             'subject_sem'=>2,
@@ -3317,9 +3317,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>100,
             'subject_sem'=>1,
@@ -3351,9 +3351,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>101,
             'subject_sem'=>1,
@@ -3385,9 +3385,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>102,
             'subject_sem'=>1,
@@ -3419,9 +3419,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>103,
             'subject_sem'=>1,
@@ -3453,9 +3453,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>104,
             'subject_sem'=>1,
@@ -3487,9 +3487,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>105,
             'subject_sem'=>1,
@@ -3521,9 +3521,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>106,
             'subject_sem'=>1,
@@ -3555,9 +3555,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>107,
             'subject_sem'=>1,
@@ -3589,9 +3589,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>108,
             'subject_sem'=>1,
@@ -3623,9 +3623,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>109,
             'subject_sem'=>1,
@@ -3657,9 +3657,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>110,
             'subject_sem'=>1,
@@ -3691,9 +3691,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>111,
             'subject_sem'=>1,
@@ -3725,9 +3725,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>112,
             'subject_sem'=>2,
@@ -3759,9 +3759,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>113,
             'subject_sem'=>2,
@@ -3793,9 +3793,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>114,
             'subject_sem'=>2,
@@ -3827,9 +3827,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>115,
             'subject_sem'=>2,
@@ -3861,9 +3861,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>116,
             'subject_sem'=>2,
@@ -3895,9 +3895,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>117,
             'subject_sem'=>2,
@@ -3929,9 +3929,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>118,
             'subject_sem'=>2,
@@ -3963,9 +3963,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>119,
             'subject_sem'=>2,
@@ -3997,9 +3997,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>120,
             'subject_sem'=>2,
@@ -4031,9 +4031,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>121,
             'subject_sem'=>2,
@@ -4065,9 +4065,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>122,
             'subject_sem'=>2,
@@ -4099,9 +4099,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>123,
             'subject_sem'=>2,
@@ -4133,9 +4133,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>124,
             'subject_sem'=>2,
@@ -4167,9 +4167,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>142,
             'subject_sem'=>1,
@@ -4201,9 +4201,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>143,
             'subject_sem'=>1,
@@ -4235,9 +4235,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>144,
             'subject_sem'=>1,
@@ -4269,9 +4269,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>145,
             'subject_sem'=>1,
@@ -4303,9 +4303,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>146,
             'subject_sem'=>1,
@@ -4337,9 +4337,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>147,
             'subject_sem'=>1,
@@ -4371,9 +4371,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>148,
             'subject_sem'=>1,
@@ -4405,9 +4405,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>149,
             'subject_sem'=>2,
@@ -4439,9 +4439,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>150,
             'subject_sem'=>2,
@@ -4473,9 +4473,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>151,
             'subject_sem'=>2,
@@ -4507,9 +4507,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>152,
             'subject_sem'=>2,
@@ -4541,9 +4541,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>153,
             'subject_sem'=>2,
@@ -4575,9 +4575,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>154,
             'subject_sem'=>2,
@@ -4609,9 +4609,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>155,
             'subject_sem'=>2,
@@ -4643,9 +4643,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>156,
             'subject_sem'=>2,
@@ -4677,9 +4677,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>157,
             'subject_sem'=>1,
@@ -4711,9 +4711,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>158,
             'subject_sem'=>1,
@@ -4745,9 +4745,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>159,
             'subject_sem'=>1,
@@ -4779,9 +4779,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>160,
             'subject_sem'=>1,
@@ -4813,9 +4813,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>161,
             'subject_sem'=>1,
@@ -4847,9 +4847,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>162,
             'subject_sem'=>1,
@@ -4881,9 +4881,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>163,
             'subject_sem'=>1,
@@ -4915,9 +4915,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>164,
             'subject_sem'=>2,
@@ -4949,9 +4949,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>165,
             'subject_sem'=>2,
@@ -4983,9 +4983,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>166,
             'subject_sem'=>2,
@@ -5017,9 +5017,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>167,
             'subject_sem'=>2,
@@ -5051,9 +5051,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>168,
             'subject_sem'=>2,
@@ -5085,9 +5085,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>169,
             'subject_sem'=>2,
@@ -5119,9 +5119,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>171,
             'subject_sem'=>2,
@@ -5153,9 +5153,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>172,
             'subject_sem'=>1,
@@ -5187,9 +5187,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>173,
             'subject_sem'=>1,
@@ -5221,9 +5221,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>174,
             'subject_sem'=>1,
@@ -5255,9 +5255,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>175,
             'subject_sem'=>1,
@@ -5289,9 +5289,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>176,
             'subject_sem'=>1,
@@ -5323,9 +5323,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>177,
             'subject_sem'=>1,
@@ -5357,9 +5357,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>178,
             'subject_sem'=>2,
@@ -5391,9 +5391,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>179,
             'subject_sem'=>2,
@@ -5425,9 +5425,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>180,
             'subject_sem'=>2,
@@ -5459,9 +5459,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>181,
             'subject_sem'=>2,
@@ -5493,9 +5493,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>182,
             'subject_sem'=>2,
@@ -5527,9 +5527,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>183,
             'subject_sem'=>2,
@@ -5561,9 +5561,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>184,
             'subject_sem'=>2,
@@ -5595,9 +5595,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>185,
             'subject_sem'=>1,
@@ -5629,9 +5629,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>186,
             'subject_sem'=>1,
@@ -5663,9 +5663,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>187,
             'subject_sem'=>1,
@@ -5697,9 +5697,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>188,
             'subject_sem'=>1,
@@ -5731,9 +5731,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>189,
             'subject_sem'=>1,
@@ -5765,9 +5765,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>190,
             'subject_sem'=>1,
@@ -5799,9 +5799,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>191,
             'subject_sem'=>1,
@@ -5833,9 +5833,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>192,
             'subject_sem'=>1,
@@ -5867,9 +5867,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>193,
             'subject_sem'=>1,
@@ -5901,9 +5901,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>194,
             'subject_sem'=>2,
@@ -5935,9 +5935,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>195,
             'subject_sem'=>2,
@@ -5969,9 +5969,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>196,
             'subject_sem'=>2,
@@ -6003,9 +6003,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>197,
             'subject_sem'=>2,
@@ -6037,9 +6037,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>198,
             'subject_sem'=>2,
@@ -6071,9 +6071,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>199,
             'subject_sem'=>2,
@@ -6105,9 +6105,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>200,
             'subject_sem'=>2,
@@ -6139,9 +6139,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>201,
             'subject_sem'=>2,
@@ -6173,9 +6173,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>202,
             'subject_sem'=>2,
@@ -6207,9 +6207,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>203,
             'subject_sem'=>2,
@@ -6241,9 +6241,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>204,
             'subject_sem'=>1,
@@ -6275,9 +6275,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>205,
             'subject_sem'=>1,
@@ -6309,9 +6309,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>206,
             'subject_sem'=>1,
@@ -6343,9 +6343,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>207,
             'subject_sem'=>1,
@@ -6377,9 +6377,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>208,
             'subject_sem'=>1,
@@ -6411,9 +6411,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>209,
             'subject_sem'=>1,
@@ -6445,9 +6445,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>210,
             'subject_sem'=>2,
@@ -6479,9 +6479,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>211,
             'subject_sem'=>2,
@@ -6513,9 +6513,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>212,
             'subject_sem'=>2,
@@ -6547,9 +6547,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>213,
             'subject_sem'=>2,
@@ -6581,9 +6581,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>214,
             'subject_sem'=>2,
@@ -6615,9 +6615,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>215,
             'subject_sem'=>2,
@@ -6649,9 +6649,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>216,
             'subject_sem'=>2,
@@ -6683,9 +6683,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>217,
             'subject_sem'=>1,
@@ -6717,9 +6717,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>218,
             'subject_sem'=>1,
@@ -6751,9 +6751,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>220,
             'subject_sem'=>1,
@@ -6785,9 +6785,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>221,
             'subject_sem'=>1,
@@ -6819,9 +6819,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>222,
             'subject_sem'=>1,
@@ -6853,9 +6853,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>223,
             'subject_sem'=>2,
@@ -6887,9 +6887,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>224,
             'subject_sem'=>2,
@@ -6921,9 +6921,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>225,
             'subject_sem'=>2,
@@ -6955,9 +6955,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>226,
             'subject_sem'=>2,
@@ -6989,9 +6989,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>227,
             'subject_sem'=>2,
@@ -7023,9 +7023,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>228,
             'subject_sem'=>2,
@@ -7057,9 +7057,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>229,
             'subject_sem'=>2,
@@ -7091,9 +7091,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>230,
             'subject_sem'=>1,
@@ -7125,9 +7125,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>231,
             'subject_sem'=>1,
@@ -7159,9 +7159,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>232,
             'subject_sem'=>1,
@@ -7193,9 +7193,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>233,
             'subject_sem'=>1,
@@ -7227,9 +7227,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>234,
             'subject_sem'=>1,
@@ -7261,9 +7261,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>235,
             'subject_sem'=>1,
@@ -7295,9 +7295,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>236,
             'subject_sem'=>1,
@@ -7329,9 +7329,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>237,
             'subject_sem'=>1,
@@ -7363,9 +7363,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>238,
             'subject_sem'=>1,
@@ -7397,9 +7397,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>239,
             'subject_sem'=>2,
@@ -7431,9 +7431,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>240,
             'subject_sem'=>2,
@@ -7465,9 +7465,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>241,
             'subject_sem'=>2,
@@ -7499,9 +7499,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>242,
             'subject_sem'=>2,
@@ -7533,9 +7533,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>243,
             'subject_sem'=>2,
@@ -7567,9 +7567,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>244,
             'subject_sem'=>2,
@@ -7601,9 +7601,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>245,
             'subject_sem'=>2,
@@ -7635,9 +7635,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>246,
             'subject_sem'=>2,
@@ -7669,9 +7669,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>247,
             'subject_sem'=>2,
@@ -7703,9 +7703,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>248,
             'subject_sem'=>2,
@@ -7737,9 +7737,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>249,
             'subject_sem'=>2,
@@ -7771,9 +7771,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>250,
             'subject_sem'=>1,
@@ -7805,9 +7805,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>251,
             'subject_sem'=>2,
@@ -7839,9 +7839,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>252,
             'subject_sem'=>1,
@@ -7873,9 +7873,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>253,
             'subject_sem'=>1,
@@ -7907,9 +7907,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>254,
             'subject_sem'=>1,
@@ -7941,9 +7941,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>255,
             'subject_sem'=>2,
@@ -7975,9 +7975,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>256,
             'subject_sem'=>1,
@@ -8009,9 +8009,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>257,
             'subject_sem'=>1,
@@ -8043,9 +8043,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>258,
             'subject_sem'=>1,
@@ -8077,9 +8077,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>259,
             'subject_sem'=>1,
@@ -8111,9 +8111,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>260,
             'subject_sem'=>2,
@@ -8145,9 +8145,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>261,
             'subject_sem'=>1,
@@ -8179,9 +8179,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>270,
             'subject_sem'=>1,
@@ -8213,9 +8213,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>271,
             'subject_sem'=>1,
@@ -8247,9 +8247,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>272,
             'subject_sem'=>1,
@@ -8281,9 +8281,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>273,
             'subject_sem'=>1,
@@ -8315,9 +8315,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>274,
             'subject_sem'=>1,
@@ -8349,9 +8349,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>275,
             'subject_sem'=>1,
@@ -8383,9 +8383,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>276,
             'subject_sem'=>1,
@@ -8417,9 +8417,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>277,
             'subject_sem'=>1,
@@ -8451,9 +8451,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>278,
             'subject_sem'=>1,
@@ -8485,9 +8485,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>279,
             'subject_sem'=>1,
@@ -8519,9 +8519,9 @@ class SubjectSeeder extends Seeder
             'updated_at'=>'2024-02-04 03:40:20',
             'deleted_at'=>NULL
             ] );
-            
-            
-                        
+
+
+
             Subject::create( [
             'id'=>280,
             'subject_sem'=>1,
@@ -8585,7 +8585,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>282,
                 'subject_sem'=>1,
@@ -8617,7 +8617,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>283,
                 'subject_sem'=>1,
@@ -8649,7 +8649,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>284,
                 'subject_sem'=>1,
@@ -8681,7 +8681,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>285,
                 'subject_sem'=>1,
@@ -8713,7 +8713,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>286,
                 'subject_sem'=>1,
@@ -8745,7 +8745,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>287,
                 'subject_sem'=>1,
@@ -8777,7 +8777,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>288,
                 'subject_sem'=>1,
@@ -8809,7 +8809,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>289,
                 'subject_sem'=>1,
@@ -8841,7 +8841,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>290,
                 'subject_sem'=>1,
@@ -8873,7 +8873,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>291,
                 'subject_sem'=>1,
@@ -8905,7 +8905,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>292,
                 'subject_sem'=>1,
@@ -8937,7 +8937,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>293,
                 'subject_sem'=>1,
@@ -8969,7 +8969,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>294,
                 'subject_sem'=>1,
@@ -9001,7 +9001,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>295,
                 'subject_sem'=>1,
@@ -9033,7 +9033,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>296,
                 'subject_sem'=>1,
@@ -9065,7 +9065,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>297,
                 'subject_sem'=>1,
@@ -9097,7 +9097,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>298,
                 'subject_sem'=>1,
@@ -9129,7 +9129,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>299,
                 'subject_sem'=>1,
@@ -9161,7 +9161,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>300,
                 'subject_sem'=>1,
@@ -9193,7 +9193,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>301,
                 'subject_sem'=>1,
@@ -9225,7 +9225,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>302,
                 'subject_sem'=>1,
@@ -9257,7 +9257,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>303,
                 'subject_sem'=>1,
@@ -9289,7 +9289,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>304,
                 'subject_sem'=>1,
@@ -9321,7 +9321,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>305,
                 'subject_sem'=>1,
@@ -9353,7 +9353,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>306,
                 'subject_sem'=>1,
@@ -9385,7 +9385,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>307,
                 'subject_sem'=>1,
@@ -9417,7 +9417,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>308,
                 'subject_sem'=>1,
@@ -9449,7 +9449,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>309,
                 'subject_sem'=>1,
@@ -9481,7 +9481,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>310,
                 'subject_sem'=>1,
@@ -9513,7 +9513,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>311,
                 'subject_sem'=>1,
@@ -9545,7 +9545,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>312,
                 'subject_sem'=>1,
@@ -9577,7 +9577,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>313,
                 'subject_sem'=>1,
@@ -9609,7 +9609,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>314,
                 'subject_sem'=>1,
@@ -9641,7 +9641,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>315,
                 'subject_sem'=>1,
@@ -9673,7 +9673,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>316,
                 'subject_sem'=>1,
@@ -9705,7 +9705,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>317,
                 'subject_sem'=>1,
@@ -9737,7 +9737,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>318,
                 'subject_sem'=>1,
@@ -9769,7 +9769,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>319,
                 'subject_sem'=>1,
@@ -9801,7 +9801,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:20',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>320,
                 'subject_sem'=>1,
@@ -9833,7 +9833,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>321,
                 'subject_sem'=>1,
@@ -9865,7 +9865,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>322,
                 'subject_sem'=>1,
@@ -9897,7 +9897,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>323,
                 'subject_sem'=>1,
@@ -9929,7 +9929,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>324,
                 'subject_sem'=>1,
@@ -9961,7 +9961,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>325,
                 'subject_sem'=>1,
@@ -9993,7 +9993,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>326,
                 'subject_sem'=>1,
@@ -10025,7 +10025,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>327,
                 'subject_sem'=>1,
@@ -10057,7 +10057,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>328,
                 'subject_sem'=>1,
@@ -10089,7 +10089,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>329,
                 'subject_sem'=>1,
@@ -10121,7 +10121,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>330,
                 'subject_sem'=>1,
@@ -10153,7 +10153,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>331,
                 'subject_sem'=>1,
@@ -10185,7 +10185,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>332,
                 'subject_sem'=>1,
@@ -10217,7 +10217,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>333,
                 'subject_sem'=>1,
@@ -10249,7 +10249,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>334,
                 'subject_sem'=>1,
@@ -10281,7 +10281,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>335,
                 'subject_sem'=>1,
@@ -10313,7 +10313,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>336,
                 'subject_sem'=>1,
@@ -10345,7 +10345,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>337,
                 'subject_sem'=>1,
@@ -10377,7 +10377,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>338,
                 'subject_sem'=>1,
@@ -10409,7 +10409,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>339,
                 'subject_sem'=>1,
@@ -10441,7 +10441,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>340,
                 'subject_sem'=>1,
@@ -10473,7 +10473,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>341,
                 'subject_sem'=>1,
@@ -10505,7 +10505,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>342,
                 'subject_sem'=>1,
@@ -10537,7 +10537,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>343,
                 'subject_sem'=>1,
@@ -10569,7 +10569,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>344,
                 'subject_sem'=>1,
@@ -10601,7 +10601,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>345,
                 'subject_sem'=>1,
@@ -10633,7 +10633,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>346,
                 'subject_sem'=>1,
@@ -10665,7 +10665,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>347,
                 'subject_sem'=>1,
@@ -10697,7 +10697,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>348,
                 'subject_sem'=>1,
@@ -10729,7 +10729,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>349,
                 'subject_sem'=>1,
@@ -10761,7 +10761,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>350,
                 'subject_sem'=>1,
@@ -10793,7 +10793,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>351,
                 'subject_sem'=>1,
@@ -10825,7 +10825,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>352,
                 'subject_sem'=>1,
@@ -10857,7 +10857,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>353,
                 'subject_sem'=>1,
@@ -10889,7 +10889,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>354,
                 'subject_sem'=>1,
@@ -10921,7 +10921,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>355,
                 'subject_sem'=>1,
@@ -10953,7 +10953,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>356,
                 'subject_sem'=>1,
@@ -10985,7 +10985,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>357,
                 'subject_sem'=>1,
@@ -11017,7 +11017,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>358,
                 'subject_sem'=>1,
@@ -11049,7 +11049,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>359,
                 'subject_sem'=>1,
@@ -11081,7 +11081,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>360,
                 'subject_sem'=>1,
@@ -11113,7 +11113,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>361,
                 'subject_sem'=>1,
@@ -11145,7 +11145,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>362,
                 'subject_sem'=>1,
@@ -11177,7 +11177,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>363,
                 'subject_sem'=>1,
@@ -11209,7 +11209,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>364,
                 'subject_sem'=>1,
@@ -11241,7 +11241,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>365,
                 'subject_sem'=>1,
@@ -11273,7 +11273,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>366,
                 'subject_sem'=>1,
@@ -11305,7 +11305,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>367,
                 'subject_sem'=>1,
@@ -11337,7 +11337,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>368,
                 'subject_sem'=>1,
@@ -11369,7 +11369,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>369,
                 'subject_sem'=>1,
@@ -11401,7 +11401,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>370,
                 'subject_sem'=>1,
@@ -11433,7 +11433,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>371,
                 'subject_sem'=>1,
@@ -11465,7 +11465,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>372,
                 'subject_sem'=>1,
@@ -11497,7 +11497,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>373,
                 'subject_sem'=>1,
@@ -11529,7 +11529,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>374,
                 'subject_sem'=>1,
@@ -11561,7 +11561,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>378,
                 'subject_sem'=>2,
@@ -11593,7 +11593,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>380,
                 'subject_sem'=>2,
@@ -11625,7 +11625,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>381,
                 'subject_sem'=>2,
@@ -11657,7 +11657,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>382,
                 'subject_sem'=>1,
@@ -11689,7 +11689,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>383,
                 'subject_sem'=>2,
@@ -11721,7 +11721,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>384,
                 'subject_sem'=>2,
@@ -11753,7 +11753,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>385,
                 'subject_sem'=>2,
@@ -11785,7 +11785,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>386,
                 'subject_sem'=>1,
@@ -11817,7 +11817,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>387,
                 'subject_sem'=>2,
@@ -11849,7 +11849,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>388,
                 'subject_sem'=>2,
@@ -11881,7 +11881,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>389,
                 'subject_sem'=>2,
@@ -11913,7 +11913,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>390,
                 'subject_sem'=>1,
@@ -11945,7 +11945,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>391,
                 'subject_sem'=>2,
@@ -11977,7 +11977,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>392,
                 'subject_sem'=>2,
@@ -12009,7 +12009,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>393,
                 'subject_sem'=>2,
@@ -12041,7 +12041,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>394,
                 'subject_sem'=>2,
@@ -12073,7 +12073,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>395,
                 'subject_sem'=>2,
@@ -12105,7 +12105,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>396,
                 'subject_sem'=>2,
@@ -12137,7 +12137,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>397,
                 'subject_sem'=>2,
@@ -12169,7 +12169,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>398,
                 'subject_sem'=>2,
@@ -12201,7 +12201,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>399,
                 'subject_sem'=>2,
@@ -12233,7 +12233,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>400,
                 'subject_sem'=>2,
@@ -12265,7 +12265,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>401,
                 'subject_sem'=>2,
@@ -12297,7 +12297,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>402,
                 'subject_sem'=>2,
@@ -12329,7 +12329,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>403,
                 'subject_sem'=>2,
@@ -12361,7 +12361,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>404,
                 'subject_sem'=>2,
@@ -12393,7 +12393,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>405,
                 'subject_sem'=>2,
@@ -12425,7 +12425,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>406,
                 'subject_sem'=>2,
@@ -12457,7 +12457,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>407,
                 'subject_sem'=>2,
@@ -12489,7 +12489,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>408,
                 'subject_sem'=>2,
@@ -12521,7 +12521,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>409,
                 'subject_sem'=>2,
@@ -12553,7 +12553,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>410,
                 'subject_sem'=>2,
@@ -12585,7 +12585,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>411,
                 'subject_sem'=>2,
@@ -12617,7 +12617,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>412,
                 'subject_sem'=>2,
@@ -12649,7 +12649,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>413,
                 'subject_sem'=>2,
@@ -12681,7 +12681,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>414,
                 'subject_sem'=>2,
@@ -12713,7 +12713,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>415,
                 'subject_sem'=>2,
@@ -12745,7 +12745,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>416,
                 'subject_sem'=>2,
@@ -12777,7 +12777,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>417,
                 'subject_sem'=>2,
@@ -12809,7 +12809,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>418,
                 'subject_sem'=>2,
@@ -12841,7 +12841,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>419,
                 'subject_sem'=>2,
@@ -12873,7 +12873,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>420,
                 'subject_sem'=>2,
@@ -12905,7 +12905,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>421,
                 'subject_sem'=>2,
@@ -12937,7 +12937,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>422,
                 'subject_sem'=>2,
@@ -12969,7 +12969,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>423,
                 'subject_sem'=>2,
@@ -13001,7 +13001,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>424,
                 'subject_sem'=>2,
@@ -13033,7 +13033,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>425,
                 'subject_sem'=>2,
@@ -13065,7 +13065,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>426,
                 'subject_sem'=>2,
@@ -13097,7 +13097,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>427,
                 'subject_sem'=>2,
@@ -13129,7 +13129,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>428,
                 'subject_sem'=>2,
@@ -13161,7 +13161,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>429,
                 'subject_sem'=>2,
@@ -13193,7 +13193,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>430,
                 'subject_sem'=>2,
@@ -13225,7 +13225,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>431,
                 'subject_sem'=>2,
@@ -13257,7 +13257,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>432,
                 'subject_sem'=>2,
@@ -13289,7 +13289,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>433,
                 'subject_sem'=>2,
@@ -13321,7 +13321,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>434,
                 'subject_sem'=>2,
@@ -13353,7 +13353,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>435,
                 'subject_sem'=>2,
@@ -13385,7 +13385,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>436,
                 'subject_sem'=>2,
@@ -13417,7 +13417,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>437,
                 'subject_sem'=>2,
@@ -13449,7 +13449,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>438,
                 'subject_sem'=>2,
@@ -13481,7 +13481,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>439,
                 'subject_sem'=>2,
@@ -13513,7 +13513,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>440,
                 'subject_sem'=>2,
@@ -13545,7 +13545,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>441,
                 'subject_sem'=>2,
@@ -13577,7 +13577,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>442,
                 'subject_sem'=>2,
@@ -13609,7 +13609,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>443,
                 'subject_sem'=>2,
@@ -13641,7 +13641,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>444,
                 'subject_sem'=>2,
@@ -13673,7 +13673,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>445,
                 'subject_sem'=>2,
@@ -13705,7 +13705,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>446,
                 'subject_sem'=>2,
@@ -13737,7 +13737,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>447,
                 'subject_sem'=>2,
@@ -13769,7 +13769,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>448,
                 'subject_sem'=>2,
@@ -13801,7 +13801,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>449,
                 'subject_sem'=>2,
@@ -13833,7 +13833,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>450,
                 'subject_sem'=>2,
@@ -13865,7 +13865,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>451,
                 'subject_sem'=>2,
@@ -13897,7 +13897,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>452,
                 'subject_sem'=>2,
@@ -13929,7 +13929,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>453,
                 'subject_sem'=>2,
@@ -13961,7 +13961,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>454,
                 'subject_sem'=>2,
@@ -13993,7 +13993,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>455,
                 'subject_sem'=>2,
@@ -14025,7 +14025,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>456,
                 'subject_sem'=>2,
@@ -14057,7 +14057,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>457,
                 'subject_sem'=>2,
@@ -14089,7 +14089,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>458,
                 'subject_sem'=>2,
@@ -14121,7 +14121,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>459,
                 'subject_sem'=>2,
@@ -14153,7 +14153,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>460,
                 'subject_sem'=>2,
@@ -14185,7 +14185,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>461,
                 'subject_sem'=>2,
@@ -14217,7 +14217,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>462,
                 'subject_sem'=>2,
@@ -14249,7 +14249,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>463,
                 'subject_sem'=>2,
@@ -14281,7 +14281,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>464,
                 'subject_sem'=>2,
@@ -14313,7 +14313,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>465,
                 'subject_sem'=>2,
@@ -14345,7 +14345,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>466,
                 'subject_sem'=>2,
@@ -14377,7 +14377,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>467,
                 'subject_sem'=>2,
@@ -14409,7 +14409,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>468,
                 'subject_sem'=>2,
@@ -14441,7 +14441,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>469,
                 'subject_sem'=>2,
@@ -14473,7 +14473,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>470,
                 'subject_sem'=>2,
@@ -14505,7 +14505,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>471,
                 'subject_sem'=>2,
@@ -14537,7 +14537,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>472,
                 'subject_sem'=>2,
@@ -14569,7 +14569,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>473,
                 'subject_sem'=>2,
@@ -14601,7 +14601,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>474,
                 'subject_sem'=>2,
@@ -14633,7 +14633,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>475,
                 'subject_sem'=>2,
@@ -14665,7 +14665,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>476,
                 'subject_sem'=>2,
@@ -14697,7 +14697,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>477,
                 'subject_sem'=>2,
@@ -14729,7 +14729,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>478,
                 'subject_sem'=>2,
@@ -14761,7 +14761,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>479,
                 'subject_sem'=>2,
@@ -14793,7 +14793,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>480,
                 'subject_sem'=>2,
@@ -14825,7 +14825,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>481,
                 'subject_sem'=>2,
@@ -14857,7 +14857,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>482,
                 'subject_sem'=>2,
@@ -14889,7 +14889,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>483,
                 'subject_sem'=>2,
@@ -14921,7 +14921,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>484,
                 'subject_sem'=>2,
@@ -14953,7 +14953,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>485,
                 'subject_sem'=>2,
@@ -14985,7 +14985,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>486,
                 'subject_sem'=>2,
@@ -15017,7 +15017,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>487,
                 'subject_sem'=>2,
@@ -15049,7 +15049,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>488,
                 'subject_sem'=>2,
@@ -15081,7 +15081,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>489,
                 'subject_sem'=>2,
@@ -15113,7 +15113,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>490,
                 'subject_sem'=>2,
@@ -15145,7 +15145,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>491,
                 'subject_sem'=>2,
@@ -15177,7 +15177,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>492,
                 'subject_sem'=>2,
@@ -15209,7 +15209,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>493,
                 'subject_sem'=>2,
@@ -15241,7 +15241,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>494,
                 'subject_sem'=>2,
@@ -15273,7 +15273,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>495,
                 'subject_sem'=>2,
@@ -15305,7 +15305,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>496,
                 'subject_sem'=>2,
@@ -15337,7 +15337,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>497,
                 'subject_sem'=>2,
@@ -15369,7 +15369,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>498,
                 'subject_sem'=>2,
@@ -15401,7 +15401,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>499,
                 'subject_sem'=>2,
@@ -15433,7 +15433,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>500,
                 'subject_sem'=>2,
@@ -15465,7 +15465,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>501,
                 'subject_sem'=>2,
@@ -15497,7 +15497,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>502,
                 'subject_sem'=>2,
@@ -15529,7 +15529,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>503,
                 'subject_sem'=>2,
@@ -15561,7 +15561,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>504,
                 'subject_sem'=>2,
@@ -15593,7 +15593,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>505,
                 'subject_sem'=>2,
@@ -15625,7 +15625,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>506,
                 'subject_sem'=>2,
@@ -15657,7 +15657,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>507,
                 'subject_sem'=>2,
@@ -15689,7 +15689,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>508,
                 'subject_sem'=>2,
@@ -15721,7 +15721,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>509,
                 'subject_sem'=>2,
@@ -15753,7 +15753,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>510,
                 'subject_sem'=>2,
@@ -15785,7 +15785,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>511,
                 'subject_sem'=>2,
@@ -15817,7 +15817,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>512,
                 'subject_sem'=>2,
@@ -15849,7 +15849,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>513,
                 'subject_sem'=>2,
@@ -15881,7 +15881,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>514,
                 'subject_sem'=>2,
@@ -15913,7 +15913,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>515,
                 'subject_sem'=>2,
@@ -15945,7 +15945,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>516,
                 'subject_sem'=>2,
@@ -15977,7 +15977,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>517,
                 'subject_sem'=>2,
@@ -16009,7 +16009,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>518,
                 'subject_sem'=>2,
@@ -16041,7 +16041,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>519,
                 'subject_sem'=>2,
@@ -16073,7 +16073,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>520,
                 'subject_sem'=>2,
@@ -16105,7 +16105,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>521,
                 'subject_sem'=>2,
@@ -16137,7 +16137,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>522,
                 'subject_sem'=>2,
@@ -16169,7 +16169,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>523,
                 'subject_sem'=>2,
@@ -16201,7 +16201,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>524,
                 'subject_sem'=>2,
@@ -16233,7 +16233,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>525,
                 'subject_sem'=>2,
@@ -16265,7 +16265,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>526,
                 'subject_sem'=>2,
@@ -16297,7 +16297,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>527,
                 'subject_sem'=>2,
@@ -16329,7 +16329,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>528,
                 'subject_sem'=>2,
@@ -16361,7 +16361,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>530,
                 'subject_sem'=>3,
@@ -16393,7 +16393,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>531,
                 'subject_sem'=>3,
@@ -16425,7 +16425,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>532,
                 'subject_sem'=>3,
@@ -16457,7 +16457,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>533,
                 'subject_sem'=>3,
@@ -16489,7 +16489,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>534,
                 'subject_sem'=>3,
@@ -16521,7 +16521,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>535,
                 'subject_sem'=>3,
@@ -16553,7 +16553,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>536,
                 'subject_sem'=>3,
@@ -16585,7 +16585,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>537,
                 'subject_sem'=>3,
@@ -16617,7 +16617,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>538,
                 'subject_sem'=>3,
@@ -16649,7 +16649,7 @@ class SubjectSeeder extends Seeder
                 'updated_at'=>'2024-02-04 03:40:21',
                 'deleted_at'=>NULL
                 ] );
-                            
+
                 Subject::create( [
                 'id'=>539,
                 'subject_sem'=>3,
@@ -16712,7 +16712,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>541,
                     'subject_sem'=>3,
@@ -16744,7 +16744,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>542,
                     'subject_sem'=>3,
@@ -16776,7 +16776,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>544,
                     'subject_sem'=>3,
@@ -16808,7 +16808,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>545,
                     'subject_sem'=>3,
@@ -16840,7 +16840,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>547,
                     'subject_sem'=>3,
@@ -16872,7 +16872,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>548,
                     'subject_sem'=>3,
@@ -16904,7 +16904,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>549,
                     'subject_sem'=>3,
@@ -16936,7 +16936,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>550,
                     'subject_sem'=>3,
@@ -16968,7 +16968,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>551,
                     'subject_sem'=>3,
@@ -17000,7 +17000,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>552,
                     'subject_sem'=>3,
@@ -17032,7 +17032,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>553,
                     'subject_sem'=>3,
@@ -17064,7 +17064,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>554,
                     'subject_sem'=>3,
@@ -17096,7 +17096,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>555,
                     'subject_sem'=>3,
@@ -17128,7 +17128,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>556,
                     'subject_sem'=>3,
@@ -17160,7 +17160,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>557,
                     'subject_sem'=>3,
@@ -17192,7 +17192,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>558,
                     'subject_sem'=>3,
@@ -17224,7 +17224,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>559,
                     'subject_sem'=>3,
@@ -17256,7 +17256,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>560,
                     'subject_sem'=>3,
@@ -17288,7 +17288,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>561,
                     'subject_sem'=>3,
@@ -17320,7 +17320,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>562,
                     'subject_sem'=>3,
@@ -17352,7 +17352,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>563,
                     'subject_sem'=>3,
@@ -17384,7 +17384,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>564,
                     'subject_sem'=>3,
@@ -17416,7 +17416,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>565,
                     'subject_sem'=>3,
@@ -17448,7 +17448,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>566,
                     'subject_sem'=>3,
@@ -17480,7 +17480,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>567,
                     'subject_sem'=>3,
@@ -17512,7 +17512,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>568,
                     'subject_sem'=>4,
@@ -17544,7 +17544,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>569,
                     'subject_sem'=>4,
@@ -17576,7 +17576,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>570,
                     'subject_sem'=>4,
@@ -17608,7 +17608,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>571,
                     'subject_sem'=>4,
@@ -17640,7 +17640,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>572,
                     'subject_sem'=>4,
@@ -17672,7 +17672,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>573,
                     'subject_sem'=>4,
@@ -17704,7 +17704,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>574,
                     'subject_sem'=>4,
@@ -17736,7 +17736,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>575,
                     'subject_sem'=>4,
@@ -17768,7 +17768,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>576,
                     'subject_sem'=>4,
@@ -17800,7 +17800,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>577,
                     'subject_sem'=>4,
@@ -17832,7 +17832,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>578,
                     'subject_sem'=>4,
@@ -17864,7 +17864,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>579,
                     'subject_sem'=>4,
@@ -17896,7 +17896,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>580,
                     'subject_sem'=>4,
@@ -17928,7 +17928,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>583,
                     'subject_sem'=>4,
@@ -17960,7 +17960,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>585,
                     'subject_sem'=>4,
@@ -17992,7 +17992,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>586,
                     'subject_sem'=>4,
@@ -18024,7 +18024,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>587,
                     'subject_sem'=>4,
@@ -18056,7 +18056,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>588,
                     'subject_sem'=>4,
@@ -18088,7 +18088,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>589,
                     'subject_sem'=>4,
@@ -18120,7 +18120,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>590,
                     'subject_sem'=>4,
@@ -18152,7 +18152,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>591,
                     'subject_sem'=>4,
@@ -18184,7 +18184,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>592,
                     'subject_sem'=>4,
@@ -18216,7 +18216,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>593,
                     'subject_sem'=>4,
@@ -18248,7 +18248,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>594,
                     'subject_sem'=>4,
@@ -18280,7 +18280,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>595,
                     'subject_sem'=>4,
@@ -18312,7 +18312,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>596,
                     'subject_sem'=>4,
@@ -18344,7 +18344,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>597,
                     'subject_sem'=>4,
@@ -18376,7 +18376,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>598,
                     'subject_sem'=>4,
@@ -18408,7 +18408,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>599,
                     'subject_sem'=>4,
@@ -18440,7 +18440,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>600,
                     'subject_sem'=>4,
@@ -18472,7 +18472,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>601,
                     'subject_sem'=>4,
@@ -18504,7 +18504,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>602,
                     'subject_sem'=>4,
@@ -18536,7 +18536,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>603,
                     'subject_sem'=>4,
@@ -18568,7 +18568,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>604,
                     'subject_sem'=>4,
@@ -18600,7 +18600,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>605,
                     'subject_sem'=>4,
@@ -18632,7 +18632,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>606,
                     'subject_sem'=>3,
@@ -18664,7 +18664,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>607,
                     'subject_sem'=>3,
@@ -18696,7 +18696,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>608,
                     'subject_sem'=>3,
@@ -18728,7 +18728,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>609,
                     'subject_sem'=>3,
@@ -18760,7 +18760,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>610,
                     'subject_sem'=>3,
@@ -18792,7 +18792,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>611,
                     'subject_sem'=>3,
@@ -18824,7 +18824,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>612,
                     'subject_sem'=>3,
@@ -18856,7 +18856,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>613,
                     'subject_sem'=>3,
@@ -18888,7 +18888,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>614,
                     'subject_sem'=>3,
@@ -18920,7 +18920,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>615,
                     'subject_sem'=>3,
@@ -18952,7 +18952,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>616,
                     'subject_sem'=>3,
@@ -18984,7 +18984,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>617,
                     'subject_sem'=>4,
@@ -19016,7 +19016,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>618,
                     'subject_sem'=>4,
@@ -19048,7 +19048,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>619,
                     'subject_sem'=>4,
@@ -19080,7 +19080,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>620,
                     'subject_sem'=>4,
@@ -19112,7 +19112,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>621,
                     'subject_sem'=>4,
@@ -19144,7 +19144,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>622,
                     'subject_sem'=>4,
@@ -19176,7 +19176,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>623,
                     'subject_sem'=>4,
@@ -19208,7 +19208,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>624,
                     'subject_sem'=>4,
@@ -19240,7 +19240,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>625,
                     'subject_sem'=>4,
@@ -19272,7 +19272,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>626,
                     'subject_sem'=>4,
@@ -19304,7 +19304,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>627,
                     'subject_sem'=>4,
@@ -19336,7 +19336,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>628,
                     'subject_sem'=>3,
@@ -19368,7 +19368,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>629,
                     'subject_sem'=>3,
@@ -19400,7 +19400,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>630,
                     'subject_sem'=>3,
@@ -19432,7 +19432,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>631,
                     'subject_sem'=>3,
@@ -19464,7 +19464,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>632,
                     'subject_sem'=>3,
@@ -19496,7 +19496,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>633,
                     'subject_sem'=>3,
@@ -19528,7 +19528,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>634,
                     'subject_sem'=>3,
@@ -19560,7 +19560,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>635,
                     'subject_sem'=>3,
@@ -19592,7 +19592,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>636,
                     'subject_sem'=>3,
@@ -19624,7 +19624,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>637,
                     'subject_sem'=>3,
@@ -19656,7 +19656,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>638,
                     'subject_sem'=>3,
@@ -19688,7 +19688,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>639,
                     'subject_sem'=>3,
@@ -19720,7 +19720,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>640,
                     'subject_sem'=>3,
@@ -19752,7 +19752,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>641,
                     'subject_sem'=>3,
@@ -19784,7 +19784,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>642,
                     'subject_sem'=>3,
@@ -19816,7 +19816,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>643,
                     'subject_sem'=>3,
@@ -19848,7 +19848,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>644,
                     'subject_sem'=>3,
@@ -19880,7 +19880,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>645,
                     'subject_sem'=>3,
@@ -19912,7 +19912,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>646,
                     'subject_sem'=>3,
@@ -19944,7 +19944,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>647,
                     'subject_sem'=>3,
@@ -19976,7 +19976,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>648,
                     'subject_sem'=>3,
@@ -20008,7 +20008,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>649,
                     'subject_sem'=>3,
@@ -20040,7 +20040,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>650,
                     'subject_sem'=>3,
@@ -20072,7 +20072,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>651,
                     'subject_sem'=>3,
@@ -20104,7 +20104,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>652,
                     'subject_sem'=>3,
@@ -20136,7 +20136,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>653,
                     'subject_sem'=>3,
@@ -20168,7 +20168,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>654,
                     'subject_sem'=>3,
@@ -20200,7 +20200,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>655,
                     'subject_sem'=>3,
@@ -20232,7 +20232,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>656,
                     'subject_sem'=>3,
@@ -20264,7 +20264,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>657,
                     'subject_sem'=>3,
@@ -20296,7 +20296,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>658,
                     'subject_sem'=>4,
@@ -20328,7 +20328,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>659,
                     'subject_sem'=>4,
@@ -20360,7 +20360,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>660,
                     'subject_sem'=>4,
@@ -20392,7 +20392,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>661,
                     'subject_sem'=>4,
@@ -20424,7 +20424,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>662,
                     'subject_sem'=>4,
@@ -20456,7 +20456,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>663,
                     'subject_sem'=>4,
@@ -20488,7 +20488,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>664,
                     'subject_sem'=>4,
@@ -20520,7 +20520,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>665,
                     'subject_sem'=>4,
@@ -20552,7 +20552,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>666,
                     'subject_sem'=>4,
@@ -20584,7 +20584,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>667,
                     'subject_sem'=>4,
@@ -20616,7 +20616,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>668,
                     'subject_sem'=>4,
@@ -20648,7 +20648,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>669,
                     'subject_sem'=>4,
@@ -20680,7 +20680,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>670,
                     'subject_sem'=>4,
@@ -20712,7 +20712,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>671,
                     'subject_sem'=>4,
@@ -20744,7 +20744,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>672,
                     'subject_sem'=>4,
@@ -20776,7 +20776,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>673,
                     'subject_sem'=>4,
@@ -20808,7 +20808,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>674,
                     'subject_sem'=>4,
@@ -20840,7 +20840,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>675,
                     'subject_sem'=>4,
@@ -20872,7 +20872,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>676,
                     'subject_sem'=>4,
@@ -20904,7 +20904,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>677,
                     'subject_sem'=>4,
@@ -20936,7 +20936,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>678,
                     'subject_sem'=>4,
@@ -20968,7 +20968,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>679,
                     'subject_sem'=>4,
@@ -21000,7 +21000,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>680,
                     'subject_sem'=>4,
@@ -21032,7 +21032,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>681,
                     'subject_sem'=>4,
@@ -21064,7 +21064,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>682,
                     'subject_sem'=>4,
@@ -21096,7 +21096,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>683,
                     'subject_sem'=>4,
@@ -21128,7 +21128,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>684,
                     'subject_sem'=>4,
@@ -21160,7 +21160,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>685,
                     'subject_sem'=>4,
@@ -21192,7 +21192,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>686,
                     'subject_sem'=>4,
@@ -21224,7 +21224,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>687,
                     'subject_sem'=>3,
@@ -21256,7 +21256,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>688,
                     'subject_sem'=>3,
@@ -21288,7 +21288,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>689,
                     'subject_sem'=>3,
@@ -21320,7 +21320,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>690,
                     'subject_sem'=>3,
@@ -21352,7 +21352,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>691,
                     'subject_sem'=>3,
@@ -21384,7 +21384,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>692,
                     'subject_sem'=>3,
@@ -21416,7 +21416,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>693,
                     'subject_sem'=>3,
@@ -21448,7 +21448,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>694,
                     'subject_sem'=>3,
@@ -21480,7 +21480,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>695,
                     'subject_sem'=>3,
@@ -21512,7 +21512,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>696,
                     'subject_sem'=>3,
@@ -21544,7 +21544,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>697,
                     'subject_sem'=>3,
@@ -21576,7 +21576,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>698,
                     'subject_sem'=>4,
@@ -21608,7 +21608,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>699,
                     'subject_sem'=>4,
@@ -21640,7 +21640,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>700,
                     'subject_sem'=>4,
@@ -21672,7 +21672,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>701,
                     'subject_sem'=>4,
@@ -21704,7 +21704,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>702,
                     'subject_sem'=>4,
@@ -21736,7 +21736,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>703,
                     'subject_sem'=>4,
@@ -21768,7 +21768,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>704,
                     'subject_sem'=>4,
@@ -21800,7 +21800,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>705,
                     'subject_sem'=>4,
@@ -21832,7 +21832,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>706,
                     'subject_sem'=>4,
@@ -21864,7 +21864,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>707,
                     'subject_sem'=>4,
@@ -21896,7 +21896,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>708,
                     'subject_sem'=>4,
@@ -21928,7 +21928,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>709,
                     'subject_sem'=>3,
@@ -21960,7 +21960,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>710,
                     'subject_sem'=>3,
@@ -21992,7 +21992,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>711,
                     'subject_sem'=>3,
@@ -22024,7 +22024,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>712,
                     'subject_sem'=>3,
@@ -22056,7 +22056,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>713,
                     'subject_sem'=>3,
@@ -22088,7 +22088,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>714,
                     'subject_sem'=>3,
@@ -22120,7 +22120,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>715,
                     'subject_sem'=>3,
@@ -22152,7 +22152,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>716,
                     'subject_sem'=>3,
@@ -22184,7 +22184,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>717,
                     'subject_sem'=>3,
@@ -22216,7 +22216,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>718,
                     'subject_sem'=>3,
@@ -22248,7 +22248,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>719,
                     'subject_sem'=>3,
@@ -22280,7 +22280,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>720,
                     'subject_sem'=>4,
@@ -22312,7 +22312,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>721,
                     'subject_sem'=>4,
@@ -22344,7 +22344,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>722,
                     'subject_sem'=>4,
@@ -22376,7 +22376,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>723,
                     'subject_sem'=>4,
@@ -22408,7 +22408,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>724,
                     'subject_sem'=>4,
@@ -22440,7 +22440,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>725,
                     'subject_sem'=>4,
@@ -22472,7 +22472,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>726,
                     'subject_sem'=>4,
@@ -22504,7 +22504,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>727,
                     'subject_sem'=>4,
@@ -22536,7 +22536,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>728,
                     'subject_sem'=>4,
@@ -22568,7 +22568,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>729,
                     'subject_sem'=>4,
@@ -22600,7 +22600,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>730,
                     'subject_sem'=>4,
@@ -22632,7 +22632,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>731,
                     'subject_sem'=>3,
@@ -22664,7 +22664,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>732,
                     'subject_sem'=>3,
@@ -22696,7 +22696,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>733,
                     'subject_sem'=>3,
@@ -22728,7 +22728,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>734,
                     'subject_sem'=>3,
@@ -22760,7 +22760,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>735,
                     'subject_sem'=>3,
@@ -22792,7 +22792,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>736,
                     'subject_sem'=>3,
@@ -22824,7 +22824,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>737,
                     'subject_sem'=>3,
@@ -22856,7 +22856,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>738,
                     'subject_sem'=>3,
@@ -22888,7 +22888,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>739,
                     'subject_sem'=>3,
@@ -22920,7 +22920,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>740,
                     'subject_sem'=>3,
@@ -22952,7 +22952,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>741,
                     'subject_sem'=>4,
@@ -22984,7 +22984,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>742,
                     'subject_sem'=>4,
@@ -23016,7 +23016,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>743,
                     'subject_sem'=>4,
@@ -23048,7 +23048,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>744,
                     'subject_sem'=>4,
@@ -23080,7 +23080,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>745,
                     'subject_sem'=>4,
@@ -23112,7 +23112,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>746,
                     'subject_sem'=>4,
@@ -23144,7 +23144,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>747,
                     'subject_sem'=>4,
@@ -23176,7 +23176,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>748,
                     'subject_sem'=>4,
@@ -23208,7 +23208,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>749,
                     'subject_sem'=>4,
@@ -23240,7 +23240,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>750,
                     'subject_sem'=>4,
@@ -23272,7 +23272,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>751,
                     'subject_sem'=>3,
@@ -23304,7 +23304,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>752,
                     'subject_sem'=>3,
@@ -23336,7 +23336,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>753,
                     'subject_sem'=>3,
@@ -23368,7 +23368,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>754,
                     'subject_sem'=>3,
@@ -23400,7 +23400,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>755,
                     'subject_sem'=>3,
@@ -23432,7 +23432,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>756,
                     'subject_sem'=>3,
@@ -23464,7 +23464,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>757,
                     'subject_sem'=>3,
@@ -23496,7 +23496,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>758,
                     'subject_sem'=>3,
@@ -23528,7 +23528,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>759,
                     'subject_sem'=>3,
@@ -23560,7 +23560,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>760,
                     'subject_sem'=>3,
@@ -23592,7 +23592,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>761,
                     'subject_sem'=>4,
@@ -23624,7 +23624,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>762,
                     'subject_sem'=>4,
@@ -23656,7 +23656,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>763,
                     'subject_sem'=>4,
@@ -23688,7 +23688,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>764,
                     'subject_sem'=>4,
@@ -23720,7 +23720,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>765,
                     'subject_sem'=>4,
@@ -23752,7 +23752,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>766,
                     'subject_sem'=>4,
@@ -23784,7 +23784,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>767,
                     'subject_sem'=>4,
@@ -23816,7 +23816,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>768,
                     'subject_sem'=>4,
@@ -23848,7 +23848,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>769,
                     'subject_sem'=>4,
@@ -23880,7 +23880,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>770,
                     'subject_sem'=>4,
@@ -23912,7 +23912,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>771,
                     'subject_sem'=>3,
@@ -23944,7 +23944,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>772,
                     'subject_sem'=>3,
@@ -23976,7 +23976,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>773,
                     'subject_sem'=>3,
@@ -24008,7 +24008,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>774,
                     'subject_sem'=>3,
@@ -24040,7 +24040,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>775,
                     'subject_sem'=>3,
@@ -24072,7 +24072,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>776,
                     'subject_sem'=>3,
@@ -24104,7 +24104,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>777,
                     'subject_sem'=>3,
@@ -24136,7 +24136,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>778,
                     'subject_sem'=>4,
@@ -24168,7 +24168,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>779,
                     'subject_sem'=>4,
@@ -24200,7 +24200,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>780,
                     'subject_sem'=>4,
@@ -24232,7 +24232,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>781,
                     'subject_sem'=>4,
@@ -24264,7 +24264,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>782,
                     'subject_sem'=>4,
@@ -24296,7 +24296,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>783,
                     'subject_sem'=>4,
@@ -24328,7 +24328,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>784,
                     'subject_sem'=>4,
@@ -24360,7 +24360,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:21',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>785,
                     'subject_sem'=>3,
@@ -24392,7 +24392,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:22',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>786,
                     'subject_sem'=>3,
@@ -24424,7 +24424,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:22',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>787,
                     'subject_sem'=>3,
@@ -24456,7 +24456,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:22',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>788,
                     'subject_sem'=>3,
@@ -24488,7 +24488,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:22',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>789,
                     'subject_sem'=>3,
@@ -24520,7 +24520,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:22',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>790,
                     'subject_sem'=>3,
@@ -24552,7 +24552,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:22',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>791,
                     'subject_sem'=>3,
@@ -24584,7 +24584,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:22',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>792,
                     'subject_sem'=>4,
@@ -24616,7 +24616,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:22',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>793,
                     'subject_sem'=>4,
@@ -24648,7 +24648,7 @@ class SubjectSeeder extends Seeder
                     'updated_at'=>'2024-02-04 03:40:22',
                     'deleted_at'=>NULL
                     ] );
-                                
+
                     Subject::create( [
                     'id'=>794,
                     'subject_sem'=>4,
@@ -24711,7 +24711,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>796,
                         'subject_sem'=>4,
@@ -24743,7 +24743,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>797,
                         'subject_sem'=>4,
@@ -24775,7 +24775,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>798,
                         'subject_sem'=>4,
@@ -24807,7 +24807,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>799,
                         'subject_sem'=>3,
@@ -24839,7 +24839,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>800,
                         'subject_sem'=>3,
@@ -24871,7 +24871,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>801,
                         'subject_sem'=>3,
@@ -24903,7 +24903,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>802,
                         'subject_sem'=>3,
@@ -24935,7 +24935,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>803,
                         'subject_sem'=>3,
@@ -24967,7 +24967,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>804,
                         'subject_sem'=>3,
@@ -24999,7 +24999,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>805,
                         'subject_sem'=>3,
@@ -25031,7 +25031,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>806,
                         'subject_sem'=>4,
@@ -25063,7 +25063,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>807,
                         'subject_sem'=>4,
@@ -25095,7 +25095,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>808,
                         'subject_sem'=>4,
@@ -25127,7 +25127,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>809,
                         'subject_sem'=>4,
@@ -25159,7 +25159,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>810,
                         'subject_sem'=>4,
@@ -25191,7 +25191,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>811,
                         'subject_sem'=>4,
@@ -25223,7 +25223,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>812,
                         'subject_sem'=>4,
@@ -25255,7 +25255,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>813,
                         'subject_sem'=>3,
@@ -25287,7 +25287,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>814,
                         'subject_sem'=>3,
@@ -25319,7 +25319,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>815,
                         'subject_sem'=>3,
@@ -25351,7 +25351,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>816,
                         'subject_sem'=>3,
@@ -25383,7 +25383,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>817,
                         'subject_sem'=>3,
@@ -25415,7 +25415,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>818,
                         'subject_sem'=>3,
@@ -25447,7 +25447,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>819,
                         'subject_sem'=>3,
@@ -25479,7 +25479,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>820,
                         'subject_sem'=>3,
@@ -25511,7 +25511,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>821,
                         'subject_sem'=>3,
@@ -25543,7 +25543,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>822,
                         'subject_sem'=>4,
@@ -25575,7 +25575,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>823,
                         'subject_sem'=>4,
@@ -25607,7 +25607,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>824,
                         'subject_sem'=>4,
@@ -25639,7 +25639,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>825,
                         'subject_sem'=>4,
@@ -25671,7 +25671,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>826,
                         'subject_sem'=>4,
@@ -25703,7 +25703,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>827,
                         'subject_sem'=>4,
@@ -25735,7 +25735,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>828,
                         'subject_sem'=>4,
@@ -25767,7 +25767,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>829,
                         'subject_sem'=>4,
@@ -25799,7 +25799,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>830,
                         'subject_sem'=>3,
@@ -25831,7 +25831,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>831,
                         'subject_sem'=>3,
@@ -25863,7 +25863,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>832,
                         'subject_sem'=>3,
@@ -25895,7 +25895,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>833,
                         'subject_sem'=>3,
@@ -25927,7 +25927,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>834,
                         'subject_sem'=>3,
@@ -25959,7 +25959,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>835,
                         'subject_sem'=>3,
@@ -25991,7 +25991,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>836,
                         'subject_sem'=>3,
@@ -26023,7 +26023,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>837,
                         'subject_sem'=>3,
@@ -26055,7 +26055,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>838,
                         'subject_sem'=>3,
@@ -26087,7 +26087,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>839,
                         'subject_sem'=>3,
@@ -26119,7 +26119,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>840,
                         'subject_sem'=>3,
@@ -26151,7 +26151,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>841,
                         'subject_sem'=>4,
@@ -26183,7 +26183,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>842,
                         'subject_sem'=>4,
@@ -26215,7 +26215,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>843,
                         'subject_sem'=>4,
@@ -26247,7 +26247,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>844,
                         'subject_sem'=>4,
@@ -26279,7 +26279,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>845,
                         'subject_sem'=>4,
@@ -26311,7 +26311,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>846,
                         'subject_sem'=>4,
@@ -26343,7 +26343,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>847,
                         'subject_sem'=>4,
@@ -26375,7 +26375,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>848,
                         'subject_sem'=>4,
@@ -26407,7 +26407,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>849,
                         'subject_sem'=>4,
@@ -26439,7 +26439,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>900,
                         'subject_sem'=>3,
@@ -26471,7 +26471,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>901,
                         'subject_sem'=>3,
@@ -26503,7 +26503,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>902,
                         'subject_sem'=>3,
@@ -26535,7 +26535,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>903,
                         'subject_sem'=>3,
@@ -26567,7 +26567,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>904,
                         'subject_sem'=>3,
@@ -26599,7 +26599,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>905,
                         'subject_sem'=>3,
@@ -26631,7 +26631,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>906,
                         'subject_sem'=>4,
@@ -26663,7 +26663,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>907,
                         'subject_sem'=>4,
@@ -26695,7 +26695,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>908,
                         'subject_sem'=>4,
@@ -26727,7 +26727,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>909,
                         'subject_sem'=>4,
@@ -26759,7 +26759,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>910,
                         'subject_sem'=>3,
@@ -26791,7 +26791,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>911,
                         'subject_sem'=>3,
@@ -26823,7 +26823,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>912,
                         'subject_sem'=>3,
@@ -26855,7 +26855,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>913,
                         'subject_sem'=>3,
@@ -26887,7 +26887,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>914,
                         'subject_sem'=>3,
@@ -26919,7 +26919,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>915,
                         'subject_sem'=>3,
@@ -26951,7 +26951,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>916,
                         'subject_sem'=>4,
@@ -26983,7 +26983,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>917,
                         'subject_sem'=>4,
@@ -27015,7 +27015,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>918,
                         'subject_sem'=>4,
@@ -27047,7 +27047,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>919,
                         'subject_sem'=>4,
@@ -27079,7 +27079,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>920,
                         'subject_sem'=>3,
@@ -27111,7 +27111,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>921,
                         'subject_sem'=>3,
@@ -27143,7 +27143,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>922,
                         'subject_sem'=>3,
@@ -27175,7 +27175,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>923,
                         'subject_sem'=>3,
@@ -27207,7 +27207,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>924,
                         'subject_sem'=>3,
@@ -27239,7 +27239,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>925,
                         'subject_sem'=>3,
@@ -27271,7 +27271,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>926,
                         'subject_sem'=>4,
@@ -27303,7 +27303,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>927,
                         'subject_sem'=>4,
@@ -27335,7 +27335,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>928,
                         'subject_sem'=>4,
@@ -27367,7 +27367,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>929,
                         'subject_sem'=>4,
@@ -27399,7 +27399,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>930,
                         'subject_sem'=>3,
@@ -27431,7 +27431,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>931,
                         'subject_sem'=>3,
@@ -27463,7 +27463,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>932,
                         'subject_sem'=>3,
@@ -27495,7 +27495,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>933,
                         'subject_sem'=>3,
@@ -27527,7 +27527,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>934,
                         'subject_sem'=>3,
@@ -27559,7 +27559,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>935,
                         'subject_sem'=>3,
@@ -27591,7 +27591,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>936,
                         'subject_sem'=>4,
@@ -27623,7 +27623,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>937,
                         'subject_sem'=>4,
@@ -27655,7 +27655,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>938,
                         'subject_sem'=>4,
@@ -27687,7 +27687,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>939,
                         'subject_sem'=>4,
@@ -27719,7 +27719,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>940,
                         'subject_sem'=>3,
@@ -27751,7 +27751,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>941,
                         'subject_sem'=>3,
@@ -27783,7 +27783,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>942,
                         'subject_sem'=>3,
@@ -27815,7 +27815,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>943,
                         'subject_sem'=>3,
@@ -27847,7 +27847,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>944,
                         'subject_sem'=>3,
@@ -27879,7 +27879,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>945,
                         'subject_sem'=>3,
@@ -27911,7 +27911,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>946,
                         'subject_sem'=>4,
@@ -27943,7 +27943,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>947,
                         'subject_sem'=>4,
@@ -27975,7 +27975,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>948,
                         'subject_sem'=>4,
@@ -28007,7 +28007,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>949,
                         'subject_sem'=>4,
@@ -28039,7 +28039,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>950,
                         'subject_sem'=>3,
@@ -28071,7 +28071,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>951,
                         'subject_sem'=>3,
@@ -28103,7 +28103,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>953,
                         'subject_sem'=>3,
@@ -28135,7 +28135,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>954,
                         'subject_sem'=>3,
@@ -28167,7 +28167,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>955,
                         'subject_sem'=>3,
@@ -28199,7 +28199,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>956,
                         'subject_sem'=>4,
@@ -28231,7 +28231,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>957,
                         'subject_sem'=>4,
@@ -28263,7 +28263,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>958,
                         'subject_sem'=>4,
@@ -28295,7 +28295,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>959,
                         'subject_sem'=>4,
@@ -28327,7 +28327,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>960,
                         'subject_sem'=>3,
@@ -28359,7 +28359,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>961,
                         'subject_sem'=>3,
@@ -28391,7 +28391,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>962,
                         'subject_sem'=>3,
@@ -28423,7 +28423,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>963,
                         'subject_sem'=>3,
@@ -28455,7 +28455,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>964,
                         'subject_sem'=>3,
@@ -28487,7 +28487,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>965,
                         'subject_sem'=>3,
@@ -28519,7 +28519,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>966,
                         'subject_sem'=>4,
@@ -28551,7 +28551,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>967,
                         'subject_sem'=>4,
@@ -28583,7 +28583,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>968,
                         'subject_sem'=>4,
@@ -28615,7 +28615,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>969,
                         'subject_sem'=>4,
@@ -28647,7 +28647,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>970,
                         'subject_sem'=>3,
@@ -28679,7 +28679,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>971,
                         'subject_sem'=>3,
@@ -28711,7 +28711,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>972,
                         'subject_sem'=>3,
@@ -28743,7 +28743,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>973,
                         'subject_sem'=>3,
@@ -28775,7 +28775,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>974,
                         'subject_sem'=>3,
@@ -28807,7 +28807,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>975,
                         'subject_sem'=>3,
@@ -28839,7 +28839,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>976,
                         'subject_sem'=>4,
@@ -28871,7 +28871,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>977,
                         'subject_sem'=>4,
@@ -28903,7 +28903,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>978,
                         'subject_sem'=>4,
@@ -28935,7 +28935,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>979,
                         'subject_sem'=>4,
@@ -28967,7 +28967,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>980,
                         'subject_sem'=>3,
@@ -28999,7 +28999,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>981,
                         'subject_sem'=>3,
@@ -29031,7 +29031,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>982,
                         'subject_sem'=>3,
@@ -29063,7 +29063,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>983,
                         'subject_sem'=>3,
@@ -29095,7 +29095,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>984,
                         'subject_sem'=>3,
@@ -29127,7 +29127,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>985,
                         'subject_sem'=>3,
@@ -29159,7 +29159,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>986,
                         'subject_sem'=>4,
@@ -29191,7 +29191,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>987,
                         'subject_sem'=>4,
@@ -29223,7 +29223,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>988,
                         'subject_sem'=>4,
@@ -29255,7 +29255,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>989,
                         'subject_sem'=>4,
@@ -29287,7 +29287,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>990,
                         'subject_sem'=>3,
@@ -29319,7 +29319,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>991,
                         'subject_sem'=>3,
@@ -29351,7 +29351,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>992,
                         'subject_sem'=>3,
@@ -29383,7 +29383,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>993,
                         'subject_sem'=>3,
@@ -29415,7 +29415,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>994,
                         'subject_sem'=>3,
@@ -29447,7 +29447,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>995,
                         'subject_sem'=>3,
@@ -29479,7 +29479,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>996,
                         'subject_sem'=>3,
@@ -29511,7 +29511,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>997,
                         'subject_sem'=>3,
@@ -29543,7 +29543,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>998,
                         'subject_sem'=>4,
@@ -29575,7 +29575,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>999,
                         'subject_sem'=>4,
@@ -29607,7 +29607,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1000,
                         'subject_sem'=>4,
@@ -29639,7 +29639,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1001,
                         'subject_sem'=>4,
@@ -29671,7 +29671,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1002,
                         'subject_sem'=>4,
@@ -29703,7 +29703,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1003,
                         'subject_sem'=>4,
@@ -29735,7 +29735,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1004,
                         'subject_sem'=>3,
@@ -29767,7 +29767,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1005,
                         'subject_sem'=>3,
@@ -29799,7 +29799,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1006,
                         'subject_sem'=>3,
@@ -29831,7 +29831,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1007,
                         'subject_sem'=>3,
@@ -29863,7 +29863,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1008,
                         'subject_sem'=>3,
@@ -29895,7 +29895,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1009,
                         'subject_sem'=>3,
@@ -29927,7 +29927,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1010,
                         'subject_sem'=>3,
@@ -29959,7 +29959,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1011,
                         'subject_sem'=>3,
@@ -29991,7 +29991,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1012,
                         'subject_sem'=>4,
@@ -30023,7 +30023,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1013,
                         'subject_sem'=>4,
@@ -30055,7 +30055,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1014,
                         'subject_sem'=>4,
@@ -30087,7 +30087,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1015,
                         'subject_sem'=>4,
@@ -30119,7 +30119,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1016,
                         'subject_sem'=>4,
@@ -30151,7 +30151,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1017,
                         'subject_sem'=>4,
@@ -30183,7 +30183,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1018,
                         'subject_sem'=>3,
@@ -30215,7 +30215,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1019,
                         'subject_sem'=>3,
@@ -30247,7 +30247,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1020,
                         'subject_sem'=>3,
@@ -30279,7 +30279,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1021,
                         'subject_sem'=>3,
@@ -30311,7 +30311,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1022,
                         'subject_sem'=>3,
@@ -30343,7 +30343,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1023,
                         'subject_sem'=>3,
@@ -30375,7 +30375,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1024,
                         'subject_sem'=>3,
@@ -30407,7 +30407,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1025,
                         'subject_sem'=>3,
@@ -30439,7 +30439,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1026,
                         'subject_sem'=>4,
@@ -30471,7 +30471,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1027,
                         'subject_sem'=>4,
@@ -30503,7 +30503,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1028,
                         'subject_sem'=>4,
@@ -30535,7 +30535,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1029,
                         'subject_sem'=>4,
@@ -30567,7 +30567,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1030,
                         'subject_sem'=>4,
@@ -30599,7 +30599,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1031,
                         'subject_sem'=>4,
@@ -30631,7 +30631,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1032,
                         'subject_sem'=>3,
@@ -30663,7 +30663,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1033,
                         'subject_sem'=>3,
@@ -30695,7 +30695,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1034,
                         'subject_sem'=>3,
@@ -30727,7 +30727,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1035,
                         'subject_sem'=>3,
@@ -30759,7 +30759,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1036,
                         'subject_sem'=>3,
@@ -30791,7 +30791,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1037,
                         'subject_sem'=>3,
@@ -30823,7 +30823,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1038,
                         'subject_sem'=>3,
@@ -30855,7 +30855,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1039,
                         'subject_sem'=>4,
@@ -30887,7 +30887,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1040,
                         'subject_sem'=>4,
@@ -30919,7 +30919,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1041,
                         'subject_sem'=>4,
@@ -30951,7 +30951,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1042,
                         'subject_sem'=>4,
@@ -30983,7 +30983,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1043,
                         'subject_sem'=>4,
@@ -31015,7 +31015,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1044,
                         'subject_sem'=>3,
@@ -31047,7 +31047,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1045,
                         'subject_sem'=>3,
@@ -31079,7 +31079,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1046,
                         'subject_sem'=>3,
@@ -31111,7 +31111,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1047,
                         'subject_sem'=>3,
@@ -31143,7 +31143,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1048,
                         'subject_sem'=>3,
@@ -31175,7 +31175,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1049,
                         'subject_sem'=>3,
@@ -31207,7 +31207,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1050,
                         'subject_sem'=>3,
@@ -31239,7 +31239,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1051,
                         'subject_sem'=>3,
@@ -31271,7 +31271,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1052,
                         'subject_sem'=>4,
@@ -31303,7 +31303,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1053,
                         'subject_sem'=>1,
@@ -31335,7 +31335,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1054,
                         'subject_sem'=>3,
@@ -31367,7 +31367,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1055,
                         'subject_sem'=>3,
@@ -31399,7 +31399,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1056,
                         'subject_sem'=>3,
@@ -31431,7 +31431,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1057,
                         'subject_sem'=>3,
@@ -31463,7 +31463,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1058,
                         'subject_sem'=>3,
@@ -31495,7 +31495,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1059,
                         'subject_sem'=>3,
@@ -31527,7 +31527,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1060,
                         'subject_sem'=>4,
@@ -31559,7 +31559,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1061,
                         'subject_sem'=>4,
@@ -31591,7 +31591,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1062,
                         'subject_sem'=>4,
@@ -31623,7 +31623,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1063,
                         'subject_sem'=>4,
@@ -31655,7 +31655,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1064,
                         'subject_sem'=>4,
@@ -31687,7 +31687,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1065,
                         'subject_sem'=>4,
@@ -31719,7 +31719,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1066,
                         'subject_sem'=>4,
@@ -31751,7 +31751,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1067,
                         'subject_sem'=>3,
@@ -31783,7 +31783,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1068,
                         'subject_sem'=>3,
@@ -31815,7 +31815,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1069,
                         'subject_sem'=>3,
@@ -31847,7 +31847,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1070,
                         'subject_sem'=>3,
@@ -31879,7 +31879,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1071,
                         'subject_sem'=>3,
@@ -31911,7 +31911,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1072,
                         'subject_sem'=>3,
@@ -31943,7 +31943,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1073,
                         'subject_sem'=>4,
@@ -31975,7 +31975,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1074,
                         'subject_sem'=>4,
@@ -32007,7 +32007,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1075,
                         'subject_sem'=>4,
@@ -32039,7 +32039,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1076,
                         'subject_sem'=>4,
@@ -32071,7 +32071,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1077,
                         'subject_sem'=>4,
@@ -32103,7 +32103,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1078,
                         'subject_sem'=>4,
@@ -32135,7 +32135,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1079,
                         'subject_sem'=>4,
@@ -32167,7 +32167,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1080,
                         'subject_sem'=>3,
@@ -32199,7 +32199,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1081,
                         'subject_sem'=>3,
@@ -32231,7 +32231,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1082,
                         'subject_sem'=>3,
@@ -32263,7 +32263,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1083,
                         'subject_sem'=>3,
@@ -32295,7 +32295,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1084,
                         'subject_sem'=>3,
@@ -32327,7 +32327,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1085,
                         'subject_sem'=>3,
@@ -32359,7 +32359,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1086,
                         'subject_sem'=>3,
@@ -32391,7 +32391,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1087,
                         'subject_sem'=>4,
@@ -32423,7 +32423,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1088,
                         'subject_sem'=>4,
@@ -32455,7 +32455,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1089,
                         'subject_sem'=>4,
@@ -32487,7 +32487,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1090,
                         'subject_sem'=>4,
@@ -32519,7 +32519,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1091,
                         'subject_sem'=>4,
@@ -32551,7 +32551,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1092,
                         'subject_sem'=>4,
@@ -32583,7 +32583,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1093,
                         'subject_sem'=>4,
@@ -32615,7 +32615,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1094,
                         'subject_sem'=>4,
@@ -32647,7 +32647,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1095,
                         'subject_sem'=>4,
@@ -32679,7 +32679,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1096,
                         'subject_sem'=>3,
@@ -32711,7 +32711,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1097,
                         'subject_sem'=>4,
@@ -32743,7 +32743,7 @@ class SubjectSeeder extends Seeder
                         'updated_at'=>'2024-02-04 03:40:22',
                         'deleted_at'=>NULL
                         ] );
-                                    
+
                         Subject::create( [
                         'id'=>1098,
                         'subject_sem'=>3,
@@ -32808,7 +32808,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:22',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1100,
                             'subject_sem'=>3,
@@ -32840,7 +32840,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:22',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1101,
                             'subject_sem'=>1,
@@ -32872,7 +32872,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:22',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1102,
                             'subject_sem'=>3,
@@ -32904,7 +32904,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:22',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1103,
                             'subject_sem'=>3,
@@ -32936,7 +32936,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:22',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1104,
                             'subject_sem'=>3,
@@ -32968,7 +32968,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:22',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1105,
                             'subject_sem'=>3,
@@ -33000,7 +33000,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:22',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1106,
                             'subject_sem'=>3,
@@ -33032,7 +33032,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:22',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1107,
                             'subject_sem'=>3,
@@ -33064,7 +33064,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:22',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1108,
                             'subject_sem'=>4,
@@ -33096,7 +33096,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:22',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1109,
                             'subject_sem'=>4,
@@ -33128,7 +33128,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:22',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1110,
                             'subject_sem'=>4,
@@ -33160,7 +33160,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1111,
                             'subject_sem'=>4,
@@ -33192,7 +33192,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1112,
                             'subject_sem'=>4,
@@ -33224,7 +33224,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1113,
                             'subject_sem'=>4,
@@ -33256,7 +33256,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1114,
                             'subject_sem'=>3,
@@ -33288,7 +33288,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1115,
                             'subject_sem'=>3,
@@ -33320,7 +33320,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1116,
                             'subject_sem'=>1,
@@ -33352,7 +33352,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1117,
                             'subject_sem'=>2,
@@ -33384,7 +33384,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1118,
                             'subject_sem'=>2,
@@ -33416,7 +33416,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1119,
                             'subject_sem'=>3,
@@ -33448,7 +33448,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1120,
                             'subject_sem'=>3,
@@ -33480,7 +33480,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1121,
                             'subject_sem'=>3,
@@ -33512,7 +33512,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1122,
                             'subject_sem'=>3,
@@ -33544,7 +33544,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1123,
                             'subject_sem'=>4,
@@ -33576,7 +33576,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1124,
                             'subject_sem'=>4,
@@ -33608,7 +33608,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1125,
                             'subject_sem'=>4,
@@ -33640,7 +33640,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1126,
                             'subject_sem'=>5,
@@ -33672,7 +33672,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1127,
                             'subject_sem'=>5,
@@ -33704,7 +33704,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1128,
                             'subject_sem'=>5,
@@ -33736,7 +33736,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1129,
                             'subject_sem'=>5,
@@ -33768,7 +33768,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1130,
                             'subject_sem'=>6,
@@ -33800,7 +33800,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1131,
                             'subject_sem'=>6,
@@ -33832,7 +33832,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1132,
                             'subject_sem'=>6,
@@ -33864,7 +33864,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1133,
                             'subject_sem'=>6,
@@ -33896,7 +33896,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1134,
                             'subject_sem'=>5,
@@ -33928,7 +33928,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1135,
                             'subject_sem'=>5,
@@ -33960,7 +33960,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1136,
                             'subject_sem'=>5,
@@ -33992,7 +33992,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1137,
                             'subject_sem'=>5,
@@ -34024,7 +34024,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1138,
                             'subject_sem'=>6,
@@ -34056,7 +34056,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1139,
                             'subject_sem'=>6,
@@ -34088,7 +34088,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1140,
                             'subject_sem'=>6,
@@ -34120,7 +34120,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1141,
                             'subject_sem'=>6,
@@ -34152,7 +34152,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1142,
                             'subject_sem'=>5,
@@ -34184,7 +34184,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1143,
                             'subject_sem'=>5,
@@ -34216,7 +34216,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1144,
                             'subject_sem'=>5,
@@ -34248,7 +34248,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1145,
                             'subject_sem'=>5,
@@ -34280,7 +34280,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1146,
                             'subject_sem'=>5,
@@ -34312,7 +34312,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1147,
                             'subject_sem'=>6,
@@ -34344,7 +34344,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1148,
                             'subject_sem'=>6,
@@ -34376,7 +34376,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1149,
                             'subject_sem'=>6,
@@ -34408,7 +34408,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1150,
                             'subject_sem'=>6,
@@ -34440,7 +34440,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1151,
                             'subject_sem'=>6,
@@ -34472,7 +34472,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1152,
                             'subject_sem'=>5,
@@ -34504,7 +34504,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1153,
                             'subject_sem'=>5,
@@ -34536,7 +34536,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1154,
                             'subject_sem'=>5,
@@ -34568,7 +34568,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1155,
                             'subject_sem'=>5,
@@ -34600,7 +34600,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1156,
                             'subject_sem'=>6,
@@ -34632,7 +34632,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1157,
                             'subject_sem'=>6,
@@ -34664,7 +34664,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1158,
                             'subject_sem'=>6,
@@ -34696,7 +34696,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1159,
                             'subject_sem'=>6,
@@ -34728,7 +34728,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1160,
                             'subject_sem'=>5,
@@ -34760,7 +34760,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1161,
                             'subject_sem'=>5,
@@ -34792,7 +34792,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1162,
                             'subject_sem'=>5,
@@ -34824,7 +34824,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1163,
                             'subject_sem'=>5,
@@ -34856,7 +34856,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1164,
                             'subject_sem'=>6,
@@ -34888,7 +34888,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1165,
                             'subject_sem'=>6,
@@ -34920,7 +34920,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1166,
                             'subject_sem'=>6,
@@ -34952,7 +34952,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1167,
                             'subject_sem'=>6,
@@ -34984,7 +34984,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1168,
                             'subject_sem'=>5,
@@ -35016,7 +35016,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1169,
                             'subject_sem'=>5,
@@ -35048,7 +35048,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1170,
                             'subject_sem'=>5,
@@ -35080,7 +35080,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1171,
                             'subject_sem'=>5,
@@ -35112,7 +35112,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1172,
                             'subject_sem'=>6,
@@ -35144,7 +35144,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1173,
                             'subject_sem'=>6,
@@ -35176,7 +35176,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1174,
                             'subject_sem'=>6,
@@ -35208,7 +35208,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1175,
                             'subject_sem'=>6,
@@ -35240,7 +35240,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1176,
                             'subject_sem'=>5,
@@ -35272,7 +35272,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1177,
                             'subject_sem'=>5,
@@ -35304,7 +35304,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1178,
                             'subject_sem'=>5,
@@ -35336,7 +35336,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1179,
                             'subject_sem'=>5,
@@ -35368,7 +35368,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1180,
                             'subject_sem'=>6,
@@ -35400,7 +35400,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1181,
                             'subject_sem'=>6,
@@ -35432,7 +35432,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1182,
                             'subject_sem'=>6,
@@ -35464,7 +35464,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1183,
                             'subject_sem'=>6,
@@ -35496,7 +35496,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1184,
                             'subject_sem'=>5,
@@ -35528,7 +35528,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1185,
                             'subject_sem'=>5,
@@ -35560,7 +35560,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1186,
                             'subject_sem'=>5,
@@ -35592,7 +35592,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1187,
                             'subject_sem'=>5,
@@ -35624,7 +35624,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1188,
                             'subject_sem'=>6,
@@ -35656,7 +35656,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1189,
                             'subject_sem'=>6,
@@ -35688,7 +35688,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1190,
                             'subject_sem'=>6,
@@ -35720,7 +35720,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1191,
                             'subject_sem'=>6,
@@ -35752,7 +35752,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1192,
                             'subject_sem'=>5,
@@ -35784,7 +35784,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1193,
                             'subject_sem'=>6,
@@ -35816,7 +35816,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1194,
                             'subject_sem'=>5,
@@ -35848,7 +35848,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1195,
                             'subject_sem'=>6,
@@ -35880,7 +35880,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1196,
                             'subject_sem'=>5,
@@ -35912,7 +35912,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1197,
                             'subject_sem'=>6,
@@ -35944,7 +35944,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1198,
                             'subject_sem'=>5,
@@ -35976,7 +35976,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1199,
                             'subject_sem'=>5,
@@ -36008,7 +36008,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1200,
                             'subject_sem'=>5,
@@ -36040,7 +36040,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1201,
                             'subject_sem'=>5,
@@ -36072,7 +36072,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1202,
                             'subject_sem'=>5,
@@ -36104,7 +36104,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1203,
                             'subject_sem'=>5,
@@ -36136,7 +36136,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1204,
                             'subject_sem'=>5,
@@ -36168,7 +36168,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1205,
                             'subject_sem'=>5,
@@ -36200,7 +36200,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1206,
                             'subject_sem'=>5,
@@ -36232,7 +36232,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1207,
                             'subject_sem'=>5,
@@ -36264,7 +36264,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1208,
                             'subject_sem'=>5,
@@ -36296,7 +36296,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1209,
                             'subject_sem'=>5,
@@ -36328,7 +36328,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1210,
                             'subject_sem'=>6,
@@ -36360,7 +36360,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1211,
                             'subject_sem'=>6,
@@ -36392,7 +36392,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1212,
                             'subject_sem'=>6,
@@ -36424,7 +36424,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1213,
                             'subject_sem'=>6,
@@ -36456,7 +36456,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1214,
                             'subject_sem'=>6,
@@ -36488,7 +36488,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1215,
                             'subject_sem'=>6,
@@ -36520,7 +36520,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1216,
                             'subject_sem'=>6,
@@ -36552,7 +36552,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1217,
                             'subject_sem'=>6,
@@ -36584,7 +36584,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1218,
                             'subject_sem'=>6,
@@ -36616,7 +36616,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1219,
                             'subject_sem'=>6,
@@ -36648,7 +36648,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1220,
                             'subject_sem'=>6,
@@ -36680,7 +36680,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1221,
                             'subject_sem'=>6,
@@ -36712,7 +36712,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1222,
                             'subject_sem'=>5,
@@ -36744,7 +36744,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1223,
                             'subject_sem'=>5,
@@ -36776,7 +36776,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1224,
                             'subject_sem'=>5,
@@ -36808,7 +36808,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1225,
                             'subject_sem'=>5,
@@ -36840,7 +36840,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1226,
                             'subject_sem'=>5,
@@ -36872,7 +36872,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1227,
                             'subject_sem'=>5,
@@ -36904,7 +36904,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1228,
                             'subject_sem'=>5,
@@ -36936,7 +36936,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1229,
                             'subject_sem'=>5,
@@ -36968,7 +36968,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1230,
                             'subject_sem'=>5,
@@ -37000,7 +37000,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1231,
                             'subject_sem'=>5,
@@ -37032,7 +37032,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1232,
                             'subject_sem'=>6,
@@ -37064,7 +37064,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1233,
                             'subject_sem'=>6,
@@ -37096,7 +37096,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1234,
                             'subject_sem'=>6,
@@ -37128,7 +37128,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1235,
                             'subject_sem'=>6,
@@ -37160,7 +37160,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1236,
                             'subject_sem'=>6,
@@ -37192,7 +37192,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1237,
                             'subject_sem'=>6,
@@ -37224,7 +37224,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1238,
                             'subject_sem'=>6,
@@ -37256,7 +37256,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1239,
                             'subject_sem'=>6,
@@ -37288,7 +37288,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1240,
                             'subject_sem'=>6,
@@ -37320,7 +37320,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1241,
                             'subject_sem'=>6,
@@ -37352,7 +37352,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1242,
                             'subject_sem'=>5,
@@ -37384,7 +37384,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1243,
                             'subject_sem'=>5,
@@ -37416,7 +37416,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1244,
                             'subject_sem'=>5,
@@ -37448,7 +37448,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1245,
                             'subject_sem'=>5,
@@ -37480,7 +37480,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1246,
                             'subject_sem'=>5,
@@ -37512,7 +37512,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1247,
                             'subject_sem'=>5,
@@ -37544,7 +37544,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1248,
                             'subject_sem'=>5,
@@ -37576,7 +37576,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1249,
                             'subject_sem'=>5,
@@ -37608,7 +37608,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1250,
                             'subject_sem'=>6,
@@ -37640,7 +37640,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1251,
                             'subject_sem'=>6,
@@ -37672,7 +37672,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1252,
                             'subject_sem'=>6,
@@ -37704,7 +37704,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1253,
                             'subject_sem'=>6,
@@ -37736,7 +37736,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1254,
                             'subject_sem'=>6,
@@ -37768,7 +37768,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1255,
                             'subject_sem'=>6,
@@ -37800,7 +37800,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1256,
                             'subject_sem'=>6,
@@ -37832,7 +37832,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1257,
                             'subject_sem'=>6,
@@ -37864,7 +37864,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1258,
                             'subject_sem'=>5,
@@ -37896,7 +37896,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1259,
                             'subject_sem'=>5,
@@ -37928,7 +37928,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1260,
                             'subject_sem'=>5,
@@ -37960,7 +37960,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1261,
                             'subject_sem'=>5,
@@ -37992,7 +37992,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1262,
                             'subject_sem'=>5,
@@ -38024,7 +38024,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1263,
                             'subject_sem'=>5,
@@ -38056,7 +38056,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1264,
                             'subject_sem'=>5,
@@ -38088,7 +38088,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1265,
                             'subject_sem'=>5,
@@ -38120,7 +38120,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1266,
                             'subject_sem'=>5,
@@ -38152,7 +38152,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1267,
                             'subject_sem'=>5,
@@ -38184,7 +38184,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1268,
                             'subject_sem'=>5,
@@ -38216,7 +38216,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1269,
                             'subject_sem'=>6,
@@ -38248,7 +38248,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1270,
                             'subject_sem'=>6,
@@ -38280,7 +38280,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1271,
                             'subject_sem'=>6,
@@ -38312,7 +38312,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1272,
                             'subject_sem'=>6,
@@ -38344,7 +38344,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1273,
                             'subject_sem'=>6,
@@ -38376,7 +38376,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1274,
                             'subject_sem'=>6,
@@ -38408,7 +38408,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1275,
                             'subject_sem'=>6,
@@ -38440,7 +38440,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1276,
                             'subject_sem'=>6,
@@ -38472,7 +38472,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1277,
                             'subject_sem'=>6,
@@ -38504,7 +38504,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1278,
                             'subject_sem'=>6,
@@ -38536,7 +38536,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1279,
                             'subject_sem'=>6,
@@ -38568,7 +38568,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1280,
                             'subject_sem'=>6,
@@ -38600,7 +38600,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1281,
                             'subject_sem'=>5,
@@ -38632,7 +38632,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1282,
                             'subject_sem'=>5,
@@ -38664,7 +38664,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1283,
                             'subject_sem'=>5,
@@ -38696,7 +38696,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1284,
                             'subject_sem'=>5,
@@ -38728,7 +38728,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1285,
                             'subject_sem'=>5,
@@ -38760,7 +38760,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1286,
                             'subject_sem'=>5,
@@ -38792,7 +38792,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1287,
                             'subject_sem'=>5,
@@ -38824,7 +38824,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1288,
                             'subject_sem'=>5,
@@ -38856,7 +38856,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1289,
                             'subject_sem'=>5,
@@ -38888,7 +38888,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1290,
                             'subject_sem'=>5,
@@ -38920,7 +38920,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1291,
                             'subject_sem'=>5,
@@ -38952,7 +38952,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1292,
                             'subject_sem'=>6,
@@ -38984,7 +38984,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1293,
                             'subject_sem'=>6,
@@ -39016,7 +39016,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1294,
                             'subject_sem'=>6,
@@ -39048,7 +39048,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1295,
                             'subject_sem'=>6,
@@ -39080,7 +39080,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1296,
                             'subject_sem'=>6,
@@ -39112,7 +39112,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1297,
                             'subject_sem'=>6,
@@ -39144,7 +39144,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1298,
                             'subject_sem'=>6,
@@ -39176,7 +39176,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1299,
                             'subject_sem'=>6,
@@ -39208,7 +39208,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1300,
                             'subject_sem'=>6,
@@ -39240,7 +39240,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1301,
                             'subject_sem'=>6,
@@ -39272,7 +39272,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1302,
                             'subject_sem'=>6,
@@ -39304,7 +39304,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1303,
                             'subject_sem'=>5,
@@ -39336,7 +39336,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1304,
                             'subject_sem'=>5,
@@ -39368,7 +39368,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1305,
                             'subject_sem'=>5,
@@ -39400,7 +39400,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1306,
                             'subject_sem'=>5,
@@ -39432,7 +39432,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1307,
                             'subject_sem'=>5,
@@ -39464,7 +39464,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1308,
                             'subject_sem'=>5,
@@ -39496,7 +39496,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1309,
                             'subject_sem'=>5,
@@ -39528,7 +39528,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1310,
                             'subject_sem'=>5,
@@ -39560,7 +39560,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1311,
                             'subject_sem'=>5,
@@ -39592,7 +39592,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1312,
                             'subject_sem'=>5,
@@ -39624,7 +39624,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1313,
                             'subject_sem'=>5,
@@ -39656,7 +39656,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1314,
                             'subject_sem'=>6,
@@ -39688,7 +39688,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1315,
                             'subject_sem'=>6,
@@ -39720,7 +39720,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1316,
                             'subject_sem'=>6,
@@ -39752,7 +39752,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1317,
                             'subject_sem'=>6,
@@ -39784,7 +39784,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1318,
                             'subject_sem'=>6,
@@ -39816,7 +39816,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1319,
                             'subject_sem'=>6,
@@ -39848,7 +39848,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1320,
                             'subject_sem'=>6,
@@ -39880,7 +39880,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1321,
                             'subject_sem'=>6,
@@ -39912,7 +39912,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1322,
                             'subject_sem'=>6,
@@ -39944,7 +39944,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1323,
                             'subject_sem'=>6,
@@ -39976,7 +39976,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1324,
                             'subject_sem'=>6,
@@ -40008,7 +40008,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1325,
                             'subject_sem'=>5,
@@ -40040,7 +40040,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1326,
                             'subject_sem'=>5,
@@ -40072,7 +40072,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1327,
                             'subject_sem'=>5,
@@ -40104,7 +40104,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1328,
                             'subject_sem'=>5,
@@ -40136,7 +40136,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1329,
                             'subject_sem'=>5,
@@ -40168,7 +40168,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1330,
                             'subject_sem'=>5,
@@ -40200,7 +40200,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1331,
                             'subject_sem'=>5,
@@ -40232,7 +40232,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1332,
                             'subject_sem'=>5,
@@ -40264,7 +40264,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1333,
                             'subject_sem'=>5,
@@ -40296,7 +40296,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1334,
                             'subject_sem'=>5,
@@ -40328,7 +40328,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1335,
                             'subject_sem'=>5,
@@ -40360,7 +40360,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1336,
                             'subject_sem'=>6,
@@ -40392,7 +40392,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1337,
                             'subject_sem'=>6,
@@ -40424,7 +40424,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1338,
                             'subject_sem'=>6,
@@ -40456,7 +40456,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1339,
                             'subject_sem'=>6,
@@ -40488,7 +40488,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1340,
                             'subject_sem'=>6,
@@ -40520,7 +40520,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1341,
                             'subject_sem'=>6,
@@ -40552,7 +40552,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1342,
                             'subject_sem'=>6,
@@ -40584,7 +40584,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1343,
                             'subject_sem'=>6,
@@ -40616,7 +40616,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1344,
                             'subject_sem'=>6,
@@ -40648,7 +40648,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1345,
                             'subject_sem'=>6,
@@ -40680,7 +40680,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1346,
                             'subject_sem'=>6,
@@ -40712,7 +40712,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1347,
                             'subject_sem'=>5,
@@ -40744,7 +40744,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1348,
                             'subject_sem'=>5,
@@ -40776,7 +40776,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1349,
                             'subject_sem'=>5,
@@ -40808,7 +40808,7 @@ class SubjectSeeder extends Seeder
                             'updated_at'=>'2024-02-04 03:40:23',
                             'deleted_at'=>NULL
                             ] );
-                                        
+
                             Subject::create( [
                             'id'=>1350,
                             'subject_sem'=>5,
@@ -40873,7 +40873,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1352,
                                 'subject_sem'=>5,
@@ -40905,7 +40905,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1353,
                                 'subject_sem'=>5,
@@ -40937,7 +40937,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1354,
                                 'subject_sem'=>5,
@@ -40969,7 +40969,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1355,
                                 'subject_sem'=>5,
@@ -41001,7 +41001,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1356,
                                 'subject_sem'=>5,
@@ -41033,7 +41033,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1357,
                                 'subject_sem'=>5,
@@ -41065,7 +41065,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1358,
                                 'subject_sem'=>6,
@@ -41097,7 +41097,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1359,
                                 'subject_sem'=>6,
@@ -41129,7 +41129,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1360,
                                 'subject_sem'=>6,
@@ -41161,7 +41161,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1361,
                                 'subject_sem'=>6,
@@ -41193,7 +41193,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1362,
                                 'subject_sem'=>6,
@@ -41225,7 +41225,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:23',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1363,
                                 'subject_sem'=>6,
@@ -41257,7 +41257,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1364,
                                 'subject_sem'=>6,
@@ -41289,7 +41289,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1365,
                                 'subject_sem'=>6,
@@ -41321,7 +41321,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1366,
                                 'subject_sem'=>6,
@@ -41353,7 +41353,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1367,
                                 'subject_sem'=>6,
@@ -41385,7 +41385,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1368,
                                 'subject_sem'=>6,
@@ -41417,7 +41417,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1369,
                                 'subject_sem'=>5,
@@ -41449,7 +41449,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1370,
                                 'subject_sem'=>5,
@@ -41481,7 +41481,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1371,
                                 'subject_sem'=>5,
@@ -41513,7 +41513,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1372,
                                 'subject_sem'=>5,
@@ -41545,7 +41545,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1373,
                                 'subject_sem'=>5,
@@ -41577,7 +41577,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1374,
                                 'subject_sem'=>5,
@@ -41609,7 +41609,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1375,
                                 'subject_sem'=>5,
@@ -41641,7 +41641,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1376,
                                 'subject_sem'=>5,
@@ -41673,7 +41673,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1377,
                                 'subject_sem'=>5,
@@ -41705,7 +41705,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1378,
                                 'subject_sem'=>5,
@@ -41737,7 +41737,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1379,
                                 'subject_sem'=>5,
@@ -41769,7 +41769,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1380,
                                 'subject_sem'=>6,
@@ -41801,7 +41801,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1381,
                                 'subject_sem'=>6,
@@ -41833,7 +41833,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1382,
                                 'subject_sem'=>6,
@@ -41865,7 +41865,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1383,
                                 'subject_sem'=>6,
@@ -41897,7 +41897,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1384,
                                 'subject_sem'=>6,
@@ -41929,7 +41929,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1385,
                                 'subject_sem'=>6,
@@ -41961,7 +41961,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1386,
                                 'subject_sem'=>6,
@@ -41993,7 +41993,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1387,
                                 'subject_sem'=>6,
@@ -42025,7 +42025,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1388,
                                 'subject_sem'=>6,
@@ -42057,7 +42057,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1389,
                                 'subject_sem'=>6,
@@ -42089,7 +42089,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1390,
                                 'subject_sem'=>6,
@@ -42121,7 +42121,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1391,
                                 'subject_sem'=>5,
@@ -42153,7 +42153,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1392,
                                 'subject_sem'=>5,
@@ -42185,7 +42185,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1393,
                                 'subject_sem'=>5,
@@ -42217,7 +42217,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1394,
                                 'subject_sem'=>5,
@@ -42249,7 +42249,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1395,
                                 'subject_sem'=>5,
@@ -42281,7 +42281,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1396,
                                 'subject_sem'=>5,
@@ -42313,7 +42313,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1397,
                                 'subject_sem'=>5,
@@ -42345,7 +42345,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1398,
                                 'subject_sem'=>5,
@@ -42377,7 +42377,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1399,
                                 'subject_sem'=>5,
@@ -42409,7 +42409,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1400,
                                 'subject_sem'=>5,
@@ -42441,7 +42441,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1401,
                                 'subject_sem'=>5,
@@ -42473,7 +42473,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1402,
                                 'subject_sem'=>6,
@@ -42505,7 +42505,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1403,
                                 'subject_sem'=>6,
@@ -42537,7 +42537,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1404,
                                 'subject_sem'=>6,
@@ -42569,7 +42569,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1405,
                                 'subject_sem'=>6,
@@ -42601,7 +42601,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1406,
                                 'subject_sem'=>6,
@@ -42633,7 +42633,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1407,
                                 'subject_sem'=>6,
@@ -42665,7 +42665,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1408,
                                 'subject_sem'=>6,
@@ -42697,7 +42697,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1409,
                                 'subject_sem'=>6,
@@ -42729,7 +42729,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1410,
                                 'subject_sem'=>6,
@@ -42761,7 +42761,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1411,
                                 'subject_sem'=>6,
@@ -42793,7 +42793,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1412,
                                 'subject_sem'=>6,
@@ -42825,7 +42825,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1413,
                                 'subject_sem'=>5,
@@ -42857,7 +42857,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1414,
                                 'subject_sem'=>5,
@@ -42889,7 +42889,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1415,
                                 'subject_sem'=>5,
@@ -42921,7 +42921,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1416,
                                 'subject_sem'=>5,
@@ -42953,7 +42953,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1417,
                                 'subject_sem'=>5,
@@ -42985,7 +42985,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1418,
                                 'subject_sem'=>5,
@@ -43017,7 +43017,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1419,
                                 'subject_sem'=>5,
@@ -43049,7 +43049,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1420,
                                 'subject_sem'=>5,
@@ -43081,7 +43081,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1421,
                                 'subject_sem'=>5,
@@ -43113,7 +43113,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1422,
                                 'subject_sem'=>5,
@@ -43145,7 +43145,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1423,
                                 'subject_sem'=>5,
@@ -43177,7 +43177,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1424,
                                 'subject_sem'=>6,
@@ -43209,7 +43209,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1425,
                                 'subject_sem'=>6,
@@ -43241,7 +43241,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1426,
                                 'subject_sem'=>6,
@@ -43273,7 +43273,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1427,
                                 'subject_sem'=>6,
@@ -43305,7 +43305,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1428,
                                 'subject_sem'=>6,
@@ -43337,7 +43337,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1429,
                                 'subject_sem'=>6,
@@ -43369,7 +43369,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1430,
                                 'subject_sem'=>6,
@@ -43401,7 +43401,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1431,
                                 'subject_sem'=>6,
@@ -43433,7 +43433,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1432,
                                 'subject_sem'=>6,
@@ -43465,7 +43465,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1433,
                                 'subject_sem'=>6,
@@ -43497,7 +43497,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1434,
                                 'subject_sem'=>6,
@@ -43529,7 +43529,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1435,
                                 'subject_sem'=>5,
@@ -43561,7 +43561,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1436,
                                 'subject_sem'=>5,
@@ -43593,7 +43593,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1437,
                                 'subject_sem'=>5,
@@ -43625,7 +43625,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1438,
                                 'subject_sem'=>5,
@@ -43657,7 +43657,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1439,
                                 'subject_sem'=>5,
@@ -43689,7 +43689,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1440,
                                 'subject_sem'=>5,
@@ -43721,7 +43721,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1441,
                                 'subject_sem'=>5,
@@ -43753,7 +43753,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1442,
                                 'subject_sem'=>5,
@@ -43785,7 +43785,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1443,
                                 'subject_sem'=>5,
@@ -43817,7 +43817,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1444,
                                 'subject_sem'=>5,
@@ -43849,7 +43849,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1445,
                                 'subject_sem'=>5,
@@ -43881,7 +43881,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1446,
                                 'subject_sem'=>6,
@@ -43913,7 +43913,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1447,
                                 'subject_sem'=>6,
@@ -43945,7 +43945,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1448,
                                 'subject_sem'=>6,
@@ -43977,7 +43977,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1449,
                                 'subject_sem'=>6,
@@ -44009,7 +44009,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1450,
                                 'subject_sem'=>6,
@@ -44041,7 +44041,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1451,
                                 'subject_sem'=>6,
@@ -44073,7 +44073,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1452,
                                 'subject_sem'=>6,
@@ -44105,7 +44105,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1453,
                                 'subject_sem'=>6,
@@ -44137,7 +44137,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1454,
                                 'subject_sem'=>6,
@@ -44169,7 +44169,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1455,
                                 'subject_sem'=>6,
@@ -44201,7 +44201,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1456,
                                 'subject_sem'=>6,
@@ -44233,7 +44233,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1457,
                                 'subject_sem'=>5,
@@ -44265,7 +44265,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1458,
                                 'subject_sem'=>5,
@@ -44297,7 +44297,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1459,
                                 'subject_sem'=>5,
@@ -44329,7 +44329,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1460,
                                 'subject_sem'=>5,
@@ -44361,7 +44361,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1461,
                                 'subject_sem'=>5,
@@ -44393,7 +44393,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1462,
                                 'subject_sem'=>5,
@@ -44425,7 +44425,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1463,
                                 'subject_sem'=>5,
@@ -44457,7 +44457,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1464,
                                 'subject_sem'=>5,
@@ -44489,7 +44489,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1465,
                                 'subject_sem'=>5,
@@ -44521,7 +44521,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1466,
                                 'subject_sem'=>5,
@@ -44553,7 +44553,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1467,
                                 'subject_sem'=>5,
@@ -44585,7 +44585,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1468,
                                 'subject_sem'=>6,
@@ -44617,7 +44617,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1469,
                                 'subject_sem'=>6,
@@ -44649,7 +44649,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1470,
                                 'subject_sem'=>6,
@@ -44681,7 +44681,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1471,
                                 'subject_sem'=>6,
@@ -44713,7 +44713,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1472,
                                 'subject_sem'=>6,
@@ -44745,7 +44745,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1473,
                                 'subject_sem'=>6,
@@ -44777,7 +44777,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1474,
                                 'subject_sem'=>6,
@@ -44809,7 +44809,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1475,
                                 'subject_sem'=>6,
@@ -44841,7 +44841,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1476,
                                 'subject_sem'=>6,
@@ -44873,7 +44873,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1477,
                                 'subject_sem'=>6,
@@ -44905,7 +44905,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1478,
                                 'subject_sem'=>6,
@@ -44937,7 +44937,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1479,
                                 'subject_sem'=>5,
@@ -44969,7 +44969,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1480,
                                 'subject_sem'=>5,
@@ -45001,7 +45001,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1481,
                                 'subject_sem'=>5,
@@ -45033,7 +45033,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1482,
                                 'subject_sem'=>5,
@@ -45065,7 +45065,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1483,
                                 'subject_sem'=>5,
@@ -45097,7 +45097,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1484,
                                 'subject_sem'=>5,
@@ -45129,7 +45129,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1485,
                                 'subject_sem'=>5,
@@ -45161,7 +45161,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1486,
                                 'subject_sem'=>5,
@@ -45193,7 +45193,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1487,
                                 'subject_sem'=>5,
@@ -45225,7 +45225,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1488,
                                 'subject_sem'=>6,
@@ -45257,7 +45257,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1489,
                                 'subject_sem'=>6,
@@ -45289,7 +45289,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1490,
                                 'subject_sem'=>6,
@@ -45321,7 +45321,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1491,
                                 'subject_sem'=>6,
@@ -45353,7 +45353,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1492,
                                 'subject_sem'=>6,
@@ -45385,7 +45385,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1493,
                                 'subject_sem'=>6,
@@ -45417,7 +45417,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1494,
                                 'subject_sem'=>6,
@@ -45449,7 +45449,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1495,
                                 'subject_sem'=>6,
@@ -45481,7 +45481,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1496,
                                 'subject_sem'=>6,
@@ -45513,7 +45513,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1497,
                                 'subject_sem'=>5,
@@ -45545,7 +45545,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1498,
                                 'subject_sem'=>5,
@@ -45577,7 +45577,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1499,
                                 'subject_sem'=>5,
@@ -45609,7 +45609,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1500,
                                 'subject_sem'=>5,
@@ -45641,7 +45641,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1501,
                                 'subject_sem'=>5,
@@ -45673,7 +45673,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1502,
                                 'subject_sem'=>5,
@@ -45705,7 +45705,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1503,
                                 'subject_sem'=>5,
@@ -45737,7 +45737,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1504,
                                 'subject_sem'=>5,
@@ -45769,7 +45769,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1505,
                                 'subject_sem'=>5,
@@ -45801,7 +45801,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1506,
                                 'subject_sem'=>6,
@@ -45833,7 +45833,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1507,
                                 'subject_sem'=>6,
@@ -45865,7 +45865,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1508,
                                 'subject_sem'=>6,
@@ -45897,7 +45897,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1509,
                                 'subject_sem'=>6,
@@ -45929,7 +45929,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1510,
                                 'subject_sem'=>6,
@@ -45961,7 +45961,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1511,
                                 'subject_sem'=>6,
@@ -45993,7 +45993,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1512,
                                 'subject_sem'=>6,
@@ -46025,7 +46025,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1513,
                                 'subject_sem'=>6,
@@ -46057,7 +46057,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1514,
                                 'subject_sem'=>6,
@@ -46089,7 +46089,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1515,
                                 'subject_sem'=>5,
@@ -46121,7 +46121,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1516,
                                 'subject_sem'=>5,
@@ -46153,7 +46153,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1517,
                                 'subject_sem'=>5,
@@ -46185,7 +46185,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1518,
                                 'subject_sem'=>5,
@@ -46217,7 +46217,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1519,
                                 'subject_sem'=>5,
@@ -46249,7 +46249,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1520,
                                 'subject_sem'=>5,
@@ -46281,7 +46281,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1521,
                                 'subject_sem'=>6,
@@ -46313,7 +46313,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1522,
                                 'subject_sem'=>6,
@@ -46345,7 +46345,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1523,
                                 'subject_sem'=>6,
@@ -46377,7 +46377,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1524,
                                 'subject_sem'=>6,
@@ -46409,7 +46409,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1525,
                                 'subject_sem'=>6,
@@ -46441,7 +46441,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1526,
                                 'subject_sem'=>6,
@@ -46473,7 +46473,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1527,
                                 'subject_sem'=>5,
@@ -46505,7 +46505,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1528,
                                 'subject_sem'=>5,
@@ -46537,7 +46537,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1529,
                                 'subject_sem'=>5,
@@ -46569,7 +46569,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1530,
                                 'subject_sem'=>5,
@@ -46601,7 +46601,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1531,
                                 'subject_sem'=>5,
@@ -46633,7 +46633,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1532,
                                 'subject_sem'=>5,
@@ -46665,7 +46665,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1533,
                                 'subject_sem'=>6,
@@ -46697,7 +46697,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1534,
                                 'subject_sem'=>6,
@@ -46729,7 +46729,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1535,
                                 'subject_sem'=>6,
@@ -46761,7 +46761,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1536,
                                 'subject_sem'=>6,
@@ -46793,7 +46793,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1537,
                                 'subject_sem'=>6,
@@ -46825,7 +46825,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1538,
                                 'subject_sem'=>6,
@@ -46857,7 +46857,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1539,
                                 'subject_sem'=>5,
@@ -46889,7 +46889,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1540,
                                 'subject_sem'=>5,
@@ -46921,7 +46921,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1541,
                                 'subject_sem'=>5,
@@ -46953,7 +46953,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1542,
                                 'subject_sem'=>5,
@@ -46985,7 +46985,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1543,
                                 'subject_sem'=>5,
@@ -47017,7 +47017,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1544,
                                 'subject_sem'=>5,
@@ -47049,7 +47049,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1545,
                                 'subject_sem'=>6,
@@ -47081,7 +47081,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1546,
                                 'subject_sem'=>6,
@@ -47113,7 +47113,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1547,
                                 'subject_sem'=>6,
@@ -47145,7 +47145,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1548,
                                 'subject_sem'=>6,
@@ -47177,7 +47177,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1549,
                                 'subject_sem'=>6,
@@ -47209,7 +47209,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1550,
                                 'subject_sem'=>6,
@@ -47241,7 +47241,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1551,
                                 'subject_sem'=>1,
@@ -47273,7 +47273,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1552,
                                 'subject_sem'=>1,
@@ -47305,7 +47305,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1562,
                                 'subject_sem'=>1,
@@ -47337,7 +47337,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1563,
                                 'subject_sem'=>1,
@@ -47369,7 +47369,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1564,
                                 'subject_sem'=>1,
@@ -47401,7 +47401,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1565,
                                 'subject_sem'=>1,
@@ -47433,7 +47433,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1566,
                                 'subject_sem'=>1,
@@ -47465,7 +47465,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1567,
                                 'subject_sem'=>1,
@@ -47497,7 +47497,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1568,
                                 'subject_sem'=>1,
@@ -47529,7 +47529,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1569,
                                 'subject_sem'=>1,
@@ -47561,7 +47561,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1570,
                                 'subject_sem'=>1,
@@ -47593,7 +47593,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1571,
                                 'subject_sem'=>1,
@@ -47625,7 +47625,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1572,
                                 'subject_sem'=>1,
@@ -47657,7 +47657,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1573,
                                 'subject_sem'=>1,
@@ -47689,7 +47689,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1574,
                                 'subject_sem'=>1,
@@ -47721,7 +47721,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1575,
                                 'subject_sem'=>1,
@@ -47753,7 +47753,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1576,
                                 'subject_sem'=>1,
@@ -47785,7 +47785,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1577,
                                 'subject_sem'=>1,
@@ -47817,7 +47817,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1578,
                                 'subject_sem'=>1,
@@ -47849,7 +47849,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1579,
                                 'subject_sem'=>1,
@@ -47881,7 +47881,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1580,
                                 'subject_sem'=>1,
@@ -47913,7 +47913,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1581,
                                 'subject_sem'=>1,
@@ -47945,7 +47945,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1582,
                                 'subject_sem'=>1,
@@ -47977,7 +47977,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1583,
                                 'subject_sem'=>1,
@@ -48009,7 +48009,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1584,
                                 'subject_sem'=>1,
@@ -48041,7 +48041,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1585,
                                 'subject_sem'=>1,
@@ -48073,7 +48073,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1586,
                                 'subject_sem'=>1,
@@ -48105,7 +48105,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1587,
                                 'subject_sem'=>1,
@@ -48137,7 +48137,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1588,
                                 'subject_sem'=>1,
@@ -48169,7 +48169,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1589,
                                 'subject_sem'=>1,
@@ -48201,7 +48201,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1590,
                                 'subject_sem'=>1,
@@ -48233,7 +48233,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1591,
                                 'subject_sem'=>1,
@@ -48265,7 +48265,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1592,
                                 'subject_sem'=>1,
@@ -48297,7 +48297,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1593,
                                 'subject_sem'=>1,
@@ -48329,7 +48329,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1594,
                                 'subject_sem'=>1,
@@ -48361,7 +48361,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1595,
                                 'subject_sem'=>1,
@@ -48393,7 +48393,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1596,
                                 'subject_sem'=>1,
@@ -48425,7 +48425,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1597,
                                 'subject_sem'=>1,
@@ -48457,7 +48457,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1598,
                                 'subject_sem'=>1,
@@ -48489,7 +48489,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1599,
                                 'subject_sem'=>1,
@@ -48521,7 +48521,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1600,
                                 'subject_sem'=>1,
@@ -48553,7 +48553,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1601,
                                 'subject_sem'=>1,
@@ -48585,7 +48585,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1602,
                                 'subject_sem'=>1,
@@ -48617,7 +48617,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1603,
                                 'subject_sem'=>1,
@@ -48649,7 +48649,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1604,
                                 'subject_sem'=>1,
@@ -48681,7 +48681,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1605,
                                 'subject_sem'=>1,
@@ -48713,7 +48713,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1606,
                                 'subject_sem'=>1,
@@ -48745,7 +48745,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1607,
                                 'subject_sem'=>1,
@@ -48777,7 +48777,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1608,
                                 'subject_sem'=>1,
@@ -48809,7 +48809,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1609,
                                 'subject_sem'=>1,
@@ -48841,7 +48841,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1610,
                                 'subject_sem'=>1,
@@ -48873,7 +48873,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1611,
                                 'subject_sem'=>1,
@@ -48905,7 +48905,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1612,
                                 'subject_sem'=>1,
@@ -48937,7 +48937,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1613,
                                 'subject_sem'=>1,
@@ -48969,7 +48969,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1614,
                                 'subject_sem'=>1,
@@ -49001,7 +49001,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1615,
                                 'subject_sem'=>1,
@@ -49033,7 +49033,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1616,
                                 'subject_sem'=>1,
@@ -49065,7 +49065,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1617,
                                 'subject_sem'=>1,
@@ -49097,7 +49097,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1618,
                                 'subject_sem'=>1,
@@ -49129,7 +49129,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1619,
                                 'subject_sem'=>1,
@@ -49161,7 +49161,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1620,
                                 'subject_sem'=>1,
@@ -49193,7 +49193,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1621,
                                 'subject_sem'=>1,
@@ -49225,7 +49225,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1622,
                                 'subject_sem'=>1,
@@ -49257,7 +49257,7 @@ class SubjectSeeder extends Seeder
                                 'updated_at'=>'2024-02-04 03:40:24',
                                 'deleted_at'=>NULL
                                 ] );
-                                            
+
                                 Subject::create( [
                                 'id'=>1623,
                                 'subject_sem'=>1,
@@ -49321,7 +49321,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1625,
                                     'subject_sem'=>1,
@@ -49353,7 +49353,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1626,
                                     'subject_sem'=>1,
@@ -49385,7 +49385,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1627,
                                     'subject_sem'=>1,
@@ -49417,7 +49417,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1628,
                                     'subject_sem'=>1,
@@ -49449,7 +49449,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1629,
                                     'subject_sem'=>1,
@@ -49481,7 +49481,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1630,
                                     'subject_sem'=>1,
@@ -49513,7 +49513,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1631,
                                     'subject_sem'=>1,
@@ -49545,7 +49545,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1632,
                                     'subject_sem'=>1,
@@ -49577,7 +49577,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1633,
                                     'subject_sem'=>1,
@@ -49609,7 +49609,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1634,
                                     'subject_sem'=>1,
@@ -49641,7 +49641,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1635,
                                     'subject_sem'=>1,
@@ -49673,7 +49673,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1636,
                                     'subject_sem'=>1,
@@ -49705,7 +49705,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1637,
                                     'subject_sem'=>1,
@@ -49737,7 +49737,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1638,
                                     'subject_sem'=>1,
@@ -49769,7 +49769,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1639,
                                     'subject_sem'=>1,
@@ -49801,7 +49801,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1640,
                                     'subject_sem'=>1,
@@ -49833,7 +49833,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1641,
                                     'subject_sem'=>1,
@@ -49865,7 +49865,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1642,
                                     'subject_sem'=>1,
@@ -49897,7 +49897,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1643,
                                     'subject_sem'=>1,
@@ -49929,7 +49929,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1644,
                                     'subject_sem'=>1,
@@ -49961,7 +49961,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1645,
                                     'subject_sem'=>1,
@@ -49993,7 +49993,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1646,
                                     'subject_sem'=>1,
@@ -50025,7 +50025,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1647,
                                     'subject_sem'=>1,
@@ -50057,7 +50057,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1648,
                                     'subject_sem'=>1,
@@ -50089,7 +50089,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1649,
                                     'subject_sem'=>1,
@@ -50121,7 +50121,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1650,
                                     'subject_sem'=>1,
@@ -50153,7 +50153,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1651,
                                     'subject_sem'=>1,
@@ -50185,7 +50185,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1652,
                                     'subject_sem'=>1,
@@ -50217,7 +50217,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1653,
                                     'subject_sem'=>1,
@@ -50249,7 +50249,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1654,
                                     'subject_sem'=>1,
@@ -50281,7 +50281,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1655,
                                     'subject_sem'=>1,
@@ -50313,7 +50313,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1656,
                                     'subject_sem'=>1,
@@ -50345,7 +50345,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1657,
                                     'subject_sem'=>1,
@@ -50377,7 +50377,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1658,
                                     'subject_sem'=>1,
@@ -50409,7 +50409,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1659,
                                     'subject_sem'=>1,
@@ -50441,7 +50441,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1660,
                                     'subject_sem'=>1,
@@ -50473,7 +50473,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1661,
                                     'subject_sem'=>1,
@@ -50505,7 +50505,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1662,
                                     'subject_sem'=>1,
@@ -50537,7 +50537,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1663,
                                     'subject_sem'=>1,
@@ -50569,7 +50569,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1664,
                                     'subject_sem'=>1,
@@ -50601,7 +50601,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1665,
                                     'subject_sem'=>1,
@@ -50633,7 +50633,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1666,
                                     'subject_sem'=>1,
@@ -50665,7 +50665,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1667,
                                     'subject_sem'=>1,
@@ -50697,7 +50697,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1668,
                                     'subject_sem'=>1,
@@ -50729,7 +50729,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1669,
                                     'subject_sem'=>1,
@@ -50761,7 +50761,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1670,
                                     'subject_sem'=>1,
@@ -50793,7 +50793,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1671,
                                     'subject_sem'=>1,
@@ -50825,7 +50825,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1672,
                                     'subject_sem'=>1,
@@ -50857,7 +50857,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1673,
                                     'subject_sem'=>1,
@@ -50889,7 +50889,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1674,
                                     'subject_sem'=>1,
@@ -50921,7 +50921,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1675,
                                     'subject_sem'=>1,
@@ -50953,7 +50953,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1676,
                                     'subject_sem'=>1,
@@ -50985,7 +50985,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1677,
                                     'subject_sem'=>1,
@@ -51017,7 +51017,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1678,
                                     'subject_sem'=>1,
@@ -51049,7 +51049,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1679,
                                     'subject_sem'=>1,
@@ -51081,7 +51081,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1680,
                                     'subject_sem'=>1,
@@ -51113,7 +51113,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1681,
                                     'subject_sem'=>1,
@@ -51145,7 +51145,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1682,
                                     'subject_sem'=>1,
@@ -51177,7 +51177,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1683,
                                     'subject_sem'=>1,
@@ -51209,7 +51209,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1684,
                                     'subject_sem'=>1,
@@ -51241,7 +51241,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1685,
                                     'subject_sem'=>1,
@@ -51273,7 +51273,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1686,
                                     'subject_sem'=>1,
@@ -51305,7 +51305,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1687,
                                     'subject_sem'=>1,
@@ -51337,7 +51337,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1688,
                                     'subject_sem'=>1,
@@ -51369,7 +51369,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1689,
                                     'subject_sem'=>1,
@@ -51401,7 +51401,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1690,
                                     'subject_sem'=>1,
@@ -51433,7 +51433,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1691,
                                     'subject_sem'=>1,
@@ -51465,7 +51465,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1692,
                                     'subject_sem'=>1,
@@ -51497,7 +51497,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1693,
                                     'subject_sem'=>1,
@@ -51529,7 +51529,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1694,
                                     'subject_sem'=>1,
@@ -51561,7 +51561,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1695,
                                     'subject_sem'=>1,
@@ -51593,7 +51593,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1696,
                                     'subject_sem'=>1,
@@ -51625,7 +51625,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1697,
                                     'subject_sem'=>1,
@@ -51657,7 +51657,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1698,
                                     'subject_sem'=>1,
@@ -51689,7 +51689,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1699,
                                     'subject_sem'=>1,
@@ -51721,7 +51721,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1700,
                                     'subject_sem'=>1,
@@ -51753,7 +51753,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1701,
                                     'subject_sem'=>1,
@@ -51785,7 +51785,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1702,
                                     'subject_sem'=>1,
@@ -51817,7 +51817,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1703,
                                     'subject_sem'=>1,
@@ -51849,7 +51849,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1704,
                                     'subject_sem'=>1,
@@ -51881,7 +51881,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1705,
                                     'subject_sem'=>1,
@@ -51913,7 +51913,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1706,
                                     'subject_sem'=>1,
@@ -51945,7 +51945,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1707,
                                     'subject_sem'=>1,
@@ -51977,7 +51977,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1708,
                                     'subject_sem'=>1,
@@ -52009,7 +52009,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1709,
                                     'subject_sem'=>1,
@@ -52041,7 +52041,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1710,
                                     'subject_sem'=>1,
@@ -52073,7 +52073,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1711,
                                     'subject_sem'=>1,
@@ -52105,7 +52105,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1712,
                                     'subject_sem'=>1,
@@ -52137,7 +52137,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1713,
                                     'subject_sem'=>1,
@@ -52169,7 +52169,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1714,
                                     'subject_sem'=>1,
@@ -52201,7 +52201,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1715,
                                     'subject_sem'=>1,
@@ -52233,7 +52233,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1716,
                                     'subject_sem'=>1,
@@ -52265,7 +52265,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1717,
                                     'subject_sem'=>1,
@@ -52297,7 +52297,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1718,
                                     'subject_sem'=>1,
@@ -52329,7 +52329,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1719,
                                     'subject_sem'=>1,
@@ -52361,7 +52361,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1720,
                                     'subject_sem'=>1,
@@ -52393,7 +52393,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1721,
                                     'subject_sem'=>1,
@@ -52425,7 +52425,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1722,
                                     'subject_sem'=>1,
@@ -52457,7 +52457,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1723,
                                     'subject_sem'=>1,
@@ -52489,7 +52489,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1724,
                                     'subject_sem'=>1,
@@ -52521,7 +52521,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1725,
                                     'subject_sem'=>1,
@@ -52553,7 +52553,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1726,
                                     'subject_sem'=>1,
@@ -52585,7 +52585,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1727,
                                     'subject_sem'=>1,
@@ -52617,7 +52617,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1728,
                                     'subject_sem'=>1,
@@ -52649,7 +52649,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1729,
                                     'subject_sem'=>1,
@@ -52681,7 +52681,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1730,
                                     'subject_sem'=>1,
@@ -52713,7 +52713,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1731,
                                     'subject_sem'=>1,
@@ -52745,7 +52745,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1732,
                                     'subject_sem'=>1,
@@ -52777,7 +52777,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1733,
                                     'subject_sem'=>1,
@@ -52809,7 +52809,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1734,
                                     'subject_sem'=>1,
@@ -52841,7 +52841,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1735,
                                     'subject_sem'=>1,
@@ -52873,7 +52873,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1736,
                                     'subject_sem'=>1,
@@ -52905,7 +52905,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1737,
                                     'subject_sem'=>1,
@@ -52937,7 +52937,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1738,
                                     'subject_sem'=>1,
@@ -52969,7 +52969,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1739,
                                     'subject_sem'=>1,
@@ -53001,7 +53001,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1740,
                                     'subject_sem'=>1,
@@ -53033,7 +53033,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1741,
                                     'subject_sem'=>1,
@@ -53065,7 +53065,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1742,
                                     'subject_sem'=>1,
@@ -53097,7 +53097,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1743,
                                     'subject_sem'=>1,
@@ -53129,7 +53129,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1744,
                                     'subject_sem'=>1,
@@ -53161,7 +53161,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1745,
                                     'subject_sem'=>1,
@@ -53193,7 +53193,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1746,
                                     'subject_sem'=>1,
@@ -53225,7 +53225,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1747,
                                     'subject_sem'=>1,
@@ -53257,7 +53257,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1748,
                                     'subject_sem'=>1,
@@ -53289,7 +53289,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1749,
                                     'subject_sem'=>1,
@@ -53321,7 +53321,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1750,
                                     'subject_sem'=>1,
@@ -53353,7 +53353,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1751,
                                     'subject_sem'=>1,
@@ -53385,7 +53385,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1752,
                                     'subject_sem'=>1,
@@ -53417,7 +53417,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1753,
                                     'subject_sem'=>1,
@@ -53449,7 +53449,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1754,
                                     'subject_sem'=>1,
@@ -53481,7 +53481,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1755,
                                     'subject_sem'=>1,
@@ -53513,7 +53513,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1756,
                                     'subject_sem'=>1,
@@ -53545,7 +53545,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1757,
                                     'subject_sem'=>1,
@@ -53577,7 +53577,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1758,
                                     'subject_sem'=>1,
@@ -53609,7 +53609,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1759,
                                     'subject_sem'=>1,
@@ -53641,7 +53641,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1760,
                                     'subject_sem'=>1,
@@ -53673,7 +53673,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1761,
                                     'subject_sem'=>1,
@@ -53705,7 +53705,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1762,
                                     'subject_sem'=>1,
@@ -53737,7 +53737,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1763,
                                     'subject_sem'=>1,
@@ -53769,7 +53769,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1764,
                                     'subject_sem'=>1,
@@ -53801,7 +53801,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1765,
                                     'subject_sem'=>1,
@@ -53833,7 +53833,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1766,
                                     'subject_sem'=>1,
@@ -53865,7 +53865,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1767,
                                     'subject_sem'=>1,
@@ -53897,7 +53897,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1768,
                                     'subject_sem'=>1,
@@ -53929,7 +53929,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1769,
                                     'subject_sem'=>1,
@@ -53961,7 +53961,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1770,
                                     'subject_sem'=>1,
@@ -53993,7 +53993,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1771,
                                     'subject_sem'=>1,
@@ -54025,7 +54025,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1772,
                                     'subject_sem'=>1,
@@ -54057,7 +54057,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1773,
                                     'subject_sem'=>1,
@@ -54089,7 +54089,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1774,
                                     'subject_sem'=>1,
@@ -54121,7 +54121,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1775,
                                     'subject_sem'=>1,
@@ -54153,7 +54153,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1776,
                                     'subject_sem'=>1,
@@ -54185,7 +54185,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1777,
                                     'subject_sem'=>1,
@@ -54217,7 +54217,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1778,
                                     'subject_sem'=>1,
@@ -54249,7 +54249,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1779,
                                     'subject_sem'=>1,
@@ -54281,7 +54281,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1780,
                                     'subject_sem'=>1,
@@ -54313,7 +54313,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1781,
                                     'subject_sem'=>1,
@@ -54345,7 +54345,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1782,
                                     'subject_sem'=>1,
@@ -54377,7 +54377,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1783,
                                     'subject_sem'=>1,
@@ -54409,7 +54409,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1784,
                                     'subject_sem'=>1,
@@ -54441,7 +54441,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1785,
                                     'subject_sem'=>1,
@@ -54473,7 +54473,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1786,
                                     'subject_sem'=>1,
@@ -54505,7 +54505,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1787,
                                     'subject_sem'=>1,
@@ -54537,7 +54537,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1788,
                                     'subject_sem'=>1,
@@ -54569,7 +54569,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1789,
                                     'subject_sem'=>1,
@@ -54601,7 +54601,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1790,
                                     'subject_sem'=>1,
@@ -54633,7 +54633,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1791,
                                     'subject_sem'=>1,
@@ -54665,7 +54665,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1792,
                                     'subject_sem'=>1,
@@ -54697,7 +54697,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1793,
                                     'subject_sem'=>1,
@@ -54729,7 +54729,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1794,
                                     'subject_sem'=>1,
@@ -54761,7 +54761,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1795,
                                     'subject_sem'=>1,
@@ -54793,7 +54793,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1796,
                                     'subject_sem'=>1,
@@ -54825,7 +54825,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1797,
                                     'subject_sem'=>1,
@@ -54857,7 +54857,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1798,
                                     'subject_sem'=>1,
@@ -54889,7 +54889,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1799,
                                     'subject_sem'=>1,
@@ -54921,7 +54921,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1800,
                                     'subject_sem'=>1,
@@ -54953,7 +54953,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1801,
                                     'subject_sem'=>1,
@@ -54985,7 +54985,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1802,
                                     'subject_sem'=>1,
@@ -55017,7 +55017,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1803,
                                     'subject_sem'=>1,
@@ -55049,7 +55049,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1804,
                                     'subject_sem'=>1,
@@ -55081,7 +55081,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1805,
                                     'subject_sem'=>1,
@@ -55113,7 +55113,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1806,
                                     'subject_sem'=>1,
@@ -55145,7 +55145,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1807,
                                     'subject_sem'=>1,
@@ -55177,7 +55177,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1808,
                                     'subject_sem'=>1,
@@ -55209,7 +55209,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1809,
                                     'subject_sem'=>1,
@@ -55241,7 +55241,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1810,
                                     'subject_sem'=>1,
@@ -55273,7 +55273,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1811,
                                     'subject_sem'=>1,
@@ -55305,7 +55305,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1812,
                                     'subject_sem'=>1,
@@ -55337,7 +55337,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1813,
                                     'subject_sem'=>1,
@@ -55369,7 +55369,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1814,
                                     'subject_sem'=>1,
@@ -55401,7 +55401,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1815,
                                     'subject_sem'=>1,
@@ -55433,7 +55433,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1816,
                                     'subject_sem'=>1,
@@ -55465,7 +55465,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1817,
                                     'subject_sem'=>1,
@@ -55497,7 +55497,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1818,
                                     'subject_sem'=>1,
@@ -55529,7 +55529,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1819,
                                     'subject_sem'=>1,
@@ -55561,7 +55561,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1820,
                                     'subject_sem'=>1,
@@ -55593,7 +55593,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1821,
                                     'subject_sem'=>1,
@@ -55625,7 +55625,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1822,
                                     'subject_sem'=>1,
@@ -55657,7 +55657,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1823,
                                     'subject_sem'=>1,
@@ -55689,7 +55689,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1824,
                                     'subject_sem'=>1,
@@ -55721,7 +55721,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1825,
                                     'subject_sem'=>1,
@@ -55753,7 +55753,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1826,
                                     'subject_sem'=>1,
@@ -55785,7 +55785,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1827,
                                     'subject_sem'=>1,
@@ -55817,7 +55817,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1828,
                                     'subject_sem'=>1,
@@ -55849,7 +55849,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1829,
                                     'subject_sem'=>1,
@@ -55881,7 +55881,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1830,
                                     'subject_sem'=>1,
@@ -55913,7 +55913,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1831,
                                     'subject_sem'=>1,
@@ -55945,7 +55945,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1832,
                                     'subject_sem'=>1,
@@ -55977,7 +55977,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1833,
                                     'subject_sem'=>1,
@@ -56009,7 +56009,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1834,
                                     'subject_sem'=>1,
@@ -56041,7 +56041,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1835,
                                     'subject_sem'=>1,
@@ -56073,7 +56073,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1836,
                                     'subject_sem'=>1,
@@ -56105,7 +56105,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1837,
                                     'subject_sem'=>1,
@@ -56137,7 +56137,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1838,
                                     'subject_sem'=>1,
@@ -56169,7 +56169,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1839,
                                     'subject_sem'=>1,
@@ -56201,7 +56201,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1840,
                                     'subject_sem'=>1,
@@ -56233,7 +56233,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1841,
                                     'subject_sem'=>1,
@@ -56265,7 +56265,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1842,
                                     'subject_sem'=>1,
@@ -56297,7 +56297,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1843,
                                     'subject_sem'=>1,
@@ -56329,7 +56329,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1844,
                                     'subject_sem'=>1,
@@ -56361,7 +56361,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1845,
                                     'subject_sem'=>1,
@@ -56393,7 +56393,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1846,
                                     'subject_sem'=>1,
@@ -56425,7 +56425,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1847,
                                     'subject_sem'=>1,
@@ -56457,7 +56457,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1848,
                                     'subject_sem'=>1,
@@ -56489,7 +56489,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1849,
                                     'subject_sem'=>1,
@@ -56521,7 +56521,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1850,
                                     'subject_sem'=>1,
@@ -56553,7 +56553,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1851,
                                     'subject_sem'=>1,
@@ -56585,7 +56585,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1852,
                                     'subject_sem'=>1,
@@ -56617,7 +56617,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1853,
                                     'subject_sem'=>1,
@@ -56649,7 +56649,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1854,
                                     'subject_sem'=>1,
@@ -56681,7 +56681,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1855,
                                     'subject_sem'=>1,
@@ -56713,7 +56713,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1856,
                                     'subject_sem'=>1,
@@ -56745,7 +56745,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1857,
                                     'subject_sem'=>1,
@@ -56777,7 +56777,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1858,
                                     'subject_sem'=>1,
@@ -56809,7 +56809,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1859,
                                     'subject_sem'=>1,
@@ -56841,7 +56841,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1860,
                                     'subject_sem'=>1,
@@ -56873,7 +56873,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1861,
                                     'subject_sem'=>1,
@@ -56905,7 +56905,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1862,
                                     'subject_sem'=>1,
@@ -56937,7 +56937,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1863,
                                     'subject_sem'=>1,
@@ -56969,7 +56969,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1864,
                                     'subject_sem'=>1,
@@ -57001,7 +57001,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1865,
                                     'subject_sem'=>1,
@@ -57033,7 +57033,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1866,
                                     'subject_sem'=>1,
@@ -57065,7 +57065,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1867,
                                     'subject_sem'=>1,
@@ -57097,7 +57097,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1868,
                                     'subject_sem'=>1,
@@ -57129,7 +57129,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1869,
                                     'subject_sem'=>1,
@@ -57161,7 +57161,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1870,
                                     'subject_sem'=>1,
@@ -57193,7 +57193,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1871,
                                     'subject_sem'=>1,
@@ -57225,7 +57225,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1872,
                                     'subject_sem'=>1,
@@ -57257,7 +57257,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1873,
                                     'subject_sem'=>1,
@@ -57289,7 +57289,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1874,
                                     'subject_sem'=>1,
@@ -57321,7 +57321,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1875,
                                     'subject_sem'=>1,
@@ -57353,7 +57353,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1876,
                                     'subject_sem'=>1,
@@ -57385,7 +57385,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1877,
                                     'subject_sem'=>1,
@@ -57417,7 +57417,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1878,
                                     'subject_sem'=>1,
@@ -57449,7 +57449,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1879,
                                     'subject_sem'=>1,
@@ -57481,7 +57481,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1880,
                                     'subject_sem'=>1,
@@ -57513,7 +57513,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1882,
                                     'subject_sem'=>1,
@@ -57545,7 +57545,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1883,
                                     'subject_sem'=>1,
@@ -57577,7 +57577,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1884,
                                     'subject_sem'=>1,
@@ -57609,7 +57609,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1885,
                                     'subject_sem'=>1,
@@ -57641,7 +57641,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1886,
                                     'subject_sem'=>1,
@@ -57673,7 +57673,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1887,
                                     'subject_sem'=>1,
@@ -57705,7 +57705,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1888,
                                     'subject_sem'=>1,
@@ -57737,7 +57737,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1889,
                                     'subject_sem'=>1,
@@ -57769,7 +57769,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1890,
                                     'subject_sem'=>1,
@@ -57801,7 +57801,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1891,
                                     'subject_sem'=>1,
@@ -57833,7 +57833,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1892,
                                     'subject_sem'=>1,
@@ -57865,7 +57865,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1893,
                                     'subject_sem'=>1,
@@ -57897,7 +57897,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1894,
                                     'subject_sem'=>1,
@@ -57929,7 +57929,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1895,
                                     'subject_sem'=>1,
@@ -57961,7 +57961,7 @@ class SubjectSeeder extends Seeder
                                     'updated_at'=>'2024-02-04 03:40:24',
                                     'deleted_at'=>NULL
                                     ] );
-                                                
+
                                     Subject::create( [
                                     'id'=>1896,
                                     'subject_sem'=>1,
@@ -58025,7 +58025,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:24',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1898,
                                         'subject_sem'=>1,
@@ -58057,7 +58057,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:24',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1899,
                                         'subject_sem'=>1,
@@ -58089,7 +58089,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:24',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1900,
                                         'subject_sem'=>1,
@@ -58121,7 +58121,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:24',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1901,
                                         'subject_sem'=>1,
@@ -58153,7 +58153,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:24',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1902,
                                         'subject_sem'=>1,
@@ -58185,7 +58185,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:24',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1903,
                                         'subject_sem'=>1,
@@ -58217,7 +58217,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:24',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1904,
                                         'subject_sem'=>1,
@@ -58249,7 +58249,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1905,
                                         'subject_sem'=>1,
@@ -58281,7 +58281,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1906,
                                         'subject_sem'=>1,
@@ -58313,7 +58313,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1907,
                                         'subject_sem'=>1,
@@ -58345,7 +58345,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1908,
                                         'subject_sem'=>1,
@@ -58377,7 +58377,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1909,
                                         'subject_sem'=>1,
@@ -58409,7 +58409,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1910,
                                         'subject_sem'=>1,
@@ -58441,7 +58441,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1911,
                                         'subject_sem'=>1,
@@ -58473,7 +58473,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1912,
                                         'subject_sem'=>1,
@@ -58505,7 +58505,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1913,
                                         'subject_sem'=>1,
@@ -58537,7 +58537,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1914,
                                         'subject_sem'=>1,
@@ -58569,7 +58569,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1915,
                                         'subject_sem'=>1,
@@ -58601,7 +58601,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1916,
                                         'subject_sem'=>1,
@@ -58633,7 +58633,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1917,
                                         'subject_sem'=>1,
@@ -58665,7 +58665,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1918,
                                         'subject_sem'=>1,
@@ -58697,7 +58697,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1919,
                                         'subject_sem'=>1,
@@ -58729,7 +58729,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1920,
                                         'subject_sem'=>1,
@@ -58761,7 +58761,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1921,
                                         'subject_sem'=>1,
@@ -58793,7 +58793,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1922,
                                         'subject_sem'=>1,
@@ -58825,7 +58825,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1923,
                                         'subject_sem'=>1,
@@ -58857,7 +58857,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1924,
                                         'subject_sem'=>1,
@@ -58889,7 +58889,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1925,
                                         'subject_sem'=>1,
@@ -58921,7 +58921,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1926,
                                         'subject_sem'=>1,
@@ -58953,7 +58953,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1927,
                                         'subject_sem'=>1,
@@ -58985,7 +58985,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1928,
                                         'subject_sem'=>1,
@@ -59017,7 +59017,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1929,
                                         'subject_sem'=>1,
@@ -59049,7 +59049,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1930,
                                         'subject_sem'=>1,
@@ -59081,7 +59081,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1931,
                                         'subject_sem'=>1,
@@ -59113,7 +59113,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1932,
                                         'subject_sem'=>1,
@@ -59145,7 +59145,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1933,
                                         'subject_sem'=>1,
@@ -59177,7 +59177,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1934,
                                         'subject_sem'=>1,
@@ -59209,7 +59209,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1935,
                                         'subject_sem'=>1,
@@ -59241,7 +59241,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1936,
                                         'subject_sem'=>1,
@@ -59273,7 +59273,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1937,
                                         'subject_sem'=>1,
@@ -59305,7 +59305,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1938,
                                         'subject_sem'=>1,
@@ -59337,7 +59337,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1939,
                                         'subject_sem'=>1,
@@ -59369,7 +59369,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1940,
                                         'subject_sem'=>1,
@@ -59401,7 +59401,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1941,
                                         'subject_sem'=>1,
@@ -59433,7 +59433,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1942,
                                         'subject_sem'=>1,
@@ -59465,7 +59465,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1943,
                                         'subject_sem'=>1,
@@ -59497,7 +59497,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1944,
                                         'subject_sem'=>1,
@@ -59529,7 +59529,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1945,
                                         'subject_sem'=>1,
@@ -59561,7 +59561,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1946,
                                         'subject_sem'=>1,
@@ -59593,7 +59593,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1947,
                                         'subject_sem'=>1,
@@ -59625,7 +59625,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1948,
                                         'subject_sem'=>1,
@@ -59657,7 +59657,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1949,
                                         'subject_sem'=>1,
@@ -59689,7 +59689,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1950,
                                         'subject_sem'=>1,
@@ -59721,7 +59721,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1951,
                                         'subject_sem'=>1,
@@ -59753,7 +59753,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1952,
                                         'subject_sem'=>1,
@@ -59785,7 +59785,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1953,
                                         'subject_sem'=>1,
@@ -59817,7 +59817,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1954,
                                         'subject_sem'=>1,
@@ -59849,7 +59849,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1955,
                                         'subject_sem'=>1,
@@ -59881,7 +59881,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1956,
                                         'subject_sem'=>1,
@@ -59913,7 +59913,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1957,
                                         'subject_sem'=>1,
@@ -59945,7 +59945,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1958,
                                         'subject_sem'=>1,
@@ -59977,7 +59977,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1959,
                                         'subject_sem'=>1,
@@ -60009,7 +60009,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1960,
                                         'subject_sem'=>1,
@@ -60041,7 +60041,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1961,
                                         'subject_sem'=>1,
@@ -60073,7 +60073,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1962,
                                         'subject_sem'=>1,
@@ -60105,7 +60105,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1963,
                                         'subject_sem'=>1,
@@ -60137,7 +60137,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1964,
                                         'subject_sem'=>1,
@@ -60169,7 +60169,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1965,
                                         'subject_sem'=>1,
@@ -60201,7 +60201,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1966,
                                         'subject_sem'=>1,
@@ -60233,7 +60233,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1967,
                                         'subject_sem'=>1,
@@ -60265,7 +60265,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1968,
                                         'subject_sem'=>1,
@@ -60297,7 +60297,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1969,
                                         'subject_sem'=>1,
@@ -60329,7 +60329,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1970,
                                         'subject_sem'=>1,
@@ -60361,7 +60361,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1971,
                                         'subject_sem'=>1,
@@ -60393,7 +60393,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1972,
                                         'subject_sem'=>1,
@@ -60425,7 +60425,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1973,
                                         'subject_sem'=>1,
@@ -60457,7 +60457,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1974,
                                         'subject_sem'=>1,
@@ -60489,7 +60489,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1975,
                                         'subject_sem'=>1,
@@ -60521,7 +60521,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1976,
                                         'subject_sem'=>1,
@@ -60553,7 +60553,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1977,
                                         'subject_sem'=>1,
@@ -60585,7 +60585,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1978,
                                         'subject_sem'=>1,
@@ -60617,7 +60617,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1979,
                                         'subject_sem'=>1,
@@ -60649,7 +60649,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1980,
                                         'subject_sem'=>1,
@@ -60681,7 +60681,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1981,
                                         'subject_sem'=>1,
@@ -60713,7 +60713,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1982,
                                         'subject_sem'=>1,
@@ -60745,7 +60745,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1983,
                                         'subject_sem'=>1,
@@ -60777,7 +60777,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1984,
                                         'subject_sem'=>1,
@@ -60809,7 +60809,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1985,
                                         'subject_sem'=>1,
@@ -60841,7 +60841,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1986,
                                         'subject_sem'=>1,
@@ -60873,7 +60873,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1987,
                                         'subject_sem'=>1,
@@ -60905,7 +60905,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1988,
                                         'subject_sem'=>1,
@@ -60937,7 +60937,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1989,
                                         'subject_sem'=>1,
@@ -60969,7 +60969,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1990,
                                         'subject_sem'=>1,
@@ -61001,7 +61001,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1991,
                                         'subject_sem'=>1,
@@ -61033,7 +61033,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1992,
                                         'subject_sem'=>1,
@@ -61065,7 +61065,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1993,
                                         'subject_sem'=>1,
@@ -61097,7 +61097,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1994,
                                         'subject_sem'=>1,
@@ -61129,7 +61129,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1995,
                                         'subject_sem'=>1,
@@ -61161,7 +61161,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1996,
                                         'subject_sem'=>1,
@@ -61193,7 +61193,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1997,
                                         'subject_sem'=>1,
@@ -61225,7 +61225,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1998,
                                         'subject_sem'=>1,
@@ -61257,7 +61257,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>1999,
                                         'subject_sem'=>1,
@@ -61289,7 +61289,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2000,
                                         'subject_sem'=>1,
@@ -61321,7 +61321,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2001,
                                         'subject_sem'=>1,
@@ -61353,7 +61353,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2002,
                                         'subject_sem'=>1,
@@ -61385,7 +61385,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2003,
                                         'subject_sem'=>1,
@@ -61417,7 +61417,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2004,
                                         'subject_sem'=>1,
@@ -61449,7 +61449,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2005,
                                         'subject_sem'=>1,
@@ -61481,7 +61481,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2006,
                                         'subject_sem'=>1,
@@ -61513,7 +61513,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2007,
                                         'subject_sem'=>1,
@@ -61545,7 +61545,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2008,
                                         'subject_sem'=>1,
@@ -61577,7 +61577,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2009,
                                         'subject_sem'=>1,
@@ -61609,7 +61609,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2010,
                                         'subject_sem'=>1,
@@ -61641,7 +61641,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2011,
                                         'subject_sem'=>1,
@@ -61673,7 +61673,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2012,
                                         'subject_sem'=>1,
@@ -61705,7 +61705,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2013,
                                         'subject_sem'=>1,
@@ -61737,7 +61737,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2014,
                                         'subject_sem'=>1,
@@ -61769,7 +61769,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2015,
                                         'subject_sem'=>1,
@@ -61801,7 +61801,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2016,
                                         'subject_sem'=>1,
@@ -61833,7 +61833,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2017,
                                         'subject_sem'=>1,
@@ -61865,7 +61865,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2018,
                                         'subject_sem'=>1,
@@ -61897,7 +61897,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2019,
                                         'subject_sem'=>1,
@@ -61929,7 +61929,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2020,
                                         'subject_sem'=>1,
@@ -61961,7 +61961,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2021,
                                         'subject_sem'=>1,
@@ -61993,7 +61993,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2022,
                                         'subject_sem'=>1,
@@ -62025,7 +62025,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2023,
                                         'subject_sem'=>1,
@@ -62057,7 +62057,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2024,
                                         'subject_sem'=>2,
@@ -62089,7 +62089,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2025,
                                         'subject_sem'=>2,
@@ -62121,7 +62121,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2026,
                                         'subject_sem'=>2,
@@ -62153,7 +62153,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2027,
                                         'subject_sem'=>2,
@@ -62185,7 +62185,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2028,
                                         'subject_sem'=>2,
@@ -62217,7 +62217,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2029,
                                         'subject_sem'=>2,
@@ -62249,7 +62249,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2030,
                                         'subject_sem'=>2,
@@ -62281,7 +62281,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2031,
                                         'subject_sem'=>2,
@@ -62313,7 +62313,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2032,
                                         'subject_sem'=>2,
@@ -62345,7 +62345,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2033,
                                         'subject_sem'=>2,
@@ -62377,7 +62377,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2034,
                                         'subject_sem'=>2,
@@ -62409,7 +62409,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2035,
                                         'subject_sem'=>2,
@@ -62441,7 +62441,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2036,
                                         'subject_sem'=>2,
@@ -62473,7 +62473,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2037,
                                         'subject_sem'=>2,
@@ -62505,7 +62505,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2038,
                                         'subject_sem'=>2,
@@ -62537,7 +62537,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2039,
                                         'subject_sem'=>2,
@@ -62569,7 +62569,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2040,
                                         'subject_sem'=>2,
@@ -62601,7 +62601,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2041,
                                         'subject_sem'=>2,
@@ -62633,7 +62633,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2042,
                                         'subject_sem'=>2,
@@ -62665,7 +62665,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2043,
                                         'subject_sem'=>2,
@@ -62697,7 +62697,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2044,
                                         'subject_sem'=>2,
@@ -62729,7 +62729,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2045,
                                         'subject_sem'=>2,
@@ -62761,7 +62761,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2046,
                                         'subject_sem'=>2,
@@ -62793,7 +62793,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2047,
                                         'subject_sem'=>2,
@@ -62825,7 +62825,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2048,
                                         'subject_sem'=>2,
@@ -62857,7 +62857,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2049,
                                         'subject_sem'=>2,
@@ -62889,7 +62889,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2050,
                                         'subject_sem'=>2,
@@ -62921,7 +62921,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2051,
                                         'subject_sem'=>2,
@@ -62953,7 +62953,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2052,
                                         'subject_sem'=>2,
@@ -62985,7 +62985,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2053,
                                         'subject_sem'=>2,
@@ -63017,7 +63017,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2054,
                                         'subject_sem'=>2,
@@ -63049,7 +63049,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2055,
                                         'subject_sem'=>2,
@@ -63081,7 +63081,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2056,
                                         'subject_sem'=>2,
@@ -63113,7 +63113,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2057,
                                         'subject_sem'=>2,
@@ -63145,7 +63145,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2058,
                                         'subject_sem'=>2,
@@ -63177,7 +63177,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2059,
                                         'subject_sem'=>2,
@@ -63209,7 +63209,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2060,
                                         'subject_sem'=>2,
@@ -63241,7 +63241,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2061,
                                         'subject_sem'=>2,
@@ -63273,7 +63273,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2062,
                                         'subject_sem'=>2,
@@ -63305,7 +63305,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2063,
                                         'subject_sem'=>2,
@@ -63337,7 +63337,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2064,
                                         'subject_sem'=>2,
@@ -63369,7 +63369,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2065,
                                         'subject_sem'=>2,
@@ -63401,7 +63401,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>'2024-02-04 03:40:25',
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2066,
                                         'subject_sem'=>2,
@@ -63433,7 +63433,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2067,
                                         'subject_sem'=>2,
@@ -63465,7 +63465,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2068,
                                         'subject_sem'=>2,
@@ -63497,7 +63497,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2069,
                                         'subject_sem'=>2,
@@ -63529,7 +63529,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2070,
                                         'subject_sem'=>2,
@@ -63561,7 +63561,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2071,
                                         'subject_sem'=>2,
@@ -63593,7 +63593,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2072,
                                         'subject_sem'=>2,
@@ -63625,7 +63625,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2073,
                                         'subject_sem'=>2,
@@ -63657,7 +63657,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2074,
                                         'subject_sem'=>2,
@@ -63689,7 +63689,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2075,
                                         'subject_sem'=>2,
@@ -63721,7 +63721,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2076,
                                         'subject_sem'=>2,
@@ -63753,7 +63753,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2077,
                                         'subject_sem'=>2,
@@ -63785,7 +63785,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2078,
                                         'subject_sem'=>2,
@@ -63817,7 +63817,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2079,
                                         'subject_sem'=>2,
@@ -63849,7 +63849,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2080,
                                         'subject_sem'=>2,
@@ -63881,7 +63881,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2081,
                                         'subject_sem'=>2,
@@ -63913,7 +63913,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2082,
                                         'subject_sem'=>2,
@@ -63945,7 +63945,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2083,
                                         'subject_sem'=>2,
@@ -63977,7 +63977,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2084,
                                         'subject_sem'=>2,
@@ -64009,7 +64009,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2085,
                                         'subject_sem'=>2,
@@ -64041,7 +64041,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2086,
                                         'subject_sem'=>2,
@@ -64073,7 +64073,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2087,
                                         'subject_sem'=>2,
@@ -64105,7 +64105,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2088,
                                         'subject_sem'=>2,
@@ -64137,7 +64137,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2089,
                                         'subject_sem'=>2,
@@ -64169,7 +64169,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2090,
                                         'subject_sem'=>2,
@@ -64201,7 +64201,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2091,
                                         'subject_sem'=>2,
@@ -64233,7 +64233,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2092,
                                         'subject_sem'=>2,
@@ -64265,7 +64265,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2093,
                                         'subject_sem'=>2,
@@ -64297,7 +64297,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2094,
                                         'subject_sem'=>2,
@@ -64329,7 +64329,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2095,
                                         'subject_sem'=>2,
@@ -64361,7 +64361,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2096,
                                         'subject_sem'=>2,
@@ -64393,7 +64393,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2097,
                                         'subject_sem'=>2,
@@ -64425,7 +64425,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2098,
                                         'subject_sem'=>2,
@@ -64457,7 +64457,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2099,
                                         'subject_sem'=>2,
@@ -64489,7 +64489,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2100,
                                         'subject_sem'=>2,
@@ -64521,7 +64521,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2101,
                                         'subject_sem'=>2,
@@ -64553,7 +64553,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2102,
                                         'subject_sem'=>2,
@@ -64585,7 +64585,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2103,
                                         'subject_sem'=>2,
@@ -64617,7 +64617,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2104,
                                         'subject_sem'=>2,
@@ -64649,7 +64649,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2105,
                                         'subject_sem'=>2,
@@ -64681,7 +64681,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2106,
                                         'subject_sem'=>2,
@@ -64713,7 +64713,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2107,
                                         'subject_sem'=>2,
@@ -64745,7 +64745,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2108,
                                         'subject_sem'=>2,
@@ -64777,7 +64777,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2109,
                                         'subject_sem'=>2,
@@ -64809,7 +64809,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2110,
                                         'subject_sem'=>2,
@@ -64841,7 +64841,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2111,
                                         'subject_sem'=>2,
@@ -64873,7 +64873,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2112,
                                         'subject_sem'=>2,
@@ -64905,7 +64905,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2113,
                                         'subject_sem'=>2,
@@ -64937,7 +64937,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2114,
                                         'subject_sem'=>2,
@@ -64969,7 +64969,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2115,
                                         'subject_sem'=>2,
@@ -65001,7 +65001,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2116,
                                         'subject_sem'=>2,
@@ -65033,7 +65033,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2117,
                                         'subject_sem'=>2,
@@ -65065,7 +65065,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2118,
                                         'subject_sem'=>2,
@@ -65097,7 +65097,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2119,
                                         'subject_sem'=>2,
@@ -65129,7 +65129,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2120,
                                         'subject_sem'=>2,
@@ -65161,7 +65161,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2121,
                                         'subject_sem'=>2,
@@ -65193,7 +65193,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2122,
                                         'subject_sem'=>2,
@@ -65225,7 +65225,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2123,
                                         'subject_sem'=>2,
@@ -65257,7 +65257,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2124,
                                         'subject_sem'=>2,
@@ -65289,7 +65289,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2125,
                                         'subject_sem'=>2,
@@ -65321,7 +65321,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2126,
                                         'subject_sem'=>2,
@@ -65353,7 +65353,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2127,
                                         'subject_sem'=>2,
@@ -65385,7 +65385,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2128,
                                         'subject_sem'=>2,
@@ -65417,7 +65417,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2129,
                                         'subject_sem'=>2,
@@ -65449,7 +65449,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2130,
                                         'subject_sem'=>2,
@@ -65481,7 +65481,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2131,
                                         'subject_sem'=>2,
@@ -65513,7 +65513,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2132,
                                         'subject_sem'=>2,
@@ -65545,7 +65545,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2133,
                                         'subject_sem'=>2,
@@ -65577,7 +65577,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2134,
                                         'subject_sem'=>2,
@@ -65609,7 +65609,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2135,
                                         'subject_sem'=>2,
@@ -65641,7 +65641,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2136,
                                         'subject_sem'=>2,
@@ -65673,7 +65673,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2137,
                                         'subject_sem'=>2,
@@ -65705,7 +65705,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2138,
                                         'subject_sem'=>2,
@@ -65737,7 +65737,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2139,
                                         'subject_sem'=>2,
@@ -65769,7 +65769,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2140,
                                         'subject_sem'=>2,
@@ -65801,7 +65801,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2141,
                                         'subject_sem'=>2,
@@ -65833,7 +65833,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2142,
                                         'subject_sem'=>2,
@@ -65865,7 +65865,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2143,
                                         'subject_sem'=>2,
@@ -65897,7 +65897,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2144,
                                         'subject_sem'=>2,
@@ -65929,7 +65929,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2145,
                                         'subject_sem'=>2,
@@ -65961,7 +65961,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2146,
                                         'subject_sem'=>2,
@@ -65993,7 +65993,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2147,
                                         'subject_sem'=>2,
@@ -66025,7 +66025,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2148,
                                         'subject_sem'=>2,
@@ -66057,7 +66057,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2149,
                                         'subject_sem'=>2,
@@ -66089,7 +66089,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2150,
                                         'subject_sem'=>2,
@@ -66121,7 +66121,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2151,
                                         'subject_sem'=>2,
@@ -66153,7 +66153,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2152,
                                         'subject_sem'=>2,
@@ -66185,7 +66185,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2153,
                                         'subject_sem'=>2,
@@ -66217,7 +66217,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2154,
                                         'subject_sem'=>2,
@@ -66249,7 +66249,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2155,
                                         'subject_sem'=>2,
@@ -66281,7 +66281,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2156,
                                         'subject_sem'=>2,
@@ -66313,7 +66313,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2157,
                                         'subject_sem'=>2,
@@ -66345,7 +66345,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2158,
                                         'subject_sem'=>2,
@@ -66377,7 +66377,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2159,
                                         'subject_sem'=>2,
@@ -66409,7 +66409,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2160,
                                         'subject_sem'=>2,
@@ -66441,7 +66441,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2161,
                                         'subject_sem'=>2,
@@ -66473,7 +66473,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2162,
                                         'subject_sem'=>2,
@@ -66505,7 +66505,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2163,
                                         'subject_sem'=>2,
@@ -66537,7 +66537,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2164,
                                         'subject_sem'=>2,
@@ -66569,7 +66569,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2165,
                                         'subject_sem'=>2,
@@ -66601,7 +66601,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2166,
                                         'subject_sem'=>2,
@@ -66633,7 +66633,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2167,
                                         'subject_sem'=>2,
@@ -66665,7 +66665,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2168,
                                         'subject_sem'=>2,
@@ -66697,7 +66697,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2169,
                                         'subject_sem'=>2,
@@ -66729,7 +66729,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2170,
                                         'subject_sem'=>2,
@@ -66761,7 +66761,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2171,
                                         'subject_sem'=>2,
@@ -66793,7 +66793,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2172,
                                         'subject_sem'=>2,
@@ -66825,7 +66825,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2173,
                                         'subject_sem'=>2,
@@ -66857,7 +66857,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2174,
                                         'subject_sem'=>2,
@@ -66889,7 +66889,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2175,
                                         'subject_sem'=>2,
@@ -66921,7 +66921,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2176,
                                         'subject_sem'=>2,
@@ -66953,7 +66953,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2177,
                                         'subject_sem'=>2,
@@ -66985,7 +66985,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2178,
                                         'subject_sem'=>2,
@@ -67017,7 +67017,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2179,
                                         'subject_sem'=>2,
@@ -67049,7 +67049,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2180,
                                         'subject_sem'=>2,
@@ -67081,7 +67081,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2181,
                                         'subject_sem'=>2,
@@ -67113,7 +67113,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2182,
                                         'subject_sem'=>2,
@@ -67145,7 +67145,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2183,
                                         'subject_sem'=>2,
@@ -67177,7 +67177,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2184,
                                         'subject_sem'=>2,
@@ -67209,7 +67209,7 @@ class SubjectSeeder extends Seeder
                                         'updated_at'=>NULL,
                                         'deleted_at'=>NULL
                                         ] );
-                                                    
+
                                         Subject::create( [
                                         'id'=>2185,
                                         'subject_sem'=>2,
@@ -67274,7 +67274,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2187,
                                             'subject_sem'=>2,
@@ -67306,7 +67306,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2188,
                                             'subject_sem'=>2,
@@ -67338,7 +67338,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2189,
                                             'subject_sem'=>2,
@@ -67370,7 +67370,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2190,
                                             'subject_sem'=>2,
@@ -67402,7 +67402,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2191,
                                             'subject_sem'=>2,
@@ -67434,7 +67434,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2192,
                                             'subject_sem'=>2,
@@ -67466,7 +67466,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2193,
                                             'subject_sem'=>2,
@@ -67498,7 +67498,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2194,
                                             'subject_sem'=>2,
@@ -67530,7 +67530,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2195,
                                             'subject_sem'=>2,
@@ -67562,7 +67562,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2196,
                                             'subject_sem'=>2,
@@ -67594,7 +67594,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2197,
                                             'subject_sem'=>2,
@@ -67626,7 +67626,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2198,
                                             'subject_sem'=>2,
@@ -67658,7 +67658,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2199,
                                             'subject_sem'=>2,
@@ -67690,7 +67690,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2200,
                                             'subject_sem'=>2,
@@ -67722,7 +67722,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2201,
                                             'subject_sem'=>2,
@@ -67754,7 +67754,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2202,
                                             'subject_sem'=>2,
@@ -67786,7 +67786,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2203,
                                             'subject_sem'=>2,
@@ -67818,7 +67818,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2204,
                                             'subject_sem'=>2,
@@ -67850,7 +67850,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2205,
                                             'subject_sem'=>2,
@@ -67882,7 +67882,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2206,
                                             'subject_sem'=>2,
@@ -67914,7 +67914,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2207,
                                             'subject_sem'=>2,
@@ -67946,7 +67946,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2208,
                                             'subject_sem'=>2,
@@ -67978,7 +67978,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2209,
                                             'subject_sem'=>2,
@@ -68010,7 +68010,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2210,
                                             'subject_sem'=>2,
@@ -68042,7 +68042,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2211,
                                             'subject_sem'=>2,
@@ -68074,7 +68074,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2212,
                                             'subject_sem'=>2,
@@ -68106,7 +68106,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2213,
                                             'subject_sem'=>2,
@@ -68138,7 +68138,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2214,
                                             'subject_sem'=>2,
@@ -68170,7 +68170,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2215,
                                             'subject_sem'=>2,
@@ -68202,7 +68202,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2216,
                                             'subject_sem'=>2,
@@ -68234,7 +68234,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2217,
                                             'subject_sem'=>2,
@@ -68266,7 +68266,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2218,
                                             'subject_sem'=>2,
@@ -68298,7 +68298,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2219,
                                             'subject_sem'=>2,
@@ -68330,7 +68330,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2220,
                                             'subject_sem'=>2,
@@ -68362,7 +68362,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2221,
                                             'subject_sem'=>2,
@@ -68394,7 +68394,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2222,
                                             'subject_sem'=>2,
@@ -68426,7 +68426,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2223,
                                             'subject_sem'=>2,
@@ -68458,7 +68458,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2224,
                                             'subject_sem'=>2,
@@ -68490,7 +68490,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2225,
                                             'subject_sem'=>2,
@@ -68522,7 +68522,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2226,
                                             'subject_sem'=>2,
@@ -68554,7 +68554,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2227,
                                             'subject_sem'=>2,
@@ -68586,7 +68586,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2228,
                                             'subject_sem'=>2,
@@ -68618,7 +68618,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2229,
                                             'subject_sem'=>2,
@@ -68650,7 +68650,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2230,
                                             'subject_sem'=>2,
@@ -68682,7 +68682,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2231,
                                             'subject_sem'=>2,
@@ -68714,7 +68714,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2232,
                                             'subject_sem'=>2,
@@ -68746,7 +68746,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2233,
                                             'subject_sem'=>2,
@@ -68778,7 +68778,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2234,
                                             'subject_sem'=>2,
@@ -68810,7 +68810,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2235,
                                             'subject_sem'=>2,
@@ -68842,7 +68842,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2236,
                                             'subject_sem'=>2,
@@ -68874,7 +68874,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2237,
                                             'subject_sem'=>2,
@@ -68906,7 +68906,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2238,
                                             'subject_sem'=>2,
@@ -68938,7 +68938,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2239,
                                             'subject_sem'=>2,
@@ -68970,7 +68970,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2240,
                                             'subject_sem'=>2,
@@ -69002,7 +69002,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2241,
                                             'subject_sem'=>2,
@@ -69034,7 +69034,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2242,
                                             'subject_sem'=>2,
@@ -69066,7 +69066,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2243,
                                             'subject_sem'=>2,
@@ -69098,7 +69098,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2244,
                                             'subject_sem'=>2,
@@ -69130,7 +69130,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2245,
                                             'subject_sem'=>2,
@@ -69162,7 +69162,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2246,
                                             'subject_sem'=>2,
@@ -69194,7 +69194,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2247,
                                             'subject_sem'=>2,
@@ -69226,7 +69226,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2248,
                                             'subject_sem'=>2,
@@ -69258,7 +69258,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2249,
                                             'subject_sem'=>2,
@@ -69290,7 +69290,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2250,
                                             'subject_sem'=>2,
@@ -69322,7 +69322,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2251,
                                             'subject_sem'=>2,
@@ -69354,7 +69354,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2252,
                                             'subject_sem'=>2,
@@ -69386,7 +69386,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2253,
                                             'subject_sem'=>2,
@@ -69418,7 +69418,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2254,
                                             'subject_sem'=>2,
@@ -69450,7 +69450,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2255,
                                             'subject_sem'=>2,
@@ -69482,7 +69482,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2256,
                                             'subject_sem'=>2,
@@ -69514,7 +69514,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2257,
                                             'subject_sem'=>2,
@@ -69546,7 +69546,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2258,
                                             'subject_sem'=>2,
@@ -69578,7 +69578,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2259,
                                             'subject_sem'=>2,
@@ -69610,7 +69610,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2260,
                                             'subject_sem'=>2,
@@ -69642,7 +69642,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2261,
                                             'subject_sem'=>2,
@@ -69674,7 +69674,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2262,
                                             'subject_sem'=>2,
@@ -69706,7 +69706,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2263,
                                             'subject_sem'=>2,
@@ -69738,7 +69738,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2264,
                                             'subject_sem'=>2,
@@ -69770,7 +69770,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2265,
                                             'subject_sem'=>2,
@@ -69802,7 +69802,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2266,
                                             'subject_sem'=>2,
@@ -69834,7 +69834,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2267,
                                             'subject_sem'=>2,
@@ -69866,7 +69866,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2268,
                                             'subject_sem'=>2,
@@ -69898,7 +69898,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2269,
                                             'subject_sem'=>2,
@@ -69930,7 +69930,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2270,
                                             'subject_sem'=>2,
@@ -69962,7 +69962,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2271,
                                             'subject_sem'=>2,
@@ -69994,7 +69994,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2272,
                                             'subject_sem'=>2,
@@ -70026,7 +70026,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2273,
                                             'subject_sem'=>2,
@@ -70058,7 +70058,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2274,
                                             'subject_sem'=>2,
@@ -70090,7 +70090,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2275,
                                             'subject_sem'=>2,
@@ -70122,7 +70122,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2276,
                                             'subject_sem'=>2,
@@ -70154,7 +70154,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2277,
                                             'subject_sem'=>2,
@@ -70186,7 +70186,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2278,
                                             'subject_sem'=>2,
@@ -70218,7 +70218,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2279,
                                             'subject_sem'=>2,
@@ -70250,7 +70250,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2280,
                                             'subject_sem'=>2,
@@ -70282,7 +70282,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2281,
                                             'subject_sem'=>2,
@@ -70314,7 +70314,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2282,
                                             'subject_sem'=>2,
@@ -70346,7 +70346,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2283,
                                             'subject_sem'=>2,
@@ -70378,7 +70378,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2284,
                                             'subject_sem'=>2,
@@ -70410,7 +70410,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2285,
                                             'subject_sem'=>2,
@@ -70442,7 +70442,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2286,
                                             'subject_sem'=>2,
@@ -70474,7 +70474,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2287,
                                             'subject_sem'=>2,
@@ -70506,7 +70506,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2288,
                                             'subject_sem'=>2,
@@ -70538,7 +70538,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2289,
                                             'subject_sem'=>2,
@@ -70570,7 +70570,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2290,
                                             'subject_sem'=>2,
@@ -70602,7 +70602,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2291,
                                             'subject_sem'=>2,
@@ -70634,7 +70634,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2292,
                                             'subject_sem'=>2,
@@ -70666,7 +70666,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2293,
                                             'subject_sem'=>2,
@@ -70698,7 +70698,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2294,
                                             'subject_sem'=>2,
@@ -70730,7 +70730,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2295,
                                             'subject_sem'=>2,
@@ -70762,7 +70762,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2296,
                                             'subject_sem'=>2,
@@ -70794,7 +70794,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2297,
                                             'subject_sem'=>2,
@@ -70826,7 +70826,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2298,
                                             'subject_sem'=>2,
@@ -70858,7 +70858,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2299,
                                             'subject_sem'=>2,
@@ -70890,7 +70890,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2300,
                                             'subject_sem'=>2,
@@ -70922,7 +70922,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2301,
                                             'subject_sem'=>2,
@@ -70954,7 +70954,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2302,
                                             'subject_sem'=>2,
@@ -70986,7 +70986,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2303,
                                             'subject_sem'=>2,
@@ -71018,7 +71018,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2304,
                                             'subject_sem'=>2,
@@ -71050,7 +71050,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2305,
                                             'subject_sem'=>2,
@@ -71082,7 +71082,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2306,
                                             'subject_sem'=>2,
@@ -71114,7 +71114,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2307,
                                             'subject_sem'=>2,
@@ -71146,7 +71146,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2308,
                                             'subject_sem'=>2,
@@ -71178,7 +71178,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2309,
                                             'subject_sem'=>2,
@@ -71210,7 +71210,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2310,
                                             'subject_sem'=>2,
@@ -71242,7 +71242,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2311,
                                             'subject_sem'=>2,
@@ -71274,7 +71274,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2312,
                                             'subject_sem'=>2,
@@ -71306,7 +71306,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2313,
                                             'subject_sem'=>2,
@@ -71338,7 +71338,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2314,
                                             'subject_sem'=>2,
@@ -71370,7 +71370,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2315,
                                             'subject_sem'=>2,
@@ -71402,7 +71402,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2316,
                                             'subject_sem'=>2,
@@ -71434,7 +71434,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2317,
                                             'subject_sem'=>2,
@@ -71466,7 +71466,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2318,
                                             'subject_sem'=>2,
@@ -71498,7 +71498,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2319,
                                             'subject_sem'=>2,
@@ -71530,7 +71530,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2320,
                                             'subject_sem'=>2,
@@ -71562,7 +71562,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2321,
                                             'subject_sem'=>2,
@@ -71594,7 +71594,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2322,
                                             'subject_sem'=>2,
@@ -71626,7 +71626,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2323,
                                             'subject_sem'=>2,
@@ -71658,7 +71658,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2324,
                                             'subject_sem'=>2,
@@ -71690,7 +71690,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2325,
                                             'subject_sem'=>2,
@@ -71722,7 +71722,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2326,
                                             'subject_sem'=>2,
@@ -71754,7 +71754,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2327,
                                             'subject_sem'=>2,
@@ -71786,7 +71786,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2328,
                                             'subject_sem'=>2,
@@ -71818,7 +71818,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2329,
                                             'subject_sem'=>2,
@@ -71850,7 +71850,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2330,
                                             'subject_sem'=>2,
@@ -71882,7 +71882,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2331,
                                             'subject_sem'=>2,
@@ -71914,7 +71914,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2332,
                                             'subject_sem'=>2,
@@ -71946,7 +71946,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2333,
                                             'subject_sem'=>2,
@@ -71978,7 +71978,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2334,
                                             'subject_sem'=>2,
@@ -72010,7 +72010,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2335,
                                             'subject_sem'=>2,
@@ -72042,7 +72042,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2336,
                                             'subject_sem'=>2,
@@ -72074,7 +72074,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2337,
                                             'subject_sem'=>2,
@@ -72106,7 +72106,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2338,
                                             'subject_sem'=>2,
@@ -72138,7 +72138,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2339,
                                             'subject_sem'=>2,
@@ -72170,7 +72170,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2340,
                                             'subject_sem'=>2,
@@ -72202,7 +72202,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2341,
                                             'subject_sem'=>2,
@@ -72234,7 +72234,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2342,
                                             'subject_sem'=>2,
@@ -72266,7 +72266,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2343,
                                             'subject_sem'=>2,
@@ -72298,7 +72298,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2344,
                                             'subject_sem'=>2,
@@ -72330,7 +72330,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2345,
                                             'subject_sem'=>2,
@@ -72362,7 +72362,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2346,
                                             'subject_sem'=>2,
@@ -72394,7 +72394,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2347,
                                             'subject_sem'=>2,
@@ -72426,7 +72426,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2348,
                                             'subject_sem'=>2,
@@ -72458,7 +72458,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2349,
                                             'subject_sem'=>2,
@@ -72490,7 +72490,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2350,
                                             'subject_sem'=>2,
@@ -72522,7 +72522,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2351,
                                             'subject_sem'=>2,
@@ -72554,7 +72554,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2352,
                                             'subject_sem'=>2,
@@ -72586,7 +72586,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2353,
                                             'subject_sem'=>2,
@@ -72618,7 +72618,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2354,
                                             'subject_sem'=>2,
@@ -72650,7 +72650,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2355,
                                             'subject_sem'=>2,
@@ -72682,7 +72682,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2356,
                                             'subject_sem'=>2,
@@ -72714,7 +72714,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2357,
                                             'subject_sem'=>2,
@@ -72746,7 +72746,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2358,
                                             'subject_sem'=>2,
@@ -72778,7 +72778,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2359,
                                             'subject_sem'=>2,
@@ -72810,7 +72810,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2360,
                                             'subject_sem'=>2,
@@ -72842,7 +72842,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2361,
                                             'subject_sem'=>2,
@@ -72874,7 +72874,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2362,
                                             'subject_sem'=>2,
@@ -72906,7 +72906,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2363,
                                             'subject_sem'=>2,
@@ -72938,7 +72938,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2364,
                                             'subject_sem'=>2,
@@ -72970,7 +72970,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2365,
                                             'subject_sem'=>2,
@@ -73002,7 +73002,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2366,
                                             'subject_sem'=>2,
@@ -73034,7 +73034,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2367,
                                             'subject_sem'=>2,
@@ -73066,7 +73066,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2368,
                                             'subject_sem'=>2,
@@ -73098,7 +73098,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2369,
                                             'subject_sem'=>2,
@@ -73130,7 +73130,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2370,
                                             'subject_sem'=>2,
@@ -73162,7 +73162,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2371,
                                             'subject_sem'=>2,
@@ -73194,7 +73194,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2372,
                                             'subject_sem'=>2,
@@ -73226,7 +73226,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2373,
                                             'subject_sem'=>2,
@@ -73258,7 +73258,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2374,
                                             'subject_sem'=>2,
@@ -73290,7 +73290,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2375,
                                             'subject_sem'=>2,
@@ -73322,7 +73322,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2376,
                                             'subject_sem'=>2,
@@ -73354,7 +73354,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2377,
                                             'subject_sem'=>2,
@@ -73386,7 +73386,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2378,
                                             'subject_sem'=>2,
@@ -73418,7 +73418,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2379,
                                             'subject_sem'=>2,
@@ -73450,7 +73450,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2380,
                                             'subject_sem'=>2,
@@ -73482,7 +73482,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2381,
                                             'subject_sem'=>2,
@@ -73514,7 +73514,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2382,
                                             'subject_sem'=>2,
@@ -73546,7 +73546,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2383,
                                             'subject_sem'=>2,
@@ -73578,7 +73578,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2384,
                                             'subject_sem'=>2,
@@ -73610,7 +73610,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2385,
                                             'subject_sem'=>2,
@@ -73642,7 +73642,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2386,
                                             'subject_sem'=>2,
@@ -73674,7 +73674,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2387,
                                             'subject_sem'=>2,
@@ -73706,7 +73706,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2388,
                                             'subject_sem'=>2,
@@ -73738,7 +73738,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2389,
                                             'subject_sem'=>2,
@@ -73770,7 +73770,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2390,
                                             'subject_sem'=>2,
@@ -73802,7 +73802,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2391,
                                             'subject_sem'=>2,
@@ -73834,7 +73834,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2392,
                                             'subject_sem'=>2,
@@ -73866,7 +73866,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2393,
                                             'subject_sem'=>2,
@@ -73898,7 +73898,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2394,
                                             'subject_sem'=>2,
@@ -73930,7 +73930,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2395,
                                             'subject_sem'=>2,
@@ -73962,7 +73962,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2396,
                                             'subject_sem'=>2,
@@ -73994,7 +73994,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2397,
                                             'subject_sem'=>2,
@@ -74026,7 +74026,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2398,
                                             'subject_sem'=>2,
@@ -74058,7 +74058,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2399,
                                             'subject_sem'=>2,
@@ -74090,7 +74090,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2400,
                                             'subject_sem'=>2,
@@ -74122,7 +74122,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2401,
                                             'subject_sem'=>2,
@@ -74154,7 +74154,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2402,
                                             'subject_sem'=>2,
@@ -74186,7 +74186,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2403,
                                             'subject_sem'=>2,
@@ -74218,7 +74218,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2404,
                                             'subject_sem'=>2,
@@ -74250,7 +74250,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2405,
                                             'subject_sem'=>2,
@@ -74282,7 +74282,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2406,
                                             'subject_sem'=>2,
@@ -74314,7 +74314,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2407,
                                             'subject_sem'=>2,
@@ -74346,7 +74346,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2408,
                                             'subject_sem'=>2,
@@ -74378,7 +74378,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2409,
                                             'subject_sem'=>2,
@@ -74410,7 +74410,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2410,
                                             'subject_sem'=>2,
@@ -74442,7 +74442,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2411,
                                             'subject_sem'=>2,
@@ -74474,7 +74474,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2412,
                                             'subject_sem'=>2,
@@ -74506,7 +74506,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2413,
                                             'subject_sem'=>2,
@@ -74538,7 +74538,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2414,
                                             'subject_sem'=>2,
@@ -74570,7 +74570,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2415,
                                             'subject_sem'=>2,
@@ -74602,7 +74602,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2416,
                                             'subject_sem'=>2,
@@ -74634,7 +74634,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2417,
                                             'subject_sem'=>2,
@@ -74666,7 +74666,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2418,
                                             'subject_sem'=>2,
@@ -74698,7 +74698,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2419,
                                             'subject_sem'=>2,
@@ -74730,7 +74730,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2420,
                                             'subject_sem'=>2,
@@ -74762,7 +74762,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2421,
                                             'subject_sem'=>2,
@@ -74794,7 +74794,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2422,
                                             'subject_sem'=>2,
@@ -74826,7 +74826,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2423,
                                             'subject_sem'=>2,
@@ -74858,7 +74858,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2424,
                                             'subject_sem'=>2,
@@ -74890,7 +74890,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2425,
                                             'subject_sem'=>2,
@@ -74922,7 +74922,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2426,
                                             'subject_sem'=>2,
@@ -74954,7 +74954,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2427,
                                             'subject_sem'=>2,
@@ -74986,7 +74986,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2428,
                                             'subject_sem'=>2,
@@ -75018,7 +75018,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2429,
                                             'subject_sem'=>2,
@@ -75050,7 +75050,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2430,
                                             'subject_sem'=>2,
@@ -75082,7 +75082,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2431,
                                             'subject_sem'=>2,
@@ -75114,7 +75114,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2432,
                                             'subject_sem'=>2,
@@ -75146,7 +75146,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2433,
                                             'subject_sem'=>2,
@@ -75178,7 +75178,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2434,
                                             'subject_sem'=>2,
@@ -75210,7 +75210,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2435,
                                             'subject_sem'=>2,
@@ -75242,7 +75242,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2436,
                                             'subject_sem'=>2,
@@ -75274,7 +75274,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2437,
                                             'subject_sem'=>2,
@@ -75306,7 +75306,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2438,
                                             'subject_sem'=>2,
@@ -75338,7 +75338,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2439,
                                             'subject_sem'=>2,
@@ -75370,7 +75370,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2440,
                                             'subject_sem'=>2,
@@ -75402,7 +75402,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2441,
                                             'subject_sem'=>2,
@@ -75434,7 +75434,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2442,
                                             'subject_sem'=>2,
@@ -75466,7 +75466,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2443,
                                             'subject_sem'=>2,
@@ -75498,7 +75498,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2444,
                                             'subject_sem'=>2,
@@ -75530,7 +75530,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2445,
                                             'subject_sem'=>2,
@@ -75562,7 +75562,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2446,
                                             'subject_sem'=>2,
@@ -75594,7 +75594,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2447,
                                             'subject_sem'=>2,
@@ -75626,7 +75626,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2448,
                                             'subject_sem'=>2,
@@ -75658,7 +75658,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2449,
                                             'subject_sem'=>2,
@@ -75690,7 +75690,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2450,
                                             'subject_sem'=>2,
@@ -75722,7 +75722,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2451,
                                             'subject_sem'=>2,
@@ -75754,7 +75754,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2452,
                                             'subject_sem'=>2,
@@ -75786,7 +75786,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2453,
                                             'subject_sem'=>2,
@@ -75818,7 +75818,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2454,
                                             'subject_sem'=>2,
@@ -75850,7 +75850,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2455,
                                             'subject_sem'=>2,
@@ -75882,7 +75882,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2456,
                                             'subject_sem'=>2,
@@ -75914,7 +75914,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2457,
                                             'subject_sem'=>2,
@@ -75946,7 +75946,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2458,
                                             'subject_sem'=>2,
@@ -75978,7 +75978,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2459,
                                             'subject_sem'=>2,
@@ -76010,7 +76010,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2460,
                                             'subject_sem'=>2,
@@ -76042,7 +76042,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2461,
                                             'subject_sem'=>2,
@@ -76074,7 +76074,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2462,
                                             'subject_sem'=>2,
@@ -76106,7 +76106,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2463,
                                             'subject_sem'=>2,
@@ -76138,7 +76138,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2464,
                                             'subject_sem'=>2,
@@ -76170,7 +76170,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2465,
                                             'subject_sem'=>2,
@@ -76202,7 +76202,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2466,
                                             'subject_sem'=>2,
@@ -76234,7 +76234,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2467,
                                             'subject_sem'=>2,
@@ -76266,7 +76266,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2468,
                                             'subject_sem'=>2,
@@ -76298,7 +76298,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2469,
                                             'subject_sem'=>2,
@@ -76330,7 +76330,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2470,
                                             'subject_sem'=>2,
@@ -76362,7 +76362,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2471,
                                             'subject_sem'=>2,
@@ -76394,7 +76394,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2472,
                                             'subject_sem'=>2,
@@ -76426,7 +76426,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2473,
                                             'subject_sem'=>2,
@@ -76458,7 +76458,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2474,
                                             'subject_sem'=>2,
@@ -76490,7 +76490,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2475,
                                             'subject_sem'=>2,
@@ -76522,7 +76522,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2476,
                                             'subject_sem'=>2,
@@ -76554,7 +76554,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2477,
                                             'subject_sem'=>2,
@@ -76586,7 +76586,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2478,
                                             'subject_sem'=>2,
@@ -76618,7 +76618,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2479,
                                             'subject_sem'=>2,
@@ -76650,7 +76650,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2480,
                                             'subject_sem'=>2,
@@ -76682,7 +76682,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2481,
                                             'subject_sem'=>2,
@@ -76714,7 +76714,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2482,
                                             'subject_sem'=>2,
@@ -76746,7 +76746,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2483,
                                             'subject_sem'=>2,
@@ -76778,7 +76778,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2484,
                                             'subject_sem'=>2,
@@ -76810,7 +76810,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2485,
                                             'subject_sem'=>2,
@@ -76842,7 +76842,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2486,
                                             'subject_sem'=>2,
@@ -76874,7 +76874,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2487,
                                             'subject_sem'=>2,
@@ -76906,7 +76906,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2488,
                                             'subject_sem'=>2,
@@ -76938,7 +76938,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2489,
                                             'subject_sem'=>2,
@@ -76970,7 +76970,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2490,
                                             'subject_sem'=>2,
@@ -77002,7 +77002,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2491,
                                             'subject_sem'=>2,
@@ -77034,7 +77034,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2492,
                                             'subject_sem'=>2,
@@ -77066,7 +77066,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2493,
                                             'subject_sem'=>2,
@@ -77098,7 +77098,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2494,
                                             'subject_sem'=>2,
@@ -77130,7 +77130,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2495,
                                             'subject_sem'=>2,
@@ -77162,7 +77162,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2496,
                                             'subject_sem'=>2,
@@ -77194,7 +77194,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2497,
                                             'subject_sem'=>2,
@@ -77226,7 +77226,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2498,
                                             'subject_sem'=>2,
@@ -77258,7 +77258,7 @@ class SubjectSeeder extends Seeder
                                             'updated_at'=>NULL,
                                             'deleted_at'=>NULL
                                             ] );
-                                                        
+
                                             Subject::create( [
                                             'id'=>2499,
                                             'subject_sem'=>2,

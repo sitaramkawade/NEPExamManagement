@@ -30,8 +30,6 @@
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
             <x-table.frame>
-                <x-slot:header>
-                </x-slot>
                 <x-slot:body>
                     <x-table.table>
                         <x-table.thead>
@@ -50,10 +48,12 @@
                                     <x-table.td> {{ $subjecttype->type_name }} </x-table.td>
                                     <x-table.td> {{ $subjecttype->type_shortname }} </x-table.td>
                                     <x-table.td>
-                                        @if ($subjecttype->active === 1)
-                                            <x-table.active wire:click="changestatus({{ $subjecttype->id }})" />
-                                        @else
-                                            <x-table.inactive wire:click="changestatus({{ $subjecttype->id }})" />
+                                        @if (!$subjecttype->deleted_at)
+                                            @if ($subjecttype->active === 1)
+                                                <x-table.active wire:click="changestatus({{ $subjecttype->id }})" />
+                                            @else
+                                                <x-table.inactive wire:click="changestatus({{ $subjecttype->id }})" />
+                                            @endif
                                         @endif
                                     </x-table.td>
                                     <x-table.td>

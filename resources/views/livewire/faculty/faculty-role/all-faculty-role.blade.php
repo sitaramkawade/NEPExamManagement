@@ -30,8 +30,6 @@
                     <x-add-btn wire:click="setmode('add')" />
                 </x-card-header>
                 <x-table.frame>
-                    <x-slot:header>
-                    </x-slot>
                     <x-slot:body>
                         <x-table.table>
                             <x-table.thead>
