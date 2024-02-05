@@ -45,6 +45,11 @@
                                     <x-input-error :messages="$errors->get('date_of_birth')" class="mt-2" />
                                 </div>
                                 <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                    <x-input-label for="date_of_birth_on_adharcard" :value="__('Date Of Birth As Per Aadhar Card')" /> <x-required/>
+                                    <x-text-input  id="date_of_birth_on_adharcard" type="date" wire:model="date_of_birth_on_adharcard" name="date_of_birth_on_adharcard" class="w-full mt-1"  :value="old('date_of_birth_on_adharcard',$date_of_birth_on_adharcard)" required  autocomplete="date_of_birth_on_adharcard" />
+                                    <x-input-error :messages="$errors->get('date_of_birth_on_adharcard')" class="mt-2" />
+                                </div>
+                                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                                     <x-input-label for="memid" :value="__('Member ID ( From I-Card Or Admission Receipt )')" /><x-required/>
                                     <x-text-input  id="memid" type="number" wire:model="memid" name="memid" class="w-full mt-1"  :value="old('memid',$memid)" required  autocomplete="memid" />
                                     <x-input-error :messages="$errors->get('memid')" class="mt-2" />
@@ -108,23 +113,25 @@
                                     </x-input-select>
                                     <x-input-error :messages="$errors->get('nationality')" class="mt-2" />
                                 </div>
-                                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                    <x-input-label for="is_noncreamylayer" :value="__('Is Non Creamy Layer')" /><x-required/>
-                                    <x-input-select id="is_noncreamylayer"  wire:model="is_noncreamylayer" name="is_noncreamylayer" class="text-center  w-full mt-1"  :value="old('is_noncreamylayer',$is_noncreamylayer)" required  autocomplete="is_noncreamylayer">
-                                        <x-select-option class="text-start" hidden> -- Select -- </x-select-option>
-                                        <x-select-option class="text-start" value="1">Yes</x-select-option>
-                                        <x-select-option class="text-start" value="0">No</x-select-option>
-                                    </x-input-select>
-                                    <x-input-error :messages="$errors->get('is_noncreamylayer')" class="mt-2" />
-                                </div>
-                                <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                                    <x-input-label for="is_handicap" :value="__('Is Handicapped')" /><x-required/>
-                                    <x-input-select id="is_handicap" wire:model="is_handicap" name="is_handicap" class="text-center  w-full mt-1"  :value="old('is_handicap',$is_handicap)" required  autocomplete="is_handicap">
-                                        <x-select-option class="text-start" hidden> -- Select -- </x-select-option>
-                                        <x-select-option class="text-start" value="1">Yes</x-select-option>
-                                        <x-select-option class="text-start" value="0">No</x-select-option>
-                                    </x-input-select>
-                                    <x-input-error :messages="$errors->get('is_handicap')" class="mt-2" />
+                                <div class="grid grid-cols-1 md:grid-cols-2">
+                                    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                        <x-input-label for="is_noncreamylayer" :value="__('Is Non Creamy Layer')" /><x-required/>
+                                        <x-input-select id="is_noncreamylayer"  wire:model="is_noncreamylayer" name="is_noncreamylayer" class="text-center  w-full mt-1"  :value="old('is_noncreamylayer',$is_noncreamylayer)" required  autocomplete="is_noncreamylayer">
+                                            <x-select-option class="text-start" hidden> -- Select -- </x-select-option>
+                                            <x-select-option class="text-start" value="1">Yes</x-select-option>
+                                            <x-select-option class="text-start" value="0">No</x-select-option>
+                                        </x-input-select>
+                                        <x-input-error :messages="$errors->get('is_noncreamylayer')" class="mt-2" />
+                                    </div>
+                                    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                        <x-input-label for="is_handicap" :value="__('Is Handicapped')" /><x-required/>
+                                        <x-input-select id="is_handicap" wire:model="is_handicap" name="is_handicap" class="text-center  w-full mt-1"  :value="old('is_handicap',$is_handicap)" required  autocomplete="is_handicap">
+                                            <x-select-option class="text-start" hidden> -- Select -- </x-select-option>
+                                            <x-select-option class="text-start" value="1">Yes</x-select-option>
+                                            <x-select-option class="text-start" value="0">No</x-select-option>
+                                        </x-input-select>
+                                        <x-input-error :messages="$errors->get('is_handicap')" class="mt-2" />
+                                    </div>
                                 </div>
                             </div>
                             <x-multi-step-btn :current_step="$current_step" :steps="$steps"/>
@@ -611,6 +618,10 @@
                                         <x-input-show  id='date_of_birth' :value="$date_of_birth" />
                                     </div>
                                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                                        <x-input-label for="date_of_birth_on_adharcard" :value="__('Date Of Birth As Per Adhar Card')" />
+                                        <x-input-show  id='date_of_birth_on_adharcard' :value="$date_of_birth_on_adharcard" />
+                                    </div>
+                                    <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                                         <x-input-label for="memid" :value="__('Member ID')" />
                                         <x-input-show  id='memid' :value="$memid" />
                                     </div>
@@ -813,7 +824,7 @@
                                     </div>
                                     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                                         <x-input-label for="class" :value="__('Class')" />
-                                        <x-input-show  id='class' :value="$ptn_class->getclass->classyear->classyear_name.' '.$ptn_class->getclass->course->course_name" />
+                                        <x-input-show  id='class' :value="$ptn_class->courseclass->classyear->classyear_name.' '.$ptn_class->courseclass->course->course_name" />
                                     </div>
                                 @endif
                             </div>

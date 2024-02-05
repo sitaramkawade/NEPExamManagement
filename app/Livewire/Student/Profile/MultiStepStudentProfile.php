@@ -50,6 +50,7 @@ class MultiStepStudentProfile extends Component
     public $mother_name;
     public $gender;
     public $date_of_birth;
+    public $date_of_birth_on_adharcard;
     public $nationality;
     public $adharnumber;
     public $caste_category_id;
@@ -134,6 +135,7 @@ class MultiStepStudentProfile extends Component
                 'father_name' => ['required','string','max:255'],
                 'gender' => ['required','string','max:1'],
                 'date_of_birth' => ['required','date'],
+                'date_of_birth_on_adharcard' => ['required','date'],
                 'nationality' => ['required','string','max:25'],
                 'caste_id' => ['required','numeric',Rule::exists('castes', 'id')],
                 'caste_category_id' => ['required','numeric',Rule::exists('caste_categories', 'id')],
@@ -261,6 +263,8 @@ class MultiStepStudentProfile extends Component
             'gender.max' => 'The Gender must not exceed 2 characters.',
             'date_of_birth.required' => 'The Date Of Birth field is required.',
             'date_of_birth.date' => 'Please enter a valid Date Of Birth.',
+            'date_of_birth_on_adharcard.required' => 'The Date Of Birth As Per Adharcard field is required.',
+            'date_of_birth_on_adharcard.date' => 'Please enter a valid Date Of Birth As Per Adharcard.',
             'nationality.required' => 'The Nationality field is required.',
             'nationality.string' => 'The Nationality must be a string.',
             'nationality.max' => 'The Nationality must not exceed 25 characters.',
@@ -377,6 +381,7 @@ class MultiStepStudentProfile extends Component
                 'father_name'=>$this->father_name,
                 'gender'=>$this->gender,
                 'date_of_birth'=>$this->date_of_birth,
+                'date_of_birth_on_adharcard'=>$this->date_of_birth_on_adharcard,
                 'nationality'=>$this->nationality,
                 'caste_id'=>$this->caste_id,
                 'caste_category_id'=>$this->caste_category_id,
@@ -661,6 +666,7 @@ class MultiStepStudentProfile extends Component
                 $this->aadhar_name=$student_profile->student_name_on_adharcard;
                 $this->gender=$student_profile->gender;
                 $this->date_of_birth=$student_profile->date_of_birth;
+                $this->date_of_birth_on_adharcard=$student_profile->date_of_birth_on_adharcard;
                 $this->nationality=$student_profile->nationality;
                 $this->caste_category_id=$student_profile->caste_category_id;
                 $this->caste_id=$student_profile->caste_id;
