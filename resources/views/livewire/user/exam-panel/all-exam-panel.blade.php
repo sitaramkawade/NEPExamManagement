@@ -51,7 +51,8 @@
                                     <x-table.td> {{ $panel->subject->subject_name }} </x-table.td>
                                     <x-table.td> {{ $panel->description }} </x-table.td>
                                     <x-table.td>
-                                        @if($panel->active_status==1)
+                                     @if ($panel->deleted_at)
+                                        @elseif($panel->active_status==1)
                                         <x-table.active wire:click="Status({{ $panel->id }})" />
                                         @else
                                         <x-table.inactive wire:click="Status({{ $panel->id }})" />

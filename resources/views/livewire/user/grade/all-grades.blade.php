@@ -60,7 +60,8 @@
                                     {{ $grade->description }}
                                 </x-table.td>
                                 <x-table.td>
-                                     @if($grade->is_active==1)
+                                 @if ($grade->deleted_at)
+                                     @elseif($grade->is_active==1)
                                         <x-table.active wire:click="Status({{ $grade->id }})" />
                                         @else
                                         <x-table.inactive wire:click="Status({{ $grade->id }})" />

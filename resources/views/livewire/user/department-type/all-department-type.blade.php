@@ -48,7 +48,8 @@
                                     </x-table.td>
                                     <x-table.td> {{ $depttype->description}} </x-table.td>
                                     <x-table.td>
-                                        @if($depttype->status==1)
+                                     @if ($depttype->deleted_at)
+                                        @elseif($depttype->status==1)
                                         <x-table.active wire:click="Status({{ $depttype->id }})" />
                                         @else
                                         <x-table.inactive wire:click="Status({{ $depttype->id }})" />

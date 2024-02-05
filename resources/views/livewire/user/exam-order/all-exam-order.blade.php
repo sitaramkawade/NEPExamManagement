@@ -51,7 +51,8 @@
                                     <x-table.td> <x-table.text-scroll>{{ isset($examorder->exampatternclass->exam->exam_name) ? $examorder->exampatternclass->exam->exam_name : '-' }} {{ isset($examorder->exampatternclass->patternclass->pattern->pattern_name) ? $examorder->exampatternclass->patternclass->pattern->pattern_name : '-' }} {{ isset($examorder->exampatternclass->patternclass->courseclass->classyear->classyear_name) ? $examorder->exampatternclass->patternclass->courseclass->classyear->classyear_name : '-' }} {{ isset($examorder->exampatternclass->patternclass->courseclass->course->course_name) ? $examorder->exampatternclass->patternclass->courseclass->course->course_name : '-' }} </x-table.text-scroll></x-table.td>
                                     <x-table.td> {{ $examorder->description }} </x-table.td>                          
                                     <x-table.td>
-                                        @if($examorder->email_status==1)
+                                      @if ($examorder->deleted_at)
+                                        @elseif($examorder->email_status==1)
                                         <x-status type="success">Yes</x-table.status>
                                         @else
                                         <x-status type="danger"> No </x-table.status>

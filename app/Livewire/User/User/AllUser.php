@@ -51,7 +51,7 @@ class AllUser extends Component
         'department_id'=>['required'],
         'role_id'=>['required'],
         'is_active'=>['required'],
-        'user_contact_no'=>['required','min:10'],
+        'user_contact_no'=>['required'],
         ];
     }
 

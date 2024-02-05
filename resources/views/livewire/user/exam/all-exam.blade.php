@@ -47,7 +47,8 @@
                                     <x-table.td> {{ $exam->academicyear->year_name}} </x-table.td>
                                     <x-table.td> {{ $exam->exam_sessions==1?"Session 1":"Session 2";}} </x-table.td>
                                     <x-table.td>
-                                        @if($exam->status==1)
+                                      @if ($exam->deleted_at)
+                                        @elseif($exam->status==1)
                                         <x-table.active wire:click="Status({{ $exam->id }})" />
                                         @else
                                         <x-table.inactive wire:click="Status({{ $exam->id }})" />

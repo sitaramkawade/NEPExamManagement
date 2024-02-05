@@ -45,7 +45,8 @@
                                     <x-table.td> {{ $post->id }}</x-table.td>
                                     <x-table.td> {{ $post->post_name }} </x-table.td>
                                     <x-table.td>
-                                        @if($post->status==1)
+                                      @if ($post->deleted_at)
+                                        @elseif($post->status==1)
                                         <x-table.active wire:click="Status({{ $post->id }})" />
                                         @else
                                         <x-table.inactive wire:click="Status({{ $post->id }})" />
