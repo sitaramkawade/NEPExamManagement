@@ -23,6 +23,7 @@ class CreateExtracreditsubjectsTable extends Migration
                 $table->char('subject_option',3)->nullable(); //6
                 $table->string('subject_type',50)->nullable(); //6  IE  - InternalExternal  IEP- Internal External Practical  IP-Internal Practical //ECS-extra credit subject
                 $table->float('subject_credit',3,1)->nullable(); //7
+                $table->string('course_type',20)->default(NULL)->comment('UG or PG'); //UG or PG
                 $table->tinyInteger('status')->nullable()->default('0'); //6
                 $table->bigInteger('patternclass_id')->nullable()->unsigned();
                 $table->foreign('patternclass_id')->references('id')->on('pattern_classes');

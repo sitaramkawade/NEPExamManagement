@@ -39,7 +39,7 @@ class StudentProfileSeeder extends Seeder
         'remember_token' => Str::random(10),
         'current_step'=>6,
         'is_profile_complete'=>1,
-        'patternclass_id'=>113,
+        'patternclass_id'=>53,
         ]);
 
         $student->studentprofile()->create([
@@ -47,6 +47,7 @@ class StudentProfileSeeder extends Seeder
             'father_name'=>'Laxman',
             'gender'=>'M',
             'date_of_birth'=>'2000-05-25',
+            'date_of_birth_on_adharcard'=>'2000-05-25',
             'nationality'=>'Indian',
             'profile_photo_path'=>$faker->imageUrl($width = 640, $height = 480, 'nature'),
             'sign_photo_path'=>$faker->imageUrl($width = 640, $height = 480, 'nature'),

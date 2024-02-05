@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('title',5)->nullable();
             $table->string('gender',1)->nullable();
             $table->date('date_of_birth')->nullable();
+            $table->date('date_of_birth_on_adharcard')->nullable();
             $table->string('nationality',50)->nullable();               
             $table->string('domicile',100)->nullable();
 

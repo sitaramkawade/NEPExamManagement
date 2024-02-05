@@ -99,6 +99,12 @@ class Student extends  Authenticatable implements MustVerifyEmail
     }
 
 
+    public function intextracreditbatchseatnoallocations()
+    {
+        return $this->hasMany(Intextracreditbatchseatnoallocation::class,'student_id','id');
+    }
+
+
     // public function studentaddress()
     // {
     //     return $this->hasOne(Studentaddress::class,'student_id','id');
@@ -234,11 +240,6 @@ class Student extends  Authenticatable implements MustVerifyEmail
     // public function intbatchseatnoallocations()
     // {
     //     return $this->hasMany(Intbatchseatnoallocation::class,'student_id','id');
-    // }
-
-    // public function intextracreditbatchseatnoallocations()
-    // {
-    //     return $this->hasMany(Intextracreditbatchseatnoallocation::class,'student_id','id');
     // }
 
     // public function studentresults()

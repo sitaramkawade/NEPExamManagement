@@ -22,6 +22,7 @@ class Studentprofile extends Model
         'title',
         'gender',
         'date_of_birth',
+        'date_of_birth_on_adharcard',
         'nationality',
         'domicile',
         'caste_id',      
