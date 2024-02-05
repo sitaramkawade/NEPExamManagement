@@ -2,14 +2,19 @@
 
 namespace App\Livewire\Student;
 
+use App\Models\Student;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 class StudentDashboard extends Component
 {   
+    public Student $student;
+    
     public function mount()
     {   
-        if(Auth::guard('student')->user()->is_profile_complete===0)
+        $this->student=Auth::guard('student')->user();
+
+        if($this->student->is_profile_complete===0)
         {
             return $this->redirect('/student/profile',navigate:true);
         }

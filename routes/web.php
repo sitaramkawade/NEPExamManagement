@@ -125,7 +125,7 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
   Route::get('/helpline',Helpline::class)->name('helpline');
 
   // Student Exam Form
-  Route::get('/exam/form',StudentExamForm::class)->name('student_exam_form');
+  Route::post('/exam/form',StudentExamForm::class)->name('student_exam_form');
 });
 
 
