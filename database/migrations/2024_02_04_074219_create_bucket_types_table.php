@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subjectexamtypes', function (Blueprint $table) {
+        Schema::create('bucket_types', function (Blueprint $table) {
             $table->id();
-            $table->string('examtype',20);
-            $table->string('description',100);
+            $table->string('buckettype_name',50);
             $table->tinyInteger('is_active')->default('0');// 0 :not active 1:active
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subjectexamtypes');
+        Schema::dropIfExists('bucket_types');
     }
 };

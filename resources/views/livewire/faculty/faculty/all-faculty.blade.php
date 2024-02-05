@@ -30,8 +30,6 @@
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
             <x-table.frame>
-                <x-slot:header>
-                </x-slot>
                 <x-slot:body>
                     <x-table.table>
                         <x-table.thead>
@@ -61,18 +59,22 @@
                                     <x-table.td> {{ $faculty->mobile_no }} </x-table.td>
                                     @can('update', $authFaculty)
                                         <x-table.td>
-                                            @if ($faculty->active === 1)
-                                                <x-table.active wire:click="changestatus({{ $faculty->id }})" />
-                                            @else
-                                                <x-table.inactive wire:click="changestatus({{ $faculty->id }})" />
+                                            @if (!$faculty->deleted_at)
+                                                @if ($faculty->active === 1)
+                                                    <x-table.active wire:click="changestatus({{ $faculty->id }})" />
+                                                @else
+                                                    <x-table.inactive wire:click="changestatus({{ $faculty->id }})" />
+                                                @endif
                                             @endif
                                         </x-table.td>
                                     @elsecan('delete', $authFaculty)
                                         <x-table.td>
-                                            @if ($faculty->active === 1)
-                                                <x-table.active wire:click="changestatus({{ $faculty->id }})" />
-                                            @else
-                                                <x-table.inactive wire:click="changestatus({{ $faculty->id }})" />
+                                            @if (!$faculty->deleted_at)
+                                                @if ($faculty->active === 1)
+                                                    <x-table.active wire:click="changestatus({{ $faculty->id }})" />
+                                                @else
+                                                    <x-table.inactive wire:click="changestatus({{ $faculty->id }})" />
+                                                @endif
                                             @endif
                                         </x-table.td>
                                     @endcan

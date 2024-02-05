@@ -30,8 +30,6 @@
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
             <x-table.frame>
-                <x-slot:header>
-                </x-slot>
                 <x-slot:body>
                     <x-table.table>
                         <x-table.thead>
@@ -50,10 +48,12 @@
                                     <x-table.td>{{ $facultyhead->faculty->faculty_name }} </x-table.td>
                                     <x-table.td>{{ $facultyhead->department->dept_name }} </x-table.td>
                                     <x-table.td>
-                                        @if ($facultyhead->status === 1)
-                                            <x-table.active wire:click="changestatus({{ $facultyhead->id }})" />
-                                        @else
-                                            <x-table.inactive wire:click="changestatus({{ $facultyhead->id }})" />
+                                        @if (!$facultyhead->deleted_at)
+                                            @if ($facultyhead->status === 1)
+                                                <x-table.active wire:click="changestatus({{ $facultyhead->id }})" />
+                                            @else
+                                                <x-table.inactive wire:click="changestatus({{ $facultyhead->id }})" />
+                                            @endif
                                         @endif
                                     </x-table.td>
                                     <x-table.td>

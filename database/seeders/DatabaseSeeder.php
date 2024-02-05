@@ -113,6 +113,7 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,                          // StateSeeder
             TalukaSeeder::class,                            // DistrictSeeder
             StudenthelplineDocumentSeeder::class,           // StudenthelplineQuerySeeder
+            CollegeSeeder::class,                            // Sanstha, University
             SansthaSeeder::class,                           // College , University
             PatternSeeder::class,                           // College
             CapmasterSeeder::class,                         // College , Exam
@@ -137,8 +138,11 @@ class DatabaseSeeder extends Seeder
             ExamPanelSeeder::class,
             ExamorderSeeder::class,
             BuildingSeeder::class,
-            //  ExamOrderPostSeeder::class,
             // ExamTimeTableSeeder::class,
+            ExamOrderPostSeeder::class,
+            SubjectExamTypeSeeder::class,
+            BucketTypeSeeder::class,
+
         ]);
     }
 }

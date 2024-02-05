@@ -16,19 +16,19 @@ return new class extends Migration
             $table->id();
 
             $table->bigInteger('department_id')->unsigned();  //Major Minor
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');//For which department bucket is created
+            $table->foreign('department_id')->references('id')->on('departments');//For which department bucket is created
 
             $table->bigInteger('patternclass_id')->unsigned();  //Major Minor
-            $table->foreign('patternclass_id')->references('id')->on('pattern_classes')->onDelete('cascade');
+            $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
             $table->char('subject_division',1)->default('A'); //A -All B ,C,D
 
             $table->bigInteger('subjectcategory_id')->unsigned();  //Major Minor
-            $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories')->onDelete('cascade');
+            $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories');
             $table->integer('subject_categoryno')->default(0);  //OE1
             $table->bigInteger('subject_id')->unsigned();  //Major Minor
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects');
             $table->bigInteger('academicyear_id')->unsigned();  //Major Minor
-            $table->foreign('academicyear_id')->references('id')->on('academicyears')->onDelete('cascade');
+            $table->foreign('academicyear_id')->references('id')->on('academicyears');
             $table->tinyInteger('status')->default('0');  //active 1 or not 0
             $table->timestamps();
             $table->softDeletes();

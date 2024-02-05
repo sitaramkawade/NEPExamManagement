@@ -57,15 +57,16 @@ use App\Livewire\User\ExamOrderPost\AllExamOrderPost;
 use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
-use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
+use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\Student\StudentExamForm\StudentExamForm;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\GenerateExamOrder\GenerateExamOrder;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
-use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
+use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
+use App\Livewire\Faculty\SubjectCategory\AllSubjectCategory;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 
@@ -275,6 +276,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // Update Faculty Profile
   Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
 
+  // All Subject Categories
+  Route::get('/subject-categories', AllSubjectCategory::class)->name('all-subjectcategories');
+
   // All Subject
   Route::get('/all-subject', AllSubject::class)->name('all-subjects');
 
@@ -290,8 +294,6 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All ViewExamPanel
   Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
 
-  // All ViewExamPanel
-  Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
 });
 
 require __DIR__.'/student.php';

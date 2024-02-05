@@ -30,8 +30,6 @@
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
             <x-table.frame>
-                <x-slot:header>
-                </x-slot>
                 <x-slot:body>
                     <x-table.table>
                         <x-table.thead>
@@ -48,10 +46,12 @@
                                     <x-table.td>{{ $roletype->id }} </x-table.td>
                                     <x-table.td>{{ $roletype->roletype_name }} </x-table.td>
                                     <x-table.td>
-                                        @if ($roletype->status === 1)
-                                            <x-table.active wire:click="status({{ $roletype->id }})" />
-                                        @else
-                                            <x-table.inactive wire:click="status({{ $roletype->id }})" />
+                                        @if (!$roletype->deleted_at)
+                                            @if ($roletype->status === 1)
+                                                <x-table.active wire:click="status({{ $roletype->id }})" />
+                                            @else
+                                                <x-table.inactive wire:click="status({{ $roletype->id }})" />
+                                            @endif
                                         @endif
                                     </x-table.td>
                                     <x-table.td>
