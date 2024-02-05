@@ -135,11 +135,11 @@ class DatabaseSeeder extends Seeder
             ExamFeeCoursesSeeder::class,                    // Patternclass, Examfeemaster
             FacultyHeadSeeder::class,                       // Faculty, Department
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
-             ExamOrderPostSeeder::class,                           
-             ExamPanelSeeder::class,
-            // ExamTimeTableSeeder::class,                     //subject , exampatternClass . timeslot
-             BuildingSeeder::class,
-        
+            ExamPanelSeeder::class,
+            ExamorderSeeder::class,
+            BuildingSeeder::class,
+            //  ExamOrderPostSeeder::class,
+            // ExamTimeTableSeeder::class,
         ]);
     }
 }

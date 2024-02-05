@@ -9,12 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\ExamPatternclass;
 
-
-
 class ExamOrderPdfController extends Controller
 {
     public $token;
 
+    public $examorder;
   
 
     public function order($id)
@@ -72,5 +71,4 @@ class ExamOrderPdfController extends Controller
          return redirect()->back();
     }
 
-  
 }
