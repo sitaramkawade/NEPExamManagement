@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Exam;
 use App\Models\Course;
 use App\Models\Student;
 use App\Models\Hodappointsubject;
@@ -53,19 +54,17 @@ class Patternclass extends Model
         return $this->hasMany(Subjectbucket::class,'patternclass_id','id')->withTrashed();
     }
 
-    public function getclass()
+    public function exams()
     {
-        return $this->belongsTo(CourseClass::class,'class_id','id')->withTrashed();
+        return $this->belongsToMany(
+            Exam::class,           // Related model class (Exam)
+            'exam_patternclasses', // Pivot table name ('exam_patternclasses')
+            'patternclass_id',     // Foreign key on the current model ('patternclass_id')
+            'exam_id'              // Foreign key on the related model ('exam_id')
+        )->withPivot('launch_status', 'start_date');
     }
 
-    // public function getclass(): HasManyThrough
-    // {
-    //     return $this->hasManyThrough(Course::class, CourseClass::class,'course_id','class_id','id','id');
-    // }
-    // public function getclass(): HasManyThrough
-    // {
-    //     return $this->hasManyThrough(CourseClass::class, Course::class, 'id', 'course_id', 'id', 'class_id');
-    // }
+
 
     public function scopeSearch(Builder $query, string $search)
     {

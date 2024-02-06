@@ -77,7 +77,7 @@ class ExamSeeder extends Seeder
             Exam::create( [
             'id'=>8,
             'exam_name'=>'OCTOBER 2022',
-            'status'=>0,
+            'status'=>1,
             'exam_sessions'=>1,
             'academicyear_id'=>3,
             'created_at'=>'2022-10-21 03:14:50',
@@ -107,7 +107,7 @@ class ExamSeeder extends Seeder
             Exam::create( [
             'id'=>11,
             'exam_name'=>'OCT-NOV  2023',
-            'status'=>1,
+            'status'=>0,
             'exam_sessions'=>1,
             'academicyear_id'=>4,
             'created_at'=>'2023-08-28 10:03:01',

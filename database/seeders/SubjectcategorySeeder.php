@@ -102,5 +102,24 @@ class SubjectcategorySeeder extends Seeder
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
             ] );
+
+            Subjectcategory::create( [
+            'id'=>10,
+            'subjectcategory'=>'Research Methodology',
+            'subjectcategory_shortname'=>'RM',
+            'subjectbucket_type' => 'Major',
+            'is_active'=>1,
+            'created_at'=>'2023-09-06 02:53:21',
+            'updated_at'=>'2023-09-06 02:53:21'
+            ] );
+            Subjectcategory::create( [
+            'id'=>11,
+            'subjectcategory'=>'On Job  Traning',
+            'subjectcategory_shortname'=>'OJT',
+            'subjectbucket_type' => 'Major',
+            'is_active'=>1,
+            'created_at'=>'2023-09-06 02:53:21',
+            'updated_at'=>'2023-09-06 02:53:21'
+            ] );
     }
 }
