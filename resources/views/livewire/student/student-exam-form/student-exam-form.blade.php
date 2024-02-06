@@ -78,7 +78,7 @@
         @endforeach
       </x-table.tbody>
     </x-table.table>
-    @if ($extra_credit_subjects->count() >0)
+    @if (!is_null($extra_credit_subjects))
       <x-table.table>
         <x-table.thead>
           <x-table.tr>

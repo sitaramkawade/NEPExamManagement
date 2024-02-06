@@ -101,12 +101,13 @@ class AllAcademicYear extends Component
     }
 
     public function add()
-    {
+    {   
         $this->validate();
         Academicyear::query()->update(['active' => 0]);
         $academic_year =  new Academicyear;
         $academic_year->year_name=$this->year_name;
         $academic_year->active = $this->active==true?0:1;
+        $academic_year->save();
         $this->resetinput();
         $this->setmode('all');
         $this->dispatch('alert',type:'success',message:'Academic Year Created Successfully !!');
