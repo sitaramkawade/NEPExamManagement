@@ -29,6 +29,9 @@ return new class extends Migration
             $table->integer('subject_maxmarks_intpract')->nullable()->default(0);
             $table->integer('subject_maxmarks_ext')->default(0);//9
 
+            $table->tinyInteger('is_panel')->nullable()->default(1); //1 =>Yes ,0=>No
+            $table->tinyInteger('no_of_sets')->nullable()->default(3); //3 =>3 Sets ,0=>No
+
             $table->integer('subject_totalpassing')->default(0); //11
             $table->integer('subject_intpassing')->default(0);//13
             $table->Integer('subject_intpractpassing')->default(0);

@@ -303,8 +303,9 @@ class AllSubjectBucket extends Component
         {
             $this->subject_id= $subjectbucket->subject->subject_name;
             $this->subject_division= $subjectbucket->subject_division;
-            $this->subjectcategory_id= $subjectbucket->subjectcategory->subjectcategory;
-            $this->department_id= $subjectbucket->department->dept_name;
+            $this->subjectcategory_id= isset($subjectbucket->subjectcategory->subjectcategory) ? $subjectbucket->subjectcategory->subjectcategory : '';
+            $this->department_id= isset($subjectbucket->department->dept_name) ? $subjectbucket->department->dept_name : '';
+
             $this->academicyear_id= $subjectbucket->academicyear->year_name;
             $this->pattern_id = $subjectbucket->patternclass->pattern->pattern_name;
             $this->course_id =  $subjectbucket->patternclass->courseclass->course->course_name;
@@ -321,7 +322,7 @@ class AllSubjectBucket extends Component
             $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
             $this->courses=Course::select('id','course_name')->get();
             $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
-            $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('active',1)->get();
+            $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('is_active',1)->get();
             $this->academic_years= Academicyear::select('id','year_name')->where('active',1)->get();
             $this->subjects= Subject::select('id','subject_name')->where('status',1)->get();
             $this->departments= Department::select('id','dept_name')->where('status',1)->get();
