@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Factories\BelongsToManyRelationship;
 
 class Subject extends Model
 {
-    use HasFactory,SoftDeletes; 
+    use HasFactory,SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $table='subjects';
     protected $fillable=[
@@ -29,6 +29,8 @@ class Subject extends Model
         'subjecttype_id',
         'subjectexam_type',
         'subject_credit',
+        'is_panel',
+        'no_of_sets',
         'subject_maxmarks',
         'subject_maxmarks_int',
         'subject_maxmarks_intpract',

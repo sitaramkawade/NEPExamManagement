@@ -18,6 +18,7 @@ use App\Models\Subjectcredit;
 use App\Models\Subjectcategory;
 use App\Models\Subjectexamtype;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Doctrine\Inflector\Rules\Patterns;
 use App\Exports\Faculty\Subject\SubjectExport;
 
@@ -48,6 +49,8 @@ class AllSubject extends Component
     public $subject_extpassing;
     public $subject_optionalgroup;
     public $patternclass_id;
+    public $is_panel;
+    public $no_of_sets;
     public $classyear_id;
     public $department_id;
     public $college_id;
@@ -89,7 +92,6 @@ class AllSubject extends Component
         return [
             'subject_sem' => ['required', Rule::exists(Semester::class,'id')],
             'subjectcategory_id' => ['required', Rule::exists(Subjectcategory::class,'id')],
-            'subject_order' => ['required', 'numeric'],
             'subject_code' => ['required', 'string', 'min:1', 'max:50'],
             'subject_name_prefix' => ['required', 'string', 'min:1', 'max:50'],
             'subject_name' => ['required', 'string','min:1', 'max:100',],
@@ -104,10 +106,12 @@ class AllSubject extends Component
             'subject_intpassing' => ['required',],
             'subject_intpractpassing' => ['required',],
             'subject_extpassing' => ['required',],
-            // 'subject_optionalgroup' => ['required',],
+            'is_panel' => ['required','numeric','in:0,1'],
+            'no_of_sets' => ['required','numeric','in:1,2,3'],
             'classyear_id' => ['required',Rule::exists(Classyear::class,'id')],
-            'department_id' => ['required',Rule::exists(Department::class,'id')],
-            'college_id' => ['required',Rule::exists(College::class,'id')],
+            // 'subject_optionalgroup' => ['required',],
+            // 'department_id' => ['required',Rule::exists(Department::class,'id')],
+            // 'college_id' => ['required',Rule::exists(College::class,'id')],
             'pattern_id' => ['required',Rule::exists(Pattern::class,'id')],
             'course_id' => ['required',Rule::exists(Course::class,'id')],
             'course_class_id' => ['required',Rule::exists(Courseclass::class,'id')],
@@ -123,8 +127,6 @@ class AllSubject extends Component
             'subjectcategory_id.required' => 'The subject category field is required.',
             'subjectcategory_id.integer' => 'The subject category must be an integer.',
             'subjectcategory_id.exists' => 'The selected subject category is invalid.',
-            'subject_order.required' => 'The subject order field is required.',
-            'subject_order.numeric' => 'The subject order must be numeric.',
             'subject_code.required' => 'The subject code field is required.',
             'subject_code.string' => 'The subject code must be a string.',
             'subject_code.min' => 'The subject code must be at least 1 character.',
@@ -150,13 +152,19 @@ class AllSubject extends Component
             'subject_intpassing.required' => 'The subject internal passing marks field is required.',
             'subject_intpractpassing.required' => 'The subject internal practical passing marks field is required.',
             'subject_extpassing.required' => 'The subject external passing marks field is required.',
-            // 'subject_optionalgroup.required' => 'The subject optional group field is required.',
+            'is_panel.required' => 'The subject exam panel field is required.',
+            'is_panel.numeric' => 'The subject exam panel field must be a number.',
+            'is_panel.in' => 'The subject exam panel field must be either Yes or No.',
+            'no_of_sets.required' => 'The number of sets field is required.',
+            'no_of_sets.numeric' => 'The number of sets field must be a number.',
+            'no_of_sets.in' => 'The number of sets field must be either 1, 2, or 3.',
             'classyear_id.required' => 'The class year field is required.',
             'classyear_id.exists' => 'The selected class year is invalid.',
-            'department_id.required' => 'The department field is required.',
-            'department_id.exists' => 'The selected department is invalid.',
-            'college_id.required' => 'The college field is required.',
-            'college_id.exists' => 'The selected college is invalid.',
+            // 'subject_optionalgroup.required' => 'The subject optional group field is required.',
+            // 'department_id.required' => 'The department field is required.',
+            // 'department_id.exists' => 'The selected department is invalid.',
+            // 'college_id.required' => 'The college field is required.',
+            // 'college_id.exists' => 'The selected college is invalid.',
             'pattern_id.required' => 'The pattern field is required.',
             'pattern_id.exists' => 'The selected pattern is invalid.',
             'course_id.required' => 'The course field is required.',
@@ -177,6 +185,8 @@ class AllSubject extends Component
          $this->subjecttype_id=null;
          $this->subjectexam_type=null;
          $this->subject_credit=null;
+         $this->is_panel=null;
+         $this->no_of_sets=null;
          $this->subject_maxmarks=null;
          $this->subject_maxmarks_int=null;
          $this->subject_maxmarks_intpract=null;
@@ -222,35 +232,40 @@ class AllSubject extends Component
     public function save()
     {
         $validatedData = $this->validate();
-        $pattern_class = Patternclass::select('id')->where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->first('id');
+        $pattern_class = Patternclass::where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->select('id')->first();
 
-        if ($pattern_class) {
-            $validatedData['patternclass_id'] = $pattern_class->id;
-            // Check the current authentication guard
-            $guard = auth()->guard();
+        if (!$pattern_class) {
+            $this->dispatch('alert', type: 'success', message: 'Pattern Class Not Found!!');
+            return;
+        }
 
-            // Set user_id and faculty_id based on the guard
-            if ($guard->name == 'user') {
-                $validatedData['user_id'] = $guard->id();
-                $validatedData['faculty_id'] = null;
-            } elseif ($guard->name == 'faculty') {
-                $validatedData['user_id'] = null;
-                $validatedData['faculty_id'] = $guard->id();
-            } else {
-                // Handle the case when the user is not authenticated or doesn't match any guard
-                $validatedData['user_id'] = null;
-                $validatedData['faculty_id'] = null;
-            }
+        // Set user_id and faculty_id based on the current authentication guard
+        $guard = Auth::user('faculty');
 
-            $subject = Subject::create($validatedData);
-            if ($subject) {
-                $this->dispatch('alert',type:'success',message:'Subject Saved Successfully !!');
-                $this->setmode('all');
-            } else {
-                $this->dispatch('alert',type:'error',message:'Something went wrong!!');
-            }
+        $validatedData['patternclass_id'] = $pattern_class->id;
+        $validatedData['faculty_id'] = $guard ? $guard->id : null;
+        $validatedData['department_id'] = $guard ? $guard->department_id : null;
+        $validatedData['college_id'] = $guard ? $guard->college_id : null;
+
+        // Get the maximum subject_order value for records with the same patternclass_id
+        $maxSubjectOrder = Subject::where('patternclass_id', $validatedData['patternclass_id'])->max('subject_order');
+
+        // If there are no previous records, set subject_order to 1, otherwise increment it
+        if ($maxSubjectOrder === null) {
+            $subject_order = 1;
         } else {
-            $this->dispatch('alert',type:'success',message:'Pattern Class Not Found!!');
+            $subject_order = $maxSubjectOrder + 1;
+        }
+
+        $validatedData['subject_order'] = $subject_order;
+
+        $subject = Subject::create($validatedData);
+
+        if ($subject) {
+            $this->dispatch('alert', type: 'success', message: 'Subject Saved Successfully !!');
+            $this->setmode('all');
+        } else {
+            $this->dispatch('alert', type: 'error', message: 'Something went wrong!!');
         }
     }
 
@@ -269,6 +284,8 @@ class AllSubject extends Component
             $this->subject_name= $subject->subject_name;
             $this->subjecttype_id= $subject->subjecttype_id;
             $this->subject_credit= $subject->subject_credit;
+            $this->is_panel= $subject->is_panel;
+            $this->no_of_sets= $subject->no_of_sets;
             $this->subject_maxmarks= $subject->subject_maxmarks;
             $this->subject_maxmarks_int= $subject->subject_maxmarks_int;
             $this->subject_maxmarks_intpract= $subject->subject_maxmarks_intpract;
@@ -282,23 +299,6 @@ class AllSubject extends Component
             $this->classyear_id= $subject->classyear_id;
             $this->department_id= $subject->department_id;
             $this->college_id= $subject->college_id;
-
-            // Check the current authentication guard
-            $guard = auth()->guard();
-
-            // Set user_id and faculty_id based on the guard
-            if ($guard->name == 'user') {
-                $this->user_id = $guard->id();
-                $this->faculty_id = null;
-            } elseif ($guard->name == 'faculty') {
-                $this->user_id = null;
-                $this->faculty_id = $guard->id();
-            } else {
-                // Handle the case when the user is not authenticated or doesn't match any guard
-                $this->user_id = null;
-                $this->faculty_id = null;
-            }
-
             $this->feach();
             $this->setmode('edit');
         }
@@ -316,19 +316,17 @@ class AllSubject extends Component
             if ($pattern_class) {
                 $validatedData['patternclass_id'] = $pattern_class->id;
                 // Check the current authentication guard
-                $guard = auth()->guard();
+                $guard = Auth::user('faculty');
 
                 // Set user_id and faculty_id based on the guard
-                if ($guard->name == 'user') {
-                    $validatedData['user_id'] = $guard->id();
-                    $validatedData['faculty_id'] = null;
-                } elseif ($guard->name == 'faculty') {
-                    $validatedData['user_id'] = null;
-                    $validatedData['faculty_id'] = $guard->id();
+                if ($guard) {
+                    $validatedData['faculty_id'] = $guard->id;
+                    $validatedData['department_id'] = $guard->department_id;
+                    $validatedData['college_id'] = $guard->college_id;
                 } else {
-                    // Handle the case when the user is not authenticated or doesn't match any guard
-                    $validatedData['user_id'] = null;
                     $validatedData['faculty_id'] = null;
+                    $validatedData['department_id'] = null;
+                    $validatedData['college_id'] = null;
                 }
                 $subject->fill($validatedData);
                 $updated = $subject->save();
@@ -462,12 +460,12 @@ class AllSubject extends Component
         if ($subject)
         {
             $this->subject_sem= $subject->subject_sem;
-            $this->subjectcategory_id = $subject->subjectcategories->subjectcategory;
+            $this->subjectcategory_id = isset($subject->subjectcategories->subjectcategory) ? $subject->subjectcategories->subjectcategory : '';
             $this->subject_order= $subject->subject_order;
             $this->subject_code= $subject->subject_code;
             $this->subject_name_prefix= $subject->subject_name_prefix;
             $this->subject_name= $subject->subject_name;
-            $this->subjecttype_id = $subject->subjecttypes->type_name;
+            $this->subjecttype_id = isset($subject->subjecttypes->type_name) ? $subject->subjecttypes->type_name : '';
             $this->subjectexam_type= $subject->subjectexam_type;
             $this->subject_credit= $subject->subject_credit;
             $this->pattern_id = isset($subject->patternclass->pattern->pattern_name) ? $subject->patternclass->pattern->pattern_name : '';
@@ -475,6 +473,8 @@ class AllSubject extends Component
             $this->classyear_id =  isset($subject->patternclass->courseclass->classyear->classyear_name) ? $subject->patternclass->courseclass->classyear->classyear_name : '';
             $this->department_id = isset($subject->department->dept_name) ? $subject->department->dept_name : '';
             $this->college_id = isset($subject->college->college_name) ? $subject->college->college_name : '';
+            $this->is_panel= $subject->is_panel;
+            $this->no_of_sets= $subject->no_of_sets;
             $this->subject_maxmarks= $subject->subject_maxmarks;
             $this->subject_maxmarks_int= $subject->subject_maxmarks_int;
             $this->subject_maxmarks_intpract= $subject->subject_maxmarks_intpract;
@@ -483,7 +483,7 @@ class AllSubject extends Component
             $this->subject_intpassing= $subject->subject_intpassing;
             $this->subject_intpractpassing= $subject->subject_intpractpassing;
             $this->subject_extpassing= $subject->subject_extpassing;
-            $this->subject_optionalgroup= $subject->subject_optionalgroup;
+            // $this->subject_optionalgroup= $subject->subject_optionalgroup;
             $this->setmode('view');
         }else{
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
@@ -506,8 +506,7 @@ class AllSubject extends Component
             $this->colleges= College::select('id','college_name')->where('status',1)->get();
         }
 
-        $subjects = Subject::with(['college', 'subjectcategories', 'department', 'subjecttypes', 'patternclass', 'classyear',])
-        ->when($this->search, function($query, $search){
+        $subjects = Subject::with(['college', 'subjectcategories', 'department', 'subjecttypes', 'patternclass', 'classyear',])->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.subject.all-subject',compact('subjects'))->extends('layouts.faculty')->section('faculty');

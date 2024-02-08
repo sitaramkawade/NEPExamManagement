@@ -12,6 +12,8 @@ use Livewire\WithPagination;
 use App\Models\ExamOrderPost;
 use Illuminate\Validation\Rule;
 use App\Models\Hodappointsubject;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\Faculty\ExamPanel\ExamPanelExport;
 
 class ViewExamPanel extends Component
 {
@@ -41,7 +43,7 @@ class ViewExamPanel extends Component
     public $search='';
     public $mode='add';
     public $isDisabled = true;
-    public $sortColumn="faculty_name";
+    public $sortColumn="faculty_id";
     public $sortColumnBy="ASC";
     public $ext;
 
@@ -234,9 +236,41 @@ class ViewExamPanel extends Component
             $this->department_id=$exampanel->faculty->department->dept_name;
             $this->faculty_id=$exampanel->faculty->faculty_name;
         }else{
-            $this->dispatch('alert',type:'error',message:'Role Type Details Not Found');
+            $this->dispatch('alert',type:'error',message:'Exam Panel Details Not Found');
         }
         $this->setmode('view');
+    }
+
+    public function sort_column($column)
+    {
+        if( $this->sortColumn === $column)
+        {
+            $this->sortColumnBy=($this->sortColumnBy=="ASC")?"DESC":"ASC";
+            return;
+        }
+        $this->sortColumn=$column;
+        $this->sortColumnBy=="ASC";
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function export()
+    {
+        $filename="ExamPanel-".time();
+        switch ($this->ext) {
+            case 'xlsx':
+                return Excel::download(new ExamPanelExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+            break;
+            case 'csv':
+                return Excel::download(new ExamPanelExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+            break;
+            case 'pdf':
+                return Excel::download(new ExamPanelExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+            break;
+        }
     }
 
     public function render()
