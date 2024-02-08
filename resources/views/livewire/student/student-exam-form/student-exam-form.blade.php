@@ -1,5 +1,4 @@
 <div class="">
-
   <x-card-header heading="Student Exam Form" />
   <x-form wire:submit="student_exam_form_save()">
     <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
@@ -18,11 +17,13 @@
             </x-input-select>
             <x-input-error :messages="$errors->get('medium_instruction')" class="mt-2" />
           </div>
-          <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="abcid" :value="__('ABC ID')" /><x-required />
-            <x-text-input id="abcid" type="number" wire:model="abcid" name="abcid" class="w-full mt-1" :value="old('abcid', $abcid)" autofocus autocomplete="abcid" />
-            <x-input-error :messages="$errors->get('abcid')" class="mt-2" />
-          </div>
+          @if ($abcid_option['show_abcid'])
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+              <x-input-label for="abcid" :value="__('ABC ID')" /><x-required />
+              <x-text-input id="abcid" type="number" wire:model="abcid" name="abcid" class="w-full mt-1" :value="old('abcid', $abcid)" autofocus autocomplete="abcid" />
+              <x-input-error :messages="$errors->get('abcid')" class="mt-2" />
+            </div> 
+          @endif
         </div>
         <x-table.table>
           <x-table.thead>
@@ -120,7 +121,7 @@
   @elseif ($page == 2)
     <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
       <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
-        Fees 
+        Fees
       </div>
       <x-table.table>
         <x-table.thead>
