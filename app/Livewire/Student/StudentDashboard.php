@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class StudentDashboard extends Component
 {   
     public Student $student;
+
     
     public function mount()
     {   
@@ -21,7 +22,8 @@ class StudentDashboard extends Component
     }
 
     public function render()
-    {
+    {   
+       
         return view('livewire.student.student-dashboard')->extends('layouts.student')->section('student');
     }
 }

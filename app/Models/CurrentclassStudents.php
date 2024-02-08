@@ -21,5 +21,6 @@ class CurrentclassStudents extends Model
         'student_id',
         'college_id',
         'academicyear_id',
+        'markssheetprint_status',
     ];
 }

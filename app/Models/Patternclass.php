@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Exam;
 use App\Models\Course;
 use App\Models\Student;
+use App\Models\Examfeecourse;
 use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -62,6 +63,12 @@ class Patternclass extends Model
             'patternclass_id',     // Foreign key on the current model ('patternclass_id')
             'exam_id'              // Foreign key on the related model ('exam_id')
         )->withPivot('launch_status', 'start_date');
+    }
+
+
+    public function examfeecourses()
+    {
+        return $this->hasMany(Examfeecourse::class,'patternclass_id','id');
     }
 
 

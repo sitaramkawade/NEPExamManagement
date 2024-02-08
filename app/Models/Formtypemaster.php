@@ -16,12 +16,15 @@ class Formtypemaster extends Model
     protected $table='formtypemasters';
     protected $fillable=[
         'form_name', 
+        'is_active', 
     ];
 
     public function examfees():HasMany
     {
         return $this->hasMany(Examfeemaster::class,'form_type_id','id')->withTrashed();
     }
+
+
 
     public function scopeSearch(Builder $query,string $search)
     {

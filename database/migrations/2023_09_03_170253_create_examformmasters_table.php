@@ -30,6 +30,7 @@ return new class extends Migration
             $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
             $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
             $table->foreign('patternclass_id')->references('id')->on('pattern_classes')->onDelete('cascade');
+            $table->unique(['student_id', 'exam_id', 'patternclass_id']);
         });
     }
 
