@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentExamForm extends Component
 {  
+    public $abcid_option=['show_abcid'=>true ,'required_abcid'=>false];
     public $medium_instruction;
     public $page=1;
     public $abcid;
@@ -57,10 +58,11 @@ class StudentExamForm extends Component
     public function next_back()
     {   
         if($this->page==1)
-        {
+        {   
+            $this->validate();
             $this->page=2;
         }else
-        {
+        {   
             $this->page=1;
         }
     }
@@ -177,9 +179,6 @@ class StudentExamForm extends Component
         return view('livewire.student.student-exam-form.student-exam-form')->extends('layouts.student')->section('student');
     }
 
-    
-    
-
     // Get SEM 1 Subjects For Fist Year
     public function get_sem_1_regular_subjects()
     {   
@@ -192,7 +191,7 @@ class StudentExamForm extends Component
     public function rules()
     {
         return [
-            'abcid' => ['nullable','numeric','digits:12','unique:students,abcid,'.Auth::guard('student')->user()->id],
+            'abcid' => [  ($this->abcid_option['required_abcid'] ? 'required' : 'nullable'),'numeric','digits:12','unique:students,abcid,'.Auth::guard('student')->user()->id],
             'medium_instruction' => ['required','string',],
         ];
     }
@@ -306,7 +305,7 @@ class StudentExamForm extends Component
 
             if ($existingRecord) {
 
-                $this->dispatch('alert',type:'error',message:'You are trying to submit the exam form again.');
+                $this->dispatch('alert',type:'error',message:'You Are Trying To Submit The Exam Form Again.');
                 return false;
             }
 
@@ -388,7 +387,7 @@ class StudentExamForm extends Component
                 DB::rollback();
                 if ($e->errorInfo[1] === 1062) 
                 {
-                    $this->dispatch('alert',type:'error',message:'You are trying to submit the exam form again.');
+                    $this->dispatch('alert',type:'error',message:'You Are Trying To Submit The Exam Form Again.');
                 }
                 $this->dispatch('alert', ['type' => 'info', 'message' => 'An Error Occurred. Transaction Rolled Back.']);
             }
@@ -402,8 +401,24 @@ class StudentExamForm extends Component
     // Exam Form Save
     public function student_exam_form_save()
     {       
-    
-        $this->validate();
+        try 
+        {
+            $this->validate();
+        } 
+        catch (\Illuminate\Validation\ValidationException $e) 
+        {
+            $this->page = 1;
+            return false;
+        }
+
+        if($this->abcid_option['show_abcid'])
+        {   
+            // if($this->abcid_option['required_abcid'])
+            // {
+                Auth::guard('student')->user()->update(['abcid'=>$this->abcid]);
+            // }
+        }
+
         $this->student = Auth::guard('student')->user();
 
         // Checking If Student Present In Current Class Student
