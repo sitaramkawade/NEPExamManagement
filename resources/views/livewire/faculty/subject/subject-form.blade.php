@@ -39,7 +39,7 @@
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subjecttype_id " :value="__('Subject Type')" />
-            <x-input-select id="subjecttype_id" wire:model="subjecttype_id" name="subjecttype_id" class="text-center @error('subjecttype_id') is-invalid @enderror w-full mt-1" :value="old('subjecttype_id', $subjecttype_id)" required autofocus autocomplete="subjecttype_id">
+            <x-input-select id="subjecttype_id" wire:model.live="subjecttype_id" name="subjecttype_id" class="text-center @error('subjecttype_id') is-invalid @enderror w-full mt-1" :value="old('subjecttype_id', $subjecttype_id)" required autofocus autocomplete="subjecttype_id">
                 <x-select-option class="text-start" hidden> -- Select Subject Type -- </x-select-option>
                 @foreach ($subject_types as $subject_type)
                     <x-select-option wire:key="{{ $subject_type->id }}" value="{{ $subject_type->id }}" class="text-start">{{ $subject_type->type_name }}</x-select-option>
@@ -51,11 +51,13 @@
     <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subjectexam_type" :value="__('Subject Exam Type')" />
-            <x-input-select id="subjectexam_type" wire:model="subjectexam_type" name="subjectexam_type" class="text-center @error('subjectexam_type') is-invalid @enderror w-full mt-1" :value="old('subjectexam_type', $subjectexam_type)" required autofocus autocomplete="subjectexam_type">
+            <x-input-select id="subjectexam_type" wire:model.live="subjectexam_type" name="subjectexam_type" class="text-center @error('subjectexam_type') is-invalid @enderror w-full mt-1" :value="old('subjectexam_type', $subjectexam_type)" required autofocus autocomplete="subjectexam_type">
                 <x-select-option class="text-start" hidden> -- Select Subject Exam Type -- </x-select-option>
-                @foreach ($subjectexam_types as $subjectexam_type)
-                    <x-select-option wire:key="{{ $subjectexam_type->id }}" value="{{ $subjectexam_type->id }}" class="text-start">{{ $subjectexam_type->examtype }}</x-select-option>
-                @endforeach
+                @forelse ($subjectexam_types as $subjectexam_type)
+                    <x-select-option wire:key="{{ $subjectexam_type->id }}" value="{{ $subjectexam_type->id }}" class="text-start">{{ $subjectexam_type->subjectexamtype->description }}</x-select-option>
+                @empty
+                    <x-select-option class="text-start">Exam Types Not Found</x-select-option>
+                @endforelse
             </x-input-select>
             <x-input-error :messages="$errors->get('subjectexam_type')" class="mt-2" />
         </div>
@@ -100,8 +102,6 @@
             </x-input-select>
             <x-input-error :messages="$errors->get('no_of_sets')" class="mt-2" />
         </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="pattern_id" :value="__('Pattern')" />
             <x-input-select id="pattern_id" wire:model.live="pattern_id" name="pattern_id" class="text-center w-full mt-1" :value="old('pattern_id', $pattern_id)" required autocomplete="pattern_id">
@@ -114,6 +114,8 @@
             </x-input-select>
             <x-input-error :messages="$errors->get('pattern_id')" class="mt-2" />
         </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="course_id" :value="__('Course')" />
             <x-input-select id="course_id" wire:model.live="course_id" name="course_id" class="text-center w-full mt-1" :value="old('course_id', $course_id)" required autocomplete="course_id">
@@ -138,70 +140,228 @@
             </x-input-select>
             <x-input-error :messages="$errors->get('course_class_id')" class="mt-2" />
         </div>
-    </div>
-    {{-- <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_optionalgroup" :value="__('Subject Optional Group')" />
-            <x-input-select id="subject_optionalgroup" wire:model="subject_optionalgroup" name="subject_optionalgroup" class="text-center @error('subject_optionalgroup') is-invalid @enderror w-full mt-1" :value="old('subject_optionalgroup', $subject_optionalgroup)" required autofocus autocomplete="subject_optionalgroup">
-                <x-select-option class="text-start" hidden> -- Select Subject Optional Group -- </x-select-option>
-                <x-select-option class="text-start" value="DSC">DSC</x-select-option>
-                <x-select-option class="text-start" value="VSC">VSC</x-select-option>
-                <x-select-option class="text-start" value="IKS">IKS</x-select-option>
-                <x-select-option class="text-start" value="M">M</x-select-option>
-                <x-select-option class="text-start" value="CC">CC</x-select-option>
-                <x-select-option class="text-start" value="OE">OE</x-select-option>
-                <x-select-option class="text-start" value="SEC">SEC</x-select-option>
-                <x-select-option class="text-start" value="AEC">AEC</x-select-option>
-                <x-select-option class="text-start" value="VEC">VEC</x-select-option>
-            </x-input-select>
-            <x-input-error :messages="$errors->get('subject_optionalgroup')" class="mt-2" />
+            <x-input-label for="subject_order" :value="__('Subject Order')" />
+            <x-text-input id="subject_order" type="number" wire:model="subject_order" name="subject_order" placeholder="Subject Order" class=" @error('subject_order') is-invalid @enderror w-full mt-1" :value="old('subject_order', $subject_order)" required autofocus autocomplete="subject_order" />
+            <x-input-error :messages="$errors->get('subject_order')" class="mt-2" />
         </div>
-    </div> --}}
+    </div>
 </x-card-collapsible>
-<x-card-collapsible heading="Subject Marks Details">
-    <div class="grid grid-cols-1 md:grid-cols-4">
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_maxmarks" :value="__('Maximum Marks')" />
-            <x-text-input id="subject_maxmarks" type="number" wire:model="subject_maxmarks" name="subject_maxmarks" placeholder="Maximum Marks" class=" @error('subject_maxmarks') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks', $subject_maxmarks)" required autofocus autocomplete="subject_maxmarks" />
-            <x-input-error :messages="$errors->get('subject_maxmarks')" class="mt-2" />
+
+@if ($type['IE'])
+    <x-card-collapsible heading="Subject Marks Details">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks" :value="__('Maximum Marks')" />
+                <x-text-input id="subject_maxmarks" type="number" wire:model="subject_maxmarks" name="subject_maxmarks" placeholder="Maximum Marks" class=" @error('subject_maxmarks') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks', $subject_maxmarks)" required autofocus autocomplete="subject_maxmarks" />
+                <x-input-error :messages="$errors->get('subject_maxmarks')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_int" :value="__('Internal Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_int" type="number" wire:model="subject_maxmarks_int" name="subject_maxmarks_int" placeholder="Maximum Marks" class=" @error('subject_maxmarks_int') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_int', $subject_maxmarks_int)" required autofocus autocomplete="subject_maxmarks_int" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_int')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_ext" :value="__('External Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_ext" type="number" wire:model="subject_maxmarks_ext" name="subject_maxmarks_ext" placeholder="External Maximum Marks" class=" @error('subject_maxmarks_ext') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_ext', $subject_maxmarks_ext)" required autofocus autocomplete="subject_maxmarks_ext" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_ext')" class="mt-2" />
+            </div>
         </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_maxmarks_int" :value="__('Internal Maximum Marks')" />
-            <x-text-input id="subject_maxmarks_int" type="number" wire:model="subject_maxmarks_int" name="subject_maxmarks_int" placeholder="Maximum Marks" class=" @error('subject_maxmarks_int') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_int', $subject_maxmarks_int)" required autofocus autocomplete="subject_maxmarks_int" />
-            <x-input-error :messages="$errors->get('subject_maxmarks_int')" class="mt-2" />
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_totalpassing" :value="__('Total Passing Marks')" />
+                <x-text-input id="subject_totalpassing" type="number" wire:model="subject_totalpassing" name="subject_totalpassing" placeholder="Total Passing Marks" class=" @error('subject_totalpassing') is-invalid @enderror w-full mt-1" :value="old('subject_totalpassing', $subject_totalpassing)" required autofocus autocomplete="subject_totalpassing" />
+                <x-input-error :messages="$errors->get('subject_totalpassing')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_intpassing" :value="__('Internal Passing Marks')" />
+                <x-text-input id="subject_intpassing" type="number" wire:model="subject_intpassing" name="subject_intpassing" placeholder="Internal Passing Marks" class=" @error('subject_intpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpassing', $subject_intpassing)" required autofocus autocomplete="subject_intpassing" />
+                <x-input-error :messages="$errors->get('subject_intpassing')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_extpassing" :value="__('External Passing Marks')" />
+                <x-text-input id="subject_extpassing" type="number" wire:model="subject_extpassing" name="subject_extpassing" placeholder="Internal Practical Passing Marks" class=" @error('subject_extpassing') is-invalid @enderror w-full mt-1" :value="old('subject_extpassing', $subject_extpassing)" required autofocus autocomplete="subject_extpassing" />
+                <x-input-error :messages="$errors->get('subject_extpassing')" class="mt-2" />
+            </div>
         </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_maxmarks_intpract" :value="__('Internal Practical Maximum Marks')" />
-            <x-text-input id="subject_maxmarks_intpract" type="number" wire:model="subject_maxmarks_intpract" name="subject_maxmarks_intpract" placeholder="Internal Practical Maximum Marks" class=" @error('subject_maxmarks_intpract') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_intpract', $subject_maxmarks_intpract)" required autofocus autocomplete="subject_maxmarks_intpract" />
-            <x-input-error :messages="$errors->get('subject_maxmarks_intpract')" class="mt-2" />
+        <x-form-btn>Submit</x-form-btn>
+    </x-card-collapsible>
+@elseif ($type['IP'])
+    <x-card-collapsible heading="Subject Marks Details">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks" :value="__('Maximum Marks')" />
+                <x-text-input id="subject_maxmarks" type="number" wire:model="subject_maxmarks" name="subject_maxmarks" placeholder="Maximum Marks" class=" @error('subject_maxmarks') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks', $subject_maxmarks)" required autofocus autocomplete="subject_maxmarks" />
+                <x-input-error :messages="$errors->get('subject_maxmarks')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_int" :value="__('Internal Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_int" type="number" wire:model="subject_maxmarks_int" name="subject_maxmarks_int" placeholder="Maximum Marks" class=" @error('subject_maxmarks_int') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_int', $subject_maxmarks_int)" required autofocus autocomplete="subject_maxmarks_int" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_int')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_intpract" :value="__('Internal Practical Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_intpract" type="number" wire:model="subject_maxmarks_intpract" name="subject_maxmarks_intpract" placeholder="Internal Practical Maximum Marks" class=" @error('subject_maxmarks_intpract') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_intpract', $subject_maxmarks_intpract)" required autofocus autocomplete="subject_maxmarks_intpract" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_intpract')" class="mt-2" />
+            </div>
         </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_maxmarks_ext" :value="__('External Maximum Marks')" />
-            <x-text-input id="subject_maxmarks_ext" type="number" wire:model="subject_maxmarks_ext" name="subject_maxmarks_ext" placeholder="External Maximum Marks" class=" @error('subject_maxmarks_ext') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_ext', $subject_maxmarks_ext)" required autofocus autocomplete="subject_maxmarks_ext" />
-            <x-input-error :messages="$errors->get('subject_maxmarks_ext')" class="mt-2" />
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_intpractpassing" :value="__('Internal Practical Passing Marks')" />
+                <x-text-input id="subject_intpractpassing" type="number" wire:model="subject_intpractpassing" name="subject_intpractpassing" placeholder="Internal Practical Passing Marks" class=" @error('subject_intpractpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpractpassing', $subject_intpractpassing)" required autofocus autocomplete="subject_intpractpassing" />
+                <x-input-error :messages="$errors->get('subject_intpractpassing')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_intpassing" :value="__('Internal Passing Marks')" />
+                <x-text-input id="subject_intpassing" type="number" wire:model="subject_intpassing" name="subject_intpassing" placeholder="Internal Passing Marks" class=" @error('subject_intpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpassing', $subject_intpassing)" required autofocus autocomplete="subject_intpassing" />
+                <x-input-error :messages="$errors->get('subject_intpassing')" class="mt-2" />
+            </div>
         </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-4">
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_totalpassing" :value="__('Total Passing Marks')" />
-            <x-text-input id="subject_totalpassing" type="number" wire:model="subject_totalpassing" name="subject_totalpassing" placeholder="Total Passing Marks" class=" @error('subject_totalpassing') is-invalid @enderror w-full mt-1" :value="old('subject_totalpassing', $subject_totalpassing)" required autofocus autocomplete="subject_totalpassing" />
-            <x-input-error :messages="$errors->get('subject_totalpassing')" class="mt-2" />
+        <x-form-btn>Submit</x-form-btn>
+    </x-card-collapsible>
+@elseif ($type['IG'])
+    <x-card-collapsible heading="Subject Marks Details">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks" :value="__('Maximum Marks')" />
+                <x-text-input id="subject_maxmarks" type="number" wire:model="subject_maxmarks" name="subject_maxmarks" placeholder="Maximum Marks" class=" @error('subject_maxmarks') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks', $subject_maxmarks)" required autofocus autocomplete="subject_maxmarks" />
+                <x-input-error :messages="$errors->get('subject_maxmarks')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_int" :value="__('Internal Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_int" type="number" wire:model="subject_maxmarks_int" name="subject_maxmarks_int" placeholder="Maximum Marks" class=" @error('subject_maxmarks_int') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_int', $subject_maxmarks_int)" required autofocus autocomplete="subject_maxmarks_int" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_int')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_intpract" :value="__('Internal Practical Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_intpract" type="number" wire:model="subject_maxmarks_intpract" name="subject_maxmarks_intpract" placeholder="Internal Practical Maximum Marks" class=" @error('subject_maxmarks_intpract') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_intpract', $subject_maxmarks_intpract)" required autofocus autocomplete="subject_maxmarks_intpract" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_intpract')" class="mt-2" />
+            </div>
         </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_intpassing" :value="__('Internal Passing Marks')" />
-            <x-text-input id="subject_intpassing" type="number" wire:model="subject_intpassing" name="subject_intpassing" placeholder="Internal Passing Marks" class=" @error('subject_intpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpassing', $subject_intpassing)" required autofocus autocomplete="subject_intpassing" />
-            <x-input-error :messages="$errors->get('subject_intpassing')" class="mt-2" />
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_intpassing" :value="__('Internal Passing Marks')" />
+                <x-text-input id="subject_intpassing" type="number" wire:model="subject_intpassing" name="subject_intpassing" placeholder="Internal Passing Marks" class=" @error('subject_intpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpassing', $subject_intpassing)" required autofocus autocomplete="subject_intpassing" />
+                <x-input-error :messages="$errors->get('subject_intpassing')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_intpractpassing" :value="__('Internal Practical Passing Marks')" />
+                <x-text-input id="subject_intpractpassing" type="number" wire:model="subject_intpractpassing" name="subject_intpractpassing" placeholder="Internal Practical Passing Marks" class=" @error('subject_intpractpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpractpassing', $subject_intpractpassing)" required autofocus autocomplete="subject_intpractpassing" />
+                <x-input-error :messages="$errors->get('subject_intpractpassing')" class="mt-2" />
+            </div>
         </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_intpractpassing" :value="__('Internal Practical Passing Marks')" />
-            <x-text-input id="subject_intpractpassing" type="number" wire:model="subject_intpractpassing" name="subject_intpractpassing" placeholder="Internal Practical Passing Marks" class=" @error('subject_intpractpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpractpassing', $subject_intpractpassing)" required autofocus autocomplete="subject_intpractpassing" />
-            <x-input-error :messages="$errors->get('subject_intpractpassing')" class="mt-2" />
+        <x-form-btn>Submit</x-form-btn>
+    </x-card-collapsible>
+@elseif ($type['I'])
+    <x-card-collapsible heading="Subject Marks Details">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks" :value="__('Maximum Marks')" />
+                <x-text-input id="subject_maxmarks" type="number" wire:model="subject_maxmarks" name="subject_maxmarks" placeholder="Maximum Marks" class=" @error('subject_maxmarks') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks', $subject_maxmarks)" required autofocus autocomplete="subject_maxmarks" />
+                <x-input-error :messages="$errors->get('subject_maxmarks')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_int" :value="__('Internal Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_int" type="number" wire:model="subject_maxmarks_int" name="subject_maxmarks_int" placeholder="Maximum Marks" class=" @error('subject_maxmarks_int') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_int', $subject_maxmarks_int)" required autofocus autocomplete="subject_maxmarks_int" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_int')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_intpassing" :value="__('Internal Passing Marks')" />
+                <x-text-input id="subject_intpassing" type="number" wire:model="subject_intpassing" name="subject_intpassing" placeholder="Internal Passing Marks" class=" @error('subject_intpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpassing', $subject_intpassing)" required autofocus autocomplete="subject_intpassing" />
+                <x-input-error :messages="$errors->get('subject_intpassing')" class="mt-2" />
+            </div>
         </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_extpassing" :value="__('External Passing Marks')" />
-            <x-text-input id="subject_extpassing" type="number" wire:model="subject_extpassing" name="subject_extpassing" placeholder="Internal Practical Passing Marks" class=" @error('subject_extpassing') is-invalid @enderror w-full mt-1" :value="old('subject_extpassing', $subject_extpassing)" required autofocus autocomplete="subject_extpassing" />
-            <x-input-error :messages="$errors->get('subject_extpassing')" class="mt-2" />
+        <x-form-btn>Submit</x-form-btn>
+    </x-card-collapsible>
+@elseif ($type['P'])
+
+@elseif ($type['G'])
+
+@elseif ($type['IEP'])
+    <x-card-collapsible heading="Subject Marks Details">
+        <div class="grid grid-cols-1 md:grid-cols-4">
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks" :value="__('Maximum Marks')" />
+                <x-text-input id="subject_maxmarks" type="number" wire:model="subject_maxmarks" name="subject_maxmarks" placeholder="Maximum Marks" class=" @error('subject_maxmarks') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks', $subject_maxmarks)" required autofocus autocomplete="subject_maxmarks" />
+                <x-input-error :messages="$errors->get('subject_maxmarks')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_int" :value="__('Internal Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_int" type="number" wire:model="subject_maxmarks_int" name="subject_maxmarks_int" placeholder="Maximum Marks" class=" @error('subject_maxmarks_int') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_int', $subject_maxmarks_int)" required autofocus autocomplete="subject_maxmarks_int" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_int')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_intpract" :value="__('Internal Practical Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_intpract" type="number" wire:model="subject_maxmarks_intpract" name="subject_maxmarks_intpract" placeholder="Internal Practical Maximum Marks" class=" @error('subject_maxmarks_intpract') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_intpract', $subject_maxmarks_intpract)" required autofocus autocomplete="subject_maxmarks_intpract" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_intpract')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_ext" :value="__('External Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_ext" type="number" wire:model="subject_maxmarks_ext" name="subject_maxmarks_ext" placeholder="External Maximum Marks" class=" @error('subject_maxmarks_ext') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_ext', $subject_maxmarks_ext)" required autofocus autocomplete="subject_maxmarks_ext" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_ext')" class="mt-2" />
+            </div>
         </div>
-    </div>
-    <x-form-btn>Submit</x-form-btn>
-</x-card-collapsible>
+        <div class="grid grid-cols-1 md:grid-cols-4">
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_totalpassing" :value="__('Total Passing Marks')" />
+                <x-text-input id="subject_totalpassing" type="number" wire:model="subject_totalpassing" name="subject_totalpassing" placeholder="Total Passing Marks" class=" @error('subject_totalpassing') is-invalid @enderror w-full mt-1" :value="old('subject_totalpassing', $subject_totalpassing)" required autofocus autocomplete="subject_totalpassing" />
+                <x-input-error :messages="$errors->get('subject_totalpassing')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_intpassing" :value="__('Internal Passing Marks')" />
+                <x-text-input id="subject_intpassing" type="number" wire:model="subject_intpassing" name="subject_intpassing" placeholder="Internal Passing Marks" class=" @error('subject_intpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpassing', $subject_intpassing)" required autofocus autocomplete="subject_intpassing" />
+                <x-input-error :messages="$errors->get('subject_intpassing')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_intpractpassing" :value="__('Internal Practical Passing Marks')" />
+                <x-text-input id="subject_intpractpassing" type="number" wire:model="subject_intpractpassing" name="subject_intpractpassing" placeholder="Internal Practical Passing Marks" class=" @error('subject_intpractpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpractpassing', $subject_intpractpassing)" required autofocus autocomplete="subject_intpractpassing" />
+                <x-input-error :messages="$errors->get('subject_intpractpassing')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_extpassing" :value="__('External Passing Marks')" />
+                <x-text-input id="subject_extpassing" type="number" wire:model="subject_extpassing" name="subject_extpassing" placeholder="Internal Practical Passing Marks" class=" @error('subject_extpassing') is-invalid @enderror w-full mt-1" :value="old('subject_extpassing', $subject_extpassing)" required autofocus autocomplete="subject_extpassing" />
+                <x-input-error :messages="$errors->get('subject_extpassing')" class="mt-2" />
+            </div>
+        </div>
+        <x-form-btn>Submit</x-form-btn>
+    </x-card-collapsible>
+@elseif ($type['IEG'])
+    <x-card-collapsible heading="Subject Marks Details">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks" :value="__('Maximum Marks')" />
+                <x-text-input id="subject_maxmarks" type="number" wire:model="subject_maxmarks" name="subject_maxmarks" placeholder="Maximum Marks" class=" @error('subject_maxmarks') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks', $subject_maxmarks)" required autofocus autocomplete="subject_maxmarks" />
+                <x-input-error :messages="$errors->get('subject_maxmarks')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_int" :value="__('Internal Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_int" type="number" wire:model="subject_maxmarks_int" name="subject_maxmarks_int" placeholder="Maximum Marks" class=" @error('subject_maxmarks_int') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_int', $subject_maxmarks_int)" required autofocus autocomplete="subject_maxmarks_int" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_int')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_maxmarks_ext" :value="__('External Maximum Marks')" />
+                <x-text-input id="subject_maxmarks_ext" type="number" wire:model="subject_maxmarks_ext" name="subject_maxmarks_ext" placeholder="External Maximum Marks" class=" @error('subject_maxmarks_ext') is-invalid @enderror w-full mt-1" :value="old('subject_maxmarks_ext', $subject_maxmarks_ext)" required autofocus autocomplete="subject_maxmarks_ext" />
+                <x-input-error :messages="$errors->get('subject_maxmarks_ext')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_totalpassing" :value="__('Total Passing Marks')" />
+                <x-text-input id="subject_totalpassing" type="number" wire:model="subject_totalpassing" name="subject_totalpassing" placeholder="Total Passing Marks" class=" @error('subject_totalpassing') is-invalid @enderror w-full mt-1" :value="old('subject_totalpassing', $subject_totalpassing)" required autofocus autocomplete="subject_totalpassing" />
+                <x-input-error :messages="$errors->get('subject_totalpassing')" class="mt-2" />
+            </div>
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_intpassing" :value="__('Internal Passing Marks')" />
+                <x-text-input id="subject_intpassing" type="number" wire:model="subject_intpassing" name="subject_intpassing" placeholder="Internal Passing Marks" class=" @error('subject_intpassing') is-invalid @enderror w-full mt-1" :value="old('subject_intpassing', $subject_intpassing)" required autofocus autocomplete="subject_intpassing" />
+                <x-input-error :messages="$errors->get('subject_intpassing')" class="mt-2" />
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_extpassing" :value="__('External Passing Marks')" />
+                <x-text-input id="subject_extpassing" type="number" wire:model="subject_extpassing" name="subject_extpassing" placeholder="Internal Practical Passing Marks" class=" @error('subject_extpassing') is-invalid @enderror w-full mt-1" :value="old('subject_extpassing', $subject_extpassing)" required autofocus autocomplete="subject_extpassing" />
+                <x-input-error :messages="$errors->get('subject_extpassing')" class="mt-2" />
+            </div>
+        </div>
+        <x-form-btn>Submit</x-form-btn>
+    </x-card-collapsible>
+@elseif ($type['E'])
+@endif

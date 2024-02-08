@@ -18,7 +18,9 @@ use App\Models\Subjectcredit;
 use App\Models\Subjectcategory;
 use App\Models\Subjectexamtype;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\SubjectExamTypeMaster;
 use Doctrine\Inflector\Rules\Patterns;
 use App\Exports\Faculty\Subject\SubjectExport;
 
@@ -36,7 +38,7 @@ class AllSubject extends Component
 
     public $subject_name;
     public $subjecttype_id;
-    public $subjectexam_type;
+    public $subjectexam_type=null;
     public $subject_credit;
 
     public $subject_maxmarks;
@@ -76,6 +78,8 @@ class AllSubject extends Component
     public $course_classes;
     public $pattern_class_id;
 
+    public $type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>0];
+
     public $mode='all';
     public $per_page = 10;
     #[Locked]
@@ -95,6 +99,11 @@ class AllSubject extends Component
             'subject_code' => ['required', 'string', 'min:1', 'max:50'],
             'subject_name_prefix' => ['required', 'string', 'min:1', 'max:50'],
             'subject_name' => ['required', 'string','min:1', 'max:100',],
+            'subject_order' => ['required','numeric',
+                Rule::unique('subjects')->where(function ($query) {
+                    return $query->where('patternclass_id', $this->patternclass_id);
+                })->ignore($this->subject_id ?? null),
+            ],
             'subjecttype_id' => ['required',Rule::exists(Subjecttype::class,'id')],
             'subjectexam_type' => ['required',Rule::exists(Subjectexamtype::class,'id')],
             'subject_credit' => ['required',Rule::exists(Subjectcredit::class,'id')],
@@ -138,6 +147,9 @@ class AllSubject extends Component
             'subject_name.required' => 'The subject name field is required.',
             'subject_name.string' => 'The subject name must be a string.',
             'subject_name.max' => 'The subject name must not exceed 100 characters.',
+            'subject_order.required' => 'The subject order field is required.',
+            'subject_order.numeric' => 'The subject order must be a numeric value.',
+            'subject_order.unique' => 'The subject order must be unique within the same pattern class.',
             'subjecttype_id.required' => 'The subject type field is required.',
             'subjecttype_id.exists' => 'The selected subject type is invalid.',
             'subjectexam_type.required' => 'The subject exam type field is required.',
@@ -232,6 +244,11 @@ class AllSubject extends Component
     public function save()
     {
         $validatedData = $this->validate();
+
+        if ($this->subjectexam_type) {
+
+        }
+
         $pattern_class = Patternclass::where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->select('id')->first();
 
         if (!$pattern_class) {
@@ -246,18 +263,6 @@ class AllSubject extends Component
         $validatedData['faculty_id'] = $guard ? $guard->id : null;
         $validatedData['department_id'] = $guard ? $guard->department_id : null;
         $validatedData['college_id'] = $guard ? $guard->college_id : null;
-
-        // Get the maximum subject_order value for records with the same patternclass_id
-        $maxSubjectOrder = Subject::where('patternclass_id', $validatedData['patternclass_id'])->max('subject_order');
-
-        // If there are no previous records, set subject_order to 1, otherwise increment it
-        if ($maxSubjectOrder === null) {
-            $subject_order = 1;
-        } else {
-            $subject_order = $maxSubjectOrder + 1;
-        }
-
-        $validatedData['subject_order'] = $subject_order;
 
         $subject = Subject::create($validatedData);
 
@@ -495,15 +500,74 @@ class AllSubject extends Component
         if($this->mode !== 'all' ){
             $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
             $this->courses=Course::select('id','course_name')->get();
-            $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
+            if($this->course_id){
+                $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
+            }else{
+                $this->course_classes=[];
+            }
             $this->semesters=Semester::select('id','semester',)->where('status',1)->get();
             $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('is_active',1)->get();
-            $this->subjectexam_types = Subjectexamtype::select('id','examtype')->where('is_active',1)->get();
-            $this->subject_credits = Subjectcredit::select('id','credit')->get();
             $this->subject_types = Subjecttype::select('id','type_name')->where('active',1)->get();
+
+            if($this->subjecttype_id){
+                $this->subjectexam_types = SubjectExamTypeMaster::with(['subjectexamtype',])->select('id','examtype_id')->where('subjecttype_id', $this->subjecttype_id)->get();
+            }else{
+                $this->subjectexam_types=[];
+            }
+
+            $this->subject_credits = Subjectcredit::select('id','credit')->get();
             $this->class_years= Classyear::select('id','classyear_name')->where('status',1)->get();
             $this->departments= Department::select('id','dept_name')->where('status',1)->get();
             $this->colleges= College::select('id','college_name')->where('status',1)->get();
+        }
+        if($this->course_class_id && $this->pattern_id){
+            $pattern_class = Patternclass::where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->select('id')->first();
+        }else{
+            $pattern_class=[];
+        }
+
+        if ($pattern_class) {
+            $maxSubjectOrder = 0;
+            $maxSubjectOrder = Subject::where('patternclass_id', $pattern_class->id)->where('subject_sem', 1)->max('subject_order');
+            // Increment the maximum subject order by one
+            $maxSubjectOrder += 1;
+            // Assign the new subject order value to the property
+            $this->subject_order = $maxSubjectOrder;
+        }
+        if($this->subjectexam_type){
+            $examtypes=Subjectexamtype::find($this->subjectexam_type);
+            switch ($examtypes->examtype) {
+                case 'IE':
+                    $this->type = ['IE'=>1,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>0];
+                    break;
+                case 'IP':
+                    $this->type = ['IE'=>0,'IP'=>1,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>0];
+                    break;
+                case 'IG':
+                    $this->type = ['IE'=>0,'IP'=>0,'IG'=>1,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>0];
+                    break;
+                case 'I':
+                    $this->type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>1,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>0];
+                    break;
+                case 'P':
+                    $this->type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>1,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>0];
+                    break;
+                case 'G':
+                    $this->type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>1,'IEP'=>0,'IEG'=>0,'E'=>0];
+                    break;
+                case 'IEP':
+                    $this->type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>1,'IEG'=>0,'E'=>0];
+                    break;
+                case 'IEG':
+                    $this->type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>1,'E'=>0];
+                    break;
+                case 'E':
+                    $this->type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>1];
+                    break;
+                default:
+                    $this->type = ['IE'=>1,'IP'=>1,'IG'=>1,'I'=>1,'P'=>1,'G'=>1,'IEP'=>1,'IEG'=>1,'E'=>1];
+                    break;
+            }
         }
 
         $subjects = Subject::with(['college', 'subjectcategories', 'department', 'subjecttypes', 'patternclass', 'classyear',])->when($this->search, function($query, $search){

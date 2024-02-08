@@ -145,7 +145,7 @@ class DatabaseSeeder extends Seeder
             // ExamPanelSeeder::class,                         // ExamOrderPost,Subject
             // ExamorderSeeder::class,                         // ExamPatternclass , ExamPanel
             // ExamTimeTableSeeder::class,                     // ExamPatternclass , Subject ,Timetableslot
-
+            SubjectExamTypeMasterSeeder::class,             // Subjecttype, Subjectexamtype
         ]);
     }
 }
