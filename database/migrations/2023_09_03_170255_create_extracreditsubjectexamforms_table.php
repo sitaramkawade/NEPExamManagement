@@ -23,11 +23,10 @@ class CreateExtracreditsubjectexamformsTable extends Migration
            $table->bigInteger('subject_id')->unsigned();
            $table->bigInteger('examformmaster_id')->nullable()->unsigned();
            $table->timestamps();
-           $table->softDeletes();
            $table->foreign('exam_id')->references('id')->on('exams');
            $table->foreign('student_id')->references('id')->on('students');
            $table->foreign('subject_id')->references('id')->on('extracreditsubjects');
-           $table->foreign('examformmaster_id')->references('id')->on('examformmasters');
+           $table->foreign('examformmaster_id')->references('id')->on('examformmasters')->onDelete('cascade');
         });
     }
 

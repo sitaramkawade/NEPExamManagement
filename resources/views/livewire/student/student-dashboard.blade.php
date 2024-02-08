@@ -11,12 +11,9 @@
             <div class="col-span-2">
               <x-dashboard.card heading="Action" class="dark:bg-green-500  bg-green-100">
                 <div class="grid grid-cols-3  md:grid-cols-3 ">
-                  <x-dashboard.form-button route="student.student_exam_form"> Exam Form </x-dashboard.form-button>
-                  <x-dashboard.form-button route="student.student_exam_form"> Delete Exam Form </x-dashboard.form-button>
-                  <x-dashboard.form-button route="student.student_exam_form"> Preview Exam Form </x-dashboard.form-button>
-                  <x-dashboard.form-button route="student.student_exam_form"> Print Exam Form </x-dashboard.form-button>
-                  {{-- <x-dashboard.form-button route="student.student_exam_form"> Result </x-dashboard.form-button>
-                  <x-dashboard.form-button route="student.student_exam_form"> Hall Tiket </x-dashboard.form-button> --}}
+                  <x-dashboard.form-button action="{{ route('student.student_exam_form') }}"> Exam Form </x-dashboard.form-button>
+                  <x-dashboard.form-button action="{{ route('student.student_delete_exam_form') }}"> Delete Exam Form </x-dashboard.form-button>
+
                 </div>
               </x-dashboard.card>
             </div>

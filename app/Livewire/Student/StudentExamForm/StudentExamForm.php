@@ -418,7 +418,7 @@ class StudentExamForm extends Component
                 DB::commit();
 
                 // Notifing Success 
-                $this->dispatch('alert',type:'info',message:'Exam Form Saved Successfully !!');
+                $this->dispatch('alert',type:'success',message:'Exam Form Saved Successfully !!');
 
                 // Redirecting To Student Dashboard
                 $this->redirect('/student/dashboard', navigate:true);
