@@ -22,6 +22,8 @@ return new class extends Migration
             $table->bigInteger('subject_id')->unsigned();
             $table->foreign('subject_id')->references('id')->on('subjects');
 
+            $table->string('description',50)->nullable();
+
             $table->tinyInteger('active_status')->default('1');
             $table->softDeletes();
             $table->timestamps();

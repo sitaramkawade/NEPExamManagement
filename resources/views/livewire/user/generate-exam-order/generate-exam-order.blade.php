@@ -43,9 +43,8 @@
                                         <x-table.text-scroll>{{ isset($panel->patternclass->pattern->pattern_name) ? $panel->patternclass->pattern->pattern_name : '-' }} {{ isset($panel->patternclass->courseclass->classyear->classyear_name) ? $panel->patternclass->courseclass->classyear->classyear_name : '-' }} {{ isset($panel->patternclass->courseclass->course->course_name) ? $panel->patternclass->courseclass->course->course_name : '-' }} </x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
-                                      <a href="{{ route('user.examorder',$panel->id)}}">  <x-table.edit i="0">Create Order</x-table.edit></a>
-                                        <x-status>Send Panel List</x-status>
-                                        <x-status type="info">Send Email</x-status>
+                                     <x-table.edit i="0" wire:click="generateExamPanel({{ $panel->id }})">Create Order</x-table.edit>
+                                     <x-table.edit i="0" wire:click="SendMail({{ $panel->id }})">Send Mail</x-table.edit></a>              
                                     </x-table.td>
                                 </x-table.tr>
                                 @empty

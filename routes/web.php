@@ -195,7 +195,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Generate Exam Order
   Route::get('/generate/exam/order', GenerateExamOrder::class)->name('generate_exam_order');
 
-  Route::get('/pdf/{id}',[ExamOrderPdfController::class,'generateExamPanel'])->name('examorder');
+  Route::get('/pdf/{id}',[ExamOrderPdfController::class,'order'])->name('examorder');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');
