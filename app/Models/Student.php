@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Models\Patternclass;
 use App\Models\Examformmaster;
+use App\Models\Studentaddress;
 use App\Models\Studenthelpline;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
@@ -112,10 +113,19 @@ class Student extends  Authenticatable implements MustVerifyEmail
     }
 
 
-    // public function studentaddress()
-    // {
-    //     return $this->hasOne(Studentaddress::class,'student_id','id');
-    // }
+    public function getpermanentaddress()
+    {
+        return $this->hasOne(Studentaddress::class)->whereHas('addresstype', function ($query) {
+            $query->where('type', 'Permanent Address');
+        })->first();
+    }
+    
+    public function getcorrespondenceaddress()
+    {
+        return $this->hasOne(Studentaddress::class)->whereHas('addresstype', function ($query) {
+            $query->where('type', 'Correspondence Address');
+        })->first();
+    }
 
     // public function getStudentName($value)
     // {

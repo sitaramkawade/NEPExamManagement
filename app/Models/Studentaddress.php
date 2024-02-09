@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Addresstype;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Studentaddress extends Model
 {
@@ -34,8 +35,8 @@ class Studentaddress extends Model
     return $this->belongsTo(Taluka::class,'taluka_id','id');
     }
    
-    // public function addresstype():BelongsTo
-    // {
-    // return $this->belongsTo(Addresstype::class,'addresstype_id','id');
-    // }
+    public function addresstype():BelongsTo
+    {
+         return $this->belongsTo(Addresstype::class,'addresstype_id','id');
+    }
 }

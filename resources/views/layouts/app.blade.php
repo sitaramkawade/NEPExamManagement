@@ -111,6 +111,7 @@
       }
 
     </style>
+    @yield('styles')
   </head>
 
   <body class="font-sans antialiased" x-data="setup()" x-init="$refs.loading.classList.add('hidden'); setColors(color);" :class="{ 'dark': isDark }">
