@@ -93,7 +93,7 @@ class AllSubject extends Component
 
     protected function rules()
     {
-        return [
+        $rules = [
             'subject_sem' => ['required', Rule::exists(Semester::class,'id')],
             'subjectcategory_id' => ['required', Rule::exists(Subjectcategory::class,'id')],
             'subject_code' => ['required', 'string', 'min:1', 'max:50'],
@@ -107,25 +107,57 @@ class AllSubject extends Component
             'subjecttype_id' => ['required',Rule::exists(Subjecttype::class,'id')],
             'subjectexam_type' => ['required',Rule::exists(Subjectexamtype::class,'id')],
             'subject_credit' => ['required',Rule::exists(Subjectcredit::class,'id')],
-            'subject_maxmarks' => ['required',],
-            'subject_maxmarks_int' => ['required',],
-            'subject_maxmarks_intpract' => ['required',],
-            'subject_maxmarks_ext' => ['required',],
-            'subject_totalpassing' => ['required',],
-            'subject_intpassing' => ['required',],
-            'subject_intpractpassing' => ['required',],
-            'subject_extpassing' => ['required',],
             'is_panel' => ['required','numeric','in:0,1'],
             'no_of_sets' => ['required','numeric','in:1,2,3'],
             'classyear_id' => ['required',Rule::exists(Classyear::class,'id')],
-            // 'subject_optionalgroup' => ['required',],
-            // 'department_id' => ['required',Rule::exists(Department::class,'id')],
-            // 'college_id' => ['required',Rule::exists(College::class,'id')],
-            'pattern_id' => ['required',Rule::exists(Pattern::class,'id')],
-            'course_id' => ['required',Rule::exists(Course::class,'id')],
-            'course_class_id' => ['required',Rule::exists(Courseclass::class,'id')],
+            // 'pattern_id' => ['required',Rule::exists(Pattern::class,'id')],
+            // 'course_id' => ['required',Rule::exists(Course::class,'id')],
+            // 'course_class_id' => ['required',Rule::exists(Courseclass::class,'id')],
         ];
+        if($this->type['IE']){
+            $rules ['subject_maxmarks'] = ['required'];
+            $rules ['subject_maxmarks_int'] = ['required'];
+            $rules ['subject_maxmarks_ext'] = ['required'];
+            $rules ['subject_totalpassing'] = ['required'];
+            $rules ['subject_intpassing'] = ['required'];
+            $rules ['subject_extpassing'] = ['required'];
+        }elseif($this->type['IP']){
+            $rules ['subject_maxmarks'] = ['required'];
+            $rules ['subject_maxmarks_int'] = ['required'];
+            $rules ['subject_maxmarks_intpract'] = ['required'];
+            $rules ['subject_intpractpassing'] = ['required'];
+            $rules ['subject_intpassing'] = ['required'];
+            $rules ['subject_totalpassing'] = ['required'];
+        }elseif($this->type['IG']){
+            $rules ['subject_maxmarks'] = ['required'];
+            $rules ['subject_maxmarks_int'] = ['required'];
+            $rules ['subject_intpassing'] = ['required'];
+            $rules ['subject_totalpassing'] = ['required'];
+        }elseif($this->type['I']){
+            $rules ['subject_maxmarks'] = ['required'];
+            $rules ['subject_maxmarks_int'] = ['required'];
+            $rules ['subject_intpassing'] = ['required'];
+            $rules ['subject_totalpassing'] = ['required'];
+        }elseif($this->type['IEP']){
+            $rules ['subject_maxmarks'] = ['required'];
+            $rules ['subject_maxmarks_int'] = ['required'];
+            $rules ['subject_maxmarks_intpract'] = ['required'];
+            $rules ['subject_maxmarks_ext'] = ['required'];
+            $rules ['subject_totalpassing'] = ['required'];
+            $rules ['subject_intpassing'] = ['required'];
+            $rules ['subject_intpractpassing'] = ['required'];
+            $rules ['subject_extpassing'] = ['required'];
+        }elseif($this->type['IEG']){
+            $rules ['subject_maxmarks'] = ['required'];
+            $rules ['subject_maxmarks_int'] = ['required'];
+            $rules ['subject_maxmarks_ext'] = ['required'];
+            $rules ['subject_totalpassing'] = ['required'];
+            $rules ['subject_intpassing'] = ['required'];
+            $rules ['subject_extpassing'] = ['required'];
+        }
+        return $rules;
     }
+
 
     public function messages()
     {
@@ -177,6 +209,7 @@ class AllSubject extends Component
             // 'department_id.exists' => 'The selected department is invalid.',
             // 'college_id.required' => 'The college field is required.',
             // 'college_id.exists' => 'The selected college is invalid.',
+
             'pattern_id.required' => 'The pattern field is required.',
             'pattern_id.exists' => 'The selected pattern is invalid.',
             'course_id.required' => 'The course field is required.',
@@ -188,33 +221,59 @@ class AllSubject extends Component
 
     public function resetinput()
     {
-         $this->subject_sem=null;
-         $this->subjectcategory_id=null;
-         $this->subject_order=null;
-         $this->subject_code=null;
-         $this->subject_name_prefix=null;
-         $this->subject_name=null;
-         $this->subjecttype_id=null;
-         $this->subjectexam_type=null;
-         $this->subject_credit=null;
-         $this->is_panel=null;
-         $this->no_of_sets=null;
-         $this->subject_maxmarks=null;
-         $this->subject_maxmarks_int=null;
-         $this->subject_maxmarks_intpract=null;
-         $this->subject_maxmarks_ext=null;
-         $this->subject_totalpassing=null;
-         $this->subject_intpassing=null;
-         $this->subject_intpractpassing=null;
-         $this->subject_extpassing=null;
-         $this->subject_optionalgroup=null;
-         $this->patternclass_id=null;
-         $this->classyear_id=null;
-         $this->department_id=null;
-         $this->college_id=null;
-         $this->pattern_id=null;
-         $this->course_id=null;
-         $this->course_class_id=null;
+        $this->subject_order=null;
+        $this->subject_code=null;
+        $this->subject_name_prefix=null;
+        $this->subject_name=null;
+        $this->subjecttype_id=null;
+        $this->subjectexam_type=null;
+        $this->subject_credit=null;
+        $this->is_panel=null;
+        $this->no_of_sets=null;
+        $this->subject_maxmarks=null;
+        $this->subject_maxmarks_int=null;
+        $this->subject_maxmarks_intpract=null;
+        $this->subject_maxmarks_ext=null;
+        $this->subject_totalpassing=null;
+        $this->subject_intpassing=null;
+        $this->subject_intpractpassing=null;
+        $this->subject_extpassing=null;
+        $this->subject_optionalgroup=null;
+        $this->classyear_id=null;
+        $this->department_id=null;
+        $this->college_id=null;
+
+        $this->subject_sem=null;
+        $this->subjectcategory_id=null;
+        $this->patternclass_id=null;
+        $this->pattern_id=null;
+        $this->course_id=null;
+        $this->course_class_id=null;
+    }
+
+    public function resetinputspecific()
+    {
+        $this->subject_order=null;
+        $this->subject_code=null;
+        $this->subject_name_prefix=null;
+        $this->subject_name=null;
+        $this->subjecttype_id=null;
+        $this->subjectexam_type=null;
+        $this->subject_credit=null;
+        $this->is_panel=null;
+        $this->no_of_sets=null;
+        $this->subject_maxmarks=null;
+        $this->subject_maxmarks_int=null;
+        $this->subject_maxmarks_intpract=null;
+        $this->subject_maxmarks_ext=null;
+        $this->subject_totalpassing=null;
+        $this->subject_intpassing=null;
+        $this->subject_intpractpassing=null;
+        $this->subject_extpassing=null;
+        $this->subject_optionalgroup=null;
+        $this->classyear_id=null;
+        $this->department_id=null;
+        $this->college_id=null;
     }
 
     public function updated($propertyName)
@@ -224,12 +283,12 @@ class AllSubject extends Component
 
     public function setmode($mode)
     {
-        if($mode=='add')
-        {
+        if($mode=='add'){
+            $this->resetinput();
+        }elseif('all'){
             $this->resetinput();
         }
-        if($mode=='edit')
-        {
+        if($mode=='edit'){
             $this->resetValidation();
         }
         $this->mode=$mode;
@@ -245,11 +304,8 @@ class AllSubject extends Component
     {
         $validatedData = $this->validate();
 
-        if ($this->subjectexam_type) {
-
-        }
-
         $pattern_class = Patternclass::where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->select('id')->first();
+        $exam_type = Subjectexamtype::find($this->subjectexam_type);
 
         if (!$pattern_class) {
             $this->dispatch('alert', type: 'success', message: 'Pattern Class Not Found!!');
@@ -260,15 +316,18 @@ class AllSubject extends Component
         $guard = Auth::user('faculty');
 
         $validatedData['patternclass_id'] = $pattern_class->id;
+        $validatedData['subjectexam_type'] = $exam_type->examtype;
         $validatedData['faculty_id'] = $guard ? $guard->id : null;
         $validatedData['department_id'] = $guard ? $guard->department_id : null;
         $validatedData['college_id'] = $guard ? $guard->college_id : null;
+
 
         $subject = Subject::create($validatedData);
 
         if ($subject) {
             $this->dispatch('alert', type: 'success', message: 'Subject Saved Successfully !!');
-            $this->setmode('all');
+            $this->type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>0];
+            $this->resetinputspecific();
         } else {
             $this->dispatch('alert', type: 'error', message: 'Something went wrong!!');
         }
@@ -277,6 +336,7 @@ class AllSubject extends Component
 
     public function edit(Subject $subject)
     {
+
         if ($subject)
         {
             $this->subject_id = $subject->id;
@@ -320,6 +380,8 @@ class AllSubject extends Component
         if ($subject) {
             if ($pattern_class) {
                 $validatedData['patternclass_id'] = $pattern_class->id;
+                $exam_type = Subjectexamtype::find($this->subjectexam_type);
+                $validatedData['subjectexam_type'] = $exam_type->examtype;
                 // Check the current authentication guard
                 $guard = Auth::user('faculty');
 
@@ -563,9 +625,6 @@ class AllSubject extends Component
                     break;
                 case 'E':
                     $this->type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>1];
-                    break;
-                default:
-                    $this->type = ['IE'=>1,'IP'=>1,'IG'=>1,'I'=>1,'P'=>1,'G'=>1,'IEP'=>1,'IEG'=>1,'E'=>1];
                     break;
             }
         }

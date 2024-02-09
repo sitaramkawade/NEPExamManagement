@@ -29,6 +29,12 @@ class SubjectExamTypeMasterSeeder extends Seeder
             'updated_at'=>'2023-09-05 21:23:00'
         ] );
         SubjectExamTypeMaster::create( [
+            'subjecttype_id'=>1,
+            'examtype_id'=>8,
+            'created_at'=>'2023-09-05 21:23:00',
+            'updated_at'=>'2023-09-05 21:23:00'
+        ] );
+        SubjectExamTypeMaster::create( [
             'subjecttype_id'=>2,
             'examtype_id'=>2,
             'created_at'=>'2023-09-05 21:23:00',
