@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class StudentExamforms extends Model
 {
-    use HasFactory , SoftDeletes;
-    protected $dates = ['deleted_at'];
+    use HasFactory;
     protected $table='student_examforms';
     protected $fillable=[
         'int_status',

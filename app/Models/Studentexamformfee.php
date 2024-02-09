@@ -10,9 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Studentexamformfee extends Model
 {
-    use HasFactory , SoftDeletes;
-    protected $dates = ['deleted_at'];
-    
+    use HasFactory;
+
     protected $table="studentexamformfees";
     protected $fillable = [
     'examformmaster_id',
@@ -22,7 +21,7 @@ class Studentexamformfee extends Model
 
     public function examformmaster()
     {         
-        return $this->belongsTo(Examformmaster::class,'examformmaster_id','id')->withTrashed();
+        return $this->belongsTo(Examformmaster::class,'examformmaster_id','id');
 
     }
     

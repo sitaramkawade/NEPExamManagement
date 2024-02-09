@@ -84,7 +84,7 @@
             @endforeach
           </x-table.tbody>
         </x-table.table>
-        @if ($extra_credit_subjects->count() > 0)
+        @if (!$extra_credit_subjects->isEmpty())
           <x-table.table>
             <x-table.thead>
               <x-table.tr>
@@ -153,7 +153,7 @@
         </x-table.tbody>
       </x-table.table>
       <div>
-        <x-form-btn>Save And Next</x-form-btn>
+        <x-form-btn wire:loading.attr='disabled' wire:target='student_exam_form_save()'>Save And Next</x-form-btn>
         <x-form-btn class="float-start" wire:click="next_back()" type="button">Back</x-form-btn>
         <x-form-btn wire:click="cancel()" type="button">Cancel</x-form-btn>
       </div>

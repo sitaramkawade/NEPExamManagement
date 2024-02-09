@@ -69,6 +69,7 @@ use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\Faculty\SubjectCategory\AllSubjectCategory;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
+use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
 
 
 
@@ -126,6 +127,9 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
 
   // Student Exam Form
   Route::post('/exam/form',StudentExamForm::class)->name('student_exam_form');
+
+  // Student Delete Exam Form
+  Route::post('/delete/exam/form',DeleteStudentExamForm::class)->name('student_delete_exam_form');
 });
 
 

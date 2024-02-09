@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Patternclass;
+use App\Models\Examformmaster;
 use App\Models\Studenthelpline;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
@@ -105,6 +106,12 @@ class Student extends  Authenticatable implements MustVerifyEmail
     }
 
 
+    public function examformmasters()
+    { 
+        return $this->hasMany(Examformmaster::class,'student_id','id');
+    }
+
+
     // public function studentaddress()
     // {
     //     return $this->hasOne(Studentaddress::class,'student_id','id');
@@ -158,10 +165,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
     //     return $this->hasMany(Studentmark::class,'student_id','id');
     // }
 
-    // public function examformmaster()
-    // { 
-    //     return $this->hasMany(Examformmaster::class,'student_id','id');
-    // }
+
 
     // public function checkexamform($student_id,$exam_id)
     // {

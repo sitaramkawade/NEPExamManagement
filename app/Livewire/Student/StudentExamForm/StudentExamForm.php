@@ -9,12 +9,14 @@ use App\Models\Subject;
 use Livewire\Component;
 use App\Models\Admissiondata;
 use App\Models\Examfeecourse;
+use App\Models\Examfeemaster;
 use App\Models\Examformmaster;
 use App\Models\Formtypemaster;
 use Livewire\Attributes\Locked;
 use App\Models\ExamPatternclass;
 use App\Models\StudentExamforms;
 use App\Models\Extracreditsubject;
+use App\Models\Studentexamformfee;
 use Illuminate\Support\Facades\DB;
 use App\Models\CurrentclassStudents;
 use Illuminate\Support\Facades\Auth;
@@ -284,35 +286,48 @@ class StudentExamForm extends Component
     //  Save Exam Form SEM-1
     public function save_sem_1_exam_form()
     {  
-        // Examfeemaster
-        $examfeecourse = Examfeecourse::where('patternclass_id', $this->patternclass_id)->get();
+        // Getting Exam Form
+        $formtype=Formtypemaster::where('form_name','Exam Form')->first();
 
-        $total_fee = 0;
+        // Getting Fee Ids
+        $examfeemasterids=Examfeemaster::where('form_type_id', $formtype->id)->pluck('id');
 
-        foreach ($examfeecourse as $fee) {
-            $total_fee += $fee->fee;
-        }
-        
+        // Getting Exam Fee Courses Of Pattern Class
+        $examfeecourse = Examfeecourse::whereIn('examfees_id',$examfeemasterids)->where('patternclass_id', $this->patternclass_id)->get();
+
+        // Getting Launched Exam Of Pattern Class
         $exampatternclass = ExamPatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
         if ($exampatternclass) 
         {   
-                                
+            // Checking Dublicate Entry
             $existingRecord = Examformmaster::where([
                 'student_id' => $this->student->id,
                 'exam_id' => $exampatternclass->exam_id,
                 'patternclass_id' => $exampatternclass->patternclass_id,
             ])->first();
-
-            if ($existingRecord) {
-
+            
+            // If Found Dublicte Entry Retun Error
+            if ($existingRecord) 
+            {
                 $this->dispatch('alert',type:'error',message:'You Are Trying To Submit The Exam Form Again.');
                 return false;
             }
 
             try 
             {   
+                // Init Transaction
                 DB::beginTransaction();
 
+                // Intit Total Fee
+                $total_fee = 0;
+
+                // Calculate Total Fee
+                foreach ($examfeecourse as $fee) 
+                {
+                    $total_fee= $total_fee + $fee->fee;
+                }
+
+                // Prepare Exam Form Matser Data
                 $exam_form_master = [
                     'medium_instruction' => $this->medium_instruction,
                     'totalfee' => $total_fee,
@@ -321,10 +336,14 @@ class StudentExamForm extends Component
                     'exam_id' => $exampatternclass->exam_id,
                     'patternclass_id' => $exampatternclass->patternclass_id,
                 ];
-    
+
+                 // Save Exam Form Matser Data
                 $exam_form_master_data = Examformmaster::create($exam_form_master);
 
-                $student_exam_form = [];
+                // Init Student Exam Form
+                $student_exam_forms = [];
+
+                // Prepare Student Exam Form Data
                 foreach ($this->regular_subjects as $subject) 
                 {
                     $student_exam_form = [
@@ -341,7 +360,8 @@ class StudentExamForm extends Component
                         'project_status' => 0,
                         'oral_status' => 0,
                     ];
-        
+
+                    // Set Checked Input
                     switch ($subject->subjectexam_type) 
                     {
                         case 'I':
@@ -350,14 +370,11 @@ class StudentExamForm extends Component
                         case 'G':
                             $student_exam_form['grade_status'] = 1;
                         break;
-                        case 'P':
-                            $student_exam_form['int_status'] = 1;
-                            $student_exam_form['ext_status'] = 1;
-                        break;
                         case 'IG':
                             $student_exam_form['int_status'] = 1;
                             $student_exam_form['grade_status'] = 1;
                         break;
+                        case 'P':
                         case 'IP':
                         case 'IE':
                             $student_exam_form['int_status'] = 1;
@@ -374,26 +391,50 @@ class StudentExamForm extends Component
                             $student_exam_form['int_practical_status'] = 1;
                         break;
                     }
-        
-                    $student_exam_form_data = StudentExamforms::create($student_exam_form);
+
+                    $student_exam_forms[] = $student_exam_form;
                 }
+
+                // Save Student Exam Form Data
+                $student_exam_form_data = StudentExamforms::insert($student_exam_forms);
+
+                // Init Student Exam Form Fee
+                $student_exam_form_fees = [];
+
+                // Prepare Student Exam Form Fee
+                foreach ($examfeecourse as $fee) 
+                {
+                    $student_exam_form_fees[] = [
+                        'examformmaster_id' =>$exam_form_master_data->id,
+                        'examfees_id' => $fee->examfees_id,
+                        'fee_amount' => $fee->fee
+                    ];
+                }
+
+                // Save Student Exam Form Fee
+                $student_exam_form_fee_data=Studentexamformfee::insert($student_exam_form_fees);
+
+                // If All Above Work Done Then Commint It into DB
                 DB::commit();
 
-                $this->dispatch('alert',type:'info',message:'Exam Form Saved Successfully !!');
+                // Notifing Success 
+                $this->dispatch('alert',type:'success',message:'Exam Form Saved Successfully !!');
+
+                // Redirecting To Student Dashboard
                 $this->redirect('/student/dashboard', navigate:true);
             }
             catch (\Exception $e) 
-            {
+            {   
+                // If Above Work Not Done Then Revert Changes
                 DB::rollback();
-                if ($e->errorInfo[1] === 1062) 
-                {
-                    $this->dispatch('alert',type:'error',message:'You Are Trying To Submit The Exam Form Again.');
-                }
-                $this->dispatch('alert', ['type' => 'info', 'message' => 'An Error Occurred. Transaction Rolled Back.']);
+
+                // Notify  Failure
+                $this->dispatch('alert', type: 'info', message: 'An Error Occurred. Transaction Rolled Back.');
             }
         } 
         else 
-        {
+        {   
+            // Notify  Failure
             $this->dispatch('alert',type:'info',message:'Exam Not Launched For This Pattern Class !!');
         }
     }
@@ -411,19 +452,17 @@ class StudentExamForm extends Component
             return false;
         }
 
+        // If Public Property show_abcid Is Set Update ABCID
         if($this->abcid_option['show_abcid'])
         {   
-            // if($this->abcid_option['required_abcid'])
-            // {
-                Auth::guard('student')->user()->update(['abcid'=>$this->abcid]);
-            // }
+            Auth::guard('student')->user()->update(['abcid'=>$this->abcid]);
         }
 
+        // Setting Student
         $this->student = Auth::guard('student')->user();
 
         // Checking If Student Present In Current Class Student
         $current_class_student_entry = $this->student->currentclassstudents->last();
-
         
         // if Current Class Student is Empty
         if (!isset($current_class_student_entry)) 
@@ -436,13 +475,9 @@ class StudentExamForm extends Component
         }
         else
         {   
-            $this->patternclass_id->$current_class_student_entry->patternclass_id;
             //sem 2 ,3,4,5,6
+            $this->patternclass_id->$current_class_student_entry->patternclass_id;
         }
-
-            
     }
-
-   
 }
 

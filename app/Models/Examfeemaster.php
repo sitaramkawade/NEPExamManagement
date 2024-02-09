@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Examfeecourse;
 use App\Models\Applyfeemaster;
 use App\Models\Formtypemaster;
 use Illuminate\Database\Eloquent\Model;
@@ -34,6 +35,11 @@ class Examfeemaster extends Model
     public function applyfee(): BelongsTo
     {
         return $this->belongsTo(Applyfeemaster::class, 'apply_fee_id', 'id')->withTrashed();
+    }
+
+    public function examfeecourses()
+    {
+        return $this->hasMany(Examfeecourse::class, 'examfees_id', 'id');
     }
 
     public function scopeSearch(Builder $query,string $search)
