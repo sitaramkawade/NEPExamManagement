@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Caste;
+use App\Models\CasteCategory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Studentprofile extends Model
 {
@@ -37,8 +39,19 @@ class Studentprofile extends Model
         'student_id',       
         'profile_complete_status',
     ];
+
     public function student():BelongsTo
     {
-    return $this->belongsTo(Student::class,'student_id','id')->withTrashed();
+        return $this->belongsTo(Student::class,'student_id','id')->withTrashed();
+    }
+
+    public function castecategory():BelongsTo
+    {
+        return $this->belongsTo(CasteCategory::class,'caste_category_id','id');
+    }
+
+    public function caste():BelongsTo
+    {
+        return $this->belongsTo(Caste::class,'caste_id','id');
     }
 }
