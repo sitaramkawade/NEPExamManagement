@@ -13,6 +13,7 @@ class SubjectcategorySeeder extends Seeder
      */
     public function run(): void
     {
+
         Subjectcategory::create( [
             'id'=>1,
             'subjectcategory'=>'Major Mandatory',

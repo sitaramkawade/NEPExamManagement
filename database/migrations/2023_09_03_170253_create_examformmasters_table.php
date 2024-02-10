@@ -25,11 +25,11 @@ return new class extends Migration
             $table->bigInteger('patternclass_id')->unsigned();
             $table->string('medium_instruction',100);
             $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
-            $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
-            $table->foreign('patternclass_id')->references('id')->on('pattern_classes')->onDelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('college_id')->references('id')->on('colleges');
+            $table->foreign('exam_id')->references('id')->on('exams');
+            $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
+            $table->unique(['student_id', 'exam_id', 'patternclass_id']);
         });
     }
 

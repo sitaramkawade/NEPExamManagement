@@ -19,8 +19,7 @@ class CreateStudentexamformfeesTable extends Migration
             $table->bigInteger('examfees_id')->unsigned();
             $table->integer('fee_amount')->default(0);;
             $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('examformmaster_id')->references('id')->on('examformmasters');
+            $table->foreign('examformmaster_id')->references('id')->on('examformmasters')->onDelete('cascade');
             $table->foreign('examfees_id')->references('id')->on('examfeemasters');
         });
     }

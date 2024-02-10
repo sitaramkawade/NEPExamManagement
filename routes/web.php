@@ -69,6 +69,9 @@ use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\Faculty\SubjectCategory\AllSubjectCategory;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
+use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
+use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
+use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
 
 
@@ -126,6 +129,15 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
 
   // Student Exam Form
   Route::post('/exam/form',StudentExamForm::class)->name('student_exam_form');
+
+  // Student Delete Exam Form
+  Route::post('/delete/exam/form',DeleteStudentExamForm::class)->name('student_delete_exam_form');
+
+  // Student Print Preview Exam Form
+  Route::post('/print/preview/exam/form', [PrintStudentExamFormController::class,'print_preview_exam_form'])->name('student_print_preview_exam_form');
+
+  // Student Print Final Exam Form
+  Route::post('/print/final/exam/form', [PrintStudentExamFormController::class,'print_final_exam_form'])->name('student_print_final_exam_form');
 });
 
 
@@ -195,7 +207,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Generate Exam Order
   Route::get('/generate/exam/order', GenerateExamOrder::class)->name('generate_exam_order');
 
-  Route::get('/pdf/{id}',[ExamOrderPdfController::class,'generateExamPanel'])->name('examorder');
+  Route::get('/pdf/{id}',[ExamOrderPdfController::class,'order'])->name('examorder');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');

@@ -20,6 +20,7 @@ class ExamPanel extends Model
         'faculty_id',
         'examorderpost_id',
         'subject_id',
+        'description',
         'active_status'
     ];
 

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('formtypemasters', function (Blueprint $table) {
             $table->id();
             $table->string('form_name');
+            $table->tinyInteger('is_active')->nullable()->default(0);// 0 :not active 1:active
             $table->timestamps();
             $table->softDeletes();
         });
