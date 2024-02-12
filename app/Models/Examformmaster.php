@@ -10,6 +10,7 @@ use App\Models\Studentexamformfee;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Extracreditsubjectexamform;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Examformmaster extends Model
@@ -59,6 +60,21 @@ class Examformmaster extends Model
     public function studentextracreditexamforms()
     { 
       return $this->hasMany(Extracreditsubjectexamform::class,'examformmaster_id','id');
+    }
+
+
+    public function scopeSearch(Builder $query, string $search)
+    {
+        return $query->with('student')
+        ->where('id', 'like', "%{$search}%")
+        ->orWhere(function ($subquery) use ($search) {
+            $subquery->orWhereHas('student', function ($subQuery) use ($search) {
+                $subQuery->where('prn', 'like', "%{$search}%")
+                ->orWhere('eligibilityno', 'like', "%{$search}%")
+                ->orWhere('student_name', 'like', "%{$search}%");
+            });
+        });
+
     }
    
     

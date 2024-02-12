@@ -10,12 +10,12 @@
           <div class="grid grid-cols-2 gap-4">
             <div class="col-span-2">
               <x-dashboard.card heading="Action" class="dark:bg-green-500  bg-green-100">
-                <div class="gap-y-5">
-                  <x-dashboard.form-button target="_blank" action="{{ route('student.student_exam_form') }}"> Exam Form </x-dashboard.form-button>
-                  <x-dashboard.form-button action="{{ route('student.student_delete_exam_form') }}"> Delete Exam Form </x-dashboard.form-button>
-                  <x-dashboard.form-button target="_blank" action="{{ route('student.student_print_preview_exam_form') }}"> Preview Exam Form </x-dashboard.form-button>
-                  <x-dashboard.form-button target="_blank" action="{{ route('student.student_print_final_exam_form') }}"> Print Exam Form </x-dashboard.form-button>      
-                </div>
+                <x-dashboard.inner-card heading="Exam Form">
+                  <x-dashboard.form-button class="bg-purple-500" target="_blank" action="{{ route('student.student_exam_form') }}"> Exam Form </x-dashboard.form-button>
+                  <x-dashboard.form-button class="bg-red-500" action="{{ route('student.student_delete_exam_form') }}"> Delete Exam Form </x-dashboard.form-button>
+                  <x-dashboard.form-button class="bg-pink-500" target="_blank" action="{{ route('student.student_print_preview_exam_form') }}"> Preview Exam Form </x-dashboard.form-button>
+                  <x-dashboard.form-button class="bg-blue-500" target="_blank" action="{{ route('student.student_print_final_exam_form') }}" onclick="return confirm('Once Printed, the form cannot be edited. Confirm if you wish to print it.')"> Print Exam Form </x-dashboard.form-button>
+                </x-dashboard.inner-card>
               </x-dashboard.card>
             </div>
             <x-dashboard.card heading="Learning Mode" class=" dark:bg-yellow-500 bg-yellow-100">

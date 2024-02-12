@@ -25,7 +25,7 @@ class Studentexamformfee extends Model
 
     }
     
-    public function examfees()
+    public function examfee()
     {         
         return $this->belongsTo(Examfeemaster::class,'examfees_id','id')->withTrashed();
 
