@@ -86,6 +86,7 @@ class DatabaseSeeder extends Seeder
             AcademicyearSeeder::class,
             ProgrammeSeeder::class,
             RoletypeSeeder::class,
+            SubjectBucketTypeMasterSeeder::class,
             SubjectcategorySeeder::class,
             SubjecttypeSeeder::class,
             BloodgroupSeeder::class,
@@ -146,7 +147,7 @@ class DatabaseSeeder extends Seeder
             // ExamPanelSeeder::class,                         // ExamOrderPost,Subject
             // ExamorderSeeder::class,                         // ExamPatternclass , ExamPanel
             // ExamTimeTableSeeder::class,                     // ExamPatternclass , Subject ,Timetableslot
-
+            SubjectExamTypeMasterSeeder::class,             // Subjecttype, Subjectexamtype
         ]);
     }
 }
