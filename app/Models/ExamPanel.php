@@ -6,21 +6,20 @@ use App\Models\Faculty;
 use App\Models\Subject;
 use App\Models\ExamOrderPost;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ExamPanel extends Model
 {
-    use HasFactory,SoftDeletes; 
+    use HasFactory,SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $table='exam_panels';
     protected $fillable=[
         'faculty_id',
         'examorderpost_id',
         'subject_id',
-        'description',
         'active_status'
     ];
 
@@ -48,7 +47,7 @@ class ExamPanel extends Model
                 $subQuery->where('post_name', 'like', "%{$search}%");
             })->orWhereHas('subject', function ($subQuery) use ($search) {
                 $subQuery->where('subject_name', 'like', "%{$search}%");
-            }) ->orWhere('description', 'like', "%{$search}%");
+            });
         });
     }
 }

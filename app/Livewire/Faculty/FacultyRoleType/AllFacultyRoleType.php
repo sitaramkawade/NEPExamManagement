@@ -177,7 +177,6 @@ class AllFacultyRoleType extends Component
                 return Excel::download(new FacultyRoleTypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
-
     }
 
     public function status(Roletype $roletype)
