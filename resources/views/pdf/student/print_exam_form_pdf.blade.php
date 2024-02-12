@@ -314,7 +314,7 @@
                 <td style=" border: 1px dotted gray;" align="center">{{ 'N' }}</td>
                 <td style=" border: 1px dotted gray;" align="center">{{ 'N' }}</td>
                 <td style=" border: 1px dotted gray;" align="center">{{ 'N' }}</td>
-                <td style=" border: 1px dotted gray;" align="center">{{ $d->select_status == 1 ? 'Y' : 'N' }}</td>
+                <td style=" border: 1px dotted gray;" align="center">{{ $d->select_status == 1 ? 'Y' : 'N'; }}</td>
               </tr>
             @endforeach
           </tbody>

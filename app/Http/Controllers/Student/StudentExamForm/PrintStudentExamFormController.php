@@ -43,11 +43,13 @@ class PrintStudentExamFormController extends Controller
             if($exam_form_master)
             {   
                 if($exam_form_master->printstatus==0)
-                {
-                    $pdf = PDF::loadView('pdf.student.print_exam_form_pdf', compact('exam_form_master',))->setPaper('a4', 'portrait')->setOptions(['images' => true, 'defaultFont' => 'sans-serif']);
-                    $pdf->output();
-                    return $pdf->stream('exam_form.pdf');
+                {   
+                    $exam_form_master->update(['printstatus'=>1]);
                 }
+                
+                $pdf = PDF::loadView('pdf.student.print_exam_form_pdf', compact('exam_form_master',))->setPaper('a4', 'portrait')->setOptions(['images' => true, 'defaultFont' => 'sans-serif']);
+                $pdf->output();
+                return $pdf->stream('exam_form.pdf');
             }
         }
     }
