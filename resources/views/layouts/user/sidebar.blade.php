@@ -171,6 +171,10 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
     </x-sidebar.sidebar-link>
 
+    <x-sidebar.sidebar-link route="user.modify_exam_form" name="Modify Exam Form">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </x-sidebar.sidebar-link>
+
     <x-sidebar.group>Tejas</x-sidebar.group>
 
     <x-sidebar.sidebar-link route="user.all-hodappointsubjects" name="HOD Appointment's">
