@@ -27,8 +27,8 @@ class InwardExamForm extends Component
     public $student_name;
     public $mother_name;
     public $course_name;
-    public $application_id;
     public $memid;
+    public $application_id;
     #[Locked]
     public $inward_id;
 

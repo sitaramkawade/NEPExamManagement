@@ -5,9 +5,7 @@
         <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
         <x-breadcrumb.link name="Inward Exam Form" />
       </x-breadcrumb.breadcrumb>
-      <x-card-header heading="Exam Form Regular Inward Process Exam Form Regular Inward Process">
-        <x-back-btn/>
-      </x-card-header>
+      <x-card-header heading="Exam Form Regular Inward Process" />
       <x-form wire:submit="inward_class_form()">
         <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
           <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
@@ -302,7 +300,7 @@
                     <x-table.td>{{ 'N' }}</x-table.td>
                     <x-table.td>{{ 'N' }}</x-table.td>
                     <x-table.td>{{ 'N' }}</x-table.td>
-                    <x-table.td>{{ $examformextrcreditsubject->subject->select_status == 1 ? 'Y' : 'N'; }}</x-table.td>
+                    <x-table.td>{{ $examformextrcreditsubject->subject->select_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   </x-table.tr>
                 @empty
                   <x-table.tr>
@@ -316,10 +314,10 @@
           </div>
           <x-form-btn wire:loading.attr="disabled">Approve</x-form-btn>
           <x-form-btn type="button" wire:click='resetinput()' wire:loading.attr="disabled">Cancel</x-form-btn>
-          @if ($this->list_by=='o')
+          @if ($this->list_by == 'o')
             <x-form-btn type="button" wire:click='setpage(1)' wire:loading.attr="disabled">Back</x-form-btn>
-          @else 
-           <x-form-btn type="button" wire:click='setpage(2)' wire:loading.attr="disabled">Back</x-form-btn>
+          @else
+            <x-form-btn type="button" wire:click='setpage(2)' wire:loading.attr="disabled">Back</x-form-btn>
           @endif
         </div>
       </x-form>

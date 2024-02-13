@@ -40,6 +40,7 @@ use App\Livewire\User\ExamOrder\AllExamOrder;
 use App\Livewire\User\ExamPanel\AllExamPanel;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\ExamForm\InwardExamForm;
+use App\Livewire\User\ExamForm\ModifyExamForm;
 use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
 use App\Http\Controllers\ExamOrderPdfController;
@@ -270,6 +271,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //Inward Exam Form 
   Route::get('/inward/exam/form',InwardExamForm::class)->name('inward_exam_form');
+
+  //Modify Exam Form
+  Route::get('/modify/exam/form',ModifyExamForm ::class)->name('modify_exam_form');
 
   //All Subject Hod
   Route::get('/all-hodappointsubject',  AllHodAppointSubject::class)->name('all-hodappointsubjects');
