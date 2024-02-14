@@ -1,1 +1,1 @@
-@livewire('data-table')
+
