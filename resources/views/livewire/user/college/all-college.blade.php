@@ -53,10 +53,10 @@
                                         <x-table.text-scroll> {{ $college->college_address }}</x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
-                                        <x-table.text-scroll> {{ $college->sanstha->sanstha_name }} </x-table.text-scroll>
+                                        <x-table.text-scroll>{{ isset($college->sanstha->sanstha_name) ? $college->sanstha->sanstha_name : '-' }} </x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
-                                        <x-table.text-scroll> {{ $college->university->university_name }} </x-table.text-scroll>
+                                        <x-table.text-scroll> {{ isset($college->university->university_name) ? $college->university->university_name : '-' }} </x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
                                     @if ($college->deleted_at)

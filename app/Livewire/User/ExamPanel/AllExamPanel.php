@@ -217,6 +217,7 @@ class AllExamPanel extends Component
         }
 
         $panels=ExamPanel::select('id','faculty_id','subject_id','examorderpost_id','description','active_status','deleted_at')
+        ->with(['faculty:faculty_name,id','subject:subject_name,id','examorderpost:post_name,id'])
         ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

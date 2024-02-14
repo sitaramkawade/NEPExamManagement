@@ -33,6 +33,8 @@ return [
     |
     */
 
+    'queue' => env('MAIL_QUEUE_CONNECTION', 'default'),
+
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',

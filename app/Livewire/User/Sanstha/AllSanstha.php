@@ -103,7 +103,7 @@ class AllSanstha extends Component
         $sanstha->sanstha_address=  $this->sanstha_address;
         $sanstha->sanstha_website_url=  $this->sanstha_website_url;
         $sanstha->sanstha_contact_no= $this->sanstha_contact_no;
-        $sanstha->status= $this->status==1?0:1;
+        $sanstha->status= $this->status;
         $sanstha->save();
 
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
