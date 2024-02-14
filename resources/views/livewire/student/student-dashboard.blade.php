@@ -127,7 +127,8 @@
                   @endif
                   @if ($exm_form->inwardstatus==0)
                     <x-dashboard.form-button class="bg-blue-500 h-7 rounded-md border-0" target="_blank" action="{{ route('student.student_print_final_exam_form') }}" onclick="return confirm('Once Printed, the form cannot be edited. Confirm if you wish to print it.')"> Print Exam Form </x-dashboard.form-button>
-                  @endif
+                    @endif
+                    {{-- <x-dashboard.form-button class="bg-blue-500 h-7 rounded-md border-0" target="_blank" action="{{ route('student.student_refund_exam_form',$exm_form->id) }}" > Refund </x-dashboard.form-button> --}}
                 </x-table.td>
               </x-table.tr>
             @endforeach
