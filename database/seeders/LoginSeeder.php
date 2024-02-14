@@ -27,6 +27,7 @@ class LoginSeeder extends Seeder
 
 
         Faculty::create( [
+            'id'=>9999999,
             'faculty_name' => 'faculty',
             'email' => 'faculty@gmail.com',
             'email_verified_at' => now(),

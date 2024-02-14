@@ -27,7 +27,7 @@ class MyTestMail extends Mailable
         $e=Examorder::find($this->details['examorder_id']);
        $url=$this->details['url'];
           
-        return $this->markdown('emails.examorder')
+        return $this->markdown('mail.examorder')
         ->subject('Your Appointment for the Exam Work')
         ->with([
             'examorder' => $e,

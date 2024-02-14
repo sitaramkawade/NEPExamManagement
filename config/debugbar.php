@@ -119,7 +119,7 @@ return [
      */
 
     'capture_ajax' => true,
-    'add_ajax_timing' => false,
+    'add_ajax_timing' => true,
 
     /*
      |--------------------------------------------------------------------------
@@ -167,13 +167,13 @@ return [
         'session'         => true,  // Display session data
         'symfony_request' => true,  // Only one can be enabled..
         'mail'            => true,  // Catch mail messages
-        'laravel'         => false, // Laravel version and environment
-        'events'          => false, // All events fired
-        'default_request' => false, // Regular or special Symfony request logger
-        'logs'            => false, // Add the latest log messages
-        'files'           => false, // Show the included files
-        'config'          => false, // Display config settings
-        'cache'           => false, // Display cache events
+        'laravel'         => true, // Laravel version and environment
+        'events'          => true, // All events fired
+        'default_request' => true, // Regular or special Symfony request logger
+        'logs'            => true, // Add the latest log messages
+        'files'           => true, // Show the included files
+        'config'          => true, // Display config settings
+        'cache'           => true, // Display cache events
         'models'          => true,  // Display models
         'livewire'        => true,  // Display Livewire (when available)
     ],
@@ -195,18 +195,18 @@ return [
             'with_params'       => true,   // Render SQL with the parameters substituted
             'backtrace'         => true,   // Use a backtrace to find the origin of the query in your files.
             'backtrace_exclude_paths' => [],   // Paths to exclude from backtrace. (in addition to defaults)
-            'timeline'          => false,  // Add the queries to the timeline
+            'timeline'          => true,  // Add the queries to the timeline
             'duration_background'  => true,   // Show shaded background on each query relative to how long it took to execute.
             'explain' => [                 // Show EXPLAIN output on queries
                 'enabled' => false,
                 'types' => ['SELECT'],     // Deprecated setting, is always only SELECT
             ],
-            'hints'             => false,    // Show hints for common mistakes
-            'show_copy'         => false,    // Show copy button next to the query,
+            'hints'             => true,    // Show hints for common mistakes
+            'show_copy'         => true,    // Show copy button next to the query,
             'slow_threshold'    => false,   // Only track queries that last longer than this time in ms
         ],
         'mail' => [
-            'full_log' => false,
+            'full_log' => true,
         ],
         'views' => [
             'timeline' => false,  // Add the views to the timeline (Experimental)
