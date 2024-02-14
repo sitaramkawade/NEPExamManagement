@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Exam;
+use App\Models\Subject;
 use App\Models\Capmaster;
 use App\Models\Examorder;
 use App\Models\Patternclass;
@@ -39,6 +40,11 @@ class ExamPatternclass extends Model
     public function patternclass(): BelongsTo
     {
         return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id')->withTrashed();
+    }
+    
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class, 'patternclass_id', 'patternclass_id');   
     }
 
     public function examorder()

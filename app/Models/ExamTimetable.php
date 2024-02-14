@@ -30,6 +30,7 @@ class ExamTimetable extends Model
     {
         return $this->belongsTo(ExamPatternclass::class, 'exam_patternclasses_id', 'id')->withTrashed();
     }
+   
     public function timetableslot(): BelongsTo
     {
         return $this->belongsTo(Timetableslot::class, 'timeslot_id','id')->withTrashed();
