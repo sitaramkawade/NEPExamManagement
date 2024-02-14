@@ -278,7 +278,7 @@ class ViewExamPanel extends Component
         $auth_faculty = auth('faculty')->user();
 
         $appointed_subjects = Hodappointsubject::where('faculty_id', $auth_faculty->id)->where('status', 1)->pluck('subject_id')->toArray();
-        $patternclass_id = Subject::whereIn('id', $appointed_subjects) ->pluck('patternclass_id')->toArray();
+        $patternclass_id = Subject::whereIn('id', $appointed_subjects)->pluck('patternclass_id')->toArray();
 
         $this->pattern_classes = Patternclass::whereIn('id', $patternclass_id)->select('id', 'class_id', 'pattern_id')->with(['pattern:pattern_name,id', 'courseclass.course:course_name,id', 'courseclass.classyear:classyear_name,id'])->where('status', 1)->get();
         $this->posts=ExamOrderPost::select('id','post_name')->where('status',1)->get();

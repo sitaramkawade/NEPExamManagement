@@ -18,7 +18,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>1,
             'subjectcategory'=>'Major Mandatory',
             'subjectcategory_shortname'=>'DSC',
-            'subjectbucket_type' => 'Major',
+            'subjectbuckettype_id' => 1,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -27,7 +27,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>2,
             'subjectcategory'=>'Major Elective',
             'subjectcategory_shortname'=>'DSE',
-            'subjectbucket_type' => 'Major',
+            'subjectbuckettype_id' => 1,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -36,7 +36,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>3,
             'subjectcategory'=>'Minor',
             'subjectcategory_shortname'=>'M',
-            'subjectbucket_type' => 'Faculty',
+            'subjectbuckettype_id' => 2,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -45,7 +45,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>4,
             'subjectcategory'=>'Open Elective',
             'subjectcategory_shortname'=>'OE',
-            'subjectbucket_type' => 'Faculty',
+            'subjectbuckettype_id' => 2,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -54,7 +54,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>5,
             'subjectcategory'=>'Vocational Skill Course (VSC)',
             'subjectcategory_shortname'=>'VSC',
-            'subjectbucket_type' => 'Major',
+            'subjectbuckettype_id' => 1,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -63,7 +63,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>6,
             'subjectcategory'=>'Skill Enhancement Course (SEC)',
             'subjectcategory_shortname'=>'SEC',
-            'subjectbucket_type' => 'College',
+            'subjectbuckettype_id' => 3,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -72,7 +72,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>7,
             'subjectcategory'=>'Ability Enhancement Course',
             'subjectcategory_shortname'=>'AEC',
-            'subjectbucket_type' => 'College',
+            'subjectbuckettype_id' => 3,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -81,7 +81,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>8,
             'subjectcategory'=>'Value Education Courses',
             'subjectcategory_shortname'=>'VEC',
-            'subjectbucket_type' => 'College',
+            'subjectbuckettype_id' => 3,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -90,7 +90,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>9,
             'subjectcategory'=>'Indian Knowledge System',
             'subjectcategory_shortname'=>'IKS',
-            'subjectbucket_type' => 'Major',
+            'subjectbuckettype_id' => 1,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -99,7 +99,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>10,
             'subjectcategory'=>'On Job Training',
             'subjectcategory_shortname'=>'OJT',
-            'subjectbucket_type' => 'Major',
+            'subjectbuckettype_id' => 1,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -108,7 +108,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>11,
             'subjectcategory'=>'Field Project',
             'subjectcategory_shortname'=>'FP',
-            'subjectbucket_type' => 'Major',
+            'subjectbuckettype_id' => 1,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -117,7 +117,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>12,
             'subjectcategory'=>'Community Engagement and Service',
             'subjectcategory_shortname'=>'CES',
-            'subjectbucket_type' => 'Major',
+            'subjectbuckettype_id' => 1,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -127,7 +127,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>13,
             'subjectcategory'=>'Co-curricular Course',
             'subjectcategory_shortname'=>'CC',
-            'subjectbucket_type' => 'College',
+            'subjectbuckettype_id' => 3,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
@@ -136,7 +136,7 @@ class SubjectcategorySeeder extends Seeder
             'id'=>14,
             'subjectcategory'=>'Research Project',
             'subjectcategory_shortname'=>'RP',
-            'subjectbucket_type' => 'Major',
+            'subjectbuckettype_id' => 1,
             'is_active'=>1,
             'created_at'=>'2023-09-06 02:53:21',
             'updated_at'=>'2023-09-06 02:53:21'
