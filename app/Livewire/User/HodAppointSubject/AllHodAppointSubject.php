@@ -130,7 +130,6 @@ class AllHodAppointSubject extends Component
             $this->dispatch('alert', type: 'error', message: 'HOD is active and already assigned for that subject');
             return;
         }
-
         // Find the pattern class
         $pattern_class = Patternclass::select('id')->where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->first();
 
@@ -185,16 +184,10 @@ class AllHodAppointSubject extends Component
 
         foreach ($hodappointsubjects as $hodappointsubject) {
             $pattern_class_id = $hodappointsubject->patternclass_id;
-            $courseclass_subject_id = $hodappointsubject->subject_id;
 
             $pattern_class = Patternclass::find($pattern_class_id);
-            $courseclass_subject = Subject::find($courseclass_subject_id);
 
-            if ($pattern_class && $courseclass_subject) {
-                if ($pattern_class->courseclass && $pattern_class->courseclass->course && $courseclass_subject) {
-                    $this->courseclass_subject_id = $courseclass_subject->id;
-                }
-
+            if ($pattern_class) {
                 if ($pattern_class->courseclass && $pattern_class->courseclass->course) {
                     $this->course_id = $pattern_class->courseclass->course->id;
                 }
@@ -356,10 +349,7 @@ class AllHodAppointSubject extends Component
             $this->faculties = Faculty::select('id', 'faculty_name')->where('active', 1)->get();
             $this->patterns = Pattern::select('id', 'pattern_name')->where('status', 1)->get();
             $this->courses = Course::select('id', 'course_name')->get();
-
-            $course_classes = Courseclass::where('course_id', $this->course_id)->pluck('id')->toArray();
-
-            $this->pattern_classes = Patternclass::select('id', 'class_id', 'pattern_id')->whereIn('class_id', $course_classes)->where('pattern_id', $this->pattern_id)->get();
+            $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
 
             // If in edit mode, include all subjects associated with the current course class
             if ($this->mode === 'edit') {

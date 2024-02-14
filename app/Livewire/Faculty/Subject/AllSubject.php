@@ -62,6 +62,7 @@ class AllSubject extends Component
 
     #[Locked]
     public $subject_id;
+
     public $pattern_id;
     public $course_id;
     public $course_class_id;
@@ -85,8 +86,10 @@ class AllSubject extends Component
 
     public $mode='all';
     public $per_page = 10;
+
     #[Locked]
     public $delete_id;
+
     public $perPage=10;
     public $search='';
     public $sortColumn="subject_name";
@@ -298,7 +301,7 @@ class AllSubject extends Component
         if($mode=='add'){
             $this->resetinput();
         }
-        if($mode=='edit'){
+        elseif($mode=='edit'){
             $this->resetValidation();
         }
         $this->mode=$mode;
@@ -327,6 +330,7 @@ class AllSubject extends Component
             $validatedData['faculty_id'] = $guard ? $guard->id : null;
             $validatedData['department_id'] = $guard ? $guard->department_id : null;
             $validatedData['college_id'] = $guard ? $guard->college_id : null;
+
             // Insert data into the first table (Subject)
             $subject = Subject::create($validatedData);
 
@@ -433,39 +437,9 @@ class AllSubject extends Component
 
     public function assign(Subject $subject)
     {
-        if ($subject)
-        {
-            $this->course_id = $subject->patternclass->courseclass->course->course_name;
-            $pattern = isset($subject->patternclass->pattern->pattern_name) ? $subject->patternclass->pattern->pattern_name : '';
-            $classyear = isset($subject->patternclass->courseclass->classyear->classyear_name) ? $subject->patternclass->courseclass->classyear->classyear_name : '';
-            $course = isset($subject->patternclass->courseclass->course->course_name) ? $subject->patternclass->courseclass->course->course_name : '';
-            $this->patternclass_id = $pattern.' '.$classyear.' '.$course;
-            $this->subjectcategory_id = isset($subject->subjectcategories->subjectcategory) ? $subject->subjectcategories->subjectcategory : '';
-            $this->subject_name_prefix = $subject->subject_name_prefix;
-            $this->subject_sem= $subject->subject_sem;
-            $this->subject_name= $subject->subject_name;
-            $this->subject_code= $subject->subject_code;
-            $this->subjecttype_id = isset($subject->subjecttypes->type_name) ? $subject->subjecttypes->type_name : '';
-            $subjectexamtype = Subjectexamtype::where('examtype',$subject->subjectexam_type)->first();
-            $this->subjectexam_type= $subjectexamtype->id;
-            $this->subject_credit= $subject->subject_credit;
-            $this->classyear_id= isset($subject->classyear->classyear_name) ? $subject->classyear->classyear_name : '';
-            $this->is_panel= $subject->is_panel == 1 ? 'YES' : 'NO';
-            $this->no_of_sets= $subject->no_of_sets;
-            $this->subject_order= $subject->subject_order;
-
-            $this->subject_maxmarks= $subject->subject_maxmarks;
-            $this->subject_maxmarks_int= $subject->subject_maxmarks_int;
-            $this->subject_maxmarks_intpract= $subject->subject_maxmarks_intpract;
-            $this->subject_maxmarks_ext= $subject->subject_maxmarks_ext;
-            $this->subject_totalpassing= $subject->subject_totalpassing;
-            $this->subject_intpassing= $subject->subject_intpassing;
-            $this->subject_intpractpassing= $subject->subject_intpractpassing;
-            $this->subject_extpassing= $subject->subject_extpassing;
-            $this->setmode('assign');
-        }else{
-            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
-        }
+       $this->assign_subject_id = $subject->id;
+       $this->subject_name = $subject->subject_name;
+       $this->setmode('assign');
     }
 
     public function delete()
@@ -595,7 +569,7 @@ class AllSubject extends Component
 
     public function render()
     {
-        if($this->mode === 'add' || $this->mode === 'edit' || $this->mode === 'view' ){
+        if($this->mode !== 'all' ){
             $this->courses = Course::select('id', 'course_name')->get();
             $course_classes = Courseclass::where('course_id', $this->course_id)->pluck('id');
             $this->pattern_classes = Patternclass::select('id', 'class_id', 'pattern_id')
@@ -603,8 +577,7 @@ class AllSubject extends Component
                 ->whereIn('class_id', $course_classes)
                 ->where('status', 1)
                 ->get();
-
-            if($this->mode === 'add'){
+            if($this->mode === 'add' ){
                 $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('is_active',1)->get();
                 if ($this->subjectcategory_id) {
                     $subject_count = Subject::select('id', 'subjectcategory_id')
@@ -618,7 +591,6 @@ class AllSubject extends Component
                     $this->subject_name_prefix = '';
                 }
             }
-
             $this->semesters=Semester::select('id','semester',)->where('status',1)->get();
             $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('is_active',1)->get();
             $this->subject_types = Subjecttype::select('id','type_name')->where('active',1)->get();

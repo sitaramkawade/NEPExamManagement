@@ -24,9 +24,9 @@ class AllSubjectBucket extends Component
     protected $listeners = ['delete-confirmed'=>'delete'];
     public $department_id;
     public $patternclass_id;
-    public $subject_division;
     public $subjectcategory_id;
-    public $subject_categoryno;
+    // public $subject_division;
+    // public $subject_categoryno;
     public $subject_id;
 
     #[Locked]
@@ -60,31 +60,21 @@ class AllSubjectBucket extends Component
     protected function rules()
     {
         return [
-            'subject_categoryno' => ['required',],
-            'academicyear_id' => ['required',Rule::exists(Academicyear::class,'id')],
-            'subject_division' => ['required', 'in:A,B,C,D',],
-            'subject_id' => ['required',Rule::exists(Subject::class,'id')],
-            'subjectcategory_id' => ['required',Rule::exists(Subjectcategory::class,'id')],
             'department_id' => ['required',Rule::exists(Department::class,'id')],
             'pattern_id' => ['required',Rule::exists(Pattern::class,'id')],
             'course_id' => ['required',Rule::exists(Course::class,'id')],
             'course_class_id' => ['required',Rule::exists(Courseclass::class,'id')],
+            'subject_id' => ['required',Rule::exists(Subject::class,'id')],
+            'academicyear_id' => ['required',Rule::exists(Academicyear::class,'id')],
+            'subjectcategory_id' => ['required',Rule::exists(Subjectcategory::class,'id')],
+            // 'subject_categoryno' => ['required',],
+            // 'subject_division' => ['required', 'in:A,B,C,D',],
         ];
     }
 
     public function messages()
     {
         return [
-            'subject_categoryno.required' => 'The subject category number field is required.',
-            'subject_categoryno.required' => 'The subject category number field is required.',
-            'academicyear_id.required' => 'The academic year field is required.',
-            'academicyear_id.exists' => 'The selected academic year is invalid.',
-            'subject_division.required' => 'The subject division field is required.',
-            'subject_division.in' => 'The subject division must be one of: A, B, C, D.',
-            'subject_id.required' => 'The subject field is required.',
-            'subject_id.exists' => 'The selected subject is invalid.',
-            'subjectcategory_id.required' => 'The subject category field is required.',
-            'subjectcategory_id.exists' => 'The selected subject category is invalid.',
             'department_id.required' => 'The department field is required.',
             'department_id.exists' => 'The selected department is invalid.',
             'pattern_id.required' => 'The pattern field is required.',
@@ -93,6 +83,16 @@ class AllSubjectBucket extends Component
             'course_id.exists' => 'The selected course is invalid.',
             'course_class_id.required' => 'The course class field is required.',
             'course_class_id.exists' => 'The selected course class is invalid.',
+            'subject_id.required' => 'The subject field is required.',
+            'subject_id.exists' => 'The selected subject is invalid.',
+            'academicyear_id.required' => 'The academic year field is required.',
+            'academicyear_id.exists' => 'The selected academic year is invalid.',
+            'subjectcategory_id.required' => 'The subject category field is required.',
+            'subjectcategory_id.exists' => 'The selected subject category is invalid.',
+            // 'subject_categoryno.required' => 'The subject category number field is required.',
+            // 'subject_categoryno.required' => 'The subject category number field is required.',
+            // 'subject_division.required' => 'The subject division field is required.',
+            // 'subject_division.in' => 'The subject division must be one of: A, B, C, D.',
         ];
     }
 
@@ -305,11 +305,10 @@ class AllSubjectBucket extends Component
             $this->subject_division= $subjectbucket->subject_division;
             $this->subjectcategory_id= isset($subjectbucket->subjectcategory->subjectcategory) ? $subjectbucket->subjectcategory->subjectcategory : '';
             $this->department_id= isset($subjectbucket->department->dept_name) ? $subjectbucket->department->dept_name : '';
-
             $this->academicyear_id= $subjectbucket->academicyear->year_name;
-            $this->pattern_id = $subjectbucket->patternclass->pattern->pattern_name;
-            $this->course_id =  $subjectbucket->patternclass->courseclass->course->course_name;
-            $this->course_class_id =  $subjectbucket->patternclass->courseclass->classyear->classyear_name;
+            $this->pattern_id = isset($subjectbucket->patternclass->pattern->pattern_name) ? $subjectbucket->patternclass->pattern->pattern_name : '';
+            $this->course_id = isset($subjectbucket->patternclass->courseclass->course->course_name) ? $subjectbucket->patternclass->courseclass->course->course_name : '';
+            $this->course_class_id = isset($subjectbucket->patternclass->courseclass->classyear->classyear_name) ? $subjectbucket->patternclass->courseclass->classyear->classyear_name : '';
             $this->setmode('view');
         }else{
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');

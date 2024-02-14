@@ -28,9 +28,9 @@ class SubjectBucketSeeder extends Seeder
             Subjectbucket::create([
                 'department_id' =>  $faker->randomElement($departmentIds),
                 'patternclass_id' => $faker->randomElement($patternClassIds),
-                'subject_division' => $faker->randomElement(['A', 'B','C','D']),
                 'subjectcategory_id' => $faker->randomElement($subjectCategoryIds),
-                'subject_categoryno' => $faker->numberBetween(1, 3),
+                // 'subject_division' => $faker->randomElement(['A', 'B','C','D']),
+                // 'subject_categoryno' => $faker->numberBetween(1, 3),
                 'subject_id' => $faker->randomElement($subjectIds),
                 'academicyear_id' => $faker->randomElement($academicYearIds),
                 'status' => $faker->randomElement([1]),

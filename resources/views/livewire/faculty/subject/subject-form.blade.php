@@ -1,6 +1,23 @@
 <x-card-collapsible heading="Subject Common Details">
     <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="subjectcategory_id" :value="__('Subject Category')" />
+            <x-input-select id="subjectcategory_id" wire:model.live="subjectcategory_id" name="subjectcategory_id" class="text-center @error('subjectcategory_id') is-invalid @enderror w-full mt-1" :value="old('subjectcategory_id', $subjectcategory_id)" required autofocus autocomplete="subjectcategory_id">
+                <x-select-option class="text-start" hidden> -- Select Subject Category -- </x-select-option>
+                @forelse ($subject_categories as $subject_category)
+                    <x-select-option wire:key="{{ $subject_category->id }}" value="{{ $subject_category->id }}" class="text-start"> {{ $subject_category->subjectcategory }} </x-select-option>
+                @empty
+                    <x-select-option class="text-start">Subject Category Not Found</x-select-option>
+                @endforelse
+            </x-input-select>
+            <x-input-error :messages="$errors->get('subjectcategory_id')" class="mt-2" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="subject_name_prefix" :value="__('Subject Name Prefix')" />
+            <x-text-input id="subject_name_prefix" type="text" wire:model="subject_name_prefix" name="subject_name_prefix" placeholder="Subject Name Prefix" class=" @error('subject_name_prefix') is-invalid @enderror w-full mt-1" :value="old('subject_name_prefix', $subject_name_prefix)" required autofocus autocomplete="subject_name_prefix" />
+            <x-input-error :messages="$errors->get('subject_name_prefix')" class="mt-2" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="course_id" :value="__('Course')" />
             <x-input-select id="course_id" wire:model.live="course_id" name="course_id" class="text-center w-full mt-1" :value="old('course_id', $course_id)" required autocomplete="course_id">
                 <x-select-option class="text-start" hidden> -- Select Course -- </x-select-option>
@@ -23,23 +40,6 @@
                 @endforelse
             </x-input-select>
             <x-input-error :messages="$errors->get('patternclass_id')" class="mt-1" />
-        </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subjectcategory_id" :value="__('Subject Category')" />
-            <x-input-select id="subjectcategory_id" wire:model.live="subjectcategory_id" name="subjectcategory_id" class="text-center @error('subjectcategory_id') is-invalid @enderror w-full mt-1" :value="old('subjectcategory_id', $subjectcategory_id)" required autofocus autocomplete="subjectcategory_id">
-                <x-select-option class="text-start" hidden> -- Select Subject Category -- </x-select-option>
-                @forelse ($subject_categories as $subject_category)
-                    <x-select-option wire:key="{{ $subject_category->id }}" value="{{ $subject_category->id }}" class="text-start"> {{ $subject_category->subjectcategory }} </x-select-option>
-                @empty
-                    <x-select-option class="text-start">Subject Category Not Found</x-select-option>
-                @endforelse
-            </x-input-select>
-            <x-input-error :messages="$errors->get('subjectcategory_id')" class="mt-2" />
-        </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_name_prefix" :value="__('Subject Name Prefix')" />
-            <x-text-input id="subject_name_prefix" type="text" wire:model="subject_name_prefix" name="subject_name_prefix" placeholder="Subject Name Prefix" class=" @error('subject_name_prefix') is-invalid @enderror w-full mt-1" :value="old('subject_name_prefix', $subject_name_prefix)" required autofocus autocomplete="subject_name_prefix" />
-            <x-input-error :messages="$errors->get('subject_name_prefix')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_sem" :value="__('Subject Semester')" />

@@ -43,8 +43,8 @@
             <x-input-label for="course_class_id" :value="__('Class')" _class />
             <x-input-select id="course_class_id" wire:model.live="course_class_id" name="course_class_id" class="text-center w-full mt-1" :value="old('course_class_id', $course_class_id)" required autocomplete="course_class_id">
                 <x-select-option class="text-start" hidden> -- Select Class -- </x-select-option>
-                @forelse ($pattern_classes as $pattern_class)
-                    <x-select-option wire:key="{{ $pattern_class->id }}" value="{{ $pattern_class->id }}" class="text-start"> {{ $pattern_class->courseclass->classyear->classyear_name }} {{ $pattern_class->courseclass->course->course_name ?? '' }} </x-select-option>
+                @forelse ($course_classes as $course_class)
+                    <x-select-option wire:key="{{ $course_class->id }}" value="{{ $course_class->id }}" class="text-start"> {{ $course_class->classyear->classyear_name }} {{ $course_class->course->course_name ?? '' }} </x-select-option>
                 @empty
                     <x-select-option class="text-start"> Classes Not Found</x-select-option>
                 @endforelse
