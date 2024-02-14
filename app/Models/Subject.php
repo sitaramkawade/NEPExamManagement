@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\College;
 use App\Models\ExamPanel;
+use App\Models\StudentExamforms;
 use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -87,6 +88,11 @@ class Subject extends Model
     public function hodappointsubjects():HasMany
     {
         return $this->hasMany(Hodappointsubject::class,'subject_id','id')->withTrashed();
+    }
+
+    public function studentexamforms():HasMany
+    {
+        return $this->hasMany(StudentExamforms::class,'subject_id','id');
     }
 
     public function faculty()

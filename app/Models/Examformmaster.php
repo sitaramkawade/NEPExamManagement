@@ -4,12 +4,14 @@ namespace App\Models;
 
 use App\Models\Exam;
 use App\Models\Student;
+use App\Models\Transaction;
 use App\Models\Patternclass;
 use App\Models\StudentExamforms;
 use App\Models\Studentexamformfee;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Extracreditsubjectexamform;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Examformmaster extends Model
@@ -28,6 +30,7 @@ class Examformmaster extends Model
       'college_id',
       'exam_id',
       'patternclass_id',
+      'transaction_id',
     ];
 
 
@@ -46,6 +49,11 @@ class Examformmaster extends Model
       return $this->belongsTo(Exam::class, 'exam_id', 'id');
     }
     
+    public function transaction()
+    {
+      return $this->belongsTo(Transaction::class, 'transaction_id', 'id');
+    }
+    
     public function studentexamformfees()
     {
       return $this->hasMany(Studentexamformfee::class,'examformmaster_id','id');
@@ -59,6 +67,21 @@ class Examformmaster extends Model
     public function studentextracreditexamforms()
     { 
       return $this->hasMany(Extracreditsubjectexamform::class,'examformmaster_id','id');
+    }
+
+
+    public function scopeSearch(Builder $query, string $search)
+    {
+        return $query->with('student')
+        ->where('id', 'like', "%{$search}%")
+        ->orWhere(function ($subquery) use ($search) {
+            $subquery->orWhereHas('student', function ($subQuery) use ($search) {
+                $subQuery->where('prn', 'like', "%{$search}%")
+                ->orWhere('eligibilityno', 'like', "%{$search}%")
+                ->orWhere('student_name', 'like', "%{$search}%");
+            });
+        });
+
     }
    
     

@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Extracreditsubjectexamform extends Model
 {
     
-    use HasFactory , SoftDeletes;
-    protected $dates = ['deleted_at'];
+    use HasFactory;
+
 
     protected $table="extracreditsubjectexamforms";
     public $fillable = [
@@ -34,12 +34,12 @@ class Extracreditsubjectexamform extends Model
 
     public function subject()
     {
-        return $this->belongsTo(Extracreditsubject::class,'subject_id','id')->withTrashed();
+        return $this->belongsTo(Extracreditsubject::class,'subject_id','id');
     }
 
     public function examformmaster()
     {         
-        return $this->belongsTo(Examformmaster::class,'examformmaster_id','id')->withTrashed();
+        return $this->belongsTo(Examformmaster::class,'examformmaster_id','id');
 
     }
     public function course()

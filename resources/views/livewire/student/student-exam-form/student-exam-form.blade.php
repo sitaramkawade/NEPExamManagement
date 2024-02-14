@@ -153,7 +153,7 @@
         </x-table.tbody>
       </x-table.table>
       <div>
-        <x-form-btn wire:loading.attr='disabled' wire:target='student_exam_form_save()'>Save And Next</x-form-btn>
+        <x-form-btn wire:loading.attr='disabled' wire:target='student_exam_form_save()'>Submit Exam Form</x-form-btn>
         <x-form-btn class="float-start" wire:click="next_back()" type="button">Back</x-form-btn>
         <x-form-btn wire:click="cancel()" type="button">Cancel</x-form-btn>
       </div>
