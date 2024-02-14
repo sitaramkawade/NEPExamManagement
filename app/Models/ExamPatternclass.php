@@ -41,6 +41,11 @@ class ExamPatternclass extends Model
         return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id')->withTrashed();
     }
 
+    public function examorder()
+    {
+        return $this->hasMany(Examorder::class,'exam_patternclass_id','id');
+    }
+
     public function order()
     {
         return $this->hasMany(Examorder::class,'exam_patternclass_id','id');
