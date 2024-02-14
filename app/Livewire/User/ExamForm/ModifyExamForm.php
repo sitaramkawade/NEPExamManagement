@@ -74,24 +74,6 @@ class ModifyExamForm extends Component
 
     public function modify_form(Examformmaster $exmformmaster)
     {   
-        // $updates = [];
-
-        // foreach($this->newfees as $feeid => $newfee)
-        // {   
-        //     Studentexamformfee::where('examformmaster_id',$exmformmaster->id)->where('examfees_id',$feeid)->update(['fee_amount' => $newfee]);
-        // }
-
-
-        // $updates = [];
-        // $existingFees = $exmformmaster->studentexamformfees()->pluck('fee_amount', 'examfees_id');
-        // foreach($this->newfees as $feeid => $newfee)
-        // {   
-        //     if($newfee != $existingFees->get($feeid))
-        //     {
-        //         Studentexamformfee::where('examformmaster_id',$exmformmaster->id)->where('examfees_id',$feeid)->update(['fee_amount' => $newfee]);
-        //     }
-        // }
-
         DB::beginTransaction();
         try 
         {   
@@ -135,7 +117,11 @@ class ModifyExamForm extends Component
     }
     
 
-
+    public function deleteexamform(Examformmaster $exmformmaster)
+    { 
+        $exmformmaster->update(['printstatus'=>0]);
+        $this->dispatch('alert',type:'success',message:'Exam Form Deleted Successfully !!');
+    }
 
     public function render()
     {   

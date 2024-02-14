@@ -110,6 +110,7 @@
             </x-table.tr>
           </x-table.tbody>
         </x-table.table>
+        <x-form-btn wire:loading.attr="disabled"> <span wire:loading.remove> Update Exam Form Fee</span><span wire:loading> <x-spinner /></span></x-form-btn>
       </div>
       <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
         <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
@@ -119,7 +120,7 @@
           <x-table.thead>
             <x-table.tr>
               <x-table.th colspan="8">
-                <p class="text-center">Regular Subjects</p>
+                <p class="text-center">Subjects</p>
               </x-table.th>
             </x-table.tr>
             <x-table.tr>
@@ -237,7 +238,7 @@
           </x-table.tbody>
         </x-table.table>
       </div>
-      <x-form-btn wire:loading.attr="disabled"> <span wire:loading.remove> Update Exam Form</span><span wire:loading> <x-spinner /></span></x-form-btn>
+      <x-form-btn type="button" color="bg-red-500" wire:click='deleteexamform({{ $modify_id }})' wire:loading.attr="disabled">Delete Exam Form</x-form-btn>
       <x-form-btn type="button" wire:click='resetinput()' wire:loading.attr="disabled">Cancel</x-form-btn>
     </div>
   </x-form>

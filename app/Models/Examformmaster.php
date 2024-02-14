@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Exam;
 use App\Models\Student;
+use App\Models\Transaction;
 use App\Models\Patternclass;
 use App\Models\StudentExamforms;
 use App\Models\Studentexamformfee;
@@ -29,6 +30,7 @@ class Examformmaster extends Model
       'college_id',
       'exam_id',
       'patternclass_id',
+      'transaction_id',
     ];
 
 
@@ -45,6 +47,11 @@ class Examformmaster extends Model
     public function exam()
     {
       return $this->belongsTo(Exam::class, 'exam_id', 'id');
+    }
+    
+    public function transaction()
+    {
+      return $this->belongsTo(Transaction::class, 'transaction_id', 'id');
     }
     
     public function studentexamformfees()

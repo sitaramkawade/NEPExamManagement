@@ -20,11 +20,13 @@ return new class extends Migration
             $table->integer('printstatus')->default(0);
             $table->tinyInteger('hallticketstatus')->default(0);
             $table->bigInteger('student_id')->unsigned();
-            $table->bigInteger('college_id')->nullable()->unsigned()->default(null);
+            $table->bigInteger('transaction_id')->nullable()->unsigned();
+            $table->bigInteger('college_id')->nullable()->unsigned();
             $table->bigInteger('exam_id')->unsigned();
             $table->bigInteger('patternclass_id')->unsigned();
             $table->string('medium_instruction',100);
             $table->timestamps();
+            $table->foreign('transaction_id')->references('id')->on('transactions');
             $table->foreign('student_id')->references('id')->on('students');
             $table->foreign('college_id')->references('id')->on('colleges');
             $table->foreign('exam_id')->references('id')->on('exams');
