@@ -25,6 +25,7 @@ return new class extends Migration
             $table->bigInteger('exam_id')->unsigned();
             $table->bigInteger('patternclass_id')->unsigned();
             $table->string('medium_instruction',100);
+            $table->timestamp('verified_at')->nullable();
             $table->timestamps();
             $table->foreign('transaction_id')->references('id')->on('transactions');
             $table->foreign('student_id')->references('id')->on('students');

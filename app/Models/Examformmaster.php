@@ -31,6 +31,7 @@ class Examformmaster extends Model
       'exam_id',
       'patternclass_id',
       'transaction_id',
+      'verified_at',
     ];
 
 

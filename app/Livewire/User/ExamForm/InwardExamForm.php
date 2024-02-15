@@ -153,11 +153,34 @@ class InwardExamForm extends Component
         $this->application_id=null;
         $this->inward_id=null;
         $this->dispatch('alert',type:'success',message:'Exam Form Inward Successfully !!');
-        $this->page=2;
+        if($this->list_by=='o')
+        {
+            $this->page=1;
+        }else
+        {
+            $this->page=2;
+        }
+    }
+
+    public function verify(Examformmaster $exam_form_master)
+    {   
+        $exam_form_master->verified_at=now();
+        $exam_form_master->update();
+        $this->application_id=null;
+        $this->inward_id=null;
+        $this->dispatch('alert',type:'success',message:'Exam Form Verified Successfully !!');
+        if($this->list_by=='o')
+        {
+            $this->page=1;
+        }else
+        {
+            $this->page=2;
+        }
     }
 
     public function render()
     {   
+        $exam_form_master_inwards=collect([]);
         $exam_form_masters=collect([]);
         if($this->page==1)
         {
@@ -171,12 +194,17 @@ class InwardExamForm extends Component
         {   
             if($this->patternclass_id && $this->list_by=="m")
             {
-                $exam_form_masters=Examformmaster::where('inwardstatus',0)->where('patternclass_id',$this->patternclass_id)->when($this->search, function ($query, $search) {
+                $exam_form_masters=Examformmaster::where('printstatus',1)->where('inwardstatus',0)->where('patternclass_id',$this->patternclass_id)->when($this->search, function ($query, $search) {
                     $query->search($search);
                 })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+               
+                $exam_form_master_inwards=Examformmaster::where('printstatus',1)->where('inwardstatus',1)->where('patternclass_id',$this->patternclass_id)->when($this->search, function ($query, $search) {
+                    $query->search($search);
+                })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+
             }elseif($this->patternclass_id && $this->list_by=="o" && $this->application_id)
             {
-                $exam_form_masters = Examformmaster::where('inwardstatus', 0)->where('patternclass_id', $this->patternclass_id)->where('id',$this->application_id)->first();
+                $exam_form_masters = Examformmaster::where('printstatus',1)->where('inwardstatus',0)->where('patternclass_id', $this->patternclass_id)->where('id',$this->application_id)->first();
                 if($exam_form_masters)
                 {   
                     $this->page=3;
@@ -185,6 +213,6 @@ class InwardExamForm extends Component
             }
         }
 
-        return view('livewire.user.exam-form.inward-exam-form',compact('exam_form_masters'))->extends('layouts.user')->section('user');
+        return view('livewire.user.exam-form.inward-exam-form',compact('exam_form_masters','exam_form_master_inwards'))->extends('layouts.user')->section('user');
     }
 }
