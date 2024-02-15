@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Student\StudentExamForm;
 
+use PDF;
 use App\Models\Exam;
+use DNS1D;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use PDF;
 
 class PrintStudentExamFormController extends Controller
 {
@@ -47,7 +48,7 @@ class PrintStudentExamFormController extends Controller
                     $exam_form_master->update(['printstatus'=>1]);
                 }
                 
-                $pdf = PDF::loadView('pdf.student.print_exam_form_pdf', compact('exam_form_master',))->setPaper('a4', 'portrait')->setOptions(['images' => true, 'defaultFont' => 'sans-serif']);
+                $pdf = PDF::loadView('pdf.student.print_exam_form_pdf', compact('exam_form_master'))->setPaper('a4', 'portrait')->setOptions(['images' => true, 'defaultFont' => 'sans-serif']);
                 $pdf->output();
                 return $pdf->stream('exam_form.pdf');
             }

@@ -31,14 +31,13 @@
         font-weight: normal;
       }
 
-      table>tbody>tr>td>table>tbody>tr>td,th {
+      table>tbody>tr>td>table>tbody>tr>td,
+      th {
         border: 1px dotted gray !important;
         border-collapse: collapse;
         padding: 3px;
         font-size: 12px !important;
       }
-
-
 
       .rowspace {
         font-size: 14px !important;
@@ -60,7 +59,7 @@
   </head>
 
   <body>
-    <table style="width:100%; border-bottom:1pt dotted gray;">
+    <table style="width:100%; border-bottom:1pt  dotted gray; margin-bottom:2px;">
       <tr>
         <td width="10px">
           <img src="{{ 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('img/unipune.png'))) }}" style="width: 100px; height: 60px;" />
@@ -80,13 +79,16 @@
     <table width="100%" cellspacing="0">
       <tbody>
         <tr>
-          <td colspan="4">
+          <td colspan="3">
             <b>Examination Form :</b> {{ $exam_form_master->exam->exam_name }}
           </td>
-          <td colspan="3">
+          <td colspan="2">
             <b>Member-ID :</b> {{ $exam_form_master->student->memid }}
           </td>
           <td colspan="3">Form No : {{ '16060-' . str_pad($exam_form_master->id, 5, 0, STR_PAD_LEFT) }}</td>
+          <td colspan="2">
+            <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG( "".str_pad($exam_form_master->id, 5, 0, STR_PAD_LEFT)."" , 'C128',2,35,array(0,0,0), true) }}" alt="barcode" />
+          </td>
         </tr>
         <tr>
           <td align="center" colspan="10">
@@ -162,7 +164,7 @@
                 </tr>
                 <tr>
                   <td>Address for Communication</td>
-                  <td colspan="3">{{ $exam_form_master->student->getpermanentaddress()->address }}</td>
+                  <td colspan="3">{{ isset($exam_form_master->student->getpermanentaddress()->address) ? $exam_form_master->student->getpermanentaddress()->address : '' }}</td>
                 </tr>
                 <tr>
                   <td>Email-ID</td>
@@ -224,48 +226,48 @@
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
-                      <td align="center">{{ $d->grade_status == 1 ? 'Y' : 'N'; }}</td>
+                      <td align="center">{{ $d->grade_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                     @endif
                     @if ($d->subject->subjectexam_type == 'IE')
-                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N'; }}</td>
-                      <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N'; }}</td>
+                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
+                      <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                     @endif
                     @if ($d->subject->subjectexam_type == 'IEG')
-                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N'; }}</td>
-                      <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N'; }}</td>
+                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
+                      <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                     @endif
                     @if ($d->subject->subjectexam_type == 'IP' && $d->subject->subjecttype->type_name != 'Project')
-                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N'; }}</td>
+                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
-                      <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N'; }}</td>
+                      <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                     @endif
                     @if ($d->subject->subjectexam_type == 'IP' && $d->subject->subjecttype->type_name == 'Project')
-                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N'; }}</td>
+                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
-                      <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N'; }}</td>
+                      <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N' }}</td>
                     @endif
                     @if ($d->subject->subjectexam_type == 'I')
-                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N'; }}</td>
+                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                     @endif
                     @if ($d->subject->subjectexam_type == 'IEP')
-                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N'; }}</td>
-                      <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N'; }}</td>
-                      <td align="center">{{ $d->int_practical_status == 1 ? 'Y' : 'N'; }}</td>
+                      <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
+                      <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N' }}</td>
+                      <td align="center">{{ $d->int_practical_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                     @endif
@@ -314,7 +316,7 @@
                 <td style=" border: 1px dotted gray;" align="center">{{ 'N' }}</td>
                 <td style=" border: 1px dotted gray;" align="center">{{ 'N' }}</td>
                 <td style=" border: 1px dotted gray;" align="center">{{ 'N' }}</td>
-                <td style=" border: 1px dotted gray;" align="center">{{ $d->select_status == 1 ? 'Y' : 'N'; }}</td>
+                <td style=" border: 1px dotted gray;" align="center">{{ $d->select_status == 1 ? 'Y' : 'N' }}</td>
               </tr>
             @endforeach
           </tbody>
@@ -357,17 +359,17 @@
                   @endphp
                   @foreach ($exam_form_master->studentexamformfees->sortBy('examfees_id') as $d)
                     <tr>
-                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $d->examfees->fee_name }}</td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $d->examfee->fee_name }}</td>
                       <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $d->fee_amount }}</td>
                       @php
                         $totalfee = $totalfee + $d->fee_amount;
                       @endphp
-                      <td style="font-weight:normal ">{{ $d->examfees->remark }}</td>
+                      <td style="font-weight:normal ">{{ $d->examfee->remark }}</td>
                     </tr>
                   @endforeach
                   <tr>
                     <td style="font-family: DejaVu Sans; sans-serif; font-size:20px; font-weight:bold">Total Fee to Be Paid:</td>
-                    <td colspan="2"  style="font-family: DejaVu Sans; sans-serif; font-size:20px; font-weight:bold" >&nbsp;&nbsp;&nbsp;<span >₹</span>{{ $totalfee }}</td>
+                    <td colspan="2" style="font-family: DejaVu Sans; sans-serif; font-size:20px; font-weight:bold">&nbsp;&nbsp;&nbsp;<span>₹</span>{{ $totalfee }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -377,10 +379,10 @@
       </table>
       <br><br><br><br>
       <p>
-        <h3>Declaration </h3>
-        I hereby declare that I have gone through the Syllabus and the list of books prescribed for the examination
-        for which I am appearing.I SHALL BE RESPONSIBLE for any errors and wrong or incomplete entries made by me in the examination form .
-        <br> I shall not request for special concession such as change in the time and/or day fixed for the examination etc.
+      <h3>Declaration </h3>
+      I hereby declare that I have gone through the Syllabus and the list of books prescribed for the examination
+      for which I am appearing.I SHALL BE RESPONSIBLE for any errors and wrong or incomplete entries made by me in the examination form .
+      <br> I shall not request for special concession such as change in the time and/or day fixed for the examination etc.
       </p>
       <p><b>Note : Special Subjects should be verified by the subject teacher and signed . <br> Please , Select Optional subject(s) carefully , because optional subject(s) are not editable. </b> </p>
       <br>
@@ -405,4 +407,5 @@
     </div>
     </div>
   </body>
+
 </html>

@@ -137,8 +137,10 @@
                   @endif
                 </x-table.td>
                 <x-table.td>
-                  @if ($exm_form->feepaidstatus == 0 || (isset($exm_form->transaction->status) && $exm_form->transaction->status != 3))
-                    <x-dashboard.form-button class="bg-green-500 h-7 rounded-md border-none" action="{{ route('student.student_pay_exam_form_fee', $exm_form->id) }}"> Pay Exam Form Fee Online</x-dashboard.form-button>
+                  @if ($exm_form->verified_at)
+                    @if ($exm_form->feepaidstatus == 0)
+                      <x-dashboard.form-button class="bg-green-500 h-7 rounded-md border-none" action="{{ route('student.student_pay_exam_form_fee', $exm_form->id) }}"> Pay Exam Form Fee Online</x-dashboard.form-button>
+                    @endif
                   @endif
                   @if (isset($exm_form->transaction->status) && $exm_form->transaction->status === 3)
                     {{-- <x-dashboard.form-button class="bg-blue-500 h-7 rounded-md border-0" target="_blank" action="{{ route('student.student_refund_exam_form',$exm_form->id) }}" > Refund </x-dashboard.form-button> --}}
