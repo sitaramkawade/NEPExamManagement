@@ -86,16 +86,16 @@
               </x-table.tr>
             </x-table.thead>
             <x-table.tbody>
-              @forelse ($exam_form_masters as $key => $examformmaster_inward)
-                <x-table.tr wire:key="{{ $examformmaster_inward->id }}">
+              @forelse ($exam_form_masters as $key => $examformmaster)
+                <x-table.tr wire:key="{{ $examformmaster->id }}">
                   <x-table.td>{{ $key + 1 }} </x-table.td>
-                  <x-table.td>{{ $examformmaster_inward->id }} </x-table.td>
-                  <x-table.td> <x-table.text-scroll> {{ isset($examformmaster_inward->student->student_name) ? $examformmaster_inward->student->student_name : '' }} </x-table.text-scroll> </x-table.td>
-                  <x-table.td>{{ $examformmaster_inward->student->prn }} </x-table.td>
-                  <x-table.td>{{ $examformmaster_inward->student->eligibilityno }} </x-table.td>
-                  <x-table.td>{{ isset($examformmaster_inward->created_at) ? $examformmaster_inward->created_at->format('Y-m-d') : '' }} </x-table.td>
+                  <x-table.td>{{ $examformmaster->id }} </x-table.td>
+                  <x-table.td> <x-table.text-scroll> {{ isset($examformmaster->student->student_name) ? $examformmaster->student->student_name : '' }} </x-table.text-scroll> </x-table.td>
+                  <x-table.td>{{ $examformmaster->student->prn }} </x-table.td>
+                  <x-table.td>{{ $examformmaster->student->eligibilityno }} </x-table.td>
+                  <x-table.td>{{ isset($examformmaster->created_at) ? $examformmaster->created_at->format('Y-m-d') : '' }} </x-table.td>
                   <x-table.td>
-                    <x-table.delete i="0" wire:click="procced_to_approve({{ $examformmaster_inward->id }})">Proceed For Approve</x-table.delete>
+                    <x-table.delete i="0" wire:click="procced_to_approve({{ $examformmaster->id }})">Proceed For Approve</x-table.delete>
                   </x-table.td>
                 </x-table.tr>
               @empty
