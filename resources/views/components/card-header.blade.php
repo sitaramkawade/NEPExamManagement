@@ -1,10 +1,13 @@
 @props([ 'disabled'=>false, 'slot'=>false, 'heading'=>false,])
-
-<div class="py-2 overflow-hidden border font-semibold dark:border-primary-darker dark:text-light bg-primary-darker">
-    <div class="grid grid-cols-2 md:grid-cols-2">
-        <p class="text-white text-md font-medium align-middle flex ml-2 text-lg">{{ $heading }}</p>
-        <div class="flex justify-end px-2">
-            {{ $slot }}
-        </div>
+<div class="py-2  border font-semibold dark:border-primary-darker dark:text-light bg-primary-darker">
+    <div class="grid grid-col-12">
+        <span class="col-span-9  w-full overflow-x-auto whitespace-no-wrap">
+            <p class="text-white text-md font-medium align-middle flex ml-2 text-lg">{{ $heading }}</p>
+        </span>
+        <span class="col-start-10 col-span-1  ">
+            <span class="float-right">
+                {{ $slot }}
+            </span>
+        </span>
     </div>
 </div>

@@ -26,13 +26,14 @@ class LoginSeeder extends Seeder
         ] );
 
 
-        // Faculty::create( [
-        //     'faculty_name' => 'faculty',
-        //     'email' => 'faculty@gmail.com',
-        //     'email_verified_at' => now(),
-        //     'password' => Hash::make('123456789'),
-        //     'remember_token' => Str::random(10),
-        // ] );
+        Faculty::create( [
+            'id'=>9999999,
+            'faculty_name' => 'faculty',
+            'email' => 'faculty@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            'remember_token' => Str::random(10),
+        ] );
 
         Student::create( [
             'student_name' => 'Student Name',

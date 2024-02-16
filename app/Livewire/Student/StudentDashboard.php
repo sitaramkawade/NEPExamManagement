@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class StudentDashboard extends Component
 {   
     public Student $student;
+    public $exam_form_masters=[];
 
     
     public function mount()
@@ -19,6 +20,9 @@ class StudentDashboard extends Component
         {
             return $this->redirect('/student/profile',navigate:true);
         }
+
+
+        $this->exam_form_masters=$this->student->examformmasters()->get();
     }
 
     public function render()

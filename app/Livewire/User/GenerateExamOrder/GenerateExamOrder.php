@@ -3,12 +3,16 @@
 namespace App\Livewire\User\GenerateExamOrder;
 
 use App\Models\Exam;
+use App\Models\Faculty;
 use Livewire\Component;
 use App\Models\Examorder;
+use App\Jobs\SendEmailJob;
+use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\ExamPatternclass;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Queue;
 
 class GenerateExamOrder extends Component
 {
@@ -30,21 +34,18 @@ class GenerateExamOrder extends Component
     }
 
     public function generateExamPanel($id)
-    
-    {
+    {     
         $semesters = [1, 3, 5];
- 
         // dd($id);
         $exampatternclass = ExamPatternclass::find($id);  
     // dd($exampatternclass->patternclass->subjects);
         $panels = collect();
-
          foreach ($exampatternclass->patternclass->subjects->whereIn('subject_sem', $semesters) as $subject) {
             // dd($subject);
-            foreach($subject->exampanels->where('active_status','1') as $pannel)
-          
+            foreach($subject->exampanels->where('active_status','1') as $pannel )    
+           
              {
-               // dd($pannel);
+                dd($pannel);  
                 $token = Str::random(64);
                 $panels->add([
                     'exampanel_id' => $pannel->id,
@@ -68,27 +69,15 @@ class GenerateExamOrder extends Component
     {
         ini_set('max_execution_time', 1800); 
         $exampatterntclass = ExamPatternclass::find($id);
-        foreach ($exampatterntclass->examorder->where('email_status', '0') as $examorder) {
-            $url = route('user.examorder', ['id' => $examorder->id, 'token' => $examorder->token]);
+        $examOrderIds = $exampatterntclass->examorder->where('email_status', '0')->pluck('id')->toArray();
 
-            $details = [
-                'subject' => 'Hello',
-                'title' => 'Your Appointment for Examination Work (Sangamner College Mail Notification)',
-                'body' => 'This is sample content we have added for this test mail',
-                'examorder_id' => $examorder->id,
-                'url' => $url,
-            ];
+        //Queue::push(new SendEmailJob($examOrderIds));
+        SendEmailJob::dispatch($examOrderIds);
 
-            Mail::to(trim($examorder->exampanel->faculty->email))
-            ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
-            ->send(new \App\Mail\MyTestMail($details));
 
-            $examorder->update([
-                'email_status' => '1'
-            ]);
-        }
         $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
         $this->setmode('all');
+ 
     }
 
     public function render()

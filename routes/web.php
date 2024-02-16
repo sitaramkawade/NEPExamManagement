@@ -39,6 +39,8 @@ use App\Livewire\User\ClassYear\AllClassYear;
 use App\Livewire\User\ExamOrder\AllExamOrder;
 use App\Livewire\User\ExamPanel\AllExamPanel;
 use App\Livewire\User\Programme\AllProgramme;
+use App\Livewire\User\ExamForm\InwardExamForm;
+use App\Livewire\User\ExamForm\ModifyExamForm;
 use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
 use App\Http\Controllers\ExamOrderPdfController;
@@ -63,11 +65,13 @@ use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\Student\StudentExamForm\StudentExamForm;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
+use App\Livewire\User\ExamForm\DeleteExamFormBeforeInward;
 use App\Livewire\User\GenerateExamOrder\GenerateExamOrder;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\Faculty\SubjectCategory\AllSubjectCategory;
+use App\Http\Controllers\Student\Razorpay\RazorPayController;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
@@ -139,6 +143,20 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
 
   // Student Print Final Exam Form
   Route::post('/print/final/exam/form', [PrintStudentExamFormController::class,'print_final_exam_form'])->name('student_print_final_exam_form');
+  
+  // Student Pay Exam Form Fee
+  Route::post('/pay/exam/form/fee/{examformmaster}', [RazorPayController::class,'student_pay_exam_form_fee'])->name('student_pay_exam_form_fee');
+  
+  // Student Verify Exam Form Fee Payment
+  Route::post('/verify/exam/form/fee/payment', [RazorPayController::class,'student_verify_exam_form_payment'])->name('student_verify_exam_form_payment');
+  
+  // Student Fail Exam Form Fee Payment
+  Route::post('/failed/exam/form/fee/payment', [RazorPayController::class,'student_failed_exam_form_payment'])->name('student_failed_exam_form_payment');
+
+  // Student Exam Form Fee Refund
+  Route::post('/refund/exam/form/fee/{examformmaster}', [RazorPayController::class,'student_refund_exam_form'])->name('student_refund_exam_form');
+
+
 });
 
 
@@ -263,6 +281,15 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Exam Fee Course
   Route::get('/exam/fee/course',AllExamFeeCourse::class)->name('all_exam_fee_course');
+
+  //Delete Exam Form Before Inward
+  Route::get('/delete/exam/form/before/inward',DeleteExamFormBeforeInward::class)->name('delete_exam_form_before_inward');
+
+  //Inward Exam Form 
+  Route::get('/inward/exam/form',InwardExamForm::class)->name('inward_exam_form');
+
+  //Modify Exam Form
+  Route::get('/modify/exam/form',ModifyExamForm ::class)->name('modify_exam_form');
 
   //All Subject Hod
   Route::get('/all-hodappointsubject',  AllHodAppointSubject::class)->name('all-hodappointsubjects');

@@ -3,6 +3,7 @@
 namespace App\Livewire\User\ExamTimeTable;
 
 use Excel;
+use App\Models\Exam;
 use App\Models\Subject;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,6 +11,7 @@ use App\Models\ExamTimetable;
 use App\Models\Timetableslot;
 use Illuminate\Validation\Rule;
 use App\Models\ExamPatternclass;
+use Illuminate\Support\Facades\DB;
 use App\Exports\User\ExamTimeTable\ExportExamTimeTable;
 
 class AllExamTimeTable extends Component
@@ -22,21 +24,18 @@ class AllExamTimeTable extends Component
     public $sortColumnBy="ASC";
     public $ext;
     public $mode='all';
-    public $subject_id;
-    public $exam_patternclasses_id;
-    public $exam_pattern_classes;
-    public $exampatternclasses;
-    public $examdate;
+  
+    public $subjects=[];
+    public $exam_pattern_class_id;
     public $timeslot_id;
-    public $status;
-    public $time_id;
-    public $subjects;
-    public $timeslots;
+    public $timeslots=[];
+    public $timeslot_ids=[];
+    public $examdates=[];
     public $pattern_classes;
-    public $current_step=1;
-    public $steps=1;
     #[Locked] 
     public $delete_id;
+    #[Locked] 
+    public $time_id;
 
     
     public function rules()
@@ -76,10 +75,10 @@ class AllExamTimeTable extends Component
     }
 
 
-    public function updated($property)
-    {
-        $this->validateOnly($property);
-    }
+    // public function updated($property)
+    // {
+    //     $this->validateOnly($property);
+    // }
 
     public function setmode($mode)
     {
@@ -90,22 +89,45 @@ class AllExamTimeTable extends Component
         $this->mode=$mode;
     }
 
-    public function add(ExamTimetable  $examTimeTable ){
+    public function create(ExamPatternclass  $exampatternclass ){
         
-        $validatedData= $this->validate();
-       
-        if ($validatedData) {
+        $this->exam_pattern_class_id=$exampatternclass;
+       $this->subjects=Subject::where('patternclass_id',$exampatternclass->id)->where('status',1)->get();
 
-        $examTimeTable->subject_id= $this->subject_id;
-        $examTimeTable->exam_patternclasses_id=  $this->exam_patternclasses_id;
-        $examTimeTable->timeslot_id=  $this->timeslot_id;
-        $examTimeTable->examdate= $this->examdate;
-        $examTimeTable->status= $this->status;
+       $this->timeslots=TimeTableslot::select('id','timeslot')->where('isactive',1)->get();
+       $this->setmode('add');
+    }
+
+
+    public function add(ExamPatternclass  $exampatternclass )
+    {
+        DB::beginTransaction();
+        try 
+        {
+            $exam_time_table =[];
+
+             foreach( $this->examdates as $subject_id => $examdate)
+            {
+                $exam_time_table[]=[
+                    'subject_id'=>$subject_id,
+                    'exam_patternclasses_id'=>$exampatternclass->id,
+                    'examdate'=>$examdate,
+                    'timeslot_id'=>$this->timeslot_ids[$subject_id],
+                    'status'=>1,
+                ];
+
+            }
+            $exam_time_table_data = ExamTimetable::insert($exam_time_table);
+            DB::commit();
+            $this->dispatch('alert',type:'success',message:'Exam Time Table Created Successfully !!'  );
+            $this->setmode('all');
         }
-        $examTimeTable->save();
-
-        $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->setmode('all');
+        catch (\Exception $e) 
+        {
+            DB::rollback();
+    
+            $this->dispatch('alert',type:'error',message:'Exam Time Table Creating Error !!'  );
+        }
     }
 
     public function deleteconfirmation($id)
@@ -148,17 +170,20 @@ class AllExamTimeTable extends Component
         $examTimeTable->update();
     }
 
-    public function edit(ExamTimetable $examTimeTable){
+    public function edit(ExamPatternclass $exampatternclass){
 
-        if ($examTimeTable) {
-            $this->time_id=$examTimeTable->id;
-            $this->subject_id = $examTimeTable->subject_id;     
-            $this->exam_patternclasses_id = $examTimeTable->exam_patternclasses_id;     
-            $this->timeslot_id = $examTimeTable->timeslot_id;
-            $this->examdate = $examTimeTable->examdate ;
-            $this->status = $examTimeTable->status ;
-            $this->setmode('edit');
-        }
+        $this->subjects=Subject::where('patternclass_id',$exampatternclass->id)->where('status',1)->get();
+        $this->setmode('edit');
+
+        // if ($examTimeTable) {
+        //     $this->time_id=$examTimeTable->id;
+        //     $this->subject_id = $examTimeTable->subject_id;     
+        //     $this->exam_patternclasses_id = $examTimeTable->exam_patternclasses_id;     
+        //     $this->timeslot_id = $examTimeTable->timeslot_id;
+        //     $this->examdate = $examTimeTable->examdate ;
+        //     $this->status = $examTimeTable->status ;
+        //     $this->setmode('edit');
+        // }
     }
 
     public function update(ExamTimetable  $examTimeTable){
@@ -207,20 +232,25 @@ class AllExamTimeTable extends Component
     }
 
     public function render()
-    {
-        if($this->mode!=='all')
+     {
+       
+
+        if($this->timeslot_id)
         {
-            $this->subjects = Subject::select('id','subject_name')->where('status',1)->get();
-            $this->exampatternclasses = ExamPatternclass::select('id','exam_id','patternclass_id')->get();             
-            $this->timeslots = Timetableslot::select('id','timeslot')->where('isactive',1)->get();         
+            foreach ($this->subjects as $value) {
+                $this->timeslot_ids[$value->id]=$this->timeslot_id;
+            }
         }
-        
-        $ExamTimeTables=ExamTimetable::select('id','subject_id','timeslot_id','examdate','exam_patternclasses_id','status','deleted_at')
-        ->with(['exampatternclass.patternclass.pattern','exampatternclass.patternclass.courseclass.classyear','exampatternclass.patternclass.courseclass.course'])
-        -> when($this->search, function ($query, $search) {
-            $query->search($search);
+    
+   
+
+        $examids = Exam::where('status',1)->pluck('id')->toArray();
+  
+        $exampatternclasses=ExamPatternclass::whereIn('exam_id',$examids)
+       -> when($this->search, function ($query, $search) {
+          $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
-        return view('livewire.user.exam-time-table.all-exam-time-table',compact('ExamTimeTables'))->extends('layouts.user')->section('user');
+        return view('livewire.user.exam-time-table.all-exam-time-table',compact('exampatternclasses'))->extends('layouts.user')->section('user');
     }
 }

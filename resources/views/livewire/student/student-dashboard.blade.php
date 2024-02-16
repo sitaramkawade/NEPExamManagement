@@ -10,12 +10,12 @@
           <div class="grid grid-cols-2 gap-4">
             <div class="col-span-2">
               <x-dashboard.card heading="Action" class="dark:bg-green-500  bg-green-100">
-                <div class="gap-y-5">
-                  <x-dashboard.form-button target="_blank" action="{{ route('student.student_exam_form') }}"> Exam Form </x-dashboard.form-button>
-                  <x-dashboard.form-button action="{{ route('student.student_delete_exam_form') }}"> Delete Exam Form </x-dashboard.form-button>
-                  <x-dashboard.form-button target="_blank" action="{{ route('student.student_print_preview_exam_form') }}"> Preview Exam Form </x-dashboard.form-button>
-                  <x-dashboard.form-button target="_blank" action="{{ route('student.student_print_final_exam_form') }}"> Print Exam Form </x-dashboard.form-button>      
-                </div>
+                <x-dashboard.inner-card heading="Exam Form">
+                  <x-dashboard.form-button class="bg-purple-500" target="_blank" action="{{ route('student.student_exam_form') }}"> Exam Form </x-dashboard.form-button>
+                  <x-dashboard.form-button class="bg-red-500" action="{{ route('student.student_delete_exam_form') }}"> Delete Exam Form </x-dashboard.form-button>
+                  <x-dashboard.form-button class="bg-pink-500" target="_blank" action="{{ route('student.student_print_preview_exam_form') }}"> Preview Exam Form </x-dashboard.form-button>
+                  <x-dashboard.form-button class="bg-blue-500" target="_blank" action="{{ route('student.student_print_final_exam_form') }}" onclick="return confirm('Once Printed, the form cannot be edited. Confirm if you wish to print it.')"> Print Exam Form </x-dashboard.form-button>
+                </x-dashboard.inner-card>
               </x-dashboard.card>
             </div>
             <x-dashboard.card heading="Learning Mode" class=" dark:bg-yellow-500 bg-yellow-100">
@@ -83,6 +83,75 @@
           </x-dashboard.card>
         </div>
       </div>
+      @if (!$exam_form_masters->isEmpty())
+      <section>
+        <x-table.table>
+          <x-table.thead>
+            <x-table.tr>
+              <x-table.th colspan="6">
+                <p class="text-center">Fee Section</p>
+              </x-table.th>
+            </x-table.tr>
+            <x-table.tr>
+              <x-table.th>No.</x-table.th>
+              <x-table.th>Exam Name</x-table.th>
+              <x-table.th>Total Fee</x-table.th>
+              <x-table.th>Fee Status</x-table.th>
+              <x-table.th>Payment Status</x-table.th>
+              <x-table.th>Action</x-table.th>
+            </x-table.tr>
+          </x-table.thead>
+          <x-table.tbody>
+            @foreach ($exam_form_masters as $key => $exm_form)
+              <x-table.tr>
+                <x-table.td>{{ $key + 1 }} </x-table.td>
+                <x-table.td>{{ $exm_form->exam->exam_name }}</x-table.td>
+                <x-table.td>{{ $exm_form->totalfee }} Rs.</x-table.td>
+                <x-table.td>
+                  @if ($exm_form->feepaidstatus)
+                    <x-status type="success"> Paid</x-status>
+                    @if ( isset($exm_form->transaction->status) && $exm_form->transaction->status === 3)
+                      <x-status type="success"> Online</x-status>
+                    @else
+                      <x-status type="danger">Offline</x-status>
+                    @endif
+                  @else
+                    <x-status type="danger">Not Paid</x-status>
+                  @endif
+                </x-table.td>
+                <x-table.td>
+                  @if (isset($exm_form->transaction->status))
+                    @if ($exm_form->transaction->status === 3)
+                      <x-status type="success"> Success</x-status>
+                    @elseif ($exm_form->transaction->status === 4)
+                      <x-status type="info">Refunded</x-status>
+                    @elseif ($exm_form->transaction->status === 5)
+                      <x-status type="danger">Failed</x-status>
+                    @elseif ($exm_form->transaction->status === 1)
+                      <x-status>Order Created</x-status>
+                    @elseif ($exm_form->transaction->status === 2)
+                      <x-status type="warning">Processing</x-status>
+                    @endif
+                  @else
+                    <x-status>NA</x-status>
+                  @endif
+                </x-table.td>
+                <x-table.td>
+                  @if ($exm_form->verified_at)
+                    @if ($exm_form->feepaidstatus == 0)
+                      <x-dashboard.form-button class="bg-green-500 h-7 rounded-md border-none" action="{{ route('student.student_pay_exam_form_fee', $exm_form->id) }}"> Pay Exam Form Fee Online</x-dashboard.form-button>
+                    @endif
+                  @endif
+                  @if (isset($exm_form->transaction->status) && $exm_form->transaction->status === 3)
+                    {{-- <x-dashboard.form-button class="bg-blue-500 h-7 rounded-md border-0" target="_blank" action="{{ route('student.student_refund_exam_form',$exm_form->id) }}" > Refund </x-dashboard.form-button> --}}
+                  @endif
+                </x-table.td>
+              </x-table.tr>
+            @endforeach
+          </x-table.tbody>
+        </x-table.table>
+      </section>
+      @endif
     </div>
   </div>
 </section>
