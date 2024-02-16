@@ -30,6 +30,7 @@ use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
 use App\Livewire\Student\Helpline\Helpline;
 use App\Livewire\User\Building\AllBuilding;
+use App\Livewire\User\ExamForm\AllExamForm;
 use App\Livewire\User\Helpline\AllHelpline;
 use App\Livewire\User\Ratehead\AllRateHead;
 use App\Livewire\Faculty\Faculty\AllFaculty;
@@ -283,6 +284,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //Delete Exam Form Before Inward
   Route::get('/delete/exam/form/before/inward',DeleteExamFormBeforeInward::class)->name('delete_exam_form_before_inward');
+
+  //All Exam Form 
+  Route::get('/exam/form',AllExamForm::class)->name('all_exam_form');
 
   //Inward Exam Form 
   Route::get('/inward/exam/form',InwardExamForm::class)->name('inward_exam_form');
