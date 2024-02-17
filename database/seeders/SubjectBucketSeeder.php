@@ -22,14 +22,14 @@ class SubjectBucketSeeder extends Seeder
         $patternClassIds = Patternclass::pluck('id')->toArray();
         $departmentIds = Department::pluck('id')->toArray();
         $subjectIds = Subject::pluck('id')->toArray();
-        $academicYearIds = Academicyear::pluck('id')->toArray();
+        $academicYearIds = Academicyear::where('active',1)->pluck('id')->toArray();
 
         for ($i = 1; $i <= 20; $i++) {
             Subjectbucket::create([
                 'department_id' =>  $faker->randomElement($departmentIds),
                 'patternclass_id' => $faker->randomElement($patternClassIds),
                 'subjectcategory_id' => $faker->randomElement($subjectCategoryIds),
-                // 'subject_division' => $faker->randomElement(['A', 'B','C','D']),
+                'subject_division' => $faker->randomElement(['A', 'B','C','D']),
                 // 'subject_categoryno' => $faker->numberBetween(1, 3),
                 'subject_id' => $faker->randomElement($subjectIds),
                 'academicyear_id' => $faker->randomElement($academicYearIds),

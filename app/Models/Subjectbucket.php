@@ -17,7 +17,7 @@ class Subjectbucket extends Model
     'department_id',
     'patternclass_id',
     'subjectcategory_id',
-    // 'subject_division',
+    'subject_division',
     // 'subject_categoryno',
     'subject_id',
     'academicyear_id',

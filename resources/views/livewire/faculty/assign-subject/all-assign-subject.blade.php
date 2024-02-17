@@ -12,7 +12,7 @@
         <x-card-header heading="Edit Assign Subject">
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
-        <x-form wire:submit="update({{ $subject_id }})">
+        <x-form wire:submit="update({{ $assignsubject_id }})">
             @include('livewire.faculty.assign-subject.assignsubject-form')
         </x-form>
     @elseif($mode == 'view')
@@ -35,10 +35,9 @@
                         <x-table.thead>
                             <x-table.tr>
                                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
-                                <x-table.th wire:click="sort_column('department_id')" name="department_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Department</x-table.th>
-                                <x-table.th wire:click="sort_column('patternclass_id')" name="patternclass_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Patternclass</x-table.th>
+                                <x-table.th wire:click="sort_column('subject_id')" name="subject_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Name</x-table.th>
+                                <x-table.th wire:click="sort_column('department_id')" name="department_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Department Name</x-table.th>
                                 <x-table.th wire:click="sort_column('subjectcategory_id')" name="subjectcategory_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Category</x-table.th>
-                                <x-table.th wire:click="sort_column('subject_id')" name="subject_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject</x-table.th>
                                 <x-table.th wire:click="sort_column('academicyear_id')" name="academicyear_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Academic Year</x-table.th>
                                 <x-table.th> Status </x-table.th>
                                 <x-table.th> Action </x-table.th>
@@ -48,11 +47,23 @@
                             @forelse ($assignsubjects as $assignsubject)
                                 <x-table.tr wire:key="{{ $assignsubject->id }}">
                                     <x-table.td>{{ $assignsubject->id }} </x-table.td>
-                                    <x-table.td>{{ $assignsubject->department->dept_name }} </x-table.td>
-                                    <x-table.td>{{ $assignsubject->patternclass->courseclass->classyear->classyear_name }}-{{ $assignsubject->patternclass->courseclass->course->course_name }}-{{ $assignsubject->patternclass->pattern->pattern_name }}</x-table.td>
-                                    <x-table.td></x-table.td>
-                                    <x-table.td></x-table.td>
-                                    <x-table.td></x-table.td>
+                                    <x-table.td>
+                                        <x-table.text-scroll>{{ isset($assignsubject->subject->subject_name) ? $assignsubject->subject->subject_name : '-' }}</x-table.text-scroll>
+                                    </x-table.td>
+                                    <x-table.td>
+                                        <x-table.text-scroll>{{ isset($assignsubject->department->dept_name) ? $assignsubject->department->dept_name : '-' }}</x-table.text-scroll>
+                                    </x-table.td>
+                                    <x-table.td>
+                                        <x-table.text-scroll>{{ isset($assignsubject->subject->subjectcategories->subjectcategory) ? $assignsubject->subject->subjectcategories->subjectcategory : '-' }}</x-table.text-scroll>
+                                    </x-table.td>
+                                    <x-table.td>{{ $assignsubject->academicyear->year_name }} </x-table.td>
+                                    {{-- <x-table.td>
+                                        <x-table.text-scroll>
+                                        {{ isset($assignsubject->patternclass->courseclass->classyear->classyear_name) ? $assignsubject->patternclass->courseclass->classyear->classyear_name : '' }}-
+                                        {{ isset($assignsubject->patternclass->courseclass->course->course_name) ? $assignsubject->patternclass->courseclass->course->course_name : ''}}-
+                                        {{ isset($assignsubject->patternclass->pattern->pattern_name) ? $assignsubject->patternclass->pattern->pattern_name : '' }}
+                                        </x-table.text-scroll>
+                                    </x-table.td> --}}
                                     <x-table.td>
                                         @if (!$assignsubject->deleted_at)
                                             @if ($assignsubject->status === 1)

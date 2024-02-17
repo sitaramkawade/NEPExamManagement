@@ -21,7 +21,7 @@ return new class extends Migration
             $table->bigInteger('patternclass_id')->unsigned();  //Major Minor
             $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
 
-            // $table->char('subject_division',1)->default('A'); //A -All B ,C,D
+            $table->char('subject_division',1)->default('A'); //A -All B ,C,D
 
             $table->bigInteger('subjectcategory_id')->unsigned();  //Major Minor
             $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories');

@@ -52,6 +52,18 @@
             <x-input-error :messages="$errors->get('patternclass_id')" class="mt-1" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="subject_sem" :value="__('Subject Semester')" />
+            <x-input-select id="subject_sem" wire:model.live="subject_sem" name="subject_sem" class="text-center @error('subject_sem') is-invalid @enderror w-full mt-1" :value="old('subject_sem', $subject_sem)" required autofocus autocomplete="subject_sem">
+                <x-select-option class="text-start" hidden> -- Select Subject Semester -- </x-select-option>
+                @forelse ($semesters as $semester)
+                    <x-select-option wire:key="{{ $semester->id }}" value="{{ $semester->id }}" class="text-start"> {{ $semester->semester }} </x-select-option>
+                @empty
+                    <x-select-option class="text-start">Semester Not Found</x-select-option>
+                @endforelse
+            </x-input-select>
+            <x-input-error :messages="$errors->get('subject_sem')" class="mt-2" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_id" :value="__('Select Subject')" />
             <x-input-select id="subject_id" wire:model.live="subject_id" name="subject_id" class="text-center w-full mt-1" :value="old('subject_id', $subject_id)" required autocomplete="subject_id">
                 <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>

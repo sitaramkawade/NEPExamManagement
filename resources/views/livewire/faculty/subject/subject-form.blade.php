@@ -13,11 +13,6 @@
             <x-input-error :messages="$errors->get('subjectcategory_id')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_name_prefix" :value="__('Subject Name Prefix')" />
-            <x-text-input id="subject_name_prefix" type="text" wire:model="subject_name_prefix" name="subject_name_prefix" placeholder="Subject Name Prefix" class=" @error('subject_name_prefix') is-invalid @enderror w-full mt-1" :value="old('subject_name_prefix', $subject_name_prefix)" required autofocus autocomplete="subject_name_prefix" />
-            <x-input-error :messages="$errors->get('subject_name_prefix')" class="mt-2" />
-        </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="course_id" :value="__('Course')" />
             <x-input-select id="course_id" wire:model.live="course_id" name="course_id" class="text-center w-full mt-1" :value="old('course_id', $course_id)" required autocomplete="course_id">
                 <x-select-option class="text-start" hidden> -- Select Course -- </x-select-option>
@@ -52,6 +47,11 @@
                 @endforelse
             </x-input-select>
             <x-input-error :messages="$errors->get('subject_sem')" class="mt-2" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="subject_name_prefix" :value="__('Subject Name Prefix')" />
+            <x-text-input id="subject_name_prefix" type="text" wire:model="subject_name_prefix" name="subject_name_prefix" placeholder="Subject Name Prefix" class=" @error('subject_name_prefix') is-invalid @enderror w-full mt-1" :value="old('subject_name_prefix', $subject_name_prefix)" required autofocus autocomplete="subject_name_prefix" />
+            <x-input-error :messages="$errors->get('subject_name_prefix')" class="mt-2" />
         </div>
     </div>
 </x-card-collapsible>

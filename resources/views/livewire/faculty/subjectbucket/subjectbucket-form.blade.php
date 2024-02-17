@@ -2,23 +2,7 @@
     <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
         Subject Bucket Detail's
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3">
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_categoryno" :value="__('Subject Category Number')" />
-            <x-text-input id="subject_categoryno" type="number" wire:model="subject_categoryno" name="subject_categoryno" placeholder="Subject Category Number" class=" @error('subject_categoryno') is-invalid @enderror w-full mt-1" :value="old('subject_categoryno', $subject_categoryno)" required autofocus autocomplete="subject_categoryno" />
-            <x-input-error :messages="$errors->get('subject_categoryno')" class="mt-2" />
-        </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_division" :value="__('Subject Division')" />
-            <x-input-select id="subject_division" wire:model="subject_division" name="subject_division" class="text-center @error('subject_division') is-invalid @enderror w-full mt-1" :value="old('subject_division', $subject_division)" required autofocus autocomplete="subject_division">
-                <x-select-option class="text-start" hidden> -- Select Subject Division -- </x-select-option>
-                <x-select-option class="text-start" value="A">A</x-select-option>
-                <x-select-option class="text-start" value="B">B</x-select-option>
-                <x-select-option class="text-start" value="C">C</x-select-option>
-                <x-select-option class="text-start" value="D">D</x-select-option>
-            </x-input-select>
-            <x-input-error :messages="$errors->get('subject_division')" class="mt-2" />
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="department_id" :value="__('Select Department')" />
             <x-input-select id="department_id" wire:model="department_id" name="department_id" class="text-center @error('department_id') is-invalid @enderror w-full mt-1" :value="old('department_id', $department_id)" required autofocus autocomplete="department_id">
@@ -85,7 +69,7 @@
             </x-input-select>
             <x-input-error :messages="$errors->get('subject_id')" class="mt-2" />
         </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+        {{-- <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="academicyear_id" :value="__('Academic Year')" />
             <x-input-select id="academicyear_id" wire:model="academicyear_id" name="academicyear_id" class="text-center @error('academicyear_id') is-invalid @enderror w-full mt-1" :value="old('academicyear_id', $academicyear_id)" required autofocus autocomplete="academicyear_id">
                 <x-select-option class="text-start" hidden> -- Select Academic Year -- </x-select-option>
@@ -95,6 +79,22 @@
             </x-input-select>
             <x-input-error :messages="$errors->get('academicyear_id')" class="mt-2" />
         </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="subject_categoryno" :value="__('Subject Category Number')" />
+            <x-text-input id="subject_categoryno" type="number" wire:model="subject_categoryno" name="subject_categoryno" placeholder="Subject Category Number" class=" @error('subject_categoryno') is-invalid @enderror w-full mt-1" :value="old('subject_categoryno', $subject_categoryno)" required autofocus autocomplete="subject_categoryno" />
+            <x-input-error :messages="$errors->get('subject_categoryno')" class="mt-2" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="subject_division" :value="__('Subject Division')" />
+            <x-input-select id="subject_division" wire:model="subject_division" name="subject_division" class="text-center @error('subject_division') is-invalid @enderror w-full mt-1" :value="old('subject_division', $subject_division)" required autofocus autocomplete="subject_division">
+                <x-select-option class="text-start" hidden> -- Select Subject Division -- </x-select-option>
+                <x-select-option class="text-start" value="A">A</x-select-option>
+                <x-select-option class="text-start" value="B">B</x-select-option>
+                <x-select-option class="text-start" value="C">C</x-select-option>
+                <x-select-option class="text-start" value="D">D</x-select-option>
+            </x-input-select>
+            <x-input-error :messages="$errors->get('subject_division')" class="mt-2" />
+        </div> --}}
     </div>
     <x-form-btn>Submit</x-form-btn>
 </div>

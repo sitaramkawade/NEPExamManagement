@@ -25,7 +25,7 @@ class AllSubjectBucket extends Component
     public $department_id;
     public $patternclass_id;
     public $subjectcategory_id;
-    // public $subject_division;
+    public $subject_division;
     // public $subject_categoryno;
     public $subject_id;
 
@@ -44,7 +44,7 @@ class AllSubjectBucket extends Component
     public $per_page = 10;
     public $perPage=10;
     public $search='';
-    public $sortColumn="subject_categoryno";
+    public $sortColumn="subject_id";
     public $sortColumnBy="ASC";
     public $ext;
     public $departments;
@@ -65,10 +65,10 @@ class AllSubjectBucket extends Component
             'course_id' => ['required',Rule::exists(Course::class,'id')],
             'course_class_id' => ['required',Rule::exists(Courseclass::class,'id')],
             'subject_id' => ['required',Rule::exists(Subject::class,'id')],
-            'academicyear_id' => ['required',Rule::exists(Academicyear::class,'id')],
             'subjectcategory_id' => ['required',Rule::exists(Subjectcategory::class,'id')],
-            // 'subject_categoryno' => ['required',],
+            // 'academicyear_id' => ['required',Rule::exists(Academicyear::class,'id')],
             // 'subject_division' => ['required', 'in:A,B,C,D',],
+            // 'subject_categoryno' => ['required',],
         ];
     }
 
@@ -85,14 +85,14 @@ class AllSubjectBucket extends Component
             'course_class_id.exists' => 'The selected course class is invalid.',
             'subject_id.required' => 'The subject field is required.',
             'subject_id.exists' => 'The selected subject is invalid.',
-            'academicyear_id.required' => 'The academic year field is required.',
-            'academicyear_id.exists' => 'The selected academic year is invalid.',
             'subjectcategory_id.required' => 'The subject category field is required.',
             'subjectcategory_id.exists' => 'The selected subject category is invalid.',
-            // 'subject_categoryno.required' => 'The subject category number field is required.',
-            // 'subject_categoryno.required' => 'The subject category number field is required.',
+            // 'academicyear_id.required' => 'The academic year field is required.',
+            // 'academicyear_id.exists' => 'The selected academic year is invalid.',
             // 'subject_division.required' => 'The subject division field is required.',
             // 'subject_division.in' => 'The subject division must be one of: A, B, C, D.',
+            // 'subject_categoryno.required' => 'The subject category number field is required.',
+            // 'subject_categoryno.required' => 'The subject category number field is required.',
         ];
     }
 
@@ -100,12 +100,12 @@ class AllSubjectBucket extends Component
     {
          $this->subject_categoryno = null;
          $this->academicyear_id = null;
-         $this->subject_division = null;
          $this->subjectcategory_id = null;
          $this->subject_id = null;
          $this->department_id = null;
          $this->pattern_id = null;
          $this->course_id = null;
+         //  $this->subject_division = null;
          $this->course_class_id = null;
     }
 
@@ -140,6 +140,8 @@ class AllSubjectBucket extends Component
 
         if ($pattern_class) {
             $validatedData['patternclass_id'] = $pattern_class->id;
+            $activeAcademicYearId = Academicyear::where('active', 1)->value('id');
+            $validatedData['academicyear_id'] = $activeAcademicYearId;
             $subjectbucket = Subjectbucket::create($validatedData);
 
             if ($subjectbucket) {
@@ -276,7 +278,7 @@ class AllSubjectBucket extends Component
         $subjectbucket = Subjectbucket::withTrashed()->findOrFail($id);
         if ($subjectbucket) {
             $subjectbucket->delete();
-            $this->dispatch('alert',type:'success',message:'Subject Bucket Deleted Successfully');
+            $this->dispatch('alert',type:'success',message:'Subject Bucket Soft Deleted Successfully');
             } else {
                 $this->dispatch('alert',type:'error',message:'Subject Bucket Not Found !');
             }
@@ -308,7 +310,7 @@ class AllSubjectBucket extends Component
             $this->academicyear_id= $subjectbucket->academicyear->year_name;
             $this->pattern_id = isset($subjectbucket->patternclass->pattern->pattern_name) ? $subjectbucket->patternclass->pattern->pattern_name : '';
             $this->course_id = isset($subjectbucket->patternclass->courseclass->course->course_name) ? $subjectbucket->patternclass->courseclass->course->course_name : '';
-            $this->course_class_id = isset($subjectbucket->patternclass->courseclass->classyear->classyear_name) ? $subjectbucket->patternclass->courseclass->classyear->classyear_name : '';
+            $this->course_class_id = (isset($subjectbucket->patternclass->courseclass->classyear->classyear_name) ? $subjectbucket->patternclass->courseclass->classyear->classyear_name : '').' '.(isset($subjectbucket->patternclass->courseclass->course->course_name) ? $subjectbucket->patternclass->courseclass->course->course_name : '');
             $this->setmode('view');
         }else{
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
@@ -320,10 +322,18 @@ class AllSubjectBucket extends Component
         if($this->mode !== 'all' ){
             $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
             $this->courses=Course::select('id','course_name')->get();
-            $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
+            if($this->course_id){
+                $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
+            }else{
+                $this->course_classes=[];
+            }
             $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('is_active',1)->get();
             $this->academic_years= Academicyear::select('id','year_name')->where('active',1)->get();
-            $this->subjects= Subject::select('id','subject_name')->where('status',1)->get();
+            if($this->subjectcategory_id){
+                $this->subjects = Subject::select('id', 'subject_name')->where('subjectcategory_id', $this->subjectcategory_id)->where('status', 1)->get();
+            }else{
+                $this->subjects=[];
+            }
             $this->departments= Department::select('id','dept_name')->where('status',1)->get();
         }
 

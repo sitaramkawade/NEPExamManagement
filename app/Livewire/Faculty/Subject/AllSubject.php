@@ -20,6 +20,7 @@ use App\Models\Subjectcredit;
 use App\Models\Subjectcategory;
 use App\Models\Subjectexamtype;
 use Illuminate\Validation\Rule;
+use App\Models\Hodappointsubject;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SubjectExamTypeMaster;
@@ -352,6 +353,12 @@ class AllSubject extends Component
                 $subjectbucketData->save();
             }
 
+            $hodappointsubjectData = new Hodappointsubject();
+            $hodappointsubjectData->faculty_id = $subject->faculty_id;
+            $hodappointsubjectData->subject_id = $subject->id;
+            $hodappointsubjectData->patternclass_id = $subject->patternclass_id;
+            $hodappointsubjectData->save();
+
             // Commit the transaction
             DB::commit();
 
@@ -364,6 +371,9 @@ class AllSubject extends Component
         } catch (\Exception $e) {
             // If an exception occurs, rollback the transaction
             DB::rollback();
+
+            // Log the exception
+            logger()->error('Error saving subject: '.$e->getMessage());
 
             // Dispatch an error alert message
             $this->dispatch('alert', type: 'error', message: 'Something went wrong!!');
@@ -578,8 +588,10 @@ class AllSubject extends Component
                 ->where('status', 1)
                 ->get();
             if($this->mode === 'add' ){
+                $this->is_panel = 1;
+                $this->no_of_sets = 3;
                 $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('is_active',1)->get();
-                if ($this->subjectcategory_id) {
+                if ($this->patternclass_id && $this->subjectcategory_id) {
                     $subject_count = Subject::select('id', 'subjectcategory_id')
                         ->where('patternclass_id', $this->patternclass_id)
                         ->where('subjectcategory_id', $this->subjectcategory_id)
@@ -639,7 +651,7 @@ class AllSubject extends Component
             }
         }
     }
-        $subjects = Subject::with(['college', 'subjectcategories', 'department', 'subjecttypes', 'patternclass', 'classyear',])->when($this->search, function($query, $search){
+        $subjects = Subject::with(['college', 'subjectcategories', 'department', 'subjecttype', 'patternclass', 'classyear',])->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.subject.all-subject',compact('subjects'))->extends('layouts.faculty')->section('faculty');

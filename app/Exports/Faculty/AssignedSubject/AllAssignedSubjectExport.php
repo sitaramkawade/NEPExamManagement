@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\Faculty\SubjectBucket;
+namespace App\Exports\Faculty\AssignedSubject;
 
 use App\Models\Subjectbucket;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class SubjectBucketExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
+class AllAssignedSubjectExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     protected $search;
     protected $sortColumn;
@@ -36,6 +36,10 @@ class SubjectBucketExport implements FromCollection, WithHeadings, ShouldAutoSiz
 
     public function map($row): array
     {
+        if($row->subjectcategory_id == 1)
+        {
+            return [];
+        }
         return [
             $row->id,
             (isset($row->subject->subject_name) ? $row->subject->subject_name : ''),
