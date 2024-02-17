@@ -203,6 +203,8 @@ class AllExamFeeCourse extends Component
                                 'fee' => $fee == "" ? 0 : $fee,
                                 'patternclass_id' => $patternclass->id,
                                 'active_status' => $activeStatus,
+                                'created_at' => now(),
+                                'updated_at' => now(),
                             ];
                         }
                     }
@@ -231,6 +233,8 @@ class AllExamFeeCourse extends Component
                                         'fee' => $fee == "" ? 0 : $fee,
                                         'patternclass_id' => $patternclass->id,
                                         'active_status' => $activeStatus,
+                                        'created_at' => now(),
+                                        'updated_at' => now(),
                                     ];
                                 }
                             }
@@ -253,6 +257,8 @@ class AllExamFeeCourse extends Component
                         'sem' => $this->sem,
                         'patternclass_id' => $this->patternclass_id,
                         'active_status' =>   $activeStatus,
+                        'created_at' => now(),
+                        'updated_at' => now(),
                     ];
                 }
             }
@@ -403,9 +409,19 @@ class AllExamFeeCourse extends Component
 
     public function forcedelete()
     {   
-        $examfeecourse = Examfeecourse::withTrashed()->find($this->delete_id);
-        $examfeecourse->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Exam Fee Course Deleted Successfully !!');
+        try 
+        {
+            $examfeecourse = Examfeecourse::withTrashed()->find($this->delete_id);
+            $examfeecourse->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Exam Fee Course Deleted Successfully !!');
+
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
     public function render()
@@ -517,16 +533,6 @@ class AllExamFeeCourse extends Component
                     $this->semesters = Semester::select('id', 'semester')->where('status', 1)->get();
                 }
             }
-         
-
-            // if($this->mode=='add')
-            // {
-            //     $examfeeids = Examfeecourse::select('examfees_id')->where('patternclass_id', $this->patternclass_id)->where('sem', $this->sem)->get();
-            // }else
-            // {
-            //     $examfeeids=null; 
-            // }
-
         }
         
         $examfeecourses=Examfeecourse::select('id','fee','sem','approve_status','patternclass_id','examfees_id','active_status','deleted_at')

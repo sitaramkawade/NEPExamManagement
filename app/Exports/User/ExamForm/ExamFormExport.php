@@ -47,7 +47,7 @@ class ExamFormExport implements  FromCollection, WithHeadings, ShouldAutoSize, W
             (isset($row->transaction->status) ? ($row->transaction->status == 3 ? $row->transaction->razorpay_payment_id : '') : ''),
             (isset($row->transaction->status) ? ($row->transaction->status == 3 ? $row->transaction->payment_date : '') : ''),
             isset($row->exam->exam_name)?$row->exam->exam_name:'',
-            (isset($row->patternclass->pattern->pattern_name) ? $row->patternclass->pattern->pattern_name : '-').' '.(isset($row->patternclass->courseclass->classyear->classyear_name) ? $row->patternclass->courseclass->classyear->classyear_name : '-').''.(isset($row->patternclass->courseclass->course->course_name) ? $row->patternclass->courseclass->course->course_name : '-'),
+            (isset($row->patternclass->pattern->pattern_name) ? $row->patternclass->pattern->pattern_name : '-').' '.(isset($row->patternclass->courseclass->classyear->classyear_name) ? $row->patternclass->courseclass->classyear->classyear_name : '-').' '.(isset($row->patternclass->courseclass->course->course_name) ? $row->patternclass->courseclass->course->course_name : '-'),
             $row->created_at->format('Y-m-d'),
         ];
     }

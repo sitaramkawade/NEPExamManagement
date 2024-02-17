@@ -231,9 +231,19 @@ class AllAdmissionData extends Component
 
     public function forcedelete()
     {   
-        $admission_data = Admissiondata::withTrashed()->find($this->delete_id);
-        $admission_data->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Admission Data Entry Deleted Successfully !!');
+        try 
+        {
+            $admission_data = Admissiondata::withTrashed()->find($this->delete_id);
+            $admission_data->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Admission Data Entry Deleted Successfully !!');
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
     public function render()

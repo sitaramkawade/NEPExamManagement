@@ -291,9 +291,19 @@ class AllExamPatternClass extends Component
 
     public function forcedelete()
     {   
-       $exam_pattern_class = ExamPatternclass::withTrashed()->find($this->delete_id);
-       $exam_pattern_class->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Exam Pattern Class Deleted Successfully !!');
+        try 
+        {
+            $exam_pattern_class = ExamPatternclass::withTrashed()->find($this->delete_id);
+            $exam_pattern_class->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Exam Pattern Class Deleted Successfully !!');
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
     public function changestatus(ExamPatternclass $exam_pattern_class)

@@ -74,7 +74,7 @@ class Examformmaster extends Model
     public function scopeSearch(Builder $query, string $search)
     {
         return $query->with('student')
-        ->where('id', 'like', "%{$search}%")
+        ->where('examformmasters.id', 'like', "%{$search}%")
         ->orWhere(function ($subquery) use ($search) {
             $subquery->orWhereHas('student', function ($subQuery) use ($search) {
                 $subQuery->where('prn', 'like', "%{$search}%")
