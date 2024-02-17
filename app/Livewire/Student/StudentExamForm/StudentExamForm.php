@@ -89,7 +89,7 @@ class StudentExamForm extends Component
         $this->backlog_subjects=[];
 
         // Init Extra Credit Subjects
-        $this->extra_credit_subjects=[]; 
+        $this->extra_credit_subjects=collect([]); 
 
         // Init Backlog Subject Previous Semesters
         $this->backlog_subject_previous_semester=null;
@@ -359,6 +359,8 @@ class StudentExamForm extends Component
                         'practical_status' => 0,
                         'project_status' => 0,
                         'oral_status' => 0,
+                        'created_at' => now(),
+                        'updated_at' => now(),
                     ];
 
                     // Set Checked Input
@@ -407,7 +409,9 @@ class StudentExamForm extends Component
                     $student_exam_form_fees[] = [
                         'examformmaster_id' =>$exam_form_master_data->id,
                         'examfees_id' => $fee->examfees_id,
-                        'fee_amount' => $fee->fee
+                        'fee_amount' => $fee->fee,
+                        'created_at' => now(),
+                        'updated_at' => now(),
                     ];
                 }
 

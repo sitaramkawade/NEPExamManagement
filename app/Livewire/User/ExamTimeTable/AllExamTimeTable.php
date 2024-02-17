@@ -117,7 +117,7 @@ class AllExamTimeTable extends Component
                 ];
 
             }
-            $exam_time_table_data = ExamTimetable::insert($exam_time_table);
+            $exam_time_table_data = ExamTimetable($exam_time_table);
             DB::commit();
             $this->dispatch('alert',type:'success',message:'Exam Time Table Created Successfully !!'  );
             $this->setmode('all');
