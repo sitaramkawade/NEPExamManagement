@@ -186,9 +186,19 @@ class AllTimeTableSlot extends Component
 
     public function forcedelete()
     {   
-        $time_table_slot = Timetableslot::withTrashed()->find($this->delete_id);
-        $time_table_slot->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Time Table Slot Deleted Successfully !!');
+        try 
+        {
+            $time_table_slot = Timetableslot::withTrashed()->find($this->delete_id);
+            $time_table_slot->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Time Table Slot Deleted Successfully !!');
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
     public function render()

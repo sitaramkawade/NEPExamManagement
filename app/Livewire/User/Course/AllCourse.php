@@ -230,9 +230,19 @@ class AllCourse extends Component
 
     public function forcedelete()
     {   
-        $course = Course::withTrashed()->find($this->delete_id);
-        $course->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Course Deleted Successfully !!');
+        try 
+        {
+            $course = Course::withTrashed()->find($this->delete_id);
+            $course->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Course Deleted Successfully !!');
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
     public function render()

@@ -17,6 +17,7 @@ class Transaction extends Model
         'razorpay_order_id',
         'razorpay_payment_id',
         'razorpay_refund_id',
+        'payment_date',
         'razorpay_signature',
         'amount',
         'status',

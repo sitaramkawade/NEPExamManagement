@@ -106,22 +106,27 @@ class RazorPayController extends Controller
                 ];
         
                 $this->api->utility->verifyPaymentSignature($attributes);
-        
-                $transaction->razorpay_payment_id = $request->razorpay_payment_id;
-                $transaction->razorpay_signature = $request->razorpay_signature;
-                $transaction->status = 3; // Capured
-                $transaction->save();
-        
-                $exam_form_master =  $transaction->examformmaster()->first();
-                if( $exam_form_master)
+                
+                $payment = $this->api->payment->fetch($request->razorpay_payment_id);
+                if($payment)
                 {
-                    $exam_form_master->feepaidstatus = 1;
-                    $exam_form_master->save();
-                }
+                    $transaction->razorpay_payment_id = $request->razorpay_payment_id;
+                    $transaction->razorpay_signature = $request->razorpay_signature;
+                    $transaction->payment_date =  isset($payment['created_at']) ? date_create_from_format('U', $payment['created_at']) : null;
+                    $transaction->status = 3; // Capured
+                    $transaction->save();
             
+                    $exam_form_master =  $transaction->examformmaster()->first();
+                    if( $exam_form_master)
+                    {
+                        $exam_form_master->feepaidstatus = 1;
+                        $exam_form_master->save();
+                    }
+                }
+
             }
 
-            $data = ['student_id' =>$exam_form_master->student_id, 'payment_response' => $this->api->payment->fetch($request->razorpay_payment_id)];
+            $data = ['student_id' =>$exam_form_master->student_id, 'payment_response' => $payment];
             SendEmailNotificationJob::dispatch('sendPaymentNotification', $data);
 
             DB::commit();

@@ -208,9 +208,19 @@ class AllNotice extends Component
 
     public function forcedelete()
     {   
-        $notice = Notice::withTrashed()->find($this->delete_id);
-        $notice->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Notice Deleted Successfully !!');
+        try 
+        {
+            $notice = Notice::withTrashed()->find($this->delete_id);
+            $notice->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Notice Deleted Successfully !!');
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
     public function changestatus(Notice$notice)
