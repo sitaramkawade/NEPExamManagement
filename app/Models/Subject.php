@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\College;
 use App\Models\ExamPanel;
+use App\Models\Subjecttype;
 use App\Models\StudentExamforms;
 use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;

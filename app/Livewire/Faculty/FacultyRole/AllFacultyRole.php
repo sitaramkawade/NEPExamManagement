@@ -128,15 +128,19 @@ class AllFacultyRole extends Component
 
     public function delete()
     {
-        $role = Role::withTrashed()->find($this->delete_id);
-        if($role){
+        try
+        {
+            $role = Role::withTrashed()->find($this->delete_id);
             $role->forceDelete();
             $this->delete_id = null;
-            $this->dispatch('alert',type:'success',message:'"Role Deleted Successfully !!');
-        } else {
-            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+            $this->dispatch('alert',type:'success',message:'Role Deleted Successfully !!');
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            }
         }
-        $this->setmode('all');
     }
 
     public function softdelete($id)
@@ -144,11 +148,10 @@ class AllFacultyRole extends Component
         $role = Role::withTrashed()->findOrFail($id);
         if ($role) {
             $role->delete();
-            $this->dispatch('alert',type:'success',message:'Role Deleted Successfully');
-            } else {
-                $this->dispatch('alert',type:'error',message:'Role Not Found !');
-            }
-        $this->setmode('all');
+            $this->dispatch('alert',type:'success',message:'Role Soft Deleted Successfully');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Role Not Found !');
+        }
     }
 
     public function restore($id)
@@ -203,8 +206,8 @@ class AllFacultyRole extends Component
         if ($role)
         {
             $this->role_name= $role->role_name;
-            $this->roletype_id = $role->roletype->roletype_name;
-            $this->college_id = $role->college->college_name;
+            $this->roletype_id = isset($role->roletype->roletype_name) ? $role->roletype->roletype_name : '';
+            $this->college_id = isset($role->college->college_name) ? $role->college->college_name : '';
             $this->setmode('view');
         }else{
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
@@ -214,8 +217,8 @@ class AllFacultyRole extends Component
     public function render()
     {
         if($this->mode !== 'all'){
-            $this->roletypes = Roletype::select('id', 'roletype_name',)->where('status', 1)->get();
-            $this->colleges= College::select('id', 'college_name')->where('status',1)->get();
+            $this->roletypes = Roletype::where('status',1)->pluck('roletype_name','id');
+            $this->colleges= College::where('status',1)->pluck('college_name','id');
         }
 
         $roles = Role::with('roletype','college')->when($this->search, function($query, $search){

@@ -262,15 +262,19 @@ class AllSubjectBucket extends Component
 
     public function delete()
     {
-        $subjectbucket = Subjectbucket::withTrashed()->find($this->delete_id);
-        if($subjectbucket){
+        try
+        {
+            $subjectbucket = Subjectbucket::withTrashed()->find($this->delete_id);
             $subjectbucket->forceDelete();
             $this->delete_id = null;
             $this->dispatch('alert',type:'success',message:'Subject Bucket Deleted Successfully !!');
-        } else {
-            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            }
         }
-        $this->setmode('all');
     }
 
     public function softdelete($id)
@@ -279,10 +283,9 @@ class AllSubjectBucket extends Component
         if ($subjectbucket) {
             $subjectbucket->delete();
             $this->dispatch('alert',type:'success',message:'Subject Bucket Soft Deleted Successfully');
-            } else {
-                $this->dispatch('alert',type:'error',message:'Subject Bucket Not Found !');
-            }
-        $this->setmode('all');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Subject Bucket Not Found !');
+        }
     }
 
     public function restore($id)
@@ -303,11 +306,11 @@ class AllSubjectBucket extends Component
     {
         if ($subjectbucket)
         {
-            $this->subject_id= $subjectbucket->subject->subject_name;
+            $this->subject_id= isset($subjectbucket->subject->subject_name) ? $subjectbucket->subject->subject_name : '';
             $this->subject_division= $subjectbucket->subject_division;
             $this->subjectcategory_id= isset($subjectbucket->subjectcategory->subjectcategory) ? $subjectbucket->subjectcategory->subjectcategory : '';
             $this->department_id= isset($subjectbucket->department->dept_name) ? $subjectbucket->department->dept_name : '';
-            $this->academicyear_id= $subjectbucket->academicyear->year_name;
+            $this->academicyear_id= isset($subjectbucket->academicyear->year_name) ? $subjectbucket->academicyear->year_name : '';
             $this->pattern_id = isset($subjectbucket->patternclass->pattern->pattern_name) ? $subjectbucket->patternclass->pattern->pattern_name : '';
             $this->course_id = isset($subjectbucket->patternclass->courseclass->course->course_name) ? $subjectbucket->patternclass->courseclass->course->course_name : '';
             $this->course_class_id = (isset($subjectbucket->patternclass->courseclass->classyear->classyear_name) ? $subjectbucket->patternclass->courseclass->classyear->classyear_name : '').' '.(isset($subjectbucket->patternclass->courseclass->course->course_name) ? $subjectbucket->patternclass->courseclass->course->course_name : '');
@@ -320,21 +323,25 @@ class AllSubjectBucket extends Component
     public function render()
     {
         if($this->mode !== 'all' ){
-            $this->patterns=Pattern::select('id','pattern_name')->where('status',1)->get();
-            $this->courses=Course::select('id','course_name')->get();
+            $this->patterns=Pattern::where('status',1)->pluck('pattern_name','id');
+            $this->courses = Course::pluck('course_name','id');
+
             if($this->course_id){
                 $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
             }else{
                 $this->course_classes=[];
             }
-            $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('is_active',1)->get();
-            $this->academic_years= Academicyear::select('id','year_name')->where('active',1)->get();
+
+            $this->subject_categories = Subjectcategory::where('is_active',1)->pluck('subjectcategory','id');
+            // $this->academic_years = Academicyear::where('active',1)->pluck('year_name','id');
+
             if($this->subjectcategory_id){
                 $this->subjects = Subject::select('id', 'subject_name')->where('subjectcategory_id', $this->subjectcategory_id)->where('status', 1)->get();
             }else{
                 $this->subjects=[];
             }
-            $this->departments= Department::select('id','dept_name')->where('status',1)->get();
+
+            $this->departments = Department::where('status',1)->pluck('dept_name','id');
         }
 
         $subjectbuckets = Subjectbucket::with('department', 'patternclass', 'subjectcategory', 'subject', 'academicyear')

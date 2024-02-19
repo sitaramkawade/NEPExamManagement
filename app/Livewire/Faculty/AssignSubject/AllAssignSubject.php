@@ -201,14 +201,18 @@ class AllAssignSubject extends Component
 
     public function delete()
     {
-        $assignsubject = Subjectbucket::withTrashed()->find($this->delete_id);
-        if($assignsubject){
+        try
+        {
+            $assignsubject = Subjectbucket::withTrashed()->find($this->delete_id);
             $assignsubject->forceDelete();
             $this->delete_id = null;
-            $this->setmode('all');
             $this->dispatch('alert',type:'success',message:'Assigned Subject Deleted Successfully !!');
-        } else {
-            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            }
         }
     }
 
@@ -218,10 +222,9 @@ class AllAssignSubject extends Component
         if ($assignsubject) {
             $assignsubject->delete();
             $this->dispatch('alert',type:'success',message:'Assigned Subject Deleted Successfully');
-            } else {
-                $this->dispatch('alert',type:'error',message:'Assigned Subject Not Found !');
-            }
-        $this->setmode('all');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Assigned Subject Not Found !');
+        }
     }
 
     public function restore($id)
@@ -272,16 +275,16 @@ class AllAssignSubject extends Component
     public function view(Subjectbucket $assignsubject)
     {
         if ($assignsubject){
-            $this->subjectcategory_id= $assignsubject->subjectcategory->subjectcategory;
-            $this->department_id= $assignsubject->department->dept_name;
-            $this->course_id= $assignsubject->patternclass->courseclass->course->course_name;
+            $this->subjectcategory_id= isset($assignsubject->subjectcategory->subjectcategory) ? $assignsubject->subjectcategory->subjectcategory : '';
+            $this->department_id= isset( $assignsubject->department->dept_name) ?  $assignsubject->department->dept_name : '';
+            $this->course_id= isset($assignsubject->patternclass->courseclass->course->course_name) ? $assignsubject->patternclass->courseclass->course->course_name : '';
             $classyear = isset($assignsubject->patternclass->courseclass->classyear->classyear_name) ? $assignsubject->patternclass->courseclass->classyear->classyear_name : '';
             $course = isset($assignsubject->patternclass->courseclass->course->course_name) ? $assignsubject->patternclass->courseclass->course->course_name : '';
             $pattern = isset($assignsubject->pattern->pattern_name) ? $assignsubject->pattern->pattern_name : '';
             $this->patternclass_id = $classyear.''.$course.''.$pattern;
-            $this->subject_sem = $assignsubject->subject->subject_sem;
-            $this->academicyear_id = $assignsubject->academicyear->year_name;
-            $this->subject_id = $assignsubject->subject->subject_name;
+            $this->subject_sem = isset($assignsubject->subject->subject_sem) ? $assignsubject->subject->subject_sem : '';
+            $this->academicyear_id = isset($assignsubject->academicyear->year_name) ? $assignsubject->academicyear->year_name : '';
+            $this->subject_id = isset($assignsubject->subject->subject_name) ? $assignsubject->subject->subject_name : '';
         }else{
             $this->dispatch('alert',type:'error',message:'Assigned Subject Details Not Found');
         }
@@ -295,9 +298,11 @@ class AllAssignSubject extends Component
                 ->whereNotIn('subjectbuckettype_id', [1])
                 ->where('is_active', 1)
                 ->get();
-            $this->semesters=Semester::select('id','semester',)->where('status',1)->get();
-            $this->departments = Department::select('id','dept_name')->where('status',1)->get();
-            $this->courses = Course::select('id', 'course_name')->get();
+
+            $this->semesters=Semester::where('status',1)->pluck('semester','id');
+            $this->departments = Department::where('status',1)->pluck('dept_name','id');
+            $this->courses = Course::pluck('course_name','id');
+
             $course_classes = Courseclass::where('course_id', $this->course_id)->pluck('id');
             $this->pattern_classes = Patternclass::select('id', 'class_id', 'pattern_id')
                 ->with(['pattern:id,pattern_name', 'courseclass.course:id,course_name', 'courseclass.classyear:id,classyear_name'])

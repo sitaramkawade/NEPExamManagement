@@ -124,14 +124,18 @@ class AllSubjectType extends Component
 
     public function delete()
     {
-        $subjecttype = Subjecttype::withTrashed()->find($this->delete_id);
-        if($subjecttype){
+        try
+        {
+            $subjecttype = Subjecttype::withTrashed()->find($this->delete_id);
             $subjecttype->forceDelete();
             $this->delete_id = null;
-            $this->setmode('all');
             $this->dispatch('alert',type:'success',message:'Subject Type Deleted Successfully !!');
-        } else {
-            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            }
         }
     }
 
@@ -140,7 +144,7 @@ class AllSubjectType extends Component
         $subjecttype = Subjecttype::withTrashed()->find($id);
         if ($subjecttype) {
             $subjecttype->delete();
-            $this->dispatch('alert',type:'success',message:'Subject Type Deleted Successfully');
+            $this->dispatch('alert',type:'success',message:'Subject Type Soft Deleted Successfully');
             } else {
                 $this->dispatch('alert',type:'error',message:'Subject Type Not Found !');
             }

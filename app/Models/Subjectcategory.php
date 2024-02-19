@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\SubjectBucketTypeMaster;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -27,6 +28,10 @@ class Subjectcategory extends Model
     public function subjectbuckets():HasMany
     {
         return $this->hasMany(Subjectbucket::class,'subjectcategory_id','id')->withTrashed();
+    }
+    public function buckettype()
+    {
+        return $this->belongsTo(SubjectBucketTypeMaster::class, 'subjectbuckettype_id','id');
     }
 
     public function scopeSearch(Builder $query, string $search)

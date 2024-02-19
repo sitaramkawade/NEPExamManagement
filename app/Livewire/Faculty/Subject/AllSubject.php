@@ -454,14 +454,18 @@ class AllSubject extends Component
 
     public function delete()
     {
-        $subject = Subject::withTrashed()->find($this->delete_id);
-        if($subject){
+        try
+        {
+            $subject = Subject::withTrashed()->find($this->delete_id);
             $subject->forceDelete();
             $this->delete_id = null;
-            $this->setmode('all');
             $this->dispatch('alert',type:'success',message:'Subject Deleted Successfully !!');
-        } else {
-            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            }
         }
     }
 
@@ -472,10 +476,9 @@ class AllSubject extends Component
         if ($subject) {
             $subject->delete();
             $this->dispatch('alert',type:'success',message:'Subject Soft Deleted Successfully !!');
-            } else {
-                $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
-            }
-        $this->setmode('all');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        }
     }
 
     public function restore($id)
@@ -544,7 +547,7 @@ class AllSubject extends Component
     {
         if ($subject)
         {
-            $this->course_id = $subject->patternclass->courseclass->course->course_name;
+            $this->course_id = isset($subject->patternclass->courseclass->course->course_name) ? $subject->patternclass->courseclass->course->course_name : '';
             $pattern = isset($subject->patternclass->pattern->pattern_name) ? $subject->patternclass->pattern->pattern_name : '';
             $classyear = isset($subject->patternclass->courseclass->classyear->classyear_name) ? $subject->patternclass->courseclass->classyear->classyear_name : '';
             $course = isset($subject->patternclass->courseclass->course->course_name) ? $subject->patternclass->courseclass->course->course_name : '';
@@ -580,7 +583,7 @@ class AllSubject extends Component
     public function render()
     {
         if($this->mode !== 'all' ){
-            $this->courses = Course::select('id', 'course_name')->get();
+            $this->courses = Course::pluck('course_name','id');
             $course_classes = Courseclass::where('course_id', $this->course_id)->pluck('id');
             $this->pattern_classes = Patternclass::select('id', 'class_id', 'pattern_id')
                 ->with(['pattern:id,pattern_name', 'courseclass.course:id,course_name', 'courseclass.classyear:id,classyear_name'])
@@ -603,12 +606,13 @@ class AllSubject extends Component
                     $this->subject_name_prefix = '';
                 }
             }
-            $this->semesters=Semester::select('id','semester',)->where('status',1)->get();
-            $this->subject_categories = Subjectcategory::select('id','subjectcategory')->where('is_active',1)->get();
-            $this->subject_types = Subjecttype::select('id','type_name')->where('active',1)->get();
+            $this->semesters = Semester::where('status',1)->pluck('semester','id');
+            $this->subject_categories = Subjectcategory::where('is_active',1)->pluck('subjectcategory','id');
+            $this->subject_types = Subjecttype::where('active',1)->pluck('type_name','id');
+            $this->subject_credits = Subjectcredit::pluck('credit','id');
+            $this->class_years= Classyear::where('status',1)->pluck('classyear_name','id');
+
             $this->subjectexam_types = SubjectExamTypeMaster::with(['subjectexamtype',])->select('id','examtype_id')->where('subjecttype_id', $this->subjecttype_id)->get();
-            $this->subject_credits = Subjectcredit::select('id','credit')->get();
-            $this->class_years= Classyear::select('id','classyear_name')->where('status',1)->get();
 
         if ($this->subject_sem) {
             $maxSubjectOrder = 0;

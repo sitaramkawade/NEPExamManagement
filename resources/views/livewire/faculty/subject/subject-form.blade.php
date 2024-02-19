@@ -4,10 +4,10 @@
             <x-input-label for="subjectcategory_id" :value="__('Subject Category')" />
             <x-input-select id="subjectcategory_id" wire:model.live="subjectcategory_id" name="subjectcategory_id" class="text-center @error('subjectcategory_id') is-invalid @enderror w-full mt-1" :value="old('subjectcategory_id', $subjectcategory_id)" required autofocus autocomplete="subjectcategory_id">
                 <x-select-option class="text-start" hidden> -- Select Subject Category -- </x-select-option>
-                @forelse ($subject_categories as $subject_category)
-                    <x-select-option wire:key="{{ $subject_category->id }}" value="{{ $subject_category->id }}" class="text-start"> {{ $subject_category->subjectcategory }} </x-select-option>
+                @forelse ($subject_categories as $subjectcategoryid => $subjectcategoryname)
+                    <x-select-option wire:key="{{ $subjectcategoryid }}" value="{{ $subjectcategoryid }}" class="text-start"> {{ $subjectcategoryname }} </x-select-option>
                 @empty
-                    <x-select-option class="text-start">Subject Category Not Found</x-select-option>
+                    <x-select-option class="text-start">Subject Categories Not Found</x-select-option>
                 @endforelse
             </x-input-select>
             <x-input-error :messages="$errors->get('subjectcategory_id')" class="mt-2" />
@@ -16,8 +16,8 @@
             <x-input-label for="course_id" :value="__('Course')" />
             <x-input-select id="course_id" wire:model.live="course_id" name="course_id" class="text-center w-full mt-1" :value="old('course_id', $course_id)" required autocomplete="course_id">
                 <x-select-option class="text-start" hidden> -- Select Course -- </x-select-option>
-                @forelse ($courses as $course)
-                    <x-select-option wire:key="{{ $course->id }}" value="{{ $course->id }}" class="text-start"> {{ $course->course_name }} </x-select-option>
+                @forelse ($courses as $courseid => $coursename)
+                    <x-select-option wire:key="{{ $courseid }}" value="{{ $courseid }}" class="text-start"> {{ $coursename }} </x-select-option>
                 @empty
                     <x-select-option class="text-start">Courses Not Found</x-select-option>
                 @endforelse
@@ -40,10 +40,10 @@
             <x-input-label for="subject_sem" :value="__('Subject Semester')" />
             <x-input-select id="subject_sem" wire:model.live="subject_sem" name="subject_sem" class="text-center @error('subject_sem') is-invalid @enderror w-full mt-1" :value="old('subject_sem', $subject_sem)" required autofocus autocomplete="subject_sem">
                 <x-select-option class="text-start" hidden> -- Select Subject Semester -- </x-select-option>
-                @forelse ($semesters as $semester)
-                    <x-select-option wire:key="{{ $semester->id }}" value="{{ $semester->id }}" class="text-start"> {{ $semester->semester }} </x-select-option>
+                @forelse ($semesters as $semesterid => $semestername)
+                    <x-select-option wire:key="{{ $semesterid }}" value="{{ $semesterid }}" class="text-start"> {{ $semestername }} </x-select-option>
                 @empty
-                    <x-select-option class="text-start">Semester Not Found</x-select-option>
+                    <x-select-option class="text-start">Semesters Not Found</x-select-option>
                 @endforelse
             </x-input-select>
             <x-input-error :messages="$errors->get('subject_sem')" class="mt-2" />
@@ -72,10 +72,10 @@
             <x-input-label for="subjecttype_id " :value="__('Subject Type')" />
             <x-input-select id="subjecttype_id" wire:model.live="subjecttype_id" name="subjecttype_id" class="text-center @error('subjecttype_id') is-invalid @enderror w-full mt-1" :value="old('subjecttype_id', $subjecttype_id)" required autofocus autocomplete="subjecttype_id">
                 <x-select-option class="text-start" hidden> -- Select Subject Type -- </x-select-option>
-                @forelse ($subject_types as $subject_type)
-                    <x-select-option wire:key="{{ $subject_type->id }}" value="{{ $subject_type->id }}" class="text-start"> {{ $subject_type->type_name }} </x-select-option>
+                @forelse ($subject_types as $subjecttypeid => $subjecttypename)
+                    <x-select-option wire:key="{{ $subjecttypeid }}" value="{{ $subjecttypeid }}" class="text-start"> {{ $subjecttypename }} </x-select-option>
                 @empty
-                    <x-select-option class="text-start">Subject Type Not Found</x-select-option>
+                    <x-select-option class="text-start">Subject Types Not Found</x-select-option>
                 @endforelse
             </x-input-select>
             <x-input-error :messages="$errors->get('subjecttype_id')" class="mt-2" />
@@ -98,8 +98,8 @@
             <x-input-label for="subject_credit" :value="__('Subject Credit')" />
             <x-input-select id="subject_credit" wire:model.live="subject_credit" name="subject_credit" class="text-center @error('subject_credit') is-invalid @enderror w-full mt-1" :value="old('subject_credit', $subject_credit)" required autofocus autocomplete="subject_credit">
                 <x-select-option class="text-start" hidden> -- Select Subject Credit -- </x-select-option>
-                @forelse ($subject_credits as $subject_credit)
-                    <x-select-option wire:key="{{ $subject_credit->id }}" value="{{ $subject_credit->id }}" class="text-start">{{ $subject_credit->credit }}</x-select-option>
+                @forelse ($subject_credits as $subjectcreditid => $subjectcredit)
+                    <x-select-option wire:key="{{ $subjectcreditid }}" value="{{ $subjectcreditid }}" class="text-start"> {{ $subjectcredit }} </x-select-option>
                 @empty
                     <x-select-option class="text-start">Subject Credits Not Found</x-select-option>
                 @endforelse
@@ -110,8 +110,8 @@
             <x-input-label for="classyear_id" :value="__('Select Class Year')" />
             <x-input-select id="classyear_id" wire:model="classyear_id" name="classyear_id" class="text-center @error('classyear_id') is-invalid @enderror w-full mt-1" :value="old('classyear_id', $classyear_id)" required autofocus autocomplete="classyear_id">
                 <x-select-option class="text-start" hidden> -- Select Class Year -- </x-select-option>
-                @forelse ($class_years as $class_year)
-                    <x-select-option wire:key="{{ $class_year->id }}" value="{{ $class_year->id }}" class="text-start">{{ $class_year->classyear_name }}</x-select-option>
+                @forelse ($class_years as $classyearid => $classyearname)
+                    <x-select-option wire:key="{{ $classyearid }}" value="{{ $classyearid }}" class="text-start"> {{ $classyearname }} </x-select-option>
                 @empty
                     <x-select-option class="text-start">Class Years Not Found</x-select-option>
                 @endforelse

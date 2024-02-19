@@ -130,14 +130,18 @@ class AllFacultyHead extends Component
 
     public function delete()
     {
-        $facultyhead = Facultyhead::withTrashed()->find($this->delete_id);
-        if($facultyhead){
+        try
+        {
+            $facultyhead = Facultyhead::withTrashed()->find($this->delete_id);
             $facultyhead->forceDelete();
             $this->delete_id = null;
-            $this->setmode('all');
             $this->dispatch('alert',type:'success',message:'Faculty Head Deleted Successfully !!');
-        } else {
-            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            }
         }
     }
 
@@ -147,10 +151,9 @@ class AllFacultyHead extends Component
         if ($facultyhead) {
             $facultyhead->delete();
             $this->dispatch('alert',type:'success',message:'Faculty Head Deleted Successfully');
-            } else {
-                $this->dispatch('alert',type:'error',message:'Faculty Head Not Found !');
-            }
-        $this->setmode('all');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Faculty Head Not Found !');
+        }
     }
 
     public function restore($id)
@@ -224,8 +227,8 @@ class AllFacultyHead extends Component
     public function render()
     {
         if($this->mode !== 'all'){
-            $this->departments= Department::select('id','dept_name',)->where('status',1)->get();
-            $this->faculties= Faculty::select('id','faculty_name',)->where('active',1)->get();
+            $this->departments = Department::where('status',1)->pluck('dept_name','id');
+            $this->faculties= Faculty::where('active',1)->pluck('faculty_name','id');
         }
         $facultyheads = Facultyhead::with(['department', 'faculty'])->when($this->search, function($query, $search){
             $query->search($search);

@@ -110,14 +110,18 @@ class AllFacultyRoleType extends Component
 
     public function delete()
     {
-        $roletype = Roletype::withTrashed()->find($this->delete_id);
-        if($roletype){
+        try
+        {
+            $roletype = Roletype::withTrashed()->find($this->delete_id);
             $roletype->forceDelete();
             $this->delete_id = null;
-            $this->setmode('all');
             $this->dispatch('alert',type:'success',message:'Roletype Deleted Successfully !!');
-        } else {
-            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            }
         }
     }
 
@@ -126,11 +130,10 @@ class AllFacultyRoleType extends Component
         $roletype = Roletype::withTrashed()->find($id);
         if ($roletype) {
             $roletype->delete();
-            $this->dispatch('alert',type:'success',message:'Role Type Deleted Successfully');
-            } else {
-                $this->dispatch('alert',type:'error',message:'Role Type Not Found !');
-            }
-        $this->setmode('all');
+            $this->dispatch('alert',type:'success',message:'Role Type Soft Deleted Successfully');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Role Type Not Found !');
+        }
     }
 
     public function restore($id)
