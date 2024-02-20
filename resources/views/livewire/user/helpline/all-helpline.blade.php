@@ -8,15 +8,6 @@
         @include('livewire.user.helpline.helpline-form')
       </x-form>
     </div>
-    {{-- @elseif($mode == 'edit')
-    <div>
-      <x-card-header heading="  Edit  Helpline Request">
-        <x-back-btn wire:click="setmode('all')" />
-      </x-card-header>
-      <x-form wire:submit="update({{ $edit_id }})">
-        @include('livewire.user.helpline.helpline-form')
-      </x-form>
-    </div> --}}
   @elseif($mode == 'view')
     <div>
       <x-card-header heading="View Helpline Request">

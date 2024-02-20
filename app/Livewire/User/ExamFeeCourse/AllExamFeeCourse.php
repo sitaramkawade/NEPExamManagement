@@ -84,7 +84,7 @@ class AllExamFeeCourse extends Component
             $rules['course_class_id'] = ['required',Rule::exists('course_classes', 'id')];
         }
 
-        if(count($this->examfees) >0)
+        if(!empty($this->examfees))
         {   
             foreach ($this->examfees as $fee) {
                 $rules["fees.".$fee->id] = ['nullable','integer', 'digits_between:1,11'];
@@ -107,7 +107,7 @@ class AllExamFeeCourse extends Component
             'course_class_id.required' => 'The Course Class field is required.',
             'course_class_id.exists' => 'The selected Course Class is invalid.',
         ];
-        if(count($this->examfees) >0)
+        if(!empty($this->examfees))
         {
             foreach ($this->examfees as $fee) {
                 $messages["fees.".$fee->id.".required"] = "The ".$fee->fee_name." Fee field is required.";
