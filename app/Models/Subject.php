@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\College;
 use App\Models\ExamPanel;
-use App\Models\StudentExamforms;
+use App\Models\StudentExamform;
 use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -92,7 +92,7 @@ class Subject extends Model
 
     public function studentexamforms():HasMany
     {
-        return $this->hasMany(StudentExamforms::class,'subject_id','id');
+        return $this->hasMany(StudentExamform::class,'subject_id','id');
     }
 
     public function faculty()
@@ -112,13 +112,13 @@ class Subject extends Model
 
     public function scopeSearch(Builder $query, string $search)
     {
-        return $query->with('subjectcategories', 'subjecttypes', 'classyear', 'department', 'college')
+        return $query->with('subjectcategories', 'subjecttype', 'classyear', 'department', 'college')
             ->where('subject_name', 'like', "%{$search}%")
             ->orWhere('subject_credit', 'like', "%{$search}%")
             ->orWhereHas('subjectcategories', function ($query) use ($search) {
                 $query->where('subjectcategory', 'like', "%{$search}%");
             })
-            ->orWhereHas('subjecttypes', function ($query) use ($search) {
+            ->orWhereHas('subjecttype', function ($query) use ($search) {
                 $query->where('type_name', 'like', "%{$search}%");
             })
             ->orWhereHas('department', function ($query) use ($search) {

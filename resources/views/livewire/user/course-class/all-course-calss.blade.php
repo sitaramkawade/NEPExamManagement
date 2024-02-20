@@ -32,7 +32,6 @@
               <x-table.thead>
                 <x-table.tr>
                   <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
-                  {{-- <x-table.th wire:click="sort_column('classyear_id')" name="classyear_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Class</x-table.th> --}}
                   <x-table.th wire:click="sort_column('course_id')" name="course_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Class </x-table.th>
                   <x-table.th wire:click="sort_column('nextyearclass_id')" name="nextyearclass_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Next Class</x-table.th>
                   <x-table.th wire:click="sort_column('college_id')" name="college_id" :sort="$sortColumn" :sort_by="$sortColumnBy">College</x-table.th>

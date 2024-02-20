@@ -7,8 +7,8 @@
       <x-input-label for="pattern_id" :value="__('Select Pattern Class')" />
       <x-input-select id="pattern_id" wire:model.live="pattern_id" name="pattern_id" class="text-center w-full mt-1" :value="old('pattern_id', $pattern_id)" required autocomplete="pattern_id">
         <x-select-option class="text-start" hidden> -- Select  Pattern -- </x-select-option>
-        @forelse ($patterns as $pattern)
-          <x-select-option wire:key="{{$pattern->id }}" value="{{ $pattern->id }}" class="text-start"> {{$pattern->pattern_name }} </x-select-option>
+        @forelse ($patterns as $patternid => $patternname)
+          <x-select-option wire:key="{{ $patternid  }}" value="{{ $patternid  }}" class="text-start"> {{ $patternname }} </x-select-option>
         @empty
           <x-select-option class="text-start">Patterns Not Found</x-select-option>
         @endforelse

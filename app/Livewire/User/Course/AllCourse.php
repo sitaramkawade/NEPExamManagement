@@ -253,9 +253,9 @@ class AllCourse extends Component
         
         if($this->mode!=='all')
         {
-            $this->colleges=College::select('college_name','id')->where('status',1)->get();
-            $this->programmes =Programme::select('programme_name','id')->where('active',1)->get();
-            $this->courescategories =Coursecategory::select('course_category','id')->get();
+            $this->colleges=College::where('status',1)->pluck('college_name','id');
+            $this->programmes =Programme::where('active',1)->pluck('programme_name','id');
+            $this->courescategories =Coursecategory::pluck('course_category','id');
         }
 
         return view('livewire.user.course.all-course',compact('courses'))->extends('layouts.user')->section('user');
