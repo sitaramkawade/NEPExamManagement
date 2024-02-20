@@ -176,17 +176,28 @@ class AllAcademicYear extends Component
 
     public function forcedelete()
     {   
-        $academic_year = Academicyear::withTrashed()->find($this->delete_id);
-        $academic_year->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Academic Year Deleted Successfully !!');
+        try 
+        {
+            $academic_year = Academicyear::withTrashed()->find($this->delete_id);
+            $academic_year->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Academic Year Deleted Successfully !!');
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
+
     }
 
     public function render()
     {   
         $academic_years=Academicyear::select('id','year_name','active','deleted_at')->when($this->search, function ($query, $search) {
-            $query->search($search);
+                $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
-
+            
         return view('livewire.user.academic-year.all-academic-year',compact('academic_years'))->extends('layouts.user')->section('user');
     }
 }

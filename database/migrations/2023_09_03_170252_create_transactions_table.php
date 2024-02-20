@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('razorpay_order_id');
             $table->string('razorpay_payment_id')->nullable();
             $table->string('razorpay_refund_id')->nullable();
+            $table->timestamp('payment_date')->nullable();
             $table->string('razorpay_signature')->nullable();
             $table->decimal('amount', 10, 2)->nullable()->default(0);
-            $table->tinyInteger('status')->nullable()->default(0)->comment('0-Nothing ,1-Order Created,2-Attempted ,3-Captured ,4-Refunded ,5-Failed');
+            $table->tinyInteger('status')->nullable()->default(0)->comment('0-Nothing ,1-Order Created,2-Authorized ,3-Captured ,4-Refunded ,5-Failed');
             $table->timestamps();
         });
     }

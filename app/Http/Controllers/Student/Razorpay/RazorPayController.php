@@ -9,6 +9,7 @@ use App\Models\Examformmaster;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Jobs\SendEmailNotificationJob;
 
 class RazorPayController extends Controller
 {
@@ -24,7 +25,7 @@ class RazorPayController extends Controller
     {   
         if($examformmaster)
         {
-            
+            DB::beginTransaction();
             try
             {
                 $orderdata = [
@@ -73,12 +74,14 @@ class RazorPayController extends Controller
                             "color"=> "#32CD32" //lime
                         ]
                     ];
-        
+                    
+                    DB::commit();
                     return view('razorpay.confirm_payment',compact('order','json_order_data'))->extends('layouts.student')->section('student');
                 }
 
             } catch (\Razorpay\Api\Errors\Error $e) {
-                
+                \Log::error('Order Not Create error: ' . $e->getMessage());
+                DB::rollback();
                 return redirect()->route('student.dashboard')->with('alert', ['type' => 'error', 'message' => 'Order Not Created.']);
             }
         }
@@ -103,26 +106,28 @@ class RazorPayController extends Controller
                 ];
         
                 $this->api->utility->verifyPaymentSignature($attributes);
-        
-                $transaction->razorpay_payment_id = $request->razorpay_payment_id;
-                $transaction->razorpay_signature = $request->razorpay_signature;
-                $transaction->status = 3; // Capured
-                $transaction->save();
-        
-                $exam_form_master =  $transaction->examformmaster()->first();
-                if( $exam_form_master)
+                
+                $payment = $this->api->payment->fetch($request->razorpay_payment_id);
+                if($payment)
                 {
-                    $exam_form_master->feepaidstatus = 1;
-                    $exam_form_master->save();
-                }
+                    $transaction->razorpay_payment_id = $request->razorpay_payment_id;
+                    $transaction->razorpay_signature = $request->razorpay_signature;
+                    $transaction->payment_date =  isset($payment['created_at']) ? date_create_from_format('U', $payment['created_at']) : null;
+                    $transaction->status = 3; // Capured
+                    $transaction->save();
             
+                    $exam_form_master =  $transaction->examformmaster()->first();
+                    if( $exam_form_master)
+                    {
+                        $exam_form_master->feepaidstatus = 1;
+                        $exam_form_master->save();
+                    }
+                }
+
             }
 
-
-            // $student = Student::find($exam_form_master->student_id);
-            // if ($student) {
-            //     $student->notify(new PaymentSuccessNotification($this->api->payment->fetch($request->razorpay_payment_id)));
-            // }
+            $data = ['student_id' =>$exam_form_master->student_id, 'payment_response' => $payment];
+            SendEmailNotificationJob::dispatch('sendPaymentNotification', $data);
 
             DB::commit();
 
@@ -132,6 +137,7 @@ class RazorPayController extends Controller
         catch (SignatureVerificationError $e) 
         {
             DB::rollBack();
+            \Log::error('Payment verification error: ' . $e->getMessage());
             return redirect()->route('student.dashboard')->with('alert', ['type' => 'error', 'message' => 'Verification Failed.']);
         } 
         catch (\Exception $e) 
@@ -145,58 +151,79 @@ class RazorPayController extends Controller
     
     public function student_failed_exam_form_payment(Request $request)
     {   
-      $transaction=Transaction::where('razorpay_order_id',$request->error_razorpay_order_id)->first();
-      if( $transaction)
-      {
-        $transaction->razorpay_payment_id=$request->error_razorpay_payment_id;
-        $transaction->status=5; // fail
-        $transaction->update();
+        
+        DB::beginTransaction();
+        try 
+        { 
+            $transaction=Transaction::where('razorpay_order_id',$request->error_razorpay_order_id)->first();
+            if( $transaction)
+            {
+                $transaction->razorpay_payment_id=$request->error_razorpay_payment_id;
+                $transaction->status=5; // fail
+                $transaction->update();
 
-        // $student =Student::find($temp);
-        // $student->notify(new PaymentFailNotification($this->api->payment->fetch($request->error_razorpay_payment_id)));
+                $student=$transaction->examformmaster()->first();
+                if($student)
+                {   
+                    $data = ['student_id' =>$student->student_id, 'payment_response' => $this->api->payment->fetch($request->error_razorpay_payment_id)];
+                    SendEmailNotificationJob::dispatch('sendPaymentNotification', $data);
+                }
 
-        return redirect()->route('student.dashboard')->with('alert', ['type' => 'error', 'message' => 'Payment Failed.']);
-      }
+                DB::commit();
+                return redirect()->route('student.dashboard')->with('alert', ['type' => 'error', 'message' => 'Payment Failed.']);
+            } 
+            else 
+            {
+                return redirect()->route('student.dashboard')->with('alert', ['type' => 'error', 'message' => 'Transaction not found.']);
+            }
+        } 
+        catch (\Exception $e) 
+        {
+            DB::rollback(); 
+
+            return redirect()->route('student.dashboard')->with('alert', ['type' => 'error', 'message' => 'An error occurred while processing the payment.']);
+        }
     }
 
     public function student_refund_exam_form(Examformmaster $examformmaster)
     {  
-
         if(isset($examformmaster->transaction->id))
         {
-
             $transaction=Transaction::find($examformmaster->transaction->id);
             if($transaction)
-            {
-                try { 
-    
+            {   
+                DB::beginTransaction();
+                try 
+                { 
                     $refund = $this->api->payment->fetch($transaction->razorpay_payment_id)->refund([
                         'amount' => $transaction->amount*100,
                         'speed' => 'optimum',
                         "receipt"=>"Student_Exam_Form_Fee_Refund_".$examformmaster->id
                     ]);
-    
                     $transaction->razorpay_refund_id= $refund->id;
                     $transaction->status=4; // Refund
                     $transaction->update();
                     
-                    // $student =Student::find($exam_form_master->student_id);
-                    // $student->notify(new PaymentRefundNotification($this->api->payment->fetch($transaction->razorpay_payment_id)->fetchRefund($refund->id)));
-                   
-    
+                    $data = ['student_id' =>$examformmaster->student_id, 'payment_response' => $this->api->payment->fetch($transaction->razorpay_payment_id)->fetchRefund($refund->id)];
+                    SendEmailNotificationJob::dispatch('sendPaymentNotification', $data);
+                    
+                    DB::commit();
+                    
                     return redirect()->route('student.dashboard')->with('alert', ['type' => 'success', 'message' => 'Payment Refund Was Successful. Refund ID: '.$refund->id]);
-               
-                } catch (\Razorpay\Api\Error\BadRequest $e) {
-    
-                    return redirect()->route('student.dashboard')->with('alert', ['type' => 'info','message' => 'This Payment Has Already Been Fully Refunded.',]);
-            
-                } catch (Exception $e) {
-    
+                } 
+                catch (\Razorpay\Api\Error\BadRequest $e) 
+                {
+                    \Log::error('Payment Already Been Fully Refunded: ' . $e->getMessage());
+                    DB::rollback();
+                    return redirect()->route('student.dashboard')->with('alert', ['type' => 'info','message' => 'This Payment Has Already Been Fully Refunded.',]);       
+                } 
+                catch (Exception $e) 
+                {         
+                    \Log::error('Payment refund error: ' . $e->getMessage());
+                    DB::rollback();
                     return redirect()->route('student.dashboard')->with('alert', ['type' => 'error', 'message' => 'An error occurred while processing the refund. Please try again later.']);
                 }
             }
         }
-      
     }
-
 }

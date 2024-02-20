@@ -407,17 +407,27 @@ class AllHelpline extends Component
 
     public function forcedelete()
     {   
-        $helpline = Studenthelpline::withTrashed()->find($this->delete_id);
-        if ($helpline->studenthelplineuploadeddocuments()->exists()) {
-            $helpline->studenthelplineuploadeddocuments->each(function ($doc) {
-                if ($doc->helpline_document_path) {
-                    File::delete($doc->helpline_document_path);
-                }
-                $doc->delete();
-            });
+        try 
+        {
+            $helpline = Studenthelpline::withTrashed()->find($this->delete_id);
+            if ($helpline->studenthelplineuploadeddocuments()->exists()) {
+                $helpline->studenthelplineuploadeddocuments->each(function ($doc) {
+                    if ($doc->helpline_document_path) {
+                        File::delete($doc->helpline_document_path);
+                    }
+                    $doc->delete();
+                });
+            }
+            $helpline->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Helpline Request Deleted Successfully !!');
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
         }
-        $helpline->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Helpline Request Deleted Successfully !!');
     }
 
     public function render()

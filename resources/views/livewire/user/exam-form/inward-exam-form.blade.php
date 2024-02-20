@@ -114,6 +114,50 @@
           </x-slot>
         @endif
       </x-table.frame>
+      <x-table.frame a="0">
+        <x-slot:body>
+          <x-table.table>
+            <x-table.thead>
+              <x-table.tr>
+                <x-table.td colspan="7">
+                  <p class="text-center">Inwarded Exam Forms</p>
+                </x-table.td>
+              </x-table.tr>
+              <x-table.tr>
+                <x-table.th>No.</x-table.th>
+                <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">Application ID</x-table.th>
+                <x-table.th wire:click="sort_column('student_id')" name="student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Student Name</x-table.th>
+                <x-table.th wire:click="sort_column('student_id')" name="student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">PRN</x-table.th>
+                <x-table.th wire:click="sort_column('student_id')" name="student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Eligibility No</x-table.th>
+                <x-table.th wire:click="sort_column('created_at')" name="created_at" :sort="$sortColumn" :sort_by="$sortColumnBy">Date</x-table.th>
+              </x-table.tr>
+            </x-table.thead>
+            <x-table.tbody>
+              @forelse ($exam_form_master_inwards as $key => $examformmaster_inward)
+                <x-table.tr wire:key="{{ $examformmaster_inward->id }}">
+                  <x-table.td>{{ $key + 1 }} </x-table.td>
+                  <x-table.td>{{ $examformmaster_inward->id }} </x-table.td>
+                  <x-table.td> <x-table.text-scroll> {{ isset($examformmaster_inward->student->student_name) ? $examformmaster_inward->student->student_name : '' }} </x-table.text-scroll> </x-table.td>
+                  <x-table.td>{{ $examformmaster_inward->student->prn }} </x-table.td>
+                  <x-table.td>{{ $examformmaster_inward->student->eligibilityno }} </x-table.td>
+                  <x-table.td>{{ isset($examformmaster_inward->created_at) ? $examformmaster_inward->created_at->format('Y-m-d') : '' }} </x-table.td>
+                </x-table.tr>
+              @empty
+                <x-table.tr>
+                  <x-table.td colspan="7">
+                    <p class="text-center">No Records Found</p>
+                  </x-table.td>
+                </x-table.tr>
+              @endforelse
+            </x-table.tbody>
+          </x-table.table>
+        </x-slot>
+        @if ($this->list_by == 'm')
+          <x-slot:footer>
+            <x-table.paginate :data="$exam_form_master_inwards" />
+          </x-slot>
+        @endif
+      </x-table.frame>
     </div>
   @elseif($page == 3)
     <div>
@@ -313,6 +357,7 @@
             </x-table.table>
           </div>
           <x-form-btn wire:loading.attr="disabled">Approve</x-form-btn>
+          <x-form-btn type="button" wire:click='verify({{ $inward_id }})' wire:loading.attr="disabled">Verify</x-form-btn>
           <x-form-btn type="button" wire:click='resetinput()' wire:loading.attr="disabled">Cancel</x-form-btn>
           @if ($this->list_by == 'o')
             <x-form-btn type="button" wire:click='setpage(1)' wire:loading.attr="disabled">Back</x-form-btn>
