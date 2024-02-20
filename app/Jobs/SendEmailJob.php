@@ -45,9 +45,9 @@ class SendEmailJob implements ShouldQueue
             ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
             ->send(new MyTestMail($details));
 
-            $examOrderIds->update([
-                'email_status' => '1'
-            ]);
+            $examOrder -> email_status = 1;
+            $examOrder->update();
+        
         
         }
     }

@@ -1,13 +1,26 @@
 <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
     <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
-        Exam Time Table
+        Exam Time Table <x-spinner/>
     </div>
 
-    <x-table.frame>
+    <x-table.frame  a="0">
         <x-slot:header>
             </x-slot>
             <x-slot:body>
                  <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="px-5 py-2  text-sm text-gray-600 dark:text-gray-400">
+                        <x-input-label for="sem" :value="__('Select Semester')" />
+                        <x-input-select id="sem" wire:model.live="sem" name="sem" class="text-center w-full mt-1" >
+                            <x-select-option class="text-start" hidden> -- Select Semister -- </x-select-option>
+                            @forelse ($semesters as $semester)
+                            <x-select-option wire:key="{{ $semester->id }}" value="{{ $semester->semester }}" class="text-start"> {{ $semester->semester }} </x-select-option>
+                            @empty
+                            <x-select-option class="text-start">Semister Not Found</x-select-option>
+                            @endforelse
+                        </x-input-select>
+                        <x-input-error :messages="$errors->get('semester')" class="mt-1" />
+                    </div>
+
                     <div class="px-5 py-2  text-sm text-gray-600 dark:text-gray-400">
                         <x-input-label for="timeslot_id" :value="__('Select Time Slot')" />
                         <x-input-select id="timeslot_id" wire:model.live="timeslot_id" name="timeslot_id" class="text-center w-full mt-1" >
@@ -20,7 +33,6 @@
                         </x-input-select>
                         <x-input-error :messages="$errors->get('timeslot_id')" class="mt-1" />
                     </div>
-                  
                 </div>
 
                 <x-table.table>
@@ -55,8 +67,6 @@
                             <x-table.td>
                                 <div class="px-5 py-2  text-sm text-gray-600 dark:text-gray-400">
                                     <x-input-label for="timeslot_ids.{{ $subject->id}}"  />
-                                   
-                                       
                                             <x-input-select id="timeslot_ids.{{ $subject->id}}" wire:model="timeslot_ids.{{ $subject->id}}" name="timeslot_ids.{{ $subject->id}}" class="text-center w-full mt-1" >
                                                 <x-select-option class="text-start" hidden> -- Select Time Slot -- </x-select-option>
                                                 @forelse ($timeslots as $timeslot)
@@ -64,8 +74,7 @@
                                                 @empty
                                                 <x-select-option class="text-start">Time Slot Not Found</x-select-option>
                                                 @endforelse
-                                            </x-input-select>
-                                        
+                                            </x-input-select>                                    
                                         <x-input-error :messages="$errors->get('timeslot_ids.{$subject->id}')" class="mt-1" />
                                 </div>
                             </x-table.td>

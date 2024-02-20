@@ -22,6 +22,7 @@ class ExamTimetable extends Model
         'exam_patternclasses_id',
         'examdate',
         'timeslot_id',
+        'subject_sem',
         'status',
     ];
 
