@@ -24,9 +24,9 @@
             @endif
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="course_class_id" :value="__('Course Class')" />
+            <x-input-label for="patternclass_id" :value="__('Pattern Class')" />
             @if ($isDisabled)
-                <x-text-input id="course_class_id" type="text" :value="$course_class_id . ' ' . $course_id" disabled class="bg-gray-100 cursor-not-allowed @error('course_class_id') is-invalid @enderror w-full mt-1" />
+                <x-text-input id="patternclass_id" type="text" :value="$patternclass_id" disabled class="bg-gray-100 cursor-not-allowed @error('patternclass_id') is-invalid @enderror w-full mt-1" />
             @endif
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">

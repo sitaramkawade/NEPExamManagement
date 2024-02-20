@@ -30,8 +30,7 @@ class AllAssignedSubjectExport implements FromCollection, WithHeadings, ShouldAu
     public function headings(): array
     {
         return ['ID', 'Subject Name', 'Department Name', 'Pattern Name',
-        'Course Name', 'Class Year', 'Academic Year', 'Subject Division',
-        'Subject Category Number', 'Subject Category', 'Status'];
+        'Course Name', 'Class Year', 'Academic Year', 'Subject Division', 'Subject Category', 'Status'];
     }
 
     public function map($row): array

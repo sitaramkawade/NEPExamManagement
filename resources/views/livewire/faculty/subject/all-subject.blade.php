@@ -36,6 +36,10 @@
                             <x-table.tr>
                                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
                                 <x-table.th wire:click="sort_column('subject_name')" name="subject_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Name</x-table.th>
+                                <x-table.th wire:click="sort_column('department_id')" name="department_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Department Name</x-table.th>
+                                <x-table.th wire:click="sort_column('pattern_id')" name="pattern_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Pattern Name</x-table.th>
+                                <x-table.th wire:click="sort_column('class_id')" name="class_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Class Name</x-table.th>
+                                <x-table.th wire:click="sort_column('subject_code')" name="subject_code" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Code</x-table.th>
                                 <x-table.th wire:click="sort_column('college_id')" name="college_id" :sort="$sortColumn" :sort_by="$sortColumnBy">College</x-table.th>
                                 <x-table.th> Status </x-table.th>
                                 <x-table.th> Action </x-table.th>
@@ -45,7 +49,19 @@
                             @forelse ($subjects as $subject)
                                 <x-table.tr wire:key="{{ $subject->id }}">
                                     <x-table.td> {{ $subject->id }} </x-table.td>
-                                    <x-table.td> {{ $subject->subject_name }} </x-table.td>
+                                    <x-table.td>
+                                         <x-table.text-scroll> {{ $subject->subject_name }} </x-table.text-scroll>
+                                    </x-table.td>
+                                    <x-table.td>
+                                         <x-table.text-scroll> {{ $subject->department->dept_name }} </x-table.text-scroll>
+                                    </x-table.td>
+                                    <x-table.td>
+                                         <x-table.text-scroll> {{ $subject->patternclass->pattern->pattern_name }} </x-table.text-scroll>
+                                    </x-table.td>
+                                    <x-table.td>
+                                         <x-table.text-scroll> {{ $subject->patternclass->courseclass->classyear->classyear_name }} - {{ $subject->patternclass->courseclass->course->course_name }} </x-table.text-scroll>
+                                    </x-table.td>
+                                    <x-table.td> {{ $subject->subject_code }} </x-table.td>
                                     <x-table.td>
                                         <x-table.text-scroll> {{ $subject->college->college_name ?? '' }} </x-table.text-scroll>
                                     </x-table.td>

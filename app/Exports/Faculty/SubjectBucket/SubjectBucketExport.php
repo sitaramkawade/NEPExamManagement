@@ -24,14 +24,13 @@ class SubjectBucketExport implements FromCollection, WithHeadings, ShouldAutoSiz
     public function collection()
     {
         return Subjectbucket::with(['department', 'patternclass', 'academicyear', 'subjectcategory', 'subject',])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
-        ->get(['id', 'department_id', 'patternclass_id', 'subject_division', 'subjectcategory_id', 'subject_id', 'academicyear_id', 'status', ]);
+        ->get(['id', 'subject_id', 'department_id', 'patternclass_id', 'subject_division', 'subjectcategory_id', 'academicyear_id', 'status', ]);
     }
 
     public function headings(): array
     {
         return ['ID', 'Subject Name', 'Department Name', 'Pattern Name',
-        'Course Name', 'Class Year', 'Academic Year', 'Subject Division',
-        'Subject Category Number', 'Subject Category', 'Status'];
+        'Course Name', 'Class Year', 'Academic Year', 'Subject Division', 'Subject Category', 'Status'];
     }
 
     public function map($row): array
