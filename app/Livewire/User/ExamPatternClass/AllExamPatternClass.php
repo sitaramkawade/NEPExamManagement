@@ -326,9 +326,9 @@ class AllExamPatternClass extends Component
     {   
         if($this->mode!=='all')
         {
-            $this->exams=Exam::select('id','exam_name')->where('status',1)->get();
+            $this->exams=Exam::where('status',1)->pluck('exam_name','id');
+            $this->capmasters=Capmaster::pluck('cap_name','id');
             $this->pattern_classes=Patternclass::select('id','class_id','pattern_id')->with(['pattern:pattern_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->where('status',1)->get();
-            $this->capmasters=Capmaster::select('id','cap_name')->get();
         }
 
        $pattern_exam_classes=ExamPatternclass::select('id','exam_id','patternclass_id','result_date','launch_status','start_date','end_date','latefee_date','intmarksstart_date','intmarksend_date','finefee_date','capmaster_id','capscheduled_date','papersettingstart_date','papersubmission_date','placeofmeeting','description','deleted_at')

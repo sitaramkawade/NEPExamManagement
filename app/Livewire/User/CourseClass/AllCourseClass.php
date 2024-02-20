@@ -217,11 +217,14 @@ class AllCourseClass extends Component
     {   
 
         if($this->mode!=='all')
-        {
-            $this->next_classess=Courseclass::select('classyear_id','course_id','nextyearclass_id','id')->with(['classyear:classyear_name,id','courseclass.classyear:classyear_name,id', 'courseclass.course:course_name,id','courseclass:course_id,classyear_id,nextyearclass_id,id'])->where('course_id',$this->course_id)->get();
-            $this->class_years=Classyear::select('classyear_name','id')->where('status',1)->get();
-            $this->courses =Course::select('course_name','id')->get();
-            $this->colleges =College::select('college_name','id')->where('status',1)->get();
+        {   
+            if( $this->course_id)
+            {
+                $this->next_classess = Courseclass::with([ 'classyear:id,classyear_name', 'courseclass.classyear:id,classyear_name', 'courseclass.course:id,course_name',])->select('classyear_id', 'course_id', 'nextyearclass_id', 'id')->where('course_id', $this->course_id)->get();
+            }
+            $this->class_years=Classyear::where('status',1)->pluck('classyear_name','id');
+            $this->courses =Course::pluck('course_name','id');
+            $this->colleges =College::where('status',1)->pluck('college_name','id');
         }
 
        $course_classes=Courseclass::where('college_id',Auth::guard('user')->user()->college_id)->with(['classyear:classyear_name,id', 'course:course_name,id', 'courseclass.classyear:classyear_name,id', 'courseclass.course:course_name,id', 'college:college_name,id'])->select('id','course_id','classyear_id','nextyearclass_id', 'college_id','deleted_at')->when($this->search, function ($query, $search) {

@@ -273,7 +273,7 @@ class AllPatternClass extends Component
     {   
         if($this->mode!=='all')
         {
-            $this->patterns=Pattern::select('pattern_name','id')->where('status',1)->get();
+            $this->patterns=Pattern::where('status',1)->pluck('pattern_name','id');
             $this->course_classes=Courseclass::select('classyear_id','course_id','id')->with(['classyear:classyear_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->get();
         }
 

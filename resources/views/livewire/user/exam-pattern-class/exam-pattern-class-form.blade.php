@@ -7,8 +7,8 @@
       <x-input-label for="exam_id" :value="__('Select Exam')" />
       <x-input-select id="exam_id" wire:model="exam_id" name="exam_id" class="text-center w-full mt-1" :value="old('exam_id', $exam_id)" required autocomplete="exam_id">
         <x-select-option class="text-start" hidden> -- Select Exam -- </x-select-option>
-        @forelse ($exams as $exam)
-          <x-select-option wire:key="{{ $exam->id }}" value="{{ $exam->id }}" class="text-start"> {{ $exam->exam_name }} </x-select-option>
+        @forelse ($exams as $examid => $examname)
+          <x-select-option wire:key="{{  $examid }}" value="{{  $examid }}" class="text-start"> {{ $examname }} </x-select-option>
         @empty
           <x-select-option class="text-start">Exams Not Found</x-select-option>
         @endforelse
@@ -68,8 +68,8 @@
       <x-input-label for="capmaster_id" :value="__('Select Cap')" />
       <x-input-select id="capmaster_id" wire:model="capmaster_id" name="capmaster_id" class="text-center w-full mt-1" :value="old('capmaster_id', $capmaster_id)" autocomplete="capmaster_id">
         <x-select-option class="text-start" hidden> -- Select Cap -- </x-select-option>
-        @forelse ($capmasters as $cap)
-          <x-select-option wire:key="{{ $cap->id }}" value="{{ $cap->id }}" class="text-start"> {{ $cap->cap_name ?? '-' }} </x-select-option>
+        @forelse ($capmasters as $capid => $capname)
+          <x-select-option wire:key="{{  $capid }}" value="{{ $capid }}" class="text-start"> {{ $capname ?? '-' }} </x-select-option>
         @empty
           <x-select-option class="text-start">Caps Not Found</x-select-option>
         @endforelse

@@ -14,7 +14,7 @@ use App\Models\Examformmaster;
 use App\Models\Formtypemaster;
 use Livewire\Attributes\Locked;
 use App\Models\ExamPatternclass;
-use App\Models\StudentExamforms;
+use App\Models\StudentExamform;
 use App\Models\Extracreditsubject;
 use App\Models\Studentexamformfee;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +22,7 @@ use App\Models\CurrentclassStudents;
 use Illuminate\Support\Facades\Auth;
 
 
-class StudentExamForm extends Component
+class FillStudentExamForm extends Component
 {  
     public $abcid_option=['show_abcid'=>true ,'required_abcid'=>false];
     public $medium_instruction;
@@ -398,7 +398,7 @@ class StudentExamForm extends Component
                 }
 
                 // Save Student Exam Form Data
-                $student_exam_form_data = StudentExamforms::insert($student_exam_forms);
+                $student_exam_form_data = StudentExamform::insert($student_exam_forms);
 
                 // Init Student Exam Form Fee
                 $student_exam_form_fees = [];

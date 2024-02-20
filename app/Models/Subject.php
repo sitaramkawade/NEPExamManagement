@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\College;
 use App\Models\ExamPanel;
 use App\Models\Subjecttype;
-use App\Models\StudentExamforms;
+use App\Models\StudentExamform;
 use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -93,7 +93,7 @@ class Subject extends Model
 
     public function studentexamforms():HasMany
     {
-        return $this->hasMany(StudentExamforms::class,'subject_id','id');
+        return $this->hasMany(StudentExamform::class,'subject_id','id');
     }
 
     public function faculty()

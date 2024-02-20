@@ -237,11 +237,11 @@ class AllCap extends Component
 
         if($this->mode!=='all')
         {
-            $this->colleges=College::select('college_name','id')->where('status',1)->get();
-            $this->exams =Exam::select('exam_name','id')->where('status',1)->get();
+            $this->colleges=College::where('status',1)->pluck('college_name','id');
+            $this->exams =Exam::where('status',1)->pluck('exam_name','id');
         }
 
-        $caps=Capmaster::where('college_id',Auth::guard('user')->user()->college_id)->with('college:college_name,id')->when($this->search, function ($query, $search) {
+        $caps=Capmaster::with('college:college_name,id')->where('college_id',Auth::guard('user')->user()->college_id)->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
