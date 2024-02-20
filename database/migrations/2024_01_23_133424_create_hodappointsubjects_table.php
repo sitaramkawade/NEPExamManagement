@@ -22,7 +22,7 @@ return new class extends Migration
             $table->bigInteger('patternclass_id')->unsigned();
             $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
 
-            $table->bigInteger('appointby_id')->unsigned();
+            $table->bigInteger('appointby_id')->nullable()->unsigned();
             $table->foreign('appointby_id')->references('id')->on('users'); // users
 
             $table->Integer('status')->unsigned()->default(1); // 0-Inactive 1-Active

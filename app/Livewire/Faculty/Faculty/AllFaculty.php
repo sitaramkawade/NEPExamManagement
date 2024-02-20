@@ -238,20 +238,35 @@ class AllFaculty extends Component
 
     public function delete()
     {
-        $faculty = Faculty::withTrashed()->find($this->delete_id);
-        if($faculty){
-            if($faculty->profile_photo_path){
-                File::delete($faculty->profile_photo_path);
+        try {
+            $faculty = Faculty::withTrashed()->find($this->delete_id);
+
+            if ($faculty) {
+                if ($faculty->profile_photo_path && File::exists($faculty->profile_photo_path)) {
+                    File::delete($faculty->profile_photo_path);
+                }
+
+                $faculty->forceDelete();
+                // Assuming 'facultybankaccount' is a relationship, use delete() instead of forceDelete() to trigger model events and cascading deletes if configured.
+                $faculty->facultybankaccount()->delete();
+
+                $this->delete_id = null;
+                $this->dispatch('alert',type:'success',message:'Faculty Deleted Successfully !!');
+            } else {
+                $this->dispatch('alert',type:'error',message:'Faculty not found.');
             }
-            $faculty->forceDelete();
-            $faculty->facultybankaccount()->forceDelete();
-            $this->delete_id = null;
-            $this->setmode('all');
-            $this->dispatch('alert',type:'success',message:'"Faculty Deleted Successfully !!');
-        } else {
-            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->errorInfo[1] == 1451) {
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } else {
+                // Handle other query exceptions or log them for debugging.
+                $this->dispatch('alert',type:'error',message:'An error occurred while deleting the faculty record.');
+                // Log the exception for further investigation.
+                \Log::error($e->getMessage());
+            }
         }
     }
+
 
     public function softdelete($id)
     {
@@ -264,10 +279,9 @@ class AllFaculty extends Component
             }
             $faculty->delete();
             $this->dispatch('alert',type:'success',message:'Faculty Deleted Successfully');
-            } else {
-                $this->dispatch('alert',type:'error',message:'Faculty Not Found !');
-            }
-            $this->setmode('all');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Faculty Not Found !');
+        }
     }
 
     public function restore($id)

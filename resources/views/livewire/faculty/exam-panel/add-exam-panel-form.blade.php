@@ -39,9 +39,11 @@
                 <x-input-label for="post_id" :value="__('Select Post')" />
                 <x-input-select id="post_id" wire:model="post_id" name="post_id" class="text-center @error('post_id') is-invalid @enderror w-full mt-1" :value="old('post_id', $post_id)" required autofocus autocomplete="post_id">
                     <x-select-option class="text-start" hidden> -- Select Post -- </x-select-option>
-                    @foreach ($posts as $post)
+                    @forelse ($posts as $post)
                         <x-select-option wire:key="{{ $post->id }}" value="{{ $post->id }}" class="text-start">{{ $post->post_name }}</x-select-option>
-                    @endforeach
+                    @empty
+                        <x-select-option class="text-start">Post Not Found</x-select-option>
+                    @endforelse
                 </x-input-select>
                 <x-input-error :messages="$errors->get('post_id')" class="mt-2" />
             </div>
@@ -49,9 +51,11 @@
                 <x-input-label for="department_id" :value="__('Select Department')" />
                 <x-input-select id="department_id" wire:model.live="department_id" name="department_id" class="text-center @error('department_id') is-invalid @enderror w-full mt-1" :value="old('department_id', $department_id)" required autofocus autocomplete="department_id">
                     <x-select-option class="text-start" hidden> -- Select Department -- </x-select-option>
-                    @foreach ($departments as $department)
+                    @forelse ($departments as $department)
                         <x-select-option wire:key="{{ $department->id }}" value="{{ $department->id }}" class="text-start">{{ $department->dept_name }}</x-select-option>
-                    @endforeach
+                    @empty
+                        <x-select-option class="text-start">Department Not Found</x-select-option>
+                    @endforelse
                 </x-input-select>
                 <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
             </div>

@@ -49,7 +49,9 @@
                                     <x-table.tr wire:key="{{ $hodappointsubject->id }}">
                                         <x-table.td>{{ $hodappointsubject->id }} </x-table.td>
                                         <x-table.td>{{ $hodappointsubject->faculty->faculty_name }} </x-table.td>
-                                        <x-table.td>{{ $hodappointsubject->subject->subject_name }} </x-table.td>
+                                        <x-table.td>
+                                            <x-table.text-scroll>  {{ $hodappointsubject->subject->subject_name }} </x-table.text-scroll>
+                                        </x-table.td>
                                         <x-table.td>{{ $hodappointsubject->user->name }} </x-table.td>
                                         <x-table.td>
                                             @if ($hodappointsubject->status === 1)

@@ -61,6 +61,7 @@ use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
+use App\Livewire\Faculty\AssignSubject\AllAssignSubject;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
@@ -324,6 +325,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Subject
   Route::get('/all-subject', AllSubject::class)->name('all-subjects');
+
+  // All Allocate Subject
+  Route::get('/all-assignsubject', AllAssignSubject::class)->name('all-assignsubjects');
 
   // All SubjectBucket
   Route::get('/all-subjectbucket', AllSubjectBucket::class)->name('all-subjectbuckets');
