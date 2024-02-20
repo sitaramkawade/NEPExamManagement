@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use PDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Models\Examorder;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ExamTimetable;
 use Illuminate\Support\Carbon;
 use App\Models\ExamPatternclass;
 
@@ -14,6 +17,7 @@ class ExamOrderPdfController extends Controller
     public $token;
 
     public $examorder;
+    public $examtimetables;
   
 
     public function order($id)
@@ -35,6 +39,28 @@ class ExamOrderPdfController extends Controller
         }
     }
 
+    public function timetable(ExamPatternclass $exampatternclass)
     
+    {
+          $exam_time_table_data = ExamTimetable::where('exam_patternclasses_id' , $exampatternclass->id)->get();
+         // dd($exam_time_table_data,$exampatternclass); // Fetch your timetable data here
+
+        // Render the timetable Blade view to HTML
+        $html = view('pdf.examtimetable.examtimetable_pdf', ['exam_time_table_data' => $exam_time_table_data])->render();
+
+        // Configure Dompdf options
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+ 
+        $dompdf->setPaper('A4', 'landscape');
+     
+        $dompdf->render();
+   
+        $dompdf->stream('exam_timetable.pdf', ['Attachment' => false]);
+       
+    }
 
 }

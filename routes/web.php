@@ -202,6 +202,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Exam Time Table
   Route::get('/examTimeTables', AllExamTimeTable::class)->name('all_examTimeTable');
+  Route::get('exam/timetable/pdf/{exampatternclass}',[ExamOrderPdfController::class,'timetable'])->name('timetables');
 
   //All Buildings
   Route::get('/building', AllBuilding::class)->name('all_builidng');
@@ -227,7 +228,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Generate Exam Order
   Route::get('/generate/exam/order', GenerateExamOrder::class)->name('generate_exam_order');
 
-  Route::get('/pdf/{id}',[ExamOrderPdfController::class,'order'])->name('examorder');
+  Route::get('exam/order/pdf/{id}',[ExamOrderPdfController::class,'order'])->name('examorder');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');

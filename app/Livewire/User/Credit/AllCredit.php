@@ -135,9 +135,19 @@ class AllCredit extends Component
 
     public function forcedelete()
     {  
+        try
+        {
         $credits = Subjectcredit::withTrashed()->find($this->delete_id);
         $credits->forceDelete();
         $this->dispatch('alert',type:'success',message:'Credit Deleted Successfully !!');
+        } catch
+        (\Illuminate\Database\QueryException $e) {
+    
+            if ($e->errorInfo[1] == 1451) {
+    
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
     public function sort_column($column)

@@ -20,7 +20,7 @@
         <x-breadcrumb.breadcrumb>
             <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
             <x-breadcrumb.link name="Grade's"/>
-        </x-breadcrumb.link>
+        </x-breadcrumb.breadcrumb>
         <x-card-header heading="All Grade's">
             <x-add-btn wire:click="setmode('add')" />
         </x-card-header>
