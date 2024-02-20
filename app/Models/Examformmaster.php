@@ -6,7 +6,7 @@ use App\Models\Exam;
 use App\Models\Student;
 use App\Models\Transaction;
 use App\Models\Patternclass;
-use App\Models\StudentExamforms;
+use App\Models\StudentExamform;
 use App\Models\Studentexamformfee;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Extracreditsubjectexamform;
@@ -62,7 +62,7 @@ class Examformmaster extends Model
     
     public function studentexamforms()
     { 
-      return $this->hasMany(StudentExamforms::class,'examformmaster_id','id');
+      return $this->hasMany(StudentExamform::class,'examformmaster_id','id');
     }
     
     public function studentextracreditexamforms()

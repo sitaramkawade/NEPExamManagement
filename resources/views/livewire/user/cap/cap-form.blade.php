@@ -6,8 +6,8 @@
     <x-input-label for="college_id" :value="__('Select College')" />
     <x-input-select id="college_id" wire:model="college_id" name="college_id" class="text-center w-full mt-1" :value="old('college_id', $college_id)"  autocomplete="college_id">
       <x-select-option class="text-start" hidden> -- Select College -- </x-select-option>
-      @forelse ($colleges as $college)
-        <x-select-option wire:key="{{ $college->id }}" value="{{ $college->id }}" class="text-start"> {{ $college->college_name }} </x-select-option>
+      @forelse ($colleges as $collegeid => $collegename)
+        <x-select-option wire:key="{{ $collegeid }}" value="{{$collegeid }}" class="text-start"> {{ $collegename }} </x-select-option>
       @empty
         <x-select-option class="text-start">Colleges Not Found</x-select-option>
       @endforelse
@@ -19,8 +19,8 @@
       <x-input-label for="exam_id" :value="__('Select Exam')" />
       <x-input-select id="exam_id" wire:model="exam_id" name="exam_id" class="text-center w-full mt-1" :value="old('exam_id', $exam_id)"  autocomplete="exam_id">
         <x-select-option class="text-start" hidden> -- Select Exam -- </x-select-option>
-        @forelse ($exams as $exam)
-          <x-select-option wire:key="{{ $exam->id }}" value="{{ $exam->id }}" class="text-start"> {{ $exam->exam_name }} </x-select-option>
+        @forelse ($exams as $examid => $examname)
+          <x-select-option wire:key="{{  $examid }}" value="{{ $examid }}" class="text-start"> {{ $examname }} </x-select-option>
         @empty
           <x-select-option class="text-start">Exams Not Found</x-select-option>
         @endforelse

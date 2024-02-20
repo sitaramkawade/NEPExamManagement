@@ -79,7 +79,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            LoginSeeder::class,
             GradeSeeder::class,
             PreviousYearSeeder::class,
             MonthSeeder::class,
@@ -114,7 +113,6 @@ class DatabaseSeeder extends Seeder
             BuildingSeeder::class,
             CourseCategorySeeder::class,
             ExamFeeMasterSeeder::class,                     // ApplyFeeSeeder , FormTypeSeeder
-            NoticeSeeder::class,                            // User
             CasteSeeder::class,                             // CasteCategorySeeder
             StateSeeder::class,                             // CountrySeeder
             DistrictSeeder::class,                          // StateSeeder
@@ -133,6 +131,8 @@ class DatabaseSeeder extends Seeder
             ExamPatternclassSeeder::class,                  // Exam ,Patternclass ,CapmasterSeeder
             StudentProfileSeeder::class,                    // Patterncalss , caste , castecategory , Addresstype ,University, Educationalcourse
             FacultyProfileSeeder::class,                    // college  ,department , role ,facultybanck account
+            LoginSeeder::class,                             // College , Patternclass
+            NoticeSeeder::class,                            // User
             SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
             SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
             AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
@@ -145,7 +145,7 @@ class DatabaseSeeder extends Seeder
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
             ExamOrderPostSeeder::class,
             SubjectExamTypeMasterSeeder::class,             // Subjecttype, Subjectexamtype
-
+            
         ]);
     }
 }

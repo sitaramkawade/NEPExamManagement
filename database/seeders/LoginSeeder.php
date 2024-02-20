@@ -23,6 +23,7 @@ class LoginSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123456789'),
             'remember_token' => Str::random(10),
+            'college_id' => 1,
         ] );
 
 

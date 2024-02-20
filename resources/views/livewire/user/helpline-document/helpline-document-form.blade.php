@@ -7,8 +7,8 @@
       <x-input-label for="student_helpline_query_id" :value="__('Query')" />
       <x-input-select id="student_helpline_query_id" wire:model="student_helpline_query_id" name="student_helpline_query_id" class="text-center w-full mt-1" :value="old('student_helpline_query_id',$student_helpline_query_id)" required  autocomplete="student_helpline_query_id">
           <x-select-option class="text-start" hidden> -- Select Query -- </x-select-option>
-          @forelse ($student_helpline_queries as $query)
-              <x-select-option wire:key="{{ $query->id }}" value="{{ $query->id }}" class="text-start"> {{$query->query_name }}</x-select-option>
+          @forelse ($student_helpline_queries as $query_id => $query_name)
+              <x-select-option wire:key="{{ $query_id }}" value="{{ $query_id }}" class="text-start"> {{ $query_name }}</x-select-option>
           @empty
               <x-select-option value="" class="text-start">Queries Not Found</x-select-option>
           @endforelse
