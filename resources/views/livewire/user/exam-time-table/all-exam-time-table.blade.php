@@ -24,7 +24,7 @@
             <x-breadcrumb.link name="Exam Time Table's" />
             </x-breadcrumb.link>
             <x-card-header heading=" All Exam Time Table's">
-                
+
             </x-card-header>
             <x-table.frame>
                 <x-slot:header>
@@ -49,10 +49,11 @@
                                     <x-table.td>
                                         <x-table.text-scroll>{{ isset($exampatternclass->patternclass->pattern->pattern_name) ? $exampatternclass->patternclass->pattern->pattern_name : '-' }} {{ isset($exampatternclass->patternclass->courseclass->classyear->classyear_name) ? $exampatternclass->patternclass->courseclass->classyear->classyear_name : '-' }} {{ isset($exampatternclass->patternclass->courseclass->course->course_name) ? $exampatternclass->patternclass->courseclass->course->course_name : '-' }} </x-table.text-scroll>
                                     </x-table.td>
-                                   <x-table.td>  
-                                        <x-table.edit i="0" wire:click="create({{ $exampatternclass->id }})"> Add </x-table.edit>
-                                        <x-table.edit i="0" wire:click="edit({{ $exampatternclass->id }})"> Edit </x-table.edit>
-                                        <x-table.edit i="0" wire:click="edit({{ $exampatternclass->id }})"> Download </x-table.edit>
+                                    <x-table.td>                                     
+                                        <x-table.edit i="0" wire:click="create({{ $exampatternclass->id }})"> Create </x-table.edit>                                
+                                        <x-table.edit i="0" wire:click="edit({{ $exampatternclass->id }})"> Edit </x-table.edit>                                   
+                                        <x-table.edit i="0" wire:navigate :href="route('user.timetables',$exampatternclass->id)" > Download </x-table.edit>
+                                        {{-- <x-table.edit i="0" wire:click="downloadTimetable({{ $exampatternclass->id }})"> Download </x-table.edit> --}}
                                     </x-table.td>
                                 </x-table.tr>
                                 @empty

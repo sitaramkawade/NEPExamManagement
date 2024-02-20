@@ -155,9 +155,19 @@ class AllDepartment extends Component
     
     public function forcedelete()
     {  
+        try
+        {
         $dept = Department::withTrashed()->find($this->delete_id);
         $dept->forceDelete();
         $this->dispatch('alert',type:'success',message:'Department Deleted Successfully !!');
+    } catch
+    (\Illuminate\Database\QueryException $e) {
+
+        if ($e->errorInfo[1] == 1451) {
+
+            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+        } 
+    }
     }
 
     public function Status(Department $dept)

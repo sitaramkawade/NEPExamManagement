@@ -199,9 +199,19 @@ class AllExamPanel extends Component
 
     public function forcedelete()
     {   
+        try
+        {
         $exampanel = ExamPanel::withTrashed()->find($this->delete_id);
         $exampanel->forceDelete();
         $this->dispatch('alert',type:'success',message:'Exam Order Post Deleted Successfully !!');
+    } catch
+    (\Illuminate\Database\QueryException $e) {
+
+        if ($e->errorInfo[1] == 1451) {
+
+            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+        } 
+    }
     }
 
 

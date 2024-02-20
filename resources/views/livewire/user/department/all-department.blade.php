@@ -65,7 +65,7 @@
                                     </x-table.td>
                                     <x-table.td>
                                         <x-table.text-scroll>
-                                            {{ $dept->college->college_name }}
+                                            {{ isset($dept->college->college_name) ? $dept->college->college_name : '-' }} 
                                         </x-table.text-scroll>
                                     </x-table.td>
 

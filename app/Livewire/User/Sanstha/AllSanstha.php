@@ -133,9 +133,19 @@ public function restore($id)
 
 public function forcedelete()
 {  
+    try
+    {
     $sanstha = Sanstha::withTrashed()->find($this->delete_id);
     $sanstha->forceDelete();
     $this->dispatch('alert',type:'success',message:'Sanstha Deleted Successfully !!');
+    } catch
+    (\Illuminate\Database\QueryException $e) {
+
+    if ($e->errorInfo[1] == 1451) {
+
+        $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+    } 
+}
 }
 
     public function edit(Sanstha $sanstha ){
