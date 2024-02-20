@@ -22,7 +22,7 @@
         <x-breadcrumb.breadcrumb>
             <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
             <x-breadcrumb.link name="Exam Time Table's" />
-            </x-breadcrumb.link>
+        </x-breadcrumb.breadcrumb>
             <x-card-header heading=" All Exam Time Table's">
 
             </x-card-header>
