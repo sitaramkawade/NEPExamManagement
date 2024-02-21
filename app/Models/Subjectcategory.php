@@ -36,10 +36,13 @@ class Subjectcategory extends Model
 
     public function scopeSearch(Builder $query, string $search)
     {
-        return $query->where(function ($subquery) use ($search) {
-            $subquery->where('subjectcategory', 'like', "%{$search}%")
-                    ->orWhere('subjectcategory_shortname', 'like', "%{$search}%")
-                    ->orWhere('subjectbucket_type', 'like', "%{$search}%");
-        });
+        return $query->with('buckettype')
+            ->where(function ($query) use ($search) {
+                $query->orWhereHas('buckettype', function ($query) use ($search) {
+                    $query->where('buckettype_name', 'like', "%{$search}%");
+                })
+                ->orWhere('subjectcategory', 'like', "%{$search}%")
+                ->orWhere('subjectcategory_shortname', 'like', "%{$search}%");
+            });
     }
 }

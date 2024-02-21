@@ -231,9 +231,13 @@ class AllSubjectCategory extends Component
 
     public function render()
     {
-        $subjectcategories = Subjectcategory::when($this->search, function($query, $search){
-            $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
+        $subjectcategories=collect([]);
+
+        if($this->mode==='all'){
+            $subjectcategories = Subjectcategory::when($this->search, function($query, $search){
+                $query->search($search);
+            })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
+        }
         return view('livewire.faculty.subject-category.all-subject-category',compact('subjectcategories'))->extends('layouts.faculty')->section('faculty');
     }
 }

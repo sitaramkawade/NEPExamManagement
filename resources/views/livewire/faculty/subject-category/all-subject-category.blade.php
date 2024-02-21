@@ -48,7 +48,7 @@
                                     <x-table.td>{{ $subjectcategory->id }} </x-table.td>
                                     <x-table.td>{{ $subjectcategory->subjectcategory }} </x-table.td>
                                     <x-table.td>{{ $subjectcategory->subjectcategory_shortname }} </x-table.td>
-                                    <x-table.td>{{ $subjectcategory->subjectbucket_type }} </x-table.td>
+                                    <x-table.td>{{ $subjectcategory->buckettype->buckettype_name }} </x-table.td>
                                     <x-table.td>
                                         @if (!$subjectcategory->deleted_at)
                                             @if ($subjectcategory->is_active === 1)

@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('subjectcategory')->nullable();//Major Minor
             $table->string('subjectcategory_shortname',10)->nullable();
 
-            $table->bigInteger('subjectbuckettype_id')->nullable()->unsigned()->default(null);
+            $table->bigInteger('subjectbuckettype_id')->nullable()->unsigned()->default(null)->index();
             $table->foreign('subjectbuckettype_id')->references('id')->on('subjectbuckettypemaster');
 
-            $table->tinyInteger('is_active')->default('0');// 0 :not active 1:active for departmet specific classes 2:active for all classes
+            $table->tinyInteger('is_active')->default('0')->index();// 0 :not active 1:active for departmet specific classes 2:active for all classes
 
             $table->timestamps();
             $table->softDeletes();

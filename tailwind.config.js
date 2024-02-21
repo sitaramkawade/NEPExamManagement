@@ -28,6 +28,9 @@ export default {
             marquee2: {
               '0%': { transform: 'translateX(100%)' },
               '100%': { transform: 'translateX(0%)' },
+              },
+            shimmer: {
+                '100%' : {transform: 'translateX(100%)'}
             },
           },
             fontFamily: {

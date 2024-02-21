@@ -24,7 +24,7 @@ class SubjectCategoryExport implements FromCollection, WithHeadings, ShouldAutoS
 
     public function collection()
     {
-        return Subjectcategory::search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','subjectcategory', 'subjectcategory_shortname', 'subjectbucket_type', 'is_active']);
+        return Subjectcategory::search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','subjectcategory', 'subjectcategory_shortname', 'subjectbuckettype_id', 'is_active']);
     }
 
     public function headings(): array
@@ -38,7 +38,7 @@ class SubjectCategoryExport implements FromCollection, WithHeadings, ShouldAutoS
             $row->id,
             $row->subjectcategory,
             $row->subjectcategory_shortname,
-            $row->subjectbucket_type,
+            (isset($row->buckettype->buckettype_name) ? $row->buckettype->buckettype_name : ''),
             $row->is_active == 1 ? 'Active' : 'Inactive',
         ];
     }

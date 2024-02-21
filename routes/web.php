@@ -14,6 +14,7 @@ use App\Livewire\User\Exam\AllExam;
 use App\Livewire\User\User\AllUser;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
+use App\Livewire\Faculty\RND\RNDPage;
 use App\Livewire\User\Block\AllBlock;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Grade\AllGrades;
@@ -144,13 +145,13 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
 
   // Student Print Final Exam Form
   Route::post('/print/final/exam/form', [PrintStudentExamFormController::class,'print_final_exam_form'])->name('student_print_final_exam_form');
-  
+
   // Student Pay Exam Form Fee
   Route::post('/pay/exam/form/fee/{examformmaster}', [RazorPayController::class,'student_pay_exam_form_fee'])->name('student_pay_exam_form_fee');
-  
+
   // Student Verify Exam Form Fee Payment
   Route::post('/verify/exam/form/fee/payment', [RazorPayController::class,'student_verify_exam_form_payment'])->name('student_verify_exam_form_payment');
-  
+
   // Student Fail Exam Form Fee Payment
   Route::post('/failed/exam/form/fee/payment', [RazorPayController::class,'student_failed_exam_form_payment'])->name('student_failed_exam_form_payment');
 
@@ -287,10 +288,10 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Delete Exam Form Before Inward
   Route::get('/delete/exam/form/before/inward',DeleteExamFormBeforeInward::class)->name('delete_exam_form_before_inward');
 
-  //All Exam Form 
+  //All Exam Form
   Route::get('/exam/form',AllExamForm::class)->name('all_exam_form');
 
-  //Inward Exam Form 
+  //Inward Exam Form
   Route::get('/inward/exam/form',InwardExamForm::class)->name('inward_exam_form');
 
   //Modify Exam Form
@@ -341,6 +342,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All ViewExamPanel
   Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
+
+  // RND Page
+  Route::get('/rnd', RNDPage::class)->name('rnd');
 
 });
 
