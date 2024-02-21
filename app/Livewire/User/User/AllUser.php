@@ -82,38 +82,32 @@ class AllUser extends Component
         $this->mode=$mode;
     }
 
-    public function mount()
-    {
-        $this->colleges = College::all();
-        $this->departments = Department::all();  
-        $this->roles=Role::all();
-    }
-
+    
     public function add(User  $user ){
         
         $validatedData= $this->validate();
-       
+        
         if ($validatedData) {
-
-        $user->name= $this->name;
-        $user->email= $this->email;
-        $user->password= $this->password;
-        $user->remember_token= $this->remember_token;
-        $user->college_id= $this->college_id;
-        $user->department_id= $this->department_id;
-        $user->role_id= $this->role_id;
-        $user->is_active= $this->is_active;
-        $user->user_contact_no= $this->user_contact_no;
--
-        $user->save();
-
-        $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->setmode('all');
+            
+            $user->name= $this->name;
+            $user->email= $this->email;
+            $user->password= $this->password;
+            $user->remember_token= $this->remember_token;
+            $user->college_id= $this->college_id;
+            $user->department_id= $this->department_id;
+            $user->role_id= $this->role_id;
+            $user->is_active= $this->is_active;
+            $user->user_contact_no= $this->user_contact_no;
+            -
+            $user->save();
+            
+            $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
+            $this->setmode('all');
         }
     }
-
+    
     public function edit(User $user ){
-
+        
         if ($user) {
             $this->user_id=$user->id;
             $this->name = $user->name;
@@ -126,15 +120,15 @@ class AllUser extends Component
             $this->setmode('edit');
         }
     }
-
+    
     public function update(User  $user){
-
+        
         $validatedData = $this->validate();
-       
+        
         if ($validatedData) {
-                   
+            
             $user->update([
-                              
+                
                 'name' => $this->name,
                 'email' => $this->email,               
                 'password' => $this->password,
@@ -143,22 +137,22 @@ class AllUser extends Component
                 'department_id' => $this->department_id,
                 'role_id'=>$this->role_id,
                 'is_active' => $this->is_active,
-                     
+                
             ]);
-
+            
             $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
             $this->setmode('all');        
         }
     }
-
-
+    
+    
     public function deleteconfirmation($id)
     {
         $this->delete_id=$id;
         $this->dispatch('delete-confirmation');
     }
-
-   
+    
+    
     public function delete(User  $user)
     {   
         $user->delete();
@@ -171,7 +165,7 @@ class AllUser extends Component
         $user->restore();
         $this->dispatch('alert',type:'success',message:'User Restored Successfully !!');
     }
-
+    
     public function forcedelete()
     {  
         try
@@ -179,14 +173,14 @@ class AllUser extends Component
         $user = User::withTrashed()->find($this->delete_id);
         $user->forceDelete();
         $this->dispatch('alert',type:'success',message:'User Deleted Successfully !!');
-       } catch
-       (\Illuminate\Database\QueryException $e) {
+    } catch
+    (\Illuminate\Database\QueryException $e) {
    
            if ($e->errorInfo[1] == 1451) {
    
                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-           } 
-       }
+            } 
+        }
     }
 
     public function Status(User $user)
@@ -201,7 +195,7 @@ class AllUser extends Component
         }
         $user->update();
     }
-
+    
     public function sort_column($column)
     {
         if( $this->sortColumn === $column)
@@ -219,19 +213,30 @@ class AllUser extends Component
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new ExportUser($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
-            break;
-            case 'csv':
-                return Excel::download(new ExportUser($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
-            break;
-            case 'pdf':
+                break;
+                case 'csv':
+                    return Excel::download(new ExportUser($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                    break;
+                    case 'pdf':
                 return Excel::download(new ExportUser($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;
         }
-       
+        
+    }
+    
+    public function mount()
+    {
+        $this->colleges = College::all();
+        $this->departments = Department::all();  
+        $this->roles=Role::all();
     }
 
     public function render()
     {
+        $this->colleges=College::where('status',1)->pluck('college_name','id');
+        $this->departments=Department::where('status',1)->pluck('dept_name','id');
+        $this->roles=Role::pluck('role_name','id');
+
         $users=User::when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

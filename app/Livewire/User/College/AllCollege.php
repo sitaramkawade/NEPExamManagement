@@ -279,8 +279,8 @@ class AllCollege extends Component
     public function render()
 
     {
-        $this->sansthas=Sanstha::select('sanstha_name','id')->where('status',1)->get();
-        $this->universities=University::select('university_name','id')->where('status',1)->get();
+        $this->sansthas=Sanstha::where('status',1)->pluck('sanstha_name','id');
+        $this->universities=University::where('status',1)->pluck('university_name','id');
 
         $colleges=College::select('id','college_name','college_email','college_address','college_website_url','college_contact_no','sanstha_id','university_id','college_logo_path','status','deleted_at')
        ->with(['sanstha:sanstha_name,id','university:university_name,id'])
