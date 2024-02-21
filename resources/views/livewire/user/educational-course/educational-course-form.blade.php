@@ -17,8 +17,8 @@
                     <x-required />
                     <x-input-select id="programme_id" wire:model="programme_id" name="programme_id" class="text-center w-full mt-1" :value="old('programme_id',$programme_id)" required autofocus autocomplete="programme_id">
                         <x-select-option class="text-start" hidden> -- Select Program -- </x-select-option>
-                        @foreach ($programs as $p_id)
-                        <x-select-option wire:key="{{ $p_id->id }}" value="{{ $p_id->id }}" class="text-start">{{$p_id->programme_name }}</x-select-option>
+                        @foreach ($programs as $p_id=>$pname)
+                        <x-select-option wire:key="{{ $p_id }}" value="{{ $p_id }}" class="text-start">{{$pname }}</x-select-option>
                         @endforeach
                     </x-input-select>
                     <x-input-error :messages="$errors->get('programme_id')" class="mt-2" />

@@ -193,7 +193,7 @@ class AllEducationalCourse extends Component
 
     public function render()
     {
-        $this->programs=Programme::select('programme_name','id')->where('active',1)->get();
+        $this->programs=Programme::where('active',1)->pluck('programme_name','id');
         
         $educationalCourses=Educationalcourse::select('id','course_name','programme_id','is_active','deleted_at')
         ->with(['programme:programme_name,id'])

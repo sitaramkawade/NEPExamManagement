@@ -9,8 +9,8 @@
                 <x-required />
                 <x-input-select id="building_id" wire:model="building_id" name="building_id" class="text-center w-full mt-1" :value="old('building_id',$building_id)" required autofocus autocomplete="building_id">
                     <x-select-option class="text-start" hidden> -- Select Building -- </x-select-option>
-                    @foreach ($buildings as $s_id)
-                    <x-select-option wire:key="{{ $s_id->id }}" value="{{ $s_id->id }}" class="text-start">{{$s_id->building_name }}</x-select-option>
+                    @foreach ($buildings as $s_id=>$bname)
+                    <x-select-option wire:key="{{ $s_id }}" value="{{ $s_id }}" class="text-start">{{$bname }}</x-select-option>
                     @endforeach
                 </x-input-select>
                 <x-input-error :messages="$errors->get('building_id')" class="mt-2" />

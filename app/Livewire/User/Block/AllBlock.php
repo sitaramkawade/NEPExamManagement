@@ -225,7 +225,7 @@ class AllBlock extends Component
  
         if($this->mode!=='all')
         {
-            $this->buildings = Building::select('building_name','id')->where('status',1)->get();
+            $this->buildings = Building::where('status',1)->pluck('building_name','id');
         }
 
         $blocks=Block::select('id','building_id','classname','block','capacity','noofblocks','status','deleted_at')
