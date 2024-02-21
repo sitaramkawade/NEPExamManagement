@@ -49,10 +49,9 @@
                                 <x-table.td> {{ $key+1 }}</x-table.td>
                                 <x-table.td> {{ $user->name }} </x-table.td>
                                 <x-table.td> {{ $user->email}} </x-table.td>
-                                <x-table.td>  <x-table.text-scroll> {{ $user->college?->college_name }}  </x-table.text-scroll> </x-table.td>
-                                <x-table.td>  <x-table.text-scroll>{{ $user->department?->dept_name }}  </x-table.text-scroll></x-table.td>
-                                <x-table.td> {{ $user->role?->role_name }} </x-table.td>
-
+                                <x-table.td>  <x-table.text-scroll>  {{ isset($user->college->college_name) ? $user->college->college_name : '-' }}  </x-table.text-scroll> </x-table.td>
+                                <x-table.td>  <x-table.text-scroll>  {{ isset($user->department->dept_name) ? $user->department->dept_name : '-' }}  </x-table.text-scroll></x-table.td>
+                                <x-table.td> {{ isset($user->role->role_name) ? $user->role->role_name : '-' }} </x-table.td>
                                 <x-table.td>
                                  @if ($user->deleted_at)
                                     @elseif($user->is_active==1)

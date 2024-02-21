@@ -10,8 +10,8 @@
                 <x-required />
                 <x-input-select id="exam_id" wire:model="exam_id" name="exam_id" class="text-center w-full mt-1" :value="old('exam_id',$exam_id)" required autofocus autocomplete="exam_id">
                     <x-select-option class="text-start" hidden> -- Select Exam -- </x-select-option>
-                    @foreach ($exam as $s_id)
-                    <x-select-option wire:key="{{ $s_id->id }}" value="{{ $s_id->id }}" class="text-start">{{$s_id->exam_name }}</x-select-option>
+                    @foreach ($exam as $e_id=>$ename)
+                    <x-select-option wire:key="{{ $e_id }}" value="{{ $e_id }}" class="text-start">{{$ename }}</x-select-option>
                     @endforeach
                 </x-input-select>
                 <x-input-error :messages="$errors->get('exam_id')" class="mt-2" />
@@ -22,8 +22,8 @@
                 <x-required />
                 <x-input-select id="building_id" wire:model="building_id" name="building_id" class="text-center w-full mt-1" :value="old('building_id',$building_id)" required autofocus autocomplete="building_id">
                     <x-select-option class="text-start" hidden> -- Select Building -- </x-select-option>
-                    @foreach ($building as $s_id)
-                    <x-select-option wire:key="{{ $s_id->id }}" value="{{ $s_id->id }}" class="text-start">{{$s_id->building_name }}</x-select-option>
+                    @foreach ($building as $b_id=>$bname)
+                    <x-select-option wire:key="{{ $b_id }}" value="{{ $b_id }}" class="text-start">{{$bname }}</x-select-option>
                     @endforeach
                 </x-input-select>
                 <x-input-error :messages="$errors->get('building_id')" class="mt-2" />

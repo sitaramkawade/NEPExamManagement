@@ -109,7 +109,7 @@ class AllExamTimeTable extends Component
             $query->where('subject_sem',$sem);
         })->where('status',1)->get();
 
-        $this->timeslots=TimeTableslot::select('id','timeslot')->where('isactive',1)->get();
+        $this->timeslots=TimeTableslot::where('isactive',1)->pluck('timeslot','id');
         $this->setmode('add');
      
     }
@@ -212,7 +212,7 @@ class AllExamTimeTable extends Component
               $query->where('subject_sem',$sem);
           })->where('status',1)->get();
   
-          $this->timeslots=TimeTableslot::select('id','timeslot')->where('isactive',1)->get();
+          $this->timeslots=TimeTableslot::where('isactive',1)->pluck('timeslot','id');
          
         foreach($examtimetables as $examtimetable)
         {

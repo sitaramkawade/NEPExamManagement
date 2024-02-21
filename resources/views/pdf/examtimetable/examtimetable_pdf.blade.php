@@ -10,8 +10,7 @@
     <h1>Exam Timetable </h1>
     <table>
         <thead>
-            <tr>
-              
+            <tr>      
                 <th>Subject Code</th>
                 <th>Subject Name</th>
                 <th>Date</th>
@@ -22,10 +21,10 @@
         <tbody>
             @foreach($exam_time_table_data as $row)
             <tr>
-                <td>{{ $row->subject ->subject_code}}</td>
-                <td>{{ $row->subject ->subject_name}}</td>
-                <td>{{ $row->examdate }}</td>
-                <td>{{ $row->timetableslot->timeslot }}</td>
+                <td align="center"  style="width:160px">{{ $row->subject ->subject_code}}</td>
+                <td align="center"  style="width:160px">{{ $row->subject ->subject_name}}</td>
+                <td align="center"  style="width:160px">{{ $row->examdate }}</td>
+                <td align="center"  style="width:160px">{{ $row->timetableslot->timeslot }}</td>
             
             </tr>
             @endforeach

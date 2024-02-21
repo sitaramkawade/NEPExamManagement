@@ -212,7 +212,7 @@ class AllDepartment extends Component
     
     public function render()
     {
-        $this->colleges=College::select('college_name','id')->where('status',1)->get();
+        $this->colleges=College::where('status',1)->pluck('college_name','id');
 
         $departments=Department::select('id','dept_name','short_name','departmenttype','college_id','status','deleted_at')
        ->with('college:college_name,id')

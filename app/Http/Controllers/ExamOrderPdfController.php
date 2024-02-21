@@ -26,9 +26,9 @@ class ExamOrderPdfController extends Controller
         $examorder=Examorder::find($id);
 
         if ($examorder && $examorder->token === $this->token) {
-            view()->share('pdf.examorder_pdf',compact('examorder'));
+            view()->share('pdf.examorder.examorder_pdf',compact('examorder'));
 
-            $pdf = Pdf::loadView('pdf.examorder_pdf',compact('examorder'))
+            $pdf = Pdf::loadView('pdf.examorder.examorder_pdf',compact('examorder'))
                 ->setOptions(['defaultFont' => 'sans-serif']);
 
               return $pdf->download('Exam-Order.pdf');

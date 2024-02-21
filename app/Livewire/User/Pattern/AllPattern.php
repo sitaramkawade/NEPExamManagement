@@ -224,7 +224,7 @@ class AllPattern extends Component
 
     public function render()
     {   
-        $this->colleges=College::select('college_name','id')->where('status',1)->get();
+        $this->colleges=College::where('status',1)->pluck('college_name','id');
 
         $patterns=Pattern::select('id','pattern_name','pattern_startyear','pattern_valid','college_id','status','deleted_at')
        -> when($this->search, function ($query, $search) {

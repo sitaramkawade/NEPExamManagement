@@ -9,8 +9,8 @@
             <x-required />
             <x-input-select id="faculty_id" wire:model="faculty_id" name="faculty_id" class="text-center w-full mt-1" :value="old('faculty_id',$faculty_id)" required autofocus autocomplete="faculty_id">
                 <x-select-option class="text-start" hidden> -- Select Faculty -- </x-select-option>
-                @foreach ($faculties as $s_id)
-                <x-select-option wire:key="{{ $s_id->id }}" value="{{ $s_id->id }}" class="text-start">{{$s_id->faculty_name }}</x-select-option>
+                @foreach ($faculties as $f_id=>$fname)
+                <x-select-option wire:key="{{ $f_id }}" value="{{ $f_id }}" class="text-start">{{$fname }}</x-select-option>
                 @endforeach
             </x-input-select>
             <x-input-error :messages="$errors->get('faculty_id')" class="mt-2" />
@@ -21,8 +21,8 @@
             <x-required />
             <x-input-select id="examorderpost_id" wire:model="examorderpost_id" name="examorderpost_id" class="text-center w-full mt-1" :value="old('examorderpost_id',$examorderpost_id)" required autofocus autocomplete="examorderpost_id">
                 <x-select-option class="text-start" hidden> -- Select Exam Order Post -- </x-select-option>
-                @foreach ($examorderposts as $s_id)
-                <x-select-option wire:key="{{ $s_id->id }}" value="{{ $s_id->id }}" class="text-start">{{$s_id->post_name }}</x-select-option>
+                @foreach ($examorderposts as $p_id=>$pname)
+                <x-select-option wire:key="{{ $p_id }}" value="{{ $p_id }}" class="text-start">{{$pname }}</x-select-option>
                 @endforeach
             </x-input-select>
             <x-input-error :messages="$errors->get('examorderpost_id')" class="mt-2" />
@@ -33,8 +33,8 @@
             <x-required />
             <x-input-select id="subject_id" wire:model="subject_id" name="subject_id" class="text-center w-full mt-1" :value="old('subject_id',$subject_id)" required autofocus autocomplete="subject_id">
                 <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>subject_id
-                @foreach ($subjects as $s_id)
-                <x-select-option wire:key="{{ $s_id->id }}" value="{{ $s_id->id }}" class="text-start">{{$s_id->subject_name }}</x-select-option>
+                @foreach ($subjects as $s_id=>$sname)
+                <x-select-option wire:key="{{ $s_id }}" value="{{ $s_id }}" class="text-start">{{$sname }}</x-select-option>
                 @endforeach
             </x-input-select>
             <x-input-error :messages="$errors->get('subject_id')" class="mt-2" />
