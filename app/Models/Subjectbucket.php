@@ -16,9 +16,9 @@ class Subjectbucket extends Model
     protected $fillable=[
     'department_id',
     'patternclass_id',
-    'subject_division',
     'subjectcategory_id',
-    'subject_categoryno',
+    'subject_division',
+    // 'subject_categoryno',
     'subject_id',
     'academicyear_id',
     'status',

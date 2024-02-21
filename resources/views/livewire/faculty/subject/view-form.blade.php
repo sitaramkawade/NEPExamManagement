@@ -1,9 +1,9 @@
 <x-card-collapsible heading="Subject Details">
     <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="pattern_id" :value="__('Pattern')" />
+            <x-input-label for="course_id" :value="__('Course')" />
             @if ($isDisabled)
-                <x-text-input id="pattern_id" type="text" :value="$pattern_id" disabled class="bg-gray-100 cursor-not-allowed @error('pattern_id') is-invalid @enderror w-full mt-1" />
+                <x-text-input id="course_id" type="text" :value="$course_id" disabled class="bg-gray-100 cursor-not-allowed @error('course_id') is-invalid @enderror w-full mt-1" />
             @endif
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">

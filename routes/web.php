@@ -61,9 +61,9 @@ use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
+use App\Livewire\Faculty\AssignSubject\AllAssignSubject;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
-use App\Livewire\Student\StudentExamForm\StudentExamForm;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamForm\DeleteExamFormBeforeInward;
 use App\Livewire\User\GenerateExamOrder\GenerateExamOrder;
@@ -72,6 +72,7 @@ use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\Faculty\SubjectCategory\AllSubjectCategory;
 use App\Http\Controllers\Student\Razorpay\RazorPayController;
+use App\Livewire\Student\StudentExamForm\FillStudentExamForm;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
@@ -133,7 +134,7 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
   Route::get('/helpline',Helpline::class)->name('helpline');
 
   // Student Exam Form
-  Route::post('/exam/form',StudentExamForm::class)->name('student_exam_form');
+  Route::post('/exam/form',FillStudentExamForm::class)->name('student_exam_form');
 
   // Student Delete Exam Form
   Route::post('/delete/exam/form',DeleteStudentExamForm::class)->name('student_delete_exam_form');
@@ -325,6 +326,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Subject
   Route::get('/all-subject', AllSubject::class)->name('all-subjects');
+
+  // All Allocate Subject
+  Route::get('/all-assignsubject', AllAssignSubject::class)->name('all-assignsubjects');
 
   // All SubjectBucket
   Route::get('/all-subjectbucket', AllSubjectBucket::class)->name('all-subjectbuckets');

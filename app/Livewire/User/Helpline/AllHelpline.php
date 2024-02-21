@@ -61,15 +61,8 @@ class AllHelpline extends Component
 
         if(count($this->documents) >0)
         {   
-            // $helpline = Studenthelpline::find($this->edit_id);
             foreach ($this->documents as $doc) {
-                // if(null!==($helpline->studenthelplineuploadeddocuments()->where('helpline_document_id',$doc->id)->first()))
-                // {
-                //     $rules["uploaded_documents.".$doc->id] = ['nullable','image', 'max:300','mimes:png,jpg,jpeg'];
-                // }else
-                // {
-                    $rules["uploaded_documents.".$doc->id] = ['required','image', 'max:300','mimes:png,jpg,jpeg'];
-                // }
+                $rules["uploaded_documents.".$doc->id] = ['required','image', 'max:300','mimes:png,jpg,jpeg'];
             }
         }
 
@@ -226,26 +219,6 @@ class AllHelpline extends Component
         }
         $this->setmode('view');
     }
-
-    // public function edit(Studenthelpline $helpline)
-    // {   
-    //     $this->resetinput();
-    //     $this->uploaded_documents_old=[];
-    //     $this->edit_id=  $helpline->id;
-    //     $this->student_id=  $helpline->student_id;
-    //     $this->student_helpline_query_id=  $helpline->student_helpline_query_id;
-    //     $this->old_query=  $helpline->old_query;
-    //     $this->remark=  $helpline->remark;
-    //     $this->new_query=  $helpline->new_query;
-    //     $this->description=  $helpline->description;
-
-    //     $documents=$helpline->studenthelplineuploadeddocuments()->get();
-    //     foreach($documents as $doc)
-    //     {
-    //         $this->uploaded_documents_old[$doc->helpline_document_id ]=$doc->helpline_document_path;
-    //     }
-    //     $this->setmode('edit');
-    // }
 
     public function update(Studenthelpline $helpline)
     {
@@ -433,16 +406,17 @@ class AllHelpline extends Component
     public function render()
     {   
         if($this->mode!=='all')  
-        {
+        {   
             if ($this->student_helpline_query_id) {
     
-                $query = Studenthelplinequery::findOrFail($this->student_helpline_query_id);
-                $this->current_query= $query->query_name;
-                $this->documents = $query->studenthelplinedocuments()->get(); 
+                $query = Studenthelplinequery::with('studenthelplinedocuments')->findOrFail($this->student_helpline_query_id);
+                $this->current_query = $query->query_name;
+                $this->documents = $query->studenthelplinedocuments;
+
             }
     
-            $this->helplinequeries = Studenthelplinequery::select('query_name','id')->where('is_active', 1)->get();
-            $this->students = Student::select('student_name','id')->where('status', 0)->get();
+            $this->helplinequeries = Studenthelplinequery::where('is_active', 1)->pluck('query_name','id');
+            $this->students = Student::where('status', 0)->pluck('student_name','id');
         }
 
         $student_helplines=Studenthelpline::select('id','student_id','student_helpline_query_id', 'remark','verified_by','approve_by','status','deleted_at')

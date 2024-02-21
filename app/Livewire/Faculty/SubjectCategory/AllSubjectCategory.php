@@ -129,14 +129,18 @@ class AllSubjectCategory extends Component
 
     public function delete()
     {
-        $subjectcategory = Subjectcategory::withTrashed()->find($this->delete_id);
-        if($subjectcategory){
+        try
+        {
+            $subjectcategory = Subjectcategory::withTrashed()->find($this->delete_id);
             $subjectcategory->forceDelete();
             $this->delete_id = null;
-            $this->setmode('all');
             $this->dispatch('alert',type:'success',message:'Subject Category Deleted Successfully !!');
-        } else {
-            $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            }
         }
     }
 
@@ -146,10 +150,9 @@ class AllSubjectCategory extends Component
         if ($subjectcategory) {
             $subjectcategory->delete();
             $this->dispatch('alert',type:'success',message:'Subject Category Deleted Successfully');
-            } else {
-                $this->dispatch('alert',type:'error',message:'Subject Category Not Found !');
-            }
-        $this->setmode('all');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Subject Category Not Found !');
+        }
     }
 
     public function restore($id)
@@ -219,7 +222,7 @@ class AllSubjectCategory extends Component
         if ($subjectcategory){
             $this->subjectcategory= $subjectcategory->subjectcategory;
             $this->subjectcategory_shortname= $subjectcategory->subjectcategory_shortname;
-            $this->subjectbucket_type= $subjectcategory->subjectbucket_type;
+            $this->subjectbucket_type= isset($subjectcategory->buckettype->buckettype_name) ? $subjectcategory->buckettype->buckettype_name : '';
         }else{
             $this->dispatch('alert',type:'error',message:'Subject Category Details Not Found');
         }

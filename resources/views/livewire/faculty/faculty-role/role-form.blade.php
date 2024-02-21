@@ -12,9 +12,11 @@
             <x-input-label for="roletype_id" :value="__('Role Type')" />
             <x-input-select id="roletype_id" wire:model="roletype_id" name="roletype_id" class="text-center @error('roletype_id') is-invalid @enderror w-full mt-1" :value="old('roletype_id', $roletype_id)" required autofocus autocomplete="roletype_id">
                 <x-select-option class="text-start" hidden> -- Select Role Type -- </x-select-option>
-                @foreach ($roletypes as $roletype)
-                    <x-select-option wire:key="{{ $roletype->id }}" value="{{ $roletype->id }}" class="text-start">{{ $roletype->roletype_name }}</x-select-option>
-                @endforeach
+                @forelse ($roletypes as $roletypeid => $roletypename )
+                    <x-select-option wire:key="{{ $roletypeid }}" value="{{ $roletypeid }}" class="text-start">{{ $roletypename }}</x-select-option>
+                @empty
+                    <x-select-option class="text-start">Role Types Not Found</x-select-option>
+                @endforelse
             </x-input-select>
             <x-input-error :messages="$errors->get('roletype_id')" class="mt-2" />
         </div>
@@ -24,9 +26,11 @@
             <x-input-label for="college_id" :value="__('Role')" />
             <x-input-select id="college_id" wire:model.live="college_id" name="college_id" class="text-center @error('college_id') is-invalid @enderror w-full mt-1" :value="old('college_id', $college_id)" required autofocus autocomplete="college_id">
                 <x-select-option class="text-start" hidden> -- Select College -- </x-select-option>
-                @foreach ($colleges as $college)
-                    <x-select-option wire:key="{{ $college->id }}" value="{{ $college->id }}" class="text-start">{{ $college->college_name }}</x-select-option>
-                @endforeach
+                @forelse ($colleges as $collegeid => $collegename )
+                    <x-select-option wire:key="{{ $collegeid }}" value="{{ $collegeid }}" class="text-start">{{ $collegename }}</x-select-option>
+                @empty
+                    <x-select-option class="text-start">Colleges Not Found</x-select-option>
+                @endforelse
             </x-input-select>
             <x-input-error :messages="$errors->get('college_id')" class="mt-2" />
         </div>

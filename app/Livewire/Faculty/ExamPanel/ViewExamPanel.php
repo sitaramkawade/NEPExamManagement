@@ -196,21 +196,25 @@ class ViewExamPanel extends Component
         if ($exampanel_faculty) {
             $exampanel_faculty->delete();
             $this->dispatch('alert',type:'success',message:'Faculty Soft Deleted From Exam Panel Successfully');
-            } else {
-                $this->dispatch('alert',type:'error',message:'Faculty Not Found In Exam Panel !');
-            }
+        } else {
+            $this->dispatch('alert',type:'error',message:'Faculty Not Found In Exam Panel !');
+        }
     }
 
     public function delete()
     {
-        $exampanel_faculty = ExamPanel::withTrashed()->find($this->delete_id);
-
-        if($exampanel_faculty){
+        try
+        {
+            $exampanel_faculty = ExamPanel::withTrashed()->find($this->delete_id);
             $exampanel_faculty->forceDelete();
             $this->delete_id = null;
             $this->dispatch('alert',type:'success',message:'Faculty Deleted From Exam Panel Successfully !!');
-        } else {
-            $this->dispatch('alert',type:'error',message:'Faculty Not Found In Exam Panel !!');
+        } catch (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            }
         }
     }
 
@@ -230,11 +234,13 @@ class ViewExamPanel extends Component
     public function view(ExamPanel $exampanel)
     {
         if ($exampanel){
-            $this->patternclass_id = $exampanel->subject->patternclass->pattern->pattern_name.' '.$exampanel->subject->patternclass->courseclass->classyear->classyear_name.' '.$exampanel->subject->patternclass->courseclass->course->course_name;
-            $this->subject_id=$exampanel->subject->subject_name;
-            $this->post_id=$exampanel->examorderpost->post_name;
-            $this->department_id=$exampanel->faculty->department->dept_name;
-            $this->faculty_id=$exampanel->faculty->faculty_name;
+            $this->patternclass_id = (isset($exampanel->subject->patternclass->pattern->pattern_name) ? $exampanel->subject->patternclass->pattern->pattern_name : '') . ' ' .
+            (isset($exampanel->subject->patternclass->courseclass->classyear->classyear_name) ? $exampanel->subject->patternclass->courseclass->classyear->classyear_name : '') . ' ' .
+            (isset($exampanel->subject->patternclass->courseclass->course->course_name) ? $exampanel->subject->patternclass->courseclass->course->course_name : '');
+            $this->subject_id = isset($exampanel->subject->subject_name) ? $exampanel->subject->subject_name : '';
+            $this->post_id = isset($exampanel->examorderpost->post_name) ? $exampanel->examorderpost->post_name : '';
+            $this->department_id = isset($exampanel->faculty->department->dept_name) ? $exampanel->faculty->department->dept_name : '';
+            $this->faculty_id = isset($exampanel->faculty->faculty_name) ? $exampanel->faculty->faculty_name : '';
         }else{
             $this->dispatch('alert',type:'error',message:'Exam Panel Details Not Found');
         }

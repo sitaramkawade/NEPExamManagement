@@ -212,7 +212,7 @@ class AllHelplineDocument extends Component
     {   
         if($this->mode!=='all')
         {
-            $this->student_helpline_queries=Studenthelplinequery::select('query_name','id')->where('is_active',1)->get();
+            $this->student_helpline_queries=Studenthelplinequery::where('is_active',1)->pluck('query_name','id');
         }
 
         $student_helpline_documents=Studenthelplinedocument::select('id','student_helpline_query_id','document_name','deleted_at','is_active')->with('studenthelplinequery:query_name,id')->when($this->search, function ($query, $search) {
