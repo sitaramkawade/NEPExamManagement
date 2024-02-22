@@ -25,8 +25,8 @@
                         <x-input-label for="timeslot_id" :value="__('Select Time Slot')" />
                         <x-input-select id="timeslot_id" wire:model.live="timeslot_id" name="timeslot_id" class="text-center w-full mt-1" >
                             <x-select-option class="text-start" hidden> -- Select Time Slot -- </x-select-option>
-                            @forelse ($timeslots as $timeslot)
-                            <x-select-option wire:key="{{ $timeslot->id }}" value="{{ $timeslot->id }}" class="text-start"> {{ $timeslot->timeslot }} </x-select-option>
+                            @forelse ($timeslots as $timeid=>$timeslot)
+                            <x-select-option wire:key="{{ $timeid }}" value="{{ $timeid }}" class="text-start"> {{ $timeslot }} </x-select-option>
                             @empty
                             <x-select-option class="text-start">Time Slot Not Found</x-select-option>
                             @endforelse
@@ -69,8 +69,8 @@
                                     <x-input-label for="timeslot_ids.{{ $subject->id}}"  />
                                             <x-input-select id="timeslot_ids.{{ $subject->id}}" wire:model="timeslot_ids.{{ $subject->id}}" name="timeslot_ids.{{ $subject->id}}" class="text-center w-full mt-1" >
                                                 <x-select-option class="text-start" hidden> -- Select Time Slot -- </x-select-option>
-                                                @forelse ($timeslots as $timeslot)
-                                                <x-select-option wire:key="{{ $timeslot->id }}" value="{{ $timeslot->id }}" class="text-start"> {{ $timeslot->timeslot }} </x-select-option>
+                                                @forelse ($timeslots as $timeid=>$timeslot)
+                                                <x-select-option wire:key="{{ $timeid}}" value="{{ $timeid }}" class="text-start"> {{ $timeslot }} </x-select-option>
                                                 @empty
                                                 <x-select-option class="text-start">Time Slot Not Found</x-select-option>
                                                 @endforelse

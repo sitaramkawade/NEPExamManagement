@@ -196,8 +196,8 @@ class AllExamBuilding extends Component
     {
         if($this->mode!=='all')
         {
-            $this->exam = Exam::select('exam_name','id')->where('status',1)->get();
-            $this->building = Building::select('building_name','id')->where('status',1)->get();
+            $this->exam = Exam::where('status',1)->pluck('exam_name','id');
+            $this->building = Building::where('status',1)->pluck('building_name','id');
         }
 
         $exambuildings=ExamBuilding::when($this->search, function ($query, $search) {

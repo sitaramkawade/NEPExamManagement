@@ -52,8 +52,8 @@
                             <x-required />
                             <x-input-select id="sanstha_id" wire:model="sanstha_id" name="sanstha_id" class="text-center w-full mt-1" :value="old('sanstha_id',$sanstha_id)" required autofocus autocomplete="sanstha_id">
                                 <x-select-option class="text-start" hidden> -- Select Sanstha -- </x-select-option>
-                                @foreach ($sansthas as $s_id)
-                                <x-select-option wire:key="{{ $s_id->id }}" value="{{ $s_id->id }}" class="text-start">{{$s_id->sanstha_name }}</x-select-option>
+                                @foreach ($sansthas as $s_id =>$sname)
+                                <x-select-option wire:key="{{ $s_id }}" value="{{ $s_id }}" class="text-start">{{ $sname }}</x-select-option>
                                 @endforeach
                             </x-input-select>
                             <x-input-error :messages="$errors->get('sanstha_id')" class="mt-2" />
@@ -65,8 +65,8 @@
                             <x-required />
                             <x-input-select id="university_id" wire:model="university_id" name="university_id" class="text-center w-full mt-1" :value="old('university_id',$university_id)" required autofocus autocomplete="university_id">
                                 <x-select-option class="text-start" hidden> -- Select University -- </x-select-option>
-                                @foreach ($universities as $u_id)
-                                <x-select-option wire:key="{{ $u_id->id }}" value="{{ $u_id->id }}" class="text-start">{{$u_id->university_name }}</x-select-option>
+                                @foreach ($universities as $u_id=>$uname)
+                                <x-select-option wire:key="{{ $u_id}}" value="{{ $u_id }}" class="text-start">{{ $uname }}</x-select-option>
                                 @endforeach
                             </x-input-select>
                             <x-input-error :messages="$errors->get('university_id')" class="mt-2" />

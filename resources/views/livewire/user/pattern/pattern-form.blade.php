@@ -30,8 +30,8 @@
                     <x-required />
                     <x-input-select id="college_id" wire:model="college_id" name="college_id" class="text-center w-full mt-1" :value="old('college_id',$college_id)" required autofocus autocomplete="college_id">
                         <x-select-option class="text-start" hidden> -- Select College -- </x-select-option>
-                        @foreach ($colleges as $c_id)
-                        <x-select-option wire:key="{{ $c_id->id }}" value="{{ $c_id->id }}" class="text-start">{{$c_id->college_name }}</x-select-option>
+                        @foreach ($colleges as $c_id=>$cname)
+                        <x-select-option wire:key="{{ $c_id }}" value="{{ $c_id }}" class="text-start">{{$cname }}</x-select-option>
                         @endforeach
                     </x-input-select>
                     <x-input-error :messages="$errors->get('college_id')" class="mt-2" />
