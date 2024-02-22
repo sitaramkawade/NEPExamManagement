@@ -120,9 +120,13 @@
         @yield("main")
       </main>
 
-    @livewireScripts()
+    @livewireScriptConfig()
+
     <x-view-image-model/>
+
+    <script src="{{ asset('assets/alpinejs/ui.min.js') }}"></script>
     <script src="{{ asset('assets/chart/Chart.bundle.min.js') }}"></script>
+    
     <script>
       var setup = () => {
         const getTheme = () => {
