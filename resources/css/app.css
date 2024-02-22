@@ -3,13 +3,13 @@
   --dark: #152e4d;
   --darker: #12263f;
   /*  */
-    --color-primary: var(--color-gray);
-    --color-primary-50: var(--color-gray-50);
-    --color-primary-100: var(--color-gray-100);
-    --color-primary-light: var(--color-gray-light);
-    --color-primary-lighter: var(--color-gray-lighter);
-    --color-primary-dark: var(--color-gray-dark);
-    --color-primary-darker: var(--color-gray-darker);
+    --color-primary: var(--color-teal);
+    --color-primary-50: var(--color-teal-50);
+    --color-primary-100: var(--color-teal-100);
+    --color-primary-light: var(--color-teal-light);
+    --color-primary-lighter: var(--color-teal-lighter);
+    --color-primary-dark: var(--color-teal-dark);
+    --color-primary-darker: var(--color-teal-darker);
     /*  */
     --color-gray: #475569;
     --color-gray-50: #f9fafb;
