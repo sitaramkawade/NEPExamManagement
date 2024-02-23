@@ -20,8 +20,8 @@
           <x-input-label for="subjectcategory_id" :value="__('Select Subject Category')" />
           <x-input-select id="subjectcategory_id" wire:model.live="subjectcategory_id" name="subjectcategory_id" class="text-center w-full mt-1" :value="old('subjectcategory_id', $subjectcategory_id)" required autocomplete="subjectcategory_id">
             <x-select-option class="text-start" hidden> -- Select Subject Category -- </x-select-option>
-            @forelse ($subject_categories as $subject_category)
-              <x-select-option wire:key="{{ $subject_category->id }}" value="{{ $subject_category->id }}" class="text-start"> {{ $subject_category->subjectcategory?? '-' }}  </x-select-option>
+            @forelse ($subject_categories as $subject_category_id => $subject_category_name)
+              <x-select-option wire:key="{{ $subject_category_id }}" value="{{ $subject_category_id}}" class="text-start"> {{ $subject_category_name?? '-' }}  </x-select-option>
             @empty
               <x-select-option class="text-start">Subject Categories Not Found</x-select-option>
             @endforelse
@@ -32,8 +32,8 @@
           <x-input-label for="subject_id" :value="__('Select Subject')" />
           <x-input-select id="subject_id" wire:model="subject_id" name="subject_id" class="text-center w-full mt-1" :value="old('subject_id', $subject_id)" required autocomplete="subject_id">
             <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>
-            @forelse ($subjects as $subject)
-              <x-select-option wire:key="{{ $subject->id }}" value="{{ $subject->id }}" class="text-start"> {{ $subject->subject_name }} </x-select-option>
+            @forelse ($subjects as $subjectid => $subjectname)
+              <x-select-option wire:key="{{ $subjectid }}" value="{{ $subjectid }}" class="text-start"> {{ $subjectname }} </x-select-option>
             @empty
               <x-select-option class="text-start">Subjects Not Found</x-select-option>
             @endforelse

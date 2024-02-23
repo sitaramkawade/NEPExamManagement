@@ -60,26 +60,7 @@ class Admissiondata extends Model
 
     public function scopeSearch(Builder $query, string $search)
     {
-        return $query->with('patternclass.courseclass.course', 'patternclass.courseclass.classyear', 'user','academicyear','college','subject')
-        ->orWhere('memid', 'like', "%{$search}%")
-        ->orWhere('stud_name', 'like', "%{$search}%")
-        ->orWhere(function ($subquery) use ($search) {
-            $subquery->orWhereHas('patternclass.courseclass.course', function ($subQuery) use ($search) {
-                $subQuery->where('course_name', 'like', "%{$search}%");
-            })->orWhereHas('patternclass.pattern', function ($subQuery) use ($search) {
-                $subQuery->where('pattern_name', 'like', "%{$search}%");
-            })->orWhereHas('patternclass.courseclass.classyear', function ($subQuery) use ($search) {
-                $subQuery->where('classyear_name', 'like', "%{$search}%");
-            })->orWhereHas('user', function ($subQuery) use ($search) {
-                $subQuery->where('name', 'like', "%{$search}%");
-            })->orWhereHas('academicyear', function ($subQuery) use ($search) {
-                $subQuery->where('year_name', 'like', "%{$search}%");
-            })->orWhereHas('college', function ($subQuery) use ($search) {
-                $subQuery->where('college_name', 'like', "%{$search}%");
-            })->orWhereHas('subject', function ($subQuery) use ($search) {
-                $subQuery->where('subject_name', 'like', "%{$search}%");
-            });
-        });
+        return $query->where('memid', 'like', "%{$search}%")->orWhere('stud_name', 'like', "%{$search}%");
 
     }
 }
