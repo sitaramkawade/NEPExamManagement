@@ -25,7 +25,7 @@
         <x-add-btn wire:click="setmode('add')" />
       </x-card-header>
       @if ($mode == 'import')
-        @livewire('user.admission-data.admission-data-import-component')
+        @livewire('user.admission-data.import-admission-data')
       @endif
       <x-table.frame i="1" :mode="$mode">
         <x-slot:body>

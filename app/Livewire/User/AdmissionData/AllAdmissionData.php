@@ -33,7 +33,6 @@ class AllAdmissionData extends Component
     public $sortColumnBy="ASC";
     public $ext;
     
-    
     #[Locked] 
     public  $delete_id;
     #[Locked] 
