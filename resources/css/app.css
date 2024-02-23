@@ -3,13 +3,13 @@
   --dark: #152e4d;
   --darker: #12263f;
   /*  */
-    --color-primary: var(--color-gray);
-    --color-primary-50: var(--color-gray-50);
-    --color-primary-100: var(--color-gray-100);
-    --color-primary-light: var(--color-gray-light);
-    --color-primary-lighter: var(--color-gray-lighter);
-    --color-primary-dark: var(--color-gray-dark);
-    --color-primary-darker: var(--color-gray-darker);
+    --color-primary: var(--color-teal);
+    --color-primary-50: var(--color-teal-50);
+    --color-primary-100: var(--color-teal-100);
+    --color-primary-light: var(--color-teal-light);
+    --color-primary-lighter: var(--color-teal-lighter);
+    --color-primary-dark: var(--color-teal-dark);
+    --color-primary-darker: var(--color-teal-darker);
     /*  */
     --color-gray: #475569;
     --color-gray-50: #f9fafb;
@@ -75,25 +75,102 @@
 
 
 
-@layer components {
-    .toggle:checked + span {
-      @apply top-0 left-6 bg-primary;
-    }
-    .toggle:disabled + span {
-      @apply bg-gray-500 shadow-none;
-    }
-    .toggle:checked:disabled {
-      @apply bg-gray-200;
-    }
-    .toggle:checked:disabled + span {
-      @apply shadow-none bg-primary-lighter;
-    }
-    .toggle:focus + span {
-      @apply ring ring-primary-lighter;
-    }
-  
-    input:invalid.invalid,
-    textarea:invalid.invalid {
-      @apply ring ring-danger-light dark:ring-danger;
-    }
-  }
+
+
+
+  .scrollbar-xs::-webkit-scrollbar 
+      {
+        height: 3px !important;
+        width: 3px !important;
+      }
+
+      .scrollbar-xs::-moz-scrollbar
+      {
+        height: 3px !important;
+        width: 3px !important;
+      }
+
+
+      .scrollbar-sm::-webkit-scrollbar 
+      {
+        height: 6px !important;
+        width: 6px !important;
+      }
+
+      .scrollbar-sm::-moz-scrollbar
+      {
+        height: 6px !important;
+        width: 6px !important;
+      }
+
+      .scrollbar-md::-webkit-scrollbar 
+      {
+        height: 6px !important;
+        width: 8px !important;
+      }
+
+      .scrollbar-md::-moz-scrollbar
+      {
+        height: 6px !important;
+        width: 8px !important;
+      }
+
+      ::-webkit-scrollbar 
+      {
+        height: 12px !important;
+        width: 10px !important;
+      }
+
+      ::-moz-scrollbar {
+        height: 12px !important;
+        width: 10px !important;
+      }
+
+      .scrollbar-sm {
+        scrollbar-width: 6px !important;
+      }
+
+      .scrollbar-md {
+        scrollbar-width: 8px !important;
+      }
+
+      .scrollbar-xs {
+        scrollbar-width: 3px !important;
+      }
+
+    * {
+        scrollbar-width: 10px !important;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color:var(--color-primary) !important;
+        border-radius: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background-color: transparent; 
+      }
+
+      #nprogress .bar 
+      {
+        background: var(--color-primary) !important;
+        height: 5px !important;
+      }
+
+      #nprogress .peg {
+        box-shadow: 0 0 10px var(--color-primary), 0 0 5px var(--color-primary);
+      }
+
+      #nprogress .spinner-icon {
+        border-top-color: var(--color-primary) !important;
+        border-left-color: var(--color-primary) !important;
+        display: none;
+      }
+
+     .dark input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+      }
+
+      .dark input[type="time"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+      }

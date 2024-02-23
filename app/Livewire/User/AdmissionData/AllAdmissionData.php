@@ -13,41 +13,77 @@ use App\Models\Patternclass;
 use Livewire\WithPagination;
 use App\Models\Admissiondata;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Renderless;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Access\AuthorizationException;
 use App\Exports\User\AdmissionData\AdmissionDataExport;
 use App\Imports\User\AdmissionData\AdmissionDataImport;
+use App\Policies\User\AdmissionData\AdmissionDataPolicy;
 
 class AllAdmissionData extends Component
 {  
     use WithPagination;
-    protected $listeners = ['delete-confirmed'=>'forcedelete','refreshAllAdmissionData' => '$refresh'];
-    #[Locked] 
-    public $delete_id;
-    #[Locked] 
-    public $edit_id;
 
-    public $mode='all';
-    public $perPage=10;
+    protected $listeners = ['delete-confirmed'=>'forcedelete','refreshAllAdmissionData' => '$refresh'];
+    
     public $search='';
+    public $perPage=10;
     public $sortColumn="stud_name";
     public $sortColumnBy="ASC";
-    public $importfile;
     public $ext;
+    
+    
+    #[Locked] 
+    public  $delete_id;
+    #[Locked] 
+    public $edit_id;
+    #[Locked] 
+    public $mode='all';
+    #[Locked] 
+    public $pattern_classes=[];
+    #[Locked] 
+    public $subjects=[];
 
     public $patternclass_id;
     public $subject_id;
     public $stud_name;
     public $memid;
-    public $pattern_classes;
-    public $subjects;
 
 
-
-
-    public function rules()
+    public function updatedSearch()
     {
+        $this->resetPage();
+    }
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
+    public function setmode($mode)
+    {
+        if($mode=='add')
+        {
+            $this->resetinput();
+        }
+        $this->mode=$mode;
+    }
+
+    public function sort_column($column)
+    {
+        if( $this->sortColumn === $column)
+        {
+            $this->sortColumnBy=($this->sortColumnBy=="ASC")?"DESC":"ASC";
+            return;
+        }
+        
+        $this->sortColumn=$column;
+        $this->sortColumnBy=="ASC";
+    }
+
+    protected function rules()
+    {
         return [
             'patternclass_id' => ['required', 'integer', Rule::exists('pattern_classes', 'id')],
             'subject_id' => ['required', 'integer', Rule::exists('subjects', 'id')],
@@ -57,7 +93,7 @@ class AllAdmissionData extends Component
         ];
     }
 
-    public function messages()
+    protected function messages()
     {   
         return [
             'patternclass_id.required' => 'The Pattern Class field is required.',
@@ -75,45 +111,19 @@ class AllAdmissionData extends Component
         ];
     }
 
-    public function updated($propertyName)
+    protected function resetinput()
     {
-        $this->validateOnly($propertyName);
+        $this->reset([
+            'patternclass_id',
+            'subject_id',
+            'stud_name',
+            'memid',
+            'edit_id',
+        ]);
     }
 
-    public function resetinput()
-    {
-        $this->patternclass_id=null;
-        $this->subject_id=null;
-        $this->stud_name=null;
-        $this->memid=null;
-        $this->edit_id =null;
-    }
 
-    public function sort_column($column)
-    {
-        if( $this->sortColumn === $column)
-        {
-            $this->sortColumnBy=($this->sortColumnBy=="ASC")?"DESC":"ASC";
-            return;
-        }
-        $this->sortColumn=$column;
-        $this->sortColumnBy=="ASC";
-    }
-
-    public function updatedSearch()
-    {
-        $this->resetPage();
-    }
-
-    public function setmode($mode)
-    {
-        if($mode=='add')
-        {
-            $this->resetinput();
-        }
-        $this->mode=$mode;
-    }
-
+    #[Renderless]
     public function export()
     {
         $filename="Admission-Data-".now();
@@ -130,138 +140,236 @@ class AllAdmissionData extends Component
         }
     }
 
-    public function import()
-    {   
-        $this->validate([
-            'importfile' => ['required', 'file', 'mimes:xlsx,csv'],
-        ], [
-            'importfile.required' => 'Please Select A File To Import.',
-            'importfile.file' => 'The Selected File Is Not Valid.',
-            'importfile.mimes' => 'Only XLSX Or CSV Files Are Allowed.',
-        ]);
-
-        Excel::import(new AdmissionDataImport, $this->importfile);
-        $this->importfile=null;
-        $this->dispatch('alert',type:'success',message:'Admission Data Imported Successfully !!');
-    }
 
     public function add()
-    {
+    {   
+        if (!app(AdmissionDataPolicy::class)->create(auth()->user())) {
+            return abort(403);
+        }
+
         $this->validate();
-        $academic_year=Academicyear::where('active',1)->first();
-        if($academic_year)
+
+        $academicYear = Academicyear::where('active', 1)->first();
+        if (!$academicYear) {
+            $this->dispatch('alert',type:'error',message:'Academic Year Not Found !!');
+            return;
+        }
+
+        DB::beginTransaction();
+
+        try 
         {
-            $admission_data = new Admissiondata;
-            $admission_data->create([
-               'user_id'=> Auth::guard('user')->user()->id,
-               'college_id'=> Auth::guard('user')->user()->college_id,
-               'academicyear_id'=> $academic_year->id,
-               'patternclass_id'=> $this->patternclass_id,
-               'subject_id'=> $this->subject_id,
-               'stud_name'=> $this->stud_name,
-               'memid'=> $this->memid,
+            Admissiondata::create([
+                'user_id' => Auth::guard('user')->user()->id,
+                'college_id' => Auth::guard('user')->user()->college_id,
+                'academicyear_id' => $academicYear->id,
+                'patternclass_id' => $this->patternclass_id,
+                'subject_id' => $this->subject_id,
+                'stud_name' => $this->stud_name,
+                'memid' => $this->memid,
             ]);
+
+            DB::commit();
+
             $this->resetinput();
-            $this->setmode('all');
+
+            $this->reset('mode');
+
             $this->dispatch('alert',type:'success',message:'Admission Data Entry Created Successfully !!');
 
-        }else{
-            $this->dispatch('alert',type:'error',message:'Academic Year Not Found !!');
+        } catch (\Exception $e) 
+        {
+
+            DB::rollBack();
+
+            $this->dispatch('alert',type:'error',message:'Failed to create Admission Data Entry !!');
         }
-        
     }
 
 
     public function edit(Admissiondata $admission_data)
     {   
+        if (!app(AdmissionDataPolicy::class)->edit(auth()->user(),$admission_data)) {
+            return abort(403);
+        }
+
         $this->resetinput();
         $this->edit_id=$admission_data->id;
-
         $this->patternclass_id=$admission_data->patternclass_id;
         $this->subject_id=$admission_data->subject_id;
         $this->stud_name=$admission_data->stud_name;
         $this->memid=$admission_data->memid;
-        $this->setmode('edit');
+        $this->mode='edit';
     }
 
     public function update(Admissiondata $admission_data)
-    {
+    {   
+        if (!app(AdmissionDataPolicy::class)->update(auth()->user(),$admission_data)) {
+            return abort(403);
+        }
         $this->validate();
-        $academic_year=Academicyear::where('active',1)->first();
-        if($academic_year)
+
+        DB::beginTransaction();
+
+        try 
         {
-            $admission_data->fill([
-                'user_id'=> Auth::guard('user')->user()->id,
-                'college_id'=> Auth::guard('user')->user()->college_id,
-                'academicyear_id'=> $academic_year->id,
-                'patternclass_id'=> $this->patternclass_id,
-                'subject_id'=> $this->subject_id,
-                'stud_name'=> $this->stud_name,
-                'memid'=> $this->memid,
+
+            $academic_year = Academicyear::where('active', 1)->first();
+
+            if (!$academic_year) 
+            {
+                $this->dispatch('alert',type:'error',message:'Academic Year Not Found !!');
+            }
+
+            $admission_data->update([
+                'user_id' => Auth::guard('user')->user()->id,
+                'college_id' => Auth::guard('user')->user()->college_id,
+                'academicyear_id' => $academic_year->id,
+                'patternclass_id' => $this->patternclass_id,
+                'subject_id' => $this->subject_id,
+                'stud_name' => $this->stud_name,
+                'memid' => $this->memid,
             ]);
-            $admission_data->update();
+
+            DB::commit();
+
             $this->resetinput();
-            $this->setmode('all');
+
+            $this->mode='all';
+
             $this->dispatch('alert',type:'success',message:'Admission Data Entry Updated Successfully !!');
-        }else
+        } 
+        catch (\Exception $e) 
         {
-            $this->dispatch('alert',type:'error',message:'Academic Year Not Found !!');
+            DB::rollBack();
+
+            $this->dispatch('alert',type:'error',message:'Failed to Update Admission Data Entry !!');
         }
     }
 
-    public function deleteconfirmation($id)
-    {
-        $this->delete_id=$id;
-        $this->dispatch('delete-confirmation');
-    }
 
-
-    public function delete(Admissiondata  $admission_data)
+    public function delete(Admissiondata $admission_data)
     {   
-        $admission_data->delete();
-        $this->dispatch('alert',type:'success',message:'Admission Data Entry Soft Deleted Successfully !!');
+        if (!app(AdmissionDataPolicy::class)->delete(auth()->user(),$admission_data)) {
+            return abort(403);
+        }
+        
+        DB::beginTransaction();
+
+        try 
+        {
+            $admission_data->delete();
+
+            DB::commit();
+
+            $this->dispatch('alert',type:'success',message:'Admission Data Entry Soft Deleted Successfully !!');
+
+        } 
+        catch (\Exception $e) 
+        {
+
+            DB::rollBack();
+
+            $this->dispatch('alert',type:'error',message:'Failed To Soft Delete Admission Data Entry !!');
+        }
     }
     
-    public function restore($id)
+    public function restore($admission_data_id)
     {   
-        $admission_data = Admissiondata::withTrashed()->find($id);
-        $admission_data->restore();
-        $this->dispatch('alert',type:'success',message:'Admission Data Entry Restored Successfully !!');
+       
+
+        DB::beginTransaction();
+
+        try
+        {
+            $admission_data = Admissiondata::withTrashed()->findOrFail($admission_data_id);
+
+            if (!app(AdmissionDataPolicy::class)->restore(auth()->user(),$admission_data)) {
+                return abort(403);
+            }
+
+            $admission_data->restore();
+
+            DB::commit();
+
+            $this->dispatch('alert',type:'success',message:'Admission Data Entry Restored Successfully !!');
+
+        } 
+        catch (\Exception $e) 
+        {
+            DB::rollBack();
+
+            $this->dispatch('alert',type:'error',message:'Failed To Restore Admission Data Entry !!');
+        }
     }
 
+
+    public function deleteconfirmation($admission_data_id)
+    {   
+        $this->delete_id=$admission_data_id;
+
+        $this->dispatch('delete-confirmation');
+    }
+    
+    
     public function forcedelete()
     {   
+
+        DB::beginTransaction();
+
         try 
         {
             $admission_data = Admissiondata::withTrashed()->find($this->delete_id);
+
+            if (!app(AdmissionDataPolicy::class)->forcedelete(auth()->user(),$admission_data)) {
+                return abort(403);
+            }
+
             $admission_data->forceDelete();
+
+            DB::commit();
+
             $this->dispatch('alert',type:'success',message:'Admission Data Entry Deleted Successfully !!');
-            
-        } catch (\Illuminate\Database\QueryException $e) {
 
-            if ($e->errorInfo[1] == 1451) {
+        } 
+        catch (\Illuminate\Database\QueryException $e) 
+        {
+            DB::rollBack();
 
-                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            if ($e->errorInfo[1] == 1451) 
+            {
+                $this->dispatch('alert',type:'info',message:'This Record Is Associated With Another Data. You Cannot Delete It !!');
             } 
+            else
+            {   
+                $this->dispatch('alert',type:'error',message:'Failed To Delete Admission Data Entry !!');
+            }
         }
     }
 
     public function render()
     {   
-        $admissionDataQuery = Admissiondata::where('college_id',Auth::guard('user')->user()->college_id)->with(['college:college_name,id', 'academicyear:year_name,id', 'patternclass.courseclass.course:course_name,id', 'patternclass.pattern:pattern_name,id','patternclass.courseclass.classyear:classyear_name,id', 'subject:subject_name,id', 'user:name,id'])
-        ->when($this->search, function ($query, $search) {
-                $query->search($search);
-        })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy);
+        $admission_datas = collect([]);
 
-        if ($this->mode !== 'all' || $this->mode !== 'import') 
-        {
+        if ($this->mode == 'all' || $this->mode == 'import') 
+        {   
+
+            $admission_datas = Admissiondata::where('college_id', Auth::guard('user')->user()->college_id)
+            ->with(['academicyear:year_name,id', 'patternclass.courseclass.course:course_name,id', 'patternclass.pattern:pattern_name,id','patternclass.courseclass.classyear:classyear_name,id', 'subject:subject_name,id'])
+            ->when($this->search, function ($query, $search) { $query->search($search); })
+            ->withTrashed()
+            ->orderBy($this->sortColumn, $this->sortColumnBy)
+            ->paginate($this->perPage);
+
+        }elseif(  $this->mode !== 'import')
+        {   
             $this->pattern_classes = Patternclass::select('class_id', 'pattern_id', 'id')->with(['courseclass.course:course_name,id', 'pattern:pattern_name,id','courseclass.classyear:classyear_name,id'])->get();
-            $this->subjects = Subject::select('subject_name', 'id')->when($this->patternclass_id, function ($query) {
-                return $query->where('patternclass_id', $this->patternclass_id);
-            })->where('status', 1)->get();
+            
+            if($this->patternclass_id)
+            {
+                $this->subjects = Subject::where('status', 1)->where('patternclass_id', $this->patternclass_id)->pluck('subject_name', 'id');
+            }
         }
-
-        $admission_datas = $admissionDataQuery->paginate($this->perPage);
 
         return view('livewire.user.admission-data.all-admission-data', compact('admission_datas'))->extends('layouts.user')->section('user');
     }

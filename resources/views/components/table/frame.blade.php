@@ -36,7 +36,7 @@
                     @endif
                   </div>
                 @endif
-                <div class="overflow-hidden">
+                <div class="overflow-hidden ">
                   {{ $body }}
                 </div>
                 {{ $footer }}
