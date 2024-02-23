@@ -18,7 +18,7 @@ class ExamTimetable extends Model
     protected $dates = ['deleted_at'];
     protected $table='exam_timetables';
     protected $fillable=[
-        'subject_id',
+        'subjectbucket_id',
         'exam_patternclasses_id',
         'examdate',
         'timeslot_id',
