@@ -45,16 +45,16 @@
                                 <x-table.tr wire:key="{{ $exambuilding->id }}">
                                     <x-table.td> {{ $exambuilding->id }}</x-table.td>
                                     <x-table.td>
-                                        {{ $exambuilding->exam?->exam_name }}
+                                        {{ isset($exambuilding->exam->exam_name) ? $exambuilding->exam->exam_name : '-' }}
                                     </x-table.td>
                                     <x-table.td>
-                                        {{ $exambuilding->building?->building_name }}
+                                        {{ isset($exambuilding->building->building_name) ? $exambuilding->building->building_name : '-' }}
                                     </x-table.td>
                                     <x-table.td>
                                         @if($exambuilding->status==1)
-                                        <x-table.inactive wire:click="Status({{ $exambuilding->id }})" />
-                                        @else
                                         <x-table.active wire:click="Status({{ $exambuilding->id }})" />
+                                        @else
+                                        <x-table.inactive wire:click="Status({{ $exambuilding->id }})" />
                                         @endif
 
                                     </x-table.td>

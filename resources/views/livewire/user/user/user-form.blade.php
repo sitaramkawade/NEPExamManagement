@@ -45,8 +45,8 @@
                     <x-required />
                     <x-input-select id="college_id" wire:model="college_id" name="college_id" class="text-center w-full mt-1" :value="old('college_id',$college_id)" required autofocus autocomplete="college_id">
                         <x-select-option class="text-start" hidden> -- Select College -- </x-select-option>
-                        @foreach ($colleges as $c_id)
-                        <x-select-option wire:key="{{ $c_id->id }}" value="{{ $c_id->id }}" class="text-start">{{$c_id->college_name }}</x-select-option>
+                        @foreach ($colleges as $c_id=>$cname)
+                        <x-select-option wire:key="{{ $c_id}}" value="{{ $c_id }}" class="text-start">{{$cname }}</x-select-option>
                         @endforeach
                     </x-input-select>
                     <x-input-error :messages="$errors->get('college_id')" class="mt-2" />
@@ -57,8 +57,8 @@
                     <x-required />
                     <x-input-select id="department_id" wire:model="department_id" name="department_id" class="text-center w-full mt-1" :value="old('department_id',$department_id)" required autofocus autocomplete="department_id">
                         <x-select-option class="text-start" hidden> -- Select Department -- </x-select-option>
-                        @foreach ($departments as $d_id)
-                        <x-select-option wire:key="{{ $d_id->id }}" value="{{ $d_id->id }}" class="text-start">{{$d_id->dept_name }}</x-select-option>
+                        @foreach ($departments as $d_id=>$dname)
+                        <x-select-option wire:key="{{ $d_id }}" value="{{ $d_id}}" class="text-start">{{$dname }}</x-select-option>
                         @endforeach
                     </x-input-select>
                     <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
@@ -73,8 +73,8 @@
                     <x-required />
                     <x-input-select id="role_id" wire:model="role_id" name="role_id" class="text-center w-full mt-1" :value="old('role_id',$role_id)" required autofocus autocomplete="role_id">
                         <x-select-option class="text-start" hidden> -- Select Role -- </x-select-option>
-                        @foreach ($roles as $r_id)
-                        <x-select-option wire:key="{{ $r_id->id }}" value="{{ $r_id->id }}" class="text-start">{{$r_id->role_name }}</x-select-option>
+                        @foreach ($roles as $r_id=>$rname)
+                        <x-select-option wire:key="{{ $r_id }}" value="{{ $r_id }}" class="text-start">{{$rname }}</x-select-option>
                         @endforeach
                     </x-input-select>
                     <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
