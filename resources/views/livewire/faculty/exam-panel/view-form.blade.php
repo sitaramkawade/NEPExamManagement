@@ -8,33 +8,23 @@
     <div class="grid grid-cols-1 md:grid-cols-1">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="patternclass_id" :value="__('Pattern Class Name')" />
-            @if ($isDisabled)
-                <x-text-input id="patternclass_id" type="text" :value="$patternclass_id" disabled class="bg-gray-100 cursor-not-allowed @error('patternclass_id') is-invalid @enderror w-full mt-1" />
-            @endif
+            <x-input-show id="patternclass_id" :value="$patternclass_id" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_id" :value="__('Subject Name')" />
-            @if ($isDisabled)
-                <x-text-input id="subject_id" type="text" :value="$subject_id" disabled class="bg-gray-100 cursor-not-allowed @error('subject_id') is-invalid @enderror w-full mt-1" />
-            @endif
+            <x-input-show id="subject_id" :value="$patternclass_id" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="post_id" :value="__('Post Name')" />
-            @if ($isDisabled)
-                <x-text-input id="post_id" type="text" :value="$post_id" disabled class="bg-gray-100 cursor-not-allowed @error('post_id') is-invalid @enderror w-full mt-1" />
-            @endif
+            <x-input-show id="post_id" :value="$post_id" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="department_id" :value="__('Department Name')" />
-            @if ($isDisabled)
-                <x-text-input id="department_id" type="text" :value="$department_id" disabled class="bg-gray-100 cursor-not-allowed @error('department_id') is-invalid @enderror w-full mt-1" />
-            @endif
+            <x-input-show id="department_id" :value="$department_id" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="faculty_id" :value="__('Faculty Name')" />
-            @if ($isDisabled)
-                <x-text-input id="faculty_id" type="text" :value="$faculty_id" disabled class="bg-gray-100 cursor-not-allowed @error('faculty_id') is-invalid @enderror w-full mt-1" />
-            @endif
+            <x-input-show id="faculty_id" :value="$faculty_id" />
         </div>
     </div>
 </div>
