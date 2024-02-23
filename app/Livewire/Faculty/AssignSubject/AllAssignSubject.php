@@ -322,7 +322,7 @@ class AllAssignSubject extends Component
                 $this->subjects=[];
             }
         }else{
-            $assignsubjects = Subjectbucket::with(['department:id,dept_name', 'subjectcategory:id,subjectcategory', 'subject:id,subject_name', 'academicyear:id,year_name'])->whereNotIn('subjectcategory_id', [1])->when($this->search, function($query, $search){
+            $assignsubjects = Subjectbucket::with(['department:id,dept_name', 'subjectvertical:id,subject_vertical', 'subject:id,subject_name', 'academicyear:id,year_name'])->whereNotIn('subjectcategory_id', [1])->when($this->search, function($query, $search){
                 $query->search($search);
             })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         }

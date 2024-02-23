@@ -72,6 +72,7 @@ use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
 use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\Faculty\SubjectCategory\AllSubjectCategory;
+use App\Livewire\Faculty\SubjectVertical\AllSubjectVertical;
 use App\Http\Controllers\Student\Razorpay\RazorPayController;
 use App\Livewire\Student\StudentExamForm\FillStudentExamForm;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
@@ -324,6 +325,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Subject Categories
   Route::get('/subject-categories', AllSubjectCategory::class)->name('all-subjectcategories');
+
+  // All Subject Verticals
+  Route::get('/subject-verticals', AllSubjectVertical::class)->name('all-subjectverticals');
 
   // All Subject
   Route::get('/all-subject', AllSubject::class)->name('all-subjects');

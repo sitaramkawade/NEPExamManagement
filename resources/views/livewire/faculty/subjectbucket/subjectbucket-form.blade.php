@@ -16,16 +16,16 @@
             <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subjectcategory_id" :value="__('Subject Category')" />
-            <x-input-select id="subjectcategory_id" wire:model.live="subjectcategory_id" name="subjectcategory_id" class="text-center @error('subjectcategory_id') is-invalid @enderror w-full mt-1" :value="old('subjectcategory_id', $subjectcategory_id)" required autofocus autocomplete="subjectcategory_id">
+            <x-input-label for="subjectvertical_id" :value="__('Subject Vertical')" />
+            <x-input-select id="subjectvertical_id" wire:model.live="subjectvertical_id" name="subjectvertical_id" class="text-center @error('subjectvertical_id') is-invalid @enderror w-full mt-1" :value="old('subjectvertical_id', $subjectvertical_id)" required autofocus autocomplete="subjectvertical_id">
                 <x-select-option class="text-start" hidden> -- Select Subject Category -- </x-select-option>
-                @forelse ($subject_categories as $subjectcategoryid => $subjectcategoryname)
-                    <x-select-option wire:key="{{ $subjectcategoryid }}" value="{{ $subjectcategoryid }}" class="text-start"> {{ $subjectcategoryname }} </x-select-option>
+                @forelse ($subject_verticals as $subjectverticalid => $subjectverticalname)
+                    <x-select-option wire:key="{{ $subjectverticalid }}" value="{{ $subjectverticalid }}" class="text-start"> {{ $subjectverticalname }} </x-select-option>
                 @empty
                     <x-select-option class="text-start">Subject Categories Not Found</x-select-option>
                 @endforelse
             </x-input-select>
-            <x-input-error :messages="$errors->get('subjectcategory_id')" class="mt-2" />
+            <x-input-error :messages="$errors->get('subjectvertical_id')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="pattern_id" :value="__('Pattern')" />

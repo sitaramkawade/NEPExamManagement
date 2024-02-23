@@ -6,7 +6,6 @@ use App\Models\College;
 use App\Models\ExamPanel;
 use App\Models\Subjecttype;
 use App\Models\StudentExamform;
-use App\Models\Subjectvertical;
 use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -24,32 +23,32 @@ class Subject extends Model
     protected $table='subjects';
     protected $fillable=[
         'subject_sem',
-        'subjectvertical_id',
+        'subjectcategory_id',
         'subject_order',
         'subject_code',
         'subject_name_prefix',
         'subject_name',
-        'subjectcategory_id',
-        'subject_type',
+        'subjecttype_id',
+        'subjectexam_type',
         'subject_credit',
+        'is_panel',
+        'no_of_sets',
         'subject_maxmarks',
         'subject_maxmarks_int',
         'subject_maxmarks_intpract',
         'subject_maxmarks_ext',
-        'is_panel',
-        'no_of_sets',
         'subject_totalpassing',
         'subject_intpassing',
         'subject_intpractpassing',
         'subject_extpassing',
         'subject_optionalgroup',
+        'department_id',
+        'status',
         'patternclass_id',
         'classyear_id',// fy or sy or ty
         'user_id',// user who add
         'faculty_id',// faculty who add
-        'department_id',
         'college_id',
-        'status',
     ];
 
     public function college(): BelongsTo
@@ -59,12 +58,7 @@ class Subject extends Model
 
     public function subjectcategories(): BelongsTo
     {
-     return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id')->withTrashed(); // ok
-    }
-
-    public function subjectverticals(): BelongsTo
-    {
-     return $this->belongsTo(Subjectvertical::class,'subjectvertical_id','id')->withTrashed(); //ok
+     return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id')->withTrashed();
     }
 
     public function department(): BelongsTo
@@ -74,7 +68,7 @@ class Subject extends Model
 
     public function subjecttype(): BelongsTo
     {
-     return $this->belongsTo(Subjecttype::class,'subject_type','type_name')->withTrashed(); //ok
+     return $this->belongsTo(Subjecttype::class,'subjecttype_id','id')->withTrashed();
     }
 
     public function patternclass(): BelongsTo
@@ -119,14 +113,11 @@ class Subject extends Model
 
     public function scopeSearch(Builder $query, string $search)
     {
-        return $query->with('subjectverticals', 'subjectcategories', 'classyear', 'department', 'college')
+        return $query->with('subjectcategories', 'subjecttype', 'classyear', 'department', 'college')
             ->where('subject_name', 'like', "%{$search}%")
             ->orWhere('subject_credit', 'like', "%{$search}%")
             ->orWhereHas('subjectcategories', function ($query) use ($search) {
                 $query->where('subjectcategory', 'like', "%{$search}%");
-            })
-            ->orWhereHas('subjectverticals', function ($query) use ($search) {
-                $query->where('subject_vertical', 'like', "%{$search}%");
             })
             ->orWhereHas('subjecttype', function ($query) use ($search) {
                 $query->where('type_name', 'like', "%{$search}%");

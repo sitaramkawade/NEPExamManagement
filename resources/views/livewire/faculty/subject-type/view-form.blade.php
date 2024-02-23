@@ -10,9 +10,9 @@
             @endif
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="type_shortname" :value="__('Subject Type Shortname')" />
+            <x-input-label for="description" :value="__('Subject Type Shortname')" />
             @if ($isDisabled)
-                <x-text-input id="type_shortname" type="text" :value="$type_shortname" disabled class="bg-gray-100 cursor-not-allowed @error('type_shortname') is-invalid @enderror w-full mt-1" />
+                <x-text-input id="description" type="text" :value="$description" disabled class="bg-gray-100 cursor-not-allowed @error('description') is-invalid @enderror w-full mt-1" />
             @endif
         </div>
     </div>

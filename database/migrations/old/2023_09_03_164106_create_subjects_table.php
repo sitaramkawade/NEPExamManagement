@@ -14,20 +14,15 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->integer('subject_sem')->default(0);   //1
-
-            $table->bigInteger('subjectvertical_id')->unsigned()->nullable();  // SEC AEC VEC CC M OE DSC DSE VSC IKS OJT FP CES RP
-            $table->foreign('subjectvertical_id')->references('id')->on('subjectverticals');
-
+            $table->bigInteger('subjectcategory_id')->unsigned()->nullable();  //Major Minor for which department // instead of this we can add theory practical
+            $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories');
             $table->integer('subject_order')->default(NULL); //for maintaning the order of subject
             $table->string('subject_code',50)->default(NULL); //3
             $table->string('subject_name_prefix',50)->nullable()->default(NULL); //DSC-1
             $table->string('subject_name',100)->default(NULL); //2
-
-            $table->bigInteger('subjectcategory_id')->unsigned()->nullable(); // Theory Practical
-            $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories');
-
-            $table->string('subject_type',50)->default(NULL); //6  IE  - InternalExternal  IEP- Internal External Practical  IP-Internal Practical
-
+            $table->bigInteger('subjecttype_id')->nullable()->unsigned();  //Theory Practical, Project
+            $table->foreign('subjecttype_id')->references('id')->on('subjecttypes');
+            $table->string('subjectexam_type',50)->default(NULL); //6  IE  - InternalExternal  IEP- Internal External Practical  IP-Internal Practical
             $table->float('subject_credit',4,1)->default(0); //7
             $table->integer('subject_maxmarks')->default(0);  //8
             $table->integer('subject_maxmarks_int')->default(0);//10

@@ -2,66 +2,71 @@
 
 namespace Database\Seeders;
 
-use App\Models\Subjectcategory;
-use Illuminate\Database\Seeder;
+use App\Models\Subjecttype;
+use Faker\Factory as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
-class SubjectcategorySeeder extends Seeder
+class SubjecttypeSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        Subjectcategory::create( [
+        Subjecttype::create( [
             'id'=>1,
-            'subjectcategory'=>'Theory',
-            'subjectcategory_shortname'=>'TH',
+            'type_name'=>'Theory',
+            'type_shortname'=>'TH',
             'active'=>1,
             'created_at'=>'2023-09-05 21:23:00',
             'updated_at'=>'2023-09-05 21:23:00'
         ] );
-
-        Subjectcategory::create( [
+        
+        Subjecttype::create( [
             'id'=>2,
-            'subjectcategory'=>'Practical',
-            'subjectcategory_shortname'=>'PR',
+            'type_name'=>'Practical',
+            'type_shortname'=>'PR',
             'active'=>1,
             'created_at'=>'2023-09-05 21:23:00',
             'updated_at'=>'2023-09-05 21:23:00'
         ] );
 
-        Subjectcategory::create( [
+        Subjecttype::create( [
             'id'=>3,
-            'subjectcategory'=>'Project',
-            'subjectcategory_shortname'=>'PRJ',
+            'type_name'=>'Project',
+            'type_shortname'=>'PRJ',
             'active'=>1,
             'created_at'=>'2023-09-05 21:23:00',
             'updated_at'=>'2023-09-05 21:23:00'
         ] );
 
-        Subjectcategory::create( [
+        Subjecttype::create( [
             'id'=>4,
-            'subjectcategory'=>'Skill',
-            'subjectcategory_shortname'=>'SKILL',
+            'type_name'=>'Skill',
+            'type_shortname'=>'SKILL',
             'active'=>1,
             'created_at'=>'2023-09-05 21:23:00',
             'updated_at'=>'2023-09-05 21:23:00'
         ] );
 
-        Subjectcategory::create( [
+        Subjecttype::create( [
             'id'=>5,
-            'subjectcategory'=>'Grade',
-            'subjectcategory_shortname'=>'GRD',
+            'type_name'=>'Grade',
+            'type_shortname'=>'GRD',
             'active'=>1,
             'created_at'=>'2023-09-05 21:23:00',
             'updated_at'=>'2023-09-05 21:23:00'
         ] );
 
-        Subjectcategory::create( [
+        Subjecttype::create( [
             'id'=>6,
-            'subjectcategory'=>'Theory/Practical',
-            'subjectcategory_shortname'=>'TH/PR',
+            'type_name'=>'Theory/Practical',
+            'type_shortname'=>'TH/PR',
             'active'=>1,
             'created_at'=>'2023-09-05 21:23:00',
             'updated_at'=>'2023-09-05 21:23:00'
         ] );
+        
     }
 }

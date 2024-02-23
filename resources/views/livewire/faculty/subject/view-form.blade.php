@@ -1,6 +1,12 @@
 <x-card-collapsible heading="Subject Details">
     <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="subjectcategory_id" :value="__('Subject Category')" />
+            @if ($isDisabled)
+                <x-text-input id="subjectcategory_id" type="text" :value="$subjectcategory_id" disabled class="bg-gray-100 cursor-not-allowed @error('subjectcategory_id') is-invalid @enderror w-full mt-1" />
+            @endif
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="course_id" :value="__('Course')" />
             @if ($isDisabled)
                 <x-text-input id="course_id" type="text" :value="$course_id" disabled class="bg-gray-100 cursor-not-allowed @error('course_id') is-invalid @enderror w-full mt-1" />
@@ -13,21 +19,15 @@
             @endif
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subjectcategory_id" :value="__('Subject Category')" />
+            <x-input-label for="subject_sem" :value="__('Subject Semester')" />
             @if ($isDisabled)
-                <x-text-input id="subjectcategory_id" type="text" :value="$subjectcategory_id" disabled class="bg-gray-100 cursor-not-allowed @error('subjectcategory_id') is-invalid @enderror w-full mt-1" />
+                <x-text-input id="subject_sem" type="text" :value="$subject_sem" disabled class="bg-gray-100 cursor-not-allowed @error('subject_sem') is-invalid @enderror w-full mt-1" />
             @endif
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_name_prefix" :value="__('Subject Name Prefix')" />
             @if ($isDisabled)
                 <x-text-input id="subject_name_prefix" type="text" :value="$subject_name_prefix" disabled class="bg-gray-100 cursor-not-allowed @error('subject_name_prefix') is-invalid @enderror w-full mt-1" />
-            @endif
-        </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_sem" :value="__('Subject Semester')" />
-            @if ($isDisabled)
-                <x-text-input id="subject_sem" type="text" :value="$subject_sem" disabled class="bg-gray-100 cursor-not-allowed @error('subject_sem') is-invalid @enderror w-full mt-1" />
             @endif
         </div>
     </div>
@@ -45,15 +45,15 @@
             @endif
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subjecttype_id " :value="__('Subject Type')" />
+            <x-input-label for="subjectcategory_id " :value="__('Subject Category')" />
             @if ($isDisabled)
-                <x-text-input id="subjecttype_id" type="text" :value="$subjecttype_id" disabled class="bg-gray-100 cursor-not-allowed @error('subjecttype_id') is-invalid @enderror w-full mt-1" />
+                <x-text-input id="subjectcategory_id" type="text" :value="$subjectcategory_id" disabled class="bg-gray-100 cursor-not-allowed @error('subjectcategory_id') is-invalid @enderror w-full mt-1" />
             @endif
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subjectexam_type " :value="__('Subject Exam Type')" />
+            <x-input-label for="subject_type " :value="__('Subject Type')" />
             @if ($isDisabled)
-                <x-text-input id="subjectexam_type" type="text" :value="$subjectexam_type" disabled class="bg-gray-100 cursor-not-allowed @error('subjectexam_type') is-invalid @enderror w-full mt-1" />
+                <x-text-input id="subject_type" type="text" :value="$subject_type" disabled class="bg-gray-100 cursor-not-allowed @error('subject_type') is-invalid @enderror w-full mt-1" />
             @endif
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">

@@ -21,7 +21,6 @@ class AllSubjectCategory extends Component
 
     public $subjectcategory;
     public $subjectcategory_shortname;
-    public $subjectbucket_type;
     public $is_active;
 
     public $perPage=10;
@@ -37,7 +36,6 @@ class AllSubjectCategory extends Component
         return [
             'subjectcategory' => ['required', 'string', 'max:255',],
             'subjectcategory_shortname' => ['required', 'string', 'max:10',],
-            'subjectbucket_type' => ['required', 'string', 'max:50',],
         ];
     }
 
@@ -56,18 +54,13 @@ class AllSubjectCategory extends Component
             'subjectcategory_shortname.required' => 'The short name for the subject category is required.',
             'subjectcategory_shortname.string' => 'The short name must be a string.',
             'subjectcategory_shortname.max' => 'The short name must not exceed 10 characters.',
-
-            'subjectbucket_type.required' => 'The subject bucket type is required.',
-            'subjectbucket_type.string' => 'The subject bucket type must be a string.',
-            'subjectbucket_type.max' => 'The subject bucket type must not exceed 50 characters.',
         ];
     }
 
     public function resetinput()
     {
-         $this->subjectcategory = null;
-         $this->subjectcategory_shortname = null;
-         $this->subjectbucket_type = null;
+        $this->subjectcategory = null;
+        $this->subjectcategory_shortname = null;
     }
 
     public function deleteconfirmation($id)
@@ -108,7 +101,6 @@ class AllSubjectCategory extends Component
             $this->subjectcategory_id = $subjectcategory->id;
             $this->subjectcategory= $subjectcategory->subjectcategory;
             $this->subjectcategory_shortname= $subjectcategory->subjectcategory_shortname;
-            $this->subjectbucket_type= $subjectcategory->subjectbucket_type;
         }else{
             $this->dispatch('alert',type:'error',message:'Subject Category Details Not Found');
         }
@@ -204,13 +196,13 @@ class AllSubjectCategory extends Component
 
     public function status(Subjectcategory $subjectcategory)
     {
-        if( $subjectcategory->is_active==0)
+        if( $subjectcategory->active==0)
         {
-            $subjectcategory->is_active=1;
+            $subjectcategory->active=1;
         }
-        else if( $subjectcategory->is_active==1)
+        else if( $subjectcategory->active==1)
         {
-            $subjectcategory->is_active=0;
+            $subjectcategory->active=0;
         }
         $subjectcategory->update();
 
@@ -222,7 +214,6 @@ class AllSubjectCategory extends Component
         if ($subjectcategory){
             $this->subjectcategory= $subjectcategory->subjectcategory;
             $this->subjectcategory_shortname= $subjectcategory->subjectcategory_shortname;
-            $this->subjectbucket_type= isset($subjectcategory->buckettype->buckettype_name) ? $subjectcategory->buckettype->buckettype_name : '';
         }else{
             $this->dispatch('alert',type:'error',message:'Subject Category Details Not Found');
         }

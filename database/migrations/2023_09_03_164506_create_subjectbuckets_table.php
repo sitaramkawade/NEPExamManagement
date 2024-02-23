@@ -23,8 +23,11 @@ return new class extends Migration
 
             $table->char('subject_division',1)->default('A'); //A -All B ,C,D
 
-            $table->bigInteger('subjectcategory_id')->unsigned();  //Major Minor
-            $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories');
+            // $table->bigInteger('subjectcategory_id')->unsigned();  //Major Minor
+            // $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories');
+
+            $table->bigInteger('subjectvertical_id')->unsigned();
+            $table->foreign('subjectvertical_id')->references('id')->on('subjectverticals');
 
             // $table->integer('subject_categoryno')->default(0);  //OE1
 

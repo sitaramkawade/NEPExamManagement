@@ -23,13 +23,13 @@ class SubjectExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
 
     public function collection()
     {
-        return Subject::with(['subjectcategories','subjecttypes','patternclass', 'classyear', 'department', 'college', ])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
-        ->get(['id','subject_sem', 'subjectcategory_id', 'subject_order', 'subject_code', 'subject_name_prefix', 'subject_name', 'subjecttype_id', 'subjectexam_type', 'subject_credit', 'subject_maxmarks', 'subject_maxmarks_int', 'subject_maxmarks_intpract', 'subject_maxmarks_ext', 'subject_totalpassing', 'subject_intpassing', 'subject_intpractpassing', 'subject_extpassing', 'patternclass_id', 'classyear_id', 'faculty_id', 'department_id', 'college_id', 'status',]);
+        return Subject::with(['subjectverticals','subjectcategories','subjecttype','patternclass', 'classyear', 'department', 'college', ])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
+        ->get(['id','subject_sem', 'subjectvertical_id', 'subject_order', 'subject_code', 'subject_name_prefix', 'subject_name', 'subject_type','subjectcategory_id', 'subject_credit', 'subject_maxmarks', 'subject_maxmarks_int', 'subject_maxmarks_intpract', 'subject_maxmarks_ext', 'subject_totalpassing', 'subject_intpassing', 'subject_intpractpassing', 'subject_extpassing', 'patternclass_id', 'classyear_id', 'faculty_id', 'department_id', 'college_id', 'status',]);
     }
 
     public function headings(): array
     {
-        return ['ID', 'Subject Semester', 'Subject Category', 'Subject Order', 'Subject Code', 'Subject Name Prefix', 'Subject Name', 'Subject Type Name', 'Subject Exam Type', 'Subject Credit', 'Subject Maximum Marks', 'Subject Maximum Internal Marks', 'Subject Maximum Internal Practical Marks', 'Subject Maximum External Marks', 'Subject Total Passing Marks', 'Subject Internal Passing', 'Subject Internal Passing Marks', 'Subject External Passing Marks', 'Pattern', 'Class Year', 'Course Name', 'Faculty Name', 'Department', 'College Name','Status'];
+        return ['ID', 'Subject Semester', 'Subject Vertical', 'Subject Order', 'Subject Code', 'Subject Name Prefix', 'Subject Name', 'Subject Category', 'Subject Type', 'Subject Credit', 'Subject Maximum Marks', 'Subject Maximum Internal Marks', 'Subject Maximum Internal Practical Marks', 'Subject Maximum External Marks', 'Subject Total Passing Marks', 'Subject Internal Passing', 'Subject Internal Passing Marks', 'Subject External Passing Marks', 'Pattern', 'Class Year', 'Course Name', 'Faculty Name', 'Department', 'College Name','Status'];
     }
 
     public function map($row): array
@@ -37,13 +37,13 @@ class SubjectExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
         return [
             $row->id,
             $row->subject_sem,
-            (isset($row->subjectcategories->subjectcategory) ?  $row->subjectcategories->subjectcategory : ''),
+            (isset($row->subjectverticals->subject_vertical) ?  $row->subjectverticals->subject_vertical : ''),
             $row->subject_order,
             $row->subject_code,
             $row->subject_name_prefix,
             $row->subject_name,
+            (isset($row->subjectcategories->subjectcategory) ?  $row->subjectcategories->subjectcategory : ''),
             (isset($row->subjecttypes->type_name) ?  $row->subjecttypes->type_name : ''),
-            $row->subjectexam_type,
             $row->subject_credit,
             $row->subject_maxmarks,
             $row->subject_maxmarks_int,

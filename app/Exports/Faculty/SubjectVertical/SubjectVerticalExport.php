@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Exports\Faculty\SubjectCategory;
+namespace App\Exports\Faculty\SubjectVertical;
 
-use App\Models\Subjectcategory;
+use App\Models\Subjectvertical;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class SubjectCategoryExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
+class SubjectVerticalExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     protected $search;
     protected $sortColumn;
@@ -24,20 +24,21 @@ class SubjectCategoryExport implements FromCollection, WithHeadings, ShouldAutoS
 
     public function collection()
     {
-        return Subjectcategory::search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','subjectcategory', 'subjectcategory_shortname', 'active']);
+        return Subjectvertical::search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','subject_vertical', 'subjectvertical_shortname', 'subjectbuckettype_id', 'is_active']);
     }
 
     public function headings(): array
     {
-        return ['ID', 'Subject Category', 'Subject Category Shortname', 'Status'];
+        return ['ID', 'Subject Vertical', 'Subject Vertical Shortname', 'Subject Bucket Type', 'Status'];
     }
 
     public function map($row): array
     {
         return [
             $row->id,
-            $row->subjectcategory,
-            $row->subjectcategory_shortname,
+            $row->subject_vertical,
+            $row->subjectvertical_shortname,
+            (isset($row->buckettype->buckettype_name) ? $row->buckettype->buckettype_name : ''),
             $row->is_active == 1 ? 'Active' : 'Inactive',
         ];
     }

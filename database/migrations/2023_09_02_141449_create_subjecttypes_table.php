@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('subjecttypes', function (Blueprint $table) {
             $table->id();
-            $table->string('type_name',30);//Theory Practical
-            $table->string('type_shortname',10);//Th Pr Prj Ojt
-            $table->tinyInteger('active')->default('0');// 0 :not active 1:active
-
+            $table->string('type_name',30); // IE IP IG I P G IEP IEG E
+            $table->string('description',100); // INTERNAL & EXTERNAL(IE) INTERNAL & PRACTICAL(IP) INTERNAL & GRADE(IG)
+            $table->tinyInteger('is_active')->default('0');// 0 :not active 1:active
             $table->timestamps();
             $table->softDeletes();
         });

@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subjectcategories', function (Blueprint $table) {
+        Schema::create('subjecttypes', function (Blueprint $table) {
             $table->id();
-            $table->string('subjectcategory',30); //Theory Practical
-            $table->string('subjectcategory_shortname',10); //Th Pr Prj Ojt
-            $table->tinyInteger('active')->default('0'); // 0 :not active 1:active
+            $table->string('type_name',30);//Theory Practical
+            $table->string('type_shortname',10);//Th Pr Prj Ojt
+            $table->tinyInteger('active')->default('0');// 0 :not active 1:active
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subjectcategories');
+        Schema::dropIfExists('subjecttypes');
     }
 };
