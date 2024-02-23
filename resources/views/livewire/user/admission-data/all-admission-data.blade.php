@@ -1,4 +1,8 @@
 <div>
+  <x-breadcrumb.breadcrumb>
+    <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
+    <x-breadcrumb.link name="Admission Data's"/>
+  </x-breadcrumb.breadcrumb>
   @if ($mode == 'add')
     <div>
       <x-card-header heading="Add Admission Data Entry">
@@ -17,10 +21,6 @@
     </x-form>
   @elseif($mode == 'all' || $mode == 'import')
     <div>
-      <x-breadcrumb.breadcrumb>
-        <x-breadcrumb.link route="user.dashboard" name="Dashboard"/>
-        <x-breadcrumb.link name="Admission Data's"/>
-      </x-breadcrumb.breadcrumb>
       <x-card-header heading=" All Admission Data's">
         <x-add-btn wire:click="setmode('add')" />
       </x-card-header>
@@ -38,8 +38,6 @@
                 <x-table.th wire:click="sort_column('stud_name')" name="stud_name" :sort="$sortColumn" :sort_by="$sortColumnBy">Student</x-table.th>
                 <x-table.th wire:click="sort_column('subject_id')" name="subject_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject </x-table.th>
                 <x-table.th wire:click="sort_column('patternclass_id')" name="patternclass_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Pattern Class</x-table.th>
-                <x-table.th wire:click="sort_column('college_id')" name="college_id" :sort="$sortColumn" :sort_by="$sortColumnBy">College</x-table.th>
-                <x-table.th wire:click="sort_column('user_id')" name="user_id" :sort="$sortColumn" :sort_by="$sortColumnBy">User</x-table.th>
                 <x-table.th> Action </x-table.th>
               </x-table.tr>
             </x-table.thead>
@@ -51,9 +49,7 @@
                   <x-table.td>{{ $admission_data->memid }} </x-table.td>
                   <x-table.td><x-table.text-scroll> {{ $admission_data->stud_name }}</x-table.text-scroll> </x-table.td>
                   <x-table.td><x-table.text-scroll> {{  isset($admission_data->subject->subject_name)?$admission_data->subject->subject_name:'';}}</x-table.text-scroll> </x-table.td>
-                  <x-table.td><x-table.text-scroll class="w-70">{{ isset($admission_data->patternclass->pattern->pattern_name)?$admission_data->patternclass->pattern->pattern_name:'-'; }}  {{ isset($admission_data->patternclass->courseclass->classyear->classyear_name)?$admission_data->patternclass->courseclass->classyear->classyear_name:'-'; }} {{ isset($admission_data->patternclass->courseclass->course->course_name)?$admission_data->patternclass->courseclass->course->course_name:''; }} </x-table.text-scroll></x-table.td>
-                  <x-table.td> <x-table.text-scroll>{{ isset($admission_data->college->college_name)? $admission_data->college->college_name:''; }}  </x-table.text-scroll> </x-table.td>
-                  <x-table.td><x-table.text-scroll> {{ isset($admission_data->user->name)?$admission_data->user->name:''; }} </x-table.text-scroll></x-table.td>
+                  <x-table.td><x-table.text-scroll class="w-70">  {{ isset($admission_data->patternclass->courseclass->classyear->classyear_name)?$admission_data->patternclass->courseclass->classyear->classyear_name:'-'; }} {{ isset($admission_data->patternclass->courseclass->course->course_name)?$admission_data->patternclass->courseclass->course->course_name:''; }} {{ isset($admission_data->patternclass->pattern->pattern_name)?$admission_data->patternclass->pattern->pattern_name:'-'; }}</x-table.text-scroll></x-table.td>
                   <x-table.td>
                     @if ( $admission_data->deleted_at)
                         <x-table.delete  wire:click="deleteconfirmation({{ $admission_data->id }})" />

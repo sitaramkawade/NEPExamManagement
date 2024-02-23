@@ -1,5 +1,5 @@
 @props(["disabled" => false])
-<div class="float-right mx-1 inline-flex h-10 z-0">
+<div class="float-right mx-0.5 inline-flex h-10 z-0">
   <div class="relative inline-flex h-10 flex-wrap items-stretch z-0">
     <button wire:loading class="mx-2 h-10 w-10 rounded-md bg-primary-darker py-2 text-white">
       <span wire:loading>
@@ -11,7 +11,7 @@
         </span>
       </span>
     </button>
-    <select wire:model="ext" class="z-0 relative m-0 block flex-auto h-10 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:border-primary-darker dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600">
+    <select wire:model="ext" id="ext" name="ext" class="z-0 relative m-0 block flex-auto h-10 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:border-primary-darker dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600">
       <option hidden>Select</option>
       <option value="xlsx">XLSX</option>
       <option value="csv">CSV</option>

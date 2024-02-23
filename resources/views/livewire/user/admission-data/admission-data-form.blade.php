@@ -1,6 +1,6 @@
 <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
   <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
-    Admission Data Entry
+    Admission Data Entry <x-spinner/>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2">
     <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -8,7 +8,7 @@
       <x-input-select id="patternclass_id" wire:model.live="patternclass_id" name="patternclass_id" class="text-center w-full mt-1" :value="old('patternclass_id', $patternclass_id)" required autocomplete="patternclass_id">
         <x-select-option class="text-start" hidden> -- Select Pattern Classes -- </x-select-option>
         @forelse ($pattern_classes as $pattern_calss)
-          <x-select-option wire:key="{{ $pattern_calss->id }}" value="{{ $pattern_calss->id }}" class="text-start"> {{ $pattern_calss->pattern->pattern_name ?? '-' }} {{ $pattern_calss->courseclass->classyear->classyear_name ?? '-' }} {{ $pattern_calss->courseclass->course->course_name ?? '-' }} </x-select-option>
+          <x-select-option wire:key="{{ $pattern_calss->id }}" value="{{ $pattern_calss->id }}" class="text-start"> {{ $pattern_calss->courseclass->classyear->classyear_name ?? '-' }} {{ $pattern_calss->courseclass->course->course_name ?? '-' }} {{ $pattern_calss->pattern->pattern_name ?? '-' }} </x-select-option>
         @empty
           <x-select-option class="text-start">Pattern Classes Not Found</x-select-option>
         @endforelse
@@ -19,8 +19,8 @@
       <x-input-label for="subject_id" :value="__('Select Subject')" />
       <x-input-select id="subject_id" wire:model="subject_id" name="subject_id" class="text-center w-full mt-1" :value="old('subject_id', $subject_id)" required autocomplete="subject_id">
         <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>
-        @forelse ($subjects as $subject)
-          <x-select-option wire:key="{{ $subject->id }}" value="{{ $subject->id }}" class="text-start"> {{ $subject->subject_name }} </x-select-option>
+        @forelse ($subjects as $subjectid => $subjectname)
+          <x-select-option wire:key="{{ $subjectid }}" value="{{ $subjectid }}" class="text-start"> {{ $subjectname}} </x-select-option>
         @empty
           <x-select-option class="text-start">Subjects Not Found</x-select-option>
         @endforelse
