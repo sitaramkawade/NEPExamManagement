@@ -8,8 +8,10 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class AdmissionDataImport implements ToModel ,WithHeadingRow
+class AdmissionDataImport implements ToModel ,WithHeadingRow , WithChunkReading, WithBatchInserts
 {
     protected $filters;
 
@@ -40,16 +42,26 @@ class AdmissionDataImport implements ToModel ,WithHeadingRow
             return null;
         }
 
-
         return new Admissiondata([
            'memid'     => $row['memid'],
            'stud_name'    => $row['stud_name'],
+           'subject_id'    => $row['subject_id'],
            'user_id'    => $row['user_id'],
            'patternclass_id'    => $row['patternclass_id'],
-           'subject_id'    => $row['subject_id'],
            'academicyear_id'    => $row['academicyear_id'],
            'college_id'    =>$row['college_id'],
         ]);
+    }
+
+    public function chunkSize(): int
+    {
+        return 50;
+    }
+
+    public function batchSize(): int
+    {
+
+        return 50;
     }
 
     public function headingRow(): int
