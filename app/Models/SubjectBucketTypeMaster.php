@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Subjectcategory;
+use App\Models\Subjectvertical;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -14,8 +14,12 @@ class SubjectBucketTypeMaster extends Model
     'buckettype_name',
     ];
 
-    public function subjectcategories()
+    // public function subjectcategories()
+    // {
+    //     return $this->hasMany(Subjectcategory::class, 'subjectbuckettype_id','id');
+    // }
+    public function subjectverticals()
     {
-        return $this->hasMany(Subjectcategory::class, 'subjectbuckettype_id','id');
+        return $this->hasMany(Subjectvertical::class, 'subjectvertical_id','id');
     }
 }

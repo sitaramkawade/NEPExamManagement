@@ -16,25 +16,25 @@
             <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subjectcategory_id" :value="__('Subject Category')" />
-            <x-input-select id="subjectcategory_id" wire:model.live="subjectcategory_id" name="subjectcategory_id" class="text-center @error('subjectcategory_id') is-invalid @enderror w-full mt-1" :value="old('subjectcategory_id', $subjectcategory_id)" required autofocus autocomplete="subjectcategory_id">
+            <x-input-label for="subjectvertical_id" :value="__('Subject Vertical')" />
+            <x-input-select id="subjectvertical_id" wire:model.live="subjectvertical_id" name="subjectvertical_id" class="text-center @error('subjectvertical_id') is-invalid @enderror w-full mt-1" :value="old('subjectvertical_id', $subjectvertical_id)" required autofocus autocomplete="subjectvertical_id">
                 <x-select-option class="text-start" hidden> -- Select Subject Category -- </x-select-option>
-                @forelse ($subject_categories as $subjectcategoryid => $subjectcategoryname)
-                    <x-select-option wire:key="{{ $subjectcategoryid }}" value="{{ $subjectcategoryid }}" class="text-start"> {{ $subjectcategoryname }} </x-select-option>
+                @forelse ($subject_verticals as $subjectverticalid => $subjectverticalname)
+                    <x-select-option wire:key="{{ $subjectverticalid }}" value="{{ $subjectverticalid }}" class="text-start"> {{ $subjectverticalname }} </x-select-option>
                 @empty
                     <x-select-option class="text-start">Subject Categories Not Found</x-select-option>
                 @endforelse
             </x-input-select>
-            <x-input-error :messages="$errors->get('subjectcategory_id')" class="mt-2" />
+            <x-input-error :messages="$errors->get('subjectvertical_id')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="pattern_id" :value="__('Pattern')" />
-            <x-input-select id="pattern_id" wire:model.live="pattern_id" name="pattern_id" class="text-center w-full mt-1" :value="old('pattern_id', $pattern_id)" required autocomplete="pattern_id">
+            <x-input-select id="pattern_id" wire:model.live="pattern_id" name="pattern_id" class="text-center @error('pattern_id') is-invalid @enderror w-full mt-1" :value="old('pattern_id', $pattern_id)" required autofocus autocomplete="pattern_id">
                 <x-select-option class="text-start" hidden> -- Select Pattern -- </x-select-option>
-                @forelse ($patterns as $patternid => $pattername)
-                    <x-select-option wire:key="{{ $patternid }}" value="{{ $patternid }}" class="text-start"> {{ $pattername }} </x-select-option>
+                @forelse ($patterns as $patternid => $patternname)
+                    <x-select-option wire:key="{{ $patternid }}" value="{{ $patternid }}" class="text-start"> {{ $patternname }} </x-select-option>
                 @empty
-                    <x-select-option class="text-start">Patterns Not Found</x-select-option>
+                    <x-select-option class="text-start">Pattern Not Found</x-select-option>
                 @endforelse
             </x-input-select>
             <x-input-error :messages="$errors->get('pattern_id')" class="mt-2" />
@@ -52,16 +52,16 @@
             <x-input-error :messages="$errors->get('course_id')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="course_class_id" :value="__('Class')" _class />
-            <x-input-select id="course_class_id" wire:model.live="course_class_id" name="course_class_id" class="text-center w-full mt-1" :value="old('course_class_id', $course_class_id)" required autocomplete="course_class_id">
-                <x-select-option class="text-start" hidden> -- Select Class -- </x-select-option>
-                @forelse ($course_classes as $course_class)
-                    <x-select-option wire:key="{{ $course_class->id }}" value="{{ $course_class->id }}" class="text-start"> {{ $course_class->classyear->classyear_name }} {{ $course_class->course->course_name ?? '' }} </x-select-option>
+            <x-input-label for="patternclass_id" :value="__('Select Pattern Class')" />
+            <x-input-select id="patternclass_id" wire:model.live="patternclass_id" name="patternclass_id" class="text-center w-full mt-1" :value="old('patternclass_id', $patternclass_id)" required autocomplete="patternclass_id">
+                <x-select-option class="text-start" hidden> -- Select Pattern Classes -- </x-select-option>
+                @forelse ($pattern_classes as $pattern_class)
+                    <x-select-option wire:key="{{ $pattern_class->id }}" value="{{ $pattern_class->id }}" class="text-start"> {{ $pattern_class->courseclass->classyear->classyear_name ?? '-' }} {{ $pattern_class->courseclass->course->course_name ?? '-' }} {{ $pattern_class->pattern->pattern_name ?? '-' }} </x-select-option>
                 @empty
-                    <x-select-option class="text-start"> Classes Not Found</x-select-option>
+                    <x-select-option class="text-start">Pattern Classes Not Found</x-select-option>
                 @endforelse
             </x-input-select>
-            <x-input-error :messages="$errors->get('course_class_id')" class="mt-2" />
+            <x-input-error :messages="$errors->get('patternclass_id')" class="mt-1" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_id" :value="__('Subject')" />
@@ -75,32 +75,6 @@
             </x-input-select>
             <x-input-error :messages="$errors->get('subject_id')" class="mt-2" />
         </div>
-        {{-- <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="academicyear_id" :value="__('Academic Year')" />
-            <x-input-select id="academicyear_id" wire:model="academicyear_id" name="academicyear_id" class="text-center @error('academicyear_id') is-invalid @enderror w-full mt-1" :value="old('academicyear_id', $academicyear_id)" required autofocus autocomplete="academicyear_id">
-                <x-select-option class="text-start" hidden> -- Select Academic Year -- </x-select-option>
-                @foreach ($academic_years as $academic_year)
-                    <x-select-option wire:key="{{ $academic_year->id }}" value="{{ $academic_year->id }}" class="text-start">{{ $academic_year->year_name }}</x-select-option>
-                @endforeach
-            </x-input-select>
-            <x-input-error :messages="$errors->get('academicyear_id')" class="mt-2" />
-        </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_categoryno" :value="__('Subject Category Number')" />
-            <x-text-input id="subject_categoryno" type="number" wire:model="subject_categoryno" name="subject_categoryno" placeholder="Subject Category Number" class=" @error('subject_categoryno') is-invalid @enderror w-full mt-1" :value="old('subject_categoryno', $subject_categoryno)" required autofocus autocomplete="subject_categoryno" />
-            <x-input-error :messages="$errors->get('subject_categoryno')" class="mt-2" />
-        </div>
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_division" :value="__('Subject Division')" />
-            <x-input-select id="subject_division" wire:model="subject_division" name="subject_division" class="text-center @error('subject_division') is-invalid @enderror w-full mt-1" :value="old('subject_division', $subject_division)" required autofocus autocomplete="subject_division">
-                <x-select-option class="text-start" hidden> -- Select Subject Division -- </x-select-option>
-                <x-select-option class="text-start" value="A">A</x-select-option>
-                <x-select-option class="text-start" value="B">B</x-select-option>
-                <x-select-option class="text-start" value="C">C</x-select-option>
-                <x-select-option class="text-start" value="D">D</x-select-option>
-            </x-input-select>
-            <x-input-error :messages="$errors->get('subject_division')" class="mt-2" />
-        </div> --}}
     </div>
     <x-form-btn>Submit</x-form-btn>
 </div>

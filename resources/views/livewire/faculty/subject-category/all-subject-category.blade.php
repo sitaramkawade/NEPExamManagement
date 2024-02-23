@@ -37,7 +37,6 @@
                                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
                                 <x-table.th wire:click="sort_column('subjectcategory')" name="subjectcategory" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Category</x-table.th>
                                 <x-table.th wire:click="sort_column('subjectcategory_shortname')" name="subjectcategory_shortname" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Category Shortname</x-table.th>
-                                <x-table.th wire:click="sort_column('subjectbucket_type')" name="subjectbucket_type" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Bucket Type</x-table.th>
                                 <x-table.th> Status </x-table.th>
                                 <x-table.th> Action </x-table.th>
                             </x-table.tr>
@@ -48,10 +47,9 @@
                                     <x-table.td>{{ $subjectcategory->id }} </x-table.td>
                                     <x-table.td>{{ $subjectcategory->subjectcategory }} </x-table.td>
                                     <x-table.td>{{ $subjectcategory->subjectcategory_shortname }} </x-table.td>
-                                    <x-table.td>{{ $subjectcategory->subjectbucket_type }} </x-table.td>
                                     <x-table.td>
                                         @if (!$subjectcategory->deleted_at)
-                                            @if ($subjectcategory->is_active === 1)
+                                            @if ($subjectcategory->active === 1)
                                                 <x-table.active wire:click="status({{ $subjectcategory->id }})" />
                                             @else
                                                 <x-table.inactive wire:click="status({{ $subjectcategory->id }})" />

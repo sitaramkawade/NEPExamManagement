@@ -24,12 +24,12 @@ class SubjectTypeExport implements FromCollection, WithHeadings, ShouldAutoSize,
 
     public function collection()
     {
-        return Subjecttype::search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','type_name', 'type_shortname', 'active']);
+        return Subjecttype::search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','type_name', 'description', 'is_active']);
     }
 
     public function headings(): array
     {
-        return ['ID', 'Type Name', 'Type Shortname', 'Status'];
+        return ['ID', 'Type Name', 'Description', 'Status'];
     }
 
     public function map($row): array
@@ -37,8 +37,8 @@ class SubjectTypeExport implements FromCollection, WithHeadings, ShouldAutoSize,
         return [
             $row->id,
             $row->type_name,
-            $row->type_shortname,
-            $row->active == 1 ? 'Active' : 'Inactive',
+            $row->description,
+            $row->is_active == 1 ? 'Active' : 'Inactive',
         ];
     }
 }

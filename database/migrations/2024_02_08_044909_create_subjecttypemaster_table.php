@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subjectexamtypemaster', function (Blueprint $table) {
+        Schema::create('subjecttypemaster', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('subjectcategory_id')->nullable()->unsigned()->default(null);
+            $table->foreign('subjectcategory_id')->references('id')->on('subjectcategories');
             $table->bigInteger('subjecttype_id')->nullable()->unsigned()->default(null);
             $table->foreign('subjecttype_id')->references('id')->on('subjecttypes');
-            $table->bigInteger('examtype_id')->nullable()->unsigned()->default(null);
-            $table->foreign('examtype_id')->references('id')->on('subjectexamtypes');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subjectexamtypemaster');
+        Schema::dropIfExists('subjecttypemaster');
     }
 };

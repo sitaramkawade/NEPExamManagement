@@ -23,15 +23,14 @@ class SubjectBucketExport implements FromCollection, WithHeadings, ShouldAutoSiz
 
     public function collection()
     {
-        return Subjectbucket::with(['department', 'patternclass', 'academicyear', 'subjectcategory', 'subject',])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
-        ->get(['id', 'department_id', 'patternclass_id', 'subject_division', 'subjectcategory_id', 'subject_id', 'academicyear_id', 'status', ]);
+        return Subjectbucket::with(['department', 'patternclass', 'academicyear', 'subjectvertical', 'subject',])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
+        ->get(['id', 'subject_id', 'department_id', 'patternclass_id', 'subject_division', 'subjectvertical_id', 'academicyear_id', 'status', ]);
     }
 
     public function headings(): array
     {
         return ['ID', 'Subject Name', 'Department Name', 'Pattern Name',
-        'Course Name', 'Class Year', 'Academic Year', 'Subject Division',
-        'Subject Category Number', 'Subject Category', 'Status'];
+        'Course Name', 'Class Year', 'Academic Year', 'Subject Division', 'Subject Vertical', 'Status'];
     }
 
     public function map($row): array
@@ -45,7 +44,7 @@ class SubjectBucketExport implements FromCollection, WithHeadings, ShouldAutoSiz
             (isset($row->patternclass->courseclass->classyear->classyear_name) ?  $row->patternclass->courseclass->classyear->classyear_name : '').' '.(isset($row->patternclass->courseclass->course->course_name) ? $row->patternclass->courseclass->course->course_name : ''),
             (isset($row->academicyear->year_name) ? $row->academicyear->year_name : ''),
             $row->subject_division,
-            (isset($row->subjectcategory->subjectcategory) ? $row->subjectcategory->subjectcategory : ''),
+            (isset($row->subjectvertical->subject_vertical) ? $row->subjectvertical->subject_vertical : ''),
             $row->status == 1 ? 'Active' : 'Inactive',
         ];
     }

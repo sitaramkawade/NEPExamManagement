@@ -16,7 +16,7 @@ class AllSubjectType extends Component
     #[Locked]
     public $subjecttype_id;
     public $type_name;
-    public $type_shortname;
+    public $description;
 
     public $mode='all';
     public $per_page = 10;
@@ -35,7 +35,7 @@ class AllSubjectType extends Component
     {
         return [
             'type_name' => ['required', 'string', 'min:2','max:255',],
-            'type_shortname' => ['required', 'string', 'min:2','max:10',],
+            'description' => ['required', 'string', 'min:2','max:100',],
         ];
     }
 
@@ -47,17 +47,17 @@ class AllSubjectType extends Component
             'type_name.min' => 'The type name must be at least :min characters.',
             'type_name.max' => 'The type name must not exceed :max characters.',
 
-            'type_shortname.required' => 'The type short name is required.',
-            'type_shortname.string' => 'The type short name must be a string.',
-            'type_shortname.min' => 'The type short name must be at least :min characters.',
-            'type_shortname.max' => 'The type short name must not exceed :max characters.',
+            'description.required' => 'The type short name is required.',
+            'description.string' => 'The type short name must be a string.',
+            'description.min' => 'The type short name must be at least :min characters.',
+            'description.max' => 'The type short name must not exceed :max characters.',
         ];
     }
 
     public function resetinput()
     {
          $this->type_name = null;
-         $this->type_shortname = null;
+         $this->description = null;
     }
 
     public function deleteconfirmation($id)
@@ -103,7 +103,7 @@ class AllSubjectType extends Component
         if ($subjecttype){
             $this->subjecttype_id = $subjecttype->id;
             $this->type_name= $subjecttype->type_name;
-            $this->type_shortname= $subjecttype->type_shortname;
+            $this->description= $subjecttype->description;
         }else{
             $this->dispatch('alert',type:'error',message:'Subject Type Details Not Found');
         }
@@ -183,7 +183,7 @@ class AllSubjectType extends Component
 
     public function export()
     {
-        $filename="Roletype-".time();
+        $filename="SubjectType-".time();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new SubjectTypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
@@ -200,13 +200,13 @@ class AllSubjectType extends Component
 
     public function changestatus(Subjecttype $subjecttype)
     {
-        if( $subjecttype->active==0)
+        if( $subjecttype->is_active==0)
         {
-            $subjecttype->active=1;
+            $subjecttype->is_active=1;
         }
-        else if( $subjecttype->active==1)
+        else if( $subjecttype->is_active==1)
         {
-            $subjecttype->active=0;
+            $subjecttype->is_active=0;
         }
         $subjecttype->update();
 
@@ -217,7 +217,7 @@ class AllSubjectType extends Component
     {
         if ($subjecttype){
             $this->type_name= $subjecttype->type_name;
-            $this->type_shortname= $subjecttype->type_shortname;
+            $this->description= $subjecttype->description;
         }else{
             $this->dispatch('alert',type:'error',message:'Subject Type Details Not Found');
         }

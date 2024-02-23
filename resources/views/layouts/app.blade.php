@@ -10,107 +10,14 @@
 
     <!-- Scripts -->
     @vite(["resources/css/app.css", "resources/js/app.js"])
+
     @livewireStyles()
-    <style>
 
-      .scrollbar-xs::-webkit-scrollbar 
-      {
-        height: 3px !important;
-        width: 3px !important;
-      }
+    <script  src="{{ asset('assets/alpinejs/ui.min.js') }}" defer></script>
+    <script src="{{ asset('assets/chart/Chart.bundle.min.js') }}" defer></script>
+    <script src="{{ asset('assets/jquery/jquery.min.js') }}" defer></script>
+    <script src="{{ asset('assets/sweetalert/sweetalert.js') }}" defer></script>
 
-      .scrollbar-xs::-moz-scrollbar
-      {
-        height: 3px !important;
-        width: 3px !important;
-      }
-
-
-      .scrollbar-sm::-webkit-scrollbar 
-      {
-        height: 6px !important;
-        width: 6px !important;
-      }
-
-      .scrollbar-sm::-moz-scrollbar
-      {
-        height: 6px !important;
-        width: 6px !important;
-      }
-
-      .scrollbar-md::-webkit-scrollbar 
-      {
-        height: 6px !important;
-        width: 8px !important;
-      }
-
-      .scrollbar-md::-moz-scrollbar
-      {
-        height: 6px !important;
-        width: 8px !important;
-      }
-
-      ::-webkit-scrollbar 
-      {
-        height: 12px !important;
-        width: 10px !important;
-      }
-
-      ::-moz-scrollbar {
-        height: 12px !important;
-        width: 10px !important;
-      }
-
-      .scrollbar-sm {
-        scrollbar-width: 6px !important;
-      }
-
-      .scrollbar-md {
-        scrollbar-width: 8px !important;
-      }
-
-      .scrollbar-xs {
-        scrollbar-width: 3px !important;
-      }
-
-    * {
-        scrollbar-width: 10px !important;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background-color:var(--color-primary) !important;
-        border-radius: 8px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background-color: transparent; 
-      }
-
-      #nprogress .bar 
-      {
-        background: var(--color-primary) !important;
-        height: 5px !important;
-      }
-
-      #nprogress .peg {
-        box-shadow: 0 0 10px var(--color-primary), 0 0 5px var(--color-primary);
-      }
-
-      #nprogress .spinner-icon {
-        border-top-color: var(--color-primary) !important;
-        border-left-color: var(--color-primary) !important;
-        display: none;
-      }
-
-     .dark input[type="date"]::-webkit-calendar-picker-indicator {
-        filter: invert(1);
-      }
-
-      .dark input[type="time"]::-webkit-calendar-picker-indicator {
-        filter: invert(1);
-      }
-
-    </style>
     @yield('styles')
   </head>
 
@@ -121,8 +28,11 @@
       </main>
 
     @livewireScripts()
+
     <x-view-image-model/>
-    <script src="{{ asset('assets/chart/Chart.bundle.min.js') }}"></script>
+
+   
+    
     <script>
       var setup = () => {
         const getTheme = () => {
@@ -141,7 +51,7 @@
           if (window.localStorage.getItem('color')) {
             return window.localStorage.getItem('color')
           }
-          return 'gray'
+          return 'teal'
         }
 
         const setColors = (color) => {
@@ -173,7 +83,7 @@
             setTheme(this.isDark)
           },
           color: getColor(),
-          selectedColor: 'gray',
+          selectedColor: 'teal',
           setColors,
           toggleSidbarMenu() {
             this.isSidebarOpen = !this.isSidebarOpen
@@ -217,8 +127,7 @@
         }
       }
     </script>
-    <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/sweetalert/sweetalert.js') }}"></script>
+
     <script>
 
         document.addEventListener('livewire:init', () => {
@@ -228,7 +137,7 @@
                 position: 'top',
                 showConfirmButton: false,
                 showCloseButton: true,
-                timer: 3000,
+                timer: 2000,
                 timerProgressBar:true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)

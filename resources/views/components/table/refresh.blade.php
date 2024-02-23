@@ -1,6 +1,6 @@
 @props(["disabled" => false, "slot" => false,"i"=>true])
 
-<button wire:click="$refresh" type="button" {{ $disabled ? "disabled" : "" }} {!! $attributes->merge(["class" => "inline-flex text-white  float-right cursor-pointer"]) !!}>
+<button wire:click="$refresh" type="button" {{ $disabled ? "disabled" : "" }} {!! $attributes->merge(["class" => "inline-flex text-white  float-right cursor-pointer mx-0.5"]) !!}>
   <span class="inline-flex items-center justify-center rounded-md bg-primary p-2 text-center shadow-lg">
     @if ($i)
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mx-1 h-6 w-6 dark:text-white">

@@ -8,7 +8,7 @@ use Faker\Factory as Faker;
 use App\Models\Academicyear;
 use App\Models\Patternclass;
 use App\Models\Subjectbucket;
-use App\Models\Subjectcategory;
+use App\Models\Subjectvertical;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -18,7 +18,7 @@ class SubjectBucketSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        $subjectCategoryIds = Subjectcategory::pluck('id')->toArray();
+        $subjectVerticalIds = Subjectvertical::pluck('id')->toArray();
         $patternClassIds = Patternclass::pluck('id')->toArray();
         $departmentIds = Department::pluck('id')->toArray();
         $subjectIds = Subject::pluck('id')->toArray();
@@ -28,7 +28,7 @@ class SubjectBucketSeeder extends Seeder
             Subjectbucket::create([
                 'department_id' =>  $faker->randomElement($departmentIds),
                 'patternclass_id' => $faker->randomElement($patternClassIds),
-                'subjectcategory_id' => $faker->randomElement($subjectCategoryIds),
+                'subjectvertical_id' => $faker->randomElement($subjectVerticalIds),
                 'subject_division' => $faker->randomElement(['A', 'B','C','D']),
                 // 'subject_categoryno' => $faker->numberBetween(1, 3),
                 'subject_id' => $faker->randomElement($subjectIds),

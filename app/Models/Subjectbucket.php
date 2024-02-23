@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Subject;
+use App\Models\Department;
+use App\Models\Academicyear;
+use App\Models\Patternclass;
+use App\Models\Subjectvertical;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,7 +21,7 @@ class Subjectbucket extends Model
     protected $fillable=[
     'department_id',
     'patternclass_id',
-    'subjectcategory_id',
+    'subjectvertical_id',
     'subject_division',
     // 'subject_categoryno',
     'subject_id',
@@ -31,9 +36,9 @@ class Subjectbucket extends Model
     {
      return $this->belongsTo(Patternclass::class,'patternclass_id','id')->withTrashed();
     }
-    public function subjectcategory(): BelongsTo
+    public function subjectvertical(): BelongsTo
     {
-     return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id');
+     return $this->belongsTo(Subjectvertical::class,'subjectvertical_id','id');
     }
     public function subject(): BelongsTo
     {

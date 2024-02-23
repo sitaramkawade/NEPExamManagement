@@ -9,9 +9,9 @@
             <x-input-error :messages="$errors->get('type_name')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="type_shortname" :value="__('Subject Type Shortname')" />
-            <x-text-input id="type_shortname" type="text" wire:model="type_shortname" name="type_shortname" placeholder="Subject Type Shortname" class=" @error('type_shortname') is-invalid @enderror w-full mt-1" :value="old('type_shortname', $type_shortname)" required autofocus autocomplete="type_shortname" />
-            <x-input-error :messages="$errors->get('type_shortname')" class="mt-2" />
+            <x-input-label for="description" :value="__('Subject Type Description')" />
+            <x-text-input id="description" type="text" wire:model="description" name="description" placeholder="Subject Type Shortname" class=" @error('description') is-invalid @enderror w-full mt-1" :value="old('description', $description)" required autofocus autocomplete="description" />
+            <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
     </div>
     <x-form-btn>Submit</x-form-btn>

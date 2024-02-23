@@ -13,14 +13,9 @@ return new class extends Migration
     {
         Schema::create('subjectcategories', function (Blueprint $table) {
             $table->id();
-            $table->string('subjectcategory')->nullable();//Major Minor
-            $table->string('subjectcategory_shortname',10)->nullable();
-
-            $table->bigInteger('subjectbuckettype_id')->nullable()->unsigned()->default(null);
-            $table->foreign('subjectbuckettype_id')->references('id')->on('subjectbuckettypemaster');
-
-            $table->tinyInteger('is_active')->default('0');// 0 :not active 1:active for departmet specific classes 2:active for all classes
-
+            $table->string('subjectcategory',30); //Theory Practical
+            $table->string('subjectcategory_shortname',10); //Th Pr Prj Ojt
+            $table->tinyInteger('active')->default('0'); // 0 :not active 1:active
             $table->timestamps();
             $table->softDeletes();
         });

@@ -107,7 +107,6 @@ class DatabaseSeeder extends Seeder
             ApplyFeeSeeder::class,
             FormTypeSeeder::class,
             CountrySeeder::class,
-            SubjectExamTypeSeeder::class,
             ExamOrderPostSeeder::class,
             BucketTypeSeeder::class,
             BuildingSeeder::class,
@@ -133,9 +132,10 @@ class DatabaseSeeder extends Seeder
             FacultyProfileSeeder::class,                    // college  ,department , role ,facultybanck account
             LoginSeeder::class,                             // College , Patternclass
             NoticeSeeder::class,                            // User
+            SubjectverticalSeeder::class,                   // Subjectbuckettype
             SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
             SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
-            // AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
+            AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
             AshutoshAdmissionDataSeeder::class,             // User,College,Patternclass,Subject,Academicyear
             StudentHelplineSeeder::class,                   // Student , Studenthelplinequery ,User
             StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
@@ -144,8 +144,8 @@ class DatabaseSeeder extends Seeder
             FacultyHeadSeeder::class,                       // Faculty, Department
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
             ExamOrderPostSeeder::class,
-            SubjectExamTypeMasterSeeder::class,             // Subjecttype, Subjectexamtype
-            
+            SubjectTypeMasterSeeder::class,                 // Subjectcategory, Subjecttype
+
         ]);
     }
 }
