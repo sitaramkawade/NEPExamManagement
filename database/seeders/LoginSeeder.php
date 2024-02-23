@@ -24,6 +24,7 @@ class LoginSeeder extends Seeder
             'password' => Hash::make('123456789'),
             'remember_token' => Str::random(10),
             'college_id' => 1,
+            'role_id' => 1,
         ] );
 
 

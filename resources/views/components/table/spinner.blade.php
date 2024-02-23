@@ -1,4 +1,4 @@
-<div wire:loading class="float-right mx-1 inline-flex h-10 z-0">
+<div wire:loading  wire:target="export , import" class="float-right mx-1 inline-flex h-10 z-0">
   <div class="relative inline-flex h-10 flex-wrap items-stretch z-0">
     <button class="mx-2 h-10 w-10 rounded bg-primary-darker p-2 text-white">
       <span>
