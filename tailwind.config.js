@@ -28,6 +28,9 @@ export default {
                     "0%": { transform: "translateX(100%)" },
                     "100%": { transform: "translateX(0%)" },
                 },
+                  shimmer: {
+                '100%' : {transform: 'translateX(100%)'}
+                 
             },
             fontFamily: {
                 sans: ["cairo", ...defaultTheme.fontFamily.sans],

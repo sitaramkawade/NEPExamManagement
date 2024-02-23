@@ -58,9 +58,8 @@ class AllHodAppointSubject extends Component
     {
         return [
             'faculty_id' => ['required', Rule::exists(Faculty::class,'id')],
-            'pattern_id' => ['required',Rule::exists(Pattern::class,'id')],
             'course_id' => ['required',Rule::exists(Course::class,'id')],
-            'course_class_id' => ['required',Rule::exists(Courseclass::class,'id')],
+            'patternclass_id' => ['required',Rule::exists(Patternclass::class,'id')],
             'courseclass_subject_id' => ['required',Rule::exists(Subject::class,'id')],
         ];
     }
@@ -70,12 +69,10 @@ class AllHodAppointSubject extends Component
         return [
             'faculty_id.required' => 'The faculty name field is required.',
             'faculty_id.exists' => 'The selected faculty is invalid.',
-            'pattern_id.required' => 'The pattern name field is required.',
-            'pattern_id.exists' => 'The selected pattern is invalid.',
             'course_id.required' => 'The course name field is required.',
             'course_id.exists' => 'The selected course is invalid.',
-            'course_class_id.required' => 'The course class name field is required.',
-            'course_class_id.exists' => 'The selected course class is invalid.',
+            'patternclass_id.required' => 'The course patternclass name field is required.',
+            'patternclass_id.exists' => 'The selected patternclass class is invalid.',
             'courseclass_subject_id.required' => 'The subject name field is required.',
             'courseclass_subject_id.exists' => 'The selected subject is invalid.',
         ];
@@ -84,9 +81,8 @@ class AllHodAppointSubject extends Component
     public function resetinput()
     {
         $this->faculty_id=null;
-        $this->pattern_id=null;
         $this->course_id=null;
-        $this->course_class_id=null;
+        $this->patternclass_id=null;
         $this->courseclass_subject_id=null;
     }
 
@@ -130,11 +126,7 @@ class AllHodAppointSubject extends Component
             $this->dispatch('alert', type: 'error', message: 'HOD is active and already assigned for that subject');
             return;
         }
-        // Find the pattern class
-        $pattern_class = Patternclass::select('id')->where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->first();
 
-        if ($pattern_class) {
-            $validatedData['patternclass_id'] = $pattern_class->id;
             $validatedData['subject_id'] = $this->courseclass_subject_id;
 
             // Check the current authentication guard
@@ -143,6 +135,7 @@ class AllHodAppointSubject extends Component
             // Set appointby_id based on the guard
             if ($guard->name == 'user') {
                 $validatedData['appointby_id'] = $guard->id();
+
                 $hodappointsubject = Hodappointsubject::create($validatedData);
 
                 if ($hodappointsubject) {
@@ -156,10 +149,7 @@ class AllHodAppointSubject extends Component
                 $this->dispatch('alert', type: 'error', message: 'You are not allowed to add HOD. Please log in as a user.');
                 $this->setmode('all');
             }
-        } else {
-            $this->dispatch('alert', type: 'error', message: 'Pattern Class Not Found!!');
         }
-    }
 
 
 
@@ -169,37 +159,13 @@ class AllHodAppointSubject extends Component
         {
             $this->hodappointsubject_id = $hodappointsubject->id;
             $this->faculty_id= $hodappointsubject->faculty_id;
-            $this->appointby_id= $hodappointsubject->appointby_id;
-            $this->feach();
+            $this->course_id = $hodappointsubject->patternclass->courseclass->course->id;
+            $this->patternclass_id= $hodappointsubject->patternclass_id;
+            $this->courseclass_subject_id= $hodappointsubject->subject_id;
             $this->setmode('edit');
         }
         else{
         $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
-        }
-    }
-
-    public function feach()
-    {
-        $hodappointsubjects = Hodappointsubject::all();
-
-        foreach ($hodappointsubjects as $hodappointsubject) {
-            $pattern_class_id = $hodappointsubject->patternclass_id;
-
-            $pattern_class = Patternclass::find($pattern_class_id);
-
-            if ($pattern_class) {
-                if ($pattern_class->courseclass && $pattern_class->courseclass->course) {
-                    $this->course_id = $pattern_class->courseclass->course->id;
-                }
-
-                if ($pattern_class->courseclass) {
-                    $this->course_class_id = $pattern_class->courseclass->id;
-                }
-
-                if ($pattern_class->pattern) {
-                    $this->pattern_id = $pattern_class->pattern->id;
-                }
-            }
         }
     }
 
@@ -209,39 +175,30 @@ class AllHodAppointSubject extends Component
 
         if ($hodappointsubject) {
             // Check if a record already exists for the updated subject and pattern class with an active status
-            $existing_record = Hodappointsubject::where('patternclass_id', $this->course_class_id)->where('subject_id', $this->courseclass_subject_id)->where('status', 1)->where('id', '!=', $hodappointsubject->id)->latest('updated_at')->first();
+            $existing_record = Hodappointsubject::where('patternclass_id', $this->patternclass_id)->where('subject_id', $this->courseclass_subject_id)->where('status', 1)->where('id', '!=', $hodappointsubject->id)->latest('updated_at')->first();
 
             if ($existing_record) {
                 $this->dispatch('alert', type: 'error', message: 'Hod is already assigned for that subject');
                 return;
             }
 
-            // Find the pattern class
-            $pattern_class = Patternclass::select('id')->where('class_id', $this->course_class_id)->where('pattern_id', $this->pattern_id)->first();
+            $validatedData['subject_id'] = $this->courseclass_subject_id;
 
-            if ($pattern_class) {
-                $validatedData['patternclass_id'] = $pattern_class->id;
-                $validatedData['subject_id'] = $this->courseclass_subject_id;
+            // Check the current authentication guard
+            $guard = auth()->guard();
 
-                // Check the current authentication guard
-                $guard = auth()->guard();
-
-                // Set appointby_id based on the guard
-                if ($guard->name == 'user') {
-                    $validatedData['appointby_id'] = $guard->id();
-                    $hodappointsubject->update($validatedData);
-                    $this->dispatch('alert', type: 'success', message: 'Appointed HOD Updated Successfully');
-                } else {
-                    // User is not authenticated or doesn't match any guard
-                    $this->dispatch('alert', type: 'error', message: 'You are not allowed to update Appointed HOD. Please log in as a user.');
-                }
+            // Set appointby_id based on the guard
+            if ($guard->name == 'user') {
+                $validatedData['appointby_id'] = $guard->id();
+                $hodappointsubject->update($validatedData);
+                $this->dispatch('alert', type: 'success', message: 'Appointed HOD Updated Successfully');
             } else {
-                $this->dispatch('alert', type: 'error', message: 'Pattern Class Not Found!!');
+                // User is not authenticated or doesn't match any guard
+                $this->dispatch('alert', type: 'error', message: 'You are not allowed to update Appointed HOD. Please log in as a user.');
             }
         } else {
-            $this->dispatch('alert', type: 'error', message: 'Error To Update Appointed HOD');
+            $this->dispatch('alert', type: 'error', message: 'Pattern Class Not Found!!');
         }
-
         $this->setmode('all');
     }
 
@@ -332,11 +289,15 @@ class AllHodAppointSubject extends Component
     {
         if ($hodappointsubject)
         {
-            $this->faculty_id = $hodappointsubject->faculty->faculty_name;
-            $this->pattern_id = $hodappointsubject->patternclass->pattern->pattern_name;
-            $this->course_id =  $hodappointsubject->patternclass->courseclass->course->course_name;
-            $this->course_class_id =  $hodappointsubject->patternclass->courseclass->classyear->classyear_name;
-            $this->courseclass_subject_id =  $hodappointsubject->subject->subject_name;
+            $this->faculty_id = isset($hodappointsubject->faculty->faculty_name) ? $hodappointsubject->faculty->faculty_name : '';
+            $this->pattern_id = isset($hodappointsubject->patternclass->pattern->pattern_name) ? $hodappointsubject->patternclass->pattern->pattern_name : '';
+            $this->course_id = isset($hodappointsubject->patternclass->courseclass->course->course_name) ? $hodappointsubject->patternclass->courseclass->course->course_name : '';
+            $pattern = isset($hodappointsubject->patternclass->pattern->pattern_name) ? $hodappointsubject->patternclass->pattern->pattern_name : '';
+            $classyear = isset($hodappointsubject->patternclass->courseclass->classyear->classyear_name) ? $hodappointsubject->patternclass->courseclass->classyear->classyear_name : '';
+            $course = isset($hodappointsubject->patternclass->courseclass->course->course_name) ? $hodappointsubject->patternclass->courseclass->course->course_name : '';
+            $this->patternclass_id = $classyear.' '.$course.' '.$pattern;
+            $this->courseclass_subject_id = isset($hodappointsubject->subject->subject_name) ? $hodappointsubject->subject->subject_name : '';
+
             $this->setmode('view');
         }else{
             $this->dispatch('alert',type:'error',message:'Something Went Wrong !!');
@@ -346,19 +307,23 @@ class AllHodAppointSubject extends Component
     public function render()
     {
         if ($this->mode !== 'all') {
-            $this->faculties = Faculty::select('id', 'faculty_name')->where('active', 1)->get();
-            $this->patterns = Pattern::select('id', 'pattern_name')->where('status', 1)->get();
-            $this->courses = Course::select('id', 'course_name')->get();
-            $this->course_classes=Courseclass::select('id','course_id','classyear_id')->where('course_id', $this->course_id)->get();
+            $this->faculties = Faculty::where('active',1)->pluck('faculty_name','id');
+            $this->courses = Course::pluck('course_name','id');
+            $course_classes = Courseclass::where('course_id', $this->course_id)->pluck('id');
+            $this->pattern_classes = Patternclass::select('id', 'class_id', 'pattern_id')
+                ->with(['pattern:id,pattern_name', 'courseclass.course:id,course_name', 'courseclass.classyear:id,classyear_name'])
+                ->whereIn('class_id', $course_classes)
+                ->where('status', 1)
+                ->get();
 
             // If in edit mode, include all subjects associated with the current course class
             if ($this->mode === 'edit') {
-                $this->courseclass_subjects = Subject::select('id', 'subject_name')->where('patternclass_id', $this->course_class_id)->get();
+                $this->courseclass_subjects = Subject::select('id', 'subject_name')->where('patternclass_id', $this->patternclass_id)->get();
             } else {
                 // Exclude subjects that are already assigned and active in Hodappointsubject table
-                $existing_subject_ids = Hodappointsubject::where('patternclass_id', $this->course_class_id)->where('status', 1)->pluck('subject_id')->toArray(); // Only consider active records
+                $existing_subject_ids = Hodappointsubject::where('patternclass_id', $this->patternclass_id)->where('status', 1)->pluck('subject_id')->toArray(); // Only consider active records
 
-                $this->courseclass_subjects = Subject::select('id', 'subject_name')->where('patternclass_id', $this->course_class_id)->whereNotIn('id', $existing_subject_ids)->get();
+                $this->courseclass_subjects = Subject::select('id', 'subject_name')->where('patternclass_id', $this->patternclass_id)->whereNotIn('id', $existing_subject_ids)->get();
             }
         }
 

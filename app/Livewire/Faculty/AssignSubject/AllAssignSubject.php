@@ -293,6 +293,8 @@ class AllAssignSubject extends Component
 
     public function render()
     {
+        $assignsubjects=collect([]);
+
         if($this->mode !== 'all' ){
             $this->subject_categories = Subjectcategory::select('id', 'subjectcategory')
                 ->whereNotIn('subjectbuckettype_id', [1])
@@ -319,10 +321,11 @@ class AllAssignSubject extends Component
             }else{
                 $this->subjects=[];
             }
+        }else{
+            $assignsubjects = Subjectbucket::with(['department:id,dept_name', 'subjectvertical:id,subject_vertical', 'subject:id,subject_name', 'academicyear:id,year_name'])->whereNotIn('subjectcategory_id', [1])->when($this->search, function($query, $search){
+                $query->search($search);
+            })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         }
-        $assignsubjects = Subjectbucket::with(['department:id,dept_name', 'subjectcategory:id,subjectcategory', 'subject:id,subject_name', 'academicyear:id,year_name'])->whereNotIn('subjectcategory_id', [1])->when($this->search, function($query, $search){
-            $query->search($search);
-        })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.assign-subject.all-assign-subject',compact('assignsubjects'))->extends('layouts.faculty')->section('faculty');
     }
 }
