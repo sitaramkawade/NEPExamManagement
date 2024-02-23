@@ -37,7 +37,7 @@
                                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
                                 <x-table.th wire:click="sort_column('subject_id')" name="subject_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Name</x-table.th>
                                 <x-table.th wire:click="sort_column('department_id')" name="department_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Department Name</x-table.th>
-                                <x-table.th wire:click="sort_column('subjectcategory_id')" name="subjectcategory_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Category</x-table.th>
+                                <x-table.th wire:click="sort_column('subjectvertical_id')" name="subjectcategory_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Vertical</x-table.th>
                                 <x-table.th wire:click="sort_column('academicyear_id')" name="academicyear_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Academic Year</x-table.th>
                                 <x-table.th> Status </x-table.th>
                                 <x-table.th> Action </x-table.th>
@@ -54,7 +54,7 @@
                                         <x-table.text-scroll>{{ isset($assignsubject->department->dept_name) ? $assignsubject->department->dept_name : '-' }}</x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
-                                        <x-table.text-scroll>{{ isset($assignsubject->subject->subjectcategories->subjectcategory) ? $assignsubject->subject->subjectcategories->subjectcategory : '-' }}</x-table.text-scroll>
+                                        <x-table.text-scroll>{{ isset($assignsubject->subjectvertical->subject_vertical) ? $assignsubject->subjectvertical->subject_vertical : '-' }}</x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>{{ $assignsubject->academicyear->year_name }} </x-table.td>
                                     {{-- <x-table.td>
