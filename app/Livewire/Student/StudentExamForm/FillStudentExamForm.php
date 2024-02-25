@@ -189,7 +189,7 @@ class FillStudentExamForm extends Component
         dd(   Subject::where('subject_sem',1)->whereIn('id',$subjectids)->where('patternclass_id', $this->patternclss_id)->get() );
         return  Subject::where('subject_sem',1)->whereIn('id',$subjectids)->where('patternclass_id', $this->patternclss_id)->get();
     }
-
+    
     public function rules()
     {
         return [
@@ -220,56 +220,56 @@ class FillStudentExamForm extends Component
     {
         foreach($subjects as $subjects)
         {   
-            if( $subjects->subjectexam_type=="IE")
+            if( $subjects->subject_type=="IE")
             {
                 $this->internals[$subjects->id]=true;
                 $this->externals[$subjects->id]=true;
             }
             
-            if( $subjects->subjectexam_type=="IEP")
+            if( $subjects->subject_type=="IEP")
             {
                 $this->internals[$subjects->id]=true;
                 $this->externals[$subjects->id]=true;
                 $this->practicals[$subjects->id]=true;
             }
 
-            if( $subjects->subjectexam_type=="IEG")
+            if( $subjects->subject_type=="IEG")
             {
                 $this->internals[$subjects->id]=true;
                 $this->externals[$subjects->id]=true;
                 $this->grades[$subjects->id]=true;
             }
 
-            if( $subjects->subjectexam_type=="IEP")
+            if( $subjects->subject_type=="IEP")
             {
                 $this->internals[$subjects->id]=true;
                 $this->externals[$subjects->id]=true;
                 $this->practicals[$subjects->id]=true;
             }
             
-            if( $subjects->subjectexam_type=="IP")
+            if( $subjects->subject_type=="IP")
             {
                 $this->internals[$subjects->id]=true;
                 $this->practicals[$subjects->id]=true;
             }
 
-            if( $subjects->subjectexam_type=="IG")
+            if( $subjects->subject_type=="IG")
             {
                 $this->internals[$subjects->id]=true;
                 $this->grades[$subjects->id]=true;
             }
             
-            if( $subjects->subjectexam_type=="I")
+            if( $subjects->subject_type=="I")
             {
                 $this->internals[$subjects->id]=true;
             }
 
-            if( $subjects->subjectexam_type=="P")
+            if( $subjects->subject_type=="P")
             {
                 $this->projects[$subjects->id]=true;
             }
 
-            if( $subjects->subjectexam_type=="G")
+            if( $subjects->subject_type=="G")
             {
                 $this->grades[$subjects->id]=true;
             }
@@ -364,7 +364,7 @@ class FillStudentExamForm extends Component
                     ];
 
                     // Set Checked Input
-                    switch ($subject->subjectexam_type) 
+                    switch ($subject->subject_type) 
                     {
                         case 'I':
                             $student_exam_form['int_status'] = 1;
