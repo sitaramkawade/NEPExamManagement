@@ -6,6 +6,7 @@ use App\Models\College;
 use App\Models\ExamPanel;
 use App\Models\Subjecttype;
 use App\Models\StudentExamform;
+use App\Models\Subjectcategory;
 use App\Models\Subjectvertical;
 use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;
@@ -57,7 +58,7 @@ class Subject extends Model
         return $this->belongsTo(College::class, 'college_id', 'id')->withTrashed();
     }
 
-    public function subjectcategories(): BelongsTo
+    public function subjectcategory(): BelongsTo
     {
      return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id')->withTrashed(); // ok
     }

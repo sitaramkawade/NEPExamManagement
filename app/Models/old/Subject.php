@@ -56,7 +56,7 @@ class Subject extends Model
         return $this->belongsTo(College::class, 'college_id', 'id')->withTrashed();
     }
 
-    public function subjectcategories(): BelongsTo
+    public function subjectcategory(): BelongsTo
     {
      return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id')->withTrashed();
     }

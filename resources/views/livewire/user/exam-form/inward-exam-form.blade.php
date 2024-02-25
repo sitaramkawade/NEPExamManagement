@@ -259,49 +259,49 @@
                     <x-table.td>{{ $examformsubject->subject->subject_code }} </x-table.td>
                     <x-table.td>{{ $examformsubject->subject->subject_name }} </x-table.td>
 
-                    @if ($examformsubject->subject->subjectexam_type == 'G' || $examformsubject->subject->subjectexam_type == 'IG')
+                    @if ($examformsubject->subject->subject_type == 'G' || $examformsubject->subject->subject_type == 'IG')
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ $examformsubject->grade_status == 1 ? 'Y' : 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                     @endif
-                    @if ($examformsubject->subject->subjectexam_type == 'IE')
+                    @if ($examformsubject->subject->subject_type == 'IE')
                       <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                       <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                     @endif
-                    @if ($examformsubject->subject->subjectexam_type == 'IEG')
+                    @if ($examformsubject->subject->subject_type == 'IEG')
                       <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                       <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                     @endif
-                    @if ($examformsubject->subject->subjectexam_type == 'IP' && $examformsubject->subject->subjecttype->type_name != 'Project')
+                    @if ($examformsubject->subject->subject_type == 'IP' && $examformsubject->subject->subjectcategory->subjectcategory != 'Project')
                       <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                     @endif
-                    @if ($examformsubject->subject->subjectexam_type == 'IP' && $examformsubject->subject->subjecttype->type_name == 'Project')
+                    @if ($examformsubject->subject->subject_type == 'IP' && $examformsubject->subject->subjectcategory->subjectcategory == 'Project')
                       <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
                     @endif
-                    @if ($examformsubject->subject->subjectexam_type == 'I')
+                    @if ($examformsubject->subject->subject_type == 'I')
                       <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                       <x-table.td>{{ 'N' }}</x-table.td>
                     @endif
-                    @if ($examformsubject->subject->subjectexam_type == 'IEP')
+                    @if ($examformsubject->subject->subject_type == 'IEP')
                       <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                       <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
                       <x-table.td>{{ $examformsubject->int_practical_status == 1 ? 'Y' : 'N' }}</x-table.td>
