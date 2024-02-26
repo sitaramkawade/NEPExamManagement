@@ -20,13 +20,13 @@ class Subjecttype extends Model
         'active',
     ];
 
-    public function subject():HasMany
+    public function subjects():HasMany
     {
-        return $this->hasMany(Subject::class,'subject_type','type_name')->withTrashed(); //ok
+        return $this->hasMany(Subject::class,'subject_type','type_name')->withTrashed();
     }
     public function subjecttypes():HasMany
     {
-        return $this->hasMany(SubjectTypeMaster::class,'subjecttype_id','id')->withTrashed(); //ok
+        return $this->hasMany(SubjectTypeMaster::class,'subjecttype_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

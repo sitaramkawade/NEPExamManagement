@@ -27,8 +27,8 @@ use App\Exports\Faculty\Subject\SubjectExport;
 class AllSubject extends Component
 {
     use WithPagination;
-
     protected $listeners = ['delete-confirmed'=>'delete'];
+
     public $subject_sem;
     public $subject_order;
     public $subject_code;
@@ -52,10 +52,6 @@ class AllSubject extends Component
     public $classyear_id;
     public $department_id;
     public $college_id;
-
-    #[Locked]
-    public $subject_id;
-
     public $pattern_id;
     public $course_id;
     public $course_class_id;
@@ -71,30 +67,28 @@ class AllSubject extends Component
     public $semesters;
     public $course_classes;
     public $pattern_class_id;
-
-    public $type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>0];
-
     public $subjectvertical_id;
     public $subject_verticals;
-
     public $subjectcategory_id;
     public $subject_categories;
-
     public $subjecttype_id;
     public $subject_types;
 
-    public $mode='all';
-    public $per_page = 10;
 
+    public $type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>0];
+
+    #[Locked]
+    public $subject_id;
     #[Locked]
     public $delete_id;
 
     public $perPage=10;
+    public $per_page = 10;
     public $search='';
     public $sortColumn="subject_name";
     public $sortColumnBy="ASC";
+    public $mode='all';
     public $ext;
-    public $isDisabled = true;
 
 
     protected function rules()
@@ -492,7 +486,7 @@ class AllSubject extends Component
 
     public function export()
     {
-        $filename="Subject-".time();
+        $filename="Subject-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new SubjectExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
@@ -531,12 +525,12 @@ class AllSubject extends Component
             $classyear = isset($subject->patternclass->courseclass->classyear->classyear_name) ? $subject->patternclass->courseclass->classyear->classyear_name : '';
             $course = isset($subject->patternclass->courseclass->course->course_name) ? $subject->patternclass->courseclass->course->course_name : '';
             $this->patternclass_id = $pattern.' '.$classyear.' '.$course;
-            $this->subjectvertical_id = isset($subject->subjectverticals->subject_vertical) ? $subject->subjectcategories->subject_vertical : '';
+            $this->subjectvertical_id = isset($subject->subjectvertical->subject_vertical) ? $subject->subjectvertical->subject_vertical : '';
             $this->subject_name_prefix = $subject->subject_name_prefix;
             $this->subject_sem= $subject->subject_sem;
             $this->subject_name= $subject->subject_name;
             $this->subject_code= $subject->subject_code;
-            $this->subjectcategory_id = isset($subject->subjectcategories->subjectcategory) ? $subject->subjectcategories->subjectcategory : '';
+            $this->subjectcategory_id = isset($subject->subjectcategory->subjectcategory) ? $subject->subjectcategory->subjectcategory : '';
             $subjecttype = Subjecttype::where('type_name',$subject->subject_type)->first();
             $this->subject_type= $subjecttype->id;
             $this->subtype= $subjecttype->description;
@@ -635,7 +629,7 @@ class AllSubject extends Component
             }
         }
     }
-        $subjects = Subject::with(['college', 'subjectcategories', 'subjectverticals', 'subjectverticals', 'department', 'patternclass', 'classyear',])->when($this->search, function($query, $search){
+        $subjects = Subject::with(['college', 'subjectcategory', 'subjectvertical', 'department', 'patternclass', 'classyear',])->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.subject.all-subject',compact('subjects'))->extends('layouts.faculty')->section('faculty');

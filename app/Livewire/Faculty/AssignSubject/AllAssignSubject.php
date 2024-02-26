@@ -49,7 +49,6 @@ class AllAssignSubject extends Component
     public $sortColumnBy="ASC";
     public $mode='all';
     public $ext;
-    public $isDisabled = true;
 
     protected function rules()
     {
@@ -153,35 +152,10 @@ class AllAssignSubject extends Component
             $this->patternclass_id= $assignsubject->patternclass_id;
             $this->academicyear_id= $assignsubject->academicyear_id;
             $this->subject_id= $subject->id;
-            $this->feach();
         }else{
             $this->dispatch('alert',type:'error',message:'Assigned Subject Details Not Found');
         }
         $this->setmode('edit');
-    }
-    public function feach()
-    {
-        $subjectbuckets = Subjectbucket::all();
-
-        foreach ($subjectbuckets as $subjectbucket) {
-            $pattern_class_id = $subjectbucket->patternclass_id;
-
-            $pattern_class = Patternclass::find($pattern_class_id);
-
-            if ($pattern_class) {
-                if ($pattern_class->courseclass && $pattern_class->courseclass->course) {
-                    $this->course_id = $pattern_class->courseclass->course->id;
-                }
-
-                if ($pattern_class->courseclass) {
-                    $this->course_class_id = $pattern_class->courseclass->id;
-                }
-
-                if ($pattern_class->pattern) {
-                    $this->pattern_id = $pattern_class->pattern->id;
-                }
-            }
-        }
     }
 
     public function update(Subjectbucket $assignsubject)
@@ -244,7 +218,7 @@ class AllAssignSubject extends Component
 
     public function export()
     {
-        $filename="AssignedSubjects-".time();
+        $filename="AssignedSubjects-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new AllAssignedSubjectExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
@@ -314,7 +288,7 @@ class AllAssignSubject extends Component
                 ->get();
             if($this->subjectvertical_id && $this->subject_sem){
                 $this->subjects = Subject::select('id', 'subject_name')
-                ->with(['subjectverticals:id,subject_vertical',])
+                ->with(['subjectvertical:id,subject_vertical',])
                 ->where('subjectvertical_id', $this->subjectvertical_id)
                 ->where('subject_sem', $this->subject_sem)
                 ->where('status', 1)

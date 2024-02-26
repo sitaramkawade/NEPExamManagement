@@ -19,8 +19,8 @@ class ViewExamPanel extends Component
 {
     use WithPagination;
     protected $listeners = ['delete-confirmed'=>'delete'];
-    public $post_id;
 
+    public $post_id;
     public $selected_faculties=[];
     public $faculty_id;
     public $patternclass_id;
@@ -42,7 +42,6 @@ class ViewExamPanel extends Component
     public $per_page = 10;
     public $search='';
     public $mode='add';
-    public $isDisabled = true;
     public $sortColumn="faculty_id";
     public $sortColumnBy="ASC";
     public $ext;
@@ -265,7 +264,7 @@ class ViewExamPanel extends Component
 
     public function export()
     {
-        $filename="ExamPanel-".time();
+        $filename="ExamPanel-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new ExamPanelExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');

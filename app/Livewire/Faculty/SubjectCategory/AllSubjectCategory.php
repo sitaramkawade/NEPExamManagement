@@ -11,17 +11,16 @@ use App\Exports\Faculty\SubjectCategory\SubjectCategoryExport;
 class AllSubjectCategory extends Component
 {
     use WithPagination;
-
     protected $listeners = ['delete-confirmed'=>'delete'];
+
+    public $subjectcategory;
+    public $subjectcategory_shortname;
+    public $is_active;
 
     #[Locked]
     public $subjectcategory_id;
     #[Locked]
     public $delete_id;
-
-    public $subjectcategory;
-    public $subjectcategory_shortname;
-    public $is_active;
 
     public $perPage=10;
     public $search='';
@@ -29,7 +28,6 @@ class AllSubjectCategory extends Component
     public $sortColumnBy="ASC";
     public $mode='all';
     public $ext;
-    public $isDisabled = true;
 
     protected function rules()
     {
@@ -141,7 +139,7 @@ class AllSubjectCategory extends Component
         $subjectcategory = Subjectcategory::withTrashed()->find($id);
         if ($subjectcategory) {
             $subjectcategory->delete();
-            $this->dispatch('alert',type:'success',message:'Subject Category Deleted Successfully');
+            $this->dispatch('alert',type:'success',message:'Subject Category Soft Deleted Successfully');
         } else {
             $this->dispatch('alert',type:'error',message:'Subject Category Not Found !');
         }
@@ -179,7 +177,7 @@ class AllSubjectCategory extends Component
 
     public function export()
     {
-        $filename="SubjectCategories-".time();
+        $filename="SubjectCategories-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new SubjectCategoryExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');

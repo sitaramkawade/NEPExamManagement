@@ -13,13 +13,7 @@ use App\Exports\Faculty\SubjectVertical\SubjectVerticalExport;
 class AllSubjectVertical extends Component
 {
     use WithPagination;
-
     protected $listeners = ['delete-confirmed'=>'delete'];
-
-    #[Locked]
-    public $subjectvertical_id;
-    #[Locked]
-    public $delete_id;
 
     public $subject_vertical;
     public $subjectvertical_shortname;
@@ -27,13 +21,17 @@ class AllSubjectVertical extends Component
     public $subjectbucket_types;
     public $is_active;
 
+    #[Locked]
+    public $subjectvertical_id;
+    #[Locked]
+    public $delete_id;
+
     public $perPage=10;
     public $search='';
     public $sortColumn="subject_vertical";
     public $sortColumnBy="ASC";
     public $mode='all';
     public $ext;
-    public $isDisabled = true;
 
     protected function rules()
     {
@@ -190,7 +188,7 @@ class AllSubjectVertical extends Component
 
     public function export()
     {
-        $filename="SubjectVerticals-".time();
+        $filename="SubjectVerticals-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new SubjectVerticalExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
@@ -240,7 +238,7 @@ class AllSubjectVertical extends Component
 
             $this->subjectbucket_types = SubjectBucketTypeMaster::pluck('buckettype_name','id');
 
-            $subjectverticals = Subjectvertical::when($this->search, function($query, $search){
+            $subjectverticals = Subjectvertical::with(['buckettype:id,buckettype_name'])->when($this->search, function($query, $search){
                 $query->search($search);
             })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         }

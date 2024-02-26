@@ -21,18 +21,17 @@ class Subjectvertical extends Model
 
     public function subjects():HasMany
     {
-        return $this->hasMany(Subject::class,'subjectvertical_id','id')->withTrashed(); //ok
+        return $this->hasMany(Subject::class,'subjectvertical_id','id')->withTrashed();
     }
     public function subjectbuckets():HasMany
     {
-        return $this->hasMany(Subjectbucket::class,'subjectvertical_id','id')->withTrashed(); //ok
+        return $this->hasMany(Subjectbucket::class,'subjectvertical_id','id')->withTrashed();
     }
     public function buckettype()
     {
-        return $this->belongsTo(SubjectBucketTypeMaster::class, 'subjectbuckettype_id','id'); //ok
+        return $this->belongsTo(SubjectBucketTypeMaster::class, 'subjectbuckettype_id','id');
     }
 
-    // ok
     public function scopeSearch(Builder $query, string $search)
     {
         return $query->with('buckettype')

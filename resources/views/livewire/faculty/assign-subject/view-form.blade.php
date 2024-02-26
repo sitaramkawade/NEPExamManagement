@@ -21,7 +21,7 @@
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_sem" :value="__('Subject Semester')" />
-            <x-input-show id="subject_sem" :value="$patternclass_id" />
+            <x-input-show id="subject_sem" :value="$subject_sem" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_id" :value="__('Subject Name')" />
@@ -29,7 +29,7 @@
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="academicyear_id" :value="__('Academic Year')" />
-            <x-input-show id="academicyear_id" :value="$subject_id" />
+            <x-input-show id="academicyear_id" :value="$academicyear_id" />
         </div>
     </div>
 </div>
