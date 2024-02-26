@@ -14,7 +14,7 @@
     @livewireStyles()
 
     <script src="{{ asset('assets/alpinejs/ui.min.js') }}" defer></script>
-    <script src="{{ asset('assets/chart/Chart.bundle.min.js') }}" defer></script>
+    <script src="{{ asset('assets/chart/Chart.bundle.min.js') }}" ></script>
     <script src="{{ asset('assets/jquery/jquery.min.js') }}" defer></script>
     <script src="{{ asset('assets/sweetalert/sweetalert.js') }}" defer></script>
     
