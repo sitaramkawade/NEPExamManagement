@@ -222,49 +222,49 @@
                     <td align="center">{{ $d->subject->subject_sem }}</td>
                     <td>{{ $d->subject->subject_code }}</td>
                     <td>{{ $d->subject->subject_name }}</td>
-                    @if ($d->subject->subjectexam_type == 'G' || $d->subject->subjectexam_type == 'IG')
+                    @if ($d->subject->subject_type == 'G' || $d->subject->subject_type == 'IG')
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ $d->grade_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                     @endif
-                    @if ($d->subject->subjectexam_type == 'IE')
+                    @if ($d->subject->subject_type == 'IE')
                       <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                     @endif
-                    @if ($d->subject->subjectexam_type == 'IEG')
+                    @if ($d->subject->subject_type == 'IEG')
                       <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                     @endif
-                    @if ($d->subject->subjectexam_type == 'IP' && $d->subject->subjecttype->type_name != 'Project')
+                    @if ($d->subject->subject_type == 'IP' && $d->subject->subjectcategory->subjectcategory != 'Project')
                       <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                     @endif
-                    @if ($d->subject->subjectexam_type == 'IP' && $d->subject->subjecttype->type_name == 'Project')
+                    @if ($d->subject->subject_type == 'IP' && $d->subject->subjectcategory->subjectcategory == 'Project')
                       <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N' }}</td>
                     @endif
-                    @if ($d->subject->subjectexam_type == 'I')
+                    @if ($d->subject->subject_type == 'I')
                       <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                       <td align="center">{{ 'N' }}</td>
                     @endif
-                    @if ($d->subject->subjectexam_type == 'IEP')
+                    @if ($d->subject->subject_type == 'IEP')
                       <td align="center">{{ $d->int_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ $d->ext_status == 1 ? 'Y' : 'N' }}</td>
                       <td align="center">{{ $d->int_practical_status == 1 ? 'Y' : 'N' }}</td>

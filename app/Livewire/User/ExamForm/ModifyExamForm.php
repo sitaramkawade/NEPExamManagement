@@ -2,8 +2,10 @@
 
 namespace App\Livewire\User\ExamForm;
 
+use App\Models\Subject;
 use Livewire\Component;
 use App\Models\Examformmaster;
+use App\Models\StudentExamform;
 use Illuminate\Validation\Rule;
 use App\Models\Studentexamformfee;
 use Illuminate\Support\Facades\DB;
@@ -15,13 +17,19 @@ class ModifyExamForm extends Component
     public $student_name;
     public $mother_name;
     public $course_name;
-    public $done=0;
     public $memid;
     public $application_id;
     public $modify_id;
+    #[Locked]
     public $student_exam_form_subjects=[];
+    #[Locked]
     public $student_exam_form_fees=[];
+    #[Locked]
     public $student_exam_form_extrcredit_subjects=[];
+    #[Locked]
+    public $subjects_not_selected=[];
+    public $remove_subjects=[];
+    public $add_subjects=[];
     public $newfees=[];
     public $newtotal=0;
 
@@ -70,15 +78,15 @@ class ModifyExamForm extends Component
             $this->newfees[$examformfee->examfees_id]=$examformfee->fee_amount; 
             $this->newtotal =$this->newtotal +$examformfee->fee_amount;
         }
+
+        $this->subjects_not_selected=Subject::where('patternclass_id',$exam_form_master->patternclass_id)->whereNotIn('id',$exam_form_master->studentexamforms()->pluck('subject_id'))->get();
     }
 
-    public function modify_form(Examformmaster $exmformmaster)
+    public function modify_form_fee(Examformmaster $exmformmaster)
     {   
         DB::beginTransaction();
         try 
         {   
-            $this->done=0;
-            // Update Modified Fee
             foreach ($this->newfees as $feeid => $newfee) {
                 if($newfee=='')
                 {
@@ -92,30 +100,105 @@ class ModifyExamForm extends Component
                 }
             }
 
-            // Calculate Total Fee
             $total=0;
             foreach ($exmformmaster->studentexamformfees()->get() as $fee)
             {
                 $total+=$fee->fee_amount; 
             }
 
-            // Update Total Fee
             $exmformmaster->update(['totalfee'=>$total]);
 
             DB::commit();
-            $this->done=1;
-            $this->dispatch('alert',type:'success',message:'Exam Form Updated Successfully !!');
-
-        } catch (\Exception $e) 
+            $this->fetch_modify();
+            $this->dispatch('alert',type:'success',message:'Exam Form Fees Updated Successfully !!');
+        } 
+        catch (\Exception $e) 
         {
             DB::rollback();
 
-            $this->dispatch('alert',type:'error',message:'Exam Form Updated Failed Transaction Rollback Successfully !!');
+            $this->dispatch('alert',type:'error',message:'Failed To Update Exam Form Fees !!');
         }
-
         
     }
     
+    public function modify_form_subject(Examformmaster $exmformmaster)
+    {   
+        DB::beginTransaction();
+        try 
+        { 
+            $subjects =Subject::whereIn('id',array_keys(array_filter($this->add_subjects)))->get();
+
+            $student_exam_forms = [];
+            
+            foreach ($subjects as $subject) 
+            {
+                $student_exam_form = [
+                    'exam_id' => $exmformmaster->exam_id,
+                    'student_id' => $exmformmaster->student_id,
+                    'subject_id' => $subject->id,
+                    'examformmaster_id' => $exmformmaster->id,
+                    'college_id' => $exmformmaster->college_id,
+                    'int_status' => 0,
+                    'ext_status' => 0,
+                    'int_practical_status' => 0,
+                    'grade_status' => 0,
+                    'practical_status' => 0,
+                    'project_status' => 0,
+                    'oral_status' => 0,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+                
+                switch ($subject->subject_type) 
+                {
+                    case 'I':
+                        $student_exam_form['int_status'] = 1;
+                    break;
+                    case 'G':
+                        $student_exam_form['grade_status'] = 1;
+                    break;
+                    case 'IG':
+                        $student_exam_form['int_status'] = 1;
+                        $student_exam_form['grade_status'] = 1;
+                    break;
+                    case 'P':
+                    case 'IP':
+                    case 'IE':
+                        $student_exam_form['int_status'] = 1;
+                        $student_exam_form['ext_status'] = 1;
+                    break;
+                    case 'IEG':
+                        $student_exam_form['int_status'] = 1;
+                        $student_exam_form['ext_status'] = 1;
+                        $student_exam_form['grade_status'] = 1;
+                    break;
+                    case 'IEP':
+                        $student_exam_form['int_status'] = 1;
+                        $student_exam_form['ext_status'] = 1;
+                        $student_exam_form['int_practical_status'] = 1;
+                    break;
+                }
+                    
+                $student_exam_forms[] = $student_exam_form;
+            }
+            $student_exam_form_data = StudentExamform::insert($student_exam_forms);
+
+            $this->add_subjects=[];
+
+            $deletestudentexamformsubject = StudentExamform::where('examformmaster_id',$exmformmaster->id)->whereIn('subject_id', array_keys(array_filter($this->remove_subjects)))->delete();
+            
+            $this->remove_subjects=[];
+            DB::commit();
+            $this->fetch_modify();
+            $this->dispatch('alert',type:'success',message:'Exam Form Subjects Updated Successfully !!');
+        } 
+        catch (\Exception $e) 
+        {
+            DB::rollback();
+
+            $this->dispatch('alert',type:'error',message:'Failed To Update Exam Form Subjects !!');
+        }
+    }
 
     public function deleteexamform(Examformmaster $exmformmaster)
     { 
