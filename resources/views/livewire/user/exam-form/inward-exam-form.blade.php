@@ -1,10 +1,10 @@
 <div>
+  <x-breadcrumb.breadcrumb>
+    <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
+    <x-breadcrumb.link name="Inward Exam Form" />
+  </x-breadcrumb.breadcrumb>
   @if ($page == 1)
     <div>
-      <x-breadcrumb.breadcrumb>
-        <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
-        <x-breadcrumb.link name="Inward Exam Form" />
-      </x-breadcrumb.breadcrumb>
       <x-card-header heading="Exam Form Regular Inward Process" />
       <x-form wire:submit="inward_class_form()">
         <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
@@ -60,16 +60,9 @@
     </div>
   @elseif($page == 2)
     <div>
-      <x-breadcrumb.breadcrumb>
-        <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
-        <x-breadcrumb.link name="Inward Exam Form" />
-      </x-breadcrumb.breadcrumb>
-      @php
-        $ptn = ($exam_form_masters[0]->patternclass->courseclass->classyear->classyear_name ?? '') . ' ' . ($exam_form_masters[0]->patternclass->courseclass->course->course_name ?? '') . ' ' . ($exam_form_masters[0]->patternclass->pattern->pattern_name ?? '') . ' EXAM FORMS';
-      @endphp
-      <x-card-header :heading="$ptn">
-        <x-form-btn type="button" wire:click='setpage(1)' wire:loading.attr="disabled">Back</x-form-btn>
-        <x-form-btn type="button" wire:click='resetinput()' wire:loading.attr="disabled">Cancel</x-form-btn>
+      <x-card-header :heading="(get_pattern_class_name($patternclass_id).' Inward Exam Form')">
+        <x-status type="button" class="py-1 mx-2" wire:click='setpage(1)'   type="success" wire:loading.attr="disabled">Back</x-status>
+        <x-status type="button" class="py-1 mx-2" wire:click='resetinput()' type="danger" wire:loading.attr="disabled">Cancel</x-status>
       </x-card-header>
       <x-table.frame x="0">
         <x-slot:body>
@@ -161,10 +154,6 @@
     </div>
   @elseif($page == 3)
     <div>
-      <x-breadcrumb.breadcrumb>
-        <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
-        <x-breadcrumb.link name="Inward Exam Form" />
-      </x-breadcrumb.breadcrumb>
       <x-form wire:submit="inward_form({{ $inward_id }})">
         <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
           <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">

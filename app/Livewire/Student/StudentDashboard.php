@@ -15,19 +15,21 @@ class StudentDashboard extends Component
     public function mount()
     {   
         $this->student=Auth::guard('student')->user();
-
+        
         if($this->student->is_profile_complete===0)
         {
             return $this->redirect('/student/profile',navigate:true);
         }
-
+        
+        session()->flash('alert', [ ['type' => 'info', 'message' => 'Welcome To Dashboard'],]);
 
         $this->exam_form_masters=$this->student->examformmasters()->get();
     }
 
     public function render()
     {   
-       
+
+        
         return view('livewire.student.student-dashboard')->extends('layouts.student')->section('student');
     }
 }

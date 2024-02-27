@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Studentadmission extends Model
 {
     use HasFactory;
+    protected $table='studentadmissions';
+    protected $fillable=[
+        'student_id',
+        'patternclass_id',
+        'academicyear_id',
+        'status',
+        'college_id',
+    ];
 }
