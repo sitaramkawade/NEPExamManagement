@@ -2,10 +2,10 @@
 
   <x-slot name="AUTH">
     @auth("student")
-      <img class="inline-flex h-9 w-9 rounded-full" src="{{ isset(auth()->guard("student")->user()->studentprofile->profile_photo_path)? asset(auth()->guard("student")->user()->studentprofile->profile_photo_path): asset("img/no-img.png"); }}" alt="User" /> 
+      <img class="inline-flex h-9 w-9 rounded-full" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path( isset(auth()->guard("student")->user()->studentprofile->profile_photo_path)? auth()->guard("student")->user()->studentprofile->profile_photo_path: "img/no-img.png"))) }}"src="" alt="User" /> 
       <span class="text-bold mx-2 inline-flex py-2 ">{{ isset(explode(' ', auth()->guard("student")->user()->student_name)[1] )?explode(' ', auth()->guard("student")->user()->student_name)[1]:auth()->guard("student")->user()->student_name; }}</span>
     @else
-      <img class="inline-flex h-9 w-9 rounded-full" src="{{ asset("img/no-img.png") }}" alt="User" />
+      <img class="inline-flex h-9 w-9 rounded-full" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('img/no-img.png'))) }}"  alt="User" />
     @endauth
   </x-slot>
 

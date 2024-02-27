@@ -4,7 +4,7 @@
     <div class="mx-auto my-4 h-full flex-1 overflow-hidden rounded-lg bg-white shadow-xl dark:bg-gray-800">
       <div class="flex flex-col overflow-y-auto md:flex-row">
         <div class="h-32 md:h-auto md:w-1/2">
-          <img aria-hidden="true" class="h-full w-full object-cover" src="{{ asset("img/login-office.jpeg") }}" alt="Office" />
+          <img aria-hidden="true" class="h-full w-full object-cover"src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('img/login-office.jpeg'))) }}"  alt="Office" />
         </div>
         <div class="flex items-center justify-center px-6 py-3 sm:p-12 md:w-1/2">
           <div class="w-full">

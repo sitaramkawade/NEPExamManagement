@@ -1,4 +1,5 @@
 <section>
+  <x-alert/>
   <div class="p-4">
     <div class="mx-auto">
       <div class="mb-5 rounded-3xl bg-white p-5 dark:bg-darker">
@@ -51,7 +52,7 @@
                     <div class=" text-sm text-gray-600 dark:text-gray-400 ">
                       <div class="flex flex-col items-center mx-auto   ">
                         <div class="shrink-0 p-2">
-                          <img style="width: 135px; height: 145px;" class="object-center object-fill "src="{{ isset($student->studentprofile->profile_photo_path) ? asset(auth()->user()->studentprofile->profile_photo_path) : asset('img/no-img.png') }}" alt="Profile Photo" />
+                          <img style="width: 135px; height: 145px;" class="object-center object-fill" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path(isset($student->studentprofile->profile_photo_path) ? auth()->user()->studentprofile->profile_photo_path : 'img/no-img.png'))) }}"  alt="Profile Photo" />
                         </div>
                       </div>
                     </div>

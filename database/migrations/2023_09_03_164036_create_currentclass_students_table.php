@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('currentclass_students', function (Blueprint $table) {
-            $table->id();
-            $table->string('prn',100);                   
+            $table->id();              
             $table->integer('sem');
             $table->integer('pfstatus')->default(-1);//pass=1 fail=0 ATKT=2 status 
             $table->integer('isregular')->nullable()->default(null); //isregular Default NULL 0 => repeater 1=>regular
