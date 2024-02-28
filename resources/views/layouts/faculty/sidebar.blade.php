@@ -21,6 +21,9 @@
         <x-sidebar.sidebar-link route="faculty.all-subjectbuckets" name="Subject Bucket's">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
         </x-sidebar.sidebar-link>
+        <x-sidebar.sidebar-link route="faculty.all-assignsubjects" name="Assign Subject's">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </x-sidebar.sidebar-link>
         <x-sidebar.group>------</x-sidebar.group>
 
         <x-sidebar.sidebar-link route="faculty.dashboard" name="Faculty Dashboard">
@@ -44,9 +47,7 @@
         <x-sidebar.sidebar-link route="faculty.updateprofile" name="Profile">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
         </x-sidebar.sidebar-link>
-        <x-sidebar.sidebar-link route="faculty.all-assignsubjects" name="Assign Subject's">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-        </x-sidebar.sidebar-link>
+
         <x-sidebar.logout-link route="faculty.logout" name="Faculty Logout">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
         </x-sidebar.logout-link>

@@ -23,9 +23,16 @@ class AdmissionDataExport implements FromCollection, WithHeadings, ShouldAutoSiz
 
     public function collection()
     {
-        return Admissiondata::search($this->search)
+        $results = collect([]);
+
+        Admissiondata::with(['patternclass.pattern:pattern_name,id','academicyear:year_name,id', 'patternclass.courseclass.course:course_name,id', 'patternclass.pattern:pattern_name,id','patternclass.courseclass.classyear:classyear_name,id', 'subject:subject_name,id','college:college_name,id','user:name,id'])
+        ->search($this->search)
         ->orderBy($this->sortColumn, $this->sortColumnBy)
-        ->get();
+        ->chunk(100, function ($admissionData) use ($results) {
+            $results->push($admissionData);
+        });
+
+        return $results->flatten(1);
     }
 
     public function headings(): array
@@ -37,11 +44,11 @@ class AdmissionDataExport implements FromCollection, WithHeadings, ShouldAutoSiz
     {
         return [
             $row->id,
-            $row->memid??'-',
-            $row->stud_name??'-',
+            $row->memid ?? '-',
+            $row->stud_name ?? '-',
             isset($row->subject->subject_name) ? $row->subject->subject_name : '-',
             isset($row->user->name) ? $row->user->name : '-',
-            (isset($row->patternclass->courseclass->classyear->classyear_name ) ? $row->patternclass->courseclass->classyear->classyear_name : '-').''.(isset($row->patternclass->courseclass->course->course_name) ? $row->patternclass->courseclass->course->course_name : '-'),
+            (isset($row->patternclass->courseclass->classyear->classyear_name) ? $row->patternclass->courseclass->classyear->classyear_name : '-') . ' ' . (isset($row->patternclass->courseclass->course->course_name) ? $row->patternclass->courseclass->course->course_name : '-'). ' ' . (isset($row->patternclass->pattern->pattern_name) ? $row->patternclass->pattern->pattern_name : '-'),
             isset($row->academicyear->year_name) ? $row->academicyear->year_name : '-',
             isset($row->college->college_name) ? $row->college->college_name : '-',
         ];

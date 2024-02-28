@@ -117,7 +117,8 @@ Route::middleware(['guest'])->group(function () {
 
   Route::get('/select',SelectTo::class)->name('select');
 
-
+  // RND Page
+  Route::get('/rnd', RNDPage::class)->name('rnd');
 
 });
 
@@ -351,8 +352,7 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All ViewExamPanel
   Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
 
-  // RND Page
-  Route::get('/rnd', RNDPage::class)->name('rnd');
+
 
 });
 

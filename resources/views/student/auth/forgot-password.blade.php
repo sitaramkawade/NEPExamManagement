@@ -4,7 +4,7 @@
     <div class="mx-auto h-full max-w-4xl flex-1 overflow-hidden rounded-lg bg-white shadow-xl dark:bg-gray-800">
       <div class="flex flex-col overflow-y-auto md:flex-row">
         <div class="h-32 md:h-auto md:w-1/2">
-          <img aria-hidden="true" class="h-full w-full object-cover" src="{{ asset('img/forgot-password-office.jpeg') }}" alt="Office" />
+          <img aria-hidden="true" class="h-full w-full object-cover" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('img/forgot-password-office.jpeg'))) }}" alt="Office" />
         </div>
         <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
           <div class="w-full">

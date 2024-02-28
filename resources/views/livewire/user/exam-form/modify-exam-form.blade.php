@@ -29,35 +29,35 @@
     <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
     <x-breadcrumb.link name="Inward Exam Form" />
   </x-breadcrumb.breadcrumb>
-  <x-form wire:submit="modify_form({{ $modify_id }})">
-    <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
+  <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
+    <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
+      Exam Form Regular Inward Process <x-spinner />
+    </div>
+    <div class="m-2 overflow-x-scroll rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
       <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
-        Exam Form Regular Inward Process <x-spinner />
+        Student Details
       </div>
-      <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
-        <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
-          Student Details
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+          <x-input-label for="student_name" :value="__('Student Name')" />
+          <x-input-show id="student_name" :value="$student_name" />
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2">
-          <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="student_name" :value="__('Student Name')" />
-            <x-input-show id="student_name" :value="$student_name" />
-          </div>
-          <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="mother_name" :value="__('Mother Name')" />
-            <x-input-show id="mother_name" :value="$mother_name" />
-          </div>
-          <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="email" :value="__('Course Name')" />
-            <x-input-show id="email" :value="$course_name" />
-          </div>
-          <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="mobile_no" :value="__('Member ID')" />
-            <x-input-show id="mobile_no" :value="$memid" />
-          </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+          <x-input-label for="mother_name" :value="__('Mother Name')" />
+          <x-input-show id="mother_name" :value="$mother_name" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+          <x-input-label for="email" :value="__('Course Name')" />
+          <x-input-show id="email" :value="$course_name" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+          <x-input-label for="mobile_no" :value="__('Member ID')" />
+          <x-input-show id="mobile_no" :value="$memid" />
         </div>
       </div>
-      <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
+    </div>
+    <x-form wire:submit="modify_form_fee({{ $modify_id }})">
+      <div class="m-2 overflow-x-scroll rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
         <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
           Fee Details
         </div>
@@ -87,9 +87,6 @@
                 <x-table.td>
                   @if ($examformfee->fee_amount != $newfees[$examformfee->examfees_id])
                     {{ $examformfee->fee_amount }} --> {{ $newfees[$examformfee->examfees_id] }}
-                    @if ($done)
-                      <span class="px-2"> Updated</span>
-                    @endif
                   @endif
                 </x-table.td>
               </x-table.tr>
@@ -110,19 +107,16 @@
             </x-table.tr>
           </x-table.tbody>
         </x-table.table>
-        <x-form-btn wire:loading.attr="disabled"> <span wire:loading.remove> Update Exam Form Fee</span><span wire:loading> <x-spinner /></span></x-form-btn>
+        <x-form-btn>Update Exam Form Fees</x-form-btn>
       </div>
-      <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
+    </x-form>
+    <x-form wire:submit="modify_form_subject({{ $modify_id }})">
+      <div class="m-2 overflow-x-scroll rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
         <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
           Subject Details
         </div>
         <x-table.table>
           <x-table.thead>
-            <x-table.tr>
-              <x-table.th colspan="8">
-                <p class="text-center">Subjects</p>
-              </x-table.th>
-            </x-table.tr>
             <x-table.tr>
               <x-table.th>Year / Sem</x-table.th>
               <x-table.th>Subject Code</x-table.th>
@@ -132,116 +126,275 @@
               <x-table.th>Practical </x-table.th>
               <x-table.th>Grade </x-table.th>
               <x-table.th>Project </x-table.th>
+              <x-table.th>Action</x-table.th>
             </x-table.tr>
           </x-table.thead>
           <x-table.tbody>
-            @forelse ($student_exam_form_subjects as  $examformsubject)
+            @forelse ($student_exam_form_subjects as $index1 =>  $examformsubject)
+              @if ($index1 === 0)
+                <x-table.tr>
+                  <x-table.td colspan="9" class="bg-red-700 text-white">
+                    <p class="text-center font-bold  uppercase">Selected Subjects</p>
+                  </x-table.td>
+                </x-table.tr>
+              @endif
               <x-table.tr wire:key="{{ $examformsubject->id }}">
                 <x-table.td>{{ $examformsubject->subject->subject_sem }} </x-table.td>
                 <x-table.td>{{ $examformsubject->subject->subject_code }} </x-table.td>
                 <x-table.td>{{ $examformsubject->subject->subject_name }} </x-table.td>
-
-                @if ($examformsubject->subject->subjectexam_type == 'G' || $examformsubject->subject->subjectexam_type == 'IG')
+                @if ($examformsubject->subject->subject_type == 'G' || $examformsubject->subject->subject_type == 'IG')
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ $examformsubject->grade_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-red-500">
+                      <x-input-checkbox name="remove_subjects.{{ $examformsubject->subject->id }}" wire:model="remove_subjects.{{ $examformsubject->subject->id }}" id="remove_subjects.{{ $examformsubject->subject->id }}" class="h-6 w-6 mx-2" />
+                      Remove
+                    </label>
+                  </x-table.td>
                 @endif
-                @if ($examformsubject->subject->subjectexam_type == 'IE')
+                @if ($examformsubject->subject->subject_type == 'IE')
                   <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-red-500">
+                      <x-input-checkbox name="remove_subjects.{{ $examformsubject->subject->id }}" wire:model="remove_subjects.{{ $examformsubject->subject->id }}" id="remove_subjects.{{ $examformsubject->subject->id }}" class="h-6 w-6 mx-2" />
+                      Remove
+                    </label>
+                  </x-table.td>
                 @endif
-                @if ($examformsubject->subject->subjectexam_type == 'IEG')
+                @if ($examformsubject->subject->subject_type == 'IEG')
                   <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-red-500">
+                      <x-input-checkbox name="remove_subjects.{{ $examformsubject->subject->id }}" wire:model="remove_subjects.{{ $examformsubject->subject->id }}" id="remove_subjects.{{ $examformsubject->subject->id }}" class="h-6 w-6 mx-2" />
+                      Remove
+                    </label>
+                  </x-table.td>
                 @endif
-                @if ($examformsubject->subject->subjectexam_type == 'IP' && $examformsubject->subject->subjecttype->type_name != 'Project')
+                @if ($examformsubject->subject->subject_type == 'IP' && $examformsubject->subject->subjectcategory->subjectcategory != 'Project')
                   <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-red-500">
+                      <x-input-checkbox name="remove_subjects.{{ $examformsubject->subject->id }}" wire:model="remove_subjects.{{ $examformsubject->subject->id }}" id="remove_subjects.{{ $examformsubject->subject->id }}" class="h-6 w-6 mx-2" />
+                      Remove
+                    </label>
+                  </x-table.td>
                 @endif
-                @if ($examformsubject->subject->subjectexam_type == 'IP' && $examformsubject->subject->subjecttype->type_name == 'Project')
+                @if ($examformsubject->subject->subject_type == 'IP' && $examformsubject->subject->subjectcategory->subjectcategory == 'Project')
                   <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-red-500">
+                      <x-input-checkbox name="remove_subjects.{{ $examformsubject->subject->id }}" wire:model="remove_subjects.{{ $examformsubject->subject->id }}" id="remove_subjects.{{ $examformsubject->subject->id }}" class="h-6 w-6 mx-2" />
+                      Remove
+                    </label>
+                  </x-table.td>
                 @endif
-                @if ($examformsubject->subject->subjectexam_type == 'I')
+                @if ($examformsubject->subject->subject_type == 'I')
                   <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-red-500">
+                      <x-input-checkbox name="remove_subjects.{{ $examformsubject->subject->id }}" wire:model="remove_subjects.{{ $examformsubject->subject->id }}" id="remove_subjects.{{ $examformsubject->subject->id }}" class="h-6 w-6 mx-2" />
+                      Remove
+                    </label>
+                  </x-table.td>
                 @endif
-                @if ($examformsubject->subject->subjectexam_type == 'IEP')
+                @if ($examformsubject->subject->subject_type == 'IEP')
                   <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ $examformsubject->int_practical_status == 1 ? 'Y' : 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
                   <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-red-500">
+                      <x-input-checkbox name="remove_subjects.{{ $examformsubject->subject->id }}" wire:model="remove_subjects.{{ $examformsubject->subject->id }}" id="remove_subjects.{{ $examformsubject->subject->id }}" class="h-6 w-6 mx-2" />
+                      Remove
+                    </label>
+                  </x-table.td>
                 @endif
               </x-table.tr>
             @empty
               <x-table.tr>
-                <x-table.td colspan="8">
+                <x-table.td colspan="9">
                   <p class="text-center">No Records Found</p>
                 </x-table.td>
               </x-table.tr>
             @endforelse
+            @foreach ($subjects_not_selected as $index2 => $notselectedsubject)
+              @if ($index2 === 0)
+                <x-table.tr>
+                  <x-table.td colspan="9" class="bg-green-700 text-white">
+                    <p class="text-center font-bold  uppercase">Not Selected Subjects</p>
+                  </x-table.td>
+                </x-table.tr>
+              @endif
+              <x-table.tr wire:key="{{ $notselectedsubject->id }}">
+                <x-table.td>{{ $notselectedsubject->subject_sem }} </x-table.td>
+                <x-table.td>{{ $notselectedsubject->subject_code }} </x-table.td>
+                <x-table.td>{{ $notselectedsubject->subject_name }} </x-table.td>
+                @if ($notselectedsubject->subject_type == 'G' || $notselectedsubject->subject_type == 'IG')
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-green-500">
+                      <x-input-checkbox name="add_subjects.{{ $notselectedsubject->id }}" wire:model="add_subjects.{{ $notselectedsubject->id }}" id="add_subjects.{{ $notselectedsubject->id }}" class="h-6 w-6 mx-2" />
+                      Add
+                    </label>
+                  </x-table.td>
+                @endif
+                @if ($notselectedsubject->subject_type == 'IE')
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-green-500">
+                      <x-input-checkbox name="add_subjects.{{ $notselectedsubject->id }}" wire:model="add_subjects.{{ $notselectedsubject->id }}" id="add_subjects.{{ $notselectedsubject->id }}" class="h-6 w-6 mx-2" />
+                      Add
+                    </label>
+                  </x-table.td>
+                @endif
+                @if ($notselectedsubject->subject_type == 'IEG')
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-green-500">
+                      <x-input-checkbox name="add_subjects.{{ $notselectedsubject->id }}" wire:model="add_subjects.{{ $notselectedsubject->id }}" id="add_subjects.{{ $notselectedsubject->id }}" class="h-6 w-6 mx-2" />
+                      Add
+                    </label>
+                  </x-table.td>
+                @endif
+                @if ($notselectedsubject->subject_type == 'IP' && $notselectedsubject->subjectcategory->subjectcategory != 'Project')
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-green-500">
+                      <x-input-checkbox name="add_subjects.{{ $notselectedsubject->id }}" wire:model="add_subjects.{{ $notselectedsubject->id }}" id="add_subjects.{{ $notselectedsubject->id }}" class="h-6 w-6 mx-2" />
+                      Add
+                    </label>
+                  </x-table.td>
+                @endif
+                @if ($notselectedsubject->subject_type == 'IP' && $notselectedsubject->subjectcategory->subjectcategory == 'Project')
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-green-500">
+                      <x-input-checkbox name="add_subjects.{{ $notselectedsubject->id }}" wire:model="add_subjects.{{ $notselectedsubject->id }}" id="add_subjects.{{ $notselectedsubject->id }}" class="h-6 w-6 mx-2" />
+                      Add
+                    </label>
+                  </x-table.td>
+                @endif
+                @if ($notselectedsubject->subject_type == 'I')
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-green-500">
+                      <x-input-checkbox name="add_subjects.{{ $notselectedsubject->id }}" wire:model="add_subjects.{{ $notselectedsubject->id }}" id="add_subjects.{{ $notselectedsubject->id }}" class="h-6 w-6 mx-2" />
+                      Add
+                    </label>
+                  </x-table.td>
+                @endif
+                @if ($notselectedsubject->subject_type == 'IEP')
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'Y' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>
+                    <label class="text-green-500">
+                      <x-input-checkbox name="add_subjects.{{ $notselectedsubject->id }}" wire:model="add_subjects.{{ $notselectedsubject->id }}" id="add_subjects.{{ $notselectedsubject->id }}" class="h-6 w-6 mx-2" />
+                      Add
+                    </label>
+                  </x-table.td>
+                @endif
+              </x-table.tr>
+            @endforeach
           </x-table.tbody>
         </x-table.table>
-        <x-table.table>
-          <x-table.thead>
-            <x-table.tr>
-              <x-table.th colspan="7">
-                <p class="text-center">Extra Credit Subjects</p>
-              </x-table.th>
-            </x-table.tr>
-            <x-table.tr>
-              <x-table.th>Year / Sem</x-table.th>
-              <x-table.th>Subject Code</x-table.th>
-              <x-table.th>Subject Name</x-table.th>
-              <x-table.th>Internal</x-table.th>
-              <x-table.th>External / Theory </x-table.th>
-              <x-table.th>Practical </x-table.th>
-              <x-table.th>Grade </x-table.th>
-            </x-table.tr>
-          </x-table.thead>
-          <x-table.tbody>
-            @forelse ($student_exam_form_extrcredit_subjects as  $examformextrcreditsubject)
-              <x-table.tr wire:key="{{ $examformextrcreditsubject->id }}">
-                <x-table.td>{{ '-' }} </x-table.td>
-                <x-table.td>{{ $examformextrcreditsubject->subject->subject_code }} </x-table.td>
-                <x-table.td>{{ $examformextrcreditsubject->subject->subject_name }} </x-table.td>
-                <x-table.td>{{ 'N' }}</x-table.td>
-                <x-table.td>{{ 'N' }}</x-table.td>
-                <x-table.td>{{ 'N' }}</x-table.td>
-                <x-table.td>{{ $examformextrcreditsubject->subject->select_status == 1 ? 'Y' : 'N' }}</x-table.td>
-              </x-table.tr>
-            @empty
+        @if (!$student_exam_form_extrcredit_subjects->isEmpty())
+          <x-table.table>
+            <x-table.thead>
               <x-table.tr>
-                <x-table.td colspan="7">
-                  <p class="text-center">No Records Found</p>
-                </x-table.td>
+                <x-table.th colspan="7">
+                  <p class="text-center">Extra Credit Subjects</p>
+                </x-table.th>
               </x-table.tr>
-            @endforelse
-          </x-table.tbody>
-        </x-table.table>
+              <x-table.tr>
+                <x-table.th>Year / Sem</x-table.th>
+                <x-table.th>Subject Code</x-table.th>
+                <x-table.th>Subject Name</x-table.th>
+                <x-table.th>Internal</x-table.th>
+                <x-table.th>External / Theory </x-table.th>
+                <x-table.th>Practical </x-table.th>
+                <x-table.th>Grade </x-table.th>
+              </x-table.tr>
+            </x-table.thead>
+            <x-table.tbody>
+              @forelse ($student_exam_form_extrcredit_subjects as  $examformextrcreditsubject)
+                <x-table.tr wire:key="{{ $examformextrcreditsubject->id }}">
+                  <x-table.td>{{ '-' }} </x-table.td>
+                  <x-table.td>{{ $examformextrcreditsubject->subject->subject_code }} </x-table.td>
+                  <x-table.td>{{ $examformextrcreditsubject->subject->subject_name }} </x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ 'N' }}</x-table.td>
+                  <x-table.td>{{ $examformextrcreditsubject->subject->select_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                </x-table.tr>
+              @empty
+                <x-table.tr>
+                  <x-table.td colspan="7">
+                    <p class="text-center">No Records Found</p>
+                  </x-table.td>
+                </x-table.tr>
+              @endforelse
+            </x-table.tbody>
+          </x-table.table>
+        @endif
+        <x-form-btn >Update Exam Form Subjects</x-form-btn>
       </div>
-      <x-form-btn type="button" color="bg-red-500" wire:click='deleteexamform({{ $modify_id }})' wire:loading.attr="disabled">Delete Exam Form</x-form-btn>
-      <x-form-btn type="button" wire:click='resetinput()' wire:loading.attr="disabled">Cancel</x-form-btn>
+    </x-form>
+    <div class="float-start">
+      <x-form-btn type="button" wire:click='deleteexamform({{ $modify_id }})' wire:loading.attr="disabled">Delete Exam Form</x-form-btn>
+      <x-form-btn type="button" wire:click="$set('page',1)" wire:loading.attr="disabled">Cancel</x-form-btn>
     </div>
-  </x-form>
+  </div>
 </div>
 @endif
 </div>
