@@ -1,8 +1,7 @@
 <div>
     @if ($mode=='add')
     <div>
-        <x-card-header heading=" Add Subject Wise Exam Time Table">
-
+        <x-card-header heading=" Add Exam Time Table">
             <x-back-btn wire:click="setmode('all')" />
 
         </x-card-header>
@@ -30,43 +29,33 @@
                         <x-table.thead>
                             <x-table.tr>
                                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">No.</x-table.th>
-                                <x-table.th wire:click="sort_column('class')" name="class" :sort="$sortColumn" :sort_by="$sortColumnBy">Class </x-table.th>
-                                <x-table.th wire:click="sort_column('date')" name="date" :sort="$sortColumn" :sort_by="$sortColumnBy">Date </x-table.th>
-                                <x-table.th wire:click="sort_column('time')" name="time" :sort="$sortColumn" :sort_by="$sortColumnBy">Time</x-table.th>
+                                <x-table.th wire:click="sort_column('class')" name="class" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject </x-table.th>
+                                {{-- <x-table.th wire:click="sort_column('date')" name="date" :sort="$sortColumn" :sort_by="$sortColumnBy">Date </x-table.th> --}}
+                                {{-- <x-table.th wire:click="sort_column('time')" name="time" :sort="$sortColumn" :sort_by="$sortColumnBy">Time</x-table.th> --}}
                                 <x-table.th> Action </x-table.th>
                             </x-table.tr>
                         </x-table.thead>
                         <x-table.tbody>
-                            {{-- @forelse ($subjects as  $college)
-                            <x-table.tr wire:key="{{ $college->id }}">
-                                <x-table.td> {{ $college->id }}</x-table.td>
-                                <x-table.td>
-                                    <x-table.text-scroll> {{ $college->college_name }} </x-table.text-scroll>
+                            @forelse ($examtimetables as $examtimetable)
+                            <x-table.tr wire:key="{{ $examtimetable->subjectbucket_id }}">
+                                <x-table.td> {{ $examtimetable->subjectbucket_id }}</x-table.td>
+                                <x-table.td class="text-wrap">
+                                   {{ isset($examtimetable->subjectbucket->subject->subject_name) ? $examtimetable->subjectbucket->subject->subject_name : '-' }} 
                                 </x-table.td>
-                                <x-table.td> {{ $college->college_email}} </x-table.td>
-                                <x-table.td>
-                                    <x-table.text-scroll> {{ $college->college_address }}</x-table.text-scroll>
-                                </x-table.td>
-                                <x-table.td>
-                                    <x-table.text-scroll> {{ $college->sanstha->sanstha_name }} </x-table.text-scroll>
-                                </x-table.td>
-                                <x-table.td>
-                                    <x-table.text-scroll> {{ $college->university->university_name }} </x-table.text-scroll>
-                                </x-table.td>
-                                <x-table.td>
-                                    @if($college->status==1)
-                                    <x-status type="success">Active</x-status>
+                                <x-table.td>                                                                     
+                                    <x-table.edit i="0" wire:click="edit({{ $examtimetable->id }})"> Edit </x-table.edit>                                   
+                                    @if ($examtimetable->deleted_at)
+                                    <x-table.restore wire:click="restore({{ $examtimetable->id }})" />
                                     @else
-                                    <x-status type="danger">Inactive</x-status>
-                                    @endif --}}
-                                {{-- </x-table.td>
-                                
+                                    <x-table.archive wire:click="delete({{ $examtimetable->id }})" />
+                                    @endif
+                                </x-table.td>
                             </x-table.tr>
                             @empty
                             <x-table.tr>
                                 <x-table.td colSpan='8' class="text-center">No Data Found</x-table.td>
                             </x-table.tr>
-                            @endforelse --}}
+                            @endforelse
                         </x-table.tbody>
                     </x-table.table>
                     </x-slot>

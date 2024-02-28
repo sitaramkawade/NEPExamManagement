@@ -103,6 +103,7 @@ class AllExamTimeTable extends Component
         }
         $this->mode=$mode;
     }
+    
 
     public function create(ExamPatternclass  $exampatternclass ){
         
@@ -188,6 +189,7 @@ class AllExamTimeTable extends Component
         {
             $exam_time_table =[];
 
+         //   dd($this->examdates);
              foreach( $this->examdates as $subjectbucket_id => $examdate)
             {
                 $exam_time_table[]=[

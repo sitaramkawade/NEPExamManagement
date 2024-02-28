@@ -30,7 +30,7 @@ export default {
                 },
                   shimmer: {
                 '100%' : {transform: 'translateX(100%)'}
-                 
+                  }
             },
             fontFamily: {
                 sans: ["cairo", ...defaultTheme.fontFamily.sans],

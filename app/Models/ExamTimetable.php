@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Subject;
 use App\Models\ExamTimetable;
+use App\Models\Subjectbucket;
 use App\Models\Timetableslot;
 use App\Models\ExamPatternclass;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +27,10 @@ class ExamTimetable extends Model
         'status',
     ];
 
+    public function subjectbucket(): BelongsTo
+    {
+        return $this->belongsTo(Subjectbucket::class, 'subjectbucket_id', 'id')->withTrashed();
+    }
 
     public function exampatternclass(): BelongsTo
     {
