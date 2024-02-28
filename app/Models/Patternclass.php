@@ -34,6 +34,8 @@ class Patternclass extends Model
         'sem2_totalnosubjects',
 
     ];
+
+    
     public function subjects():HasMany
     {
         return $this->hasMany(Subject::class,'patternclass_id','id')->withTrashed();

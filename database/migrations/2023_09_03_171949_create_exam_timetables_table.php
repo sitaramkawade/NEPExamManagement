@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('exam_timetables', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('subject_id')->unsigned();
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->bigInteger('subjectbucket_id')->unsigned();
+            $table->foreign('subjectbucket_id')->references('id')->on('subjectbuckets')->onDelete('cascade');
             
             $table->bigInteger('exam_patternclasses_id')->unsigned();
             $table->foreign('exam_patternclasses_id')->references('id')->on('exam_patternclasses')->onDelete('cascade');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreign('timeslot_id')->references('id')->on('timetableslots')->onDelete('cascade');
             
             $table->tinyInteger('status')->default('0'); 
-            $table->SoftDeletes();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

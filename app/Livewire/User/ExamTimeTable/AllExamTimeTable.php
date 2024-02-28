@@ -9,6 +9,7 @@ use Livewire\Component;
 use App\Models\Semester;
 use Livewire\WithPagination;
 use App\Models\ExamTimetable;
+use App\Models\Subjectbucket;
 use App\Models\Timetableslot;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
@@ -31,6 +32,7 @@ class AllExamTimeTable extends Component
     public $subjects=[];
     public $exam_pattern_class_id;
     public $timeslot_id;
+    public $subjectbucket_id;
     public $timeslots=[];
     public $timeslot_ids=[];
     public $examdates=[];
@@ -70,11 +72,13 @@ class AllExamTimeTable extends Component
     
     public function resetinput()
     {
-        $this->subject_id=null;
+        $this->subjectbucket_id=null;
         $this->exam_patternclasses_id=null;
         $this->timeslot_id=null;
         $this->examdate=null;
         $this->is_default=null;
+        $this->timeslot_ids=[];
+        $this->examdates=[];
         
     }
 
@@ -99,15 +103,27 @@ class AllExamTimeTable extends Component
         }
         $this->mode=$mode;
     }
+    
 
     public function create(ExamPatternclass  $exampatternclass ){
         
         $this->exam_pattern_class_id=$exampatternclass;
         $this->semesters=Semester::where('status',1)->get();
 
-        $this->subjects=Subject::where('patternclass_id',$exampatternclass->id)->when($this->sem,function($query, $sem){
-            $query->where('subject_sem',$sem);
-        })->where('status',1)->get();
+        $this->subjects = Subjectbucket::
+        where('patternclass_id', $exampatternclass->patternclass_id)
+        ->where('status', 1)
+        ->when($this->sem, function ($query, $sem) {
+            $query->whereHas('subject', function ($q) use ($sem) {
+                $q->where('subject_sem', $sem);
+            });
+        })
+        ->get();
+
+        foreach ($this->subjects as $subjectbucket) {
+            $subjectName = $subjectbucket->subject->subject_name;
+            // dd($subjectName);
+        }
 
         $this->timeslots=TimeTableslot::where('isactive',1)->pluck('timeslot','id');
         $this->setmode('add');
@@ -123,16 +139,16 @@ class AllExamTimeTable extends Component
     }
 
    
-    public function delete(ExamTimetable  $examTimeTable)
+    public function delete(ExamPatternclass  $exampatternclass)
     {   
-        $examTimeTable->delete();
+        $exampatternclass->delete();
         $this->dispatch('alert',type:'success',message:'Exam Time Table Soft Deleted Successfully !!');
     }
 
     public function restore($id)
     {   
-        $examTimeTable = ExamTimetable::withTrashed()->find($id);
-        $examTimeTable->restore();
+        $exampatternclass = ExamPatternclass::withTrashed()->find($id);
+        $exampatternclass->restore();
         $this->dispatch('alert',type:'success',message:'Exam Time Table Restored Successfully !!');
     }
     
@@ -144,7 +160,7 @@ class AllExamTimeTable extends Component
         $examTimeTable->forceDelete();
         $this->dispatch('alert',type:'success',message:'Exam Time Table Deleted Successfully !!');
     } catch
-    (\Illuminate\Database\QueryException $e) {
+         (\Illuminate\Database\QueryException $e) {
 
         if ($e->errorInfo[1] == 1451) {
 
@@ -169,17 +185,18 @@ class AllExamTimeTable extends Component
     public function add(ExamPatternclass  $exampatternclass )
     {
         DB::beginTransaction();
-        try 
+         try 
         {
             $exam_time_table =[];
 
-             foreach( $this->examdates as $subject_id => $examdate)
+         //   dd($this->examdates);
+             foreach( $this->examdates as $subjectbucket_id => $examdate)
             {
                 $exam_time_table[]=[
-                    'subject_id'=>$subject_id,
+                    'subjectbucket_id'=>$subjectbucket_id,
                     'exam_patternclasses_id'=>$exampatternclass->id,
                     'examdate'=>$examdate,
-                    'timeslot_id'=>$this->timeslot_ids[$subject_id],
+                    'timeslot_id'=>$this->timeslot_ids[$subjectbucket_id],
                     'status'=>1,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
@@ -189,6 +206,7 @@ class AllExamTimeTable extends Component
             $exam_time_table_data = ExamTimetable::insert($exam_time_table);
             DB::commit();
             $this->dispatch('alert',type:'success',message:'Exam Time Table Created Successfully !!'  );
+            $this->resetinput();
             $this->setmode('all');
             $this->isEditing = true;
         }
@@ -203,21 +221,33 @@ class AllExamTimeTable extends Component
 
     public function edit(ExamPatternclass $exampatternclass)
     {
-        $examtimetables=ExamTimetable::where('exam_patternclasses_id',$exampatternclass->id)->get();
+          $this->resetinput();
+          $examtimetables=ExamTimetable::where('exam_patternclasses_id',$exampatternclass->id)->get();
           $this->time_id=$exampatternclass->id;
-          $this->sem=Subject::where('id',$examtimetables[0]->subject_id)->first()->subject_sem;
+          $this->sem=Subject::where('id',$examtimetables[0]->subjectbucket_id)->first()->subject_sem;
           $this->exam_pattern_class_id = $exampatternclass->id;
           $this->semesters=Semester::where('status',1)->get();
-          $this->subjects=Subject::where('patternclass_id',$exampatternclass->id)->when($this->sem,function($query, $sem){
-              $query->where('subject_sem',$sem);
-          })->where('status',1)->get();
+          $this->subjects = Subjectbucket::
+          where('patternclass_id', $exampatternclass->patternclass_id)
+          ->where('status', 1)
+          ->when($this->sem, function ($query, $sem) {
+              $query->whereHas('subject', function ($q) use ($sem) {
+                  $q->where('subject_sem', $sem);
+              });
+          })
+          ->get();
   
+          foreach ($this->subjects as $subjectbucket) {
+              $subjectName = $subjectbucket->subject->subject_name;
+              // dd($subjectName);
+          }
           $this->timeslots=TimeTableslot::where('isactive',1)->pluck('timeslot','id');
          
         foreach($examtimetables as $examtimetable)
         {
-            $this->timeslot_ids[$examtimetable->subject_id]=$examtimetable->timeslot_id;
-            $this->examdates[$examtimetable->subject_id]=$examtimetable->examdate;
+            $this->timeslot_ids[$examtimetable->subjectbucket_id]=$examtimetable->timeslot_id;
+            $this->examdates[$examtimetable->subjectbucket_id]=$examtimetable->examdate;
+            // dd(  $this->examdates);
 
         }
         $this->setmode('edit');
@@ -230,9 +260,9 @@ class AllExamTimeTable extends Component
         DB::beginTransaction();
     
         try {
-            foreach ($this->examdates as $subject_id => $examdate) {
+            foreach ($this->examdates as $subjectbucket_id => $examdate) {
                 // Update exam timetable records matching the condition
-                ExamTimetable::where('subject_id', $subject_id)
+                ExamTimetable::where('subjectbucket_id', $subjectbucket_id)
                              ->where('exam_patternclasses_id', $exampatternclass->id)
                              ->update([
                                  'examdate' => $examdate,
@@ -244,6 +274,7 @@ class AllExamTimeTable extends Component
             DB::commit();
     
             $this->dispatch('alert',type:'success',message:'Exam Time Table Updated Successfully !!'  );
+            $this->resetinput();
             $this->setmode('all');
             $this->isEditing = false;
     
@@ -265,16 +296,6 @@ class AllExamTimeTable extends Component
             case 'csv':
                 return Excel::download(new ExportExamTimeTable($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
             break;
-            case 'pdf':
-                return Excel::download(new ExportExamTimeTable($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
-            break;
-        }     
-    }
-
-    public function download()
-    {   
-        $filename="Exam-Time-Table-".now();
-        switch ($this->ext) {
             case 'pdf':
                 return Excel::download(new ExportExamTimeTable($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
             break;

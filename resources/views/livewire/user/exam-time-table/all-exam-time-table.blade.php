@@ -53,6 +53,11 @@
                                         <x-table.edit i="0" wire:click="create({{ $exampatternclass->id }})"> Create </x-table.edit>                                
                                         <x-table.edit i="0" wire:click="edit({{ $exampatternclass->id }})"> Edit </x-table.edit>                                   
                                         <x-table.edit i="0" wire:navigate :href="route('user.timetables',$exampatternclass->id)" > Download </x-table.edit>
+                                        @if ($exampatternclass->deleted_at)
+                                        <x-table.restore wire:click="restore({{ $exampatternclass->id }})" />
+                                        @else
+                                        <x-table.archive wire:click="delete({{ $exampatternclass->id }})" />
+                                        @endif
                                     </x-table.td>
                                 </x-table.tr>
                                 @empty
