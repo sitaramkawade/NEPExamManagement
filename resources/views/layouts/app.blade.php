@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" type="image/png" href="data:image/x-icon;base64,{{ base64_encode(file_get_contents(public_path('favicon.ico'))) }}">
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -14,15 +16,14 @@
     @livewireStyles()
 
     <script src="{{ asset('assets/alpinejs/ui.min.js') }}" defer></script>
-    <script src="{{ asset('assets/chart/Chart.bundle.min.js') }}" defer></script>
+    <script src="{{ asset('assets/chart/Chart.bundle.min.js') }}" ></script>
     <script src="{{ asset('assets/jquery/jquery.min.js') }}" defer></script>
     <script src="{{ asset('assets/sweetalert/sweetalert.js') }}" defer></script>
     
     @yield('styles')
   </head>
 
-  <body class="font-sans antialiased" x-data="setup()" x-init="$refs.loading.classList.add('hidden');
-  setColors(color);" :class="{ 'dark': isDark }">
+  <body class="font-sans antialiased" x-data="setup()" x-init="$refs.loading.classList.add('hidden');setColors(color);" :class="{ 'dark': isDark }">
 
     <main>
       @yield('main')
@@ -31,6 +32,7 @@
     @livewireScripts()
 
     <x-view-image-model />
+    
 
     <script>
       var setup = () => {

@@ -50,12 +50,12 @@
                         <x-table.tr wire:key="{{ $subject->id }}">
                             <x-table.td> {{ $subject->id }}</x-table.td>
                             <x-table.td>
-                                <x-table.text-scroll> {{ $subject->subject_sem }}
+                                <x-table.text-scroll> {{ $subject->subject->subject_sem }}
                                 </x-table.text-scroll>
                             </x-table.td>
                             <x-table.td>
-                                <x-table.text-scroll> {{ $subject->subject_code }} <br>
-                                     {{ $subject->subject_name }}  </x-table.text-scroll>
+                                <x-table.text-scroll> {{ $subject->subject->subject_code }} <br>
+                                     {{ $subject->subject->subject_name }}  </x-table.text-scroll>
                             </x-table.td>
                             <x-table.td>
                                 <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">

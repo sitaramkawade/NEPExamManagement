@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\College;
 use App\Models\ExamPanel;
 use App\Models\Subjecttype;
+use App\Models\Patternclass;
 use App\Models\StudentExamform;
 use App\Models\Subjectcategory;
 use App\Models\Subjectvertical;
@@ -52,6 +53,11 @@ class Subject extends Model
         'college_id',
         'status',
     ];
+
+    public function patternclasses(): BelongsToMany
+    {
+        return $this->belongsToMany(Patternclass::class,'patternclass_id','id')->withTrashed();
+    }
 
     public function college(): BelongsTo
     {
@@ -118,6 +124,7 @@ class Subject extends Model
         return $this->hasMany(ExamPanel::class,'subject_id','id')->withTrashed();
     }
 
+
     public function scopeSearch(Builder $query, string $search)
     {
         return $query->with('subjectvertical', 'subjectcategory', 'classyear', 'department', 'college')
@@ -146,3 +153,7 @@ class Subject extends Model
 }
 
 
+// select `pattern_classes`.*, `patternclass_id`.`id`
+//  as `pivot_id`, `patternclass_id`.`patternclass_id` as `pivot_patternclass_id` from `pattern_classes`
+//  inner join `patternclass_id` on 
+// `pattern_classes`.`id` = `patternclass_id`.`patternclass_id` where `patternclass_id`.`id` = 1

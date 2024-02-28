@@ -5,6 +5,7 @@ use App\Models\Patternclass;
 use App\Models\Examformmaster;
 use App\Models\Studentaddress;
 use App\Models\Studenthelpline;
+use App\Models\Studentadmission;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use App\Models\CurrentclassStudents;
@@ -125,6 +126,11 @@ class Student extends  Authenticatable implements MustVerifyEmail
         return $this->hasOne(Studentaddress::class)->whereHas('addresstype', function ($query) {
             $query->where('type', 'Correspondence Address');
         })->first();
+    }
+
+    public function studentadmissions()
+    {
+        return $this->hasMany(Studentadmission::class,'student_id','id');
     }
 
     // public function getStudentName($value)
@@ -261,10 +267,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
     //     return $this->hasMany(Studentresult::class,'student_id','id');
     // }
 
-    // public function studentadmission()
-    // {
-    //     return $this->hasMany(Studentadmission::class,'student_id','id');
-    // }
+  
 
     // public function getyearresult($Sem1Data,$Sem2Data,$data2)
     // { 

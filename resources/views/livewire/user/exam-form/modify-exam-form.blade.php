@@ -107,8 +107,7 @@
             </x-table.tr>
           </x-table.tbody>
         </x-table.table>
-        <x-form-btn wire:loading.remove>Update Exam Form Fees</x-form-btn>
-        <x-form-btn wire:loading type="button" class="cursor-not-allowed">Update Exam Form Fees</x-form-btn>
+        <x-form-btn>Update Exam Form Fees</x-form-btn>
       </div>
     </x-form>
     <x-form wire:submit="modify_form_subject({{ $modify_id }})">
@@ -388,16 +387,14 @@
             </x-table.tbody>
           </x-table.table>
         @endif
-        <x-form-btn wire:loading.remove>Update Exam Form Subjects</x-form-btn>
-        <x-form-btn wire:loading type="button" class="cursor-not-allowed">Update Exam Form Subjects</x-form-btn>
+        <x-form-btn >Update Exam Form Subjects</x-form-btn>
       </div>
     </x-form>
     <div class="float-start">
       <x-form-btn type="button" wire:click='deleteexamform({{ $modify_id }})' wire:loading.attr="disabled">Delete Exam Form</x-form-btn>
-      <x-form-btn type="button" wire:click='resetinput()' wire:loading.attr="disabled">Cancel</x-form-btn>
+      <x-form-btn type="button" wire:click="$set('page',1)" wire:loading.attr="disabled">Cancel</x-form-btn>
     </div>
   </div>
-
 </div>
 @endif
 </div>

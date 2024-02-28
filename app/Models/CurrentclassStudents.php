@@ -12,7 +12,6 @@ class CurrentclassStudents extends Model
     protected $dates = ['deleted_at'];
     protected $table='currentclass_students';
     protected $fillable=[
-        'prn',
         'sem',
         'pfstatus',
         'isregular',
