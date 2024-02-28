@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\College;
+use App\Models\DeptPrefix;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,9 +36,8 @@ class Department extends Model
     public function faculties(): BelongsToMany
     {
         return $this->belongsToMany(Faculty::class,'facultyheads','faculty_id', 'department_id','id')->withTrashed();
-        
     }
-    public function subject():HasMany
+    public function subjects():HasMany
     {
         return $this->hasMany(Subject::class,'department_id','id')->withTrashed();
     }
@@ -48,6 +48,10 @@ class Department extends Model
     public function college():BelongsTo
     {
         return $this->belongsTo(College::class,'college_id','id')->withTrashed();
+    }
+    public function prefixes():HasMany
+    {
+        return $this->hasMany(DeptPrefix::class, 'dept_id', 'id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

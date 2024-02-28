@@ -14,7 +14,6 @@ use App\Livewire\User\Exam\AllExam;
 use App\Livewire\User\User\AllUser;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
-use App\Livewire\Faculty\RND\RNDPage;
 use App\Livewire\User\Block\AllBlock;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Grade\AllGrades;
@@ -77,6 +76,7 @@ use App\Http\Controllers\Student\Razorpay\RazorPayController;
 use App\Livewire\Student\StudentExamForm\FillStudentExamForm;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
+use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
@@ -115,9 +115,6 @@ Route::middleware(['guest'])->group(function () {
   Route::get('/table',DataTable::class);
 
   Route::get('/select',SelectTo::class)->name('select');
-
-  // RND Page
-  Route::get('/rnd', RNDPage::class)->name('rnd');
 
 });
 
@@ -348,11 +345,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All ViewExamPanel
   Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
 
-<<<<<<< Updated upstream
+  // All Department Prefixes
+  Route::get('/all-deptprefixes', AllDepartmentPrefix::class)->name('all-deptprefixes');
 
-
-=======
->>>>>>> Stashed changes
 });
 
 require __DIR__.'/student.php';

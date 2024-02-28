@@ -1,34 +1,11 @@
 <div>
     @if ($mode == 'add')
         <div>
-            <x-card-header heading="Assign Subject">
-                <x-back-btn wire:click="setmode('all')" />
-            </x-card-header>
+            <x-card-header heading="Assign Subject" />
             <x-form wire:submit="save()">
                 @include('livewire.faculty.assign-subject.assignsubject-form')
             </x-form>
-        </div>
-    @elseif($mode == 'edit')
-        <x-card-header heading="Edit Assign Subject">
-            <x-back-btn wire:click="setmode('all')" />
-        </x-card-header>
-        <x-form wire:submit="update({{ $assignsubject_id }})">
-            @include('livewire.faculty.assign-subject.assignsubject-form')
-        </x-form>
-    @elseif($mode == 'view')
-        <x-card-header heading="View Assign Subject">
-            <x-back-btn wire:click="setmode('all')" />
-        </x-card-header>
-        @include('livewire.faculty.assign-subject.view-form')
-    @elseif($mode == 'all')
-        <div>
-            <x-breadcrumb.breadcrumb>
-                <x-breadcrumb.link route="faculty.dashboard" name="Dashboard" />
-                <x-breadcrumb.link name="Assign Subject's" />
-            </x-breadcrumb.breadcrumb>
-            <x-card-header heading="All Assign Subject's">
-                <x-add-btn wire:click="setmode('add')" />
-            </x-card-header>
+            <x-card-header heading="All Assigned Subject" />
             <x-table.frame>
                 <x-slot:body>
                     <x-table.table>
@@ -57,13 +34,6 @@
                                         <x-table.text-scroll>{{ isset($assignsubject->subjectvertical->subject_vertical) ? $assignsubject->subjectvertical->subject_vertical : '-' }}</x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>{{ $assignsubject->academicyear->year_name }} </x-table.td>
-                                    {{-- <x-table.td>
-                                        <x-table.text-scroll>
-                                        {{ isset($assignsubject->patternclass->courseclass->classyear->classyear_name) ? $assignsubject->patternclass->courseclass->classyear->classyear_name : '' }}-
-                                        {{ isset($assignsubject->patternclass->courseclass->course->course_name) ? $assignsubject->patternclass->courseclass->course->course_name : ''}}-
-                                        {{ isset($assignsubject->patternclass->pattern->pattern_name) ? $assignsubject->patternclass->pattern->pattern_name : '' }}
-                                        </x-table.text-scroll>
-                                    </x-table.td> --}}
                                     <x-table.td>
                                         @if (!$assignsubject->deleted_at)
                                             @if ($assignsubject->status === 1)
@@ -97,5 +67,17 @@
                 </x-slot>
             </x-table.frame>
         </div>
+    @elseif($mode == 'edit')
+        <x-card-header heading="Edit Assigned Subject">
+            <x-back-btn wire:click="setmode('add')" />
+        </x-card-header>
+        <x-form wire:submit="update({{ $assignsubject_id }})">
+            @include('livewire.faculty.assign-subject.assignsubject-form')
+        </x-form>
+    @elseif($mode == 'view')
+        <x-card-header heading="View Assigned Subject">
+            <x-back-btn wire:click="setmode('add')" />
+        </x-card-header>
+        @include('livewire.faculty.assign-subject.view-form')
     @endif
 </div>

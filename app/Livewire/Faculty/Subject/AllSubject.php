@@ -6,6 +6,7 @@ use App\Models\Subject;
 use Livewire\Component;
 use App\Models\Semester;
 use App\Models\Classyear;
+use App\Models\DeptPrefix;
 use App\Models\Courseclass;
 use App\Models\Subjecttype;
 use App\Models\Academicyear;
@@ -165,7 +166,6 @@ class AllSubject extends Component
     {
         return [
             'subject_sem.required' => 'The subject semester field is required.',
-            'subject_sem.integer' => 'The semester must be an integer.',
             'subject_sem.exists' => 'The selected semester invalid.',
             'subjectvertical_id.required' => 'The subject vertical field is required.',
             'subjectvertical_id.integer' => 'The subject vertical must be an integer.',
@@ -249,15 +249,11 @@ class AllSubject extends Component
 
     public function resetinputspecific()
     {
-        $this->subject_order=null;
-        $this->subject_code=null;
-        $this->subject_name_prefix=null;
         $this->subject_name=null;
+        $this->subject_code=null;
         $this->subjectcategory_id=null;
         $this->subject_type=null;
         $this->subject_credit=null;
-        $this->is_panel=null;
-        $this->no_of_sets=null;
         $this->subject_maxmarks=null;
         $this->subject_maxmarks_int=null;
         $this->subject_maxmarks_intpract=null;
@@ -267,9 +263,6 @@ class AllSubject extends Component
         $this->subject_intpractpassing=null;
         $this->subject_extpassing=null;
         $this->subject_optionalgroup=null;
-        $this->classyear_id=null;
-        $this->department_id=null;
-        $this->college_id=null;
     }
 
     public function updated($propertyName)
@@ -304,13 +297,12 @@ class AllSubject extends Component
             $validatedData = $this->validate();
             $type = Subjecttype::find($this->subject_type);
 
-            // Set user_id and faculty_id based on the current authentication guard
-            $guard = Auth::user('faculty');
+            $authFaculty = Auth::user('faculty');
 
             $validatedData['subject_type'] = $type->type_name;
-            $validatedData['faculty_id'] = $guard ? $guard->id : null;
-            $validatedData['department_id'] = $guard ? $guard->department_id : null;
-            $validatedData['college_id'] = $guard ? $guard->college_id : null;
+            $validatedData['faculty_id'] = $authFaculty ? $authFaculty->id : null;
+            $validatedData['department_id'] = $authFaculty ? $authFaculty->department_id : null;
+            $validatedData['college_id'] = $authFaculty ? $authFaculty->college_id : null;
 
             // Insert data into the first table (Subject)
             $subject = Subject::create($validatedData);
@@ -402,6 +394,7 @@ class AllSubject extends Component
         $validatedData = $this->validate();
         $subject_type = Subjecttype::find($validatedData['subject_type']);
         $validatedData['subject_type'] = $subject_type->type_name;
+
         // Check the current authentication guard
         $guard = Auth::user('faculty');
 
@@ -587,6 +580,12 @@ class AllSubject extends Component
             $this->class_years= Classyear::where('status',1)->pluck('classyear_name','id');
 
             $this->subject_types = SubjectTypeMaster::with(['subjecttype',])->select('id','subjecttype_id')->where('subjectcategory_id', $this->subjectcategory_id)->get();
+
+            if ($this->subject_sem && $this->patternclass_id && $this->subjectvertical_id && $this->classyear_id) {
+                $this->subject_code = generate_subject_code($this->patternclass_id, $this->subjectvertical_id, $this->subject_sem, $this->classyear_id);
+            } else {
+                $this->subject_code = '';
+            }
 
         if ($this->subject_sem) {
             $maxSubjectOrder = 0;

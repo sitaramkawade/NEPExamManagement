@@ -45,9 +45,9 @@ class AllAssignSubject extends Component
 
     public $perPage=10;
     public $search='';
-    public $sortColumn="subject_id";
-    public $sortColumnBy="ASC";
-    public $mode='all';
+    public $sortColumn="id";
+    public $sortColumnBy="DESC";
+    public $mode='add';
     public $ext;
 
     protected function rules()
@@ -133,7 +133,6 @@ class AllAssignSubject extends Component
         if ($assignsubject) {
             $this->dispatch('alert',type:'success',message:'Subject Assigned Successfully');
             $this->resetinput();
-            $this->setmode('all');
         } else {
             $this->dispatch('alert',type:'error',message:'Failed To Assign Subject. Please try again.');
         }
@@ -143,14 +142,12 @@ class AllAssignSubject extends Component
     {
         if ($assignsubject){
             $subject = Subject::find($assignsubject->subject_id);
-            $this->subject_sem= $subject->subject_sem;
             $this->assignsubject_id = $assignsubject->id;
             $this->subjectvertical_id= $assignsubject->subjectvertical_id;
-
             $this->department_id= $assignsubject->department_id;
-            $this->course_id= $assignsubject->course_id;
+            $this->course_id = $assignsubject->patternclass->courseclass->course->id;
             $this->patternclass_id= $assignsubject->patternclass_id;
-            $this->academicyear_id= $assignsubject->academicyear_id;
+            $this->subject_sem= $subject->subject_sem;
             $this->subject_id= $subject->id;
         }else{
             $this->dispatch('alert',type:'error',message:'Assigned Subject Details Not Found');
@@ -168,10 +165,10 @@ class AllAssignSubject extends Component
         if ($assignsubject) {
             $this->dispatch('alert', type: 'success', message: 'Assigned Subject Updated Successfully !!');
             $this->resetinput();
-            $this->setmode('all');
         } else {
             $this->dispatch('alert', type: 'error', message: 'Failed To Update Assigned Subject. Please try again.');
         }
+        $this->setmode('add');
     }
 
     public function delete()
@@ -213,7 +210,6 @@ class AllAssignSubject extends Component
         } else {
             $this->dispatch('alert',type:'error',message:'Assigned Subject Not Found');
         }
-        $this->setmode('all');
     }
 
     public function export()
@@ -270,7 +266,7 @@ class AllAssignSubject extends Component
     {
         $assignsubjects=collect([]);
 
-        if($this->mode !== 'all' ){
+        if($this->mode !== 'view'){
             $this->subject_verticals = Subjectvertical::select('id', 'subject_vertical')
                 ->whereNotIn('subjectbuckettype_id', [1])
                 ->where('is_active', 1)
@@ -296,7 +292,6 @@ class AllAssignSubject extends Component
             }else{
                 $this->subjects=[];
             }
-        }else{
             $assignsubjects = Subjectbucket::with(['department:id,dept_name', 'subjectvertical:id,subject_vertical', 'subject:id,subject_name', 'academicyear:id,year_name'])->whereNotIn('subjectvertical_id', [1])->when($this->search, function($query, $search){
                 $query->search($search);
             })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
