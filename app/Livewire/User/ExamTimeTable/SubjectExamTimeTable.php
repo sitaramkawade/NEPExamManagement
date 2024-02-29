@@ -36,8 +36,6 @@ class SubjectExamTimeTable extends Component
     public $timeslot_id;
     public $timeslot_ids = []; 
 
-    public   $subject_bucket_ids = [];
-
     public $examdates = []; // Array to store exam dates
     public $examdate;
 
@@ -65,26 +63,31 @@ class SubjectExamTimeTable extends Component
     public function add(ExamTimetable $examtimetable)
     {
 
-        $exam_time_tables =[];
-
-        foreach ($this->examdates as $exam_pattern_class_id => $examdate) 
-        {
+        $exam_time_table =[];
+        //   dd(($this->examdates));
+        foreach ($this->examdates as $subjectbucket_id => $examdate) {
            
-            $exam_time_tables[] = [
-                'exam_patternclasses_id' =>$exam_pattern_class_id,  
-                'subjectbucket_id' => $this->subject_bucket_ids[$exam_pattern_class_id],
+            //  dd($subjectbucket_id );
+            $exam_time_table[] = [
+                'subjectbucket_id' => $subjectbucket_id,
+                'exam_patternclasses_id' =>$this->exampatternclasses->first()->id,  
                 'examdate' => $examdate,
-                'timeslot_id' => $this->timeslot_ids[$exam_pattern_class_id], 
+                'timeslot_id' => $this->timeslot_ids[$subjectbucket_id], 
                 'status' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
-        }
+            //   dd($subjectbucket_id);
+    }
       
-        $exam_time_table_data = ExamTimetable::insert($exam_time_tables);
+
+        // Insert data into the database
+        $exam_time_table_data = ExamTimetable::insert($exam_time_table);
+        // dd($exam_time_table_data);
       
        $this->dispatch('alert',type:'success',message:'Exam Time Table Created Successfully !!'  );
        $this->setmode('all');  
+
     }
 
     public function edit(ExamTimetable $examtimetable)
@@ -136,33 +139,27 @@ class SubjectExamTimeTable extends Component
                 $this->subjects = Subject::where('status', 1)->where('subjectcategory_id', $this->subjectcategory_id)->pluck('subject_name', 'id');
             }
 
-
-            if ($this->subject_id) {  
-
-                $patternclass_ids = Subjectbucket::where('subject_id', $this->subject_id)->pluck('patternclass_id');
-
-                if ($patternclass_ids->isNotEmpty()) {
-
-                    $this->exampatternclasses = ExamPatternclass::with([
-                        'patternclass.pattern:id,pattern_name',
-                        'patternclass.courseclass.course:id,course_name',
-                        'patternclass.courseclass.classyear:id,classyear_name',
-                    ])->whereIn('patternclass_id', $patternclass_ids)->get();
-
-                    foreach ($this->exampatternclasses as $exampatternclass) {
-                        $subject_bucket_id = Subjectbucket::where('patternclass_id', $exampatternclass->patternclass_id)->pluck('id')->first();
-                    
-                        if ($subject_bucket_id !== null) {
-                            $this->subject_bucket_ids[$exampatternclass->id] = $subject_bucket_id;
-                        }
-                    }
+            if($this->subject_id)
+            {  
+                $patternclass_ids=Subjectbucket::where('subject_id',$this->subject_id)->pluck('patternclass_id');
+          //  dd( $patternclass_ids);
+                if($patternclass_ids)
+                {
+                     $this->exampatternclasses = ExamPatternclass::select( 'patternclass_id', 'id')->with(['patternclass.pattern:pattern_name,id','patternclass.courseclass.course:course_name,id','patternclass.courseclass.classyear:classyear_name,id'])->whereIn('patternclass_id', $patternclass_ids)->get();
+                    //dd( $this->exampatternclasses);
                 }
+
             }
-        
         }
 
-        $examtimetables=ExamTimetable::select('id','subjectbucket_id')->with(['subjectbucket.subject:subject_name,id'])->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+        $examtimetables=ExamTimetable::select('id','subjectbucket_id')
+       ->with(['subjectbucket.subject:subject_name,id'])
+       ->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
+    //    dd($examtimetables);
 
+       // $exampatternclasses = Subjectbucket::select('subjectbucket_id','id')->withTrashed();
+        //dd( $this->exampatternclasses);
+        
         return view('livewire.user.exam-time-table.subject-exam-time-table',compact('examtimetables'))->extends('layouts.user')->section('user');
     }
 }

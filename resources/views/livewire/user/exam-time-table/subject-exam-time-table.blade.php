@@ -29,10 +29,9 @@
                         <x-table.thead>
                             <x-table.tr>
                                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">No.</x-table.th>
-                                {{-- <x-table.th wire:click="sort_column('exam_patternclasses_id')" name="exam_patternclasses_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Exam Pattern Class </x-table.th> --}}
-                                <x-table.th wire:click="sort_column('subjectbucket_id')" name="subjectbucket_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject </x-table.th>
-                                <x-table.th wire:click="sort_column('examdate')" name="examdate" :sort="$sortColumn" :sort_by="$sortColumnBy">Date </x-table.th>
-                                <x-table.th wire:click="sort_column('timeslot_id')" name="timeslot_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Time</x-table.th>
+                                <x-table.th wire:click="sort_column('class')" name="class" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject </x-table.th>
+                                {{-- <x-table.th wire:click="sort_column('date')" name="date" :sort="$sortColumn" :sort_by="$sortColumnBy">Date </x-table.th> --}}
+                                {{-- <x-table.th wire:click="sort_column('time')" name="time" :sort="$sortColumn" :sort_by="$sortColumnBy">Time</x-table.th> --}}
                                 <x-table.th> Action </x-table.th>
                             </x-table.tr>
                         </x-table.thead>
@@ -40,12 +39,9 @@
                             @forelse ($examtimetables as $examtimetable)
                             <x-table.tr wire:key="{{ $examtimetable->subjectbucket_id }}">
                                 <x-table.td> {{ $examtimetable->subjectbucket_id }}</x-table.td>
-                                {{-- <x-table.td> $examtimetable->exampatternclass->exam->exam_name??'-' {{ get_pattern_class_name($examtimetable->exampatternclass->patternclass_id) }}</x-table.td> --}}
                                 <x-table.td class="text-wrap">
                                    {{ isset($examtimetable->subjectbucket->subject->subject_name) ? $examtimetable->subjectbucket->subject->subject_name : '-' }} 
                                 </x-table.td>
-                                <x-table.td> {{ $examtimetable->examdate }}</x-table.td>
-                                <x-table.td> {{ $examtimetable->timetableslot->timeslot }}</x-table.td>
                                 <x-table.td>                                                                     
                                     <x-table.edit i="0" wire:click="edit({{ $examtimetable->id }})"> Edit </x-table.edit>                                   
                                     @if ($examtimetable->deleted_at)
