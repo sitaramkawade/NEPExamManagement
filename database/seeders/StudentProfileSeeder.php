@@ -40,6 +40,7 @@ class StudentProfileSeeder extends Seeder
         'current_step'=>6,
         'is_profile_complete'=>1,
         'patternclass_id'=>53,
+        'college_id'=>1,
         ]);
 
         $student->studentprofile()->create([
@@ -64,20 +65,20 @@ class StudentProfileSeeder extends Seeder
             'locality_name' => 'Sangamner Kh',
             'address' =>'Near Kuber Empire , Khandgoan Road',
             'is_same' => 1,
-            'addresstype_id' => Addresstype::inRandomOrder()->first()->id,
+            'addresstype_id' => 1,
             'is_completed' => 1,
         ]);
 
-        // $student->studentaddress()->create( [
-        //     'taluka_id' => Taluka::inRandomOrder()->latest()->first()->id,
-        //     'pincode' => 422605,
-        //     'village_name' => 'Akole',
-        //     'locality_name' => 'Akole',
-        //     'address' =>'Near Akole Bus Stand',
-        //     'is_same' => 0,
-        //     'addresstype_id' => Addresstype::inRandomOrder()->latest()->first()->id,
-        //     'is_completed' => 1,
-        // ]);
+        $student->studentaddress()->create( [
+            'taluka_id' => Taluka::inRandomOrder()->first()->id,
+            'pincode' => 422605,
+            'village_name' => 'Sangamner Kh',
+            'locality_name' => 'Sangamner Kh',
+            'address' =>'Near Kuber Empire , Khandgoan Road',
+            'is_same' => 1,
+            'addresstype_id' => 2,
+            'is_completed' => 1,
+        ]);
 
         $student->educationalcourses()->create([
            'boarduniversity_id' =>University::inRandomOrder()->first()->id,

@@ -35,6 +35,7 @@ class AllSubject extends Component
     public $subject_name_prefix;
     public $subject_name;
     public $subject_type=null;
+    public $subtype;
     public $subject_credit;
     public $subject_maxmarks;
     public $subject_maxmarks_int;
@@ -259,7 +260,6 @@ class AllSubject extends Component
         $this->subject_name_prefix=null;
         $this->subject_name=null;
         $this->subjectcategory_id=null;
-        $this->subjectvertical_id=null;
         $this->subject_type=null;
         $this->subject_credit=null;
         $this->is_panel=null;
@@ -539,6 +539,7 @@ class AllSubject extends Component
             $this->subjectcategory_id = isset($subject->subjectcategories->subjectcategory) ? $subject->subjectcategories->subjectcategory : '';
             $subjecttype = Subjecttype::where('type_name',$subject->subject_type)->first();
             $this->subject_type= $subjecttype->id;
+            $this->subtype= $subjecttype->description;
             $this->subject_credit= $subject->subject_credit;
             $this->classyear_id= isset($subject->classyear->classyear_name) ? $subject->classyear->classyear_name : '';
             $this->is_panel= $subject->is_panel == 1 ? 'YES' : 'NO';

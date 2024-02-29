@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config("app.name", "Laravel") }}</title>
+    <link rel="icon" type="image/png" href="data:image/x-icon;base64,{{ base64_encode(file_get_contents(public_path('favicon.ico'))) }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    @vite(["resources/css/app.css", "resources/js/app.js"])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @livewireStyles()
 
-    <script  src="{{ asset('assets/alpinejs/ui.min.js') }}" defer></script>
-    <script src="{{ asset('assets/chart/Chart.bundle.min.js') }}" defer></script>
+    <script src="{{ asset('assets/alpinejs/ui.min.js') }}" defer></script>
+    <script src="{{ asset('assets/chart/Chart.bundle.min.js') }}" ></script>
     <script src="{{ asset('assets/jquery/jquery.min.js') }}" defer></script>
     <script src="{{ asset('assets/sweetalert/sweetalert.js') }}" defer></script>
-
+    
     @yield('styles')
   </head>
 
-  <body class="font-sans antialiased" x-data="setup()" x-init="$refs.loading.classList.add('hidden'); setColors(color);" :class="{ 'dark': isDark }">
+  <body class="font-sans antialiased" x-data="setup()" x-init="$refs.loading.classList.add('hidden');setColors(color);" :class="{ 'dark': isDark }">
 
-      <main>
-        @yield("main")
-      </main>
+    <main>
+      @yield('main')
+    </main>
 
     @livewireScripts()
 
-    <x-view-image-model/>
-
-   
+    <x-view-image-model />
     
+
     <script>
       var setup = () => {
         const getTheme = () => {
@@ -129,58 +130,62 @@
     </script>
 
     <script>
-
-        document.addEventListener('livewire:init', () => {
-            // Toster Config
-            var Toast = Swal.mixin({
-                toast: true,
-                position: 'top',
-                showConfirmButton: false,
-                showCloseButton: true,
-                timer: 2000,
-                timerProgressBar:true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            });
-            
-         //  Notification Fire
-        window.addEventListener('alert', ({ detail: { type, message } }) => {
-            Toast.fire({
-                icon: type,
-                title: message
-            });
+      document.addEventListener('livewire:init', () => {
+        // Toster Config
+        var Toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          showCloseButton: true,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
         });
-    
-         
-            // Delete Fire
-            window.addEventListener('delete-confirmation',event=>{
-                Swal.fire({
-                    title: 'Are You Sure?',
-                    text: "You Won't Be Able To Revert This!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#dc3545',
-                    cancelButtonColor: '#198754',
-                    confirmButtonText: 'Yes, Delete It !'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                    Livewire.dispatch('delete-confirmed')
-                    }
-                });
-            });
 
-            @if(session('alert'))
-                const toastEvent = @json(session('alert'));
-                Toast.fire({
-                    icon: toastEvent.type,
-                    title: toastEvent.message
-                });
-                @php session()->forget('alert') @endphp
-            @endif
+        //  Notification Fire
+        window.addEventListener('alert', ({
+          detail: {
+            type,
+            message
+          }
+        }) => {
+          Toast.fire({
+            icon: type,
+            title: message
+          });
+        });
 
-        })
+
+        // Delete Fire
+        window.addEventListener('delete-confirmation', event => {
+          Swal.fire({
+            title: 'Are You Sure?',
+            text: "You Won't Be Able To Revert This!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#198754',
+            confirmButtonText: 'Yes, Delete It !'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Livewire.dispatch('delete-confirmed')
+            }
+          });
+        });
+
+        @if (session('alert'))
+          const toastEvent = @json(session('alert'));
+          Toast.fire({
+            icon: toastEvent.type,
+            title: toastEvent.message
+          });
+          @php session()->forget('alert') @endphp
+        @endif
+
+      })
     </script>
     @yield('scripts')
   </body>

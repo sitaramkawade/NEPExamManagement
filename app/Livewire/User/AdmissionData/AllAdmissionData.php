@@ -33,7 +33,6 @@ class AllAdmissionData extends Component
     public $sortColumnBy="ASC";
     public $ext;
     
-    
     #[Locked] 
     public  $delete_id;
     #[Locked] 
@@ -125,19 +124,39 @@ class AllAdmissionData extends Component
 
     #[Renderless]
     public function export()
-    {
-        $filename="Admission-Data-".now();
-        switch ($this->ext) {
-            case 'xlsx':
-                return Excel::download(new AdmissionDataExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
-            break;
-            case 'csv':
-                return Excel::download(new AdmissionDataExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
-            break;
-            case 'pdf':
-                return Excel::download(new AdmissionDataExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
-            break;
+    {   
+        try 
+        {
+            set_time_limit(600); // 600 sec  // 10 min
+            ini_set('memory_limit', '1024M'); //  1GB
+
+            $filename="Admission-Data-".now();
+
+            $response = null;
+
+            switch ($this->ext) {
+                case 'xlsx':
+                    $response = Excel::download(new AdmissionDataExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+                break;
+                case 'csv':
+                    $response = Excel::download(new AdmissionDataExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+                break;
+                case 'pdf':
+                    $response = Excel::download(new AdmissionDataExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+                break;
+            }
+
+            $this->dispatch('alert',type:'success',message:'Admission Data Exported Successfully !!');
+
+            return $response;
+        } 
+        catch (\Exception $e) 
+        {
+            \Log::error($e);
+
+            $this->dispatch('alert',type:'error',message:'Failed To Export Admission Data !!');
         }
+
     }
 
 

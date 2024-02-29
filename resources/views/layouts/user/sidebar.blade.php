@@ -167,7 +167,7 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
     </x-sidebar.sidebar-link>
 
-    <x-sidebar.sidebar-link route="user.all_exam_form" name="Exam Form's">
+    <x-sidebar.sidebar-link route="user.all_exam_form" name="Export Exam Form's">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
     </x-sidebar.sidebar-link>
 
@@ -179,7 +179,7 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
     </x-sidebar.sidebar-link>
 
-    <x-sidebar.sidebar-link route="user.modify_exam_form" name="Modify Exam Form Fee">
+    <x-sidebar.sidebar-link route="user.modify_exam_form" name="Modify Exam Form">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
     </x-sidebar.sidebar-link>
 
