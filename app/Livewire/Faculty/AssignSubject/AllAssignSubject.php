@@ -45,11 +45,10 @@ class AllAssignSubject extends Component
 
     public $perPage=10;
     public $search='';
-    public $sortColumn="subject_id";
-    public $sortColumnBy="ASC";
-    public $mode='all';
+    public $sortColumn="id";
+    public $sortColumnBy="DESC";
+    public $mode='add';
     public $ext;
-    public $isDisabled = true;
 
     protected function rules()
     {
@@ -134,7 +133,6 @@ class AllAssignSubject extends Component
         if ($assignsubject) {
             $this->dispatch('alert',type:'success',message:'Subject Assigned Successfully');
             $this->resetinput();
-            $this->setmode('all');
         } else {
             $this->dispatch('alert',type:'error',message:'Failed To Assign Subject. Please try again.');
         }
@@ -144,44 +142,17 @@ class AllAssignSubject extends Component
     {
         if ($assignsubject){
             $subject = Subject::find($assignsubject->subject_id);
-            $this->subject_sem= $subject->subject_sem;
             $this->assignsubject_id = $assignsubject->id;
             $this->subjectvertical_id= $assignsubject->subjectvertical_id;
-
             $this->department_id= $assignsubject->department_id;
-            $this->course_id= $assignsubject->course_id;
+            $this->course_id = $assignsubject->patternclass->courseclass->course->id;
             $this->patternclass_id= $assignsubject->patternclass_id;
-            $this->academicyear_id= $assignsubject->academicyear_id;
+            $this->subject_sem= $subject->subject_sem;
             $this->subject_id= $subject->id;
-            $this->feach();
         }else{
             $this->dispatch('alert',type:'error',message:'Assigned Subject Details Not Found');
         }
         $this->setmode('edit');
-    }
-    public function feach()
-    {
-        $subjectbuckets = Subjectbucket::all();
-
-        foreach ($subjectbuckets as $subjectbucket) {
-            $pattern_class_id = $subjectbucket->patternclass_id;
-
-            $pattern_class = Patternclass::find($pattern_class_id);
-
-            if ($pattern_class) {
-                if ($pattern_class->courseclass && $pattern_class->courseclass->course) {
-                    $this->course_id = $pattern_class->courseclass->course->id;
-                }
-
-                if ($pattern_class->courseclass) {
-                    $this->course_class_id = $pattern_class->courseclass->id;
-                }
-
-                if ($pattern_class->pattern) {
-                    $this->pattern_id = $pattern_class->pattern->id;
-                }
-            }
-        }
     }
 
     public function update(Subjectbucket $assignsubject)
@@ -194,10 +165,10 @@ class AllAssignSubject extends Component
         if ($assignsubject) {
             $this->dispatch('alert', type: 'success', message: 'Assigned Subject Updated Successfully !!');
             $this->resetinput();
-            $this->setmode('all');
         } else {
             $this->dispatch('alert', type: 'error', message: 'Failed To Update Assigned Subject. Please try again.');
         }
+        $this->setmode('add');
     }
 
     public function delete()
@@ -239,12 +210,11 @@ class AllAssignSubject extends Component
         } else {
             $this->dispatch('alert',type:'error',message:'Assigned Subject Not Found');
         }
-        $this->setmode('all');
     }
 
     public function export()
     {
-        $filename="AssignedSubjects-".time();
+        $filename="AssignedSubjects-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new AllAssignedSubjectExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
@@ -296,7 +266,7 @@ class AllAssignSubject extends Component
     {
         $assignsubjects=collect([]);
 
-        if($this->mode !== 'all' ){
+        if($this->mode !== 'view'){
             $this->subject_verticals = Subjectvertical::select('id', 'subject_vertical')
                 ->whereNotIn('subjectbuckettype_id', [1])
                 ->where('is_active', 1)
@@ -314,7 +284,7 @@ class AllAssignSubject extends Component
                 ->get();
             if($this->subjectvertical_id && $this->subject_sem){
                 $this->subjects = Subject::select('id', 'subject_name')
-                ->with(['subjectverticals:id,subject_vertical',])
+                ->with(['subjectvertical:id,subject_vertical',])
                 ->where('subjectvertical_id', $this->subjectvertical_id)
                 ->where('subject_sem', $this->subject_sem)
                 ->where('status', 1)
@@ -322,7 +292,6 @@ class AllAssignSubject extends Component
             }else{
                 $this->subjects=[];
             }
-        }else{
             $assignsubjects = Subjectbucket::with(['department:id,dept_name', 'subjectvertical:id,subject_vertical', 'subject:id,subject_name', 'academicyear:id,year_name'])->whereNotIn('subjectvertical_id', [1])->when($this->search, function($query, $search){
                 $query->search($search);
             })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);

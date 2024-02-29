@@ -108,7 +108,6 @@ class DatabaseSeeder extends Seeder
             FormTypeSeeder::class,
             CountrySeeder::class,
             ExamOrderPostSeeder::class,
-            BucketTypeSeeder::class,
             BuildingSeeder::class,
             CourseCategorySeeder::class,
             ExamFeeMasterSeeder::class,                     // ApplyFeeSeeder , FormTypeSeeder

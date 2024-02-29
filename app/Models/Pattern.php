@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\College;
+use App\Models\DeptPrefix;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,10 +25,10 @@ class Pattern extends Model
         'pattern_valid',
         'status',
         'college_id',
-      
+
     ];
     public function course_classes(): BelongsToMany
-    {  
+    {
         return $this->belongsToMany(Courseclass::class,'pattern_classes','pattern_id', 'class_id','id')
         ->withPivot('status','sem1_total_marks',
         'sem2_total_marks',
@@ -37,8 +38,8 @@ class Pattern extends Model
         'id'
         )
         ->wherePivot('status','1')->withTrashed();
-       
-    
+
+
     }
 
     public function college(): BelongsTo
@@ -54,8 +55,12 @@ class Pattern extends Model
     {
         return $this->hasMany(College::class,'college_id','id')->withTrashed();
     }
+    public function prefixes()
+    {
+        return $this->hasMany(DeptPrefix::class,'pattern_id','id')->withTrashed();
+    }
 
-  
+
 
     public function scopeSearch(Builder $query,string $search)
     {

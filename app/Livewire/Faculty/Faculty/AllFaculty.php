@@ -20,8 +20,8 @@ use App\Exports\Faculty\Faculty\FacultyExport;
 class AllFaculty extends Component
 {
     use WithPagination;
-
     protected $listeners = ['delete-confirmed'=>'delete'];
+
     public $prefix;
     public $faculty_name;
     public $email;
@@ -30,8 +30,6 @@ class AllFaculty extends Component
     public $department_id;
     public $college_id;
     public $active;
-    public $faculty_verified;
-
     public $bank_name;
     public $account_no;
     public $bank_address;
@@ -40,28 +38,27 @@ class AllFaculty extends Component
     public $ifsc_code;
     public $micr_code;
     public $account_type;
-    public $acc_verified;
-
     public $prefixes;
     public $roles;
     public $departments;
     public $colleges;
     public $banknames;
-    #[Locked]
-    public $faculty_id;
     public $facultybank_id;
 
-    public $mode='all';
-    public $per_page = 10;
+    #[Locked]
+    public $faculty_id;
     #[Locked]
     public $delete_id;
 
+
+    public $mode='all';
+    public $per_page = 10;
     public $perPage=10;
     public $search='';
     public $sortColumn="faculty_name";
     public $sortColumnBy="ASC";
     public $ext;
-    public $isDisabled = true;
+
 
     protected function rules()
     {
@@ -247,7 +244,7 @@ class AllFaculty extends Component
                 }
 
                 $faculty->forceDelete();
-                // Assuming 'facultybankaccount' is a relationship, use delete() instead of forceDelete() to trigger model events and cascading deletes if configured.
+
                 $faculty->facultybankaccount()->delete();
 
                 $this->delete_id = null;
@@ -259,9 +256,8 @@ class AllFaculty extends Component
             if ($e->errorInfo[1] == 1451) {
                 $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
             } else {
-                // Handle other query exceptions or log them for debugging.
+
                 $this->dispatch('alert',type:'error',message:'An error occurred while deleting the faculty record.');
-                // Log the exception for further investigation.
                 \Log::error($e->getMessage());
             }
         }
@@ -325,7 +321,7 @@ class AllFaculty extends Component
 
     public function export()
     {
-        $filename="Faculty-".time();
+        $filename="Faculty-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new FacultyExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');

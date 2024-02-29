@@ -69,7 +69,7 @@ class Subject extends Model
      return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id')->withTrashed(); // ok
     }
 
-    public function subjectverticals(): BelongsTo
+    public function subjectvertical(): BelongsTo
     {
      return $this->belongsTo(Subjectvertical::class,'subjectvertical_id','id')->withTrashed(); //ok
     }
@@ -127,13 +127,13 @@ class Subject extends Model
 
     public function scopeSearch(Builder $query, string $search)
     {
-        return $query->with('subjectverticals', 'subjectcategories', 'classyear', 'department', 'college')
+        return $query->with('subjectvertical', 'subjectcategory', 'classyear', 'department', 'college')
             ->where('subject_name', 'like', "%{$search}%")
             ->orWhere('subject_credit', 'like', "%{$search}%")
-            ->orWhereHas('subjectcategories', function ($query) use ($search) {
+            ->orWhereHas('subjectcategory', function ($query) use ($search) {
                 $query->where('subjectcategory', 'like', "%{$search}%");
             })
-            ->orWhereHas('subjectverticals', function ($query) use ($search) {
+            ->orWhereHas('subjectvertical', function ($query) use ($search) {
                 $query->where('subject_vertical', 'like', "%{$search}%");
             })
             ->orWhereHas('subjecttype', function ($query) use ($search) {

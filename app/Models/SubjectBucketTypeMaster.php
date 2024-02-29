@@ -14,10 +14,6 @@ class SubjectBucketTypeMaster extends Model
     'buckettype_name',
     ];
 
-    // public function subjectcategories()
-    // {
-    //     return $this->hasMany(Subjectcategory::class, 'subjectbuckettype_id','id');
-    // }
     public function subjectverticals()
     {
         return $this->hasMany(Subjectvertical::class, 'subjectvertical_id','id');
