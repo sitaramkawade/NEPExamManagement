@@ -64,7 +64,9 @@ use Database\Seeders\SubjectcategorySeeder;
 use Database\Seeders\ExamPatternclassSeeder;
 use Database\Seeders\EducationalcourseSeeder;
 use Database\Seeders\HodAppointSubjectSeeder;
+use Database\Seeders\InternalToolMasterSeeder;
 use Database\Seeders\ClassStudmenumasterSeeder;
+use Database\Seeders\InternalToolAuditorSeeder;
 use Database\Seeders\StudenthelplineQuerySeeder;
 use Database\Seeders\AshutoshAdmissionDataSeeder;
 use Database\Seeders\ExamBacklogFeeCoursesSeeder;
@@ -144,7 +146,8 @@ class DatabaseSeeder extends Seeder
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
             ExamOrderPostSeeder::class,
             SubjectTypeMasterSeeder::class,                 // Subjectcategory, Subjecttype
-
+            InternalToolMasterSeeder::class,
+            InternalToolAuditorSeeder::class,               // Patternclass, Faculty, Academicyear,
         ]);
     }
 }

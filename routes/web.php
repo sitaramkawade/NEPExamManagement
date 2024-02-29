@@ -79,6 +79,8 @@ use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
+use App\Livewire\Faculty\InternalToolMaster\AllInternalToolMaster;
+use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
@@ -349,8 +351,14 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All ViewExamPanel
   Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
 
-  // All Department Prefixes
-  Route::get('/all-deptprefixes', AllDepartmentPrefix::class)->name('all-deptprefixes');
+  // All Department Prefix
+  Route::get('/all-deptprefixe', AllDepartmentPrefix::class)->name('all-deptprefixes');
+
+  // All Internal Tool Master
+  Route::get('/all-internaltoolmasters', AllInternalToolMaster::class)->name('all-internaltoolmasters');
+
+  // All Internal Tool Auditor
+  Route::get('/all-internaltoolauditors', AllInternalToolAuditor::class)->name('all-internaltoolauditors');
 
 });
 
