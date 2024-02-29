@@ -12,6 +12,7 @@ use App\Models\Subjectbucket;
 use App\Models\Timetableslot;
 use App\Models\Subjectcategory;
 use App\Models\ExamPatternclass;
+use Illuminate\Support\Facades\DB;
 
 class SubjectExamTimeTable extends Component
 {
@@ -41,13 +42,13 @@ class SubjectExamTimeTable extends Component
 
     public function resetinput()
     {
-        // $this->subjectbucket_id=null;
-        // $this->exam_patternclasses_id=null;
-        // $this->timeslot_id=null;
-        // $this->examdate=null;
-        // $this->is_default=null;
-        // $this->timeslot_ids=[];
-        // $this->examdates=[];
+        $this->subjectbucket_id=null;
+        $this->subjectcategory_id=null;
+        $this->exam_patternclasses_id=null;
+        $this->timeslot_id=null;
+        $this->examdate=null;
+        $this->timeslot_ids=[];
+        $this->examdates=[];
         
     }
 
@@ -62,36 +63,43 @@ class SubjectExamTimeTable extends Component
  
     public function add(ExamTimetable $examtimetable)
     {
+        DB::beginTransaction();
 
-        $exam_time_table =[];
-        //   dd(($this->examdates));
-        foreach ($this->examdates as $subjectbucket_id => $examdate) {
+        try {
+            $exam_time_tables = [];
+        
+            foreach ($this->examdates as $exam_pattern_class_id => $examdate) {
+                $exam_time_tables[] = [
+                    'exam_patternclasses_id' => $exam_pattern_class_id,
+                    'subjectbucket_id' => $this->subject_bucket_ids[$exam_pattern_class_id],
+                    'examdate' => $examdate,
+                    'timeslot_id' => $this->timeslot_ids[$exam_pattern_class_id],
+                    'status' => 1,
+                    'created_at' => now(), 
+                    'updated_at' => now(),
+                ];
+            }
+        
+            $exam_time_table_data = ExamTimetable::insert($exam_time_tables);
+        
            
-            //  dd($subjectbucket_id );
-            $exam_time_table[] = [
-                'subjectbucket_id' => $subjectbucket_id,
-                'exam_patternclasses_id' =>$this->exampatternclasses->first()->id,  
-                'examdate' => $examdate,
-                'timeslot_id' => $this->timeslot_ids[$subjectbucket_id], 
-                'status' => 1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ];
-            //   dd($subjectbucket_id);
-    }
-      
-
-        // Insert data into the database
-        $exam_time_table_data = ExamTimetable::insert($exam_time_table);
-        // dd($exam_time_table_data);
-      
-       $this->dispatch('alert',type:'success',message:'Exam Time Table Created Successfully !!'  );
-       $this->setmode('all');  
-
+            DB::commit();
+        
+            
+            event(new AlertEvent('success', 'Exam Time Table Created Successfully !!'));
+        } catch (\Exception $e) {
+            
+            DB::rollBack();
+        
+          
+            event(new AlertEvent('error', 'Failed to create exam time table.'));
+        }
+        $this->setmode('all');  
     }
 
     public function edit(ExamTimetable $examtimetable)
     {
+        dd($examtimetable);
        
         // $examtimetables=ExamTimetable::where('exam_patternclasses_id',$exampatternclass->id)->get();
        
@@ -152,10 +160,7 @@ class SubjectExamTimeTable extends Component
             }
         }
 
-        $examtimetables=ExamTimetable::select('id','subjectbucket_id')
-       ->with(['subjectbucket.subject:subject_name,id'])
-       ->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
-    //    dd($examtimetables);
+        $examtimetables=ExamTimetable::select('id','subjectbucket_id','exam_patternclasses_id','examdate','timeslot_id')->with(['subjectbucket.subject:subject_name,id','exampatternclass.patternclass.pattern:pattern_name,id','exampatternclass.patternclass.courseclass.classyear:classyear_name,id','exampatternclass.patternclass.courseclass.course:course_name,id','timetableslot:timeslot,id'])->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
        // $exampatternclasses = Subjectbucket::select('subjectbucket_id','id')->withTrashed();
         //dd( $this->exampatternclasses);
