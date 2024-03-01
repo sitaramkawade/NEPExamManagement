@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\College;
 use App\Models\ExamPanel;
 use App\Models\Subjecttype;
+use App\Models\Patternclass;
 use App\Models\StudentExamform;
 use App\Models\Subjectcategory;
 use App\Models\Subjectvertical;
@@ -53,6 +54,11 @@ class Subject extends Model
         'status',
     ];
 
+    public function patternclasses(): BelongsToMany
+    {
+        return $this->belongsToMany(Patternclass::class,'patternclass_id','id')->withTrashed();
+    }
+
     public function college(): BelongsTo
     {
         return $this->belongsTo(College::class, 'college_id', 'id')->withTrashed();
@@ -63,7 +69,7 @@ class Subject extends Model
      return $this->belongsTo(Subjectcategory::class,'subjectcategory_id','id')->withTrashed(); // ok
     }
 
-    public function subjectverticals(): BelongsTo
+    public function subjectvertical(): BelongsTo
     {
      return $this->belongsTo(Subjectvertical::class,'subjectvertical_id','id')->withTrashed(); //ok
     }
@@ -118,15 +124,16 @@ class Subject extends Model
         return $this->hasMany(ExamPanel::class,'subject_id','id')->withTrashed();
     }
 
+
     public function scopeSearch(Builder $query, string $search)
     {
-        return $query->with('subjectverticals', 'subjectcategories', 'classyear', 'department', 'college')
+        return $query->with('subjectvertical', 'subjectcategory', 'classyear', 'department', 'college')
             ->where('subject_name', 'like', "%{$search}%")
             ->orWhere('subject_credit', 'like', "%{$search}%")
-            ->orWhereHas('subjectcategories', function ($query) use ($search) {
+            ->orWhereHas('subjectcategory', function ($query) use ($search) {
                 $query->where('subjectcategory', 'like', "%{$search}%");
             })
-            ->orWhereHas('subjectverticals', function ($query) use ($search) {
+            ->orWhereHas('subjectvertical', function ($query) use ($search) {
                 $query->where('subject_vertical', 'like', "%{$search}%");
             })
             ->orWhereHas('subjecttype', function ($query) use ($search) {
@@ -146,3 +153,7 @@ class Subject extends Model
 }
 
 
+// select `pattern_classes`.*, `patternclass_id`.`id`
+//  as `pivot_id`, `patternclass_id`.`patternclass_id` as `pivot_patternclass_id` from `pattern_classes`
+//  inner join `patternclass_id` on 
+// `pattern_classes`.`id` = `patternclass_id`.`patternclass_id` where `patternclass_id`.`id` = 1

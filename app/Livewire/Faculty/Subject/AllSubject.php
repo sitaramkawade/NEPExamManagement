@@ -6,6 +6,7 @@ use App\Models\Subject;
 use Livewire\Component;
 use App\Models\Semester;
 use App\Models\Classyear;
+use App\Models\DeptPrefix;
 use App\Models\Courseclass;
 use App\Models\Subjecttype;
 use App\Models\Academicyear;
@@ -27,14 +28,15 @@ use App\Exports\Faculty\Subject\SubjectExport;
 class AllSubject extends Component
 {
     use WithPagination;
-
     protected $listeners = ['delete-confirmed'=>'delete'];
+
     public $subject_sem;
     public $subject_order;
     public $subject_code;
     public $subject_name_prefix;
     public $subject_name;
     public $subject_type=null;
+    public $subtype;
     public $subject_credit;
     public $subject_maxmarks;
     public $subject_maxmarks_int;
@@ -51,10 +53,6 @@ class AllSubject extends Component
     public $classyear_id;
     public $department_id;
     public $college_id;
-
-    #[Locked]
-    public $subject_id;
-
     public $pattern_id;
     public $course_id;
     public $course_class_id;
@@ -70,30 +68,28 @@ class AllSubject extends Component
     public $semesters;
     public $course_classes;
     public $pattern_class_id;
-
-    public $type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>0];
-
     public $subjectvertical_id;
     public $subject_verticals;
-
     public $subjectcategory_id;
     public $subject_categories;
-
     public $subjecttype_id;
     public $subject_types;
 
-    public $mode='all';
-    public $per_page = 10;
 
+    public $type = ['IE'=>0,'IP'=>0,'IG'=>0,'I'=>0,'P'=>0,'G'=>0,'IEP'=>0,'IEG'=>0,'E'=>0];
+
+    #[Locked]
+    public $subject_id;
     #[Locked]
     public $delete_id;
 
     public $perPage=10;
+    public $per_page = 10;
     public $search='';
     public $sortColumn="subject_name";
     public $sortColumnBy="ASC";
+    public $mode='all';
     public $ext;
-    public $isDisabled = true;
 
 
     protected function rules()
@@ -170,7 +166,6 @@ class AllSubject extends Component
     {
         return [
             'subject_sem.required' => 'The subject semester field is required.',
-            'subject_sem.integer' => 'The semester must be an integer.',
             'subject_sem.exists' => 'The selected semester invalid.',
             'subjectvertical_id.required' => 'The subject vertical field is required.',
             'subjectvertical_id.integer' => 'The subject vertical must be an integer.',
@@ -254,16 +249,11 @@ class AllSubject extends Component
 
     public function resetinputspecific()
     {
-        $this->subject_order=null;
-        $this->subject_code=null;
-        $this->subject_name_prefix=null;
         $this->subject_name=null;
+        $this->subject_code=null;
         $this->subjectcategory_id=null;
-        $this->subjectvertical_id=null;
         $this->subject_type=null;
         $this->subject_credit=null;
-        $this->is_panel=null;
-        $this->no_of_sets=null;
         $this->subject_maxmarks=null;
         $this->subject_maxmarks_int=null;
         $this->subject_maxmarks_intpract=null;
@@ -273,9 +263,6 @@ class AllSubject extends Component
         $this->subject_intpractpassing=null;
         $this->subject_extpassing=null;
         $this->subject_optionalgroup=null;
-        $this->classyear_id=null;
-        $this->department_id=null;
-        $this->college_id=null;
     }
 
     public function updated($propertyName)
@@ -310,13 +297,12 @@ class AllSubject extends Component
             $validatedData = $this->validate();
             $type = Subjecttype::find($this->subject_type);
 
-            // Set user_id and faculty_id based on the current authentication guard
-            $guard = Auth::user('faculty');
+            $authFaculty = Auth::user('faculty');
 
             $validatedData['subject_type'] = $type->type_name;
-            $validatedData['faculty_id'] = $guard ? $guard->id : null;
-            $validatedData['department_id'] = $guard ? $guard->department_id : null;
-            $validatedData['college_id'] = $guard ? $guard->college_id : null;
+            $validatedData['faculty_id'] = $authFaculty ? $authFaculty->id : null;
+            $validatedData['department_id'] = $authFaculty ? $authFaculty->department_id : null;
+            $validatedData['college_id'] = $authFaculty ? $authFaculty->college_id : null;
 
             // Insert data into the first table (Subject)
             $subject = Subject::create($validatedData);
@@ -408,6 +394,7 @@ class AllSubject extends Component
         $validatedData = $this->validate();
         $subject_type = Subjecttype::find($validatedData['subject_type']);
         $validatedData['subject_type'] = $subject_type->type_name;
+
         // Check the current authentication guard
         $guard = Auth::user('faculty');
 
@@ -492,7 +479,7 @@ class AllSubject extends Component
 
     public function export()
     {
-        $filename="Subject-".time();
+        $filename="Subject-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new SubjectExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
@@ -531,14 +518,15 @@ class AllSubject extends Component
             $classyear = isset($subject->patternclass->courseclass->classyear->classyear_name) ? $subject->patternclass->courseclass->classyear->classyear_name : '';
             $course = isset($subject->patternclass->courseclass->course->course_name) ? $subject->patternclass->courseclass->course->course_name : '';
             $this->patternclass_id = $pattern.' '.$classyear.' '.$course;
-            $this->subjectvertical_id = isset($subject->subjectverticals->subject_vertical) ? $subject->subjectcategories->subject_vertical : '';
+            $this->subjectvertical_id = isset($subject->subjectvertical->subject_vertical) ? $subject->subjectvertical->subject_vertical : '';
             $this->subject_name_prefix = $subject->subject_name_prefix;
             $this->subject_sem= $subject->subject_sem;
             $this->subject_name= $subject->subject_name;
             $this->subject_code= $subject->subject_code;
-            $this->subjectcategory_id = isset($subject->subjectcategories->subjectcategory) ? $subject->subjectcategories->subjectcategory : '';
+            $this->subjectcategory_id = isset($subject->subjectcategory->subjectcategory) ? $subject->subjectcategory->subjectcategory : '';
             $subjecttype = Subjecttype::where('type_name',$subject->subject_type)->first();
             $this->subject_type= $subjecttype->id;
+            $this->subtype= $subjecttype->description;
             $this->subject_credit= $subject->subject_credit;
             $this->classyear_id= isset($subject->classyear->classyear_name) ? $subject->classyear->classyear_name : '';
             $this->is_panel= $subject->is_panel == 1 ? 'YES' : 'NO';
@@ -593,6 +581,12 @@ class AllSubject extends Component
 
             $this->subject_types = SubjectTypeMaster::with(['subjecttype',])->select('id','subjecttype_id')->where('subjectcategory_id', $this->subjectcategory_id)->get();
 
+            if ($this->subject_sem && $this->patternclass_id && $this->subjectvertical_id && $this->classyear_id) {
+                $this->subject_code = generate_subject_code($this->patternclass_id, $this->subjectvertical_id, $this->subject_sem, $this->classyear_id);
+            } else {
+                $this->subject_code = '';
+            }
+
         if ($this->subject_sem) {
             $maxSubjectOrder = 0;
             $maxSubjectOrder = Subject::where('patternclass_id', $this->patternclass_id)->where('subject_sem', $this->subject_sem)->max('subject_order');
@@ -634,7 +628,7 @@ class AllSubject extends Component
             }
         }
     }
-        $subjects = Subject::with(['college', 'subjectcategories', 'subjectverticals', 'subjectverticals', 'department', 'patternclass', 'classyear',])->when($this->search, function($query, $search){
+        $subjects = Subject::with(['college', 'subjectcategory', 'subjectvertical', 'department', 'patternclass', 'classyear',])->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.subject.all-subject',compact('subjects'))->extends('layouts.faculty')->section('faculty');

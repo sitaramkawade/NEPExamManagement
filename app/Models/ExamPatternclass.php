@@ -7,6 +7,7 @@ use App\Models\Subject;
 use App\Models\Capmaster;
 use App\Models\Examorder;
 use App\Models\Patternclass;
+use App\Models\Subjectbucket;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -37,6 +38,16 @@ class ExamPatternclass extends Model
         'description',
     ];
 
+    public function subjectbucket(): BelongsTo
+    {
+        return $this->belongsTo(Subjectbucket::class, 'subjectbucket_id', 'id')->withTrashed();
+    }
+
+    public function subjectbuckets()
+    {
+        return $this->hasMany(Subjectbucket::class, 'subjectbucket_id', 'id');   
+    }
+    
     public function patternclass(): BelongsTo
     {
         return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id')->withTrashed();

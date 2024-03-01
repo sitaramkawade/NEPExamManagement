@@ -20,24 +20,28 @@ use App\Exports\Faculty\SubjectBucket\SubjectBucketExport;
 class AllSubjectBucket extends Component
 {
     use WithPagination;
-
     protected $listeners = ['delete-confirmed'=>'delete'];
+
     public $department_id;
     public $patternclass_id;
     public $subjectvertical_id;
     public $subject_division;
-    // public $subject_categoryno;
     public $subject_id;
     public $pattern_id;
-
-    #[Locked]
-    public $subjectbucket_id;
-
     public $academicyear_id;
     public $course_id;
+    public $departments;
+    public $subject_verticals;
+    public $patterns;
+    public $courses;
+    public $pattern_classes;
+    public $subjects;
+    public $academic_years;
 
     #[Locked]
     public $delete_id;
+    #[Locked]
+    public $subjectbucket_id;
 
     public $mode='all';
     public $per_page = 10;
@@ -46,14 +50,7 @@ class AllSubjectBucket extends Component
     public $sortColumn="subject_id";
     public $sortColumnBy="ASC";
     public $ext;
-    public $departments;
-    public $subject_verticals;
-    public $patterns;
-    public $courses;
-    public $pattern_classes;
-    public $subjects;
-    public $academic_years;
-    public $isDisabled = true;
+
 
 
     protected function rules()
@@ -65,8 +62,6 @@ class AllSubjectBucket extends Component
             'patternclass_id' => ['required',Rule::exists(Patternclass::class,'id')],
             'subject_id' => ['required',Rule::exists(Subject::class,'id')],
             'subjectvertical_id' => ['required',Rule::exists(Subjectvertical::class,'id')],
-            // 'subject_division' => ['required', 'in:A,B,C,D',],
-            // 'subject_categoryno' => ['required',],
         ];
     }
 
@@ -85,10 +80,6 @@ class AllSubjectBucket extends Component
             'subject_id.exists' => 'The selected subject is invalid.',
             'subjectvertical_id.required' => 'The subject vertical field is required.',
             'subjectvertical_id.exists' => 'The selected subject vertical is invalid.',
-            // 'subject_division.required' => 'The subject division field is required.',
-            // 'subject_division.in' => 'The subject division must be one of: A, B, C, D.',
-            // 'subject_categoryno.required' => 'The subject category number field is required.',
-            // 'subject_categoryno.required' => 'The subject category number field is required.',
         ];
     }
 
@@ -100,7 +91,6 @@ class AllSubjectBucket extends Component
         $this->course_id = null;
         $this->patternclass_id = null;
         $this->subject_id = null;
-        //  $this->subject_division = null;
     }
 
     public function deleteconfirmation($id)
@@ -191,7 +181,7 @@ class AllSubjectBucket extends Component
 
     public function export()
     {
-        $filename="Subjectbucket-".time();
+        $filename="Subjectbucket-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new SubjectBucketExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');

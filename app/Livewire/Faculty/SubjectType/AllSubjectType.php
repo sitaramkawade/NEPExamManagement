@@ -11,24 +11,23 @@ use App\Exports\Faculty\SubjectType\SubjectTypeExport;
 class AllSubjectType extends Component
 {
     use WithPagination;
-
     protected $listeners = ['delete-confirmed'=>'delete'];
-    #[Locked]
-    public $subjecttype_id;
+
     public $type_name;
     public $description;
 
-    public $mode='all';
-    public $per_page = 10;
     #[Locked]
     public $delete_id;
+    #[Locked]
+    public $subjecttype_id;
 
     public $perPage=10;
     public $search='';
     public $sortColumn="type_name";
     public $sortColumnBy="ASC";
+    public $mode='all';
+    public $per_page = 10;
     public $ext;
-    public $isDisabled = true;
 
 
     protected function rules()
@@ -183,7 +182,7 @@ class AllSubjectType extends Component
 
     public function export()
     {
-        $filename="SubjectType-".time();
+        $filename="SubjectType-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new SubjectTypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');

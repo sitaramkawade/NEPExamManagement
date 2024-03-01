@@ -53,6 +53,18 @@
             <x-text-input id="subject_name_prefix" type="text" wire:model="subject_name_prefix" name="subject_name_prefix" placeholder="Subject Name Prefix" class=" @error('subject_name_prefix') is-invalid @enderror w-full mt-1" :value="old('subject_name_prefix', $subject_name_prefix)" required autofocus autocomplete="subject_name_prefix" />
             <x-input-error :messages="$errors->get('subject_name_prefix')" class="mt-2" />
         </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="classyear_id" :value="__('Select Class Year')" />
+            <x-input-select id="classyear_id" wire:model.live="classyear_id" name="classyear_id" class="text-center @error('classyear_id') is-invalid @enderror w-full mt-1" :value="old('classyear_id', $classyear_id)" required autofocus autocomplete="classyear_id">
+                <x-select-option class="text-start" hidden> -- Select Class Year -- </x-select-option>
+                @forelse ($class_years as $classyearid => $classyearname)
+                    <x-select-option wire:key="{{ $classyearid }}" value="{{ $classyearid }}" class="text-start"> {{ $classyearname }} </x-select-option>
+                @empty
+                    <x-select-option class="text-start">Class Years Not Found</x-select-option>
+                @endforelse
+            </x-input-select>
+            <x-input-error :messages="$errors->get('classyear_id')" class="mt-2" />
+        </div>
     </div>
 </x-card-collapsible>
 
@@ -60,7 +72,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="subject_name" :value="__('Subject Name')" />
-            <x-text-input id="subject_name" type="text" wire:model="subject_name" name="subject_name" placeholder="Subject Name" class=" @error('subject_name') is-invalid @enderror w-full mt-1" :value="old('subject_name', $subject_name)" required autofocus autocomplete="subject_name" />
+            <x-text-input id="subject_name" type="text" wire:model="subject_name" name="subject_name" placeholder="Subject Name" class=" @error('subject_name') is-invalid @enderror w-full mt-1" :value="old('subject_name', $subject_name)" required autofocus autocomplete="subject_name" oninput="this.value = this.value.toUpperCase()" />
             <x-input-error :messages="$errors->get('subject_name')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -107,20 +119,6 @@
             <x-input-error :messages="$errors->get('subject_credit')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="classyear_id" :value="__('Select Class Year')" />
-            <x-input-select id="classyear_id" wire:model="classyear_id" name="classyear_id" class="text-center @error('classyear_id') is-invalid @enderror w-full mt-1" :value="old('classyear_id', $classyear_id)" required autofocus autocomplete="classyear_id">
-                <x-select-option class="text-start" hidden> -- Select Class Year -- </x-select-option>
-                @forelse ($class_years as $classyearid => $classyearname)
-                    <x-select-option wire:key="{{ $classyearid }}" value="{{ $classyearid }}" class="text-start"> {{ $classyearname }} </x-select-option>
-                @empty
-                    <x-select-option class="text-start">Class Years Not Found</x-select-option>
-                @endforelse
-            </x-input-select>
-            <x-input-error :messages="$errors->get('classyear_id')" class="mt-2" />
-        </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3">
-        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="is_panel" :value="__('Exam Panel')" />
             <x-input-select id="is_panel" wire:model="is_panel" name="is_panel" class="text-center @error('is_panel') is-invalid @enderror w-full mt-1" :value="old('is_panel', $is_panel)" required autofocus autocomplete="is_panel">
                 <x-select-option class="text-start" hidden> -- Select Exam Panel -- </x-select-option>
@@ -129,6 +127,8 @@
             </x-input-select>
             <x-input-error :messages="$errors->get('is_panel')" class="mt-2" />
         </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="no_of_sets" :value="__('No Of Sets')" />
             <x-input-select id="no_of_sets" wire:model="no_of_sets" name="no_of_sets" class="text-center @error('no_of_sets') is-invalid @enderror w-full mt-1" :value="old('no_of_sets', $no_of_sets)" required autofocus autocomplete="no_of_sets">

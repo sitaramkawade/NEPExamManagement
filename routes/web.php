@@ -65,6 +65,7 @@ use App\Livewire\Faculty\AssignSubject\AllAssignSubject;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
+use App\Livewire\User\ExamTimeTable\SubjectExamTimeTable;
 use App\Livewire\User\ExamForm\DeleteExamFormBeforeInward;
 use App\Livewire\User\GenerateExamOrder\GenerateExamOrder;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
@@ -76,6 +77,7 @@ use App\Http\Controllers\Student\Razorpay\RazorPayController;
 use App\Livewire\Student\StudentExamForm\FillStudentExamForm;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
+use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
 use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
@@ -115,7 +117,6 @@ Route::middleware(['guest'])->group(function () {
   Route::get('/table',DataTable::class);
 
   Route::get('/select',SelectTo::class)->name('select');
-
 
 });
 
@@ -201,9 +202,12 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //All Credits
   Route::get('/credits', AllCredit::class)->name('all_credit');
 
-  //All Exam Time Table
+  //All Exam Time Table class wise
   Route::get('/examTimeTables', AllExamTimeTable::class)->name('all_examTimeTable');
   Route::get('exam/timetable/pdf/{exampatternclass}',[ExamOrderPdfController::class,'timetable'])->name('timetables');
+
+    //All Exam Time Table Subject-Wise
+    Route::get('/examTimeTables/subject', SubjectExamTimeTable::class)->name('all_examTimeTable_subject');
 
   //All Buildings
   Route::get('/building', AllBuilding::class)->name('all_builidng');
@@ -346,7 +350,8 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All ViewExamPanel
   Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
 
-
+  // All Department Prefixes
+  Route::get('/all-deptprefixes', AllDepartmentPrefix::class)->name('all-deptprefixes');
 
 });
 

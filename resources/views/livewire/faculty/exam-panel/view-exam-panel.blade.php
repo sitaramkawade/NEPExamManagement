@@ -11,9 +11,7 @@
                     @include('livewire.faculty.exam-panel.add-exam-panel-form')
                 </x-form>
             @elseif($mode == 'view')
-            <x-form wire:submit="update({{ $exampanel_id }})">
                 @include('livewire.faculty.exam-panel.view-form')
-            </x-form>
             @endif
         </div>
         <div class="col-span-3">

@@ -14,29 +14,25 @@ use App\Exports\Faculty\FacultyHead\FacultyHeadExport;
 class AllFacultyHead extends Component
 {
     use WithPagination;
-
     protected $listeners = ['delete-confirmed'=>'delete'];
+
     public $faculty_id;
     public $department_id;
-
-    #[Locked]
-    public $facultyhead_id;
-
     public $faculties;
     public $departments;
 
-    public $mode='all';
-    public $per_page = 10;
-
+    #[Locked]
+    public $facultyhead_id;
     #[Locked]
     public $delete_id;
 
+    public $mode='all';
+    public $per_page = 10;
     public $perPage=10;
     public $search='';
     public $sortColumn="faculty_id";
     public $sortColumnBy="ASC";
     public $ext;
-    public $isDisabled = true;
 
     protected function rules()
     {
@@ -183,7 +179,7 @@ class AllFacultyHead extends Component
 
     public function export()
     {
-        $filename="FacultyHead-".time();
+        $filename="FacultyHead-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new FacultyHeadExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');

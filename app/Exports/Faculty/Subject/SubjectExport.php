@@ -23,7 +23,7 @@ class SubjectExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
 
     public function collection()
     {
-        return Subject::with(['subjectverticals','subjectcategories','subjecttype','patternclass', 'classyear', 'department', 'college', ])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
+        return Subject::with(['subjectvertical','subjectcategory','subjecttype','patternclass', 'classyear', 'department', 'college', ])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
         ->get(['id','subject_sem', 'subjectvertical_id', 'subject_order', 'subject_code', 'subject_name_prefix', 'subject_name', 'subject_type','subjectcategory_id', 'subject_credit', 'subject_maxmarks', 'subject_maxmarks_int', 'subject_maxmarks_intpract', 'subject_maxmarks_ext', 'subject_totalpassing', 'subject_intpassing', 'subject_intpractpassing', 'subject_extpassing', 'patternclass_id', 'classyear_id', 'faculty_id', 'department_id', 'college_id', 'status',]);
     }
 
@@ -37,12 +37,12 @@ class SubjectExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
         return [
             $row->id,
             $row->subject_sem,
-            (isset($row->subjectverticals->subject_vertical) ?  $row->subjectverticals->subject_vertical : ''),
+            (isset($row->subjectvertical->subject_vertical) ?  $row->subjectvertical->subject_vertical : ''),
             $row->subject_order,
             $row->subject_code,
             $row->subject_name_prefix,
             $row->subject_name,
-            (isset($row->subjectcategories->subjectcategory) ?  $row->subjectcategories->subjectcategory : ''),
+            (isset($row->subjectcategory->subjectcategory) ?  $row->subjectcategory->subjectcategory : ''),
             (isset($row->subjecttypes->type_name) ?  $row->subjecttypes->type_name : ''),
             $row->subject_credit,
             $row->subject_maxmarks,
