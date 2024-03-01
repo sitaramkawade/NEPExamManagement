@@ -14,7 +14,6 @@ use App\Livewire\User\Exam\AllExam;
 use App\Livewire\User\User\AllUser;
 use App\Livewire\User\Home\UserHome;
 use App\Livewire\User\UserDashboard;
-use App\Livewire\Faculty\RND\RNDPage;
 use App\Livewire\User\Block\AllBlock;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Grade\AllGrades;
@@ -78,6 +77,7 @@ use App\Livewire\Student\StudentExamForm\FillStudentExamForm;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
+use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
@@ -116,8 +116,6 @@ Route::middleware(['guest'])->group(function () {
 
   Route::get('/select',SelectTo::class)->name('select');
 
-  // RND Page
-  Route::get('/rnd', RNDPage::class)->name('rnd');
 
 });
 
@@ -137,7 +135,7 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
   Route::get('/helpline',Helpline::class)->name('helpline');
 
   // Student Exam Form
-  Route::post('/exam/form',FillStudentExamForm::class)->name('student_exam_form');
+  Route::post('/exam/form',FillStudentExamFormNew::class)->name('student_exam_form');
 
   // Student Delete Exam Form
   Route::post('/delete/exam/form',DeleteStudentExamForm::class)->name('student_delete_exam_form');
