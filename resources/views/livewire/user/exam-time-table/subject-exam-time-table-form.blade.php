@@ -23,7 +23,7 @@
             <x-input-select id="subject_id" wire:model.live="subject_id" name="subject_id" class="text-center w-full mt-1" :value="old('subject_id', $subject_id)" required autocomplete="subject_id">
                 <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>
                 @forelse ($subjects as $subjectid => $subjectname)
-                <x-select-option wire:key="{{ $subjectid }}" value="{{ $subjectid }}" class="text-start"> {{ $subjectname }} </x-select-option>
+                <x-select-option wire:key="{{ $subjectid }}" value="{{ $subjectid }}" class="text-start"> {{  $subjectid  }} {{ $subjectname }} </x-select-option>
                 @empty
                 <x-select-option class="text-start">Subjects Not Found</x-select-option>
                 @endforelse
@@ -68,9 +68,9 @@
                     <x-table.td> {{ isset($exampatternclass->patternclass->pattern->pattern_name) ? $exampatternclass->patternclass->pattern->pattern_name : '-' }} {{ isset($exampatternclass->patternclass->courseclass->classyear->classyear_name) ? $exampatternclass->patternclass->courseclass->classyear->classyear_name : '-' }} {{ isset($exampatternclass->patternclass->courseclass->course->course_name) ? $exampatternclass->patternclass->courseclass->course->course_name : '-' }} </x-table.td>
                     <x-table.td>
                         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-                            <x-input-label for="examdates.{{ $exampatternclass->id}}.{{ $subjectbucket->id }}"  />
-                            <x-text-input id="examdates.{{ $exampatternclass->id}}.{{ $subjectbucket->id }}" type="date" wire:model="examdates.{{ $exampatternclass->id}}.{{ $subjectbucket->id }}"  name="examdates.{{ $exampatternclass->id}}.{{ $subjectbucket->id }}" class="w-full mt-1"  />
-                            <x-input-error :messages="$errors->get('examdates.{$exampatternclass->id}.{ $subjectbucket->id }')" class="mt-1" />
+                            <x-input-label for="examdates.{{ $exampatternclass->id}}"  />
+                            <x-text-input id="examdates.{{ $exampatternclass->id}}" type="date" wire:model="examdates.{{ $exampatternclass->id}}"  name="examdates.{{ $exampatternclass->id}}" class="w-full mt-1"  />
+                            <x-input-error :messages="$errors->get('examdates.{$exampatternclass->id')" class="mt-1" />
                         </div>
                     </x-table.td>
 

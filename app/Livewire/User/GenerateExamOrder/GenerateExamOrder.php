@@ -2,6 +2,7 @@
 
 namespace App\Livewire\User\GenerateExamOrder;
 
+use Carbon\Carbon;
 use App\Models\Exam;
 use App\Models\Faculty;
 use Livewire\Component;
@@ -38,24 +39,26 @@ class GenerateExamOrder extends Component
         $semesters = [1, 3, 5];
         // dd($id);
         $exampatternclass = ExamPatternclass::find($id);  
-    // dd($exampatternclass->patternclass->subjects);
+    //  dd($exampatternclass->patternclass->subjects);
         $panels = collect();
          foreach ($exampatternclass->patternclass->subjects->whereIn('subject_sem', $semesters) as $subject) {
-            // dd($subject);
+            //   dd($subject);
+            //  dd($subject->exampanels);
             foreach($subject->exampanels->where('active_status','1') as $pannel )    
-           
+            
              {
-                dd($pannel);  
+                // dd($pannel);
                 $token = Str::random(64);
                 $panels->add([
                     'exampanel_id' => $pannel->id,
                     'exam_patternclass_id' => $id,
                     'email_status' => '0',
-                    'description' => $token,
+                    'description' => 'a',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                  
                 ]);
+                
             }
         }
  

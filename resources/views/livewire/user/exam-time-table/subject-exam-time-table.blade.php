@@ -13,8 +13,8 @@
     <x-card-header heading="Edit Subject Wise Exam Time Table">
         <x-back-btn wire:click="setmode('all')" />
     </x-card-header>
-    <x-form wire:submit="update({{ $college_id  }})">
-        @include('livewire.user.exam-time-table.subject-exam-time-table-form')
+    <x-form wire:submit="update({{ $time_id  }})">
+           @include('livewire.user.exam-time-table.subject-exam-time-table-edit-form')
     </x-form>
     @elseif($mode=='all')
     <div>
