@@ -1,0 +1,399 @@
+    public function examform(Request $request)
+    {
+        $this->student = Auth::guard('student')->user();
+
+        $this->member_id=$this->student->memid;
+
+        $this->regular_subjects_data = [];
+        $this->extra_credit_subjects = [];
+        
+        $this->backlog_subjects_ids = [];
+        $this->backlog_subjects=[];
+        $this->backlog_subjects_previous_sem = [];
+        
+        $current_active_exams = Exam::Where('status',1)->get();
+        $current_exam_session = null;
+        $current_exam_session = $current_active_exams->first()->exam_sessions;
+        $current_class_student_last_entry = $this->student->currentclassstudents()->last(); 
+        $current_class_inward_students = $this->student->currentclassstudents()->where('pfstatus', '!=', -1)->where('markssheetprint_status', '!=', -1);
+
+        if ($request->input('examform') == "Exam Form")
+        {
+            if (is_null($current_class_student_last_entry)) 
+            {   
+                // FY SEM-I
+                $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $this->student->patternclass_id)->get();
+
+                if (!$admission_data->isEmpty()) 
+                {
+                    if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                    {   
+                        
+                        if ($current_exam_session != 2)
+                        {   
+                            // SEM-I Subjects
+                            $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem',1)->get();
+                        }
+                        else 
+                        {   
+                            // Direct SEM-II Exam Form With SEM-I Subjects
+                            $this->backlog_subjects_previous_sem = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem',1)->get();
+                            $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem',2)->get();
+                        }
+
+                        // Backloag Subjects
+                        $this->backlog_subjects=[];
+
+                        $extra_credit_subject_ids = $this->student->intextracreditbatchseatnoallocations()->where('grade', '=', 'NA')->pluck('subject_id');
+
+                        // Extra Credit Subjects
+                        $this->extra_credit_subjects = Extracreditsubject::where('isactive',1)->where('course_type', $this->student->patternclass->courseclass->course->course_type)->get();
+                       
+                        // Total Extra Credits
+                        $total_extra_credits = $this->extra_credit_subjects->pluck('subject_credit')->sum();
+
+                        // render student , current_active_exams ,regular_subjects_data , current_exam_session , extra_credit_subjects ,backlog_subjects_previous_sem , total_extra_credits , backlog_subjects
+                    } 
+                    else 
+                    {
+                        $this->dispatch('alert',type:'info',message:'No Admission In The Current Year !!');
+                    }
+                } 
+                else
+                {   
+                    $this->dispatch('alert',type:'info',message:'Invalid Member ID Please Update Your Profile !!');
+                }
+            } 
+            else 
+            {
+                switch ($current_class_student_last_entry->sem) 
+                {
+                    case 1:
+
+                        // Regular SEM-II  Data
+                        $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+
+                        if (!$admission_data->isEmpty()) 
+                        {
+                            if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                            { 
+                                $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->backlog_subjects=[];
+                                $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                              
+                            } else 
+                            {
+                                // fail student
+                                $this->regular_subjects_data = [];
+                                $this->regular_subjects_data_previous = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->backlog_subjects_previous_sem = [];
+                                $this->backlog_subjects_previous_sem = Subject::whereIn('id', $this->regular_subjects_data_previous->pluck('id'))->get();
+
+                            }
+                        } 
+                        else
+                        {
+                            $this->dispatch('alert',type:'info',message:'Invalid Member ID Please Update Your Profile !!');
+                        }
+
+                    break;
+                    case 2:
+
+                        // SY SEM-III
+
+                        $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $current_class_student_last_entry->patternclass_id + 1)->get();
+
+                        if (!$admission_data->isEmpty()) 
+                        {
+                            if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                            {
+
+                                $sem_1_data = $this->student->studentresults()->where('sem', $current_class_student_last_entry->sem - 1)->last();
+                                $sem_2_data = $this->student->studentresults()->where('sem', $current_class_student_last_entry->sem)->last();
+                                if (is_null($sem_1_data) && is_null($sem_2_data)) 
+                                {
+                                    // Direct SY Admission
+                                    if ($current_class_student_last_entry->markssheetprint_status = -1) 
+                                    {
+                                        $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                        $this->backlog_subjects = [];
+                                        $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                        $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                    }
+
+                                } 
+                                else if (!(is_null($sem_1_data) && is_null($sem_2_data))) 
+                                {
+
+                                    $this->year_result = $this->student->get_year_result_exam_form($sem_1_data, $sem_2_data, $current_class_student_last_entry);
+
+                                    if ($this->year_result == 0) 
+                                    {
+                                        // Fail Student
+                                        $this->regular_subjects_data = [];
+                                        $this->backlog_subjects = [];
+                                        $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                        $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                    } 
+                                    else 
+                                    {
+                                        if ($current_exam_session == 2) 
+                                        {
+                                            // Regular Student SEM-IV
+                                            $this->backlog_subjects_previous_sem = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                            $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 2)->get(); 
+                                        } 
+                                        else 
+                                        {   
+                                            // Regular Student SEM-III
+                                            $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                            $this->backlog_subjects = [];
+                                            $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                            $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                        }
+                                    }
+                                }
+                            } else 
+                            {
+                                // Fail Student
+                                $this->regular_subjects_data = [];
+                                $this->backlog_subjects = [];
+                                $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                            }
+                        }
+                        else 
+                        {
+                            $this->regular_subjects_data = [];
+                            $this->backlog_subjects = [];
+                            $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                            $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                            if ($student_marks_subject_ids->isEmpty())
+                            {
+
+                                $this->dispatch('alert',type:'info',message:'Invalid Member ID Please Update Your Profile !!');
+                            }
+                        }
+                    break;
+                    case 3:
+                        
+                        $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                  
+                        if (!$admission_data->isEmpty()) 
+                        {
+                            if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                            { 
+
+                                $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->backlog_subjects = [];
+                                $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->get();
+                              
+                            } else 
+                            {
+                                // Fail Student
+                                $this->regular_subjects_data = null;
+                                $this->regular_subjects_data_previous = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->backlog_subjects_previous_sem = null;
+                                $this->backlog_subjects_previous_sem = Subject::whereIn('id', $this->regular_subjects_data_previous->pluck('id'))->get();
+                               
+                            }
+                        } 
+                        else
+                        {
+                            $this->dispatch('alert',type:'info',message:'Invalid Member ID Please Update Your Profile !!');
+                        }
+
+                    break;
+                    case 4:
+                        $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $current_class_student_last_entry->patternclass_id + 1)->get();
+
+                        if (!$admission_data->isEmpty()) 
+                        { 
+                            if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                            {
+                                if ($current_class_inward_students->isEmpty()) 
+                                {
+                                    $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                    $this->backlog_subjects = [];
+                                    $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                    $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                }
+
+                                if ($current_class_inward_students->count() == 4) 
+                                {
+                                    $sem_1_data = $this->student->studentresults()->where('sem', 1)->last();
+                                    $sem_2_data = $this->student->studentresults()->where('sem', 2)->last();
+                                    if (!(is_null($sem_1_data) && is_null($sem_2_data))) 
+                                    {
+                                        $this->year_result = $this->student->get_year_result_exam_form($sem_1_data, $sem_2_data, $current_class_student_last_entry);
+
+                                        if ($this->year_result != 1) 
+                                        {   
+                                            // Fail Repeater Student
+                                            $this->regular_subjects_data = [];
+                                            $this->backlog_subjects = [];
+                                            $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                            $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                        }
+                                        else 
+                                        {
+                                            $Sem3Data = $this->student->studentresults()->where('sem', 3)->last();
+                                            $Sem4Data = $this->student->studentresults()->where('sem', 4)->last();
+                                            if (!(is_null($Sem3Data) && is_null($Sem4Data))) 
+                                            {
+                                                $this->year_result = $this->student->get_year_result_exam_form($Sem3Data, $Sem4Data, $current_class_student_last_entry);
+
+                                                if ($this->year_result == 0) 
+                                                {   
+                                                    // Fail Repeater Student
+                                                    $this->regular_subjects_data = [];
+                                                    $this->backlog_subjects = [];
+                                                    $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                                    $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                                } 
+                                                else 
+                                                {   
+                                                    // Regular Student
+                                                    if ($current_exam_session == 2) 
+                                                    {
+                                                        $this->backlog_subjects_previous_sem = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                                        $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 2)->get(); 
+                                                    } else 
+                                                    {
+                                                        $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                                        $this->backlog_subjects = [];
+                                                        $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                                        $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                                       
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if ($current_class_inward_students->count() == 2) 
+                                {
+                                    $sem_1_data = $this->student->studentresults()->where('sem', $current_class_student_last_entry->sem - 1)->last();
+                                    $sem_2_data = $this->student->studentresults()->where('sem', $current_class_student_last_entry->sem)->last();
+                                    if (!(is_null($sem_1_data) && is_null($sem_2_data))) 
+                                    {
+
+                                        $this->year_result = $this->student->get_year_result_exam_form($sem_1_data, $sem_2_data, $current_class_student_last_entry);
+
+                                        if ($this->year_result == 0) 
+                                        {   
+                                            // Fail Repeater Student
+                                            $this->regular_subjects_data = [];
+                                            $this->backlog_subjects = [];
+                                            $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                            $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                        } else 
+                                        {   
+                                            // Regular Student
+                                            $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->get();
+                                            $this->backlog_subjects = [];
+                                            $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                            $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                        }
+                                    } 
+                                    else 
+                                    {
+                                        // Fail Student
+                                        $this->regular_subjects_data = [];
+                                        $this->backlog_subjects = [];
+                                        $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                        $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                    }
+                                }
+                            } 
+                            else 
+                            {
+                                $this->regular_subjects_data = [];
+                                $this->backlog_subjects = [];
+                                $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->get();
+                                if ($student_marks_subject_ids->isEmpty())
+                                {
+
+                                    $this->dispatch('alert',type:'info',message:'Invalid Member ID Please Update Your Profile !!');
+                                }
+                            }
+                        } 
+                        else 
+                        {
+                            $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                            if (!$admission_data->isEmpty()) 
+                            {
+                                $this->regular_subjects_data = [];
+                                $this->backlog_subjects = [];
+                            } 
+                            else
+                            {
+                                $this->dispatch('alert',type:'info',message:'Invalid Member ID Please Update Your Profile !!');
+                            }
+                        }
+                        break;
+                    case 5:
+
+                        // TY SEM-V to SEM-VI
+                        $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                        if (!$admission_data->isEmpty()) 
+                        {
+                            if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                            {
+
+                                $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->backlog_subjects = [];
+                                $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->get();
+                            } 
+                            else 
+                            {
+                                // Fail Student
+                                $this->regular_subjects_data = [];
+                                $this->regular_subjects_data_previous = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $a = $this->regular_subjects_data_previous->pluck('id');
+                                $this->backlog_subjects_previous_sem = [];
+                                $this->backlog_subjects_previous_sem = Subject::whereIn('id', $a)->get();
+                            }
+                        } else
+                        {
+                            $this->dispatch('alert',type:'info',message:'Invalid Member ID Please Update Your Profile !!');
+                        }
+
+                    break;
+                    case 6:
+                        $this->regular_subjects_data = [];
+                        $this->backlog_subjects = [];
+                        $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                        $this->backlog_subjects = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                    break;
+                }
+               
+                $extra_credit_subject_ids = $this->student->intextracreditbatchseatnoallocations()->where('grade', '=', 'NA')->pluck('subject_id');
+
+                if ($this->student->patternclass->courseclass->course->course_type == "PG") 
+                {
+                    if ($this->student->studentadmission->whereIn('academicyear_id', [1, 2])->count() >= 1) 
+                    {
+                        $this->extra_credit_subjects = Extracreditsubject::where('isactive',0)->where('course_type', $this->student->patternclass->courseclass->course->course_type)->get();
+                        $total_extra_credits = $this->extra_credit_subjects->pluck('subject_credit')->sum();
+                    } 
+                    else 
+                    {
+                        $this->extra_credit_subjects = Extracreditsubject::where('isactive', 1)->where('course_type', $this->student->patternclass->courseclass->course->course_type)->get();
+                        $total_extra_credits = $this->extra_credit_subjects->pluck('subject_credit')->sum();
+                    }
+                } 
+                else 
+                {
+                    $this->extra_credit_subjects = Extracreditsubject::where('isactive', 1)->where('course_type', $this->student->patternclass->courseclass->course->course_type)->get();
+                    $total_extra_credits = $this->extra_credit_subjects->pluck('subject_credit')->sum();
+                }
+
+                // render student ,current_active_exams ,regular_subjects_data , current_exam_session , extra_credit_subjects ,backlog_subjects_previous_sem , total_extra_credits , backlog_subjects
+            }
+        } 
+    }

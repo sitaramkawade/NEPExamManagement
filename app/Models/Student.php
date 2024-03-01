@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use App\Models\Subject;
+use App\Models\Studentmark;
 use App\Models\Patternclass;
 use App\Models\Examformmaster;
 use App\Models\Studentaddress;
@@ -34,6 +36,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
         'password',
         'last_login',
         'prn',
+        'university_prn',
         'memid',
         'eligibilityno',
         'abcid',
@@ -102,10 +105,10 @@ class Student extends  Authenticatable implements MustVerifyEmail
     }
 
 
-    public function intextracreditbatchseatnoallocations()
-    {
-        return $this->hasMany(Intextracreditbatchseatnoallocation::class,'student_id','id');
-    }
+    // public function intextracreditbatchseatnoallocations()
+    // {
+    //     return $this->hasMany(Intextracreditbatchseatnoallocation::class,'student_id','id');
+    // }
 
 
     public function examformmasters()
@@ -131,7 +134,118 @@ class Student extends  Authenticatable implements MustVerifyEmail
     public function studentadmissions()
     {
         return $this->hasMany(Studentadmission::class,'student_id','id');
+    } 
+
+    // Function to determine if the student failed in an assessment
+    private function failedAssessment($marks_obtained, $passing_marks)
+    {
+        return $marks_obtained < $passing_marks;
     }
+
+    public function get_backlog_subjects()
+    {   
+        // Initialize arrays to store backlog subjects
+        $backlog_subjects = [
+            'Internal' => [],
+            'Internal Practical' => [],
+            'External' => [],
+            'subject_ids' => []
+        ];
+
+        // Retrieve failed student marks
+        $student_marks = Studentmark::where('student_id', $this->id)->where('grade', 'F')->get();
+
+        // Iterate over each failed mark
+        foreach ($student_marks as $student_mark) 
+        {
+            // Retrieve subject details for the failed mark
+            $subject = Subject::where('id', $student_mark->subject_id)->where('subject_sem', $student_mark->sem)->where('patternclass_id', $student_mark->patternclass_id)->first();
+
+            // Check if student failed in internal assessment
+            if ($this->failedAssessment($student_mark->int_marks, $subject->subject_intpassing)) 
+            {
+                $backlog_subjects['Internal'][] = $subject->id;
+            }
+
+            // Check if student failed in internal practical assessment
+            if ($this->failedAssessment($student_mark->int_practical_marks, $subject->subject_intpractpassing)) 
+            {
+                $backlog_subjects['Internal Practical'][] = $subject->id;
+            }
+
+            // Check if student failed in external assessment
+            if ($this->failedAssessment($student_mark->ext_marks, $subject->subject_extpassing)) 
+            {
+                $backlog_subjects['External'][] = $subject->id;
+            }
+            
+            // Add the subject ID to the 'subject_ids' group
+            $backlog_subjects['subject_ids'][] = $subject->id;
+
+        }
+        
+        // Merge all subject IDs into a single array
+        $backlog_subjects['subject_ids'] = array_unique($backlog_subjects['subject_ids']);
+
+        return $backlog_subjects;
+    }
+
+
+    public function studentmarks()
+    {
+        return $this->hasMany(Studentmark::class,'student_id','id');
+    }
+
+
+    public function studentresults()
+    { 
+        return $this->hasMany(Studentresult::class,'student_id','id');
+    }
+
+
+    public function get_year_result_exam_form($sem_1_data,$sem_2_data,$current_class_student_last_entry)
+    { 
+        $current_class_student_last_entry=$this->currentclassstudents()->last();
+
+        $pass_fail_absent_status=1;
+
+        $sem_1_2_credit_earned  =  $sem_1_data->semcreditearned  +   $sem_2_data->semcreditearned;
+        $sem_1_2_total_credit   =  $sem_1_data->semtotalcredit   +   $sem_2_data->semtotalcredit;
+
+        $credits                =  $current_class_student_last_entry->patternclass->credit;
+
+        if ($sem_1_2_credit_earned >= $credits && $sem_1_2_credit_earned < $sem_1_2_total_credit) 
+        {
+            $pass_fail_absent_status = 2;  // Result : Fail A.T.K.T.
+        }
+        else if($sem_1_2_credit_earned < $credits && $sem_1_2_credit_earned >= 0)
+        { 
+            $pass_fail_absent_status = 0;  // Result : Fail
+        }
+
+        if($this->patternclass->courseclass->course->course_type=='PG' &&  $current_class_student_last_entry->sem==4 && $pass_fail_absent_status==2)
+        {
+            $pass_fail_absent_status = 0;
+        }
+
+        if($this->patternclass->courseclass->course->course_type=='PG' && $current_class_student_last_entry->sem==4 && $pass_fail_absent_status==1)
+        {
+            if((12 - $this->getNONCGPAtotal()) > 0)
+            {
+                $pass_fail_absent_status = 0;
+            }  
+        }
+        return $pass_fail_absent_status;
+    }
+    
+
+    public function getNONCGPAtotal()
+    {
+        $intextdata=Studentmark::with(['subject'=>function($query){ $query->whereIn('subject_type',['G','IEG','IG']); }])->where('student_id',$this->id)->get() ;
+        $extdata= Intextracreditbatchseatnoallocation::with('internalmarksextracreditbatches.subjects')->whereNotIn('grade',['F','Ab','-1','NA'])->where('student_id',$this->id)->whereNotNull('grade')->get();
+        return ($extdata->sum('internalmarksextracreditbatches.subjects.subject_credit')+$intextdata->sum('subject.subject_credit'));
+    }
+
 
     // public function getStudentName($value)
     // {
@@ -176,10 +290,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
     //     return $this->belongsTo(PatternClass::class, 'patternclass_id', 'id');
     // }
 
-    // public function studentmarks()
-    // {
-    //     return $this->hasMany(Studentmark::class,'student_id','id');
-    // }
+
 
 
 
@@ -262,20 +373,17 @@ class Student extends  Authenticatable implements MustVerifyEmail
     //     return $this->hasMany(Intbatchseatnoallocation::class,'student_id','id');
     // }
 
-    // public function studentresults()
-    // { 
-    //     return $this->hasMany(Studentresult::class,'student_id','id');
-    // }
+
 
   
 
-    // public function getyearresult($Sem1Data,$Sem2Data,$data2)
+    // public function getyearresult($sem_1_data,$sem_2_data,$data2)
     // { 
     //     $pfAbStatus=1;  
-    //     $x= $Sem1Data->semcreditearned+$Sem2Data->semcreditearned;
-    //     $y= $Sem1Data->semtotalcredit+$Sem2Data->semtotalcredit;
+    //     $x= $sem_1_data->semcreditearned+$sem_2_data->semcreditearned;
+    //     $sem_1_2_total_credit= $sem_1_data->semtotalcredit+$sem_2_data->semtotalcredit;
     //     $z=$data2->patternclass->credit;
-    //     if ($x>=$z and $x<$y) 
+    //     if ($x>=$z and $x<$sem_1_2_total_credit) 
     //     {
     //         $pfAbStatus=2;  // Result : Fail A.T.K.T.
     //     }    
@@ -283,7 +391,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
     //     { 
     //         $pfAbStatus=0;  // Result : Fail
     //     }
-    //     if ($pfAbStatus==1 and ($Sem1Data->extraCreditsStatus==0 or $Sem2Data->extraCreditsStatus==0))
+    //     if ($pfAbStatus==1 and ($sem_1_data->extraCreditsStatus==0 or $sem_2_data->extraCreditsStatus==0))
     //     {
     //         $pfAbStatus=2;  // Result : Fail A.T.K.T.
     //     }
@@ -291,34 +399,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
     // }
 
 
-    // public function getyearresult_examform($Sem1Data,$Sem2Data,$data2)
-    // { 
-    //     $data2=$this->currentclassstudent->last();
-    //     $pfAbStatus=1;
-    //     $x= $Sem1Data->semcreditearned+$Sem2Data->semcreditearned;
-    //     $y= $Sem1Data->semtotalcredit+$Sem2Data->semtotalcredit;
-    //     $z=$data2->patternclass->credit;
-    //     if ($x>=$z and $x<$y) 
-    //     {
-    //         $pfAbStatus=2;  // Result : Fail A.T.K.T.
-    //     }
-    //     else if($x<$z and $x>=0)
-    //     { 
-    //         $pfAbStatus=0;  // Result : Fail
-    //     }
-    //     if($this->patternclass->coursepatternclasses->course->course_type=='PG' &&  $data2->sem==4 && $pfAbStatus==2)
-    //     {
-    //         $pfAbStatus=0;
-    //     }
-    //     if($this->patternclass->coursepatternclasses->course->course_type=='PG' &&  $data2->sem==4 && $pfAbStatus==1)
-    //     {
-    //         if((12-$this->getNONCGPAtotal())>0)
-    //         {
-    //             $pfAbStatus=0;
-    //         }  
-    //     }
-    //     return $pfAbStatus;
-    // }
+
 
     // public function checkspecial($exam)
     // {
@@ -352,12 +433,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
     //     dd($extdata->sum('internalmarksextracreditbatches.subjects.subject_credit'));
     // }
 
-    // public function getNONCGPAtotal()
-    // {
-    //     $intextdata=Studentmark::with(['subject'=>function($query){ $query->whereIn('subject_type',['G','IEG','IG']); }])->where('student_id',$this->id)->get() ;
-    //     $extdata= Intextracreditbatchseatnoallocation::with('internalmarksextracreditbatches.subjects')->whereNotIn('grade',['F','Ab','-1','NA'])->where('student_id',$this->id)->whereNotNull('grade')->get();
-    //     return ($extdata->sum('internalmarksextracreditbatches.subjects.subject_credit')+$intextdata->sum('subject.subject_credit'));
-    // }
+
 
     // public function gettyclass()
     // {
