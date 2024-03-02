@@ -21,8 +21,8 @@
         <tbody>
             @foreach($exam_time_table_data as $row)
             <tr>
-                <td align="center"  style="width:160px">{{ $row->subject ->subject_code}}</td>
-                <td align="center"  style="width:160px">{{ $row->subject ->subject_name}}</td>
+                <td align="center"  style="width:160px">{{ $row->subjectbucket->subject ->subject_code}}</td>
+                <td align="center"  style="width:160px">{{ $row->subjectbucket->subject->subject_name}}</td>
                 <td align="center"  style="width:160px">{{ $row->examdate }}</td>
                 <td align="center"  style="width:160px">{{ $row->timetableslot->timeslot }}</td>
             

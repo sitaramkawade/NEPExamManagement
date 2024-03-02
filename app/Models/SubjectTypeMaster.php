@@ -17,10 +17,6 @@ class SubjectTypeMaster extends Model
 
     public function subjecttype()
     {
-        return $this->belongsTo(Subjecttype::class, 'subjecttype_id','id')->withTrashed(); //ok
+        return $this->belongsTo(Subjecttype::class, 'subjecttype_id','id')->withTrashed();
     }
-    // public function subjecttype()
-    // {
-    //     return $this->belongsTo(Subjecttype::class, 'subjecttype_id','id')->withTrashed();
-    // }
 }

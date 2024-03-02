@@ -11,9 +11,10 @@ use App\Exports\Faculty\FacultyRoleType\FacultyRoleTypeExport;
 class AllFacultyRoleType extends Component
 {
     use WithPagination;
-
     protected $listeners = ['delete-confirmed'=>'delete'];
+
     public $roletype_name;
+
     #[Locked]
     public $roletype_id;
     #[Locked]
@@ -25,7 +26,6 @@ class AllFacultyRoleType extends Component
     public $sortColumnBy="ASC";
     public $mode='all';
     public $ext;
-    public $isDisabled = true;
 
     protected function rules()
     {
@@ -168,7 +168,7 @@ class AllFacultyRoleType extends Component
 
     public function export()
     {
-        $filename="RoleType-".time();
+        $filename="RoleType-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new FacultyRoleTypeExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');

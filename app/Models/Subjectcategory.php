@@ -18,9 +18,9 @@ class Subjectcategory extends Model
         'active',
     ];
 
-    public function subject():HasMany
+    public function subjects():HasMany
     {
-        return $this->hasMany(Subject::class,'subjectcategory_id','id')->withTrashed(); //ok
+        return $this->hasMany(Subject::class,'subjectcategory_id','id')->withTrashed();
     }
     public function subjectbuckets():HasMany
     {

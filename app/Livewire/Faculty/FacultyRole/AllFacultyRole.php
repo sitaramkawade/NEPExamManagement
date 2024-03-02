@@ -21,7 +21,8 @@ class AllFacultyRole extends Component
     public $college_id;
     public $roletypes;
     public $colleges;
-    public $mode='all';
+
+
     #[Locked]
     public $role_id;
     #[Locked]
@@ -29,10 +30,10 @@ class AllFacultyRole extends Component
 
     public $perPage=10;
     public $search='';
+    public $mode='all';
     public $sortColumn="role_name";
     public $sortColumnBy="ASC";
     public $ext;
-    public $isDisabled = true;
 
     protected function rules()
     {
@@ -186,7 +187,7 @@ class AllFacultyRole extends Component
 
     public function export()
     {
-        $filename="Role-".time();
+        $filename="Role-".now();
         switch ($this->ext) {
             case 'xlsx':
                 return Excel::download(new FacultyRoleExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
