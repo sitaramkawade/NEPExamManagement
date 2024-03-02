@@ -12,7 +12,7 @@
             <div class="col-span-2">
               <x-dashboard.card heading="Action" class="dark:bg-green-500  bg-green-100">
                 <x-dashboard.inner-card heading="Exam Form">
-                  <x-dashboard.form-button class="bg-purple-500" target="_blank" action="{{ route('student.student_exam_form') }}"> Exam Form </x-dashboard.form-button>
+                  <x-dashboard.form-button class="bg-purple-500"  action="{{ route('student.student_exam_form') }}"> Exam Form </x-dashboard.form-button>
                   <x-dashboard.form-button class="bg-red-500" action="{{ route('student.student_delete_exam_form') }}"> Delete Exam Form </x-dashboard.form-button>
                   <x-dashboard.form-button class="bg-pink-500" target="_blank" action="{{ route('student.student_print_preview_exam_form') }}"> Preview Exam Form </x-dashboard.form-button>
                   <x-dashboard.form-button class="bg-blue-500" target="_blank" action="{{ route('student.student_print_final_exam_form') }}" onclick="return confirm('Once Printed, the form cannot be edited. Confirm if you wish to print it.')"> Print Exam Form </x-dashboard.form-button>

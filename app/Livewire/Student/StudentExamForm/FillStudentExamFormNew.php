@@ -94,7 +94,7 @@ class FillStudentExamFormNew extends Component
                         }
                         else 
                         {   
-                            // dd('Direct SEM-II');
+                            dd('Direct SEM-II');
                             // Direct SEM-II Exam Form With SEM-I Subjects
                             $this->backlog_subjects_previous_sem = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem',1)->get();
                             $this->check_subject_checkboxs($this->backlog_subjects_previous_sem);
@@ -145,10 +145,12 @@ class FillStudentExamFormNew extends Component
                                 $this->check_subject_checkboxs($this->regular_subjects_data);
                                 $this->backlog_subjects_data=[];
                                 $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
-                                $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
-                                $this->check_subject_checkboxs( $this->backlog_subjects_data);
+                                // $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                $this->check_backlog_subject_checkboxs( $this->backlog_subjects_data);
                                 $this->exam_fee_courses=Examfeecourse::where('patternclass_id',$this->student->patternclass_id)->get();
-                            } else 
+                            } 
+                            else 
                             {
                                 // fail student
                                 $this->regular_subjects_data = [];
@@ -910,64 +912,96 @@ class FillStudentExamFormNew extends Component
     //Check Subject checkboxes 
     protected function check_subject_checkboxs($subjects)
     {
-            foreach($subjects as $subjects)
-            {   
-                    if( $subjects->subject_type=="IE")
-                    {
-                            $this->internals[$subjects->id]=true;
-                            $this->externals[$subjects->id]=true;
-                        }
-            
-                        if( $subjects->subject_type=="IEP")
-                        {
-                                $this->internals[$subjects->id]=true;
-                                $this->externals[$subjects->id]=true;
-                                $this->practicals[$subjects->id]=true;
-                            }
-                    
-                            if( $subjects->subject_type=="IEG")
-                            {
-                                    $this->internals[$subjects->id]=true;
-                                    $this->externals[$subjects->id]=true;
-                $this->grades[$subjects->id]=true;
+         foreach($subjects as $subjects)
+         {   
+             if( $subjects->subject_type=="IE")
+             {
+                 $this->internals[$subjects->id]=true;
+                 $this->externals[$subjects->id]=true;
+             }
+             
+             if( $subjects->subject_type=="IEP")
+             {
+                 $this->internals[$subjects->id]=true;
+                 $this->externals[$subjects->id]=true;
+                 $this->practicals[$subjects->id]=true;
+             }
+ 
+             if( $subjects->subject_type=="IEG")
+             {
+                 $this->internals[$subjects->id]=true;
+                 $this->externals[$subjects->id]=true;
+                 $this->grades[$subjects->id]=true;
+             }
+ 
+             if( $subjects->subject_type=="IEP")
+             {
+                 $this->internals[$subjects->id]=true;
+                 $this->externals[$subjects->id]=true;
+                 $this->practicals[$subjects->id]=true;
+             }
+             
+             if( $subjects->subject_type=="IP")
+             {
+                 $this->internals[$subjects->id]=true;
+                 $this->practicals[$subjects->id]=true;
+             }
+ 
+             if( $subjects->subject_type=="IG")
+             {
+                 $this->internals[$subjects->id]=true;
+                 $this->grades[$subjects->id]=true;
+             }
+             
+             if( $subjects->subject_type=="I")
+             {
+                 $this->internals[$subjects->id]=true;
+             }
+ 
+             if( $subjects->subject_type=="P")
+             {
+                 $this->projects[$subjects->id]=true;
+             }
+ 
+             if( $subjects->subject_type=="G")
+             {
+                 $this->grades[$subjects->id]=true;
+             }
+         }
+    }
+
+    //Check Backlog Subject checkboxes 
+    protected function check_backlog_subject_checkboxs($subjects)
+    {   
+        foreach($subjects as $subject)
+        {   
+
+            if($subject->subject_type=="I" || $subject->subject_type=="IP" || $subject->subject_type=="IE" || $subject->subject_type=="IEP" || $subject->subject_type=="IEG")
+            {
+                $this->internals[$subject->id]=true;
             }
 
-            if( $subjects->subject_type=="IEP")
+            if($subject->subject_type=="E" || $subject->subject_type=="IE" || $subject->subject_type=="IEP" || $subject->subject_type=="EP" || $subject->subject_type=="EP" || $subject->subject_type=="EINTP" || $subject->subject_type=="IEG" || $subject->subject_type=="EG")
             {
-                    $this->internals[$subjects->id]=true;
-                    $this->externals[$subjects->id]=true;
-                    $this->practicals[$subjects->id]=true;
-                }
-        
-                if( $subjects->subject_type=="IP")
-                {
-                        $this->internals[$subjects->id]=true;
-                        $this->practicals[$subjects->id]=true;
-                    }
-            
-                    if( $subjects->subject_type=="IG")
-                    {
-                            $this->internals[$subjects->id]=true;
-                            $this->grades[$subjects->id]=true;
-                        }
-                
-                        if( $subjects->subject_type=="I")
-                        {
-                                $this->internals[$subjects->id]=true;
-                            }
-                    
-                            if( $subjects->subject_type=="P")
-                            {
-                                    $this->projects[$subjects->id]=true;
-                                }
+                $this->externals[$subject->id]=true;
+            }
 
-                                if( $subjects->subject_type=="G")
-                                {
-                                        $this->grades[$subjects->id]=true;
+            if( ($subject->subjectcategory->subjectcategory != 'Project') && (  $subject->subject_type=="P" || $subject->subject_type=="INTP" || $subject->subject_type=="IP" || $subject->subject_type=="IEP" || $subject->subject_type=="EP" || $subject->subject_type=="EINTP"))
+            {
+                $this->practicals[$subject->id]=true;
+            }
+            
+            if( $subject->subject_type=="G")
+            {
+                $this->grades[$subject->id]=true;
+            }
+
+            if( $subject->subject_type=="P" || $subject->subject_type=="IP"  ||  $subject->subject_type=="INTP")
+            {
+                $this->projects[$subject->id]=true;
             }
         }
     }
-    
     
     // // Get SEM Wise Subjects
     // public function get_sem_subjects($sem)

@@ -7,7 +7,7 @@ use App\Models\Student;
 use App\Models\PatternClass;
 
 // Getting Pattern Class Name
-if (!function_exists('getpatternclass')) {
+if (!function_exists('get_pattern_class_name')) {
     function get_pattern_class_name($pattern_class_id)
     {
         $pattern_class = PatternClass::with(['courseclass.classyear:classyear_name,id', 'courseclass.course:course_name,id', 'pattern:pattern_name,id'])->find($pattern_class_id);
@@ -21,7 +21,7 @@ if (!function_exists('getpatternclass')) {
 }
 
 // Getting Current Sem of Student
-if (!function_exists('getcurrentsem')) 
+if (!function_exists('get_student_current_sem')) 
 {
     function get_student_current_sem($student_id)
     {
