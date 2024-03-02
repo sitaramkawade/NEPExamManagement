@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Exam;
 use App\Models\Subject;
 use App\Models\Studentmark;
 use App\Models\Patternclass;
@@ -142,54 +143,147 @@ class Student extends  Authenticatable implements MustVerifyEmail
         return $marks_obtained < $passing_marks;
     }
 
-    public function get_backlog_subjects()
-    {   
-        // Initialize arrays to store backlog subjects
-        $backlog_subjects = [
-            'Internal' => [],
-            'Internal Practical' => [],
-            'External' => [],
-            'subject_ids' => []
-        ];
+    // public function get_backlog_subjects()
+    // {   
+    //     // Initialize arrays to store backlog subjects
+    //     $backlog_subjects = [
+    //         'Internal' => [],
+    //         'Internal Practical' => [],
+    //         'External' => [],
+    //         'subject_ids' => []
+    //     ];
 
-        // Retrieve failed student marks
-        $student_marks = Studentmark::where('student_id', $this->id)->where('grade', 'F')->get();
+    //     // Retrieve failed student marks
+    //     $student_marks = Studentmark::where('student_id', $this->id)->get();
 
-        // Iterate over each failed mark
-        foreach ($student_marks as $student_mark) 
-        {
-            // Retrieve subject details for the failed mark
-            $subject = Subject::where('id', $student_mark->subject_id)->where('subject_sem', $student_mark->sem)->where('patternclass_id', $student_mark->patternclass_id)->first();
+    //     // Iterate over each failed mark
+    //     foreach ($student_marks as $student_mark) 
+    //     {   
+    //         $subject_type=nall;
+    //         // Retrieve subject details for the failed mark
+    //         $subject = Subject::where('id', $student_mark->subject_id)->where('subject_sem', $student_mark->sem)->where('patternclass_id', $student_mark->patternclass_id)->first();
 
-            // Check if student failed in internal assessment
-            if ($this->failedAssessment($student_mark->int_marks, $subject->subject_intpassing)) 
-            {
-                $backlog_subjects['Internal'][] = $subject->id;
-            }
 
-            // Check if student failed in internal practical assessment
-            if ($this->failedAssessment($student_mark->int_practical_marks, $subject->subject_intpractpassing)) 
-            {
-                $backlog_subjects['Internal Practical'][] = $subject->id;
-            }
+    //         if( $this->studentmarks()->where('student_id',$student->id)->get()->last()->int_marks < $this->subject_intpassing  )
+    //         {
+    //             $subject_type="I"; 
+    //         }
 
-            // Check if student failed in external assessment
-            if ($this->failedAssessment($student_mark->ext_marks, $subject->subject_extpassing)) 
-            {
-                $backlog_subjects['External'][] = $subject->id;
-            }
+    //         if( $subject->subject_type=='IEG')
+    //         {
+    //             // Check if student failed in external assessment
+    //             if ($this->failedAssessment($student_mark->ext_marks, $subject->subject_extpassing)) 
+    //             {
+    //                 $backlog_subjects['External'][] = $subject->id;
+    //             }
+    //         }
+
+    //         // Check if student failed in internal assessment
+    //         if ($this->failedAssessment($student_mark->int_marks, $subject->subject_intpassing)) 
+    //         {
+    //             $backlog_subjects['Internal'][] = $subject->id;
+    //         }
+
+    //         // Check if student failed in internal practical assessment
+    //         if ($this->failedAssessment($student_mark->int_practical_marks, $subject->subject_intpractpassing)) 
+    //         {
+    //             $backlog_subjects['Internal Practical'][] = $subject->id;
+    //         }
+
+    //         // Check if student failed in external assessment
+    //         if ($this->failedAssessment($student_mark->ext_marks, $subject->subject_extpassing)) 
+    //         {
+    //             $backlog_subjects['External'][] = $subject->id;
+    //         }
             
-            // Add the subject ID to the 'subject_ids' group
-            $backlog_subjects['subject_ids'][] = $subject->id;
+    //         // Add the subject ID to the 'subject_ids' group
+    //         $backlog_subjects['subject_ids'][] = $subject->id;
 
-        }
+    //     }
         
-        // Merge all subject IDs into a single array
-        $backlog_subjects['subject_ids'] = array_unique($backlog_subjects['subject_ids']);
+    //     // Merge all subject IDs into a single array
+    //     $backlog_subjects['subject_ids'] = array_unique($backlog_subjects['subject_ids']);
 
-        return $backlog_subjects;
-    }
+    //     return $backlog_subjects;
+    // }
 
+
+    // public function get_backlog_subjects()
+    // {   
+    //     $backlog_subjects = [
+    //         'G' => [],
+    //         'I' => [],
+    //         'IEG' => [],
+    //         'IP' => [],
+    //         'IE' => [],
+    //         'IINTP' => [],
+    //         'subject_ids' => []
+    //     ];
+
+    //     $student_marks = Studentmark::where('student_id', $this->id)->get();
+
+    //     foreach ($student_marks as $student_mark) 
+    //     {   
+    //         $subject = Subject::where('id', $student_mark->subject_id)->where('subject_sem', $student_mark->sem)->where('patternclass_id', $student_mark->patternclass_id)->first();
+
+
+    //         if($subject->subject_type=="IG" || $subject->subject_type=="G")     
+    //         {
+    //             if($student_mark->grade =='F')   
+    //             {
+    //                 return  $backlog_subjects['G'][] = $subject->id;
+    //             }
+    //         }
+
+    //         if($student_mark->int_marks < $subject->subject_intpassing)
+    //         {
+    //             $backlog_subjects['I'][] = $subject->id;
+    //         }
+            
+    //         if($subject->subject_type=="IEG")     
+    //         { 
+    //             if($student_mark->ext_marks < $subject->subject_extpassing)
+    //             {
+    //                 $backlog_subjects['IEG'][] = $subject->id;
+    //             }
+    //         }  
+
+    //         if($subject->subject_type=="IE")     
+    //         {
+    //             if($student_mark->ext_marks < $subject->subject_extpassing)
+    //             {
+    //                 $backlog_subjects['IE'][] = $subject->id;
+    //             }
+    //         }
+
+    //         if($subject->subject_type=="IP")  
+    //         { 
+    //             if($student_mark->ext_marks < $subject->subject_extpassing)
+    //             {
+    //                 $backlog_subjects['IP'][] = $subject->id;
+    //             }
+    //         }
+                
+    //         if($subject->subject_type=="IEP")  
+    //         {
+    //             if($student_mark->ext_marks < $subject->subject_extpassing)
+    //             {
+    //                 $backlog_subjects['IE'][] = $subject->id;
+    //             }
+                    
+    //             if($student_mark->int_practical_marks < $subject->subject_intpractpassing)
+    //             {
+    //                 $backlog_subjects['IINTP'][] = $subject->id;
+    //             }  
+    //         }
+
+    //         $backlog_subjects['subject_ids'][] = $subject->id;
+    //     }
+
+    //     $backlog_subjects['subject_ids'] = array_unique($backlog_subjects['subject_ids']);
+
+    //     return $backlog_subjects;
+    // }
 
     public function studentmarks()
     {
@@ -246,14 +340,104 @@ class Student extends  Authenticatable implements MustVerifyEmail
         return ($extdata->sum('internalmarksextracreditbatches.subjects.subject_credit')+$intextdata->sum('subject.subject_credit'));
     }
 
+    public function get_backlog_subjects()
+    {      
+        $backlog_subjects=collect();
+        $current_class_students = $this->currentclassstudents()->get();
+        $current_active_exam = Exam::where('status', 1)->latest()->first();
+
+        if(isset($current_class_students))
+        {   
+            foreach($current_class_students as $current_class_student_entry) 
+            { 
+                if ($current_class_student_entry->markssheetprint_status != -1)
+                {   
+                    $subjects = Subject::where('patternclass_id',$current_class_student_entry->patternclass_id)->where('subject_sem',$current_class_student_entry->sem)->orderBy('id')->get();     
+                    
+                    if(isset($subjects))
+                    {
+                        foreach ($subjects->sortBy('subject_sem') as $subject)
+                        {   
+                            $student_mark_last_entry=$this->studentmarks()->where('subject_id',$subject->id)->where('exam_id','<', $current_active_exam->id )->get()->last();
+                            
+                            dd( $student_mark_last_entry);
+                            if($student_mark_last_entry)
+                            {
+                                
+                                $subject_type=null;
+                                
+                                if($this->subject_type=="G" || $this->subject_type=="IG")     
+                                { 
+                                    $subject_type= "G";
+                                }
+                                
+                                if($student_mark_last_entry->int_marks < $subject->subject_intpassing)
+                                {
+                                    $subject_type="I"; 
+                                }
+                                
+                                if($this->subject_type=="IEG")     
+                                { 
+                                    if($student_mark_last_entry->ext_marks < $subject->subject_extpassing)
+                                    {
+                                        $subject_type=$subject_type."EG";
+                                    }
+                                    
+                                }
+                                
+                                if($this->subject_type=="IE")     
+                                {
+                                    if($student_mark_last_entry->ext_marks < $subject->subject_extpassing)
+                                    {
+                                        $subject_type=$subject_type."E";
+                                    }
+                                }
+                                
+                                if($this->subject_type=="IP")  
+                                { 
+                                    if($student_mark_last_entry->ext_marks < $subject->subject_extpassing)
+                                    {
+                                        $subject_type=$subject_type."P";
+                                    }
+                                }
+                                
+                                if($this->subject_type=="IEP")  
+                                {   
+                                    dd('');
+                                    if($student_mark_last_entry->ext_marks < $subject->subject_extpassing)
+                                    {
+                                        $subject_type=$subject_type."E";
+                                    }
+                                    
+                                    if($student_mark_last_entry->int_practical_marks < $subject->subject_intpractpassing)
+                                    {
+                                        $subject_type=$subject_type."INTP";
+                                    }     
+                                }
+                                
+                                if (!(($subject_type == 'I' or $subject_type == 'INTP' or $subject_type == 'IINTP') and $subject->subject_sem % 2 != $current_active_exam->exam_sessions % 2 and $subject->subject_type != 'IEG') or ($subject_type == 'IEG' or $subject_type == 'I' or $subject_type == 'G' or $subject_type == 'EG') and ($subject->subject_type == 'IEG' or $subject->subject_type == 'G' or $subject->subject_type == 'IG') or $subject->patternclass_id >= 1 )
+                                {       
+                                    $updated_subject = clone $subject;
+                                    $updated_subject->subject_type = $subject->subject_type;
+                                    $backlog_subjects->push($updated_subject);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return  $backlog_subjects;
+    }
+
 
     // public function getStudentName($value)
     // {
-    //     return ucfirst($value);
-    // }
-
-    // public function checkprn()
-    // {
+        //     return ucfirst($value);
+        // }
+        
+        // public function checkprn()
+        // {
     //     $prnstatus=$this->prn!=NULL?1:0;
     //     if($prnstatus==1)
     //     {

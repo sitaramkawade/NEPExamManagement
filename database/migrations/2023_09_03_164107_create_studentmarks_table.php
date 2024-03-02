@@ -60,6 +60,172 @@ class CreateStudentmarksTable extends Migration
 
             
         });
+
+
+        DB::unprepared("
+           
+
+            CREATE TRIGGER insert_studentmarks_trigger
+            BEFORE INSERT ON studentmarks
+            FOR EACH ROW
+            BEGIN
+                -- Fetch passing thresholds for the subject
+                SELECT 
+                    subject_intpassing, 
+                    subject_extpassing, 
+                    subject_intpractpassing, 
+                    subject_totalpassing,
+                    subject_credit
+                INTO 
+                    @passing_intthreshold,
+                    @passing_extthreshold,
+                    @passing_practthreshold,
+                    @passing_totalthreshold,
+                    @passing_subject_credit
+                FROM subjects
+                WHERE id = NEW.subject_id;
+            
+                -- Calculate total marks
+                SET NEW.total = NEW.int_marks + NEW.ext_marks + NEW.int_practical_marks;
+            
+                -- Check if the subject is passing or failing
+                IF NEW.int_marks >= @passing_intthreshold AND 
+                NEW.ext_marks >= @passing_extthreshold AND 
+                NEW.total >= @passing_totalthreshold THEN
+                    -- Calculate grade based on total marks
+                    IF NEW.total >= 90 THEN
+                        SET NEW.grade = 'O';
+                        SET NEW.grade_point = 10;
+                    ELSEIF NEW.total >= 75 THEN
+                        SET NEW.grade = 'A+';
+                        SET NEW.grade_point = 9;
+                    ELSEIF NEW.total >= 60 THEN
+                        SET NEW.grade = 'A';
+                        SET NEW.grade_point = 8;
+                    ELSEIF NEW.total >= 55 THEN
+                        SET NEW.grade = 'B+';
+                        SET NEW.grade_point = 7;
+                    ELSEIF NEW.total >= 50 THEN
+                        SET NEW.grade = 'B';
+                        SET NEW.grade_point = 6;
+                    ELSEIF NEW.total >= 45 THEN
+                        SET NEW.grade = 'C';
+                        SET NEW.grade_point = 5;
+                    ELSE
+                        SET NEW.grade = 'D';
+                        SET NEW.grade_point = 4;
+                    END IF;
+                    
+                    -- Calculate GPA based on grade point and subject credit
+                    SET NEW.gpa = NEW.grade_point * @passing_subject_credit;
+                ELSE
+                    -- Subject is failing
+                    SET NEW.grade = 'F';
+                    SET NEW.grade_point = 0;
+                    SET NEW.gpa = 0;
+                END IF;
+            END 
+            
+           
+        ");
+        DB::unprepared("
+            CREATE TRIGGER update_total_marks_and_grade_trigger BEFORE UPDATE ON studentmarks
+            FOR EACH ROW
+            BEGIN
+                DECLARE passing_intthreshold INT;
+                DECLARE passing_extthreshold INT;
+                DECLARE passing_practthreshold INT;
+                DECLARE passing_totalthreshold INT;
+                DECLARE passing_subject_credit INT;
+                DECLARE positive_int_marks INT;
+                DECLARE positive_ext_marks INT;
+                DECLARE positive_int_practical_marks INT;
+            
+                -- Ensure marks are non-negative
+                IF NEW.int_marks < 0 THEN
+                    SET positive_int_marks = 0;
+                ELSE
+                    SET positive_int_marks = NEW.int_marks;
+                END IF;
+            
+                IF NEW.ext_marks < 0 THEN
+                    SET positive_ext_marks = 0;
+                ELSE
+                    SET positive_ext_marks = NEW.ext_marks;
+                END IF;
+            
+                IF NEW.int_practical_marks < 0 THEN
+                    SET positive_int_practical_marks = 0;
+                ELSE
+                    SET positive_int_practical_marks = NEW.int_practical_marks;
+                END IF;
+            
+                -- Calculate total marks
+                SET NEW.total = positive_int_marks + positive_ext_marks + positive_int_practical_marks;
+            
+                -- Fetch passing thresholds for the subject from the subjects table
+                SELECT 
+                    subject_intpassing, 
+                    subject_extpassing, 
+                    subject_intpractpassing, 
+                    subject_totalpassing,
+                    subject_credit
+                INTO 
+                    passing_intthreshold,
+                    passing_extthreshold,
+                    passing_practthreshold,
+                    passing_totalthreshold,
+                    passing_subject_credit
+                FROM subjects
+                WHERE id = NEW.subject_id;
+            
+                -- Check if the subject is passing or failing
+                IF positive_int_marks >= passing_intthreshold AND 
+                positive_ext_marks >= passing_extthreshold AND 
+                positive_int_practical_marks >= passing_practthreshold AND 
+                NEW.total >= passing_totalthreshold THEN
+                    -- Calculate grade based on total marks
+                    IF NEW.total >= 90 THEN
+                        SET NEW.grade = 'O';
+                        SET NEW.grade_point = 10;
+                        SET NEW.gpa = 10 * passing_subject_credit;
+                    ELSEIF NEW.total >= 75 THEN
+                        SET NEW.grade = 'A+';
+                        SET NEW.grade_point = 9;
+                        SET NEW.gpa = 9 * passing_subject_credit;
+                    ELSEIF NEW.total >= 60 THEN
+                        SET NEW.grade = 'A';
+                        SET NEW.grade_point = 8;
+                        SET NEW.gpa = 8 * passing_subject_credit;
+                    ELSEIF NEW.total >= 55 THEN
+                        SET NEW.grade = 'B+';
+                        SET NEW.grade_point = 7;
+                        SET NEW.gpa = 7 * passing_subject_credit;
+                    ELSEIF NEW.total >= 50 THEN
+                        SET NEW.grade = 'B';
+                        SET NEW.grade_point = 6;
+                        SET NEW.gpa = 6 * passing_subject_credit;
+                    ELSEIF NEW.total >= 45 THEN
+                        SET NEW.grade = 'C';
+                        SET NEW.grade_point = 5;
+                        SET NEW.gpa = 5 * passing_subject_credit;
+                    ELSEIF NEW.total >= 40 THEN
+                        SET NEW.grade = 'D';
+                        SET NEW.grade_point = 4;
+                        SET NEW.gpa = 4 * passing_subject_credit;
+                    ELSE
+                        SET NEW.grade = 'F';
+                        SET NEW.grade_point = 0;
+                        SET NEW.gpa = 0;
+                    END IF;
+                ELSE
+                    -- Subject is failing
+                    SET NEW.grade = 'F';
+                    SET NEW.grade_point = 0;
+                    SET NEW.gpa = 0;
+                END IF;
+            END;
+        ");
     }
 
     /**
@@ -68,7 +234,10 @@ class CreateStudentmarksTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {   
         Schema::dropIfExists('studentmarks');
+        DB::unprepared('DROP TRIGGER IF EXISTS insert_studentmarks_trigger');
+        DB::unprepared('DROP TRIGGER IF EXISTS update_total_marks_and_grade_trigger');
+
     }
 }
