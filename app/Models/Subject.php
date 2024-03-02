@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\College;
-use App\Models\ExamPanel;
+use App\Models\Exampanel;
 use App\Models\Subjecttype;
 use App\Models\Patternclass;
 use App\Models\StudentExamform;
@@ -121,7 +121,7 @@ class Subject extends Model
 
     public function exampanels()
     {
-        return $this->hasMany(ExamPanel::class,'subject_id','id')->withTrashed();
+        return $this->hasMany(Exampanel::class,'subject_id','id')->withTrashed();
     }
 
 

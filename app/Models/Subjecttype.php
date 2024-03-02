@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Subject;
-use App\Models\SubjectTypeMaster;
+use App\Models\Subjecttypemaster;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -26,7 +26,7 @@ class Subjecttype extends Model
     }
     public function subjecttypes():HasMany
     {
-        return $this->hasMany(SubjectTypeMaster::class,'subjecttype_id','id')->withTrashed();
+        return $this->hasMany(Subjecttypemaster::class,'subjecttype_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

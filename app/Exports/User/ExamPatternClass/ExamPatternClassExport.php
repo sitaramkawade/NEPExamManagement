@@ -2,7 +2,7 @@
 
 namespace App\Exports\User\ExamPatternClass;
 
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -23,7 +23,7 @@ class ExamPatternClassExport implements FromCollection, WithHeadings, ShouldAuto
 
     public function collection()
     {
-        return ExamPatternclass::search($this->search)
+        return Exampatternclass::search($this->search)
         ->orderBy($this->sortColumn, $this->sortColumnBy)
         ->get();
     }

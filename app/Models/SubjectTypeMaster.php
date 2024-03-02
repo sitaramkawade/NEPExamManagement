@@ -6,7 +6,7 @@ use App\Models\Subjecttype;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class SubjectTypeMaster extends Model
+class Subjecttypemaster extends Model
 {
     use HasFactory;
     protected $table='subjecttypemaster';

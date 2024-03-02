@@ -4,10 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Subject;
 use Faker\Factory as Faker;
-use App\Models\ExamTimetable;
+use App\Models\Examtimetable;
 use App\Models\Timetableslot;
 use Illuminate\Database\Seeder;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ExamTimeTableSeeder extends Seeder
@@ -22,11 +22,11 @@ class ExamTimeTableSeeder extends Seeder
 
         for ($i = 0; $i < 100; $i++) {
 
-            $exampatternclassIds = ExamPatternclass::pluck('id')->toArray();
+            $exampatternclassIds = Exampatternclass::pluck('id')->toArray();
             $subjectIds = Subject::pluck('id')->toArray();
             $timeslotIds = Timetableslot::pluck('id')->toArray();
 
-            ExamTimetable::create([
+            Examtimetable::create([
                 'subject_id' => rand(1, count($subjectIds)),
                 'exam_patternclasses_id' => rand(1, count($exampatternclassIds)),
                 'examdate' => $faker->dateTimeBetween('now', '+30 days'),

@@ -2,7 +2,7 @@
 
 namespace App\Exports\Faculty\DepartmentPrefix;
 
-use App\Models\DeptPrefix;
+use App\Models\Departmentprefix;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -23,7 +23,7 @@ class DepartmentPrefixExport implements FromCollection, WithHeadings, ShouldAuto
 
     public function collection()
     {
-        return DeptPrefix::with(['department', 'pattern',])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
+        return Departmentprefix::with(['department', 'pattern',])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)
         ->get(['id', 'dept_id', 'pattern_id', 'prefix', 'postfix', ]);
     }
 

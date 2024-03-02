@@ -5,7 +5,7 @@ namespace App\Livewire\Faculty\DepartmentPrefix;
 use App\Models\Pattern;
 use Livewire\Component;
 use App\Models\Department;
-use App\Models\DeptPrefix;
+use App\Models\Departmentprefix;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
@@ -97,7 +97,7 @@ class AllDepartmentPrefix extends Component
         $validatedData = $this->validate();
         $validatedData['prefix'] = strtoupper($validatedData['prefix']);
         $validatedData['postfix'] = strtoupper($validatedData['postfix']);
-        $deptprefix = DeptPrefix::create($validatedData);
+        $deptprefix = Departmentprefix::create($validatedData);
         if ($deptprefix) {
             $this->dispatch('alert',type:'success',message:'Department Prefix Added Successfully');
             $this->resetinput();
@@ -112,7 +112,7 @@ class AllDepartmentPrefix extends Component
         $this->resetPage();
     }
 
-    public function edit(DeptPrefix $deptprefix)
+    public function edit(Departmentprefix $deptprefix)
     {
         if ($deptprefix){
             $this->deptprefix_id = $deptprefix->id;
@@ -126,7 +126,7 @@ class AllDepartmentPrefix extends Component
         $this->setmode('edit');
     }
 
-    public function update(DeptPrefix $deptprefix)
+    public function update(Departmentprefix $deptprefix)
     {
         $validatedData = $this->validate();
         $validatedData['prefix'] = strtoupper($validatedData['prefix']);
@@ -144,7 +144,7 @@ class AllDepartmentPrefix extends Component
     {
         try
         {
-            $deptprefix = DeptPrefix::withTrashed()->find($this->delete_id);
+            $deptprefix = Departmentprefix::withTrashed()->find($this->delete_id);
             $deptprefix->forceDelete();
             $this->delete_id = null;
             $this->dispatch('alert',type:'success',message:'Department Prefix Deleted Successfully !!');
@@ -159,7 +159,7 @@ class AllDepartmentPrefix extends Component
 
     public function softdelete($id)
     {
-        $deptprefix = DeptPrefix::withTrashed()->find($id);
+        $deptprefix = Departmentprefix::withTrashed()->find($id);
         if ($deptprefix) {
             $deptprefix->delete();
             $this->dispatch('alert',type:'success',message:'Department Prefix Soft Deleted Successfully');
@@ -170,7 +170,7 @@ class AllDepartmentPrefix extends Component
 
     public function restore($id)
     {
-        $deptprefix = DeptPrefix::withTrashed()->find($id);
+        $deptprefix = Departmentprefix::withTrashed()->find($id);
 
         if ($deptprefix) {
             $deptprefix->restore();
@@ -208,7 +208,7 @@ class AllDepartmentPrefix extends Component
         }
     }
 
-    public function view(DeptPrefix $deptprefix)
+    public function view(Departmentprefix $deptprefix)
     {
         if ($deptprefix){
             $this->dept_id = isset($deptprefix->department->dept_name) ? $deptprefix->department->dept_name : '';
@@ -227,7 +227,7 @@ class AllDepartmentPrefix extends Component
             $this->patterns=Pattern::where('status',1)->pluck('pattern_name','id');
             $this->departments = Department::where('status',1)->pluck('dept_name','id');
         }
-        $deptprefixes = DeptPrefix::when($this->search, function($query, $search){
+        $deptprefixes = Departmentprefix::when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.department-prefix.all-department-prefix',compact('deptprefixes'))->extends('layouts.faculty')->section('faculty');

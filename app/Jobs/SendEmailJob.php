@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\Mail\MyTestMail;
 use App\Models\Examorder;
 use Illuminate\Bus\Queueable;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -30,7 +30,7 @@ class SendEmailJob implements ShouldQueue
        
         foreach ($this->examOrderIds as $examOrderId) {
             dd($examOrderId);
-            $examOrder = ExamPatternclass::find($examOrderId);
+            $examOrder = Exampatternclass::find($examOrderId);
             $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
     
             $details = [

@@ -6,7 +6,7 @@ use App\Models\Subjectvertical;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class SubjectBucketTypeMaster extends Model
+class Subjectbuckettypemaster extends Model
 {
     use HasFactory;
     protected $table='subjectbuckettypemaster';

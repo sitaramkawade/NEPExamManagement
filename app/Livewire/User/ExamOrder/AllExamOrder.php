@@ -5,10 +5,10 @@ namespace App\Livewire\User\ExamOrder;
 use Excel;
 use Livewire\Component;
 use App\Models\Examorder;
-use App\Models\ExamPanel;
+use App\Models\Exampanel;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use App\Exports\User\ExamOrder\ExportExamOrder;
 
 class AllExamOrder extends Component
@@ -204,8 +204,8 @@ class AllExamOrder extends Component
     {
         if($this->mode!=='all')
         {
-            $this->exampanels = ExamPanel::select('id','faculty_id','subject_id','examorderpost_id')->with(['faculty:id,faculty_name','subject:id,subject_name','examorderpost:id,post_name'])->get();
-            $this->exampatternclasses = ExamPatternclass::select('id','exam_id','patternclass_id')->get();                    
+            $this->exampanels = Exampanel::select('id','faculty_id','subject_id','examorderpost_id')->with(['faculty:id,faculty_name','subject:id,subject_name','examorderpost:id,post_name'])->get();
+            $this->exampatternclasses = Exampatternclass::select('id','exam_id','patternclass_id')->get();                    
         }
 
         $examorders=Examorder::select('id','exampanel_id','exam_patternclass_id','description','email_status','deleted_at')

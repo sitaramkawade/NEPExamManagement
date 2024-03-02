@@ -11,8 +11,10 @@
         {{ $slot }}
       </nav>
       <!-- Sidebar footer -->
-      <div class="flex-shrink-0 space-y-2 border-r px-2 py-4 dark:border-primary-darker dark:bg-darker">
-        {{ $footer }}
-      </div>
+      @if ($footer)
+        <div class="flex-shrink-0 space-y-2 border-r px-2 py-4 dark:border-primary-darker dark:bg-darker">
+          {{ $footer }}
+        </div>
+      @endif
   </aside>
 </div>

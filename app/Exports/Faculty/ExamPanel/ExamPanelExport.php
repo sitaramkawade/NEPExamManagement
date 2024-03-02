@@ -2,7 +2,7 @@
 
 namespace App\Exports\Faculty\ExamPanel;
 
-use App\Models\ExamPanel;
+use App\Models\Exampanel;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -23,7 +23,7 @@ class ExamPanelExport implements FromCollection, WithHeadings, ShouldAutoSize, W
 
     public function collection()
     {
-        return ExamPanel::with(['faculty', 'examorderpost', 'subject',])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','faculty_id', 'examorderpost_id', 'subject_id', 'active_status',]);
+        return Exampanel::with(['faculty', 'examorderpost', 'subject',])->search($this->search)->orderBy($this->sortColumn, $this->sortColumnBy)->get(['id','faculty_id', 'examorderpost_id', 'subject_id', 'active_status',]);
     }
 
     public function headings(): array

@@ -11,7 +11,7 @@ use App\Jobs\SendEmailJob;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Barryvdh\DomPDF\Facade\Pdf;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Queue;
 
@@ -38,8 +38,8 @@ class GenerateExamOrder extends Component
     {     
         $semesters = [1, 3, 5];
         // dd($id);
-        $exampatternclass = ExamPatternclass::find($id);  
-    //  dd($exampatternclass->patternclass->subjects);
+        $exampatternclass = Exampatternclass::find($id);  
+    // dd($exampatternclass->patternclass->subjects);
         $panels = collect();
          foreach ($exampatternclass->patternclass->subjects->whereIn('subject_sem', $semesters) as $subject) {
             //   dd($subject);
@@ -71,7 +71,7 @@ class GenerateExamOrder extends Component
     public function SendMail($id)
     {
         ini_set('max_execution_time', 1800); 
-        $exampatterntclass = ExamPatternclass::find($id);
+        $exampatterntclass = Exampatternclass::find($id);
         $examOrderIds = $exampatterntclass->examorder->where('email_status', '0')->pluck('id')->toArray();
 
         //Queue::push(new SendEmailJob($examOrderIds));
@@ -88,7 +88,7 @@ class GenerateExamOrder extends Component
 
         $examids = Exam::where('status',1)->pluck('id')->toArray();
         
-        $panels=ExamPatternclass::whereIn('exam_id',$examids)->when($this->search, function ($query, $search) {
+        $panels=Exampatternclass::whereIn('exam_id',$examids)->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->paginate($this->perPage);
 

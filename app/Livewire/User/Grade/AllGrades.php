@@ -3,7 +3,7 @@
 namespace App\Livewire\User\Grade;
 
 use Excel;
-use App\Models\Grade;
+use App\Models\Gradepoint;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Exports\User\Grade\ExportGrade;
@@ -74,7 +74,7 @@ class AllGrades extends Component
        
         if ($validatedData) {
 
-        $grade= new Grade;
+        $grade= new Gradepoint;
         $grade->max_percentage= $this->max_percentage;
         $grade->min_percentage= $this->min_percentage;
         $grade->grade_point=  $this->grade_point;
@@ -88,7 +88,7 @@ class AllGrades extends Component
         }
     }
 
-    public function edit(Grade $grade ){
+    public function edit(Gradepoint $grade ){
 
         if ($grade) {
             $this->grade_id=$grade->id;
@@ -102,7 +102,7 @@ class AllGrades extends Component
         }
     }
 
-    public function update(Grade  $grade){
+    public function update(Gradepoint  $grade){
 
         $validatedData = $this->validate();
        
@@ -131,7 +131,7 @@ class AllGrades extends Component
         $this->dispatch('delete-confirmation');
     }
 
-    public function delete(Grade  $grade)
+    public function delete(Gradepoint  $grade)
     {   
         $grade->delete();
         $this->dispatch('alert',type:'success',message:'Grade Soft Deleted Successfully !!');
@@ -139,7 +139,7 @@ class AllGrades extends Component
 
     public function restore($id)
     {   
-        $grade = Grade::withTrashed()->find($id);
+        $grade = Gradepoint::withTrashed()->find($id);
         $grade->restore();
         $this->dispatch('alert',type:'success',message:'Grade Restored Successfully !!');
     }
@@ -148,7 +148,7 @@ class AllGrades extends Component
     {   
         try
         {
-        $grade = Grade::withTrashed()->find($this->delete_id);
+        $grade = Gradepoint::withTrashed()->find($this->delete_id);
         $grade->forceDelete();
         $this->dispatch('alert',type:'success',message:'Grade Deleted Successfully !!');
     } catch
@@ -195,7 +195,7 @@ class AllGrades extends Component
         $this->mode=$mode;
     }
 
-    public function Status(Grade $grade)
+    public function Status(Gradepoint $grade)
     {
         if($grade->is_active)
         {
@@ -224,7 +224,7 @@ class AllGrades extends Component
 
     public function render()
     {
-        $grades=Grade::select('id','max_percentage','min_percentage','grade_point','grade_name','description','is_active','deleted_at')
+        $grades=Gradepoint::select('id','max_percentage','min_percentage','grade_point','grade_name','description','is_active','deleted_at')
         ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

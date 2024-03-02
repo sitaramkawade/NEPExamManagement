@@ -3,7 +3,7 @@
 namespace App\Livewire\Student\Profile;
 
 use App\Models\Caste;
-use App\Models\Grade;
+use App\Models\Gradepoint;
 use App\Models\Month;
 use App\Models\State;
 use App\Models\Course;
@@ -19,7 +19,7 @@ use App\Models\Courseclass;
 use App\Models\Gendermaster;
 use App\Models\Patternclass;
 use App\Models\Previousyear;
-use App\Models\CasteCategory;
+use App\Models\Castecategory;
 use Livewire\WithFileUploads;
 use App\Models\Studentaddress;
 use App\Models\Studentprofile;
@@ -725,7 +725,7 @@ class MultiStepStudentProfile extends Component
         if($this->current_step==1)
         {
             $this->genders=Gendermaster::select('id','gender','gender_shortform')->where('is_active',1)->get();
-            $this->cast_categories=CasteCategory::select('id','caste_category')->where('is_active',1)->get();
+            $this->cast_categories=Castecategory::select('id','caste_category')->where('is_active',1)->get();
             $this->castes=Caste::select('id','caste_name')->where('is_active',1)->where('caste_category_id', $this->caste_category_id)->get();
         }
 
@@ -760,7 +760,7 @@ class MultiStepStudentProfile extends Component
             $this->boarduniversities=Boarduniversity::select('id','boarduniversity_name')->where('is_active',1)->get();
             $this->passoutyears=Previousyear::select('id','year_name')->where('is_active',1)->get();
             $this->passoutmonths=Month::select('id','month_name')->where('is_active',1)->get();
-            $this->grades=Grade::select('id','grade_name')->where('is_active',1)->get();
+            $this->grades=Gradepoint::select('id','grade_name')->where('is_active',1)->get();
         }
         if($this->current_step==6)
         {

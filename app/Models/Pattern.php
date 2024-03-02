@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\College;
-use App\Models\DeptPrefix;
+use App\Models\Departmentprefix;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -57,7 +57,7 @@ class Pattern extends Model
     }
     public function prefixes()
     {
-        return $this->hasMany(DeptPrefix::class,'pattern_id','id')->withTrashed();
+        return $this->hasMany(Departmentprefix::class,'pattern_id','id')->withTrashed();
     }
 
 

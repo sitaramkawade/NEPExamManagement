@@ -2,7 +2,7 @@
 
 namespace App\Exports\User\ExamOrderPost;
 
-use App\Models\ExamOrderPost;
+use App\Models\Examorderpost;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -22,7 +22,7 @@ class ExportExamOrderPost implements FromCollection,WithHeadings, WithMapping
 
     public function collection()
     {
-        return ExamOrderPost::
+        return Examorderpost::
         search($this->search)->
        orderBy($this->sortColumn, $this->sortColumnBy)
        ->select('id', 'post_name','status')

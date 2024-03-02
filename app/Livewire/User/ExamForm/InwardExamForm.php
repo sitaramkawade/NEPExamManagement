@@ -15,7 +15,7 @@ use App\Models\Examformmaster;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Locked;
 use Illuminate\Support\Facades\DB;
-use App\Models\CurrentclassStudents;
+use App\Models\Currentclassstudent;
 
 class InwardExamForm extends Component
 {   
@@ -198,14 +198,14 @@ class InwardExamForm extends Component
         
                     if(get_student_current_sem($exam_form_master->student_id)==='not_regular')
                     {   
-                        CurrentclassStudents::create([
+                        Currentclassstudent::create([
                             'sem'=>1,
                             'patternclass_id'=>$exam_form_master->patternclass_id ,
                             'student_id'=>$exam_form_master->student_id,
                             'college_id'=>$exam_form_master->college_id,
                             'academicyear_id'=>$exam_form_master->exam->academicyear_id,
                         ]);          
-                        CurrentclassStudents::create([
+                        Currentclassstudent::create([
                             'sem'=>2,
                             'patternclass_id'=>$exam_form_master->patternclass_id ,
                             'student_id'=>$exam_form_master->student_id,
@@ -215,7 +215,7 @@ class InwardExamForm extends Component
     
                     }else
                     {
-                        CurrentclassStudents::create([
+                        Currentclassstudent::create([
                             'sem'=>get_student_current_sem($exam_form_master->student_id),
                             'patternclass_id'=>$exam_form_master->patternclass_id ,
                             'student_id'=>$exam_form_master->student_id,

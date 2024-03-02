@@ -2,84 +2,13 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use Database\Seeders\ExamSeeder;
-use Database\Seeders\RoleSeeder;
-use Database\Seeders\BlockSeeder;
-use Database\Seeders\CasteSeeder;
-use Database\Seeders\GradeSeeder;
-use Database\Seeders\LoginSeeder;
-use Database\Seeders\MonthSeeder;
-use Database\Seeders\StateSeeder;
-use Database\Seeders\CourseSeeder;
-use Database\Seeders\NoticeSeeder;
-use Database\Seeders\TalukaSeeder;
-use Database\Seeders\CountrySeeder;
-use Database\Seeders\SansthaSeeder;
-use Database\Seeders\SubjectSeeder;
-use Database\Seeders\BuildingSeeder;
-use Database\Seeders\DistrictSeeder;
-use Database\Seeders\FormTypeSeeder;
-use Database\Seeders\RateheadSeeder;
-use Database\Seeders\ReligionSeeder;
-use Database\Seeders\RoletypeSeeder;
-use Database\Seeders\SemesterSeeder;
-use Database\Seeders\CapmasterSeeder;
-use Database\Seeders\ClassyearSeeder;
-use Database\Seeders\DepatmentSeeder;
-use Database\Seeders\ExamorderSeeder;
-use Database\Seeders\ExamPanelSeeder;
-use Database\Seeders\ProgrammeSeeder;
-use Database\Seeders\BloodgroupSeeder;
-use Database\Seeders\BucketTypeSeeder;
-use Database\Seeders\AddresstypeSeeder;
-use Database\Seeders\CourseclassSeeder;
-use Database\Seeders\FacultyHeadSeeder;
-use Database\Seeders\SubjecttypeSeeder;
-use Database\Seeders\AcademicyearSeeder;
-use Database\Seeders\GendermasterSeeder;
-use Database\Seeders\PatternclassSeeder;
-use Database\Seeders\PrefixmasterSeeder;
-use Database\Seeders\PreviousYearSeeder;
-use Database\Seeders\AdmissionDataSeeder;
-use Database\Seeders\CasteCategorySeeder;
-use Database\Seeders\DepatmenttypeSeeder;
-use Database\Seeders\ExamFeeMasterSeeder;
-use Database\Seeders\ExamOrderPostSeeder;
-use Database\Seeders\ExamTimeTableSeeder;
-use Database\Seeders\SubjectBucketSeeder;
-use Database\Seeders\SubjectcreditSeeder;
-use Database\Seeders\TimeTableSlotSeeder;
-use Database\Seeders\BanknamemasterSeeder;
-use Database\Seeders\CourseCategorySeeder;
-use Database\Seeders\ExamFeeCoursesSeeder;
-use Database\Seeders\FacultyProfileSeeder;
-use Database\Seeders\StudentProfileSeeder;
-use Database\Seeders\StudmenumasterSeeder;
-use Database\Seeders\BoarduniversitySeeder;
-use Database\Seeders\StudentHelplineSeeder;
-use Database\Seeders\SubjectcategorySeeder;
-use Database\Seeders\CourseTypeMasterSeeder;
-use Database\Seeders\ExamPatternclassSeeder;
-use Database\Seeders\EducationalcourseSeeder;
-use Database\Seeders\HodAppointSubjectSeeder;
-use Database\Seeders\InternalToolMasterSeeder;
-use Database\Seeders\ClassStudmenumasterSeeder;
-use Database\Seeders\InternalToolAuditorSeeder;
-use Database\Seeders\StudenthelplineQuerySeeder;
-use Database\Seeders\AshutoshAdmissionDataSeeder;
-use Database\Seeders\ExamBacklogFeeCoursesSeeder;
-use Database\Seeders\StudenthelplineDocumentSeeder;
-use Database\Seeders\InternalToolDocumentMasterSeeder;
-use Database\Seeders\StudentHelplineUploadedDocumentSeeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
+
     public function run(): void
     {
         $this->call([

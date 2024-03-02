@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class CasteCategory extends Model
+class Castecategory extends Model
 {
     use HasFactory;
     protected $table='caste_categories';

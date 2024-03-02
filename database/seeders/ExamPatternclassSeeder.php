@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Exam;
 use App\Models\Capmaster;
 use App\Models\Patternclass;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
@@ -17,7 +17,7 @@ class ExamPatternclassSeeder extends Seeder
     public function run(): void
     {
 
-            ExamPatternclass::create([
+            Exampatternclass::create([
                 'exam_id' => 8,
                 'patternclass_id' => 53,
                 'result_date' => now(),
@@ -36,7 +36,7 @@ class ExamPatternclassSeeder extends Seeder
                 'description' => 'nothing',
             ]);
             
-            ExamPatternclass::create([
+            Exampatternclass::create([
                 'exam_id' => 9,
                 'patternclass_id' => 53,
                 'result_date' => now(),

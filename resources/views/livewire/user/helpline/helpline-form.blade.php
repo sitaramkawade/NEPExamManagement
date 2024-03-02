@@ -53,7 +53,7 @@
       <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
         Upload Documents <x-spinner />
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-4 mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mx-auto">
         @foreach ($documents as $doc)
           <div class="flex flex-col items-center space-x-1 border rounded-md border-primary m-2 ">
             <div class="shrink-0 p-2">

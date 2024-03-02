@@ -9,7 +9,7 @@ use App\Models\University;
 use App\Models\Addresstype;
 use Illuminate\Support\Str;
 use App\Models\Patternclass;
-use App\Models\CasteCategory;
+use App\Models\Castecategory;
 use Illuminate\Database\Seeder;
 use App\Models\Educationalcourse;
 use Illuminate\Support\Facades\Hash;
@@ -53,7 +53,7 @@ class StudentProfileSeeder extends Seeder
             'profile_photo_path'=>"storage/student/profile/photo/student-photo.png",
             'sign_photo_path'=>"storage/student/profile/sign/student-sign.png",
             'caste_id'=>Caste::inRandomOrder()->first()->id,
-            'caste_category_id'=>CasteCategory::inRandomOrder()->first()->id,
+            'caste_category_id'=>Castecategory::inRandomOrder()->first()->id,
             'is_noncreamylayer'=>0,
             'is_handicap'=>0,
         ]);
