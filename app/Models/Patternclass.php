@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Student;
 use App\Models\Examfeecourse;
 use App\Models\Hodappointsubject;
+use App\Models\Internaltoolauditor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -35,7 +36,7 @@ class Patternclass extends Model
 
     ];
 
-    
+
     public function subjects():HasMany
     {
         return $this->hasMany(Subject::class,'patternclass_id','id')->withTrashed();
@@ -73,6 +74,10 @@ class Patternclass extends Model
         return $this->hasMany(Examfeecourse::class,'patternclass_id','id');
     }
 
+    public function internaltoolauditors():HasMany
+    {
+        return $this->hasMany(Internaltoolauditor::class,'patternclass_id','id')->withTrashed();
+    }
 
 
     public function scopeSearch(Builder $query, string $search)

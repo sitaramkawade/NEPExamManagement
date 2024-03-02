@@ -61,14 +61,18 @@ use Database\Seeders\StudmenumasterSeeder;
 use Database\Seeders\BoarduniversitySeeder;
 use Database\Seeders\StudentHelplineSeeder;
 use Database\Seeders\SubjectcategorySeeder;
+use Database\Seeders\CourseTypeMasterSeeder;
 use Database\Seeders\ExamPatternclassSeeder;
 use Database\Seeders\EducationalcourseSeeder;
 use Database\Seeders\HodAppointSubjectSeeder;
+use Database\Seeders\InternalToolMasterSeeder;
 use Database\Seeders\ClassStudmenumasterSeeder;
+use Database\Seeders\InternalToolAuditorSeeder;
 use Database\Seeders\StudenthelplineQuerySeeder;
 use Database\Seeders\AshutoshAdmissionDataSeeder;
 use Database\Seeders\ExamBacklogFeeCoursesSeeder;
 use Database\Seeders\StudenthelplineDocumentSeeder;
+use Database\Seeders\InternalToolDocumentMasterSeeder;
 use Database\Seeders\StudentHelplineUploadedDocumentSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -144,7 +148,10 @@ class DatabaseSeeder extends Seeder
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
             ExamOrderPostSeeder::class,
             SubjectTypeMasterSeeder::class,                 // Subjectcategory, Subjecttype
-
+            InternalToolMasterSeeder::class,
+            InternalToolDocumentMasterSeeder::class,
+            InternalToolAuditorSeeder::class,               // Patternclass, Faculty, Academicyear,
+            CourseTypeMasterSeeder::class,
         ]);
     }
 }

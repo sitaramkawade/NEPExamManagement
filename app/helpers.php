@@ -72,14 +72,14 @@ if (!function_exists('get_student_current_sem'))
             $current_active_exam_session=null;
             $current_active_exam = Exam::Where('status',1)->get();
             if(isset($current_active_exam->first()->exam_sessions))
-            {   
+            {
                 $current_active_exam_session=$current_active_exam->first()->exam_sessions;
             }
             $current_class_student_entry = $student->currentclassstudents->last();
             if(!isset($current_class_student_entry))
-            {   
+            {
                 if($current_active_exam_session==1)
-                {   
+                {
                     $sem=1;
                 }elseif($current_active_exam_session==2)
                 {
