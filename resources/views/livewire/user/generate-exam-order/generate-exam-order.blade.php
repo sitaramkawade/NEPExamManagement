@@ -19,7 +19,7 @@
             <x-card-header heading="Generate Exam Order's">
                 <x-add-btn wire:click="setmode('add')" />
             </x-card-header>
-            <x-table.frame x="0">
+            <x-table.frame x="0"> <x-spinner />
                 <x-slot:header>
                     </x-slot>
                     <x-slot:body>

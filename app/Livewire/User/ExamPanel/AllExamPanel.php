@@ -221,9 +221,9 @@ class AllExamPanel extends Component
         
         if($this->mode!=='all')
         {
-            $this->faculties = Faculty::where('active',1)->pluck('id', 'faculty_name');
-            $this->examorderposts = ExamOrderPost::where('status', 1)->pluck('id', 'post_name');
-            $this->subjects = Subject::where('status', 1)->pluck('id', 'subject_name');
+            $this->faculties = Faculty::where('active',1)->pluck('faculty_name','id');
+            $this->examorderposts = ExamOrderPost::where('status', 1)->pluck('post_name','id');
+            $this->subjects = Subject::where('status', 1)->pluck('subject_name','id');
         }
 
         $panels=ExamPanel::select('id','faculty_id','subject_id','examorderpost_id','description','active_status','deleted_at')
