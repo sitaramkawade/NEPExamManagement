@@ -16,10 +16,20 @@
     <x-form wire:submit="update({{ $time_id  }})">
            @include('livewire.user.exam-time-table.subject-exam-time-table-edit-form')
     </x-form>
+
+    @elseif($mode=='bulkedit')
+    <x-card-header heading="Edit Subject Wise Exam Time Table">
+        <x-back-btn wire:click="setmode('all')" />
+    </x-card-header>
+    <x-form wire:submit="bulkupdate({{ $time_id  }})">
+        @include('livewire.user.exam-time-table.subject-exam-time-table-form')
+    </x-form>
+
     @elseif($mode=='all')
     <div>
         <x-card-header heading=" All Subject Wise Exam Time Table's">
             <x-add-btn wire:click="setmode('add')" />
+            <x-table.edit i="0" wire:click="setmode('bulkedit')" > Edit </x-table.edit> 
         </x-card-header>
         <x-table.frame>
             <x-slot:header>
@@ -49,13 +59,21 @@
                                 
                                 <x-table.td> {{isset($examtimetable->timetableslot->timeslot) ? $examtimetable->timetableslot->timeslot : '-'}}</x-table.td>
                                 <x-table.td>
+
+                                    {{-- @if ($examtimetable->deleted_at)
+                                    <x-table.restore wire:click="restore({{ $examtimetable->id }})" />
+                                    @else
+                                    <x-table.edit wire:click="edit({{ $examtimetable->id }})" />
+                                    <x-table.archive wire:click="delete({{ $examtimetable->id }})" />
+                                    @endif --}}
+
                                     @if ($examtimetable->deleted_at)
                                     <x-table.delete wire:click="deleteconfirmation({{ $examtimetable->id }})" />
                                     <x-table.restore wire:click="restore({{ $examtimetable->id }})" />
                                     @else
                                     <x-table.edit wire:click="edit({{ $examtimetable->id }})" />
                                     <x-table.archive wire:click="delete({{ $examtimetable->id }})" />
-                                    @endif
+                                    @endif 
                                 </x-table.td>
                             </x-table.tr>
                             @empty
@@ -67,7 +85,7 @@
                     </x-table.table>
                     </x-slot>
                     <x-slot:footer>
-                      
+                            <x-table.paginate :data="$examtimetables" />
                         </x-slot>
         </x-table.frame>
     </div>

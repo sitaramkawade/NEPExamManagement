@@ -15,7 +15,7 @@
         <x-back-btn wire:click="setmode('all')" />
     </x-card-header>
     <x-form wire:submit="update({{ $time_id }})">
-        @include('livewire.user.exam-time-table.exam-time-table-form')
+        @include('livewire.user.exam-time-table.exam-time-table-edit-form')
     </x-form>
     @elseif($mode=='all')
     <div>

@@ -73,6 +73,7 @@ class AllExamTimeTable extends Component
     public function resetinput()
     {
         $this->subjectbucket_id=null;
+        $this->sem=null;
         $this->exam_patternclasses_id=null;
         $this->timeslot_id=null;
         $this->examdate=null;
@@ -266,7 +267,7 @@ class AllExamTimeTable extends Component
                              ->where('exam_patternclasses_id', $exampatternclass->id)
                              ->update([
                                  'examdate' => $examdate,
-                                 'timeslot_id' => $this->timeslot_ids[$subject_id],
+                                 'timeslot_id' => $this->timeslot_ids[$subjectbucket_id],
                                  'status' => 1,
                              ]);
             }
