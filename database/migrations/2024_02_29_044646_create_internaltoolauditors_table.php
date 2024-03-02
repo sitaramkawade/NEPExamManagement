@@ -20,7 +20,7 @@ return new class extends Migration
             $table->bigInteger('academicyear_id')->unsigned();
             $table->foreign('academicyear_id')->references('id')->on('academicyears');
             $table->date('evaluationdate')->nullable();
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

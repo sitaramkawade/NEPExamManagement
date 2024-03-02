@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Subject;
 use App\Models\Hodappointsubject;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Internaltoolauditor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
@@ -127,6 +128,11 @@ class Faculty extends Authenticatable implements MustVerifyEmail
     public function getdepartment($deptid)
     {
         return Department::withTrashed()->where('id',$deptid)->first()->dept_name;
+    }
+
+    public function internaltoolauditors()
+    {
+        return $this->hasMany(Internaltoolauditor::class, 'faculty_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

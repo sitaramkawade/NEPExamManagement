@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Internaltoolauditor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,9 +19,15 @@ class Academicyear extends Model
         'active'
 
     ];
+
     public function subjectbuckets():HasMany
     {
         return $this->hasMany(Subjectbucket::class,'academicyear_id','id')->withTrashed();
+    }
+
+    public function internaltoolauditors():HasMany
+    {
+        return $this->hasMany(Internaltoolauditor::class,'academicyear_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

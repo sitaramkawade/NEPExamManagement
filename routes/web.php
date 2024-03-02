@@ -60,6 +60,7 @@ use App\Livewire\User\ExamOrderPost\AllExamOrderPost;
 use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
+use App\Livewire\Faculty\InternalTool\AllInternalTool;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
 use App\Livewire\Faculty\AssignSubject\AllAssignSubject;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
@@ -79,7 +80,6 @@ use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
-use App\Livewire\Faculty\InternalToolMaster\AllInternalToolMaster;
 use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
@@ -355,7 +355,7 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   Route::get('/all-deptprefixe', AllDepartmentPrefix::class)->name('all-deptprefixes');
 
   // All Internal Tool Master
-  Route::get('/all-internaltoolmasters', AllInternalToolMaster::class)->name('all-internaltoolmasters');
+  Route::get('/all-internaltool', AllInternalTool::class)->name('all-internaltool');
 
   // All Internal Tool Auditor
   Route::get('/all-internaltoolauditors', AllInternalToolAuditor::class)->name('all-internaltoolauditors');
