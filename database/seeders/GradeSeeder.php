@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Grade;
+use App\Models\Gradepoint;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -16,7 +16,7 @@ class GradeSeeder extends Seeder
         $grades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'F'];
 
         foreach ($grades as $grade) {
-            Grade::create([
+            Gradepoint::create([
                 'grade_name' => $grade,
             ]);
         }

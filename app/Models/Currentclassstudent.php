@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CurrentclassStudents extends Model
+class Currentclassstudent extends Model
 {
     use HasFactory , SoftDeletes;
     protected $dates = ['deleted_at'];

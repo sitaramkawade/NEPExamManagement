@@ -6,9 +6,9 @@ use Excel;
 use App\Models\Faculty;
 use App\Models\Subject;
 use Livewire\Component;
-use App\Models\ExamPanel;
+use App\Models\Exampanel;
 use Livewire\WithPagination;
-use App\Models\ExamOrderPost;
+use App\Models\Examorderpost;
 use Illuminate\Validation\Rule;
 use App\Exports\User\ExamPanel\ExportExamPanel;
 
@@ -121,7 +121,7 @@ class AllExamPanel extends Component
     {
         $this->validate();
 
-        $exampanel =  new ExamPanel;
+        $exampanel =  new Exampanel;
         $exampanel->create([
             'faculty_id' => $this->faculty_id,
             'examorderpost_id'=>$this->examorderpost_id,
@@ -134,7 +134,7 @@ class AllExamPanel extends Component
         $this->dispatch('alert',type:'success',message:'Exam Panel Created Successfully !!');
     }
 
-    public function edit(ExamPanel $exampanel)
+    public function edit(Exampanel $exampanel)
     {   
         $this->resetinput();
         $this->edit_id=$exampanel->id;
@@ -146,7 +146,7 @@ class AllExamPanel extends Component
         $this->setmode('edit');
     }
 
-    public function update(ExamPanel $exampanel)
+    public function update(Exampanel $exampanel)
     {
         $this->validate();
 
@@ -165,7 +165,7 @@ class AllExamPanel extends Component
 
     }
 
-    public function Status(ExamPanel $exampanel)
+    public function Status(Exampanel $exampanel)
     {
         if($exampanel->active_status)
         {
@@ -184,7 +184,7 @@ class AllExamPanel extends Component
         $this->dispatch('delete-confirmation');
     }
 
-    public function delete(ExamPanel  $exampanel)
+    public function delete(Exampanel  $exampanel)
     {   
         $exampanel->delete();
         $this->dispatch('alert',type:'success',message:'Exam Panel Soft Deleted Successfully !!');
@@ -192,7 +192,7 @@ class AllExamPanel extends Component
 
     public function restore($id)
     {   
-        $exampanel = ExamPanel::withTrashed()->find($id);
+        $exampanel = Exampanel::withTrashed()->find($id);
         $exampanel->restore();
         $this->dispatch('alert',type:'success',message:'Exam Order Post Restored Successfully !!');
     }
@@ -201,7 +201,7 @@ class AllExamPanel extends Component
     {   
         try
         {
-        $exampanel = ExamPanel::withTrashed()->find($this->delete_id);
+        $exampanel = Exampanel::withTrashed()->find($this->delete_id);
         $exampanel->forceDelete();
         $this->dispatch('alert',type:'success',message:'Exam Order Post Deleted Successfully !!');
     } catch
@@ -221,12 +221,12 @@ class AllExamPanel extends Component
         
         if($this->mode!=='all')
         {
-            $this->faculties = Faculty::where('active',1)->pluck('faculty_name','id');
-            $this->examorderposts = ExamOrderPost::where('status', 1)->pluck('post_name','id');
-            $this->subjects = Subject::where('status', 1)->pluck('subject_name','id');
+            $this->faculties = Faculty::where('active',1)->pluck('id', 'faculty_name');
+            $this->examorderposts = Examorderpost::where('status', 1)->pluck('id', 'post_name');
+            $this->subjects = Subject::where('status', 1)->pluck('id', 'subject_name');
         }
 
-        $panels=ExamPanel::select('id','faculty_id','subject_id','examorderpost_id','description','active_status','deleted_at')
+        $panels=Exampanel::select('id','faculty_id','subject_id','examorderpost_id','description','active_status','deleted_at')
         ->with(['faculty:faculty_name,id','subject:subject_name,id','examorderpost:post_name,id'])
         ->when($this->search, function ($query, $search) {
             $query->search($search);

@@ -29,7 +29,7 @@ class Subjectvertical extends Model
     }
     public function buckettype()
     {
-        return $this->belongsTo(SubjectBucketTypeMaster::class, 'subjectbuckettype_id','id');
+        return $this->belongsTo(Subjectbuckettypemaster::class, 'subjectbuckettype_id','id');
     }
 
     public function scopeSearch(Builder $query, string $search)

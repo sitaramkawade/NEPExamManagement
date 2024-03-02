@@ -7,7 +7,7 @@ use Livewire\WithPagination;
 use App\Models\Subjectvertical;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Models\SubjectBucketTypeMaster;
+use App\Models\Subjectbuckettypemaster;
 use App\Exports\Faculty\SubjectVertical\SubjectVerticalExport;
 
 class AllSubjectVertical extends Component
@@ -38,7 +38,7 @@ class AllSubjectVertical extends Component
         return [
             'subject_vertical' => ['required', 'string', 'max:255',],
             'subjectvertical_shortname' => ['required', 'string', 'max:10',],
-            'subjectbuckettype_id' => ['required', Rule::exists(SubjectBucketTypeMaster::class,'id')],
+            'subjectbuckettype_id' => ['required', Rule::exists(Subjectbuckettypemaster::class,'id')],
         ];
     }
 
@@ -236,7 +236,7 @@ class AllSubjectVertical extends Component
 
         if($this->mode==='all'){
 
-            $this->subjectbucket_types = SubjectBucketTypeMaster::pluck('buckettype_name','id');
+            $this->subjectbucket_types = Subjectbuckettypemaster::pluck('buckettype_name','id');
 
             $subjectverticals = Subjectvertical::with(['buckettype:id,buckettype_name'])->when($this->search, function($query, $search){
                 $query->search($search);

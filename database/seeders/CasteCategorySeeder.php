@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\CasteCategory;
+use App\Models\Castecategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,7 +13,7 @@ class CasteCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        CasteCategory::create( [
+        Castecategory::create( [
             'id'=>1,
             'caste_category'=>'SC',
             'caste_category_desc'=>'Scheduled Castes',
@@ -22,7 +22,7 @@ class CasteCategorySeeder extends Seeder
             'created_at'=>'2023-09-22 13:05:36',
             'updated_at'=>'2023-09-22 13:05:36',
             ] );
-            CasteCategory::create( [
+            Castecategory::create( [
                 'id'=>2,
                 'caste_category'=>'ST',
                 'caste_category_desc'=>'Scheduled Tribes',
@@ -31,7 +31,7 @@ class CasteCategorySeeder extends Seeder
                 'created_at'=>'2023-09-22 13:05:36',
                 'updated_at'=>'2023-09-22 13:05:36',
                 ] );
-                CasteCategory::create( [
+                Castecategory::create( [
                     'id'=>3,
                     'caste_category'=>'DT(A)',
                     'caste_category_desc'=>'De-notified Tribes(A)',
@@ -40,7 +40,7 @@ class CasteCategorySeeder extends Seeder
                     'created_at'=>'2023-09-22 13:05:36',
                     'updated_at'=>'2023-09-22 13:05:36',
                     ] );
-                    CasteCategory::create( [
+                    Castecategory::create( [
                         'id'=>4,
                         'caste_category'=>'NT(B)',
                         'caste_category_desc'=>'Nomadic Tribes(B)',
@@ -49,7 +49,7 @@ class CasteCategorySeeder extends Seeder
                         'created_at'=>'2023-09-22 13:05:36',
                         'updated_at'=>'2023-09-22 13:05:36',
                         ] );
-                        CasteCategory::create( [
+                        Castecategory::create( [
                             'id'=>5,
                             'caste_category'=>'NT(C)',
                             'caste_category_desc'=>'Nomadic Tribes(C)',
@@ -58,7 +58,7 @@ class CasteCategorySeeder extends Seeder
                             'created_at'=>'2023-09-22 13:05:36',
                             'updated_at'=>'2023-09-22 13:05:36',
                             ] );
-                            CasteCategory::create( [
+                            Castecategory::create( [
                                 'id'=>6,
                                 'caste_category'=>'NT(D)',
                                 'caste_category_desc'=>'Nomadic Tribes(D)',
@@ -67,7 +67,7 @@ class CasteCategorySeeder extends Seeder
                                 'created_at'=>'2023-09-22 13:05:36',
                                 'updated_at'=>'2023-09-22 13:05:36',
                                 ] );
-                                CasteCategory::create( [
+                                Castecategory::create( [
                                     'id'=>7,
                                     'caste_category'=>'OBC',
                                     'caste_category_desc'=>'Other Backward Classes',
@@ -76,7 +76,7 @@ class CasteCategorySeeder extends Seeder
                                     'created_at'=>'2023-09-22 13:05:36',
                                     'updated_at'=>'2023-09-22 13:05:36',
                                     ] );
-                                    CasteCategory::create( [
+                                    Castecategory::create( [
                                         'id'=>8,
                                         'caste_category'=>'SBC',
                                         'caste_category_desc'=>'Special Backward Classes',

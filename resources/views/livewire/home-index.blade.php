@@ -7,7 +7,7 @@
               संगमनेर नगरपालिका कला डी.जे. मालपाणी वाणिज्य आणि बी.एन.सारडा विज्ञान महाविद्यालय (स्वायत्त), संगमनेर.
             </div>
             <div class="order-first flex-1 md:order-2">
-              <img class="w-26 m-auto h-24 animate-pulse rounded" src="{{ asset("img/shikshan-logo.png") }}" />
+              <img class="w-26 m-auto h-24 animate-pulse rounded" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path("img/shikshan-logo.png"))) }}" alt="Shikshan Logo" />
             </div>
             <div class="order-last flex-1 text-center text-2xl font-semibold">
               Sangamner Nagarpalika Arts D. J. Malpani Commerce and B. N. Sarda Science College (Autonomous), Sangamner.
@@ -110,7 +110,7 @@
               <div class="min-h-full w-full rounded-lg bg-white dark:bg-slate-800  ring-1 ring-slate-900/5 px-6 py-5 shadow-xl ">
                 <div class="flex justify-center">
                   <span>
-                    <img class="h-20 w-20 rounded-full object-cover" src="{{ asset("img/principal-photo.jpg") }}" alt="Photo">
+                    <img class="h-20 w-20 rounded-full object-cover" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path("img/principal-photo.jpg"))) }}" alt="Photo">
                   </span>
                 </div>
                 <h2 class="mt-5 text-base font-medium tracking-tight text-slate-900 dark:text-white">
@@ -127,7 +127,7 @@
               <div class="min-h-full w-full rounded-lg bg-white dark:bg-slate-800  ring-1 ring-slate-900/5  px-6 py-5 shadow-xl ">
                 <div class="flex justify-center">
                   <span>
-                    <img class="w-25 h-20 rounded-full object-cover" src="{{ asset("img/r-s-laddha.jpg") }}" alt="Photo">
+                    <img class="w-25 h-20 rounded-full object-cover" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path("img/r-s-laddha.jpg"))) }}" alt="Photo">
                   </span>
                 </div>
                 <h2 class="mt-5 text-base font-medium tracking-tight text-slate-900 dark:text-white">

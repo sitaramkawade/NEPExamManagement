@@ -9,8 +9,8 @@ use App\Models\Capmaster;
 use App\Models\Patternclass;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
-use App\Models\ExamPatternclass;
-use App\Models\ExamExamPatternclass;
+use App\Models\Exampatternclass;
+use App\Models\ExamExampatternclass;
 use App\Exports\User\ExamPatternClass\ExamPatternClassExport;
 
 class AllExamPatternClass extends Component
@@ -191,7 +191,7 @@ class AllExamPatternClass extends Component
     {
         $this->validate();
 
-       $exam_pattern_class =  new ExamPatternclass;
+       $exam_pattern_class =  new Exampatternclass;
        $exam_pattern_class->create([
             'exam_id'=>$this->exam_id,
             'patternclass_id'=>$this->patternclass_id,
@@ -239,7 +239,7 @@ class AllExamPatternClass extends Component
         $this->setmode('edit');
     }
 
-    public function update(ExamPatternclass $exam_pattern_class)
+    public function update(Exampatternclass $exam_pattern_class)
     {
         $this->validate();
 
@@ -276,7 +276,7 @@ class AllExamPatternClass extends Component
     }
 
 
-    public function delete(ExamPatternclass $exam_pattern_class)
+    public function delete(Exampatternclass $exam_pattern_class)
     {   
        $exam_pattern_class->delete();
         $this->dispatch('alert',type:'success',message:'Exam Pattern Class Soft Deleted Successfully !!');
@@ -284,7 +284,7 @@ class AllExamPatternClass extends Component
     
     public function restore($id)
     {   
-       $exam_pattern_class = ExamPatternclass::withTrashed()->find($id);
+       $exam_pattern_class = Exampatternclass::withTrashed()->find($id);
        $exam_pattern_class->restore();
         $this->dispatch('alert',type:'success',message:'Exam Pattern Class Restored Successfully !!');
     }
@@ -293,7 +293,7 @@ class AllExamPatternClass extends Component
     {   
         try 
         {
-            $exam_pattern_class = ExamPatternclass::withTrashed()->find($this->delete_id);
+            $exam_pattern_class = Exampatternclass::withTrashed()->find($this->delete_id);
             $exam_pattern_class->forceDelete();
             $this->dispatch('alert',type:'success',message:'Exam Pattern Class Deleted Successfully !!');
             
@@ -306,7 +306,7 @@ class AllExamPatternClass extends Component
         }
     }
 
-    public function changestatus(ExamPatternclass $exam_pattern_class)
+    public function changestatus(Exampatternclass $exam_pattern_class)
     {   
         if( $exam_pattern_class->launch_status)
         {
@@ -331,7 +331,7 @@ class AllExamPatternClass extends Component
             $this->pattern_classes=Patternclass::select('id','class_id','pattern_id')->with(['pattern:pattern_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->where('status',1)->get();
         }
 
-       $pattern_exam_classes=ExamPatternclass::select('id','exam_id','patternclass_id','result_date','launch_status','start_date','end_date','latefee_date','intmarksstart_date','intmarksend_date','finefee_date','capmaster_id','capscheduled_date','papersettingstart_date','papersubmission_date','placeofmeeting','description','deleted_at')
+       $pattern_exam_classes=Exampatternclass::select('id','exam_id','patternclass_id','result_date','launch_status','start_date','end_date','latefee_date','intmarksstart_date','intmarksend_date','finefee_date','capmaster_id','capscheduled_date','papersettingstart_date','papersubmission_date','placeofmeeting','description','deleted_at')
        ->with(['exam:exam_name,id','patternclass.courseclass.course:course_name,id','capmaster:cap_name,id'])->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

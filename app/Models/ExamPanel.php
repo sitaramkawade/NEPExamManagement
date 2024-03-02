@@ -4,14 +4,14 @@ namespace App\Models;
 
 use App\Models\Faculty;
 use App\Models\Subject;
-use App\Models\ExamOrderPost;
+use App\Models\Examorderpost;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ExamPanel extends Model
+class Exampanel extends Model
 {
     use HasFactory,SoftDeletes;
     protected $dates = ['deleted_at'];
@@ -31,7 +31,7 @@ class ExamPanel extends Model
 
     public function examorderpost(): BelongsTo
     {
-        return $this->belongsTo(ExamOrderPost::class,'examorderpost_id','id')->withTrashed();
+        return $this->belongsTo(Examorderpost::class,'examorderpost_id','id')->withTrashed();
     }
 
     public function subject(): BelongsTo

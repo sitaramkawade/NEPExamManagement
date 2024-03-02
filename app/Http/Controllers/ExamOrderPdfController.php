@@ -8,9 +8,9 @@ use Dompdf\Options;
 use App\Models\Examorder;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\ExamTimetable;
+use App\Models\Examtimetable;
 use Illuminate\Support\Carbon;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 
 class ExamOrderPdfController extends Controller
 {
@@ -39,10 +39,10 @@ class ExamOrderPdfController extends Controller
         }
     }
 
-    public function timetable(ExamPatternclass $exampatternclass)
+    public function timetable(Exampatternclass $exampatternclass)
     
     {
-          $exam_time_table_data = ExamTimetable::where('exam_patternclasses_id' , $exampatternclass->id)->get();
+          $exam_time_table_data = Examtimetable::where('exam_patternclasses_id' , $exampatternclass->id)->get();
          // dd($exam_time_table_data,$exampatternclass); // Fetch your timetable data here
 
         // Render the timetable Blade view to HTML

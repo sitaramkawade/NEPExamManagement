@@ -2,7 +2,7 @@
 
 use App\Models\Course;
 use App\Models\Subject;
-use App\Models\DeptPrefix;
+use App\Models\Departmentprefix;
 use App\Models\Courseclass;
 use App\Models\Exam;
 use App\Models\Student;
@@ -29,7 +29,7 @@ if (!function_exists('generate_subject_code')) {
     {
         $authFaculty = Auth::guard('faculty')->user()->department_id;
 
-        $departmentPrefix = DeptPrefix::where('dept_id', $authFaculty)->first();
+        $departmentPrefix = Departmentprefix::where('dept_id', $authFaculty)->first();
         $courseClass = Courseclass::select('id', 'classyear_id')->find($patternClassId);
         $courseType = Course::where('id', optional($courseClass)->id)->value('course_type');
         $courseTypeFirstChar = strtoupper(substr($courseType, 0, 1));

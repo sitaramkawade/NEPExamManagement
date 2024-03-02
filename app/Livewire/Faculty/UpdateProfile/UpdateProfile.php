@@ -8,7 +8,7 @@ use Livewire\Component;
 use App\Models\Roletype;
 use App\Models\Department;
 use App\Models\Gendermaster;
-use App\Models\CasteCategory;
+use App\Models\Castecategory;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use App\Models\Facultybankaccount;
@@ -203,7 +203,7 @@ class UpdateProfile extends Component
             $faculty = Auth::guard('faculty')->user();
             $this->show($faculty);
             $this->genders = Gendermaster::where('is_active',1)->get();
-            $this->cast_categories = CasteCategory::where('is_active',1)->get();
+            $this->cast_categories = Castecategory::where('is_active',1)->get();
             $this->colleges= College::where('status',1)->get();
         }
 

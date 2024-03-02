@@ -2,7 +2,7 @@
 
 namespace App\Exports\User\Grade;
 
-use App\Models\Grade;
+use App\Models\Gradepoint;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -22,7 +22,7 @@ class ExportGrade implements FromCollection ,WithHeadings, WithMapping
 
     public function collection()
     {
-        return Grade::
+        return Gradepoint::
         search($this->search)
       ->orderBy($this->sortColumn, $this->sortColumnBy)
       ->select('id', 'max_percentage','min_percentage','grade_point','grade_name','description','is_active')

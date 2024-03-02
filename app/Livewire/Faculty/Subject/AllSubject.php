@@ -6,7 +6,7 @@ use App\Models\Subject;
 use Livewire\Component;
 use App\Models\Semester;
 use App\Models\Classyear;
-use App\Models\DeptPrefix;
+use App\Models\Departmentprefix;
 use App\Models\Courseclass;
 use App\Models\Subjecttype;
 use App\Models\Academicyear;
@@ -18,11 +18,11 @@ use App\Models\Subjectcategory;
 use App\Models\Subjectvertical;
 use Illuminate\Validation\Rule;
 use App\Models\Hodappointsubject;
-use App\Models\SubjectTypeMaster;
+use App\Models\Subjecttypemaster;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Models\SubjectBucketTypeMaster;
+use App\Models\Subjectbuckettypemaster;
 use App\Exports\Faculty\Subject\SubjectExport;
 
 class AllSubject extends Component
@@ -311,7 +311,7 @@ class AllSubject extends Component
             $subject_vertical = Subjectvertical::where('id', $subject->subjectvertical_id)->first();
 
             // Retrieve the bucket type
-            $buckettype = SubjectBucketTypeMaster::find($subject_vertical->subjectbuckettype_id);
+            $buckettype = Subjectbuckettypemaster::find($subject_vertical->subjectbuckettype_id);
 
             // Conditionally insert data into the second table (Subjectbucket)
             if ($buckettype->buckettype_name == 'Major') {
@@ -579,7 +579,7 @@ class AllSubject extends Component
             $this->subject_credits = Subjectcredit::pluck('credit','id');
             $this->class_years= Classyear::where('status',1)->pluck('classyear_name','id');
 
-            $this->subject_types = SubjectTypeMaster::with(['subjecttype',])->select('id','subjecttype_id')->where('subjectcategory_id', $this->subjectcategory_id)->get();
+            $this->subject_types = Subjecttypemaster::with(['subjecttype',])->select('id','subjecttype_id')->where('subjectcategory_id', $this->subjectcategory_id)->get();
 
             if ($this->subject_sem && $this->patternclass_id && $this->subjectvertical_id && $this->classyear_id) {
                 $this->subject_code = generate_subject_code($this->patternclass_id, $this->subjectvertical_id, $this->subject_sem, $this->classyear_id);

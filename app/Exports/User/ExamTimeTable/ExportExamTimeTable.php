@@ -2,7 +2,7 @@
 
 namespace App\Exports\User\ExamTimeTable;
 
-use App\Models\ExamTimetable;
+use App\Models\Examtimetable;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -22,7 +22,7 @@ class ExportExamTimeTable implements FromCollection, WithHeadings, WithMapping
 
     public function collection()
     {
-        return ExamTimetable::
+        return Examtimetable::
         search($this->search)
       ->orderBy($this->sortColumn, $this->sortColumnBy)
       ->select('id', 'subject_id','exam_patternclasses_id','examdate','timeslot_id','status')

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\College;
-use App\Models\DeptPrefix;
+use App\Models\Departmentprefix;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -51,7 +51,7 @@ class Department extends Model
     }
     public function prefixes():HasMany
     {
-        return $this->hasMany(DeptPrefix::class, 'dept_id', 'id')->withTrashed();
+        return $this->hasMany(Departmentprefix::class, 'dept_id', 'id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query,string $search)

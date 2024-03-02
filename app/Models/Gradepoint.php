@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Grade extends Model
+class Gradepoint extends Model
 {
     use HasFactory,SoftDeletes; 
+    protected $table='gradepoints';
     protected $dates = ['deleted_at'];
     protected $guarded=[];
     protected $fillable=[

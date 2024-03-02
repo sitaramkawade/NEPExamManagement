@@ -5,7 +5,7 @@ namespace App\Livewire\User\ExamOrderPost;
 use Excel;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\ExamOrderPost;
+use App\Models\Examorderpost;
 use App\Exports\User\ExamOrderPost\ExportExamOrderPost;
 
 class AllExamOrderPost extends Component
@@ -102,7 +102,7 @@ class AllExamOrderPost extends Component
     {
         $this->validate();
 
-        $examorderpost =  new ExamOrderPost;
+        $examorderpost =  new Examorderpost;
         $examorderpost->create([
             'post_name' => $this->post_name,
             'status'=>$this->status,          
@@ -112,7 +112,7 @@ class AllExamOrderPost extends Component
         $this->dispatch('alert',type:'success',message:'Exam Order Post Created Successfully !!');
     }
 
-    public function edit(ExamOrderPost $examorderpost)
+    public function edit(Examorderpost $examorderpost)
     {   
         $this->resetinput();
         $this->post_id=$examorderpost->id;
@@ -122,7 +122,7 @@ class AllExamOrderPost extends Component
         $this->setmode('edit');
     }
 
-    public function update(ExamOrderPost $examorderpost)
+    public function update(Examorderpost $examorderpost)
     {
         $this->validate();
 
@@ -138,7 +138,7 @@ class AllExamOrderPost extends Component
 
     }
 
-    public function Status(ExamOrderPost $examorderpost)
+    public function Status(Examorderpost $examorderpost)
     {
         if($examorderpost->status)
         {
@@ -158,7 +158,7 @@ class AllExamOrderPost extends Component
         $this->dispatch('delete-confirmation');
     }
 
-    public function delete(ExamOrderPost  $examorderpost)
+    public function delete(Examorderpost  $examorderpost)
     {   
         $examorderpost->delete();
         $this->dispatch('alert',type:'success',message:'Exam Order Post Soft Deleted Successfully !!');
@@ -166,7 +166,7 @@ class AllExamOrderPost extends Component
 
     public function restore($id)
     {   
-        $examorderpost = ExamOrderPost::withTrashed()->find($id);
+        $examorderpost = Examorderpost::withTrashed()->find($id);
         $examorderpost->restore();
         $this->dispatch('alert',type:'success',message:'Exam Order Post Restored Successfully !!');
     }
@@ -175,7 +175,7 @@ class AllExamOrderPost extends Component
     {   
         try
         {
-        $examorderpost = ExamOrderPost::withTrashed()->find($this->delete_id);
+        $examorderpost = Examorderpost::withTrashed()->find($this->delete_id);
         $examorderpost->forceDelete();
         $this->dispatch('alert',type:'success',message:'Exam Order Post Deleted Successfully !!');
     } catch
@@ -190,7 +190,7 @@ class AllExamOrderPost extends Component
     
     public function render()
     {
-        $Posts=ExamOrderPost::select('id','post_name','status','deleted_at')
+        $Posts=Examorderpost::select('id','post_name','status','deleted_at')
         ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
