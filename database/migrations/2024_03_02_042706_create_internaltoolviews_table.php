@@ -17,7 +17,7 @@ return new class extends Migration
             CREATE VIEW internaltoolviews AS
             SELECT
                 ROW_NUMBER() OVER (ORDER BY itd.id, itm.id) AS id,
-                itd.internaltooldocument_id,
+                itd.internaltooldoc_id,
                 itd.internaltoolmaster_id,
                 itd.is_multiple AS internal_tool_document_is_multiple,
                 itd.status AS internal_tool_document_status,
