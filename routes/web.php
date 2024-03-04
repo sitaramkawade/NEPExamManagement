@@ -81,6 +81,7 @@ use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
 use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
+use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
@@ -137,7 +138,7 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
   Route::get('/helpline',Helpline::class)->name('helpline');
 
   // Student Exam Form
-  Route::post('/exam/form',FillStudentExamForm::class)->name('student_exam_form');
+  Route::post('/exam/form',FillStudentExamFormNew::class)->name('student_exam_form');
 
   // Student Delete Exam Form
   Route::post('/delete/exam/form',DeleteStudentExamForm::class)->name('student_delete_exam_form');

@@ -61,7 +61,7 @@ if (!function_exists('generate_subject_code')) {
 
 
 // Getting Current Sem of Student
-if (!function_exists('get_student_current_sem'))
+if (!function_exists('get_student_current_sem')) 
 {
     function get_student_current_sem($student_id)
     {
