@@ -17,7 +17,7 @@ use App\Models\Examfeecourse;
 use App\Models\Examformmaster;
 use App\Models\Studentaddress;
 use App\Models\Studentprofile;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use App\Models\Extracreditsubject;
 use App\Models\Studentexamformfee;
 use App\Models\Photocopyexammaster;
@@ -27,7 +27,7 @@ use App\Models\Exambacklogfeecourse;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Internalmarksextracreditbatch;
 
-class StudentController extends Controller
+class RNDController extends Controller
 {
     private $yearresult = null;
 
@@ -1128,7 +1128,7 @@ class StudentController extends Controller
 
     //         $examsession = $examdata->exam_sessions;
     //         $patternclass_id = $student->patternclass->id;
-    //         $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //         $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
     //         //dd($examsedate);        
     //         $feedata = $student->patternclass->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
     //         $memberid = $student->memid; //123;
@@ -1173,7 +1173,7 @@ class StudentController extends Controller
 
     //                 $examsession = $examdata->exam_sessions;
     //                 $patternclass_id = $data2->patternclass->id;
-    //                 $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                 $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
 
     //                 $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
     //                 //dd($feedata);
@@ -1195,7 +1195,7 @@ class StudentController extends Controller
 
     //                         $patternclass_id = $pc->id;
 
-    //                         $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                         $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
     //                         $backfeedata = Examfeecourse::where('patternclass_id', $data2->patternclass_id)->where('examfees_id', '13')->first();
 
     //                         $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
@@ -1215,7 +1215,7 @@ class StudentController extends Controller
 
     //                         $patternclass_id = $pc->id;
 
-    //                         $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                         $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
     //                         $backfeedata = Examfeecourse::where('patternclass_id', $data2->patternclass_id)->where('examfees_id', '13')->first();
 
     //                         $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
@@ -1230,7 +1230,7 @@ class StudentController extends Controller
 
     //                         $patternclass_id = $pc->id;
 
-    //                         $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                         $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
     //                         $backfeedata = Examfeecourse::where('patternclass_id', $data2->patternclass_id)->where('examfees_id', '13')->first();
 
     //                         $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
@@ -1246,7 +1246,7 @@ class StudentController extends Controller
 
     //                 $examsession = $examdata->exam_sessions;
     //                 $patternclass_id = $data2->patternclass->id;
-    //                 $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                 $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
 
     //                 $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
     //                 //dd($feedata);
@@ -1264,7 +1264,7 @@ class StudentController extends Controller
 
     //                     $patternclass_id = $pc->id;
     //                     // dd($patternclass_id);
-    //                     $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                     $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
     //                     $backfeedata = Examfeecourse::where('patternclass_id', $data2->patternclass_id)->where('examfees_id', '13')->first();
     //                     // dd($backfeedata);
     //                     $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
@@ -1289,7 +1289,7 @@ class StudentController extends Controller
 
     //                             $patternclass_id = $pc->id;
     //                             // dd($patternclass_id);
-    //                             $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                             $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
     //                             $backfeedata = Examfeecourse::where('patternclass_id', $data2->patternclass_id)->where('examfees_id', '13')->first();
     //                             // dd($backfeedata);
     //                             $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
@@ -1311,7 +1311,7 @@ class StudentController extends Controller
 
     //                                     $patternclass_id = $pc->id;
     //                                     // dd($patternclass_id);
-    //                                     $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                                     $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
     //                                     $backfeedata = Examfeecourse::where('patternclass_id', $data2->patternclass_id)->where('examfees_id', '13')->first();
     //                                     // dd($backfeedata);
     //                                     $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
@@ -1327,7 +1327,7 @@ class StudentController extends Controller
 
     //                                     $patternclass_id = $pc->id;
     //                                     // dd($patternclass_id);
-    //                                     $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                                     $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
     //                                     $backfeedata = Examfeecourse::where('patternclass_id', $data2->patternclass_id)->where('examfees_id', '13')->first();
     //                                     // dd($backfeedata);
     //                                     $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
@@ -1360,7 +1360,7 @@ class StudentController extends Controller
 
     //                             $patternclass_id = $pc->id;
     //                             // dd($patternclass_id);
-    //                             $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                             $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
     //                             $backfeedata = Examfeecourse::where('patternclass_id', $data2->patternclass_id)->where('examfees_id', '13')->first();
     //                             // dd($backfeedata);
     //                             $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
@@ -1377,7 +1377,7 @@ class StudentController extends Controller
 
     //                             $patternclass_id = $pc->id;
     //                             // dd($patternclass_id);
-    //                             $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                             $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
     //                             $backfeedata = Examfeecourse::where('patternclass_id', $data2->patternclass_id)->where('examfees_id', '13')->first();
     //                             // dd($backfeedata);
     //                             $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
@@ -1394,7 +1394,7 @@ class StudentController extends Controller
 
     //                 $examsession = $examdata->exam_sessions;
     //                 $patternclass_id = $data2->patternclass->id;
-    //                 $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                 $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
 
     //                 $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
     //                 //dd($feedata);
@@ -1408,7 +1408,7 @@ class StudentController extends Controller
 
     //                 $examsession = $examdata->exam_sessions;
     //                 $patternclass_id = $data2->patternclass->id;
-    //                 $examsedate = ExamPatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
+    //                 $examsedate = Exampatternclass::where('exam_id', $examid)->where('patternclass_id', $patternclass_id)->get()->first();
 
     //                 $feedata = $pc->examfeecourses()->where('patternclass_id', $patternclass_id)->get();
     //             //dd($feedata);
@@ -1599,7 +1599,7 @@ class StudentController extends Controller
     //                 else
     //                     $amount = 0;
     //             } else {    //fy repeater student late fee date  apply sy late fee date 
-    //                 $epc = ExamPatternclass::where('patternclass_id', ($patternclass_id))->where('exam_id', $examid)->first();
+    //                 $epc = Exampatternclass::where('patternclass_id', ($patternclass_id))->where('exam_id', $examid)->first();
     //                 //dd($epc);
     //                 if ($currentdate->gte($epc->end_date) and $currentdate->lte($epc->latefee_date)) {
     //                     $amount = $fee->fee;
@@ -1618,7 +1618,7 @@ class StudentController extends Controller
     //                 else
     //                     $amount = 0;
     //             } else {    //fy repeater student late fee date  apply sy late fee date 
-    //                 $epc = ExamPatternclass::where('patternclass_id', ($patternclass_id))->where('exam_id', $examid)->first();
+    //                 $epc = Exampatternclass::where('patternclass_id', ($patternclass_id))->where('exam_id', $examid)->first();
     //                 //dd($epc);
     //                 if ($currentdate->gte($epc->latefee_date) and $currentdate->lte($epc->finefee_date)) {
     //                     $amount = $fee->fee;

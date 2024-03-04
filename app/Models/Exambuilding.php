@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ExamBuilding extends Model
+class Exambuilding extends Model
 {
     use HasFactory,SoftDeletes; 
     protected $dates = ['deleted_at'];

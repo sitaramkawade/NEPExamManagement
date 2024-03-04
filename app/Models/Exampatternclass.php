@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ExamPatternclass extends Model
+class Exampatternclass extends Model
 {
     use HasFactory , SoftDeletes;
     protected $dates = ['deleted_at'];

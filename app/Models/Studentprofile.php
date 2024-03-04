@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Caste;
-use App\Models\CasteCategory;
+use App\Models\Castecategory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -47,7 +47,7 @@ class Studentprofile extends Model
 
     public function castecategory():BelongsTo
     {
-        return $this->belongsTo(CasteCategory::class,'caste_category_id','id');
+        return $this->belongsTo(Castecategory::class,'caste_category_id','id');
     }
 
     public function caste():BelongsTo

@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Examorder;
-use App\Models\ExamPanel;
+use App\Models\Exampanel;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ExamorderSeeder extends Seeder
@@ -20,8 +20,8 @@ class ExamorderSeeder extends Seeder
 
         for ($i = 0; $i < 1; $i++) {
 
-            $exampatternclassIds = ExamPatternclass::pluck('id')->toArray();
-            $exampanelIds = ExamPanel::pluck('id')->toArray();
+            $exampatternclassIds = Exampatternclass::pluck('id')->toArray();
+            $exampanelIds = Exampanel::pluck('id')->toArray();
 
             Examorder::create([
                 'exampanel_id' => rand(1, count($exampanelIds)),

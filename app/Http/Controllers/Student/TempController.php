@@ -17,7 +17,7 @@ use App\Models\Examfeecourse;
 use App\Models\Examformmaster;
 use App\Models\Studentaddress;
 use App\Models\Studentprofile;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use App\Models\Extracreditsubject;
 use App\Models\Studentexamformfee;
 use App\Models\Photocopyexammaster;
@@ -27,7 +27,7 @@ use App\Models\Exambacklogfeecourse;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Internalmarksextracreditbatch;
 
-class StudentController extends Controller
+class TempController extends Controller
 {
     
     public Student $student;

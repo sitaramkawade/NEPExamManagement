@@ -20,7 +20,7 @@ class Caste extends Model
 
     public function caste_category(): BelongsTo
     {
-        return $this->belongsTo(CasteCategory::class, 'caste_category_id', 'id');
+        return $this->belongsTo(Castecategory::class, 'caste_category_id', 'id');
     }
 
 

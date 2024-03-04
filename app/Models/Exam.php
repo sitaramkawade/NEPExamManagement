@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Academicyear;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -42,6 +42,6 @@ class Exam extends Model
 
     public function exampatternclasses()
     {
-        return $this->hasMany(ExamPatternclass::class)->withTrashed();
+        return $this->hasMany(Exampatternclass::class)->withTrashed();
     }
 }

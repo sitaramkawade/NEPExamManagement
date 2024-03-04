@@ -11,7 +11,7 @@ use App\Models\StudentExamform;
 use Illuminate\Validation\Rule;
 use App\Models\Studentexamformfee;
 use Illuminate\Support\Facades\DB;
-use App\Models\CurrentclassStudents;
+use App\Models\Currentclassstudent;
 use Illuminate\Support\Facades\Auth;
 
 class ModifyExamForm extends Component

@@ -12,7 +12,8 @@ return new class extends Migration
      */
 
      public function up()
-    {
+    {   
+        DB::statement("DROP VIEW IF EXISTS internaltoolviews");
         DB::statement("
             CREATE VIEW internaltoolviews AS
             SELECT

@@ -2,7 +2,7 @@
 
 namespace App\Exports\User\ExamPanel;
 
-use App\Models\ExamPanel;
+use App\Models\Exampanel;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -22,7 +22,7 @@ class ExportExamPanel implements FromCollection, WithHeadings, WithMapping
 
     public function collection()
     {
-        return ExamPanel::
+        return Exampanel::
          search($this->search)->
         orderBy($this->sortColumn, $this->sortColumnBy)
         ->select('id', 'faculty_id','examorderpost_id','subject_id', 'description','active_status')

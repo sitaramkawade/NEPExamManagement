@@ -59,7 +59,7 @@
           </div>
           <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="caste_category" :value="__("Cast Category")" />
-            <x-input-show id='caste_category' :value="$caste_category = App\Models\CasteCategory::find($caste_category_id)->caste_category" />
+            <x-input-show id='caste_category' :value="$caste_category = App\Models\Castecategory::find($caste_category_id)->caste_category" />
           </div>
           <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             @php

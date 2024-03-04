@@ -2,7 +2,7 @@
 
 namespace App\Exports\User\ExamBuilding;
 
-use App\Models\ExamBuilding;
+use App\Models\Exambuilding;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -22,7 +22,7 @@ class ExportExamBuilding implements FromCollection, WithHeadings, WithMapping
 
     public function collection()
     {
-        return ExamBuilding::
+        return Exambuilding::
         search($this->search)->
        orderBy($this->sortColumn, $this->sortColumnBy)
        ->select('id', 'exam_id','building_id','status')

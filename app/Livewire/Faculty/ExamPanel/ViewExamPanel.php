@@ -5,11 +5,11 @@ namespace App\Livewire\Faculty\ExamPanel;
 use App\Models\Faculty;
 use App\Models\Subject;
 use Livewire\Component;
-use App\Models\ExamPanel;
+use App\Models\Exampanel;
 use App\Models\Department;
 use App\Models\Patternclass;
 use Livewire\WithPagination;
-use App\Models\ExamOrderPost;
+use App\Models\Examorderpost;
 use Illuminate\Validation\Rule;
 use App\Models\Hodappointsubject;
 use Maatwebsite\Excel\Facades\Excel;
@@ -52,7 +52,7 @@ class ViewExamPanel extends Component
             'patternclass_id' => ['required', 'integer', Rule::exists(Patternclass::class,'id'),],
             'subject_id' => ['required', Rule::exists(Subject::class,'id')],
             'department_id' => ['required', Rule::exists(Department::class,'id')],
-            'post_id' => ['required', Rule::exists(ExamOrderPost::class,'id')],
+            'post_id' => ['required', Rule::exists(Examorderpost::class,'id')],
             'selected_faculties' => ['required', ],
             'selected_faculties' => ['required', 'max:50'],
         ];
@@ -111,18 +111,18 @@ class ViewExamPanel extends Component
             ];
         }
 
-        // Insert ExamPanel records in one shot
-        ExamPanel::insert($exampanelData);
+        // Insert Exampanel records in one shot
+        Exampanel::insert($exampanelData);
 
         $this->dispatch('alert', type: 'success', message: 'Exam Panels Added Successfully');
         $this->resetinput();
     }
 
-    public function edit(ExamPanel $exampanel)
+    public function edit(Exampanel $exampanel)
     {
         if ($exampanel) {
             // Load the data into the Livewire component properties
-            $selectedFaculties = ExamPanel::where('subject_id', $exampanel->subject_id)->get();
+            $selectedFaculties = Exampanel::where('subject_id', $exampanel->subject_id)->get();
 
             // Extract the IDs from the selected faculties
             $this->selected_faculties = $selectedFaculties->pluck('faculty_id')->toArray(); // Assuming faculty_id is the correct column name
@@ -132,7 +132,7 @@ class ViewExamPanel extends Component
             $this->post_id = $exampanel->examorderpost_id;
             $this->department_id = $exampanel->faculty->department_id; // Assuming department_id is the correct column name
 
-            // Load all faculties associated with the ExamPanel
+            // Load all faculties associated with the Exampanel
             $allFaculties = Faculty::where('department_id', $this->department_id)->where('active', 1)->get();
             $this->faculties = $allFaculties->pluck('id')->toArray();
 
@@ -159,9 +159,9 @@ class ViewExamPanel extends Component
             ];
         }
 
-        // Update ExamPanel records in one shot
-        ExamPanel::where('examorderpost_id', $validatedData['post_id'])->delete(); // Delete existing records
-        ExamPanel::insert($exampanelData); // Insert new records
+        // Update Exampanel records in one shot
+        Exampanel::where('examorderpost_id', $validatedData['post_id'])->delete(); // Delete existing records
+        Exampanel::insert($exampanelData); // Insert new records
 
         $this->dispatch('alert', type: 'success', message: 'Exam Panels Updated Successfully');
         $this->resetinput();
@@ -190,7 +190,7 @@ class ViewExamPanel extends Component
 
     public function softdelete($id)
     {
-        $exampanel_faculty = ExamPanel::withTrashed()->find($id);
+        $exampanel_faculty = Exampanel::withTrashed()->find($id);
 
         if ($exampanel_faculty) {
             $exampanel_faculty->delete();
@@ -204,7 +204,7 @@ class ViewExamPanel extends Component
     {
         try
         {
-            $exampanel_faculty = ExamPanel::withTrashed()->find($this->delete_id);
+            $exampanel_faculty = Exampanel::withTrashed()->find($this->delete_id);
             $exampanel_faculty->forceDelete();
             $this->delete_id = null;
             $this->dispatch('alert',type:'success',message:'Faculty Deleted From Exam Panel Successfully !!');
@@ -219,7 +219,7 @@ class ViewExamPanel extends Component
 
     public function restore($id)
     {
-        $exampanel_faculty = ExamPanel::withTrashed()->find($id);
+        $exampanel_faculty = Exampanel::withTrashed()->find($id);
 
         if ($exampanel_faculty) {
             $exampanel_faculty->restore();
@@ -230,7 +230,7 @@ class ViewExamPanel extends Component
         }
     }
 
-    public function view(ExamPanel $exampanel)
+    public function view(Exampanel $exampanel)
     {
         if ($exampanel){
             $this->patternclass_id = (isset($exampanel->subject->patternclass->pattern->pattern_name) ? $exampanel->subject->patternclass->pattern->pattern_name : '') . ' ' .
@@ -286,7 +286,7 @@ class ViewExamPanel extends Component
         $patternclass_id = Subject::whereIn('id', $appointed_subjects)->pluck('patternclass_id')->toArray();
 
         $this->pattern_classes = Patternclass::whereIn('id', $patternclass_id)->select('id', 'class_id', 'pattern_id')->with(['pattern:pattern_name,id', 'courseclass.course:course_name,id', 'courseclass.classyear:classyear_name,id'])->where('status', 1)->get();
-        $this->posts=ExamOrderPost::select('id','post_name')->where('status',1)->get();
+        $this->posts=Examorderpost::select('id','post_name')->where('status',1)->get();
 
         $this->subjects = Subject::whereIn('id', $appointed_subjects)->select('id', 'subject_name')->where('patternclass_id', $this->patternclass_id)->where('status', 1)->get();
 
@@ -294,7 +294,7 @@ class ViewExamPanel extends Component
 
         $this->faculties = Faculty::select('id','faculty_name')->where('department_id', $this->department_id)->where('active',1)->whereNotNull('department_id')->get();
 
-        $examPanels = ExamPanel::with('subject', 'faculty', 'examorderpost')->withTrashed()->whereIn('subject_id', $appointed_subjects)->paginate($this->perPage);
+        $examPanels = Exampanel::with('subject', 'faculty', 'examorderpost')->withTrashed()->whereIn('subject_id', $appointed_subjects)->paginate($this->perPage);
         $groupedExamPanels = $examPanels->groupBy('subject_id');
 
         return view('livewire.faculty.exam-panel.view-exam-panel', compact('groupedExamPanels','examPanels'))->extends('layouts.faculty')->section('faculty');

@@ -8,12 +8,12 @@ use App\Models\Subject;
 use Livewire\Component;
 use App\Models\Semester;
 use Livewire\WithPagination;
-use App\Models\ExamTimetable;
+use App\Models\Examtimetable;
 use App\Models\Subjectbucket;
 use App\Models\Timetableslot;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use Illuminate\Support\Facades\DB;
 use App\Exports\User\ExamTimeTable\ExportExamTimeTable;
 
@@ -73,6 +73,7 @@ class AllExamTimeTable extends Component
     public function resetinput()
     {
         $this->subjectbucket_id=null;
+        $this->sem=null;
         $this->exam_patternclasses_id=null;
         $this->timeslot_id=null;
         $this->examdate=null;
@@ -105,7 +106,7 @@ class AllExamTimeTable extends Component
     }
     
 
-    public function create(ExamPatternclass  $exampatternclass ){
+    public function create(Exampatternclass  $exampatternclass ){
         
         $this->exam_pattern_class_id=$exampatternclass;
         $this->semesters=Semester::where('status',1)->get();
@@ -139,7 +140,7 @@ class AllExamTimeTable extends Component
     }
 
    
-    public function delete(ExamPatternclass  $exampatternclass)
+    public function delete(Exampatternclass  $exampatternclass)
     {   
         $exampatternclass->delete();
         $this->dispatch('alert',type:'success',message:'Exam Time Table Soft Deleted Successfully !!');
@@ -147,7 +148,7 @@ class AllExamTimeTable extends Component
 
     public function restore($id)
     {   
-        $exampatternclass = ExamPatternclass::withTrashed()->find($id);
+        $exampatternclass = Exampatternclass::withTrashed()->find($id);
         $exampatternclass->restore();
         $this->dispatch('alert',type:'success',message:'Exam Time Table Restored Successfully !!');
     }
@@ -156,7 +157,7 @@ class AllExamTimeTable extends Component
     {  
         try
         {
-        $examTimeTable = ExamTimetable::withTrashed()->find($this->delete_id);
+        $examTimeTable = Examtimetable::withTrashed()->find($this->delete_id);
         $examTimeTable->forceDelete();
         $this->dispatch('alert',type:'success',message:'Exam Time Table Deleted Successfully !!');
     } catch
@@ -169,7 +170,7 @@ class AllExamTimeTable extends Component
     }
     }
     
-    public function Status(ExamTimetable $examTimeTable)
+    public function Status(Examtimetable $examTimeTable)
     {
         if($examTimeTable->status)
         {
@@ -182,7 +183,7 @@ class AllExamTimeTable extends Component
         $examTimeTable->update();
     }
 
-    public function add(ExamPatternclass  $exampatternclass )
+    public function add(Exampatternclass  $exampatternclass )
     {
         DB::beginTransaction();
          try 
@@ -203,7 +204,7 @@ class AllExamTimeTable extends Component
                 ];
 
             }
-            $exam_time_table_data = ExamTimetable::insert($exam_time_table);
+            $exam_time_table_data = Examtimetable::insert($exam_time_table);
             DB::commit();
             $this->dispatch('alert',type:'success',message:'Exam Time Table Created Successfully !!'  );
             $this->resetinput();
@@ -219,10 +220,10 @@ class AllExamTimeTable extends Component
     }
     
 
-    public function edit(ExamPatternclass $exampatternclass)
+    public function edit(Exampatternclass $exampatternclass)
     {
           $this->resetinput();
-          $examtimetables=ExamTimetable::where('exam_patternclasses_id',$exampatternclass->id)->get();
+          $examtimetables=Examtimetable::where('exam_patternclasses_id',$exampatternclass->id)->get();
           $this->time_id=$exampatternclass->id;
           $this->sem=Subject::where('id',$examtimetables[0]->subjectbucket_id)->first()->subject_sem;
           $this->exam_pattern_class_id = $exampatternclass->id;
@@ -254,7 +255,7 @@ class AllExamTimeTable extends Component
     
     }
 
-    public function update(ExamPatternclass $exampatternclass)
+    public function update(Exampatternclass $exampatternclass)
     {
         // Begin a database transaction
         DB::beginTransaction();
@@ -262,11 +263,11 @@ class AllExamTimeTable extends Component
         try {
             foreach ($this->examdates as $subjectbucket_id => $examdate) {
                 // Update exam timetable records matching the condition
-                ExamTimetable::where('subjectbucket_id', $subjectbucket_id)
+                Examtimetable::where('subjectbucket_id', $subjectbucket_id)
                              ->where('exam_patternclasses_id', $exampatternclass->id)
                              ->update([
                                  'examdate' => $examdate,
-                                 'timeslot_id' => $this->timeslot_ids[$subject_id],
+                                 'timeslot_id' => $this->timeslot_ids[$subjectbucket_id],
                                  'status' => 1,
                              ]);
             }
@@ -327,7 +328,7 @@ class AllExamTimeTable extends Component
     
         $examids = Exam::where('status',1)->pluck('id')->toArray();
   
-        $exampatternclasses=ExamPatternclass::whereIn('exam_id',$examids)
+        $exampatternclasses=Exampatternclass::whereIn('exam_id',$examids)
        -> when($this->search, function ($query, $search) {
           $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

@@ -7,24 +7,19 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Grade extends Model
+class Examorderpost extends Model
 {
     use HasFactory,SoftDeletes; 
     protected $dates = ['deleted_at'];
-    protected $guarded=[];
+    protected $table='exam_order_posts';
     protected $fillable=[
-       ' max_percentage',
-        'min_percentage',
-        'grade_point',
-        'description',
-        'grade_name',
+        'post_name',
+        'status'
     ];
 
-    
     public function scopeSearch(Builder $query,string $search)
     {
-        return $query->where('max_percentage', 'like', "%{$search}%")
-        ->orWhere('min_percentage', 'like', "%{$search}%")
-        ->orWhere('grade_name', 'like', "%{$search}%");
+        return $query->where('post_name', 'like', "%{$search}%");
+      
     }
 }

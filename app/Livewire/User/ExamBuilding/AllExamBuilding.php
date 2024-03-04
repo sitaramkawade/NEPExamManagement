@@ -6,7 +6,7 @@ use Excel;
 use App\Models\Exam;
 use Livewire\Component;
 use App\Models\Building;
-use App\Models\ExamBuilding;
+use App\Models\Exambuilding;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
 use App\Exports\User\ExamBuilding\ExportExamBuilding;
@@ -57,7 +57,7 @@ class AllExamBuilding extends Component
         $this->status=null;     
     }
 
-    public function add(ExamBuilding $exambuilding)
+    public function add(Exambuilding $exambuilding)
     { 
         $validatedData = $this->validate();
        
@@ -72,7 +72,7 @@ class AllExamBuilding extends Component
         }
     }
 
-    public function edit(ExamBuilding $exambuilding ){
+    public function edit(Exambuilding $exambuilding ){
 
         if ($exambuilding) {
             $this->edit_id=$exambuilding->id;
@@ -83,7 +83,7 @@ class AllExamBuilding extends Component
         }
     }
 
-    public function update(ExamBuilding  $exambuilding){
+    public function update(Exambuilding  $exambuilding){
 
         $validatedData = $this->validate();
        
@@ -107,7 +107,7 @@ class AllExamBuilding extends Component
         $this->dispatch('delete-confirmation');
     }
 
-    public function delete(ExamBuilding  $exambuilding)
+    public function delete(Exambuilding  $exambuilding)
     {   
         $exambuilding->delete();
         $this->dispatch('alert',type:'success',message:'Exam Building Soft Deleted Successfully !!');
@@ -115,7 +115,7 @@ class AllExamBuilding extends Component
 
     public function restore($id)
     {   
-        $exambuilding = ExamBuilding::withTrashed()->find($id);
+        $exambuilding = Exambuilding::withTrashed()->find($id);
         $exambuilding->restore();
         $this->dispatch('alert',type:'success',message:'Exam Building Restored Successfully !!');
     }
@@ -124,7 +124,7 @@ class AllExamBuilding extends Component
     {   
         try
         {
-        $exambuilding = ExamBuilding::withTrashed()->find($this->delete_id);
+        $exambuilding = Exambuilding::withTrashed()->find($this->delete_id);
         $exambuilding->forceDelete();
         $this->dispatch('alert',type:'success',message:'Block Deleted Successfully !!');
     } catch
@@ -151,7 +151,7 @@ class AllExamBuilding extends Component
         $this->mode=$mode;
     }
 
-    public function Status(ExamBuilding $exambuilding)
+    public function Status(Exambuilding $exambuilding)
     {
         if($exambuilding->status)
         {
@@ -200,7 +200,7 @@ class AllExamBuilding extends Component
             $this->building = Building::where('status',1)->pluck('building_name','id');
         }
 
-        $exambuildings=ExamBuilding::when($this->search, function ($query, $search) {
+        $exambuildings=Exambuilding::when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

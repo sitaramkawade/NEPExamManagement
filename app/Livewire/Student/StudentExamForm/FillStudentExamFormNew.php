@@ -13,12 +13,12 @@ use App\Models\Examfeemaster;
 use App\Models\Examformmaster;
 use App\Models\Formtypemaster;
 use Livewire\Attributes\Locked;
-use App\Models\ExamPatternclass;
+use App\Models\Exampatternclass;
 use App\Models\StudentExamform;
 use App\Models\Extracreditsubject;
 use App\Models\Studentexamformfee;
 use Illuminate\Support\Facades\DB;
-use App\Models\CurrentclassStudents;
+use App\Models\Currentclassstudent;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -512,7 +512,7 @@ class FillStudentExamFormNew extends Component
         $examfeecourse = Examfeecourse::whereIn('examfees_id',$examfeemasterids)->where('patternclass_id', $this->patternclass_id)->get();
 
         // Getting Launched Exam Of Pattern Class
-        $exampatternclass = ExamPatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
+        $exampatternclass = Exampatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
         if ($exampatternclass) 
         {   
             // Checking Dublicate Entry
@@ -673,7 +673,7 @@ class FillStudentExamFormNew extends Component
         $examfeecourse = Examfeecourse::whereIn('examfees_id',$examfeemasterids)->where('patternclass_id', $this->patternclass_id)->get();
 
         // Getting Launched Exam Of Pattern Class
-        $exampatternclass = ExamPatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
+        $exampatternclass = Exampatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
         if ($exampatternclass) 
         {   
             // Checking Dublicate Entry
@@ -1022,7 +1022,7 @@ class FillStudentExamFormNew extends Component
         //     $examfeecourse = Examfeecourse::whereIn('examfees_id',$examfeemasterids)->where('patternclass_id', $this->patternclass_id)->get();
         
         //     // Getting Launched Exam Of Pattern Class
-    //     $exampatternclass = ExamPatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
+    //     $exampatternclass = Exampatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
     //     if ($exampatternclass) 
     //     {   
         //         // Checking Dublicate Entry
@@ -1182,7 +1182,7 @@ class FillStudentExamFormNew extends Component
             //     $examfeecourse = Examfeecourse::whereIn('examfees_id',$examfeemasterids)->where('patternclass_id', $this->patternclass_id)->get();
             
             //     // Getting Launched Exam Of Pattern Class
-            //     $exampatternclass = ExamPatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
+            //     $exampatternclass = Exampatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
             //     if ($exampatternclass) 
             //     {   
                 //         // Checking Dublicate Entry

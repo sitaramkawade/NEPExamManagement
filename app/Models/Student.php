@@ -11,7 +11,7 @@ use App\Models\Studenthelpline;
 use App\Models\Studentadmission;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
-use App\Models\CurrentclassStudents;
+use App\Models\Currentclassstudent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -102,7 +102,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
 
     public function currentclassstudents()
     {
-        return $this->hasMany(CurrentclassStudents::class,'student_id','id')->withTrashed();
+        return $this->hasMany(Currentclassstudent::class,'student_id','id')->withTrashed();
     }
 
 
@@ -451,7 +451,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
    
     // public function examstudentseatno()
     // {
-    //     return $this->hasMany(ExamStudentseatno::class,'student_id','id');
+    //     return $this->hasMany(Examstudentseatno::class,'student_id','id');
     // }
 
     // public function patternclassstudent()
@@ -749,7 +749,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
 
     //   public function currentexamstudentseatno()
     //   {
-    //       return $this->hasOne(ExamStudentseatno::class,'student_id','id')->latestOfMany();
+    //       return $this->hasOne(Examstudentseatno::class,'student_id','id')->latestOfMany();
     //   }
 
     //   public function studentspecialsubjects()

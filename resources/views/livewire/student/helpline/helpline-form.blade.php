@@ -40,7 +40,7 @@
         <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
           Upload Documents <x-spinner />
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mx-auto">
           @foreach ($documents as $doc)
             <div class="flex flex-col items-center space-x-1 border rounded-md border-primary m-2 ">
               <div class="shrink-0 p-2">
@@ -50,9 +50,9 @@
                   <img style="width: 135px; height: 150px;" class="object-center object-fill  " src="{{ isset($uploaded_documents_old[$doc->id]) ? asset($uploaded_documents_old[$doc->id]) : asset('img/no-img.png') }}" alt="{{ $doc->document_name }}" />
                 @endif
               </div>
-              <label class="block p-2">
+              <label class="block p-2 w-full">
                 <x-input-label for="{{ $doc->id }}" :value="__('Upload ' . $doc->document_name)" />
-                <x-input-file name="uploaded_documents.{{ $doc->id }}" id="{{ $doc->id }}" wire:model.live="uploaded_documents.{{ $doc->id }}" accept="image/png, image/jpeg , image/jpg" />
+                <x-input-file class="w-[95%]" name="uploaded_documents.{{ $doc->id }}" id="{{ $doc->id }}" wire:model.live="uploaded_documents.{{ $doc->id }}" accept="image/png, image/jpeg , image/jpg" />
                 @error("uploaded_documents.{$doc->id}")
                   <div class="text-sm text-red-600 dark:text-red-400 space-y-1">{{ $message }}</div>
                 @enderror

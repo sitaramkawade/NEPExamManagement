@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class DeptPrefix extends Model
+class Departmentprefix extends Model
 {
     use HasFactory,SoftDeletes;
     protected $dates = ['deleted_at'];
