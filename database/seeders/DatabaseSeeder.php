@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\DeptPrefixSeeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
 class DatabaseSeeder extends Seeder
@@ -81,6 +82,7 @@ class DatabaseSeeder extends Seeder
             InternalToolDocumentMasterSeeder::class,
             InternalToolAuditorSeeder::class,               // Patternclass, Faculty, Academicyear,
             CourseTypeMasterSeeder::class,
+            DeptPrefixSeeder::class,
         ]);
     }
 }

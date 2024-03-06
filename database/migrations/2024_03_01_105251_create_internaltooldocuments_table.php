@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('internaltooldocuments', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('internaltooldocument_id')->nullable()->unsigned();
-            $table->foreign('internaltooldocument_id')->references('id')->on('internaltooldocumentmasters');
+            $table->bigInteger('internaltooldoc_id')->nullable()->unsigned();
+            $table->foreign('internaltooldoc_id')->references('id')->on('internaltooldocumentmasters');
             $table->bigInteger('internaltoolmaster_id')->nullable()->unsigned();
             $table->foreign('internaltoolmaster_id')->references('id')->on('internaltoolmasters');
             $table->tinyInteger('is_multiple')->default(0);

@@ -14,7 +14,7 @@
             <x-input-error :messages="$errors->get('subjectvertical_shortname')" class="mt-2" />
         </div>
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subjectbuckettype_id" :value="__('Subject Exam Type')" />
+            <x-input-label for="subjectbuckettype_id" :value="__('Subject Bucket Type')" />
             <x-input-select id="subjectbuckettype_id" wire:model.live="subjectbuckettype_id" name="subjectbuckettype_id" class="text-center @error('subjectbuckettype_id') is-invalid @enderror w-full mt-1" :value="old('subjectbuckettype_id', $subjectbuckettype_id)" required autofocus autocomplete="subjectbuckettype_id">
                 <x-select-option class="text-start" hidden> -- Select Subject Bucket Type -- </x-select-option>
                 @forelse ($subjectbucket_types as $subjectbuckettypeid => $subjectbuckettypename)

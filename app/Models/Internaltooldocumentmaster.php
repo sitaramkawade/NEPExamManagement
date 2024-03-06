@@ -19,6 +19,6 @@ class Internaltooldocumentmaster extends Model
 
     public function internaltoolviews():HasMany
     {
-        return $this->hasMany(Internaltoolview::class,'internaltooldocument_id','id');
+        return $this->hasMany(Internaltoolview::class,'internaltooldoc_id','id');
     }
 }
