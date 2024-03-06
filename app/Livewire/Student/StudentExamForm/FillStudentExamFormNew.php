@@ -7,14 +7,15 @@ use App\Models\Exam;
 use App\Models\Student;
 use App\Models\Subject;
 use Livewire\Component;
+use App\Models\Examfeeview;
 use App\Models\Admissiondata;
 use App\Models\Examfeecourse;
 use App\Models\Examfeemaster;
 use App\Models\Examformmaster;
 use App\Models\Formtypemaster;
+use App\Models\StudentExamform;
 use Livewire\Attributes\Locked;
 use App\Models\Exampatternclass;
-use App\Models\StudentExamform;
 use App\Models\Extracreditsubject;
 use App\Models\Studentexamformfee;
 use Illuminate\Support\Facades\DB;
@@ -25,22 +26,30 @@ use Illuminate\Support\Facades\Auth;
 class FillStudentExamFormNew extends Component
 {  
     
-    public Student $student;
-    public $page=1;
-    public $medium_instruction;
-    public $patternclass_id;
-    public $member_id;
+    public $medium_instruction="E";
     public $abcid;
-    public $abcid_option=['show_abcid'=>true ,'required_abcid'=>false];
+    #[Locked]
+    public Student $student;
+    #[Locked]
+    public $patternclass_id;
+    #[Locked]
+    public $member_id;
+    #[Locked]
     public $year_result = null;
-
+    #[Locked]
+    public $page=2;
+    #[Locked]
+    public $abcid_option=['show_abcid'=>true ,'required_abcid'=>false];
+    #[Locked]
     public $regular_subjects_data = [];
+    #[Locked]
     public $extra_credit_subjects_data = [];
+    #[Locked]
     public $backlog_subjects_data=[];
+    #[Locked]
     public $backlog_subjects_previous_sem = [];
+    #[Locked]
     public $exam_fee_courses=[];
-
-
     #[Locked] 
     public  $internals=[];
     #[Locked] 
@@ -59,6 +68,380 @@ class FillStudentExamFormNew extends Component
         $this->abcid=$this->student->abcid;
     }
 
+
+
+    // public function get_exam_form_fee($patternclass_id ,$backlog_count=0 ,$internal_count=0)
+    // {   
+    //     $fee_coures=collect();
+    //     $exam=Exam::where('status',1)->first();
+    //     if($exam)
+    //     {
+    //         $exam_pattern_class=Exampatternclass::where('patternclass_id',$patternclass_id)->where('exam_id',$exam->id)->first();
+
+    //         $student_course_fees = Examfeeview::where('patternclass_id',$patternclass_id)->where('active_status', 1)->get();
+    //         if($student_course_fees)
+    //         {   
+    //             $fee_data=[];
+    //             foreach($student_course_fees as $course_fee)
+    //             {   
+    //                 if($course_fee->fee_name=="Form Fee")
+    //                 {   
+    //                     $fee_data[]=[
+    //                         'id'=>$course_fee->id,
+    //                         'fee_name'=>$course_fee->fee_name,
+    //                         'fee'=>$course_fee->fee,
+    //                         'sem'=>$course_fee->sem,
+    //                         'examfees_id'=>$course_fee->examfees_id,
+    //                     ];
+    //                 }
+    //                 if($course_fee->fee_name=="Exam Fee")
+    //                 {   
+    //                     $fee_data[]=[
+    //                         'id'=>$course_fee->id,
+    //                         'fee_name'=>$course_fee->fee_name,
+    //                         'fee'=>$course_fee->fee,
+    //                         'sem'=>$course_fee->sem,
+    //                         'examfees_id'=>$course_fee->examfees_id,
+    //                     ];
+    //                 }
+    
+    //                 if($course_fee->fee_name=="CAP Fee")
+    //                 {   
+    //                     $fee_data[]=[
+    //                         'id'=>$course_fee->id,
+    //                         'fee_name'=>$course_fee->fee_name,
+    //                         'fee'=>$course_fee->fee,
+    //                         'sem'=>$course_fee->sem,
+    //                         'examfees_id'=>$course_fee->examfees_id,
+    //                     ];
+    //                 }
+    
+    //                 if($course_fee->fee_name=="Statement of Marks Fee")
+    //                 {   
+    //                     if($backlog_count)
+    //                     {
+    //                         $fee_data[]=[
+    //                             'id'=>$course_fee->id,
+    //                             'fee_name'=>$course_fee->fee_name,
+    //                             'fee'=>($course_fee->fee*2),
+    //                             'sem'=>$course_fee->sem,
+    //                             'examfees_id'=>$course_fee->examfees_id,
+    //                         ];
+    //                     }
+    //                     else
+    //                     {
+    //                         $fee_data[]=[
+    //                             'id'=>$course_fee->id,
+    //                             'fee_name'=>$course_fee->fee_name,
+    //                             'fee'=>$course_fee->fee,
+    //                             'sem'=>$course_fee->sem,
+    //                             'examfees_id'=>$course_fee->examfees_id,
+    //                         ];
+    //                     }
+    //                 }
+    
+    //                 if($course_fee->fee_name=="Passing Certificate Fee")
+    //                 {   
+    //                     $fee_data[]=[
+    //                         'id'=>$course_fee->id,
+    //                         'fee_name'=>$course_fee->fee_name,
+    //                         'fee'=>$course_fee->fee,
+    //                         'sem'=>$course_fee->sem,
+    //                         'examfees_id'=>$course_fee->examfees_id,
+    //                     ];
+    //                 }
+    
+    //                 if($course_fee->fee_name=="Project Fee/Dissertation")
+    //                 {   
+    //                     $fee_data[]=[
+    //                         'id'=>$course_fee->id,
+    //                         'fee_name'=>$course_fee->fee_name,
+    //                         'fee'=>$course_fee->fee,
+    //                         'sem'=>$course_fee->sem,
+    //                         'examfees_id'=>$course_fee->examfees_id,
+    //                     ];
+    //                 }
+    
+    //                 if($course_fee->fee_name=="EVS Fee")
+    //                 {   
+    //                     $fee_data[]=[
+    //                         'id'=>$course_fee->id,
+    //                         'fee_name'=>$course_fee->fee_name,
+    //                         'fee'=>$course_fee->fee,
+    //                         'sem'=>$course_fee->sem,
+    //                         'examfees_id'=>$course_fee->examfees_id,
+    //                     ];
+    //                 }
+    
+    //                 if($course_fee->fee_name=="Internal Marks Fee")
+    //                 {   
+    //                     if($internal_count)
+    //                     {
+    //                         $fee_data[]=[
+    //                             'id'=>$course_fee->id,
+    //                             'fee_name'=>$course_fee->fee_name,
+    //                             'fee'=>($course_fee->fee*$internal_count),
+    //                             'sem'=>$course_fee->sem,
+    //                             'examfees_id'=>$course_fee->examfees_id,
+    //                         ];
+    //                     }else
+    //                     {
+    //                         $fee_data[]=[
+    //                             'id'=>$course_fee->id,
+    //                             'fee_name'=>$course_fee->fee_name,
+    //                             'fee'=>0,
+    //                             'sem'=>$course_fee->sem,
+    //                             'examfees_id'=>$course_fee->examfees_id,
+    //                         ];
+    //                     }
+    //                 }
+    
+    //                 if($course_fee->fee_name=="Departmental Fee")
+    //                 {   
+    //                     $fee_data[]=[
+    //                         'id'=>$course_fee->id,
+    //                         'fee_name'=>$course_fee->fee_name,
+    //                         'fee'=>$course_fee->fee,
+    //                         'sem'=>$course_fee->sem,
+    //                         'examfees_id'=>$course_fee->examfees_id,
+    //                     ];
+    //                 }
+    
+    //                 if($course_fee->fee_name=="Transcript Fee")
+    //                 {   
+    //                     $fee_data[]=[
+    //                         'id'=>$course_fee->id,
+    //                         'fee_name'=>$course_fee->fee_name,
+    //                         'fee'=>$course_fee->fee,
+    //                         'sem'=>$course_fee->sem,
+    //                         'examfees_id'=>$course_fee->examfees_id,
+    //                     ];
+    //                 }
+                    
+    //                 if($exam_pattern_class)
+    //                 {   
+    //                     if($course_fee->fee_name=="Late Fee")
+    //                     {   
+    //                         if(isset($exam_pattern_class->latefee_date))
+    //                         {
+    //                             $late_fee_date = date('Y-m-d',strtotime($exam_pattern_class->latefee_date));
+    //                             $today_date = date('Y-m-d');
+    //                             if ($today_date > $late_fee_date) 
+    //                             {   
+    //                                 $fee_data[]=[
+    //                                     'id'=>$course_fee->id,
+    //                                     'fee_name'=>$course_fee->fee_name,
+    //                                     'fee'=>$course_fee->fee,
+    //                                     'sem'=>$course_fee->sem,
+    //                                     'examfees_id'=>$course_fee->examfees_id,
+    //                                 ];
+    //                             }else
+    //                             {
+    //                                 $fee_data[]=[
+    //                                     'id'=>$course_fee->id,
+    //                                     'fee_name'=>$course_fee->fee_name,
+    //                                     'fee'=>0,
+    //                                     'sem'=>$course_fee->sem,
+    //                                     'examfees_id'=>$course_fee->examfees_id,
+    //                                 ];
+    //                             }
+    //                         }
+    //                     }
+                            
+    //                     if($course_fee->fee_name=="Fine Fee")
+    //                     {   
+    //                         if(isset($exam_pattern_class->finefee_date))
+    //                         {
+    //                             $fine_fee_date = date('Y-m-d',strtotime($exam_pattern_class->finefee_date));
+    //                             $today_date = date('Y-m-d');
+    //                             if ($today_date > $fine_fee_date) 
+    //                             {
+    //                                 $fee_data[]=[
+    //                                     'id'=>$course_fee->id,
+    //                                     'fee_name'=>$course_fee->fee_name,
+    //                                     'fee'=>$course_fee->fee,
+    //                                     'sem'=>$course_fee->sem,
+    //                                     'examfees_id'=>$course_fee->examfees_id,
+    //                                 ];
+    //                             }
+    //                             else
+    //                             {
+    //                                 $fee_data[]=[
+    //                                     'id'=>$course_fee->id,
+    //                                     'fee_name'=>$course_fee->fee_name,
+    //                                     'fee'=>0,
+    //                                     'sem'=>$course_fee->sem,
+    //                                     'examfees_id'=>$course_fee->examfees_id,
+    //                                 ];
+    //                             }
+    //                         }
+    //                     }
+    //                 }
+
+    //                 if($course_fee->fee_name=="Backlog Subject Exam Fee")
+    //                 {   
+    //                     if($backlog_count)
+    //                     {
+    //                         $fee_data[]=[
+    //                             'id'=>$course_fee->id,
+    //                             'fee_name'=>"Backlog Fee",
+    //                             'fee'=>($course_fee->fee* $backlog_count),
+    //                             'sem'=>$course_fee->sem,
+    //                             'examfees_id'=>$course_fee->examfees_id,
+    //                         ];
+    //                     }
+    //                 }
+
+    //                 $fee_coures->push($fee_data);
+    //             }
+    //         }
+    //     }
+        
+    //     dd(collect($fee_coures));
+    //    return $fee_coures;
+    // }
+
+
+    public function get_exam_form_fee($patternclass_id ,$backlog_count=0 ,$internal_count=0)
+    {   
+        $fee_courses=collect();
+        $exam=Exam::where('status',1)->first();
+        if($exam)
+        {
+            $exam_pattern_class=Exampatternclass::where('patternclass_id',$patternclass_id)->where('exam_id',$exam->id)->first();
+
+            $student_course_fees = Examfeeview::where('patternclass_id',$patternclass_id)->where('active_status', 1)->get();
+            if($student_course_fees)
+            {   
+                $fee_data=[];
+                foreach($student_course_fees as $course_fee)
+                {   
+                    if($course_fee->fee_name=="Form Fee")
+                    {   
+                        $fee_courses->push($course_fee);
+                    }
+                    if($course_fee->fee_name=="Exam Fee")
+                    {   
+                        $fee_courses->push($course_fee);
+                    }
+    
+                    if($course_fee->fee_name=="CAP Fee")
+                    {   
+                        $fee_courses->push($course_fee);
+                    }
+    
+                    if($course_fee->fee_name=="Statement of Marks Fee")
+                    {   
+                        if($backlog_count)
+                        {   
+                            $updated_course_fee = clone $course_fee;
+                            $updated_course_fee->fee=($updated_course_fee->fee*2);
+                            $fee_courses->push($updated_course_fee);
+                        }
+                        else
+                        {
+                            $fee_courses->push($course_fee);
+                        }
+                    }
+    
+                    if($course_fee->fee_name=="Passing Certificate Fee")
+                    {   
+                        $fee_courses->push($course_fee);
+                    }
+    
+                    if($course_fee->fee_name=="Project Fee/Dissertation")
+                    {   
+                        $fee_courses->push($course_fee);
+                    }
+    
+                    if($course_fee->fee_name=="EVS Fee")
+                    {   
+                        $fee_courses->push($course_fee);
+                    }
+    
+                    if($course_fee->fee_name=="Internal Marks Fee")
+                    {   
+                        if($internal_count)
+                        {   
+                            $updated_course_fee = clone $course_fee;
+                            $updated_course_fee->fee=($updated_course_fee->fee*$internal_count);
+                            $fee_courses->push($updated_course_fee);
+
+                        }else
+                        {
+                            $updated_course_fee = clone $course_fee;
+                            $updated_course_fee->fee=0;
+                            $fee_courses->push($updated_course_fee);
+                        }
+                    }
+    
+                    if($course_fee->fee_name=="Departmental Fee")
+                    {   
+                        $fee_courses->push($course_fee);
+                    }
+    
+                    if($course_fee->fee_name=="Transcript Fee")
+                    {   
+                        $fee_courses->push($course_fee);
+                    }
+                    
+                    if($exam_pattern_class)
+                    {   
+                        if($course_fee->fee_name=="Late Fee")
+                        {   
+                            if(isset($exam_pattern_class->latefee_date))
+                            {
+                                $late_fee_date = date('Y-m-d',strtotime($exam_pattern_class->latefee_date));
+                                $today_date = date('Y-m-d');
+                                if ($today_date > $late_fee_date) 
+                                {   
+                                    $fee_courses->push($course_fee);
+                                }else
+                                {
+                                    $updated_course_fee = clone $course_fee;
+                                    $updated_course_fee->fee=0;
+                                    $fee_courses->push($updated_course_fee);
+                                }
+                            }
+                        }
+                            
+                        if($course_fee->fee_name=="Fine Fee")
+                        {   
+                            if(isset($exam_pattern_class->finefee_date))
+                            {
+                                $fine_fee_date = date('Y-m-d',strtotime($exam_pattern_class->finefee_date));
+                                $today_date = date('Y-m-d');
+                                if ($today_date > $fine_fee_date) 
+                                {   
+                                    $fee_courses->push($course_fee);
+                                }
+                                else
+                                {   
+                                    $updated_course_fee = clone $course_fee;
+                                    $updated_course_fee->fee=0;
+                                    $fee_courses->push($updated_course_fee);
+                                }
+                            }
+                        }
+                    }
+
+                    if($course_fee->fee_name=="Backlog Subject Exam Fee")
+                    {   
+                        if($backlog_count)
+                        {   
+                            $updated_course_fee = clone $course_fee;
+                            $updated_course_fee->fee_name="Backlog Fee";
+                            $updated_course_fee->fee= ($updated_course_fee->fee * $backlog_count);
+                            $fee_courses->push($updated_course_fee);
+                        }
+                    }
+
+                }
+            }
+        }
+        
+       return $fee_courses;
+    }
     public function render()
     {   
         $this->regular_subjects_data = [];
@@ -91,6 +474,8 @@ class FillStudentExamFormNew extends Component
                             $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem',1)->get();
                             $this->check_subject_checkboxs($this->regular_subjects_data);
                             $this->exam_fee_courses=Examfeecourse::where('patternclass_id',$this->student->patternclass_id)->get();
+                            // $this->exam_fee_courses=$this->get_exam_form_fee( $this->student->patternclass_id ,count($this->backlog_subjects_data),count($this->internals));
+                   
                         }
                         else 
                         {   
@@ -148,7 +533,8 @@ class FillStudentExamFormNew extends Component
                                 // $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
                                 $this->backlog_subjects_data = $this->student->get_backlog_subjects();
                                 $this->check_backlog_subject_checkboxs( $this->backlog_subjects_data);
-                                $this->exam_fee_courses=Examfeecourse::where('patternclass_id',$this->student->patternclass_id)->get();
+                                // $this->exam_fee_courses=Examfeecourse::where('patternclass_id',$this->student->patternclass_id)->get();
+                                $this->exam_fee_courses=$this->get_exam_form_fee( $this->student->patternclass_id ,count($this->backlog_subjects_data),count($this->internals));
                             } 
                             else 
                             {
@@ -660,20 +1046,16 @@ class FillStudentExamFormNew extends Component
         }
     }
 
-    public function save_sem_2_exam_form()
+    public function save_fy_sem_2_exam_form()
     {  
-        dd();
-        // Getting Exam Form
-        $formtype=Formtypemaster::where('form_name','Exam Form')->first();
-
-        // Getting Fee Ids
-        $examfeemasterids=Examfeemaster::where('form_type_id', $formtype->id)->pluck('id');
-
-        // Getting Exam Fee Courses Of Pattern Class
-        $examfeecourse = Examfeecourse::whereIn('examfees_id',$examfeemasterids)->where('patternclass_id', $this->patternclass_id)->get();
+        
+        $student_course_fees = Examfeeview::where('patternclass_id', $this->patternclass_id)->where('active_status',1)->get();
+        
+        $exam_form_fees = $student_course_fees->where('form_name','Exam Form');
+        $backlog_fee = $student_course_fees->where('form_name','Backlog Form')->first();
 
         // Getting Launched Exam Of Pattern Class
-        $exampatternclass = Exampatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
+        $exampatternclass = Exampatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->latest()->first();
         if ($exampatternclass) 
         {   
             // Checking Dublicate Entry
@@ -699,7 +1081,7 @@ class FillStudentExamFormNew extends Component
                 $total_fee = 0;
 
                 // Calculate Total Fee
-                foreach ($examfeecourse as $fee) 
+                foreach ($exam_form_fees as $fee) 
                 {
                     $total_fee= $total_fee + $fee->fee;
                 }
@@ -719,11 +1101,11 @@ class FillStudentExamFormNew extends Component
 
                 // Init Student Exam Form
                 $student_exam_forms = [];
-                $regular_and_backlog_subjects = array_merge($this->regular_subjects_data, $this->backlog_subjects);
 
-                dd( $regular_and_backlog_subjects);
+                $regular_and_backlog_subjects = collect($this->regular_subjects_data)->merge($this->backlog_subjects_data);
+
                 // Prepare Student Exam Form Data
-                foreach ($this->regular_and_backlog_subjects as $subject) 
+                foreach ($regular_and_backlog_subjects as $subject) 
                 {
                     $student_exam_form = [
                         'exam_id' => $exam_form_master_data->exam_id,
@@ -783,12 +1165,23 @@ class FillStudentExamFormNew extends Component
                 $student_exam_form_fees = [];
 
                 // Prepare Student Exam Form Fee
-                foreach ($examfeecourse as $fee) 
+                foreach ($exam_form_fees as $fee) 
                 {
                     $student_exam_form_fees[] = [
                         'examformmaster_id' =>$exam_form_master_data->id,
                         'examfees_id' => $fee->examfees_id,
                         'fee_amount' => $fee->fee,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+
+                if((count($this->backlog_subjects_data) >=1) && isset($backlog_fee))
+                {
+                    $student_exam_form_fees[] = [
+                        'examformmaster_id' =>$exam_form_master_data->id,
+                        'examfees_id' => $backlog_fee->id,
+                        'fee_amount' => (count($this->backlog_subjects_data)*$backlog_fee->fee),
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
@@ -860,7 +1253,7 @@ class FillStudentExamFormNew extends Component
         {   
             //sem 2 ,3,4,5,6
             $this->patternclass_id =$current_class_student_entry->patternclass_id;
-            $this->save_sem_2_exam_form();
+            $this->save_fy_sem_2_exam_form();
         }
     }
 
@@ -976,7 +1369,7 @@ class FillStudentExamFormNew extends Component
         foreach($subjects as $subject)
         {   
 
-            if($subject->subject_type=="I" || $subject->subject_type=="IP" || $subject->subject_type=="IE" || $subject->subject_type=="IEP" || $subject->subject_type=="IEG")
+            if($subject->subject_type=="I" || $subject->subject_type=="IP" || $subject->subject_type=="IE" || $subject->subject_type=="IG" || $subject->subject_type=="IEP" || $subject->subject_type=="IEG")
             {
                 $this->internals[$subject->id]=true;
             }
@@ -991,7 +1384,7 @@ class FillStudentExamFormNew extends Component
                 $this->practicals[$subject->id]=true;
             }
             
-            if( $subject->subject_type=="G")
+            if( $subject->subject_type=="G" || $subject->subject_type=="IG")
             {
                 $this->grades[$subject->id]=true;
             }

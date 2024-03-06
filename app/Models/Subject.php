@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Models\College;
+use App\Models\Student;
 use App\Models\Exampanel;
+use App\Models\Studentmark;
 use App\Models\Subjecttype;
 use App\Models\Patternclass;
 use App\Models\StudentExamform;
@@ -151,9 +153,3 @@ class Subject extends Model
     }
 
 }
-
-
-// select `pattern_classes`.*, `patternclass_id`.`id`
-//  as `pivot_id`, `patternclass_id`.`patternclass_id` as `pivot_patternclass_id` from `pattern_classes`
-//  inner join `patternclass_id` on 
-// `pattern_classes`.`id` = `patternclass_id`.`patternclass_id` where `patternclass_id`.`id` = 1

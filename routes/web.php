@@ -4,9 +4,6 @@ use Livewire\Livewire;
 
 
 use App\Livewire\Index;
-use App\Livewire\SelectTo;
-use App\Livewire\DataTable;
-
 use App\Livewire\HomeIndex;
 use App\Livewire\User\Cap\AllCap;
 use App\Livewire\User\Cgpa\AllCgpa;
@@ -80,8 +77,8 @@ use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
-use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
+use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
@@ -114,11 +111,6 @@ Route::middleware(['guest'])->group(function () {
 
   // Faculty Home
   Route::get('/faculty',FacultyHome::class)->name('faculty');
-
-  // RND Pages
-  Route::get('/table',DataTable::class);
-
-  Route::get('/select',SelectTo::class)->name('select');
 
 });
 
