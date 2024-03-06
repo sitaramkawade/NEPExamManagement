@@ -26,17 +26,22 @@ class allcls extends Command
      */
     public function handle()
     {
-        Artisan::call('view:clear');
-        Artisan::call('schedule:clear-cache');
-        Artisan::call('route:clear');
-        Artisan::call('queue:clear');
+        Artisan::call('cache:clear');
         Artisan::call('optimize:clear');
         Artisan::call('event:clear');
-        Artisan::call('debugbar:clear');
         Artisan::call('config:clear');
-        Artisan::call('cache:clear');
         Artisan::call('auth:clear-resets');
-        Artisan::call('optimize');
-        $this->info('Clearing Done ( * ^ * )');
+        Artisan::call('view:clear');
+        Artisan::call('queue:clear');
+
+        $logFiles = glob(storage_path('logs/*.log'));
+        foreach ($logFiles as $file) {
+            if (is_file($file)) {
+                file_put_contents($file, '');
+            }
+        }
+
+
+        $this->info('Daily clearing done successfully !');
     }
 }
