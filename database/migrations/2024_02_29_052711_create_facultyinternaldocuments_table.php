@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('document_fileName', 255)->nullable();
             $table->string('document_fileTitle', 255)->nullable();
             $table->bigInteger('internaltooldocument_id')->unsigned();
-            $table->foreign('internaltooldocument_id')->references('id')->on('internaltoolmasters');
+            $table->foreign('internaltooldocument_id')->references('id')->on('internaltooldocuments');
             $table->bigInteger('subject_id')->unsigned();
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->bigInteger('academicyear_id')->unsigned();

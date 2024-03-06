@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\DeptPrefixSeeder;
+use Database\Seeders\InternalToolDocumentSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
@@ -80,6 +81,7 @@ class DatabaseSeeder extends Seeder
             SubjectTypeMasterSeeder::class,                 // Subjectcategory, Subjecttype
             InternalToolMasterSeeder::class,
             InternalToolDocumentMasterSeeder::class,
+            InternalToolDocumentSeeder::class,
             InternalToolAuditorSeeder::class,               // Patternclass, Faculty, Academicyear,
             CourseTypeMasterSeeder::class,
             DeptPrefixSeeder::class,
