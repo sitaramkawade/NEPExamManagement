@@ -40,7 +40,7 @@ class AllInternalTool extends Component
     public $search='';
     public $sortColumn="id";
     public $sortColumnBy="ASC";
-    public $mode='add';
+    public $mode='all';
     public $per_page = 10;
     public $ext;
 

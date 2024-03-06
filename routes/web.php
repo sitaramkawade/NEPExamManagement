@@ -44,6 +44,7 @@ use App\Livewire\User\University\AllUniversity;
 use App\Http\Controllers\ExamOrderPdfController;
 use App\Livewire\Faculty\ExamPanel\ViewExamPanel;
 use App\Livewire\User\CourseClass\AllCourseClass;
+use App\Livewire\Faculty\AssignTool\AllAssignTool;
 use App\Livewire\User\AcademicYear\AllAcademicYear;
 use App\Livewire\User\ExamBuilding\AllExamBuilding;
 use App\Livewire\User\PatternClass\AllPatternClass;
@@ -352,6 +353,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Internal Tool Auditor
   Route::get('/all-internaltoolauditors', AllInternalToolAuditor::class)->name('all-internaltoolauditors');
+
+  // All Assign Tool
+  Route::get('/all-assigntools', AllAssignTool::class)->name('all-assigntools');
 
 });
 
