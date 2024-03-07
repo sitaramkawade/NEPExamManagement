@@ -47,7 +47,6 @@ use App\Livewire\User\University\AllUniversity;
 use App\Http\Controllers\ExamOrderPdfController;
 use App\Livewire\Faculty\ExamPanel\ViewExamPanel;
 use App\Livewire\User\CourseClass\AllCourseClass;
-use App\Livewire\Faculty\AssignTool\AllAssignTool;
 use App\Livewire\User\AcademicYear\AllAcademicYear;
 use App\Livewire\User\ExamBuilding\AllExamBuilding;
 use App\Livewire\User\PatternClass\AllPatternClass;
@@ -82,7 +81,7 @@ use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
 use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
-use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
+use App\Livewire\Faculty\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
@@ -359,11 +358,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All Internal Tool Master
   Route::get('/all-internaltool', AllInternalTool::class)->name('all-internaltool');
 
-  // All Internal Tool Auditor
-  Route::get('/all-internaltoolauditors', AllInternalToolAuditor::class)->name('all-internaltoolauditors');
+  // All Internal Tool Document
+  Route::get('/all-internaltooldocs', AllInternalToolDocument::class)->name('all-internaltooldocs');
 
-  // All Assign Tool
-  Route::get('/all-assigntools', AllAssignTool::class)->name('all-assigntools');
 
 });
 
