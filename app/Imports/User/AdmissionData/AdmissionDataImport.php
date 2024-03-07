@@ -21,19 +21,7 @@ class AdmissionDataImport implements ToModel ,WithHeadingRow , WithChunkReading,
     }
 
     public function model(array $row)
-    {   
-
-        // $validator = Validator::make($row, [
-        //     'memid' => [
-        //         'required',
-        //         Rule::unique('admissiondatas', 'memid'),
-        //     ],
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return null; // skip row for duplicate memeid
-        // }
-        
+    { 
         if (isset($this->filters['patternclass_id']) && trim($row['patternclass_id']) != $this->filters['patternclass_id']) {
             return null;
         }

@@ -18,6 +18,7 @@ return new class extends Migration
             SELECT 
                 ft.form_name,
                 ef.fee_name,
+                ef.remark,
                 ec.id,
                 ec.fee,
                 ec.sem,
