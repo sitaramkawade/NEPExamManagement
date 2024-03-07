@@ -6,6 +6,7 @@ use App\Models\Exam;
 use App\Models\Course;
 use App\Models\Student;
 use App\Models\Examfeecourse;
+use App\Models\Exampatternclass;
 use App\Models\Hodappointsubject;
 use App\Models\Internaltoolauditor;
 use Illuminate\Database\Eloquent\Model;
@@ -68,6 +69,10 @@ class Patternclass extends Model
         )->withPivot('launch_status', 'start_date');
     }
 
+    public function examPatternClasses(): HasMany
+    {
+        return $this->hasMany(Exampatternclass::class, 'patternclass_id', 'id');
+    }
 
     public function examfeecourses()
     {

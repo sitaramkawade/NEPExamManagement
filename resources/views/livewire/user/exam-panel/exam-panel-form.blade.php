@@ -2,6 +2,7 @@
   <div class="m-2 overflow-hidden bg-white border rounded  shadow dark:border-primary-darker dark:bg-darker ">
     <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
         Exam Panel
+        <x-spinner />
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
@@ -29,16 +30,32 @@
         </div>
 
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="subject_id" :value="__('Subject Name')" />
-            <x-required />
-            <x-input-select id="subject_id" wire:model="subject_id" name="subject_id" class="text-center w-full mt-1" :value="old('subject_id',$subject_id)" required autofocus autocomplete="subject_id">
-                <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>subject_id
-                @foreach ($subjects as $s_id=>$sname)
-                <x-select-option wire:key="{{ $s_id }}" value="{{ $s_id }}" class="text-start">{{$sname }}</x-select-option>
-                @endforeach
-            </x-input-select>
-            <x-input-error :messages="$errors->get('subject_id')" class="mt-2" />
-        </div>
+                <x-input-label for="patternclass_id" :value="__('Select Patternclass')" />
+                <x-required />
+                <x-input-select id="patternclass_id" wire:model.live="patternclass_id" name="patternclass_id" class="text-center w-full mt-1" :value="old('patternclass_id', $patternclass_id)" required autocomplete="patternclass_id">
+                    <x-select-option class="text-start" hidden> -- Select Patternclass -- </x-select-option>
+                    @forelse ($patternclasses as $pattern_calss)
+                    <x-select-option wire:key="{{ $pattern_calss->id }}" value="{{ $pattern_calss->id }}" class="text-start"> {{ $pattern_calss->pattern->pattern_name ?? '-' }} {{ $pattern_calss->courseclass->classyear->classyear_name ?? '-' }} {{ $pattern_calss->courseclass->course->course_name ?? '-' }} </x-select-option>
+                    @empty
+                    <x-select-option class="text-start">Subject Categories Not Found</x-select-option>
+                    @endforelse
+                </x-input-select>
+                <x-input-error :messages="$errors->get('patternclass_id')" class="mt-1" />
+            </div>
+
+            <div class="px-5 py-2  text-sm text-gray-600 dark:text-gray-400">
+                <x-input-label for="subject_id" :value="__('Select Subject')" />
+                <x-required />
+                <x-input-select id="subject_id" wire:model.live="subject_id" name="subject_id" class="text-center w-full mt-1" :value="old('subject_id', $subject_id)" required autocomplete="subject_id">
+                    <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>
+                    @forelse ($subjects as $subjectid => $subjectname)
+                    <x-select-option wire:key="{{ $subjectid }}" value="{{ $subjectid }}" class="text-start"> {{ $subjectname }} </x-select-option>
+                    @empty
+                    <x-select-option class="text-start">Subjects Not Found</x-select-option>
+                    @endforelse
+                </x-input-select>
+                <x-input-error :messages="$errors->get('subject_id')" class="mt-1" />
+            </div>
 
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="description" :value="__('Description')" />

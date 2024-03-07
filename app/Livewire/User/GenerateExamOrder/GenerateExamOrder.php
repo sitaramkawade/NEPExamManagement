@@ -37,25 +37,25 @@ class GenerateExamOrder extends Component
     public function generateExamPanel($id)
     {     
         $semesters = [1, 3, 5];
-        // dd($id);
+     
         $exampatternclass = Exampatternclass::find($id);  
-    // dd($exampatternclass->patternclass->subjects);
+    
         $panels = collect();
          foreach ($exampatternclass->patternclass->subjects->whereIn('subject_sem', $semesters) as $subject) {
-            //   dd($subject);
-            //  dd($subject->exampanels);
+            
             foreach($subject->exampanels->where('active_status','1') as $pannel )    
             
              {
-                // dd($pannel);
-                $token = Str::random(64);
+            
+                $token = Str::random(30);
                 $panels->add([
+                    'user_id'=>Auth::guard('user')->user()->id,
                     'exampanel_id' => $pannel->id,
                     'exam_patternclass_id' => $id,
                     'email_status' => '0',
-                    'description' => 'a',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
+                    'description' => '',
+                    'created_at' => now(),
+                    'updated_at' => now(),
                  
                 ]);
                 

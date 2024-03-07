@@ -16,6 +16,7 @@ class Examorder extends Model
     protected $dates = ['deleted_at'];
     protected $table='examorders';
     protected $fillable=[
+        'user_id',
         'exampanel_id',
         'exam_patternclass_id',
         'description',
