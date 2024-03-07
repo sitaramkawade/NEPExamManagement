@@ -126,7 +126,7 @@ class AllExamTimeTable extends Component
             // dd($subjectName);
         }
 
-        $this->timeslots=TimeTableslot::where('isactive',1)->pluck('timeslot','id');
+        $this->timeslots=Timetableslot::where('isactive',1)->pluck('timeslot','id');
         $this->setmode('add');
      
     }
@@ -160,7 +160,7 @@ class AllExamTimeTable extends Component
         $examTimeTable = Examtimetable::withTrashed()->find($this->delete_id);
         $examTimeTable->forceDelete();
         $this->dispatch('alert',type:'success',message:'Exam Time Table Deleted Successfully !!');
-    } catch
+        } catch
          (\Illuminate\Database\QueryException $e) {
 
         if ($e->errorInfo[1] == 1451) {
@@ -242,7 +242,7 @@ class AllExamTimeTable extends Component
               $subjectName = $subjectbucket->subject->subject_name;
               // dd($subjectName);
           }
-          $this->timeslots=TimeTableslot::where('isactive',1)->pluck('timeslot','id');
+          $this->timeslots=Timetableslot::where('isactive',1)->pluck('timeslot','id');
          
         foreach($examtimetables as $examtimetable)
         {

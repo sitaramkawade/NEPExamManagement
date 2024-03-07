@@ -7,6 +7,7 @@ use App\Models\Faculty;
 use App\Models\Subject;
 use Livewire\Component;
 use App\Models\Exampanel;
+use App\Models\Patternclass;
 use Livewire\WithPagination;
 use App\Models\Examorderpost;
 use Illuminate\Validation\Rule;
@@ -31,9 +32,11 @@ class AllExamPanel extends Component
     public $subject_id;
     public $description;
     public $faculties;
-    public $subjects;
+    public $subjects=[];
     public $examorderposts;
     public $active_status;
+    public $patternclasses;
+    public $patternclass_id;
 
     #[Locked] 
     public $edit_id;
@@ -74,6 +77,7 @@ class AllExamPanel extends Component
         $this->subject_id=null;
         $this->description=null;
         $this->active_status=null;
+        $this->patternclass_id=null;
     }
 
     public function sort_column($column)
@@ -121,14 +125,25 @@ class AllExamPanel extends Component
     {
         $this->validate();
 
-        $exampanel =  new Exampanel;
-        $exampanel->create([
-            'faculty_id' => $this->faculty_id,
-            'examorderpost_id'=>$this->examorderpost_id,
-            'subject_id'=>$this->subject_id,
-            'description'=>$this->description,
-            'active_status'=>$this->active_status,          
-        ]);
+        $existingRecord = Exampanel::where('examorderpost_id', 1)
+         ->where('subject_id', $this->subject_id)
+         ->where('active_status', 1)
+         ->first();
+        //  dd($existingRecord);
+
+         if ($existingRecord) {
+            // Update the status of the existing record to inactive
+            $existingRecord->update(['active_status' => 0]);
+        }
+
+        $exampanel = new Exampanel();
+        $exampanel->faculty_id = $this->faculty_id;
+        $exampanel->examorderpost_id = $this->examorderpost_id;
+        $exampanel->subject_id = $this->subject_id;
+        $exampanel->description = $this->description;
+        $exampanel->active_status = 1;
+        $exampanel->save();
+
         $this->resetinput();
         $this->setmode('all');
         $this->dispatch('alert',type:'success',message:'Exam Panel Created Successfully !!');
@@ -221,12 +236,18 @@ class AllExamPanel extends Component
         
         if($this->mode!=='all')
         {
-            $this->faculties = Faculty::where('active',1)->pluck('id', 'faculty_name');
-            $this->examorderposts = Examorderpost::where('status', 1)->pluck('id', 'post_name');
-            $this->subjects = Subject::where('status', 1)->pluck('id', 'subject_name');
+            $this->faculties = Faculty::where('active',1)->pluck('faculty_name', 'id');
+            $this->examorderposts = Examorderpost::where('status', 1)->pluck('post_name', 'id');
+            $this->patternclasses=Patternclass::select('id','class_id','pattern_id')->with(['pattern:pattern_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->where('status',1)->get();
+        }
+
+        if($this->patternclass_id)
+        {
+            $this->subjects = Subject::where('status', 1)->where('patternclass_id', $this->patternclass_id)->pluck('subject_name', 'id');
         }
 
         $panels=Exampanel::select('id','faculty_id','subject_id','examorderpost_id','description','active_status','deleted_at')
+        ->where('active_status',1)
         ->with(['faculty:faculty_name,id','subject:subject_name,id','examorderpost:post_name,id'])
         ->when($this->search, function ($query, $search) {
             $query->search($search);
