@@ -19,7 +19,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>1,
             'fee_name' => 'Form Fee',
-            'remark' => 'Form Fee',
+            'remark' => null,
             'default_professional_fee' => 30,
             'default_non_professional_fee' => 20,
             'form_type_id' => 1,
@@ -31,7 +31,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>2,
             'fee_name' => 'Exam Fee',
-            'remark' => 'Exam Fee',
+            'remark' => null,
             'default_professional_fee' => 1200,
             'default_non_professional_fee' => 800,
             'form_type_id' => 1,
@@ -43,7 +43,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>3,
             'fee_name' => 'CAP Fee',
-            'remark' => 'CAP Fee',
+            'remark' => null,
             'default_professional_fee' => 145,
             'default_non_professional_fee' => 85,
             'form_type_id' => 1,
@@ -55,7 +55,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>4,
             'fee_name' => 'Statement of Marks Fee',
-            'remark' => 'Statement of Marks Fee',
+            'remark' => null,
             'default_professional_fee' => 145,
             'default_non_professional_fee' => 85,
             'form_type_id' => 1,
@@ -67,7 +67,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>5,
             'fee_name' => 'Passing Certificate Fee',
-            'remark' => 'Passing Certificate Fee',
+            'remark' => null,
             'default_professional_fee' => 145,
             'default_non_professional_fee' => 85,
             'form_type_id' => 1,
@@ -79,7 +79,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>6,
             'fee_name' => 'Project Fee/Dissertation',
-            'remark' => 'Project Fee/Dissertation',
+            'remark' => null,
             'default_professional_fee' => null,
             'default_non_professional_fee' => null,
             'form_type_id' => 1,
@@ -91,7 +91,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>7,
             'fee_name' => 'EVS Fee',
-            'remark' => 'EVS Fee',
+            'remark' => null,
             'default_professional_fee' => null,
             'default_non_professional_fee' => null,
             'form_type_id' => 1,
@@ -103,7 +103,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>8,
             'fee_name' => 'Internal Marks Fee',
-            'remark' => 'Internal Marks Fee',
+            'remark' => null,
             'default_professional_fee' => 20,
             'default_non_professional_fee' => 20,
             'form_type_id' => 1,
@@ -115,7 +115,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>9,
             'fee_name' => 'Departmental Fee',
-            'remark' => 'Departmental Fee',
+            'remark' => null,
             'default_professional_fee' => 0,
             'default_non_professional_fee' => 0,
             'form_type_id' => 1,
@@ -127,7 +127,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>10,
             'fee_name' => 'Transcript Fee',
-            'remark' => 'Transcript Fee',
+            'remark' => null,
             'default_professional_fee' => 0,
             'default_non_professional_fee' => 0,
             'form_type_id' => 1,
@@ -139,7 +139,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>11,
             'fee_name' => 'Late Fee',
-            'remark' => 'Late Fee',
+            'remark' => null,
             'default_professional_fee' => 150,
             'default_non_professional_fee' => 150,
             'form_type_id' => 1,
@@ -151,7 +151,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>12,
             'fee_name' => 'Fine Fee',
-            'remark' => 'Fine Fee',
+            'remark' => null,
             'default_professional_fee' => 1000,
             'default_non_professional_fee' => 1000,
             'form_type_id' => 1,
@@ -162,8 +162,8 @@ class ExamFeeMasterSeeder extends Seeder
 
         Examfeemaster::create([
             'id'=>13,
-            'fee_name' => 'Backlog Subject Exam Fee',
-            'remark' => 'Backlog Subject Exam Fee',
+            'fee_name' => 'Backlog Fee',
+            'remark' => null,
             'default_professional_fee' => null,
             'default_non_professional_fee' => null,
             'form_type_id' => 4,
@@ -175,7 +175,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>14,
             'fee_name' => 'Photocopy Form Fee',
-            'remark' => 'Photocopy Form Fee',
+            'remark' => null,
             'default_professional_fee' => null,
             'default_non_professional_fee' => null,
             'form_type_id' => 2,
@@ -187,7 +187,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>15,
             'fee_name' => 'Photocopy Fee',
-            'remark' => 'Photocopy Fee',
+            'remark' => null,
             'default_professional_fee' => null,
             'default_non_professional_fee' => null,
             'form_type_id' => 2,
@@ -199,7 +199,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>16,
             'fee_name' => 'Revaluation Form Fee',
-            'remark' => 'Revaluation Form Fee',
+            'remark' => null,
             'default_professional_fee' => null,
             'default_non_professional_fee' => null,
             'form_type_id' => 3,
@@ -211,7 +211,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>17,
             'fee_name' => 'Revaluation Subject Fee',
-            'remark' => 'Revaluation Subject Fee',
+            'remark' => null,
             'default_professional_fee' => null,
             'default_non_professional_fee' => null,
             'form_type_id' => 3,
@@ -223,7 +223,7 @@ class ExamFeeMasterSeeder extends Seeder
         Examfeemaster::create([
             'id'=>18,
             'fee_name' => 'Revaluation Fine Fee',
-            'remark' => 'Revaluation Fine Fee',
+            'remark' => null,
             'default_professional_fee' => 1000,
             'default_non_professional_fee' => 1000,
             'form_type_id' => 3,

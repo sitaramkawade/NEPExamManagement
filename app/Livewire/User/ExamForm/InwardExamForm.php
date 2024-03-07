@@ -179,7 +179,7 @@ class InwardExamForm extends Component
             if(is_null($student_current_class_entry))
             {   
                 if (is_null($student->prn))
-                { 
+                {   
                     $admission_data= Admissiondata::where('memid',$student->memid)->where('patternclass_id',$student->patternclass_id)->get();               
                     if($admission_data->last()->academicyear_id==$exam_form_master->exam->academicyear_id)
                     {
@@ -214,7 +214,7 @@ class InwardExamForm extends Component
                         ]);          
     
                     }else
-                    {
+                    {   
                         Currentclassstudent::create([
                             'sem'=>get_student_current_sem($exam_form_master->student_id),
                             'patternclass_id'=>$exam_form_master->patternclass_id ,
@@ -226,7 +226,8 @@ class InwardExamForm extends Component
                 }
             }
             else
-            {
+            {   
+                dd('inward sem 2 from if current class entry');
                 //         $prn=$student->prn;
                 //         if(($student->patternclass->coursepatternclasses->course->course_type=='PG' and $student_current_class_entry->sem==4)
                 //         || ($student->patternclass->coursepatternclasses->course->course_type=='UG' and $student_current_class_entry->sem==6))

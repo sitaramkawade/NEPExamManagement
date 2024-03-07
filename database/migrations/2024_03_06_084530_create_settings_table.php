@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('show_abcid')->nullable()->defulat(1);
-            $table->tinyInteger('statement_of_marks_is_year_wise')->nullable()->defulat(1);
+            $table->tinyInteger('show_abcid')->nullable()->defulat(1)->comment('0-hide,1-show_optional,2-show-required');
+            $table->tinyInteger('statement_of_marks_is_year_wise')->nullable()->defulat(1)->comment('0-sem wise,1-class wise');
             $table->timestamps();
         });
 

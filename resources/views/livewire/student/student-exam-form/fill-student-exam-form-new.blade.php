@@ -3,7 +3,7 @@
   <x-form wire:submit="student_exam_form_save()">
     <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
       <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
-        Exam Form <x-spinner />
+        Exam Form<x-spinner />
       </div>
       @if ($page == 1)
         <div class="grid grid-cols-1 md:grid-cols-2">
@@ -127,7 +127,7 @@
         <x-table.thead>
           <x-table.tr>
             <x-table.th>Fee Type</x-table.th>
-            <x-table.th>Fee Amount</x-table.th>
+            <x-table.th class="text-end">Fee Amount</x-table.th>
             <x-table.th>Remark</x-table.th>
           </x-table.tr>
         </x-table.thead>
@@ -136,18 +136,18 @@
             $total = 0;
           @endphp
           @foreach ($exam_fee_courses as $course_fee)
-            <x-table.tr wire:key="{{ $course_fee->id }}" class="dark:even:bg-primary-darker even:bg-primary-lighter dark:text-white text-black py-1">
-              <x-table.td> {{ $course_fee->fee_name }}</x-table.td>
-              <x-table.td> {{ $course_fee->fee }}</x-table.td>
-              <x-table.td> {{ $course_fee->remark }}</x-table.td>
+            <x-table.tr wire:key="{{ $course_fee['id'] }}" class="dark:even:bg-primary-darker even:bg-primary-lighter dark:text-white text-black py-1">
+              <x-table.td> {{ $course_fee['fee_name'] }}</x-table.td>
+              <x-table.td class="text-end"> {{ currency_indian_rupees($course_fee['fee']) }}</x-table.td>
+              <x-table.td> {{ $course_fee['remark']}}</x-table.td>
             </x-table.tr>
             @php
-              $total = $total + $course_fee->fee;
+              $total = $total + $course_fee['fee'];
             @endphp
           @endforeach
           <x-table.tr class=" dark:text-white text-black py-1">
             <x-table.td> TOTAL FEE</x-table.td>
-            <x-table.td> {{ $total }}</x-table.td>
+            <x-table.td class="text-end"> {{ currency_indian_rupees($total) }}</x-table.td>
             <x-table.td></x-table.td>
           </x-table.tr>
         </x-table.tbody>
