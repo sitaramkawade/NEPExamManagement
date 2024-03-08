@@ -5,7 +5,7 @@
                 <x-back-btn wire:click="setmode('all')" />
             </x-card-header>
             <x-form wire:submit="save()">
-                @include('livewire.faculty.internal-tool.internaltool-form')
+                @include('livewire.faculty.internal-audit.internal-tool.internaltool-form')
             </x-form>
         </div>
     @elseif($mode == 'edit')
@@ -13,13 +13,13 @@
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
         <x-form wire:submit="update({{ $internaltool_id }})">
-            @include('livewire.faculty.internal-tool.internaltool-form')
+            @include('livewire.faculty.internal-audit.internal-tool.internaltool-form')
         </x-form>
     @elseif($mode == 'view')
         <x-card-header heading="View Internal Tool">
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
-        @include('livewire.faculty.internal-tool.view-form')
+        @include('livewire.faculty.internal-audit.internal-tool.view-form')
     @elseif($mode == 'all')
         <div>
             <x-breadcrumb.breadcrumb>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Faculty\InternalToolDocument;
+namespace App\Livewire\Faculty\InternalAudit\InternalToolDocument;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -9,7 +9,7 @@ use App\Models\Internaltoolmaster;
 use App\Models\Internaltooldocument;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Internaltooldocumentmaster;
-use App\Exports\Faculty\InternalToolDocument\InternalToolDocumentExport;
+use App\Exports\Faculty\InternalAudit\InternalToolDocument\InternalToolDocumentExport;
 
 class AllInternalToolDocument extends Component
 {
@@ -239,6 +239,6 @@ class AllInternalToolDocument extends Component
         $internaltool_docs = Internaltooldocument::with(['internaltooldocumentmaster:doc_name,id','internaltoolmaster:toolname,id'])->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
-        return view('livewire.faculty.internal-tool-document.all-internal-tool-document',compact('internaltool_docs'))->extends('layouts.faculty')->section('faculty');
+        return view('livewire.faculty.internal-audit.internal-tool-document.all-internal-tool-document',compact('internaltool_docs'))->extends('layouts.faculty')->section('faculty');
     }
 }

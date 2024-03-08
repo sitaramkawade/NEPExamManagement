@@ -6,7 +6,6 @@ use Livewire\Livewire;
 use App\Livewire\Index;
 use App\Livewire\SelectTo;
 use App\Livewire\DataTable;
-
 use App\Livewire\HomeIndex;
 use App\Livewire\User\Cap\AllCap;
 use App\Livewire\User\Cgpa\AllCgpa;
@@ -60,7 +59,6 @@ use App\Livewire\User\ExamOrderPost\AllExamOrderPost;
 use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
-use App\Livewire\Faculty\InternalTool\AllInternalTool;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
 use App\Livewire\Faculty\AssignSubject\AllAssignSubject;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
@@ -80,9 +78,11 @@ use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
+use App\Livewire\Faculty\InternalAudit\AssignTool\AllAssignTool;
 use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
-use App\Livewire\Faculty\InternalToolDocument\AllInternalToolDocument;
+use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
+use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
 
@@ -360,6 +360,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Internal Tool Document
   Route::get('/all-internaltooldocs', AllInternalToolDocument::class)->name('all-internaltooldocs');
+
+  // All Assign Tool
+  Route::get('/all-assigntools', AllAssignTool::class)->name('all-assigntools');
 
 
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exports\Faculty\InternalToolDocument;
+namespace App\Exports\Faculty\InternalAudit\InternalToolDocument;
 
 use App\Models\Internaltooldocument;
 use Maatwebsite\Excel\Concerns\WithMapping;

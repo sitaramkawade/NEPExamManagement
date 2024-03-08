@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Faculty\InternalTool;
+namespace App\Livewire\Faculty\InternalAudit\InternalTool;
 
 use Exception;
 use Livewire\Component;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\Internaltooldocument;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Internaltooldocumentmaster;
-use App\Exports\Faculty\InternalTool\InternalToolExport;
+use App\Exports\Faculty\InternalAudit\InternalTool\InternalToolExport;
 
 class AllInternalTool extends Component
 {
@@ -238,6 +238,6 @@ class AllInternalTool extends Component
         $internal_tools = Internaltoolmaster::when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
-        return view('livewire.faculty.internal-tool.all-internal-tool',compact('internal_tools'))->extends('layouts.faculty')->section('faculty');
+        return view('livewire.faculty.internal-audit.internal-tool.all-internal-tool',compact('internal_tools'))->extends('layouts.faculty')->section('faculty');
     }
 }

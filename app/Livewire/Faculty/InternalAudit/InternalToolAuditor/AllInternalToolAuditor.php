@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Faculty\InternalToolAuditor;
+namespace App\Livewire\Faculty\InternalAudit\InternalToolAuditor;
 
 use App\Models\Course;
 use App\Models\Faculty;
@@ -13,7 +13,7 @@ use Illuminate\Validation\Rule;
 use App\Models\Internaltoolauditor;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\Faculty\InternalToolAuditor\InternalToolAuditorExport;
+use App\Exports\Faculty\InternalAudit\InternalToolAuditor\InternalToolAuditorExport;
 
 class AllInternalToolAuditor extends Component
 {
