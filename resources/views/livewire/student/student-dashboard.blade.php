@@ -114,7 +114,7 @@
                     @if ( isset($exm_form->transaction->status) && $exm_form->transaction->status === 3)
                       <x-status type="success"> Online</x-status>
                     @else
-                      <x-status type="danger">Offline</x-status>
+                      <x-status type="danger">Cash</x-status>
                     @endif
                   @else
                     <x-status type="danger">Not Paid</x-status>

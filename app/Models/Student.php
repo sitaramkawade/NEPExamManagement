@@ -5,6 +5,7 @@ use App\Models\Exam;
 use App\Models\Subject;
 use App\Models\Studentmark;
 use App\Models\Patternclass;
+use App\Models\Studentresult;
 use App\Models\Examformmaster;
 use App\Models\Studentaddress;
 use App\Models\Studenthelpline;
