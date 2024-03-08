@@ -385,7 +385,7 @@ if (!function_exists('get_course_type'))
 
 if (!function_exists('get_exam_form_fees')) {
     function get_exam_form_fees($regular_subject_data, $backlog_subject_data = [])
-    {
+    {     
         $patternclass_id=null;
         $internal_count = 0;
         $external_count = 0;
