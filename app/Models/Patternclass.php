@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Exam;
 use App\Models\Course;
 use App\Models\Student;
+use App\Models\Courseclass;
 use App\Models\Examfeecourse;
 use App\Models\Exampatternclass;
 use App\Models\Hodappointsubject;
@@ -52,7 +53,7 @@ class Patternclass extends Model
     }
     public function courseclass()
     {
-         return $this->belongsTo(CourseClass::class,'class_id','id')->withTrashed();
+         return $this->belongsTo(Courseclass::class,'class_id','id')->withTrashed();
     }
     public function subjectbuckets():HasMany
     {

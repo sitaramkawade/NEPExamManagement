@@ -152,7 +152,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
 
     public function get_year_result_exam_form($sem_1_data,$sem_2_data,$current_class_student_last_entry)
     { 
-        $current_class_student_last_entry=$this->currentclassstudents()->last();
+        $current_class_student_last_entry=$this->currentclassstudents->last();
 
         $pass_fail_absent_status=1;
 
