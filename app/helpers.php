@@ -388,6 +388,7 @@ if (!function_exists('get_exam_form_fees')) {
     {
         $patternclass_id=null;
         $internal_count = 0;
+        $external_count = 0;
         $backlog_count = 0;
         $project_count = 0;
         $evs_count = 0;
@@ -396,7 +397,7 @@ if (!function_exists('get_exam_form_fees')) {
         $setting = Setting::first();
         $student=Auth::guard('student')->user();
         $statement_of_marks_is_year_wise = isset($setting->statement_of_marks_is_year_wise) ? $setting->statement_of_marks_is_year_wise : 0;
-        $pattern_class_count = Currentclassstudent::where('student_id',$student->id)->pluck('patternclass_id')->count();
+        $pattern_class_count = Currentclassstudent::whereIn('pfstatus',[0,2])->where('student_id',$student->id)->distinct('patternclass_id')->pluck('patternclass_id')->count();
         $current_class_student_last_entry = $student->currentclassstudents->last();
         if($current_class_student_last_entry)
         {
@@ -430,6 +431,10 @@ if (!function_exists('get_exam_form_fees')) {
 
             if ($subject->subject_type == "I" || $subject->subject_type == "IP" || $subject->subject_type == "IE" || $subject->subject_type == "IG" || $subject->subject_type == "IEP" || $subject->subject_type == "IEG") {
                 $internal_count++;
+            }
+
+            if ($subject->subject_type == "E" || $subject->subject_type == "IE" || $subject->subject_type == "IEP" || $subject->subject_type == "EP"  || $subject->subject_type == "EINTP" || $subject->subject_type == "IEG" || $subject->subject_type == "EG") {
+                $external_count++;
             }
         }
         $sem_count = count($sems);
@@ -477,13 +482,30 @@ if (!function_exists('get_exam_form_fees')) {
                         break;
                         case "CAP Fee":
                             // Apply CAP Fee SEM Wise
-                            if ($sem_count) {
-                                // SEM Count * Fee
+                            if ($external_count) {
+                                if ($sem_count) {
+                                    // SEM Count * Fee
+                                    $fees_array[] = [
+                                        "form_name" => $course_fee->form_name,
+                                        "fee_name" => $course_fee->fee_name,
+                                        "id" => $course_fee->id,
+                                        "fee" => ($course_fee->fee * $sem_count),
+                                        "sem" => $course_fee->sem,
+                                        "patternclass_id" => $course_fee->patternclass_id,
+                                        "examfees_id" => $course_fee->examfees_id,
+                                        "active_status" =>$course_fee->active_status,
+                                        "approve_status" =>$course_fee->approve_status,
+                                        "remark" =>$course_fee->remark,
+                                    ];
+                                }
+                            }else
+                            {
+                                // Zero Fee
                                 $fees_array[] = [
                                     "form_name" => $course_fee->form_name,
                                     "fee_name" => $course_fee->fee_name,
                                     "id" => $course_fee->id,
-                                    "fee" => ($course_fee->fee * $sem_count),
+                                    "fee" => 0,
                                     "sem" => $course_fee->sem,
                                     "patternclass_id" => $course_fee->patternclass_id,
                                     "examfees_id" => $course_fee->examfees_id,

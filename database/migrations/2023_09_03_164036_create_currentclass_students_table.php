@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('currentclass_students', function (Blueprint $table) {
             $table->id();              
             $table->integer('sem');
-            $table->integer('pfstatus')->default(-1);//pass=1 fail=0 ATKT=2 status 
-            $table->integer('isregular')->nullable()->default(null); //isregular Default NULL 0 => repeater 1=>regular
-            $table->integer('is_directadmission')->default(0);//0 Means Print origal 1 Dublicate 
+            $table->integer('pfstatus')->default(-1)->comment('0-fail,1-pass,2-ATKT');//pass=1 fail=0 ATKT=2 status 
+            $table->integer('isregular')->nullable()->default(null)->comment('0-repeter,1-regular'); //isregular Default NULL 0 => repeater 1=>regular
+            $table->integer('is_directadmission')->default(0)->comment('0-prnt orignal,1-dublicate');//0 Means Print origal 1 Dublicate 
             $table->unsignedBigInteger('patternclass_id');
             $table->foreign('patternclass_id')->references('id')->on('pattern_classes');
             $table->unsignedBigInteger('student_id');
