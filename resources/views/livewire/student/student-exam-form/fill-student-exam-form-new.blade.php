@@ -3,7 +3,7 @@
   <x-form wire:submit="student_exam_form_save()">
     <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
       <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
-        Exam Form <x-spinner />
+        Exam Form<x-spinner />
       </div>
       @if ($page == 1)
         <div class="grid grid-cols-1 md:grid-cols-2">
@@ -19,7 +19,7 @@
           </div>
           @if ($abcid_option['show_abcid'])
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-              <x-input-label for="abcid" :value="__('ABC ID')" /><x-required />
+              <x-input-label for="abcid" :value="__('ABC ID')" /> @if ($abcid_option['required_abcid']) <x-required />  @endif
               <x-text-input id="abcid" type="number" wire:model="abcid" name="abcid" class="w-full mt-1" :value="old('abcid', $abcid)" autofocus autocomplete="abcid" />
               <x-input-error :messages="$errors->get('abcid')" class="mt-2" />
             </div> 
@@ -56,11 +56,11 @@
                 <x-table.td> {{ $b_subject->subject_sem }}</x-table.td>
                 <x-table.td> {{ $b_subject->subject_code }}</x-table.td>
                 <x-table.td> {{ $b_subject->subject_name }}</x-table.td>
-                <x-table.td> <input type="checkbox" name="internals.{{ $b_subject->id }}" wire:model="internals.{{ $b_subject->id }}" id="internals.{{ $b_subject->id }}" class="disabled" disabled></x-table.td>
-                <x-table.td> <input type="checkbox" name="externals.{{ $b_subject->id }}" wire:model="externals.{{ $b_subject->id }}" id="externals.{{ $b_subject->id }}" class="disabled" disabled></x-table.td>
-                <x-table.td> <input type="checkbox" name="practicals.{{ $b_subject->id }}" wire:model="practicals.{{ $b_subject->id }}" id="practicals.{{ $b_subject->id }}" class="disabled" disabled></x-table.td>
-                <x-table.td> <input type="checkbox" name="grades.{{ $b_subject->id }}" wire:model="grades.{{ $b_subject->id }}" id="grades.{{ $b_subject->id }}" class="disabled" disabled></x-table.td>
-                <x-table.td> <input type="checkbox" name="projects.{{ $b_subject->id }}" wire:model="projects.{{ $b_subject->id }}" id="projects.{{ $b_subject->id }}" class="disabled" disabled></x-table.td>
+                <x-table.td> <input type="checkbox" name="internals.{{ $b_subject->id }}" wire:model="internals.{{ $b_subject->id }}" id="internals.{{ $b_subject->id }}" class="disabled cursor-not-allowed" disabled></x-table.td>
+                <x-table.td> <input type="checkbox" name="externals.{{ $b_subject->id }}" wire:model="externals.{{ $b_subject->id }}" id="externals.{{ $b_subject->id }}" class="disabled cursor-not-allowed" disabled></x-table.td>
+                <x-table.td> <input type="checkbox" name="practicals.{{ $b_subject->id }}" wire:model="practicals.{{ $b_subject->id }}" id="practicals.{{ $b_subject->id }}" class="disabled cursor-not-allowed" disabled></x-table.td>
+                <x-table.td> <input type="checkbox" name="grades.{{ $b_subject->id }}" wire:model="grades.{{ $b_subject->id }}" id="grades.{{ $b_subject->id }}" class="disabled cursor-not-allowed" disabled></x-table.td>
+                <x-table.td> <input type="checkbox" name="projects.{{ $b_subject->id }}" wire:model="projects.{{ $b_subject->id }}" id="projects.{{ $b_subject->id }}" class="disabled cursor-not-allowed" disabled></x-table.td>
               </x-table.tr>
             @endforeach
             @foreach ($regular_subjects_data as $index2 => $r_subject)
@@ -75,11 +75,11 @@
                 <x-table.td> {{ $r_subject->subject_sem }}</x-table.td>
                 <x-table.td> {{ $r_subject->subject_code }}</x-table.td>
                 <x-table.td> {{ $r_subject->subject_name }}</x-table.td>
-                <x-table.td> <input type="checkbox" name="internals.{{ $r_subject->id }}" wire:model="internals.{{ $r_subject->id }}" id="internals.{{ $r_subject->id }}" class="disabled" disabled></x-table.td>
-                <x-table.td> <input type="checkbox" name="externals.{{ $r_subject->id }}" wire:model="externals.{{ $r_subject->id }}" id="externals.{{ $r_subject->id }}" class="disabled" disabled></x-table.td>
-                <x-table.td> <input type="checkbox" name="practicals.{{ $r_subject->id }}" wire:model="practicals.{{ $r_subject->id }}" id="practicals.{{ $r_subject->id }}" class="disabled" disabled></x-table.td>
-                <x-table.td> <input type="checkbox" name="grades.{{ $r_subject->id }}" wire:model="grades.{{ $r_subject->id }}" id="grades.{{ $r_subject->id }}" class="disabled" disabled></x-table.td>
-                <x-table.td> <input type="checkbox" name="projects.{{ $r_subject->id }}" wire:model="projects.{{ $r_subject->id }}" id="projects.{{ $r_subject->id }}" class="disabled" disabled></x-table.td>
+                <x-table.td> <input type="checkbox" name="internals.{{ $r_subject->id }}" wire:model="internals.{{ $r_subject->id }}" id="internals.{{ $r_subject->id }}" class="disabled cursor-not-allowed" disabled></x-table.td>
+                <x-table.td> <input type="checkbox" name="externals.{{ $r_subject->id }}" wire:model="externals.{{ $r_subject->id }}" id="externals.{{ $r_subject->id }}" class="disabled cursor-not-allowed" disabled></x-table.td>
+                <x-table.td> <input type="checkbox" name="practicals.{{ $r_subject->id }}" wire:model="practicals.{{ $r_subject->id }}" id="practicals.{{ $r_subject->id }}" class="disabled cursor-not-allowed" disabled></x-table.td>
+                <x-table.td> <input type="checkbox" name="grades.{{ $r_subject->id }}" wire:model="grades.{{ $r_subject->id }}" id="grades.{{ $r_subject->id }}" class="disabled cursor-not-allowed" disabled></x-table.td>
+                <x-table.td> <input type="checkbox" name="projects.{{ $r_subject->id }}" wire:model="projects.{{ $r_subject->id }}" id="projects.{{ $r_subject->id }}" class="disabled cursor-not-allowed" disabled></x-table.td>
               </x-table.tr>
             @endforeach
           </x-table.tbody>
@@ -127,7 +127,7 @@
         <x-table.thead>
           <x-table.tr>
             <x-table.th>Fee Type</x-table.th>
-            <x-table.th>Fee Amount</x-table.th>
+            <x-table.th class="text-end">Fee Amount</x-table.th>
             <x-table.th>Remark</x-table.th>
           </x-table.tr>
         </x-table.thead>
@@ -136,18 +136,18 @@
             $total = 0;
           @endphp
           @foreach ($exam_fee_courses as $course_fee)
-            <x-table.tr wire:key="{{ $course_fee->id }}" class="dark:even:bg-primary-darker even:bg-primary-lighter dark:text-white text-black py-1">
-              <x-table.td> {{ $course_fee->examfee->fee_name }}</x-table.td>
-              <x-table.td> {{ $course_fee->fee }}</x-table.td>
-              <x-table.td> {{ $course_fee->remark }}</x-table.td>
+            <x-table.tr wire:key="{{ $course_fee['id'] }}" class="dark:even:bg-primary-darker even:bg-primary-lighter dark:text-white text-black py-1">
+              <x-table.td> {{ $course_fee['fee_name'] }}</x-table.td>
+              <x-table.td class="text-end"> {{ currency_indian_rupees($course_fee['fee']) }}</x-table.td>
+              <x-table.td> {{ $course_fee['remark']}}</x-table.td>
             </x-table.tr>
             @php
-              $total = $total + $course_fee->fee;
+              $total = $total + $course_fee['fee'];
             @endphp
           @endforeach
           <x-table.tr class=" dark:text-white text-black py-1">
             <x-table.td> TOTAL FEE</x-table.td>
-            <x-table.td> {{ $total }}</x-table.td>
+            <x-table.td class="text-end"> {{ currency_indian_rupees($total) }}</x-table.td>
             <x-table.td></x-table.td>
           </x-table.tr>
         </x-table.tbody>

@@ -63,5 +63,14 @@ class SubjectcategorySeeder extends Seeder
             'created_at'=>'2023-09-05 21:23:00',
             'updated_at'=>'2023-09-05 21:23:00'
         ] );
+
+        Subjectcategory::create( [
+            'id'=>7,
+            'subjectcategory'=>'EVS',
+            'subjectcategory_shortname'=>'EVS',
+            'active'=>1,
+            'created_at'=>'2023-09-05 21:23:00',
+            'updated_at'=>'2023-09-05 21:23:00'
+        ] );
     }
 }

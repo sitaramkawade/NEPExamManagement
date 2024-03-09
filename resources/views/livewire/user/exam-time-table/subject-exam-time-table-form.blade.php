@@ -23,7 +23,7 @@
             <x-input-select id="subject_id" wire:model.live="subject_id" name="subject_id" class="text-center w-full mt-1" :value="old('subject_id', $subject_id)" required autocomplete="subject_id">
                 <x-select-option class="text-start" hidden> -- Select Subject -- </x-select-option>
                 @forelse ($subjects as $subjectid => $subjectname)
-                <x-select-option wire:key="{{ $subjectid }}" value="{{ $subjectid }}" class="text-start"> {{  $subjectid  }} {{ $subjectname }} </x-select-option>
+                <x-select-option wire:key="{{ $subjectid }}" value="{{ $subjectid }}" class="text-start">  {{ $subjectname }} </x-select-option>
                 @empty
                 <x-select-option class="text-start">Subjects Not Found</x-select-option>
                 @endforelse

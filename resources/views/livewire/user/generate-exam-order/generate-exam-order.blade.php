@@ -5,9 +5,6 @@
         <x-card-header heading=" Add ">
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
-        <x-form wire:submit="add()">
-            @include('livewire.user.generate-exam-order.add')
-        </x-form>
     </div>
 
     @elseif($mode=='all')

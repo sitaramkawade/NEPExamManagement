@@ -1,11 +1,8 @@
 <?php
 
+use App\Livewire\RND;
 use Livewire\Livewire;
-
-
 use App\Livewire\Index;
-use App\Livewire\SelectTo;
-use App\Livewire\DataTable;
 use App\Livewire\HomeIndex;
 use App\Livewire\User\Cap\AllCap;
 use App\Livewire\User\Cgpa\AllCgpa;
@@ -62,6 +59,7 @@ use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
 use App\Livewire\Faculty\AssignSubject\AllAssignSubject;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
+use App\Livewire\User\FacultyOrder\GenerateFacultyOrder;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamTimeTable\SubjectExamTimeTable;
@@ -85,11 +83,6 @@ use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
-
-
-
-
-
 
 // Livewire Update Route
 Livewire::setUpdateRoute(function ($handle) {
@@ -116,11 +109,8 @@ Route::middleware(['guest'])->group(function () {
   // Faculty Home
   Route::get('/faculty',FacultyHome::class)->name('faculty');
 
-  // RND Pages
-  Route::get('/table',DataTable::class);
-
-  Route::get('/select',SelectTo::class)->name('select');
-
+  // RND
+  Route::get('/rnd', RND::class);
 });
 
 // Auth Student Routes
@@ -236,7 +226,13 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Generate Exam Order
   Route::get('/generate/exam/order', GenerateExamOrder::class)->name('generate_exam_order');
 
-  Route::get('exam/order/pdf/{id}',[ExamOrderPdfController::class,'order'])->name('examorder');
+   Route::get('exam/order/pdf/{id}',[ExamOrderPdfController::class,'order'])->name('examorder');
+
+  //Generate faculty order
+  Route::get('/generate/faculty/order', GenerateFacultyOrder::class)->name('generate_faculty_order');
+
+  //Generate Subject Order
+  Route::get('/generate/subject/order', GenerateSubjectOrder::class)->name('generate_subject_order');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');

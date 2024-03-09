@@ -113,5 +113,15 @@ class ExamSeeder extends Seeder
             'created_at'=>'2023-08-28 10:03:01',
             'updated_at'=>'2023-09-16 12:05:22'
             ] );
+
+            Exam::create( [
+            'id'=>12,
+            'exam_name'=>'MARCH  2024',
+            'status'=>0,
+            'exam_sessions'=>1,
+            'academicyear_id'=>4,
+            'created_at'=>'2023-08-28 10:03:01',
+            'updated_at'=>'2023-09-16 12:05:22'
+            ] );
     }
 }

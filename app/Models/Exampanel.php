@@ -17,6 +17,7 @@ class Exampanel extends Model
     protected $dates = ['deleted_at'];
     protected $table='exam_panels';
     protected $fillable=[
+        'user_id',
         'faculty_id',
         'examorderpost_id',
         'subject_id',

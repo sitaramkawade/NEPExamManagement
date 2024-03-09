@@ -1,4 +1,4 @@
-<x-studapp-layout>
+
   <style>
     input[type='checkbox'][readonly] {
       pointer-events: none;
@@ -592,4 +592,4 @@
     });
     
     </script> --}}
-</x-studapp-layout>
+
