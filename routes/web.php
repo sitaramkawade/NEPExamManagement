@@ -1,8 +1,7 @@
 <?php
 
+use App\Livewire\RND;
 use Livewire\Livewire;
-
-
 use App\Livewire\Index;
 use App\Livewire\HomeIndex;
 use App\Livewire\User\Cap\AllCap;
@@ -84,11 +83,6 @@ use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
-
-
-
-
-
 // Livewire Update Route
 Livewire::setUpdateRoute(function ($handle) {
     return Route::post('/livewire/update', $handle);
@@ -114,6 +108,8 @@ Route::middleware(['guest'])->group(function () {
   // Faculty Home
   Route::get('/faculty',FacultyHome::class)->name('faculty');
 
+  // RND
+  Route::get('/rnd', RND::class);
 });
 
 // Auth Student Routes
