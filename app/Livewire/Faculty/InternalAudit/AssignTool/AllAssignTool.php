@@ -123,6 +123,7 @@ class AllAssignTool extends Component
 
     public function save()
     {
+
         $validatedData = $this->validate();
         $assignedToolData = [];
         foreach ($this->selected_tools as $toolId) {

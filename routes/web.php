@@ -81,6 +81,7 @@ use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
 use App\Livewire\Faculty\InternalAudit\AssignTool\AllAssignTool;
 use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
+use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
@@ -363,6 +364,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Assign Tool
   Route::get('/all-assigntools', AllAssignTool::class)->name('all-assigntools');
+
+  // All Document Upload
+  Route::get('/all-uploadocs', AllUploadDocument::class)->name('all-uploadocs');
 
 
 });

@@ -5,7 +5,7 @@
                 <x-back-btn wire:click="setmode('all')" />
             </x-card-header>
             <x-form wire:submit="save()">
-                @include('livewire.faculty.assign-tool.assigntool-form')
+                @include('livewire.faculty.internal-audit.assign-tool.assigntool-form')
             </x-form>
         </div>
     @elseif($mode == 'edit')
@@ -13,13 +13,13 @@
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
         <x-form wire:submit="update({{ $assignedtool_id }})">
-            @include('livewire.faculty.assign-tool.assigntool-form')
+            @include('livewire.faculty.internal-audit.assign-tool.assigntool-form')
         </x-form>
     @elseif($mode == 'view')
         <x-card-header heading="View Assigned Tool">
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
-        @include('livewire.faculty.assign-tool.view-form')
+        @include('livewire.faculty.internal-audit.assign-tool.view-form')
     @elseif($mode == 'all')
         <div>
             <x-breadcrumb.breadcrumb>
