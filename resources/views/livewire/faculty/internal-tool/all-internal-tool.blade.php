@@ -37,9 +37,9 @@
                             <x-table.tr>
                                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
                                 <x-table.th wire:click="sort_column('internal_tool_master_toolname')" name="internal_tool_master_toolname" :sort="$sortColumn" :sort_by="$sortColumnBy">Tool Name</x-table.th>
-                                <x-table.th wire:click="sort_column('internal_tool_master_course_type')" name="internal_tool_master_course_type" :sort="$sortColumn" :sort_by="$sortColumnBy">Course Type</x-table.th>
                                 <x-table.th wire:click="sort_column('internaltooldocument_id')" name="internaltooldocument_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Document Name</x-table.th>
-                                {{-- <x-table.th wire:click="sort_column('is_multiple')" name="is_multiple" :sort="$sortColumn" :sort_by="$sortColumnBy">Multiple Document</x-table.th> --}}
+                                <x-table.th wire:click="sort_column('internal_tool_master_course_type')" name="internal_tool_master_course_type" :sort="$sortColumn" :sort_by="$sortColumnBy">Course Type</x-table.th>
+                                <x-table.th wire:click="sort_column('is_multiple')" name="is_multiple" :sort="$sortColumn" :sort_by="$sortColumnBy">Multiple Document</x-table.th>
                                 <x-table.th> Status </x-table.th>
                                 <x-table.th> Action </x-table.th>
                             </x-table.tr>
@@ -54,9 +54,6 @@
                                         <x-table.text-scroll>{{ $internalTools->first()->internaltoolmaster->toolname }}</x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
-                                        <x-table.text-scroll>{{ $internalTools->first()->internaltoolmaster->toolname }}</x-table.text-scroll>
-                                    </x-table.td>
-                                    <x-table.td>
                                         @foreach ($internalTools as $internalTool)
                                             <x-table.text-scroll>{{ optional($internalTool->internaltooldocumentmaster)->doc_name }}</x-table.text-scroll>
                                         @endforeach
@@ -65,13 +62,20 @@
                                         <x-table.text-scroll>{{ $internalTools->first()->internaltoolmaster->course_type }}</x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
-                                        @foreach ($internalTools as $internalTool)
-                                            @if ($internalTool->internal_tool_master_status === 1)
-                                                <x-table.active wire:click="status({{ $internalTool->internaltoolmaster_id }})" />
+                                        <x-table.text-scroll>
+                                            @if ($internalTool->internal_tool_document_is_multiple === 1)
+                                                <x-status type="success"> Yes </x-status>
                                             @else
-                                                <x-table.inactive wire:click="status({{ $internalTool->internaltoolmaster_id }})" />
+                                                <x-status type="info"> No </x-status>
                                             @endif
-                                        @endforeach
+                                        </x-table.text-scroll>
+                                    </x-table.td>
+                                    <x-table.td>
+                                        @if ($internalTool->internal_tool_master_status === 1)
+                                            <x-table.active wire:click="status({{ $internalTool->internaltoolmaster_id }})" />
+                                        @else
+                                            <x-table.inactive wire:click="status({{ $internalTool->internaltoolmaster_id }})" />
+                                        @endif
                                     </x-table.td>
                                     <x-table.td>
                                         <p class="py-1">
@@ -88,7 +92,7 @@
                                 </x-table.tr>
                             @empty
                                 <x-table.tr>
-                                    <x-table.td colSpan='4' class="text-center">No Data Found</x-table.td>
+                                    <x-table.td colSpan='7' class="text-center">No Data Found</x-table.td>
                                 </x-table.tr>
                             @endforelse
                         </x-table.tbody>

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Internaltooldocument;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Internaltooldocumentmaster;
 use App\Exports\Faculty\InternalTool\InternalToolExport;
 
 class AllInternalTool extends Component
@@ -26,11 +27,9 @@ class AllInternalTool extends Component
     public $course_types;
 
     public $internaltoolmaster_id;
-
-    public $document_count=null;
-    public $document_inputs = [];
-    public $internaldoc_name = [];
-    public $is_multiple = [];
+    public $internaltooldoc_id;
+    public $internaltool_documents;
+    public $is_checked = [];
 
     #[Locked]
     public $delete_id;
@@ -49,14 +48,10 @@ class AllInternalTool extends Component
     {
         $rules = [
             'toolname' => ['required', 'string', 'min:2', 'max:255'],
-            'document_count' => ['required', 'integer'],
             'course_type' => ['required', Rule::exists(Coursetypemaster::class, 'course_type')],
+            'internaltool_documents.*' => ['required', 'string', 'min:2', 'max:255'],
+            // 'is_checked.*' => ['required','min:1', 'boolean',],
         ];
-
-        foreach ($this->document_inputs as $index => $input) {
-            $rules["internaldoc_name.$index"] = ['required', 'min:1', 'max:255'];
-            $rules["is_multiple.$index"] = ['nullable','boolean'];
-        }
 
         return $rules;
     }
@@ -64,18 +59,16 @@ class AllInternalTool extends Component
     public function messages()
     {
         return [
-            'toolname.required' => 'The toolname field is required.',
-            'toolname.string' => 'The toolname must be a string.',
-            'toolname.min' => 'The toolname must be at least :min characters.',
-            'toolname.max' => 'The toolname may not be greater than :max characters.',
+            'toolname.required' => 'The tool name field is required.',
+            'toolname.string' => 'The tool name must be a string.',
+            'toolname.min' => 'The tool name must be at least :min characters.',
+            'toolname.max' => 'The tool name may not be greater than :max characters.',
             'course_type.required' => 'The course type field is required.',
-            'course_type.exists' => 'The selected course type is required.',
-            'document_count.required' => 'The document count field is required.',
-            'document_count.integer' => 'The document count must be an integer.',
-            'internaldoc_name.*.required' => 'Document name is required.',
-            'internaldoc_name.*.min' => 'Document name must be at least :min characters.',
-            'internaldoc_name.*.max' => 'Document name may not be greater than :max characters.',
-            'is_multiple.*.boolean' => 'Is multiple field must be either true or false.',
+            'course_type.exists' => 'The selected course type is invalid.',
+            // 'is_checked.*.required' => 'At least one document must be checked.',
+            // 'is_checked.*.min' => 'At least one document must be checked.',
+            // 'is_checked.*.boolean' => 'The document checkbox must be either true or false.',
+
         ];
     }
 
@@ -83,10 +76,7 @@ class AllInternalTool extends Component
     {
         $this->toolname = null;
         $this->course_type = null;
-        $this->document_count = null;
-        $this->document_inputs = [];
-        $this->internaldoc_name = [];
-        $this->is_multiple = []; // Reset 'is_multiple' array
+        $this->is_checked = [];
     }
 
     public function deleteconfirmation($id)
@@ -124,40 +114,53 @@ class AllInternalTool extends Component
         $this->mode=$mode;
     }
 
-    public function updatedDocumentCount()
-    {
-        $this->document_inputs = $this->document_count ? range(1, $this->document_count) : [];
-    }
-
     public function save()
     {
+        if (count(array_filter($this->is_checked)) < 1) {
+            $this->dispatch('alert', type: 'error', message: 'At One Document must be Selected');
+            return false;
+        }
+
+        // Validate the data
+        $validatedData = $this->validate();
+
         // Begin a database transaction
         DB::beginTransaction();
 
         try {
-            // Validate the data
-            $validatedData = $this->validate();
 
             // Create a new record in Internaltoolmaster table
-            $internalTool = Internaltoolmaster::create($validatedData);
+            $internalTool = Internaltoolmaster::create([
+                'toolname' => $validatedData['toolname'], // Ensure 'toolname' is included in $validatedData
+                'course_type' => $validatedData['course_type'],
+            ]);
 
             // Insert document inputs into Internaltooldocument table
-            foreach ($validatedData['internaldoc_name'] as $index => $internaldoc_name) {
-                // Check if the 'is_multiple' value exists and is not null
-                $is_multiple = isset($validatedData['is_multiple'][$index]) ? $validatedData['is_multiple'][$index] : 0;
+            $internaltool_docs = [];
+            $is_multiple = count($this->is_checked) > 1 ? 1 : 0;
 
-                Internaltooldocument::create([
-                    'internaldoc_name' => $internaldoc_name,
-                    'internaltoolmaster_id' => $internalTool->id,
-                    'is_multiple' => $is_multiple,
-                ]);
+            foreach ($validatedData['internaltool_documents'] as $index => $_) {
+                if (isset($this->is_checked[$index])) {
+                    $internaltool_docs[] = [
+                        'internaltooldoc_id' => $index,
+                        'internaltoolmaster_id' => $internalTool->id,
+                        'is_multiple' => $is_multiple,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+            }
+
+
+            if (!empty($internaltool_docs)) {
+                Internaltooldocument::insert($internaltool_docs);
             }
 
             // Commit the transaction
             DB::commit();
 
             // If everything is successful, dispatch success alert and reset inputs
-            $this->dispatch('alert',type:'success',message:'Internal Tool Added Successfully');
+            $this->dispatch('alert', type: 'success', message: 'Internal Tool Added Successfully');
             $this->resetinput();
             $this->setmode('all');
         } catch (Exception $e) {
@@ -168,9 +171,12 @@ class AllInternalTool extends Component
             Log::error($e->getMessage());
 
             // Dispatch error alert
-            $this->dispatch('alert',type:'error',message:'Failed to Add Internal Tool.');
+            $this->dispatch('alert', type: 'error', message: 'Failed to Add Internal Tool.');
         }
     }
+
+
+
 
     public function edit(Internaltoolmaster $internal_tool)
     {
@@ -289,6 +295,7 @@ class AllInternalTool extends Component
     {
         if($this->mode !== 'all'){
             $this->course_types = Coursetypemaster::pluck('course_type','id');
+            $this->internaltool_documents = Internaltooldocumentmaster::pluck('doc_name','id');
         }
 
         $internaltools_from_view = Internaltoolview::when($this->search, function($query, $search){

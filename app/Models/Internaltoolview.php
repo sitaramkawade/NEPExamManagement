@@ -27,7 +27,7 @@ class Internaltoolview extends Model
 
     public function internaltooldocumentmaster(): BelongsTo
     {
-        return $this->belongsTo(Internaltooldocumentmaster::class,'internaltooldocument_id','id');
+        return $this->belongsTo(Internaltooldocumentmaster::class,'internaltooldoc_id','id');
     }
 
     public function internaltoolmaster(): BelongsTo

@@ -125,29 +125,6 @@ class SubjectExamTimeTable extends Component
         $this->setmode('all');
     }
 
-    // public function bulkedit(Examtimetable $examtimetable)
-    // {  
-    //     $this->resetinput();
-
-    //     $this->time_id=$examtimetable->id;
-
-    //      $examtimetables=Examtimetable::where('subjectbucket_id',1);
-       
-    //     $this->timeslots=TimeTableslot::where('isactive',1)->pluck('timeslot','id');
-
-        
-
-    //     foreach($examtimetables as $examtimetable)
-    //     {
-    //         $this->timeslot_ids[$examtimetable->exam_patternclasses_id]=$examtimetable->timeslot_id;
-    //         // dd( $this->timeslot_ids);
-    //         $this->examdates[$examtimetable->exam_patternclasses_id]=$examtimetable->examdate;
-    //         // dd(  $this->examdates);
-
-    //     }
-
-    //     $this->setmode('bulkedit');
-    // }
 
     public function bulkupdate(Examtimetable $examtimetable)
     {
@@ -198,7 +175,7 @@ class SubjectExamTimeTable extends Component
         if($this->mode=='add')
         {
             $this->subject_categories = Subjectcategory::whereIn('active', [1, 2])->pluck('subjectcategory', 'id');
-            $this->timeslots=TimeTableslot::where('isactive',1)->pluck('timeslot','id');
+            $this->timeslots=Timetableslot::where('isactive',1)->pluck('timeslot','id');
 
             if($this->timeslot_id)
             {
@@ -212,9 +189,8 @@ class SubjectExamTimeTable extends Component
                     $this->examdates[$value->id]=$this->examdate;
                 }
             }
-
-           
             if($this->subjectcategory_id)
+            // dd($this->subjectcategory_id);
             {
                 $this->subjects = Subject::where('status', 1)->where('subjectcategory_id', $this->subjectcategory_id)->pluck('subject_name', 'id');
             }
@@ -237,14 +213,13 @@ class SubjectExamTimeTable extends Component
                         }
                     }
                 }
-
             }
         }
 
         if($this->mode=='bulkedit')
         {
             $this->subject_categories = Subjectcategory::whereIn('active', [1, 2])->pluck('subjectcategory', 'id');
-            $this->timeslots=TimeTableslot::where('isactive',1)->pluck('timeslot','id');
+            $this->timeslots=Timetableslot::where('isactive',1)->pluck('timeslot','id');
 
             if($this->timeslot_id)
             {
@@ -258,8 +233,7 @@ class SubjectExamTimeTable extends Component
                     $this->examdates[$value->id]=$this->examdate;
                 }
             }
-
-           
+      
             if($this->subjectcategory_id)
             {
                 $this->subjects = Subject::where('status', 1)->where('subjectcategory_id', $this->subjectcategory_id)->pluck('subject_name', 'id');
@@ -286,46 +260,21 @@ class SubjectExamTimeTable extends Component
                                 $this->timeslot_ids[$exampatternclass->id] = $exam_time_table->timeslot_id;
                                 $this->examdates[$exampatternclass->id] = $exam_time_table->examdate;
 
-                            }
-                   
+                            }                 
                         }
-                        
-        
-                   
-                    }
-                
-                }
-
-             
-                
-                // dd($this->subject_bucket_ids);
-            }
-            // // $exampatternclass_ids = ExamPatternClass::pluck('id')->toArray();
-            // $examtimetables = Examtimetable::whereIn('subjectbucket_id', )->get();
-            // //   dd( $examtimetables);
-            // // $this->examtimetables=Examtimetable::whereIn('subjectbucket_id',$subjectbucket_id)->get();
-    
-            // foreach ( $this->examtimetables as $examtimetable) {
-            //  $this->timeslot_ids[$examtimetable->exam_patternclasses_id] = $examtimetable->timeslot_id;
-            // //  dd( $this->timeslot_ids);
-            //  $this->examdates[$examtimetable->exam_patternclasses_id] = $examtimetable->examdate;
-            // }
-          
-   
-           
+                    }          
+                }                 
+            }    
         }
 
-        $this->timeslots=TimeTableslot::where('isactive',1)->pluck('timeslot','id');
+        $this->timeslots=Timetableslot::where('isactive',1)->pluck('timeslot','id');
 
         $examtimetables=Examtimetable::select('id','subjectbucket_id','exam_patternclasses_id','examdate','timeslot_id')
-        ->with(['subjectbucket.subject:subject_name,id','exampatternclass.patternclass.pattern:pattern_name,id','exampatternclass.patternclass.courseclass.classyear:classyear_name,id','exampatternclass.patternclass.courseclass.course:course_name,id','timetableslot:timeslot,id'])
+        ->with(['subjectbucket.subject:subject_name,id','exampatternclass.patternclass.pattern:pattern_name,id','exampatternclass.patternclass.courseclass.classyear:classyear_name,id','exampatternclass.patternclass.courseclass.course:course_name,id','Timetableslot:timeslot,id'])
         ->withTrashed()-> when($this->search, function ($query, $search) {
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
-       // $exampatternclasses = Subjectbucket::select('subjectbucket_id','id')->withTrashed();
-        //dd( $this->exampatternclasses);
-        
         return view('livewire.user.exam-time-table.subject-exam-time-table',compact('examtimetables'))->extends('layouts.user')->section('user');
     }
 }

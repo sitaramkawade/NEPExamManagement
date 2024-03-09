@@ -29,8 +29,10 @@ class SendEmailJob implements ShouldQueue
     {
        
         foreach ($this->examOrderIds as $examOrderId) {
-            dd($examOrderId);
-            $examOrder = Exampatternclass::find($examOrderId);
+            // dd($examOrderId);
+            $examOrder = Examorder::find($examOrderId);
+        // \Log::debug( $examOrder );
+        
             $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
     
             $details = [
@@ -45,6 +47,8 @@ class SendEmailJob implements ShouldQueue
             ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
             ->send(new MyTestMail($details));
 
+
+
             $examOrder -> email_status = 1;
             $examOrder->update();
         
@@ -52,3 +56,4 @@ class SendEmailJob implements ShouldQueue
         }
     }
 }
+

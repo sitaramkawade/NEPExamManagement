@@ -28,5 +28,14 @@ class DeptPrefixSeeder extends Seeder
             'created_at'=>'2023-09-05 21:23:00',
             'updated_at'=>'2023-09-05 21:23:00'
         ] );
+
+        Departmentprefix::create( [
+            'dept_id'=>11,
+            'pattern_id'=>2,
+            'prefix'=>'COM',
+            'postfix'=>'C',
+            'created_at'=>'2023-09-05 21:23:00',
+            'updated_at'=>'2023-09-05 21:23:00'
+        ] );
     }
 }

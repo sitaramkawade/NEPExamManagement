@@ -32,6 +32,7 @@ if (!function_exists('get_pattern_class_name')) {
 if (!function_exists('generate_subject_code')) {
     function generate_subject_code($patternClassId, $subjectVerticalId, $subjectSem, $classYear)
     {
+        // dd($patternClassId, $subjectVerticalId, $subjectSem, $classYear);
         $authFaculty = Auth::guard('faculty')->user()->department_id;
 
         $departmentPrefix = Departmentprefix::where('dept_id', $authFaculty)->first();
@@ -58,7 +59,6 @@ if (!function_exists('generate_subject_code')) {
         if ($departmentPrefix) {
             $subjectCode .= $departmentPrefix->postfix;
         }
-
         return $subjectCode;
     }
 }
@@ -66,7 +66,7 @@ if (!function_exists('generate_subject_code')) {
 
 
 // Getting Current Sem of Student
-if (!function_exists('get_student_current_sem')) 
+if (!function_exists('get_student_current_sem'))
 {
     function get_student_current_sem($student_id)
     {

@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('examorders', function (Blueprint $table) {
             $table->id();
+
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            
             $table->bigInteger('exampanel_id')->unsigned();
             $table->foreign('exampanel_id')->references('id')->on('exam_panels');
           

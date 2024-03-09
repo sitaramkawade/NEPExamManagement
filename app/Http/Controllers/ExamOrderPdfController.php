@@ -31,7 +31,7 @@ class ExamOrderPdfController extends Controller
             $pdf = Pdf::loadView('pdf.examorder.examorder_pdf',compact('examorder'))
                 ->setOptions(['defaultFont' => 'sans-serif']);
 
-              return $pdf->download('Exam-Order.pdf');
+              return $pdf->stream('Exam-Order.pdf');
         } else {
              
             return abort(404);
