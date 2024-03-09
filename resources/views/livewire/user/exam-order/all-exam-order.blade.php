@@ -60,12 +60,12 @@
 
                                     </x-table.td>
                                     <x-table.td>
-                                        @if ($examorder->deleted_at)
-                                        <x-table.delete wire:click="deleteconfirmation({{ $examorder->id }})" />
-                                        <x-table.restore wire:click="restore({{ $examorder->id }})" />
+                                        @if ($examorder->email_status==0)
+                                        <x-table.archive wire:click="deleteconfirmation({{ $examorder->id }})" />
                                         @else
-                                        <x-table.edit wire:click="edit({{ $examorder->id }})" />
-                                        <x-table.archive wire:click="delete({{ $examorder->id }})" />
+                                        <x-table.edit i='0' wire:click="resendMail({{ $examorder->id }})" > Resend </x-table.edit>
+                                        <x-table.edit i='0' wire:click="cancelOrder({{ $examorder->id }})" > Cancel Order </x-table.edit>
+                                        
                                         @endif
                                     </x-table.td>
                                 </x-table.tr>

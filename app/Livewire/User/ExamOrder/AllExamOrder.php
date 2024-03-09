@@ -4,11 +4,16 @@ namespace App\Livewire\User\ExamOrder;
 
 use Excel;
 use Livewire\Component;
+use App\Mail\MyTestMail;
 use App\Models\Examorder;
 use App\Models\Exampanel;
+use App\Jobs\SendEmailJob;
+use App\Jobs\CancelOrderJob;
 use Livewire\WithPagination;
+use App\Mail\CancelOrderMail;
 use Illuminate\Validation\Rule;
 use App\Models\Exampatternclass;
+use Illuminate\Support\Facades\Mail;
 use App\Exports\User\ExamOrder\ExportExamOrder;
 
 class AllExamOrder extends Component
@@ -145,17 +150,25 @@ class AllExamOrder extends Component
         $examorder->update();
     }
 
-    public function edit(Examorder $examorder){
+   Public function cancelOrder(Examorder $examorder)
+   {
 
-        if ($examorder) {
-            $this->edit_id=$examorder->id;
-            $this->exampanel_id = $examorder->exampanel_id;     
-            $this->exam_patternclass_id = $examorder->exam_patternclass_id;     
-            $this->description = $examorder->description;
-            $this->email_status = $examorder->email_status ;
-            $this->setmode('edit');
-        }
+         $examOrderIds=$examorder->id;
+         CancelOrderJob::dispatch([$examOrderIds]);
+            
+        $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
+
+   }
+
+   public function resendMail(Examorder $examorder)
+   {
+  
+        $examOrderIds=$examorder->id;
+        SendEmailJob::dispatch([$examOrderIds]);
+
+        $this->dispatch('alert',type:'success',message:'Emails have been resent successfully !!'  );
     }
+
 
     public function update(Examorder  $examorder){
 
