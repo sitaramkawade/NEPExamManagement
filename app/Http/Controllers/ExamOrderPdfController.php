@@ -39,6 +39,24 @@ class ExamOrderPdfController extends Controller
         }
     }
 
+    public function cancelorder(Examorder $examorder)
+    {
+        if ($examorder && $examorder->token === $this->token) {
+            view()->share('pdf.cancelorder.cancelorder_pdf');
+
+            $pdf = Pdf::loadView('pdf.cancelorder.cancelorder_pdf')
+                ->setOptions(['defaultFont' => 'sans-serif']);
+
+              return $pdf->stream('Exam-Order.pdf');
+        } else {
+             
+            return abort(404);
+           
+        }
+
+    }
+
+
     public function timetable(Exampatternclass $exampatternclass)
     
     {

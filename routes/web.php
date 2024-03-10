@@ -62,6 +62,7 @@ use App\Livewire\User\DepartmentType\AllDepartmentType;
 use App\Livewire\Faculty\AssignSubject\AllAssignSubject;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\User\FacultyOrder\GenerateFacultyOrder;
+use App\Livewire\User\SubjectOrder\GenerateSubjectOrder;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamTimeTable\SubjectExamTimeTable;
@@ -225,7 +226,11 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Generate Exam Order
   Route::get('/generate/exam/order', GenerateExamOrder::class)->name('generate_exam_order');
 
-   Route::get('exam/order/pdf/{id}',[ExamOrderPdfController::class,'order'])->name('examorder');
+  Route::get('exam/order/{id}',[ExamOrderPdfController::class,'order'])->name('examorder');
+  
+  //Cancel Exam Order
+  Route::get('cancel/exam/order/{id}',[ExamOrderPdfController::class,'cancelorder'])->name('cancelorder');
+
 
   //Generate faculty order
   Route::get('/generate/faculty/order', GenerateFacultyOrder::class)->name('generate_faculty_order');
