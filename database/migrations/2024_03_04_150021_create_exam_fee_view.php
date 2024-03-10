@@ -25,7 +25,10 @@ return new class extends Migration
                 ec.patternclass_id,
                 ec.examfees_id,
                 ec.active_status,
-                ec.approve_status
+                ec.approve_status,
+                ec.created_at,
+                ec.updated_at,
+                ec.deleted_at
             FROM 
                 formtypemasters ft
             JOIN 
