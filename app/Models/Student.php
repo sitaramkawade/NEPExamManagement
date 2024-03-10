@@ -154,7 +154,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
     { 
         $current_class_student_last_entry=$this->currentclassstudents->last();
 
-        $pass_fail_absent_status=1;
+        $pass_fail_absent_status=1; // Result : Pass
 
         $sem_1_2_credit_earned  =  $sem_1_data->semcreditearned  +   $sem_2_data->semcreditearned;
         $sem_1_2_total_credit   =  $sem_1_data->semtotalcredit   +   $sem_2_data->semtotalcredit;
@@ -172,14 +172,14 @@ class Student extends  Authenticatable implements MustVerifyEmail
 
         if($this->patternclass->courseclass->course->course_type=='PG' &&  $current_class_student_last_entry->sem==4 && $pass_fail_absent_status==2)
         {
-            $pass_fail_absent_status = 0;
+            $pass_fail_absent_status = 0;   // Result : Fail
         }
 
         if($this->patternclass->courseclass->course->course_type=='PG' && $current_class_student_last_entry->sem==4 && $pass_fail_absent_status==1)
         {
             if((12 - $this->getNONCGPAtotal()) > 0)
             {
-                $pass_fail_absent_status = 0;
+                $pass_fail_absent_status = 0; // Result : Fail
             }  
         }
         return $pass_fail_absent_status;

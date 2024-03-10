@@ -62,6 +62,7 @@ use App\Livewire\User\DepartmentType\AllDepartmentType;
 use App\Livewire\Faculty\AssignSubject\AllAssignSubject;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
 use App\Livewire\User\FacultyOrder\GenerateFacultyOrder;
+use App\Livewire\User\SubjectOrder\GenerateSubjectOrder;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamTimeTable\SubjectExamTimeTable;

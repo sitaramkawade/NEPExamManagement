@@ -384,9 +384,8 @@ if (!function_exists('get_course_type'))
 
 
 if (!function_exists('get_exam_form_fees')) {
-    function get_exam_form_fees($regular_subject_data, $backlog_subject_data = [])
+    function get_exam_form_fees($patternclass_id=null,$regular_subject_data, $backlog_subject_data = [])
     {     
-        $patternclass_id=null;
         $internal_count = 0;
         $external_count = 0;
         $backlog_count = 0;
@@ -398,21 +397,8 @@ if (!function_exists('get_exam_form_fees')) {
         $student=Auth::guard('student')->user();
         $statement_of_marks_is_year_wise = isset($setting->statement_of_marks_is_year_wise) ? $setting->statement_of_marks_is_year_wise : 0;
         $pattern_class_count = Currentclassstudent::whereIn('pfstatus',[0,2])->where('student_id',$student->id)->distinct('patternclass_id')->pluck('patternclass_id')->count();
-        $current_class_student_last_entry = $student->currentclassstudents->last();
-        if($current_class_student_last_entry)
-        {
-            $patternclass_id=$current_class_student_last_entry->patternclass_id;
-        }else
-        {
-            $patternclass_id=$student->patternclass_id;
-        }
-
-        if (isset($backlog_subject_data)) {
-            $backlog_count = count($backlog_subject_data);
-        }
 
         $regular_and_backlog_subjects = collect($regular_subject_data)->merge($backlog_subject_data);
-
 
         foreach ($regular_and_backlog_subjects as $subject) {
 
@@ -444,8 +430,7 @@ if (!function_exists('get_exam_form_fees')) {
 
             $exam_pattern_class = Exampatternclass::where('patternclass_id', $patternclass_id)->where('exam_id', $exam->id)->first();
 
-            $student_course_fees = Examfeeview::where('patternclass_id', $patternclass_id)->where('active_status', 1)->get();
-
+            $student_course_fees = Examfeeview::where('patternclass_id', $patternclass_id)->where('active_status', 1)->distinct('examfees_id')->groupBy('examfees_id')->orderBy('examfees_id','ASC')->latest()->get();
             if ($student_course_fees) {
                 $fees_array = [];
                 foreach ($student_course_fees as $course_fee) {
