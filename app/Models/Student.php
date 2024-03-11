@@ -214,7 +214,7 @@ class Student extends  Authenticatable implements MustVerifyEmail
                         {   
                             $student_mark_last_entry=$this->studentmarks()->where('subject_id',$subject->id)->where('exam_id','<=', $current_active_exam->id )->get()->last();
 
-                            if($student_mark_last_entry->grade=="F")
+                            if(isset($student_mark_last_entry) && $student_mark_last_entry->grade=="F")
                             {   
                                 $subject_type="";
                                 switch ($subject->subject_type) 
