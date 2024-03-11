@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-       
+        DB::statement('DROP VIEW IF EXISTS exam_fee_view');
         DB::statement("
             CREATE VIEW exam_fee_view AS
             SELECT 
@@ -25,7 +25,10 @@ return new class extends Migration
                 ec.patternclass_id,
                 ec.examfees_id,
                 ec.active_status,
-                ec.approve_status
+                ec.approve_status,
+                ec.created_at,
+                ec.updated_at,
+                ec.deleted_at
             FROM 
                 formtypemasters ft
             JOIN 

@@ -8,6 +8,7 @@ use Livewire\Component;
 class RND extends Component
 {   
     public $subject_id;
+    public $subject_id2=[];
     public $subjects=[];
 
     public function render()

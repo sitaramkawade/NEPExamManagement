@@ -1,7 +1,7 @@
 @props([ 'slot'=>false ,'id'=>rand(1111, 9999) , 'name'=>'no_name'])
 
 <div wire:ignore>
-    <select  id="{{ $id }}"    {!! $attributes->merge(['class' => ' ']) !!} >
+    <select  id="{{ $id }}"    {!! $attributes->merge(['class' => 'xyz ']) !!} >
        {{$slot}}
     </select>
 </div>
@@ -17,3 +17,4 @@
         });
     </script>
 @endsection
+

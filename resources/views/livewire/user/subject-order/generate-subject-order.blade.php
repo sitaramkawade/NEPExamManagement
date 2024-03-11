@@ -6,7 +6,7 @@
         <x-card-header heading=" Faculty Order ">
         </x-card-header>
         <x-form wire:submit="add()">
-            @include('livewire.user.generate-subject-order.faculty-order-form')
+            @include('livewire.user.subject-order.subject-order-form')
         </x-form>
     </div>
 

@@ -70,7 +70,7 @@ class AllExamPatternClass extends Component
             'description' => ['nullable', 'string','max:50'],
             'patternclass_id' => ['required', 'integer', Rule::exists('pattern_classes', 'id'), Rule::unique('exam_patternclasses')->where(function ($query) {
                 return $query->where('exam_id', $this->exam_id);
-            })],
+            })->ignore($this->edit_id)],
             'exam_id' => ['required', 'integer', Rule::exists('exams', 'id')],
             'capmaster_id' => ['nullable', 'integer', Rule::exists('capmasters', 'id')],
         ];

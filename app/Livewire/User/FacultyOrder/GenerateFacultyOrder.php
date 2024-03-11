@@ -126,20 +126,21 @@ class GenerateFacultyOrder extends Component
             }
   
             $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
-            //  $this->resetinput();
-            // $this->setmode('add');
+             $this->resetinput();
+             $this->setmode('add');
         }
+    
     }
 
 
     public function render()
     {  
-        if($this->mode=='add')
-        {
-           $this->departments=Department::where('status',1)->pluck('dept_name','id');
-           $this->patternclasses=Patternclass::select('id','class_id','pattern_id')->with(['pattern:pattern_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->where('status',1)->get();
-           $this->examorderposts = Examorderpost::where('status', 1)->pluck('post_name', 'id');
-        //    $this->exampatternclasses = Exampatternclass::select('id','exam_id','patternclass_id')->get();    
+          if($this->mode=='add')
+         {
+            $this->departments=Department::where('status',1)->pluck('dept_name','id');
+            $this->patternclasses=Patternclass::select('id','class_id','pattern_id')->with(['pattern:pattern_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->where('status',1)->get();
+            $this->examorderposts = Examorderpost::where('status', 1)->pluck('post_name','id');
+            // $this->exampatternclasses = Exampatternclass::select('id','exam_id','patternclass_id')->get();    
        
             if($this->department_id)
             {
