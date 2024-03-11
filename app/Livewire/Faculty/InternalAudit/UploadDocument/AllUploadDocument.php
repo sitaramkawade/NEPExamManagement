@@ -40,6 +40,8 @@ class AllUploadDocument extends Component
     // public $subject_id;
     // public $subjects;
 
+    public $file=[];
+
     public $documents_to_upload=[];
     public $counter = 1;
     #[Locked]
@@ -86,13 +88,56 @@ class AllUploadDocument extends Component
         $this->selected_tools=null;
     }
 
-    public function save()
+    public function save(Facultyinternaldocument $facultyinternaldocument)
     {
-        foreach ($this->documents_to_upload as $key => $document) {
-            $fileName = 'document-' . time().'-'.$key.'.' .  $document->getClientOriginalExtension();
-            dd($fileName);
+        // Check if the record exists
+        if ($facultyinternaldocument) {
+            // Year Name
+            $year_name = isset($facultyinternaldocument->academicyear->year_name) ? $facultyinternaldocument->academicyear->year_name : 'YN';
+
+            // Patternclass ID
+            $patternclass_id = isset($facultyinternaldocument->subject->patternclass->id) ? $facultyinternaldocument->subject->patternclass->id : 'PC';
+
+            // Faculty Name
+            $faculty_name = isset($facultyinternaldocument->faculty->faculty_name) ? $facultyinternaldocument->faculty->faculty_name : 'FN';
+
+            // Subject Code
+            $subject_code = isset($facultyinternaldocument->subject->subject_code) ? $facultyinternaldocument->subject->subject_code : 'SC';
+
+            // Tool Name
+            $tool_name = isset($facultyinternaldocument->internaltooldocument->internaltoolmaster->toolname) ? $facultyinternaldocument->internaltooldocument->internaltoolmaster->toolname : 'TN';
+
+            // Document Name
+            $doc_name = isset($facultyinternaldocument->internaltooldocument->internaltooldocumentmaster->doc_name) ? $facultyinternaldocument->internaltooldocument->internaltooldocumentmaster->doc_name : 'DN';
+
+            // Path To Store
+            $path = 'internal-audit/' . $year_name . '/' . $patternclass_id . '/' . $faculty_name . '/' . $subject_code . '/';
+
+            if (isset($this->file)) {
+                // Iterate through each file
+                foreach ($this->file as $document) {
+                    // Generate a unique file name for each document
+                    $fileName = $subject_code . '-' . $tool_name . '-' . $doc_name . '.' . $document->getClientOriginalExtension();
+
+                    // Upload the document
+                    $document->storeAs($path, $fileName, 'public');
+
+                    // Update the record with the file information for each document
+                    $facultyinternaldocument->update([
+                        'document_fileName' => $fileName,
+                        'document_fileTitle' => 'storage/' . $path . $fileName,
+                        'updated_at' => now(),
+                        'status' => 1,
+                    ]);
+                }
+                $this->dispatch('alert', type: 'success', message: 'Document Uploaded Successfully');
+            }
+        } else {
+            $this->dispatch('alert', type: 'error', message: 'Failed To Upload Document!');
         }
     }
+
+
 
     public function render()
     {
@@ -120,6 +165,7 @@ class AllUploadDocument extends Component
                 $this->documents_to_upload = Facultyinternaldocument::where('faculty_id',Auth::guard('faculty')->user()->id)
                 ->where('subject_id',$this->subject_id)
                 ->where('academicyear_id',$this->academicyear_id)
+                ->where('status',0)
                 ->get();
             } else {
                 $this->documents_to_upload = [];

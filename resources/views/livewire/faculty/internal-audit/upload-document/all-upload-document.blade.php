@@ -56,15 +56,15 @@
                         @endforelse
                     </x-input-select>
                     <x-input-error :messages="$errors->get('subject_id')" class="mt-1" />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
-            <div class="bg-primary px-2 text-center py-2 font-semibold text-white dark:text-light">
-                Documents Pending Upload
-            </div>
-            <x-table.table>
-                <x-table.thead>
+            <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
+                <div class="bg-primary px-2 text-center py-2 font-semibold text-white dark:text-light">
+                    Documents Pending Upload
+                </div>
+                <x-table.table>
+                    <x-table.thead>
                     <x-table.tr>
                         <x-table.th>ID</x-table.th>
                         <x-table.th>Academic Year</x-table.th>
@@ -95,10 +95,14 @@
                                 <x-table.text-scroll>{{ isset($document_to_upload->internaltooldocumentmaster->doc_name) ? $document_to_upload->internaltooldocumentmaster->doc_name : '' }}</x-table.text-scroll>
                             </x-table.td>
                             <x-table.td>
-                                <x-form wire:submit="save()">
-                                    <x-input-file class="text-xs file:py-1 file:px-1 file:rounded-sm file:mx-0 file:text-xs file:mr-1 w-[80%]" name="documents_to_upload.{{ $document_to_upload->id }}" id="{{ $document_to_upload->id }}" wire:model="documents_to_upload.{{ $document_to_upload->id }}" accept="image/png, image/jpg, image/jpeg,.pdf" />
-                                    <x-form-btn>save</x-form-btn>
+                                <x-form wire:submit.prevent="save({{ $document_to_upload->id }})">
+                                    <x-input-label wire:loading.remove wire:target="file.{{ $document_to_upload->id }}" class="py-2 text-xs" for="file.{{ $document_to_upload->id }}" :value="__('Hint : 250KB, png, jpg/jpeg, pdf')" />
+                                    <x-input-file class="text-xs file:px-2 file:rounded-sm file:mx-0 file:text-xs w-[80%]" name="file.{{ $document_to_upload->id }}" id="file.{{ $document_to_upload->id }}" wire:model="file.{{ $document_to_upload->id }}" accept="image/png, image/jpg, image/jpeg,.pdf" />
+                                    <x-input-label wire:loading.flex wire:target="file.{{ $document_to_upload->id }}" class="py-2 text-xs" for="file.{{ $document_to_upload->id }}" :value="__('Uploading...')" />
+                                    <x-table.save-btn i="0" wire:loading.attr="disabled" wire:target="file.{{ $document_to_upload->id }}" wire:loading.class.remove="cursor-pointer" wire:loading.class.add="cursor-not-allowed">save</x-table.save-btn>
                                 </x-form>
+                                    {{-- <x-table.view i="0" class="mt-2 uppercase" wire:loading.attr="disabled" wire:loading.class.add="cursor-not-allowed" >view</x-table.view>
+                                    <x-table.delete i="0" class="mt-2 uppercase" wire:loading.attr="disabled" wire:loading.class.add="cursor-not-allowed" >delete</x-table.delete> --}}
                             </x-table.td>
                         </x-table.tr>
                     @empty

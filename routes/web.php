@@ -232,7 +232,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('/generate/faculty/order', GenerateFacultyOrder::class)->name('generate_faculty_order');
 
   //Generate Subject Order
-  Route::get('/generate/subject/order', GenerateSubjectOrder::class)->name('generate_subject_order');
+//   Route::get('/generate/subject/order', GenerateSubjectOrder::class)->name('generate_subject_order');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');
