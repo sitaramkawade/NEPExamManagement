@@ -6,12 +6,14 @@ use Carbon\Carbon;
 use App\Models\Exam;
 use App\Models\Faculty;
 use Livewire\Component;
+use App\Models\Semester;
 use App\Models\Examorder;
 use App\Jobs\SendEmailJob;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Exampatternclass;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Queue;
 
@@ -22,7 +24,10 @@ class GenerateExamOrder extends Component
     public $search='';
     public $sortColumn="id";
     public $sortColumnBy="ASC";
-    public $ext;
+    public $sub_sem;
+    public $sub_sem2=[];
+    public $semesters=[];
+    public $semester=[];
     public $exam_name;
     public $patternclass_id;
     public $mode='all';
@@ -34,35 +39,41 @@ class GenerateExamOrder extends Component
         $this->mode=$mode;
     }
 
-    public function generateExamPanel($id)
+    public function generateExamPanel(Exampatternclass $exampatternclass)
     {     
-        $semesters = [1, 3, 5];
-     
-        $exampatternclass = Exampatternclass::find($id);  
-    
+       
+       
+
         $panels = collect();
-         foreach ($exampatternclass->patternclass->subjects->whereIn('subject_sem', $semesters) as $subject) {
-            
-            foreach($subject->exampanels->where('active_status','1') as $pannel )    
-            
-             {
-            
-                $token = Str::random(30);
-                $panels->add([
-                    'user_id'=>Auth::guard('user')->user()->id,
-                    'exampanel_id' => $pannel->id,
-                    'exam_patternclass_id' => $id,
-                    'email_status' => '0',
-                    'description' => '',
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                 
-                ]);
+
+        // dd($exampatternclass->patternclass->subjects);
+         foreach ($exampatternclass->patternclass->subjects->whereIn('subject_sem', $this->semester) as $subject) 
+        {     
+            foreach($subject->exampanels as $pannel )
+            {
+                   
+                    $exam_order_data = [];
+                    $token = Str::random(30);
+        
+                    $panels = [
+                        'user_id'=>Auth::guard('user')->user()->id,
+                        'exampanel_id' => $pannel->id,
+                        'exam_patternclass_id' => $exampatternclass->id,
+                        'email_status' => '0',
+                        'description' => '',
+                        'created_at' => now(),
+                        'updated_at' => now(),                 
+                    ];
+
+                    // dd($panels);
+                    
+                    $exam_order_data[] = Examorder::create($panels);
+
                 
             }
+          
         }
  
-        $exampatternclass->order()->insert($panels->toArray());
 
         $this->dispatch('alert',type:'success',message:'Order Created Successfully !!'  );
         $this->setmode('all');
@@ -86,12 +97,13 @@ class GenerateExamOrder extends Component
     public function render()
     {
 
+        $this->semesters=Semester::where('status',1)->pluck('semester','id');
         $examids = Exam::where('status',1)->pluck('id')->toArray();
         
-        $panels=Exampatternclass::whereIn('exam_id',$examids)->when($this->search, function ($query, $search) {
+        $exampatternclasses=Exampatternclass::whereIn('exam_id',$examids)->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->paginate($this->perPage);
 
-        return view('livewire.user.generate-exam-order.generate-exam-order',compact('panels'))->extends('layouts.user')->section('user');
+        return view('livewire.user.generate-exam-order.generate-exam-order',compact('exampatternclasses'))->extends('layouts.user')->section('user');
     }
 }

@@ -20,18 +20,17 @@ class ExamOrderPdfController extends Controller
     public $examtimetables;
   
 
-    public function order($id)
+    public function order(Examorder $examorder)
     {
 
-        $examorder=Examorder::find($id);
-
+        // dd($examorder);
         if ($examorder && $examorder->token === $this->token) {
             view()->share('pdf.examorder.examorder_pdf',compact('examorder'));
 
             $pdf = Pdf::loadView('pdf.examorder.examorder_pdf',compact('examorder'))
                 ->setOptions(['defaultFont' => 'sans-serif']);
 
-              return $pdf->stream('Exam-Order.pdf');
+              return $pdf->download('Exam-Order.pdf');
         } else {
              
             return abort(404);
