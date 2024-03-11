@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-       
+        DB::statement('DROP VIEW IF EXISTS exam_fee_view');
         DB::statement("
             CREATE VIEW exam_fee_view AS
             SELECT 

@@ -193,7 +193,7 @@ class InwardExamForm extends Component
                     $student->update(['prn' => $prn]);
 
                     if (get_student_current_sem($exam_form_master->student_id) === 'not_regular') 
-                    {
+                    {   
                         // FY Direct SEM-II Student // Done
                         Currentclassstudent::create([
                             'sem' => 1,
@@ -202,6 +202,7 @@ class InwardExamForm extends Component
                             'college_id' => $exam_form_master->college_id,
                             'academicyear_id' => $exam_form_master->exam->academicyear_id,
                         ]);
+
                         Currentclassstudent::create([
                             'sem' => 2,
                             'patternclass_id' => $exam_form_master->patternclass_id,
@@ -211,7 +212,7 @@ class InwardExamForm extends Component
                         ]);
                     } 
                     else 
-                    {
+                    {   
                         // FY SEM-I Regular Student // Done
                         Currentclassstudent::create([
                             'sem' => get_student_current_sem($exam_form_master->student_id),
@@ -242,7 +243,7 @@ class InwardExamForm extends Component
                 }
 
                 switch ($student_current_class_entry->sem) 
-                {
+                {   
                     case 1:
                         // FY SEM-II Regular Student // Done
                         $student->currentclassstudents()->create([

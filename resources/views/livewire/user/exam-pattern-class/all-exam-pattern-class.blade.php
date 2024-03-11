@@ -56,7 +56,7 @@
                 <x-table.tr wire:key="{{ $pattern_exam_class->id }}">
                   <x-table.td>{{ $pattern_exam_class->id }} </x-table.td>
                   <x-table.td>{{ $pattern_exam_class->exam->exam_name }} </x-table.td>
-                  <x-table.td> <x-table.text-scroll> {{ isset($pattern_exam_class->patternclass->courseclass->course->course_name) ? $pattern_exam_class->patternclass->courseclass->course->course_name : '' }} </x-table.text-scroll></x-table.td>
+                  <x-table.td> <x-table.text-scroll> {{ get_pattern_class_name($pattern_exam_class->patternclass_id)  }} </x-table.text-scroll></x-table.td>
                   <x-table.td>{{ isset($pattern_exam_class->capmaster->cap_name) ? $pattern_exam_class->capmaster->cap_name : '' }} </x-table.td>
                   <x-table.td>{{ $pattern_exam_class->result_date }} </x-table.td>
                   <x-table.td>{{ isset($pattern_exam_class->start_date) ? date('d-m-Y', strtotime($pattern_exam_class->start_date)) : '' }} </x-table.td>

@@ -96,32 +96,34 @@ class FillStudentExamFormNew extends Component
         $current_class_inward_students = $this->student->currentclassstudents->where('pfstatus', '!=', -1)->where('markssheetprint_status', '!=', -1);
 
         if (true) {
-            if (is_null($current_class_student_last_entry)) {
-                // FY SEM-I
+            if (is_null($current_class_student_last_entry)) 
+            {
+                // Fetch FY
                 $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $this->student->patternclass_id)->get();
 
-                if (!$admission_data->isEmpty()) {
-                    if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) {
-
+                if (!$admission_data->isEmpty()) 
+                {
+                    if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                    {
                         if ($current_exam_session != 2) 
-                        {
-                            // Fetch FY SEM-I
+                        {   
+                            // Fetch FY SEM-I Regular Student // Done
                             $this->regular_subjects_data=[];
                             $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', 1)->get();
                             $this->check_subject_checkboxs($this->regular_subjects_data);
                             $this->backlog_subjects_data=[];
-                            $this->exam_fee_courses=get_exam_form_fees( $this->student->patternclass_id,$this->regular_subjects_data);
+                            $this->exam_fee_courses=get_exam_form_fees($this->student->patternclass_id,$this->regular_subjects_data);
                         } 
                         else 
-                        {
-                            // Fetch Direct SEM-I-II 
+                        {   
+                            // Fetch Direct SEM-II Regular Student With SEM-I As Backlog // Done
                             $this->backlog_subjects_data=[];
                             $this->backlog_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', 1)->get();
                             $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
                             $this->regular_subjects_data=[];
                             $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', 2)->get();
                             $this->check_subject_checkboxs($this->regular_subjects_data);
-                            $this->exam_fee_courses=get_exam_form_fees( $this->student->patternclass_id,$this->regular_subjects_data,$this->backlog_subjects_data);
+                            $this->exam_fee_courses=get_exam_form_fees($this->student->patternclass_id,$this->regular_subjects_data,$this->backlog_subjects_data);
                         }
 
                     } else 
@@ -142,10 +144,11 @@ class FillStudentExamFormNew extends Component
                         
                         $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $this->patternclass_id)->get();
 
-                        if (!$admission_data->isEmpty()) {
+                        if (!$admission_data->isEmpty()) 
+                        {
                             if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
                             {   
-                                // FY SEM-II Regular Student
+                                // FY SEM-II Regular Student // Done
                                 $this->regular_subjects_data = [];
                                 $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
                                 $this->check_subject_checkboxs($this->regular_subjects_data);
@@ -156,8 +159,7 @@ class FillStudentExamFormNew extends Component
                             } 
                             else 
                             {   
-                                dd('dadffasyfyhwhf');
-                                // fail student
+                                // FY SEM-II Old Year Student // Done
                                 $this->regular_subjects_data = [];
                                 $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
                                 $this->check_subject_checkboxs($this->regular_subjects_data);
@@ -165,12 +167,10 @@ class FillStudentExamFormNew extends Component
                                 $this->backlog_subjects_data = $this->student->get_backlog_subjects();
                                 $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
                                 $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
-                                // $this->regular_subjects_data_previous = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
-                                // $this->backlog_subjects_previous_sem = [];
-                                // $this->backlog_subjects_previous_sem = Subject::whereIn('id', $this->regular_subjects_data_previous->pluck('id'))->get();
-                                // $this->check_subject_checkboxs($this->backlog_subjects_previous_sem);
                             }
-                        } else {
+                        } 
+                        else 
+                        {
                             $this->dispatch('alert', type: 'info', message: 'Invalid Member ID Please Update Your Profile !!');
                         }
 
@@ -213,14 +213,12 @@ class FillStudentExamFormNew extends Component
                                         if ($current_exam_session == 2) 
                                         {
                                             // Fetch SY SEM-IV Regular Student 
-                                            dd('SY SEM-IV Regular Student ');
-                                            // $this->backlog_subjects_data = [];
-                                            // $this->backlog_subjects_data = $this->student->get_backlog_subjects();
-                                            // $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
-                                            $this->backlog_subjects_previous_sem = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
-                                            $this->check_subject_checkboxs($this->backlog_subjects_previous_sem);
+                                            $this->regular_subjects_data=[];
                                             $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 2)->get();
                                             $this->check_subject_checkboxs($this->regular_subjects_data);
+                                            $this->backlog_subjects_data = [];
+                                            $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                            $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
                                         } else 
                                         {
                                             // Fetch SY SEM-III Regular Student   // Done
@@ -234,26 +232,24 @@ class FillStudentExamFormNew extends Component
                                         }
                                     }
                                 }
-                            } else {
-                                // Fail Student
-                                dd('Fail Student');
+                            } 
+                            else 
+                            { 
+                                // FY SEM-II Fail OLD Year Student // Done
                                 $this->regular_subjects_data = [];
                                 $this->backlog_subjects_data = [];
-                                $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
-                                $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $this->patternclass_id)->get();
-                                $this->check_subject_checkboxs($this->backlog_subjects_data);
+                                $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
                             }
-                        } else {
-                            dd(' Student here');
+                        } else 
+                        {
+                            // FY SEM-II Fail Student // Done
                             $this->regular_subjects_data = [];
                             $this->backlog_subjects_data = [];
-                            $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
-                            $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $this->patternclass_id)->get();
-                            $this->check_subject_checkboxs($this->backlog_subjects_data);
-                            if ($student_marks_subject_ids->isEmpty()) {
-
-                                $this->dispatch('alert', type: 'info', message: 'Invalid Member ID Please Update Your Profile !!');
-                            }
+                            $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                            $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                            $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
                         }
                         break;
                     case 3:
@@ -276,24 +272,24 @@ class FillStudentExamFormNew extends Component
                             } 
                             else 
                             {
-                                dd('not yet');
-                                // Fail Student
+                                // Fetch FY Fail Student
                                 $this->regular_subjects_data = null;
-                                $this->regular_subjects_data_previous = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
                                 $this->check_subject_checkboxs($this->regular_subjects_data);
                                 $this->backlog_subjects_data = [];
                                 $this->backlog_subjects_data = $this->student->get_backlog_subjects();
                                 $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
                                 $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
-                                
                             }
-                        } else {
+                        } 
+                        else 
+                        {
                             $this->dispatch('alert', type: 'info', message: 'Invalid Member ID Please Update Your Profile !!');
                         }
 
                         break;
                     case 4:
-                        dd('fetch  case 4:');
+                        dd('Fetch TY');
                         $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $current_class_student_last_entry->patternclass_id + 1)->get();
 
                         if (!$admission_data->isEmpty()) {
