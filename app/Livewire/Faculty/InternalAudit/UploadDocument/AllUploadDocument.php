@@ -90,30 +90,30 @@ class AllUploadDocument extends Component
 
     public function save(Facultyinternaldocument $facultyinternaldocument)
     {
-        // Check if the record exists
-        if ($facultyinternaldocument) {
-            // Year Name
-            $year_name = isset($facultyinternaldocument->academicyear->year_name) ? $facultyinternaldocument->academicyear->year_name : 'YN';
+        if (!empty($this->file)) {
+            // Check if the record exists
+            if ($facultyinternaldocument) {
+                // Year Name
+                $year_name = isset($facultyinternaldocument->academicyear->year_name) ? $facultyinternaldocument->academicyear->year_name : 'YN';
 
-            // Patternclass ID
-            $patternclass_id = isset($facultyinternaldocument->subject->patternclass->id) ? $facultyinternaldocument->subject->patternclass->id : 'PC';
+                // Patternclass ID
+                $patternclass_id = isset($facultyinternaldocument->subject->patternclass->id) ? $facultyinternaldocument->subject->patternclass->id : 'PC';
 
-            // Faculty Name
-            $faculty_name = isset($facultyinternaldocument->faculty->faculty_name) ? $facultyinternaldocument->faculty->faculty_name : 'FN';
+                // Faculty Name
+                $faculty_name = isset($facultyinternaldocument->faculty->faculty_name) ? $facultyinternaldocument->faculty->faculty_name : 'FN';
 
-            // Subject Code
-            $subject_code = isset($facultyinternaldocument->subject->subject_code) ? $facultyinternaldocument->subject->subject_code : 'SC';
+                // Subject Code
+                $subject_code = isset($facultyinternaldocument->subject->subject_code) ? $facultyinternaldocument->subject->subject_code : 'SC';
 
-            // Tool Name
-            $tool_name = isset($facultyinternaldocument->internaltooldocument->internaltoolmaster->toolname) ? $facultyinternaldocument->internaltooldocument->internaltoolmaster->toolname : 'TN';
+                // Tool Name
+                $tool_name = isset($facultyinternaldocument->internaltooldocument->internaltoolmaster->toolname) ? $facultyinternaldocument->internaltooldocument->internaltoolmaster->toolname : 'TN';
 
-            // Document Name
-            $doc_name = isset($facultyinternaldocument->internaltooldocument->internaltooldocumentmaster->doc_name) ? $facultyinternaldocument->internaltooldocument->internaltooldocumentmaster->doc_name : 'DN';
+                // Document Name
+                $doc_name = isset($facultyinternaldocument->internaltooldocument->internaltooldocumentmaster->doc_name) ? $facultyinternaldocument->internaltooldocument->internaltooldocumentmaster->doc_name : 'DN';
 
-            // Path To Store
-            $path = 'internal-audit/' . $year_name . '/' . $patternclass_id . '/' . $faculty_name . '/' . $subject_code . '/';
+                // Path To Store
+                $path = 'internal-audit/' . $year_name . '/' . $patternclass_id . '/' . $faculty_name . '/' . $subject_code . '/';
 
-            if (isset($this->file)) {
                 // Iterate through each file
                 foreach ($this->file as $document) {
                     // Generate a unique file name for each document
@@ -131,9 +131,11 @@ class AllUploadDocument extends Component
                     ]);
                 }
                 $this->dispatch('alert', type: 'success', message: 'Document Uploaded Successfully');
+            } else {
+                $this->dispatch('alert', type: 'error', message: 'Failed To Upload Document!');
             }
         } else {
-            $this->dispatch('alert', type: 'error', message: 'Failed To Upload Document!');
+            $this->dispatch('alert', type: 'info', message: 'Please wait document is still loading!');
         }
     }
 

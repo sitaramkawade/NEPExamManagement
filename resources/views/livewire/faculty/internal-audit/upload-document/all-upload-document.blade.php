@@ -56,62 +56,67 @@
                         @endforelse
                     </x-input-select>
                     <x-input-error :messages="$errors->get('subject_id')" class="mt-1" />
-                    </div>
                 </div>
             </div>
-            <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
-                <div class="bg-primary px-2 text-center py-2 font-semibold text-white dark:text-light">
-                    Documents Pending Upload
-                </div>
+        </div>
+        <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
+            <div class="bg-primary px-2 text-center py-1 font-semibold text-white dark:text-light">
+                Documents Pending Upload ( Hint : 250KB, png, jpg/jpeg, pdf )
+                <x-spinner />
+            </div>
+            <div class="overflow-x-auto">
                 <x-table.table>
                     <x-table.thead>
-                    <x-table.tr>
-                        <x-table.th>ID</x-table.th>
-                        <x-table.th>Academic Year</x-table.th>
-                        <x-table.th>Pattern Class</x-table.th>
-                        <x-table.th>Subject Name</x-table.th>
-                        <x-table.th>Faculty Name</x-table.th>
-                        <x-table.th>Document Name</x-table.th>
-                        <x-table.th>Action</x-table.th>
-                    </x-table.tr>
-                </x-table.thead>
-                <x-table.tbody>
-                    @forelse ($documents_to_upload as $document_to_upload)
-                        <x-table.tr wire:key="{{ $document_to_upload->id }}">
-                            <x-table.td>{{ $counter++ }} </x-table.td>
-                            <x-table.td> {{ isset($document_to_upload->academicyear->year_name) ? $document_to_upload->academicyear->year_name : '' }} </x-table.td>
-                            <x-table.td>
-                                <x-table.text-scroll>
-                                    {{ (isset($document_to_upload->subject->patternclass->pattern->pattern_name) ? $document_to_upload->subject->patternclass->pattern->pattern_name : '') . ' ' . (isset($document_to_upload->subject->patternclass->courseclass->classyear->classyear_name) ? $document_to_upload->subject->patternclass->courseclass->classyear->classyear_name : '') . ' ' . (isset($document_to_upload->subject->patternclass->courseclass->course->course_name) ? $document_to_upload->subject->patternclass->courseclass->course->course_name : '') }}
-                                </x-table.text-scroll>
-                            </x-table.td>
-                            <x-table.td>
-                                <x-table.text-scroll>{{ isset($document_to_upload->subject->subject_name) ? $document_to_upload->subject->subject_name : '' }}</x-table.text-scroll>
-                            </x-table.td>
-                            <x-table.td>
-                                <x-table.text-scroll>{{ isset($document_to_upload->faculty->faculty_name) ? $document_to_upload->faculty->faculty_name : '' }}</x-table.text-scroll>
-                            </x-table.td>
-                            <x-table.td>
-                                <x-table.text-scroll>{{ isset($document_to_upload->internaltooldocumentmaster->doc_name) ? $document_to_upload->internaltooldocumentmaster->doc_name : '' }}</x-table.text-scroll>
-                            </x-table.td>
-                            <x-table.td>
-                                <x-form wire:submit.prevent="save({{ $document_to_upload->id }})">
-                                    <x-input-label wire:loading.remove wire:target="file.{{ $document_to_upload->id }}" class="py-2 text-xs" for="file.{{ $document_to_upload->id }}" :value="__('Hint : 250KB, png, jpg/jpeg, pdf')" />
-                                    <x-input-file class="text-xs file:px-2 file:rounded-sm file:mx-0 file:text-xs w-[80%]" name="file.{{ $document_to_upload->id }}" id="file.{{ $document_to_upload->id }}" wire:model="file.{{ $document_to_upload->id }}" accept="image/png, image/jpg, image/jpeg,.pdf" />
-                                    <x-input-label wire:loading.flex wire:target="file.{{ $document_to_upload->id }}" class="py-2 text-xs" for="file.{{ $document_to_upload->id }}" :value="__('Uploading...')" />
-                                    <x-table.save-btn i="0" wire:loading.attr="disabled" wire:target="file.{{ $document_to_upload->id }}" wire:loading.class.remove="cursor-pointer" wire:loading.class.add="cursor-not-allowed">save</x-table.save-btn>
-                                </x-form>
-                                    {{-- <x-table.view i="0" class="mt-2 uppercase" wire:loading.attr="disabled" wire:loading.class.add="cursor-not-allowed" >view</x-table.view>
-                                    <x-table.delete i="0" class="mt-2 uppercase" wire:loading.attr="disabled" wire:loading.class.add="cursor-not-allowed" >delete</x-table.delete> --}}
-                            </x-table.td>
-                        </x-table.tr>
-                    @empty
                         <x-table.tr>
-                            <x-table.td colSpan='8' class="text-center">No Data Found</x-table.td>
+                            <x-table.th>ID</x-table.th>
+                            <x-table.th>Academic Year</x-table.th>
+                            <x-table.th>Pattern Class</x-table.th>
+                            <x-table.th>Subject Name</x-table.th>
+                            {{-- <x-table.th>Faculty Name</x-table.th> --}}
+                            <x-table.th>Document Name</x-table.th>
+                            <x-table.th>Action</x-table.th>
                         </x-table.tr>
-                    @endforelse
-                </x-table.tbody>
-            </x-table.table>
+                    </x-table.thead>
+                    <x-table.tbody>
+                        @forelse ($documents_to_upload as $document_to_upload)
+                            <x-table.tr wire:key="{{ $document_to_upload->id }}">
+                                <x-table.td>{{ $counter++ }} </x-table.td>
+                                <x-table.td> {{ isset($document_to_upload->academicyear->year_name) ? $document_to_upload->academicyear->year_name : '' }} </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll>
+                                        {{ (isset($document_to_upload->subject->patternclass->pattern->pattern_name) ? $document_to_upload->subject->patternclass->pattern->pattern_name : '') . ' ' . (isset($document_to_upload->subject->patternclass->courseclass->classyear->classyear_name) ? $document_to_upload->subject->patternclass->courseclass->classyear->classyear_name : '') . ' ' . (isset($document_to_upload->subject->patternclass->courseclass->course->course_name) ? $document_to_upload->subject->patternclass->courseclass->course->course_name : '') }}
+                                    </x-table.text-scroll>
+                                </x-table.td>
+                                <x-table.td>
+                                    <x-table.text-scroll>{{ isset($document_to_upload->subject->subject_name) ? $document_to_upload->subject->subject_name : '' }}</x-table.text-scroll>
+                                </x-table.td>
+                                {{-- <x-table.td>
+                                    <x-table.text-scroll>{{ isset($document_to_upload->faculty->faculty_name) ? $document_to_upload->faculty->faculty_name : '' }}</x-table.text-scroll>
+                                </x-table.td> --}}
+                                <x-table.td>
+                                    <x-table.text-scroll>{{ isset($document_to_upload->internaltooldocumentmaster->doc_name) ? $document_to_upload->internaltooldocumentmaster->doc_name : '' }}</x-table.text-scroll>
+                                </x-table.td>
+                                <x-table.td>
+                                    <x-form wire:submit.prevent="save({{ $document_to_upload->id }})">
+                                        <div class="flex items-center mb-2">
+                                            <x-input-file class="text-xs file:px-2 file:rounded-sm file:text-xs w-[80%] mr-2" name="file.{{ $document_to_upload->id }}" id="file.{{ $document_to_upload->id }}" wire:model="file.{{ $document_to_upload->id }}" accept="image/png, image/jpg, image/jpeg,.pdf" />
+                                            @if (!empty($file["{$document_to_upload->id}"]))
+                                                <x-table.save-btn i="0" wire:loading.attr="disabled" wire:target="file.{{ $document_to_upload->id }}" wire:loading.class.remove="cursor-pointer" wire:loading.class.add="cursor-not-allowed">Save</x-table.save-btn>
+                                            @endif
+                                        </div>
+                                        {{-- <x-input-label wire:loading.remove wire:target="file.{{ $document_to_upload->id }}" class="py-2 text-xs" for="file.{{ $document_to_upload->id }}" :value="__('Hint : 250KB, png, jpg/jpeg, pdf')" /> --}}
+                                        <x-input-label wire:loading.flex wire:target="file.{{ $document_to_upload->id }}" class="py-0 text-xs" for="file.{{ $document_to_upload->id }}" :value="__('Uploading...')" />
+                                    </x-form>
+                                </x-table.td>
+                            </x-table.tr>
+                        @empty
+                            <x-table.tr>
+                                <x-table.td colSpan='8' class="text-center">No Data Found</x-table.td>
+                            </x-table.tr>
+                        @endforelse
+                    </x-table.tbody>
+                </x-table.table>
+            </div>
         </div>
         {{-- <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
             <div class="bg-primary text-center px-2 py-2 font-semibold text-white dark:text-light">

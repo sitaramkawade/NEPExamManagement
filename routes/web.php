@@ -228,7 +228,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('/generate/exam/order', GenerateExamOrder::class)->name('generate_exam_order');
 
   Route::get('exam/order/{id}',[ExamOrderPdfController::class,'order'])->name('examorder');
-  
+
   //Cancel Exam Order
   Route::get('cancel/exam/order/{id}',[ExamOrderPdfController::class,'cancelorder'])->name('cancelorder');
 
@@ -237,7 +237,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('/generate/faculty/order', GenerateFacultyOrder::class)->name('generate_faculty_order');
 
   //Generate Subject Order
-//   Route::get('/generate/subject/order', GenerateSubjectOrder::class)->name('generate_subject_order');
+  Route::get('/generate/subject/order', GenerateSubjectOrder::class)->name('generate_subject_order');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');
