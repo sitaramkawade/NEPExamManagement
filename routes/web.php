@@ -233,7 +233,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('cancel/exam/order/{id}',[ExamOrderPdfController::class,'cancelorder'])->name('cancelorder');
 
 
-  //Generate faculty order
+  //Generate faculty ordergenerate_subject_order
   Route::get('/generate/faculty/order', GenerateFacultyOrder::class)->name('generate_faculty_order');
 
   //Generate Subject Order
