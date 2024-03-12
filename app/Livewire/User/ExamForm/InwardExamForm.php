@@ -174,7 +174,7 @@ class InwardExamForm extends Component
             $student = $exam_form_master->student;
             $active_exam = $student->patternclass->exams()->where('launch_status', 1)->first();
             $student_current_class_entry = $student->currentclassstudents->last();
-            $datasem = $student->currentclassstudents->where('markssheetprint_status', '!=', '-1');
+            $marksheet_printed_current_class_students = $student->currentclassstudents->where('markssheetprint_status', '!=', '-1');
 
             if (is_null($student_current_class_entry)) {
                 if (is_null($student->prn)) {
@@ -350,16 +350,27 @@ class InwardExamForm extends Component
                         ]);
                         break;
                     case 4:
-                        dd("Inward case 4");
-                        if ($datasem->isEmpty()) {
-                            $sem = $student_current_class_entry->sem + 1;
-                            $pc = Patternclass::where('id', $student_current_class_entry->patternclass_id + 1)->first();
-                            $patternclass_id = $pc->id;
-                            $values = array('sem' => $sem, 'patternclass_id' => $patternclass_id);
-                            $student->currentclassstudents()->create($values);
-                            $student->studentadmissions()->create(['student_id' => $student->id, 'patternclass_id' => $patternclass_id, 'academicyear_id' => $currentexam->first()->academicyear_id], ['student_id', 'patternclass_id', 'academicyear_id']);
+                        if ($marksheet_printed_current_class_students->isEmpty()) 
+                        {
+                            $student->currentclassstudents()->create([
+                                'sem' => $student_current_class_entry->sem + 1,
+                                'patternclass_id' =>$student_current_class_entry->patternclass_id + 1,
+                                'student_id' => $exam_form_master->student_id,
+                                'college_id' => $exam_form_master->college_id,
+                                'academicyear_id' => $exam_form_master->exam->academicyear_id,
+                            ]);
+
+                            $student->studentadmissions()->create([
+                                'student_id' => $student->id, 
+                                'patternclass_id' => $student_current_class_entry->patternclass_id + 1, 
+                                'academicyear_id' => $active_exam->academicyear_id
+                                ],['student_id','patternclass_id','academicyear_id']
+                            );
                         }
-                        if ($datasem->count() == 4) {
+
+                        if ($marksheet_printed_current_class_students->count() == 4) 
+                        {   
+                            dd('ok here');
                             $sem_1_data = $student->studentresults->where('sem', 1)->last();
                            $sem_2_data = $student->studentresults->where('sem', 2)->last();
                             if (!(is_null($sem_1_data) && is_null($sem_2_data))) {
@@ -409,7 +420,7 @@ class InwardExamForm extends Component
                                     }
                                 }
                             }
-                        } else if ($datasem->count() == 2) {
+                        } else if ($marksheet_printed_current_class_students->count() == 2) {
                             $sem_1_data = $student->studentresults->where('sem', $student_current_class_entry->sem - 1)->last();
                            $sem_2_data = $student->studentresults->where('sem', $student_current_class_entry->sem)->last();
                             if (!(is_null($sem_1_data) && is_null($sem_2_data))) {
@@ -446,11 +457,14 @@ class InwardExamForm extends Component
                         }
                         break;
                     case 5:
-                        dd("Inward case 5");
-                        $sem = 6;
-                        $patternclass_id = $student_current_class_entry->patternclass->id;
-                        $values = array('sem' => $sem, 'patternclass_id' => $patternclass_id);
-                        $student->currentclassstudents()->create($values);
+                        // TY SEM-VI // Done
+                        $student->currentclassstudents()->create([
+                            'sem' =>6,
+                            'patternclass_id' =>$student_current_class_entry->patternclass_id,
+                            'student_id' => $exam_form_master->student_id,
+                            'college_id' => $exam_form_master->college_id,
+                            'academicyear_id' => $exam_form_master->exam->academicyear_id,
+                        ]);
                         break;
                 }
             }
