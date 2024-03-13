@@ -38,6 +38,7 @@ use App\Livewire\User\ExamPanel\AllExamPanel;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\ExamForm\InwardExamForm;
 use App\Livewire\User\ExamForm\ModifyExamForm;
+use App\Livewire\Faculty\FileUpload\FileUpload;
 use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
 use App\Http\Controllers\ExamOrderPdfController;
@@ -368,7 +369,6 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Document Upload
   Route::get('/all-uploadocs', AllUploadDocument::class)->name('all-uploadocs');
-
 
 });
 

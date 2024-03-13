@@ -199,9 +199,19 @@ class AllAssignTool extends Component
         try
         {
             $assigned_tool = Facultyinternaldocument::withTrashed()->find($this->delete_id);
-            $assigned_tool->forceDelete();
-            $this->delete_id = null;
-            $this->dispatch('alert',type:'success',message:'Assigned Tool Deleted Successfully !!');
+
+            if (is_null($assigned_tool->document_fileTitle) || is_null($assigned_tool->document_fileName)) {
+
+                $assigned_tool->forceDelete();
+
+
+                $this->delete_id = null;
+
+
+                $this->dispatch('alert',type:'success',message:'Assigned Tool Deleted Successfully !!');
+            } else {
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            }
         } catch (\Illuminate\Database\QueryException $e) {
 
             if ($e->errorInfo[1] == 1451) {
