@@ -4,17 +4,20 @@ namespace App\Livewire\Student\StudentExamForm;
 
 
 use App\Models\Exam;
+use App\Models\Setting;
 use App\Models\Student;
 use App\Models\Subject;
 use Livewire\Component;
+use App\Models\Examfeeview;
+use App\Models\Patternclass;
 use App\Models\Admissiondata;
 use App\Models\Examfeecourse;
 use App\Models\Examfeemaster;
 use App\Models\Examformmaster;
 use App\Models\Formtypemaster;
+use App\Models\StudentExamform;
 use Livewire\Attributes\Locked;
 use App\Models\Exampatternclass;
-use App\Models\StudentExamform;
 use App\Models\Extracreditsubject;
 use App\Models\Studentexamformfee;
 use Illuminate\Support\Facades\DB;
@@ -23,196 +26,687 @@ use Illuminate\Support\Facades\Auth;
 
 
 class FillStudentExamForm extends Component
-{  
-    public $abcid_option=['show_abcid'=>true ,'required_abcid'=>false];
-    public $medium_instruction;
-    public $page=1;
+{
+
+    public $medium_instruction = "E";
     public $abcid;
-    public $total_extra_credit;
-    public $regular_subjects=[];
-    public $backlog_subjects=[];
-    public $extra_credit_subjects=[];
-    public $exam_fee_courses=[];
-    public $backlog_subject_previous_semester=[];
-
-    protected Student $student;
-    
+    protected $count=0;
+    protected $temp = [];
     #[Locked]
-    public $patternclss_id;
+    public Student $student;
+    #[Locked]
+    public $patternclass_id;
+    #[Locked]
+    public $member_id;
+    #[Locked]
+    public $year_result = null;
+    #[Locked]
+    public $page = 1;
+    #[Locked]
+    public $abcid_option = ['show_abcid' => false, 'required_abcid' => false];
+    #[Locked]
+    public $regular_subjects_data = [];
+    #[Locked]
+    public $extra_credit_subjects_data = [];
+    #[Locked]
+    public $backlog_subjects_data = [];
+    #[Locked]
+    public $backlog_subjects_previous_sem = [];
+    #[Locked]
+    public $exam_fee_courses = [];
+    #[Locked]
+    public $internals = [];
+    #[Locked]
+    public $externals = [];
+    #[Locked]
+    public $practicals = [];
+    #[Locked]
+    public $grades = [];
+    #[Locked]
+    public $projects = [];
 
-    #[Locked] 
-    public  $internals=[];
-    #[Locked] 
-    public  $externals=[];
-    #[Locked] 
-    public  $practicals=[];
-    #[Locked] 
-    public  $grades=[];
-    #[Locked] 
-    public  $projects=[];
+    public function mount()
+    {
+        $this->student = Auth::guard('student')->user();
+        $setting = Setting::first();
+        if ($setting) {
+            if ($setting->show_abcid == 2) {
+                $this->abcid_option = ['show_abcid' => true, 'required_abcid' => true];
+            } elseif ($setting->show_abcid == 1) {
+                $this->abcid_option = ['show_abcid' => true, 'required_abcid' => false];
+            }
+        }
+        $this->member_id = $this->student->memid;
+        $this->abcid = $this->student->abcid;
+    }
 
-    
+
+    public function render()
+    {
+        $this->regular_subjects_data = [];
+        $this->extra_credit_subjects_data = [];
+        $this->backlog_subjects_data = [];
+        $this->backlog_subjects_previous_sem = [];
+        $this->exam_fee_courses = [];
+
+        $current_active_exams = Exam::Where('status', 1)->get();
+        $current_exam_session = null;
+        $current_exam_session = $current_active_exams->first()->exam_sessions;
+        $current_class_student_last_entry = $this->student->currentclassstudents->last();
+        $current_class_inward_students = $this->student->currentclassstudents->where('pfstatus', '!=', -1)->where('markssheetprint_status', '!=', -1);
+
+        if (true) {
+            if (is_null($current_class_student_last_entry)) 
+            {
+                // Fetch FY
+                $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $this->student->patternclass_id)->get();
+
+                if (!$admission_data->isEmpty()) 
+                {
+                    if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                    {
+                        if ($current_exam_session != 2) 
+                        {   
+                            // Fetch FY SEM-I Regular Student // Done
+                            $this->regular_subjects_data=[];
+                            $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', 1)->get();
+                            $this->check_subject_checkboxs($this->regular_subjects_data);
+                            $this->backlog_subjects_data=[];
+                            $this->exam_fee_courses=get_exam_form_fees($this->student->patternclass_id,$this->regular_subjects_data);
+                        } 
+                        else 
+                        {   
+                            // Fetch Direct SEM-II Regular Student With SEM-I As Backlog // Done
+                            $this->backlog_subjects_data=[];
+                            $this->backlog_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', 1)->get();
+                            $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                            $this->regular_subjects_data=[];
+                            $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', 2)->get();
+                            $this->check_subject_checkboxs($this->regular_subjects_data);
+                            $this->exam_fee_courses=get_exam_form_fees($this->student->patternclass_id,$this->regular_subjects_data,$this->backlog_subjects_data);
+                        }
+
+                    } else 
+                    {
+                        $this->dispatch('alert', type: 'info', message: 'No Admission In The Current Year !!');
+                    }
+                } else 
+                {
+                    $this->dispatch('alert', type: 'info', message: 'Invalid Member ID Please Update Your Profile !!');
+                }
+            } else 
+            {
+                switch ($current_class_student_last_entry->sem) 
+                {
+                    case 1:
+                        // Fetch FY SEM-II
+                        $this->patternclass_id = $current_class_student_last_entry->patternclass_id;
+                        
+                        $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $this->patternclass_id)->get();
+
+                        if (!$admission_data->isEmpty()) 
+                        {
+                            if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                            {   
+                                // FY SEM-II Regular Student // Done
+                                $this->regular_subjects_data = [];
+                                $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->check_subject_checkboxs($this->regular_subjects_data);
+                                $this->backlog_subjects_data = [];
+                                $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                            } 
+                            else 
+                            {   
+                                // FY SEM-II Old Year Student // Done
+                                $this->regular_subjects_data = [];
+                                $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->check_subject_checkboxs($this->regular_subjects_data);
+                                $this->backlog_subjects_data = [];
+                                $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                            }
+                        } 
+                        else 
+                        {
+                            $this->dispatch('alert', type: 'info', message: 'Invalid Member ID Please Update Your Profile !!');
+                        }
+
+                        break;
+                    case 2:
+                        // Fetch SY SEM-III
+                        $this->patternclass_id = $current_class_student_last_entry->patternclass_id+1;
+                        $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $this->patternclass_id)->get();
+                        if (!$admission_data->isEmpty()) 
+                        {   
+                            if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                            {
+                                $sem_1_data = $this->student->studentresults->where('sem', $current_class_student_last_entry->sem - 1)->last();
+                                $sem_2_data = $this->student->studentresults->where('sem', $current_class_student_last_entry->sem)->last();
+                                if (is_null($sem_1_data) && is_null($sem_2_data)) {
+                                    if ($current_class_student_last_entry->markssheetprint_status = -1) 
+                                    {   
+                                        // Fetch Direct SY SEM-III // Done
+                                        $this->regular_subjects_data=[];
+                                        $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                        $this->check_subject_checkboxs($this->regular_subjects_data);
+                                        $this->backlog_subjects_data = [];
+                                        $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                        $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                        $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                                    }
+                                } else if (!(is_null($sem_1_data) && is_null($sem_2_data))) 
+                                {
+                                    $this->year_result = $this->student->get_year_result_exam_form($sem_1_data, $sem_2_data, $current_class_student_last_entry);
+                                    if ($this->year_result == 0) 
+                                    {
+                                        // Fetch FY SEM-I-II Fail Student  /// Fee Issue
+                                        $this->regular_subjects_data = [];
+                                        $this->backlog_subjects_data = [];
+                                        $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                        $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                        $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                                    } else 
+                                    {
+                                        if ($current_exam_session == 2) 
+                                        {
+                                            // Fetch SY SEM-IV Regular Student 
+                                            $this->regular_subjects_data=[];
+                                            $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 2)->get();
+                                            $this->check_subject_checkboxs($this->regular_subjects_data);
+                                            $this->backlog_subjects_data = [];
+                                            $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                            $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                        } else 
+                                        {
+                                            // Fetch SY SEM-III Regular Student   // Done
+                                            $this->regular_subjects_data=[];
+                                            $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                            $this->check_subject_checkboxs($this->regular_subjects_data);
+                                            $this->backlog_subjects_data = [];
+                                            $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                            $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                            $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                                        }
+                                    }
+                                }
+                            } 
+                            else 
+                            { 
+                                // FY SEM-II Fail OLD Year Student // Done
+                                $this->regular_subjects_data = [];
+                                $this->backlog_subjects_data = [];
+                                $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                            }
+                        } else 
+                        {
+                            // FY SEM-II Fail Student // Done
+                            $this->regular_subjects_data = [];
+                            $this->backlog_subjects_data = [];
+                            $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                            $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                            $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                        }
+                        break;
+                    case 3:
+                        // Fetch SY SEM-IV
+                        $this->patternclass_id = $current_class_student_last_entry->patternclass_id;
+                        $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $this->patternclass_id)->get();
+
+                        if (!$admission_data->isEmpty()) 
+                        {
+                            if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                            {   
+                                // Fetch SY SEM-IV
+                                $this->regular_subjects_data=[];
+                                $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->check_subject_checkboxs($this->regular_subjects_data);
+                                $this->backlog_subjects_data = [];
+                                $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                            } 
+                            else 
+                            {
+                                // Fetch FY Fail Student
+                                $this->regular_subjects_data = null;
+                                $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->check_subject_checkboxs($this->regular_subjects_data);
+                                $this->backlog_subjects_data = [];
+                                $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                            }
+                        } 
+                        else 
+                        {
+                            $this->dispatch('alert', type: 'info', message: 'Invalid Member ID Please Update Your Profile !!');
+                        }
+
+                        break;
+                    case 4:
+                        // dd('Fetch TY');
+                        $this->patternclass_id = $current_class_student_last_entry->patternclass_id+1;
+                        $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $this->patternclass_id)->get();
+
+                        if (!$admission_data->isEmpty()) 
+                        {
+                            if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                            {
+                                if ($current_class_inward_students->isEmpty()) 
+                                {   
+                                    // Fetch SEM V // Done
+                                    $this->regular_subjects_data = [];
+                                    $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                    $this->check_subject_checkboxs($this->regular_subjects_data);
+                                    $this->backlog_subjects_data = [];
+                                    $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                    $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                    $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                                }
+
+                                if ($current_class_inward_students->count() == 4) {
+                                    $sem_1_data = $this->student->studentresults()->where('sem', 1)->last();
+                                    $sem_2_data = $this->student->studentresults()->where('sem', 2)->last();
+                                    if (!(is_null($sem_1_data) && is_null($sem_2_data))) {
+                                        $this->year_result = $this->student->get_year_result_exam_form($sem_1_data, $sem_2_data, $current_class_student_last_entry);
+
+                                        if ($this->year_result != 1) {
+                                            // Fail Repeater Student
+                                            $this->regular_subjects_data = [];
+                                            $this->backlog_subjects_data = [];
+                                            $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                            $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                            $this->check_subject_checkboxs($this->backlog_subjects_data);
+                                        } else {
+                                            $Sem3Data = $this->student->studentresults()->where('sem', 3)->last();
+                                            $Sem4Data = $this->student->studentresults()->where('sem', 4)->last();
+                                            if (!(is_null($Sem3Data) && is_null($Sem4Data))) {
+                                                $this->year_result = $this->student->get_year_result_exam_form($Sem3Data, $Sem4Data, $current_class_student_last_entry);
+
+                                                if ($this->year_result == 0) {
+                                                    // Fail Repeater Student
+                                                    $this->regular_subjects_data = [];
+                                                    $this->backlog_subjects_data = [];
+                                                    $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                                    $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                                    $this->check_subject_checkboxs($this->backlog_subjects_data);
+                                                } else {
+                                                    // Regular Student
+                                                    if ($current_exam_session == 2) {
+                                                        $this->backlog_subjects_previous_sem = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                                        $this->check_subject_checkboxs($this->backlog_subjects_previous_sem);
+                                                        $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 2)->get();
+                                                        $this->check_subject_checkboxs($this->regular_subjects_data);
+                                                    } else {
+                                                        $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                                        $this->check_subject_checkboxs($this->regular_subjects_data);
+                                                        $this->backlog_subjects_data = [];
+                                                        $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                                        $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                                        $this->check_subject_checkboxs($this->backlog_subjects_data);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if ($current_class_inward_students->count() == 2) {
+                                    $sem_1_data = $this->student->studentresults()->where('sem', $current_class_student_last_entry->sem - 1)->last();
+                                    $sem_2_data = $this->student->studentresults()->where('sem', $current_class_student_last_entry->sem)->last();
+                                    if (!(is_null($sem_1_data) && is_null($sem_2_data))) {
+
+                                        $this->year_result = $this->student->get_year_result_exam_form($sem_1_data, $sem_2_data, $current_class_student_last_entry);
+
+                                        if ($this->year_result == 0) {
+                                            // Fail Repeater Student
+                                            $this->regular_subjects_data = [];
+                                            $this->backlog_subjects_data = [];
+                                            $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                            $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                            $this->check_subject_checkboxs($this->backlog_subjects_data);
+                                        } else {
+                                            // Regular Student
+                                            $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->get();
+                                            $this->check_subject_checkboxs($this->regular_subjects_data);
+                                            $this->backlog_subjects_data = [];
+                                            $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                            $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                            $this->check_subject_checkboxs($this->backlog_subjects_data);
+                                        }
+                                    } else {
+                                        // Fail Student
+                                        $this->regular_subjects_data = [];
+                                        $this->backlog_subjects_data = [];
+                                        $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                        $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                                        $this->check_subject_checkboxs($this->backlog_subjects_data);
+                                    }
+                                }
+                            } else {
+                                $this->regular_subjects_data = [];
+                                $this->backlog_subjects_data = [];
+                                $student_marks_subject_ids = $this->student->studentmarks()->with('subject')->pluck('subject_id');
+                                $this->backlog_subjects_data = Subject::whereIn('id', $student_marks_subject_ids)->get();
+                                $this->check_subject_checkboxs($this->backlog_subjects_data);
+                                if ($student_marks_subject_ids->isEmpty()) {
+
+                                    $this->dispatch('alert', type: 'info', message: 'Invalid Member ID Please Update Your Profile !!');
+                                }
+                            }
+                        } else {
+                            $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $current_class_student_last_entry->patternclass_id)->get();
+                            if (!$admission_data->isEmpty()) {
+                                $this->regular_subjects_data = [];
+                                $this->backlog_subjects_data = [];
+                            } else {
+                                $this->dispatch('alert', type: 'info', message: 'Invalid Member ID Please Update Your Profile !!');
+                            }
+                        }
+                        break;
+                    case 5:
+                        // dd('TY SEM-V ');
+                        // TY SEM-V to SEM-VI
+                        $this->patternclass_id = $current_class_student_last_entry->patternclass_id;
+                        $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id',$this->patternclass_id)->get();
+                        if (!$admission_data->isEmpty()) 
+                        {
+                            if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
+                            {
+                                // Fetch SEM-VI
+                                $this->regular_subjects_data = [];
+                                $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->check_subject_checkboxs($this->regular_subjects_data);
+                                $this->backlog_subjects_data = [];
+                                $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                            } 
+                            else 
+                            {   
+                                // dd('TY SEM-V Fail ');
+                                // Fail Student
+                                $this->regular_subjects_data = [];
+                                $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
+                                $this->check_subject_checkboxs($this->regular_subjects_data);
+                                $this->backlog_subjects_data = [];
+                                $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                                $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                                $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                            }
+                        } else 
+                        {
+                            $this->dispatch('alert', type: 'info', message: 'Invalid Member ID Please Update Your Profile !!');
+                        }
+
+                        break;
+                    case 6:
+                        $this->regular_subjects_data = [];
+                        $this->backlog_subjects_data = [];
+                        $this->backlog_subjects_data = $this->student->get_backlog_subjects();
+                        $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
+                        $this->exam_fee_courses = get_exam_form_fees($current_class_student_last_entry->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                        break;
+                }
+
+                // $extra_credit_subject_ids = $this->student->intextracreditbatchseatnoallocations()->where('grade', '=', 'NA')->pluck('subject_id');
+
+                // if ($this->student->patternclass->courseclass->course->course_type == "PG") 
+                // {
+                //     if ($this->student->studentadmission->whereIn('academicyear_id', [1, 2])->count() >= 1) 
+                //     {
+                //         $this->extra_credit_subjects_data = Extracreditsubject::where('isactive',0)->where('course_type', $this->student->patternclass->courseclass->course->course_type)->get();
+                //         $total_extra_credits = $this->extra_credit_subjects_data->pluck('subject_credit')->sum();
+                //     } 
+                //     else 
+                //     {
+                //         $this->extra_credit_subjects_data = Extracreditsubject::where('isactive', 1)->where('course_type', $this->student->patternclass->courseclass->course->course_type)->get();
+                //         $total_extra_credits = $this->extra_credit_subjects_data->pluck('subject_credit')->sum();
+                //     }
+                // } 
+                // else 
+                // {
+                //     $this->extra_credit_subjects_data = Extracreditsubject::where('isactive', 1)->where('course_type', $this->student->patternclass->courseclass->course->course_type)->get();
+                //     $total_extra_credits = $this->extra_credit_subjects_data->pluck('subject_credit')->sum();
+                // }
+
+                // render student ,current_active_exams ,regular_subjects_data , current_exam_session , extra_credit_subjects_data ,backlog_subjects_previous_sem , total_extra_credits , backlog_subjects_data
+            }
+        }
+
+        return view('livewire.student.student-exam-form.fill-student-exam-form')->extends('layouts.student')->section('student');
+    }
+
+    public function save_exam_form()
+    {
+        $exam = Exam::where('status', 1)->first();
+
+        // Getting Launched Exam Of Pattern Class
+        $exampatternclass = Exampatternclass::where('exam_id', $exam->id)->where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->latest()->first();
+        if ($exampatternclass) {
+            // Checking Dublicate Entry
+            $existingRecord = Examformmaster::where([
+                'student_id' => $this->student->id,
+                'exam_id' => $exampatternclass->exam_id,
+                'patternclass_id' => $exampatternclass->patternclass_id,
+            ])->first();
+
+
+            // If Found Dublicte Entry Retun Error
+            if ($existingRecord) {
+                $this->dispatch('alert', type: 'error', message: 'You Are Trying To Submit The Exam Form Again.');
+                return false;
+            }
+
+            try {
+                // Init Transaction
+                DB::beginTransaction();
+
+                // Intit Total Fee
+                $total_fee = 0;
+
+                // Calculate Total Fee
+                foreach ($this->exam_fee_courses as $fee) 
+                {   
+                    $total_fee += $fee['fee'];
+                }
+               
+                // Prepare Exam Form Matser Data
+                $exam_form_master = [
+                    'medium_instruction' => $this->medium_instruction,
+                    'totalfee' => $total_fee,
+                    'student_id' => $this->student->id,
+                    'college_id' => $this->student->college_id,
+                    'exam_id' => $exampatternclass->exam_id,
+                    'patternclass_id' => $exampatternclass->patternclass_id,
+                ];
+
+                // Save Exam Form Matser Data
+                $exam_form_master_data = Examformmaster::create($exam_form_master);
+
+                // Init Student Exam Form
+                $student_exam_forms = [];
+
+                // Prepare Student Exam Form Data
+                $regular_and_backlog_subjects = collect($this->regular_subjects_data)->merge($this->backlog_subjects_data);
+
+                foreach ($regular_and_backlog_subjects as $subject) {
+                    $student_exam_form = [
+                        'exam_id' => $exam_form_master_data->exam_id,
+                        'student_id' => $this->student->id,
+                        'subject_id' => $subject->id,
+                        'examformmaster_id' => $exam_form_master_data->id,
+                        'college_id' => $this->student->college_id,
+                        'int_status' => 0,
+                        'ext_status' => 0,
+                        'int_practical_status' => 0,
+                        'grade_status' => 0,
+                        'practical_status' => 0,
+                        'project_status' => 0,
+                        'oral_status' => 0,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+
+                    // Set Checked Input
+                    switch ($subject->subject_type) {
+                        case 'I':
+                            $student_exam_form['int_status'] = 1;
+                            break;
+                        case 'G':
+                            $student_exam_form['grade_status'] = 1;
+                            break;
+                        case 'IG':
+                            $student_exam_form['int_status'] = 1;
+                            $student_exam_form['grade_status'] = 1;
+                            break;
+                        case 'P':
+                        case 'IP':
+                        case 'IE':
+                            $student_exam_form['int_status'] = 1;
+                            $student_exam_form['ext_status'] = 1;
+                            break;
+                        case 'IEG':
+                            $student_exam_form['int_status'] = 1;
+                            $student_exam_form['ext_status'] = 1;
+                            $student_exam_form['grade_status'] = 1;
+                            break;
+                        case 'IEP':
+                            $student_exam_form['int_status'] = 1;
+                            $student_exam_form['ext_status'] = 1;
+                            $student_exam_form['int_practical_status'] = 1;
+                            break;
+                    }
+
+                    $student_exam_forms[] = $student_exam_form;
+                }
+
+                // Save Student Exam Form Data
+                $student_exam_form_data = StudentExamform::insert($student_exam_forms);
+
+                // Init Student Exam Form Fee
+                $student_exam_form_fees = [];
+
+                // Prepare Student Exam Form Fee
+                foreach ($this->exam_fee_courses as $fee) {
+                    $student_exam_form_fees[] = [
+                        'examformmaster_id' => $exam_form_master_data->id,
+                        'examfees_id' => $fee['examfees_id'],
+                        'fee_amount' => $fee['fee'],
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+
+                // Save Student Exam Form Fee
+                $student_exam_form_fee_data = Studentexamformfee::insert($student_exam_form_fees);
+
+                // If All Above Work Done Then Commint It into DB
+                DB::commit();
+
+                // Notifing Success 
+                $this->dispatch('alert', type: 'success', message: 'Exam Form Saved Successfully !!');
+
+                // Redirecting To Student Dashboard
+                $this->redirect('/student/dashboard', navigate: true);
+            } catch (\Exception $e) {
+                dd($e);
+                // If Above Work Not Done Then Revert Changes
+                DB::rollback();
+
+                // Notify  Failure
+                $this->dispatch('alert', type: 'info', message: 'An Error Occurred. Transaction Rolled Back.');
+            }
+        } else {
+            // Notify  Failure
+            $this->dispatch('alert', type: 'info', message: 'Exam Not Launched For This Pattern Class !!');
+        }
+    }
+
+    // Exam Form Save
+    public function student_exam_form_save()
+    {
+        try 
+        {
+            $this->validate();
+        } 
+        catch (\Illuminate\Validation\ValidationException $e) 
+        {
+            $this->page = 1;
+            return false;
+        }
+
+        if ($this->abcid_option['show_abcid']) 
+        {
+            Auth::guard('student')->user()->update(['abcid' => $this->abcid]);
+        }
+
+        $this->student = Auth::guard('student')->user();
+        $current_class_student_last_entry = $this->student->currentclassstudents->last();
+        
+        if (!isset($current_class_student_last_entry)) 
+        {
+            $this->patternclass_id = $this->student->patternclass_id;
+            $this->save_exam_form();
+        } 
+        else 
+        {   
+            function get_patternclass_id($patternclass_id)
+            {   
+                $patternclass = Patternclass::find($patternclass_id);
+                return $patternclass->id;
+            }
+
+            switch ($current_class_student_last_entry->sem) 
+            {   
+                case 1:
+                    $this->patternclass_id = get_patternclass_id($current_class_student_last_entry->patternclass_id);
+                    $this->save_exam_form();
+                break;
+                case 2:
+                    $this->patternclass_id = get_patternclass_id($current_class_student_last_entry->patternclass_id+1);
+                    $this->save_exam_form();
+                break;
+                case 3:
+                    $this->patternclass_id = get_patternclass_id($current_class_student_last_entry->patternclass_id);
+                    $this->save_exam_form();
+                break;
+                case 4:
+                    $this->patternclass_id = get_patternclass_id($current_class_student_last_entry->patternclass_id+1);
+                    $this->save_exam_form();
+                break;
+                case 5:
+                    $this->patternclass_id = get_patternclass_id($current_class_student_last_entry->patternclass_id);
+                    $this->save_exam_form();
+                break;
+            }
+        }
+    }
+
     public function cancel()
-    {   
-        $this->redirect('/student/dashboard', navigate:true);
+    {
+        $this->redirect('/student/dashboard', navigate: true);
     }
 
     public function next_back()
-    {   
-        if($this->page==1)
-        {   
+    {
+        if ($this->page == 1) {
             $this->validate();
-            $this->page=2;
-        }else
-        {   
-            $this->page=1;
+            $this->page = 2;
+        } else {
+            $this->page = 1;
         }
     }
-    public function render()
-    {   
-        // // Init Auth Student
-        $this->student = Auth::guard('student')->user();
 
-        // Init Student ABC ID
-        $this->abcid = $this->student->abcid;
-
-        // Init Medium Instruction
-        // $this->medium_instruction = 'E';
-
-        // Init Backlog Subject IDs
-        $backlog_subject_ids=null;
-
-        // Init Regular Subjects
-        $this->regular_subjects=[];
-
-        // Init Backlog Subjects To Empty
-        $this->backlog_subjects=[];
-
-        // Init Extra Credit Subjects
-        $this->extra_credit_subjects=collect([]); 
-
-        // Init Backlog Subject Previous Semesters
-        $this->backlog_subject_previous_semester=null;
-
-        // Init Active Exam Session
-        $current_active_exam_session=null;
-
-        // Getting Active Exam 
-        $current_active_exam = Exam::Where('status',1)->get();
-
-        // Checking Active Exam Session
-        if(isset($current_active_exam->first()->exam_sessions))
-        {   
-            // Get Active Exam Session
-            $current_active_exam_session=$current_active_exam->first()->exam_sessions;
-        }
-
-        // Checking If Student Present In Current Class Student
-        $current_class_student_entry = $this->student->currentclassstudents->last();
-
-        // Checking Current Class Student Pass Fail Status And Marksheet Print status
-        // not_result_status means Not pass | Fail | ATKT #--> !PFA
-        $not_result_status=$this->student->currentclassstudents->where('pfstatus','!=','-1')->where('markssheetprint_status','!=','-1');
-        
-        // if Current Class Student is Empty
-        if(!isset($current_class_student_entry))
-        {   
-            // For First Year SEM-I Students
-
-            // Getting Student Admission Data Of That Pattern Class
-            $admission_data= Admissiondata::where('memid',$this->student->memid)->where('patternclass_id',$this->student->patternclass_id)->get();
-            
-            // Checking If Admission Data OF Student Not Empty
-            if(!$admission_data->isEmpty())
-            {                        
-                // Checking Last Entry of Student Admission Data Acdemic Year And Active Exam Academic Year
-                if($admission_data->last()->academicyear_id==$current_active_exam->first()->academicyear_id)
-                {  
-                    // if Current Active Exam Session is 1 then get Student SEM-1 Regular Subjects
-                    if($current_active_exam_session==1)
-                    {   
-                        // Setting Subjects Of SEM-1 From Admission Data Subjects Ids
-                        $this->regular_subjects=Subject::whereIn('id',$admission_data->pluck('subject_id'))->where('subject_sem',1)->get();
-
-                        // Cheking Check Boxes
-                        $this->check_subject_checkboxs($this->regular_subjects);
-
-                        $this->exam_fee_courses=Examfeecourse::where('patternclass_id',$this->student->patternclass_id)->get();
-                    }
-                    else
-                    {   // direct second sem
-                        // // Setting Subjects Of SEM-2 From Admission Data Subjects Ids
-                        // $this->regular_subjects=Subject::where('patternclass_id',$this->student->patternclass_id)->whereIn('id',$admission_data->pluck('subject_id'))->where('subject_sem',2)->get();
-                        
-                        // // Cheking Check Boxes
-                        // $this->check_subject_checkboxs($this->regular_subjects);
-
-                        // $this->exam_fee_courses=Examfeecourse::where('patternclass_id',$this->student->patternclass_id)->get();
-
-                        // $backlog_subject_ids =$this->student->get_backlog_subjects();
-
-                        // dd(  $backlog_subject_ids);
-                        // // Setting Backlog Subjects Of SEM-1 From Admission Data Subjects Ids
-                        // $this->backlog_subjects=Subject::whereIn('id',)->get();
-                    }
-
-                    //  #-> Getting Extra Credit Subject IDs From
-                    //$extra_credit_subject_ids=$this->student->intextracreditbatchseatnoallocations->where('grade','=','NA')->pluck('subject_id');
-                    
-                    // Setting Extra Credit Subject of Course Class
-                    $this->extra_credit_subjects=Extracreditsubject::where('status',1)->where('course_type',$this->student->patternclass->courseclass->course->course_type)->get();
-
-                    // Cheking Check Boxes
-                    $this->check_subject_checkboxs($this->extra_credit_subjects);
-
-                    // Setting Total Extra Credit Count
-                    $this->total_extra_credit= $this->extra_credit_subjects->pluck('subject_credit')->sum();  
-                }
-                else
-                {   
-                    $this->dispatch('alert',type:'info',message:'No Admission Found In The Current Academic Year !!');
-                }
-            }
-            else
-            {   
-                $this->dispatch('alert',type:'info',message:'Invalid Member ID Please Update Your Profile !!');
-            }
-        }
-        else
-        {   
-            // Setting Subjects Of SEM-2 From Admission Data Subjects Ids
-            $this->regular_subjects=Subject::where('patternclass_id',$this->student->patternclass_id)->where('subject_sem',2)->get();
-                        
-            // Cheking Check Boxes
-            $this->check_subject_checkboxs($this->regular_subjects);
-
-            $this->exam_fee_courses=Examfeecourse::where('patternclass_id',$this->student->patternclass_id)->get();
-
-            $backlog_subject_ids=$this->student->get_backlog_subjects();
-
-            // Setting Backlog Subjects Of SEM-1 From Admission Data Subjects Ids
-            $this->backlog_subjects=Subject::whereIn('id',$backlog_subject_ids['subject_ids'] )->get();
-            $this->check_subject_checkboxs($this->backlog_subjects);
-            $this->dispatch('alert',type:'info',message:'Comming Soon !!');
-        }
-
-        return view('livewire.student.student-exam-form.student-exam-form')->extends('layouts.student')->section('student');
-    }
-
-    // // Get SEM 1 Subjects For Fist Year
-    // public function get_sem_1_regular_subjects()
-    // {   
-
-    //     $subjectids = Admissiondata::select('subject_id')->where('memid',$this->student->memid)->where('patternclass_id', $this->patternclss_id)->get();
-    //     dd(   Subject::where('subject_sem',1)->whereIn('id',$subjectids)->where('patternclass_id', $this->patternclss_id)->get() );
-    //     return  Subject::where('subject_sem',1)->whereIn('id',$subjectids)->where('patternclass_id', $this->patternclss_id)->get();
-    // }
-    
     protected function rules()
     {
         return [
-            'abcid' => [  ($this->abcid_option['required_abcid'] ? 'required' : 'nullable'),'numeric','digits:12','unique:students,abcid,'.Auth::guard('student')->user()->id],
-            'medium_instruction' => ['required','string',],
+            'abcid' => [($this->abcid_option['required_abcid'] ? 'required' : 'nullable'), 'numeric', 'digits:12', 'unique:students,abcid,' . Auth::guard('student')->user()->id],
+            'medium_instruction' => ['required', 'string',],
         ];
     }
 
@@ -221,7 +715,7 @@ class FillStudentExamForm extends Component
         return [
             'medium_instruction.required' => 'Medium Of Instruction is required.',
             'medium_instruction.string' => 'Medium Of Instruction must be a String.',
-            'abcid.unique'=>'The ABC ID has been taken.',
+            'abcid.unique' => 'The ABC ID has been taken.',
             'abcid.required' => 'ABC ID is required.',
             'abcid.numeric' => 'The ABC ID must be a number.',
             'abcid.digits' => 'The ABC ID must be 12 digits.',
@@ -233,436 +727,81 @@ class FillStudentExamForm extends Component
         $this->validateOnly($propertyName);
     }
 
-    // Check Subject checkboxes 
+    //Check Subject checkboxes 
     protected function check_subject_checkboxs($subjects)
     {
-        foreach($subjects as $subjects)
-        {   
-            if( $subjects->subject_type=="IE")
-            {
-                $this->internals[$subjects->id]=true;
-                $this->externals[$subjects->id]=true;
-            }
-            
-            if( $subjects->subject_type=="IEP")
-            {
-                $this->internals[$subjects->id]=true;
-                $this->externals[$subjects->id]=true;
-                $this->practicals[$subjects->id]=true;
+        foreach ($subjects as $subjects) {
+            if ($subjects->subject_type == "IE") {
+                $this->internals[$subjects->id] = true;
+                $this->externals[$subjects->id] = true;
             }
 
-            if( $subjects->subject_type=="IEG")
-            {
-                $this->internals[$subjects->id]=true;
-                $this->externals[$subjects->id]=true;
-                $this->grades[$subjects->id]=true;
+            if ($subjects->subject_type == "IEP") {
+                $this->internals[$subjects->id] = true;
+                $this->externals[$subjects->id] = true;
+                $this->practicals[$subjects->id] = true;
             }
 
-            if( $subjects->subject_type=="IEP")
-            {
-                $this->internals[$subjects->id]=true;
-                $this->externals[$subjects->id]=true;
-                $this->practicals[$subjects->id]=true;
-            }
-            
-            if( $subjects->subject_type=="IP")
-            {
-                $this->internals[$subjects->id]=true;
-                $this->practicals[$subjects->id]=true;
+            if ($subjects->subject_type == "IEG") {
+                $this->internals[$subjects->id] = true;
+                $this->externals[$subjects->id] = true;
+                $this->grades[$subjects->id] = true;
             }
 
-            if( $subjects->subject_type=="IG")
-            {
-                $this->internals[$subjects->id]=true;
-                $this->grades[$subjects->id]=true;
-            }
-            
-            if( $subjects->subject_type=="I")
-            {
-                $this->internals[$subjects->id]=true;
+            if ($subjects->subject_type == "IEP") {
+                $this->internals[$subjects->id] = true;
+                $this->externals[$subjects->id] = true;
+                $this->practicals[$subjects->id] = true;
             }
 
-            if( $subjects->subject_type=="P")
-            {
-                $this->projects[$subjects->id]=true;
+            if ($subjects->subject_type == "IP") {
+                $this->internals[$subjects->id] = true;
+                $this->practicals[$subjects->id] = true;
             }
 
-            if( $subjects->subject_type=="G")
-            {
-                $this->grades[$subjects->id]=true;
+            if ($subjects->subject_type == "IG") {
+                $this->internals[$subjects->id] = true;
+                $this->grades[$subjects->id] = true;
+            }
+
+            if ($subjects->subject_type == "I") {
+                $this->internals[$subjects->id] = true;
+            }
+
+            if ($subjects->subject_type == "P") {
+                $this->projects[$subjects->id] = true;
+            }
+
+            if ($subjects->subject_type == "G") {
+                $this->grades[$subjects->id] = true;
             }
         }
     }
 
+    //Check Backlog Subject checkboxes 
+    protected function check_backlog_subject_checkboxs($subjects)
+    {
+        foreach ($subjects as $subject) {
 
-    // // Get SEM Wise Subjects
-    // public function get_sem_subjects($sem)
-    // {
-    //     return Subject::where('subject_sem',$sem)->where('patternclass_id', $this->patternclss_id)->get();
-    // }
-
-    //  Save Exam Form SEM-1
-    public function save_sem_1_exam_form()
-    {  
-        // Getting Exam Form
-        $formtype=Formtypemaster::where('form_name','Exam Form')->first();
-
-        // Getting Fee Ids
-        $examfeemasterids=Examfeemaster::where('form_type_id', $formtype->id)->pluck('id');
-
-        // Getting Exam Fee Courses Of Pattern Class
-        $examfeecourse = Examfeecourse::whereIn('examfees_id',$examfeemasterids)->where('patternclass_id', $this->patternclass_id)->get();
-
-        // Getting Launched Exam Of Pattern Class
-        $exampatternclass = Exampatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
-        if ($exampatternclass) 
-        {   
-            // Checking Dublicate Entry
-            $existingRecord = Examformmaster::where([
-                'student_id' => $this->student->id,
-                'exam_id' => $exampatternclass->exam_id,
-                'patternclass_id' => $exampatternclass->patternclass_id,
-            ])->first();
-            
-            // If Found Dublicte Entry Retun Error
-            if ($existingRecord) 
-            {
-                $this->dispatch('alert',type:'error',message:'You Are Trying To Submit The Exam Form Again.');
-                return false;
+            if ($subject->subject_type == "I" || $subject->subject_type == "IP" || $subject->subject_type == "IE" || $subject->subject_type == "IG" || $subject->subject_type == "IEP" || $subject->subject_type == "IEG") {
+                $this->internals[$subject->id] = true;
             }
 
-            try 
-            {   
-                // Init Transaction
-                DB::beginTransaction();
-
-                // Intit Total Fee
-                $total_fee = 0;
-
-                // Calculate Total Fee
-                foreach ($examfeecourse as $fee) 
-                {
-                    $total_fee= $total_fee + $fee->fee;
-                }
-
-                // Prepare Exam Form Matser Data
-                $exam_form_master = [
-                    'medium_instruction' => $this->medium_instruction,
-                    'totalfee' => $total_fee,
-                    'student_id' => $this->student->id,
-                    'college_id' => $this->student->college_id,
-                    'exam_id' => $exampatternclass->exam_id,
-                    'patternclass_id' => $exampatternclass->patternclass_id,
-                ];
-
-                 // Save Exam Form Matser Data
-                $exam_form_master_data = Examformmaster::create($exam_form_master);
-
-                // Init Student Exam Form
-                $student_exam_forms = [];
-
-                // Prepare Student Exam Form Data
-                foreach ($this->regular_subjects as $subject) 
-                {
-                    $student_exam_form = [
-                        'exam_id' => $exam_form_master_data->exam_id,
-                        'student_id' => $this->student->id,
-                        'subject_id' => $subject->id,
-                        'examformmaster_id' => $exam_form_master_data->id,
-                        'college_id' => $this->student->college_id,
-                        'int_status' => 0,
-                        'ext_status' => 0,
-                        'int_practical_status' => 0,
-                        'grade_status' => 0,
-                        'practical_status' => 0,
-                        'project_status' => 0,
-                        'oral_status' => 0,
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ];
-
-                    // Set Checked Input
-                    switch ($subject->subject_type) 
-                    {
-                        case 'I':
-                            $student_exam_form['int_status'] = 1;
-                        break;
-                        case 'G':
-                            $student_exam_form['grade_status'] = 1;
-                        break;
-                        case 'IG':
-                            $student_exam_form['int_status'] = 1;
-                            $student_exam_form['grade_status'] = 1;
-                        break;
-                        case 'P':
-                        case 'IP':
-                        case 'IE':
-                            $student_exam_form['int_status'] = 1;
-                            $student_exam_form['ext_status'] = 1;
-                        break;
-                        case 'IEG':
-                            $student_exam_form['int_status'] = 1;
-                            $student_exam_form['ext_status'] = 1;
-                            $student_exam_form['grade_status'] = 1;
-                        break;
-                        case 'IEP':
-                            $student_exam_form['int_status'] = 1;
-                            $student_exam_form['ext_status'] = 1;
-                            $student_exam_form['int_practical_status'] = 1;
-                        break;
-                    }
-
-                    $student_exam_forms[] = $student_exam_form;
-                }
-
-                // Save Student Exam Form Data
-                $student_exam_form_data = StudentExamform::insert($student_exam_forms);
-
-                // Init Student Exam Form Fee
-                $student_exam_form_fees = [];
-
-                // Prepare Student Exam Form Fee
-                foreach ($examfeecourse as $fee) 
-                {
-                    $student_exam_form_fees[] = [
-                        'examformmaster_id' =>$exam_form_master_data->id,
-                        'examfees_id' => $fee->examfees_id,
-                        'fee_amount' => $fee->fee,
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ];
-                }
-
-                // Save Student Exam Form Fee
-                $student_exam_form_fee_data=Studentexamformfee::insert($student_exam_form_fees);
-
-                // If All Above Work Done Then Commint It into DB
-                DB::commit();
-
-                // Notifing Success 
-                $this->dispatch('alert',type:'success',message:'Exam Form Saved Successfully !!');
-
-                // Redirecting To Student Dashboard
-                $this->redirect('/student/dashboard', navigate:true);
-            }
-            catch (\Exception $e) 
-            {   
-                // If Above Work Not Done Then Revert Changes
-                DB::rollback();
-
-                // Notify  Failure
-                $this->dispatch('alert', type: 'info', message: 'An Error Occurred. Transaction Rolled Back.');
-            }
-        } 
-        else 
-        {   
-            // Notify  Failure
-            $this->dispatch('alert',type:'info',message:'Exam Not Launched For This Pattern Class !!');
-        }
-    }
-
-    public function save_sem_2_exam_form()
-    {  
-        dd();
-        // Getting Exam Form
-        $formtype=Formtypemaster::where('form_name','Exam Form')->first();
-
-        // Getting Fee Ids
-        $examfeemasterids=Examfeemaster::where('form_type_id', $formtype->id)->pluck('id');
-
-        // Getting Exam Fee Courses Of Pattern Class
-        $examfeecourse = Examfeecourse::whereIn('examfees_id',$examfeemasterids)->where('patternclass_id', $this->patternclass_id)->get();
-
-        // Getting Launched Exam Of Pattern Class
-        $exampatternclass = Exampatternclass::where('launch_status', 1)->where('patternclass_id', $this->patternclass_id)->first();
-        if ($exampatternclass) 
-        {   
-            // Checking Dublicate Entry
-            $existingRecord = Examformmaster::where([
-                'student_id' => $this->student->id,
-                'exam_id' => $exampatternclass->exam_id,
-                'patternclass_id' => $exampatternclass->patternclass_id,
-            ])->first();
-            
-            // If Found Dublicte Entry Retun Error
-            if ($existingRecord) 
-            {
-                $this->dispatch('alert',type:'error',message:'You Are Trying To Submit The Exam Form Again.');
-                return false;
+            if ($subject->subject_type == "E" || $subject->subject_type == "IE" || $subject->subject_type == "IEP" || $subject->subject_type == "EP" || $subject->subject_type == "EP" || $subject->subject_type == "EINTP" || $subject->subject_type == "IEG" || $subject->subject_type == "EG") {
+                $this->externals[$subject->id] = true;
             }
 
-            try 
-            {   
-                // Init Transaction
-                DB::beginTransaction();
-
-                // Intit Total Fee
-                $total_fee = 0;
-
-                // Calculate Total Fee
-                foreach ($examfeecourse as $fee) 
-                {
-                    $total_fee= $total_fee + $fee->fee;
-                }
-
-                // Prepare Exam Form Matser Data
-                $exam_form_master = [
-                    'medium_instruction' => $this->medium_instruction,
-                    'totalfee' => $total_fee,
-                    'student_id' => $this->student->id,
-                    'college_id' => $this->student->college_id,
-                    'exam_id' => $exampatternclass->exam_id,
-                    'patternclass_id' => $exampatternclass->patternclass_id,
-                ];
-
-                 // Save Exam Form Matser Data
-                $exam_form_master_data = Examformmaster::create($exam_form_master);
-
-                // Init Student Exam Form
-                $student_exam_forms = [];
-                $regular_and_backlog_subjects = array_merge($this->regular_subjects, $this->backlog_subjects);
-
-                dd( $regular_and_backlog_subjects);
-                // Prepare Student Exam Form Data
-                foreach ($this->regular_and_backlog_subjects as $subject) 
-                {
-                    $student_exam_form = [
-                        'exam_id' => $exam_form_master_data->exam_id,
-                        'student_id' => $this->student->id,
-                        'subject_id' => $subject->id,
-                        'examformmaster_id' => $exam_form_master_data->id,
-                        'college_id' => $this->student->college_id,
-                        'int_status' => 0,
-                        'ext_status' => 0,
-                        'int_practical_status' => 0,
-                        'grade_status' => 0,
-                        'practical_status' => 0,
-                        'project_status' => 0,
-                        'oral_status' => 0,
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ];
-
-                    // Set Checked Input
-                    switch ($subject->subject_type) 
-                    {
-                        case 'I':
-                            $student_exam_form['int_status'] = 1;
-                        break;
-                        case 'G':
-                            $student_exam_form['grade_status'] = 1;
-                        break;
-                        case 'IG':
-                            $student_exam_form['int_status'] = 1;
-                            $student_exam_form['grade_status'] = 1;
-                        break;
-                        case 'P':
-                        case 'IP':
-                        case 'IE':
-                            $student_exam_form['int_status'] = 1;
-                            $student_exam_form['ext_status'] = 1;
-                        break;
-                        case 'IEG':
-                            $student_exam_form['int_status'] = 1;
-                            $student_exam_form['ext_status'] = 1;
-                            $student_exam_form['grade_status'] = 1;
-                        break;
-                        case 'IEP':
-                            $student_exam_form['int_status'] = 1;
-                            $student_exam_form['ext_status'] = 1;
-                            $student_exam_form['int_practical_status'] = 1;
-                        break;
-                    }
-
-                    $student_exam_forms[] = $student_exam_form;
-                }
-
-                // Save Student Exam Form Data
-                $student_exam_form_data = StudentExamform::insert($student_exam_forms);
-
-                // Init Student Exam Form Fee
-                $student_exam_form_fees = [];
-
-                // Prepare Student Exam Form Fee
-                foreach ($examfeecourse as $fee) 
-                {
-                    $student_exam_form_fees[] = [
-                        'examformmaster_id' =>$exam_form_master_data->id,
-                        'examfees_id' => $fee->examfees_id,
-                        'fee_amount' => $fee->fee,
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ];
-                }
-
-                // Save Student Exam Form Fee
-                $student_exam_form_fee_data=Studentexamformfee::insert($student_exam_form_fees);
-
-                // If All Above Work Done Then Commint It into DB
-                DB::commit();
-
-                // Notifing Success 
-                $this->dispatch('alert',type:'success',message:'Exam Form Saved Successfully !!');
-
-                // Redirecting To Student Dashboard
-                $this->redirect('/student/dashboard', navigate:true);
+            if (($subject->subjectcategory->subjectcategory != 'Project') && ($subject->subject_type == "P" || $subject->subject_type == "INTP" || $subject->subject_type == "IP" || $subject->subject_type == "IEP" || $subject->subject_type == "EP" || $subject->subject_type == "EINTP")) {
+                $this->practicals[$subject->id] = true;
             }
-            catch (\Exception $e) 
-            {   
-                // If Above Work Not Done Then Revert Changes
-                DB::rollback();
 
-                // Notify  Failure
-                $this->dispatch('alert', type: 'info', message: 'An Error Occurred. Transaction Rolled Back.');
+            if ($subject->subject_type == "G" || $subject->subject_type == "IG") {
+                $this->grades[$subject->id] = true;
             }
-        } 
-        else 
-        {   
-            // Notify  Failure
-            $this->dispatch('alert',type:'info',message:'Exam Not Launched For This Pattern Class !!');
-        }
-    }
 
-    // Exam Form Save
-    public function student_exam_form_save()
-    {       
-        try 
-        {
-            $this->validate();
-        } 
-        catch (\Illuminate\Validation\ValidationException $e) 
-        {
-            $this->page = 1;
-            return false;
-        }
-
-        // If Public Property show_abcid Is Set Update ABCID
-        if($this->abcid_option['show_abcid'])
-        {   
-            Auth::guard('student')->user()->update(['abcid'=>$this->abcid]);
-        }
-
-        // Setting Student
-        $this->student = Auth::guard('student')->user();
-
-        // Checking If Student Present In Current Class Student
-        $current_class_student_entry = $this->student->currentclassstudents->last();
-        
-        // if Current Class Student is Empty
-        if (!isset($current_class_student_entry)) 
-        {  
-            // For First Year SEM-I Students
-            $this->patternclass_id = $this->student->patternclass_id;
-
-            // Saving SEM-1 Exam Form
-            $this->save_sem_1_exam_form();
-        }
-        else
-        {   
-            //sem 2 ,3,4,5,6
-            $this->patternclass_id =$current_class_student_entry->patternclass_id;
-            $this->save_sem_2_exam_form();
+            if ($subject->subject_type == "P" || $subject->subject_type == "IP" || $subject->subject_type == "INTP") {
+                $this->projects[$subject->id] = true;
+            }
         }
     }
 }
-
