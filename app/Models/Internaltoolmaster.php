@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Internaltoolview;
+use App\Models\Internaltooldocument;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,5 +23,18 @@ class Internaltoolmaster extends Model
     public function internaltoolview():HasMany
     {
         return $this->hasMany(Internaltoolview::class,'internaltoolmaster_id','id')->withTrashed();
+    }
+
+    public function internaltooldocuments():HasMany
+    {
+        return $this->hasMany(Internaltooldocument::class,'internaltoolmaster_id','id');
+    }
+
+    public function scopeSearch(Builder $query,string $search)
+    {
+        return $query->where(function ($subquery) use ($search) {
+            $subquery->where('toolname', 'like', "%{$search}%")
+            ->orWhere('course_type', 'like', "%{$search}%");
+        });
     }
 }
