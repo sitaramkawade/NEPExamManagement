@@ -78,6 +78,7 @@ use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
+use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Livewire\Faculty\InternalAudit\AssignTool\AllAssignTool;
 use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
@@ -131,7 +132,7 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
   Route::get('/helpline',Helpline::class)->name('helpline');
 
   // Student Exam Form
-  Route::post('/exam/form',FillStudentExamFormNew::class)->name('student_exam_form');
+  Route::post('/exam/form',FillStudentExamForm::class)->name('student_exam_form');
 
   // Student Delete Exam Form
   Route::post('/delete/exam/form',DeleteStudentExamForm::class)->name('student_delete_exam_form');
@@ -234,7 +235,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('cancel/exam/order/{id}',[ExamOrderPdfController::class,'cancelorder'])->name('cancelorder');
 
 
-  //Generate faculty order
+  //Generate faculty ordergenerate_subject_order
   Route::get('/generate/faculty/order', GenerateFacultyOrder::class)->name('generate_faculty_order');
 
   //Generate Subject Order
