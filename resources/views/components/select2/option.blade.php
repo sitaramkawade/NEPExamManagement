@@ -1,4 +1,4 @@
-<option {!! $attributes->merge(['class' => '','value'=>'']) !!}>
+<option {!! $attributes !!}>
     {{ $slot }}
 </option>
   
