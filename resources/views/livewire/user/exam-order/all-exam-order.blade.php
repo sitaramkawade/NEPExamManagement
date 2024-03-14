@@ -42,7 +42,7 @@
                                 <x-table.tr wire:key="{{ $examorder->id }}">
                                     <x-table.td> {{ $examorder->id }} </x-table.td>
                                     <x-table.td>
-                                        <x-table.text-scroll> {{ isset($examorder->exampanel->faculty->faculty_name) ? $examorder->exampanel->faculty->faculty_name : '-' }} {{ isset($examorder->exampanel->examorderpost->post_name) ? $examorder->exampanel->examorderpost->post_name : '-' }} {{ isset($examorder->exampanel->subject->subject_name) ? $examorder->exampanel->subject->subject_name : '-' }} </x-table.text-scroll>
+                                        <x-table.text-scroll> {{ isset($examorder->exampanel->faculty->faculty_name) ? $examorder->exampanel->faculty->faculty_name : '-' }}  </x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td> <x-table.text-scroll>{{ isset($examorder->exampatternclass->exam->exam_name) ? $examorder->exampatternclass->exam->exam_name : '-' }} {{ isset($examorder->exampatternclass->patternclass->pattern->pattern_name) ? $examorder->exampatternclass->patternclass->pattern->pattern_name : '-' }} {{ isset($examorder->exampatternclass->patternclass->courseclass->classyear->classyear_name) ? $examorder->exampatternclass->patternclass->courseclass->classyear->classyear_name : '-' }} {{ isset($examorder->exampatternclass->patternclass->courseclass->course->course_name) ? $examorder->exampatternclass->patternclass->courseclass->course->course_name : '-' }} </x-table.text-scroll></x-table.td>
                                     <x-table.td> {{ $examorder->description }} </x-table.td>                          

@@ -31,26 +31,22 @@ class SendEmailJob implements ShouldQueue
           
             $examOrder = Examorder::find($examOrderId);
            if($examOrder)
-        {
+            {
              $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
-            //  $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
-            //  \Log::debug($url);
-          
-            //  $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
            
-            $details = [
-                'subject' => 'Hello',
-                'title' => 'Your Appointment for Cancel Examination Work (Sangamner College Mail Notification)',
-                'body' => 'This is sample content we have added for this test mail',
-                'examorder_id' => $examOrder->id,
-                'url' => $url,
-            ];
+                $details = [
+                    'subject' => 'Hello',
+                    'title' => 'Your Appointment for Cancel Examination Work (Sangamner College Mail Notification)',
+                    'body' => 'This is sample content we have added for this test mail',
+                    'examorder_id' => $examOrder->id,
+                    'url' => $url,
+                ];
 
-            Mail::to(trim($examOrder->exampanel->faculty->email))
-            ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
-            ->send(new MyTestMail($details));
+                Mail::to(trim($examOrder->exampanel->faculty->email))
+                ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
+                ->send(new MyTestMail($details));
 
-        }
+            }
         }   
         
     }

@@ -86,23 +86,6 @@ class AllExamOrder extends Component
         $this->mode=$mode;
     }
 
-    public function add(Examorder  $examorder ){
-        
-        $validatedData= $this->validate();
-       
-        if ($validatedData) {
-
-        $examorder->exampanel_id= $this->exampanel_id;
-        $examorder->exam_patternclass_id=  $this->exam_patternclass_id;
-        $examorder->description=  $this->description;
-        $examorder->email_status= $this->email_status;
-        }
-        $examorder->save();
-
-        $this->dispatch('alert',type:'success',message:'Exam Order Added Successfully !!'  );
-        $this->setmode('all');
-    }
-
     public function deleteconfirmation($id)
     {
         $this->delete_id=$id;
@@ -155,7 +138,7 @@ class AllExamOrder extends Component
    Public function cancelOrder(Examorder $examorder)
    {
 
-         $examOrderIds=$examorder->id;
+         $examOrderIds=$examorder;
          CancelOrderJob::dispatch([$examOrderIds]);
             
          $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
@@ -168,6 +151,19 @@ class AllExamOrder extends Component
         SendEmailJob::dispatch([$examOrderIds]);
 
         $this->dispatch('alert',type:'success',message:'Emails have been resent successfully !!'  );
+        // $url=route('user.examorder', ['id' => $examorder->id,'token' =>$examorder->token]);
+ 
+        // $details = [
+        //     'subject'=>'Hello',
+        //     'title' => 'Your Appoinment for Examination Work (Sangamner College Mail Notification)',
+        //     'body' => 'This is sample content we have added for this test mail',
+        //     'examorder_id'=> $examorder->id,
+        //     'url'=>$url,
+        // ];
+    
+        // Mail::to(trim($examorder->exampanel->faculty->email))
+        //  ->cc(['exam.unit@sangamnercollege.edu.in','coeautonoumous@sangamnercollege.edu.in'])
+        // ->send(new \App\Mail\MyTestMail($details));
     }
 
     public function bulkResend()

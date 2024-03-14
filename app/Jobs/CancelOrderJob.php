@@ -30,9 +30,9 @@ class CancelOrderJob implements ShouldQueue
     {
         foreach ($this->examOrderIds as $examOrderId) {
           
-            $examOrders = Examorder::find($examOrderId);
+            $examOrder = Examorder::find($examOrderId);
 
-            foreach($examOrders as $examOrder)
+            if($examOrder)
         {
             $url = route('user.cancelorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
     
