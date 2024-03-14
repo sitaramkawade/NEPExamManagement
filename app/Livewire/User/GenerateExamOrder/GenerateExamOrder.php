@@ -61,6 +61,7 @@ class GenerateExamOrder extends Component
                         'exam_patternclass_id' => $exampatternclass->id,
                         'email_status' => '0',
                         'description' => '',
+                        'token'=>  $token,
                         'created_at' => now(),
                         'updated_at' => now(),                 
                     ];

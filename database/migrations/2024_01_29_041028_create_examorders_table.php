@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign('exam_patternclass_id')->references('id')->on('exam_patternclasses');
                   
             $table->string('description',50)->nullable();
+            $table->string('token',50)->nullable();
             $table->tinyInteger('email_status')->default('0');  //0 means not sent
             $table->softDeletes();
             $table->timestamps();

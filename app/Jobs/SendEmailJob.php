@@ -27,16 +27,20 @@ class SendEmailJob implements ShouldQueue
 
     public function handle(): void
     {
-       
         foreach ($this->examOrderIds as $examOrderId) {
           
             $examOrder = Examorder::find($examOrderId);
-        
-            $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
-    
+           if($examOrder)
+        {
+             $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
+            //  $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
+            //  \Log::debug($url);
+          
+            //  $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
+           
             $details = [
                 'subject' => 'Hello',
-                'title' => 'Your Appointment for Examination Work (Sangamner College Mail Notification)',
+                'title' => 'Your Appointment for Cancel Examination Work (Sangamner College Mail Notification)',
                 'body' => 'This is sample content we have added for this test mail',
                 'examorder_id' => $examOrder->id,
                 'url' => $url,
@@ -46,11 +50,9 @@ class SendEmailJob implements ShouldQueue
             ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
             ->send(new MyTestMail($details));
 
-            $examOrder -> email_status = 1;
-            $examOrder->update();
-        
-        
         }
+        }   
+        
     }
 }
 

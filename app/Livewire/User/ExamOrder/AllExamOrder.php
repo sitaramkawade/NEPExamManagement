@@ -8,6 +8,8 @@ use App\Mail\MyTestMail;
 use App\Models\Examorder;
 use App\Models\Exampanel;
 use App\Jobs\SendEmailJob;
+use App\Jobs\BulkCancelJob;
+use App\Jobs\ResendMailJob;
 use App\Jobs\CancelOrderJob;
 use Livewire\WithPagination;
 use App\Mail\CancelOrderMail;
@@ -156,51 +158,48 @@ class AllExamOrder extends Component
          $examOrderIds=$examorder->id;
          CancelOrderJob::dispatch([$examOrderIds]);
             
-        $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
+         $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
 
    }
 
    public function resendMail(Examorder $examorder)
-   {
-  
+    {
         $examOrderIds=$examorder->id;
         SendEmailJob::dispatch([$examOrderIds]);
 
         $this->dispatch('alert',type:'success',message:'Emails have been resent successfully !!'  );
     }
 
+    public function bulkResend()
+    {
 
-    public function update(Examorder  $examorder){
-
-        $validatedData= $this->validate();
+        $examorders=Examorder::where('email_status',1)->get();
        
-        if ($validatedData) {        
-            $examorder->exampanel_id= $this->exampanel_id;
-            $examorder->exam_patternclass_id= $this->exam_patternclass_id;
-            $examorder->description= $this->description;
-            $examorder->email_status= $this->email_status;
-        }
+        $examOrderIds=$examorders;
+        SendEmailJob::dispatch([$examOrderIds]);
+        $this->dispatch('alert',type:'success',message:'Emails have been resent successfully !!'  );
 
-        $examorder->update();
-        $this->dispatch('alert',type:'success',message:'Exam Order Updated Successfully !!'  );
-        $this->setmode('all');
+        // dd($this->dispatch);
     }
 
-    public function export()
-    {   
-        $filename="Exam-Order-".now();
-        switch ($this->ext) {
-            case 'xlsx':
-                return Excel::download(new ExportExamOrder($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
-            break;
-            case 'csv':
-                return Excel::download(new ExportExamOrder($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
-            break;
-            case 'pdf':
-                return Excel::download(new ExportExamOrder($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
-            break;
-        }     
+    public function bulkCancel()
+    {
+        $examorders=Examorder::where('email_status',1)->get();
+        $examOrderIds=$examorders;
+        CancelOrderJob::dispatch([$examOrderIds]);
+        $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
+       
     }
+
+    public function bulkDelete()
+    {
+
+        $examOrders = Examorder::withTrashed()->where('email_status', 0)->forcedelete();
+        // $examOrders->delete();
+
+        $this->dispatch('alert',type:'success',message:'Exam Order have been Deleted !!'  );      
+    }
+
 
     public function sort_column($column)
     {

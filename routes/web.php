@@ -199,8 +199,8 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('/examTimeTables', AllExamTimeTable::class)->name('all_examTimeTable');
   Route::get('exam/timetable/pdf/{exampatternclass}',[ExamOrderPdfController::class,'timetable'])->name('timetables');
 
-    //All Exam Time Table Subject-Wise
-    Route::get('/examTimeTables/subject', SubjectExamTimeTable::class)->name('all_examTimeTable_subject');
+  //All Exam Time Table Subject-Wise
+  Route::get('/examTimeTables/subject', SubjectExamTimeTable::class)->name('all_examTimeTable_subject');
 
   //All Buildings
   Route::get('/building', AllBuilding::class)->name('all_builidng');
@@ -226,11 +226,11 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Generate Exam Order
   Route::get('/generate/exam/order', GenerateExamOrder::class)->name('generate_exam_order');
 
-  Route::get('exam/order/{examorder}',[ExamOrderPdfController::class,'order'])->name('examorder');
-  
+  Route::get('exam/order/{id}/{token}', [ExamOrderPdfController::class, 'order'])->name('examorder');
+  // Route::get('exam/order/{id}/{token}',[ExamOrderPdfController::class,'order'])->name('examorder');
+
   //Cancel Exam Order
   Route::get('cancel/exam/order/{id}',[ExamOrderPdfController::class,'cancelorder'])->name('cancelorder');
-
 
   //Generate faculty order
   Route::get('/generate/faculty/order', GenerateFacultyOrder::class)->name('generate_faculty_order');
