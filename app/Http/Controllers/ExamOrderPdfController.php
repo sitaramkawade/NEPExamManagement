@@ -22,20 +22,19 @@ class ExamOrderPdfController extends Controller
 
     public function order($id, $token)
     {
- 
-        // Log::debug($id);
         $examorder = ExamOrder::find($id);  
        
-        if ($examorder && $examorder->token === $token) {
+        if (isset($examorder) && $examorder->token === $token) 
+        {
             view()->share('pdf.examorder.examorder_pdf', compact('examorder'));
     
           
-            $pdf = Pdf::loadView('pdf.examorder.examorder_pdf', compact('examorder'))
-                ->setOptions(['defaultFont' => 'sans-serif']);
+            $pdf = Pdf::loadView('pdf.examorder.examorder_pdf', compact('examorder'))->setOptions(['defaultFont' => 'sans-serif']);
     
             
             return $pdf->stream('Exam-Order.pdf');
-        } else {
+        } else 
+        {
             // If exam order doesn't exist or token doesn't match, return 404
             return abort(404);
         }

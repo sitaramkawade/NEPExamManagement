@@ -20,7 +20,6 @@ class SendEmailJob implements ShouldQueue
 
     public function __construct($examOrderIds)
     {
-        
         $this->examOrderIds = $examOrderIds;
        
     }
@@ -32,8 +31,8 @@ class SendEmailJob implements ShouldQueue
             $examOrder = Examorder::find($examOrderId);
            if($examOrder)
             {
-             $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
-           
+             $url = url('user/exam/order/'.$examOrder->id.'/'.$examOrder->token);
+                
                 $details = [
                     'subject' => 'Hello',
                     'title' => 'Your Appointment for Cancel Examination Work (Sangamner College Mail Notification)',
