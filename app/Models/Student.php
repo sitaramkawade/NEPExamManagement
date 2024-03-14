@@ -175,13 +175,14 @@ class Student extends  Authenticatable implements MustVerifyEmail
             $pass_fail_absent_status = 0;   // Result : Fail
         }
 
-        if($this->patternclass->courseclass->course->course_type=='PG' && $current_class_student_last_entry->sem==4 && $pass_fail_absent_status==1)
-        {
-            if((12 - $this->getNONCGPAtotal()) > 0)
-            {
-                $pass_fail_absent_status = 0; // Result : Fail
-            }  
-        }
+        // if($this->patternclass->courseclass->course->course_type=='PG' && $current_class_student_last_entry->sem==4 && $pass_fail_absent_status==1)
+        // {
+        //     if((12 - $this->getNONCGPAtotal()) > 0)
+        //     {
+        //         $pass_fail_absent_status = 0; // Result : Fail
+        //     }  
+        // }
+
         return $pass_fail_absent_status;
     }
     
