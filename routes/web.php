@@ -43,7 +43,6 @@ use App\Livewire\User\University\AllUniversity;
 use App\Http\Controllers\ExamOrderPdfController;
 use App\Livewire\Faculty\ExamPanel\ViewExamPanel;
 use App\Livewire\User\CourseClass\AllCourseClass;
-use App\Livewire\Faculty\AssignTool\AllAssignTool;
 use App\Livewire\User\AcademicYear\AllAcademicYear;
 use App\Livewire\User\ExamBuilding\AllExamBuilding;
 use App\Livewire\User\PatternClass\AllPatternClass;
@@ -57,7 +56,6 @@ use App\Livewire\User\ExamOrderPost\AllExamOrderPost;
 use App\Livewire\User\ExamTimeTable\AllExamTimeTable;
 use App\Livewire\User\HelplineQuery\AllHelplineQuery;
 use App\Livewire\User\TimeTableSlot\AllTimeTableSlot;
-use App\Livewire\Faculty\InternalTool\AllInternalTool;
 use App\Livewire\User\DepartmentType\AllDepartmentType;
 use App\Livewire\Faculty\AssignSubject\AllAssignSubject;
 use App\Livewire\Faculty\SubjectBucket\AllSubjectBucket;
@@ -79,9 +77,13 @@ use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
-use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
+use App\Livewire\Faculty\InternalAudit\AssignTool\AllAssignTool;
+use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
+use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
+use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
+use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
 // Livewire Update Route
@@ -129,7 +131,7 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
   Route::get('/helpline',Helpline::class)->name('helpline');
 
   // Student Exam Form
-  Route::post('/exam/form',FillStudentExamFormNew::class)->name('student_exam_form');
+  Route::post('/exam/form',FillStudentExamForm::class)->name('student_exam_form');
 
   // Student Delete Exam Form
   Route::post('/delete/exam/form',DeleteStudentExamForm::class)->name('student_delete_exam_form');
@@ -359,11 +361,15 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All Internal Tool Master
   Route::get('/all-internaltool', AllInternalTool::class)->name('all-internaltool');
 
-  // All Internal Tool Auditor
-  Route::get('/all-internaltoolauditors', AllInternalToolAuditor::class)->name('all-internaltoolauditors');
+  // All Internal Tool Document
+  Route::get('/all-internaltooldocs', AllInternalToolDocument::class)->name('all-internaltooldocs');
 
   // All Assign Tool
   Route::get('/all-assigntools', AllAssignTool::class)->name('all-assigntools');
+
+  // All Document Upload
+  Route::get('/all-uploadocs', AllUploadDocument::class)->name('all-uploadocs');
+
 
 });
 

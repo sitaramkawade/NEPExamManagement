@@ -172,7 +172,7 @@ class PatternclassSeeder extends Seeder
             'id'=>10,
             'class_id'=>10,
             'pattern_id'=>2,
-            'status'=>0,
+            'status'=>1,
             'sem1_total_marks'=>600,
             'sem2_total_marks'=>600,
             'sem1_credits'=>NULL,

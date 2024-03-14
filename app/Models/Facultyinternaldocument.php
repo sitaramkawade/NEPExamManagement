@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Internaltooldocumentmaster;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -42,5 +43,27 @@ class Facultyinternaldocument extends Model
     public function internaltooldocumentmaster():BelongsTo
     {
         return $this->belongsTo(Internaltooldocumentmaster::class,'internaltooldocument_id','id');
+    }
+
+    public function internaltooldocument():BelongsTo
+    {
+        return $this->belongsTo(Internaltooldocument::class,'internaltooldocument_id','id');
+    }
+
+    public function scopeSearch(Builder $query, string $search)
+    {
+        return $query->with('faculty', 'internaltooldocumentmaster', 'subject', 'academicyear')
+            ->WhereHas('faculty', function ($query) use ($search) {
+                $query->where('faculty_name', 'like', "%{$search}%");
+            })
+            ->orWhereHas('internaltooldocumentmaster', function ($query) use ($search) {
+                $query->where('doc_name', 'like', "%{$search}%");
+            })
+            ->orWhereHas('subject', function ($query) use ($search) {
+                $query->where('subject_name', 'like', "%{$search}%");
+            })
+            ->orWhereHas('academicyear', function ($query) use ($search) {
+                $query->where('year_name', 'like', "%{$search}%");
+            });
     }
 }
