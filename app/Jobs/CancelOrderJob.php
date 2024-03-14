@@ -31,7 +31,9 @@ class CancelOrderJob implements ShouldQueue
         foreach ($this->examOrderIds as $examOrderId) {
           
             $examOrder = Examorder::find($examOrderId);
-        
+
+            if($examOrder)
+        {
             $url = route('user.cancelorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
     
             $details = [
@@ -45,6 +47,8 @@ class CancelOrderJob implements ShouldQueue
             Mail::to(trim($examOrder->exampanel->faculty->email))
             ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
             ->send(new CancelOrderMail($details));
+
+        }
         }
     }
 }

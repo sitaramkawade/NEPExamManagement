@@ -27,32 +27,28 @@ class SendEmailJob implements ShouldQueue
 
     public function handle(): void
     {
-       
         foreach ($this->examOrderIds as $examOrderId) {
           
             $examOrder = Examorder::find($examOrderId);
+           if($examOrder)
+            {
+             $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
+           
+                $details = [
+                    'subject' => 'Hello',
+                    'title' => 'Your Appointment for Cancel Examination Work (Sangamner College Mail Notification)',
+                    'body' => 'This is sample content we have added for this test mail',
+                    'examorder_id' => $examOrder->id,
+                    'url' => $url,
+                ];
+
+                Mail::to(trim($examOrder->exampanel->faculty->email))
+                ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
+                ->send(new MyTestMail($details));
+
+            }
+        }   
         
-            $url = route('user.examorder', ['id' => $examOrder->id, 'token' => $examOrder->token]);
-    
-            $details = [
-                'subject' => 'Hello',
-                'title' => 'Your Appointment for Examination Work (Sangamner College Mail Notification)',
-                'body' => 'This is sample content we have added for this test mail',
-                'examorder_id' => $examOrder->id,
-                'url' => $url,
-            ];
-
-            Mail::to(trim($examOrder->exampanel->faculty->email))
-            ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
-            ->send(new MyTestMail($details));
-
-
-
-            $examOrder -> email_status = 1;
-            $examOrder->update();
-        
-        
-        }
     }
 }
 

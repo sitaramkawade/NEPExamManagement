@@ -9,14 +9,8 @@
         <x-form wire:submit="add()">
             @include('livewire.user.exam-order.exam-order-form')
         </x-form>
-    </div>
-    @elseif($mode=='edit')
-    <x-card-header heading="Edit Exam Order">
-        <x-back-btn wire:click="setmode('all')" />
-    </x-card-header>
-    <x-form wire:submit="update({{ $edit_id }})">
-         @include('livewire.user.exam-order.exam-order-form')
-    </x-form>
+    </div
+ 
     @elseif($mode=='all')
     <div>
         <x-breadcrumb.breadcrumb>
@@ -24,7 +18,9 @@
             <x-breadcrumb.link name="Exam Order's" />
         </x-breadcrumb.breadcrumb>
             <x-card-header heading=" All Exam Order's">
-                <x-add-btn wire:click="setmode('add')" />
+                <x-table.edit i="0" wire:click="bulkResend" > All Resend </x-table.edit> 
+                <x-table.edit i="0" wire:click="bulkCancel" > All Cancel </x-table.edit> 
+                <x-table.delete i="0" wire:click="bulkDelete"> All Delete </x-table.delete>
             </x-card-header>
             <x-table.frame>
                 <x-slot:header>
@@ -46,7 +42,7 @@
                                 <x-table.tr wire:key="{{ $examorder->id }}">
                                     <x-table.td> {{ $examorder->id }} </x-table.td>
                                     <x-table.td>
-                                        <x-table.text-scroll> {{ isset($examorder->exampanel->faculty->faculty_name) ? $examorder->exampanel->faculty->faculty_name : '-' }} {{ isset($examorder->exampanel->examorderpost->post_name) ? $examorder->exampanel->examorderpost->post_name : '-' }} {{ isset($examorder->exampanel->subject->subject_name) ? $examorder->exampanel->subject->subject_name : '-' }} </x-table.text-scroll>
+                                        <x-table.text-scroll> {{ isset($examorder->exampanel->faculty->faculty_name) ? $examorder->exampanel->faculty->faculty_name : '-' }}  </x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td> <x-table.text-scroll>{{ isset($examorder->exampatternclass->exam->exam_name) ? $examorder->exampatternclass->exam->exam_name : '-' }} {{ isset($examorder->exampatternclass->patternclass->pattern->pattern_name) ? $examorder->exampatternclass->patternclass->pattern->pattern_name : '-' }} {{ isset($examorder->exampatternclass->patternclass->courseclass->classyear->classyear_name) ? $examorder->exampatternclass->patternclass->courseclass->classyear->classyear_name : '-' }} {{ isset($examorder->exampatternclass->patternclass->courseclass->course->course_name) ? $examorder->exampatternclass->patternclass->courseclass->course->course_name : '-' }} </x-table.text-scroll></x-table.td>
                                     <x-table.td> {{ $examorder->description }} </x-table.td>                          
@@ -60,8 +56,8 @@
 
                                     </x-table.td>
                                     <x-table.td>
-                                        @if ($examorder->email_status==0)
-                                        <x-table.archive wire:click="deleteconfirmation({{ $examorder->id }})" />
+                                        @if ($examorder->email_status==0)                                       
+                                        <x-table.delete wire:click="deleteconfirmation({{ $examorder->id }})" />
                                         @else
                                         <x-table.edit i='0' wire:click="resendMail({{ $examorder->id }})" > Resend </x-table.edit>
                                         <x-table.edit i='0' wire:click="cancelOrder({{ $examorder->id }})" > Cancel Order </x-table.edit>

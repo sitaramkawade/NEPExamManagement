@@ -23,7 +23,7 @@ class CancelOrderMail extends Mailable
     public function build()
     {
         $e=Examorder::find($this->details['examorder_id']);
-       $url=$this->details['url'];
+        $url=$this->details['url'];
           
         return $this->markdown('mail.cancelorder')
         ->subject('Your Appointment for the Exam Work')

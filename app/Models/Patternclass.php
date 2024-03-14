@@ -6,6 +6,7 @@ use App\Models\Exam;
 use App\Models\Course;
 use App\Models\Student;
 use App\Models\Courseclass;
+use App\Models\Subject;
 use App\Models\Examfeecourse;
 use App\Models\Exampatternclass;
 use App\Models\Hodappointsubject;
@@ -38,6 +39,11 @@ class Patternclass extends Model
 
     ];
 
+   
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
+    }
 
     public function subjects():HasMany
     {
