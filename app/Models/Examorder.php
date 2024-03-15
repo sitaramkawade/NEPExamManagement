@@ -20,6 +20,7 @@ class Examorder extends Model
         'exampanel_id',
         'exam_patternclass_id',
         'description',
+        'token',
         'email_status'
     ];
 

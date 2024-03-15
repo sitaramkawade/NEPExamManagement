@@ -202,7 +202,6 @@ class AllHodAppointSubject extends Component
         $this->setmode('all');
     }
 
-
     public function sort_column($column)
     {
         if( $this->sortColumn === $column)

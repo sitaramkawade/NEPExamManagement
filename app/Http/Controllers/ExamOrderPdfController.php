@@ -20,22 +20,23 @@ class ExamOrderPdfController extends Controller
     public $examtimetables;
   
 
-    public function order($id)
+    public function order($id, $token)
     {
-
-        $examorder=Examorder::find($id);
-
-        if ($examorder && $examorder->token === $this->token) {
-            view()->share('pdf.examorder.examorder_pdf',compact('examorder'));
-
-            $pdf = Pdf::loadView('pdf.examorder.examorder_pdf',compact('examorder'))
-                ->setOptions(['defaultFont' => 'sans-serif']);
-
-              return $pdf->stream('Exam-Order.pdf');
-        } else {
-             
+        $examorder = ExamOrder::find($id);  
+       
+        if (isset($examorder) && $examorder->token === $token) 
+        {
+            view()->share('pdf.examorder.examorder_pdf', compact('examorder'));
+    
+          
+            $pdf = Pdf::loadView('pdf.examorder.examorder_pdf', compact('examorder'))->setOptions(['defaultFont' => 'sans-serif']);
+    
+            
+            return $pdf->stream('Exam-Order.pdf');
+        } else 
+        {
+            // If exam order doesn't exist or token doesn't match, return 404
             return abort(404);
-           
         }
     }
 
@@ -54,6 +55,22 @@ class ExamOrderPdfController extends Controller
            
         }
 
+    }
+
+    public function resendorder(Examorder $examorder)
+    {
+        if ($examorder && $examorder->token === $this->token) {
+            view()->share('pdf.examorder.examorder_pdf',compact('examorder'));
+
+            $pdf = Pdf::loadView('pdf.examorder.examorder_pdf',compact('examorder'))
+                ->setOptions(['defaultFont' => 'sans-serif']);
+
+              return $pdf->download('Exam-Order.pdf');
+        } else {
+             
+            return abort(404);
+           
+        }
     }
 
 

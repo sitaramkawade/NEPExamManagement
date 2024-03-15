@@ -53,11 +53,11 @@
       <path stroke-linecap="round" stroke-width="2" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5" />
     </x-sidebar.sidebar-link>
 
-    <x-sidebar.sidebar-link route="user.all_examTimeTable" name="Exam Time Table's">
+    <x-sidebar.sidebar-link route="user.all_examtimetable" name="Exam Time Table's">
       <path stroke-linecap="round" stroke-width="2" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
     </x-sidebar.sidebar-link>
 
-    <x-sidebar.sidebar-link route="user.all_examTimeTable_subject" name=" Subject TimeTable's">
+    <x-sidebar.sidebar-link route="user.all_examtimetable_subject" name=" Subject TimeTable's">
       <path stroke="round" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m11.5 11.5 2 2M4 10h5m11 0h-1.5M12 7V4M7 7V4m10 3V4m-7 13H8v-2l5.2-5.3a1.5 1.5 0 0 1 2 2L10 17Zm-5 3h14c.6 0 1-.4 1-1V7c0-.6-.4-1-1-1H5a1 1 0 0 0-1 1v12c0 .6.4 1 1 1Z"/>
     </x-sidebar.sidebar-link>
 
