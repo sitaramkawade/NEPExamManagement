@@ -110,7 +110,7 @@ class FillStudentExamForm extends Component
                             $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', 1)->get();
                             $this->check_subject_checkboxs($this->regular_subjects_data);
                             $this->backlog_subjects_data=[];
-                            $this->exam_fee_courses=get_exam_form_fees($this->student->patternclass_id,$this->regular_subjects_data);
+                            $this->exam_fee_courses=get_exam_form_fees($this->student->patternclass_id,$this->regular_subjects_data,$this->backlog_subjects_data);
                         } 
                         else 
                         {   
@@ -202,12 +202,13 @@ class FillStudentExamForm extends Component
                                    
                                     if ($this->year_result == 0) 
                                     {   
+                                        $is_fail=true;
                                         // Fetch FY SEM-I-II Fail Student
                                         $this->regular_subjects_data = [];
                                         $this->backlog_subjects_data = [];
                                         $this->backlog_subjects_data = $this->student->get_backlog_subjects();
                                         $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
-                                        $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                                        $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data,$is_fail);
                                     } else 
                                     {   
                                         
@@ -349,11 +350,12 @@ class FillStudentExamForm extends Component
                                                 {   
                                                     // If SY Fail 
                                                     // Fetch Fail Student
+                                                    $is_fail=true;
                                                     $this->regular_subjects_data = [];
                                                     $this->backlog_subjects_data = [];
                                                     $this->backlog_subjects_data = $this->student->get_backlog_subjects();
                                                     $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
-                                                    $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                                                    $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data,$is_fail);
                                                   
                                                 } 
                                                 else 
@@ -400,11 +402,12 @@ class FillStudentExamForm extends Component
                                         {   
                                             // If FY Fail
                                             // Fetch Fail Student
+                                            $is_fail=true;
                                             $this->regular_subjects_data = [];
                                             $this->backlog_subjects_data = [];
                                             $this->backlog_subjects_data = $this->student->get_backlog_subjects();
                                             $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
-                                            $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
+                                            $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data, $is_fail);
                                         } else 
                                         {
                                             // Fetch Pass or ATKT Student
