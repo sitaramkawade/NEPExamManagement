@@ -51,8 +51,6 @@ class FillStudentExamForm extends Component
     #[Locked]
     public $backlog_subjects_data = [];
     #[Locked]
-    public $backlog_subjects_previous_sem = [];
-    #[Locked]
     public $exam_fee_courses = [];
     #[Locked]
     public $internals = [];
@@ -86,7 +84,6 @@ class FillStudentExamForm extends Component
         $this->regular_subjects_data = [];
         $this->extra_credit_subjects_data = [];
         $this->backlog_subjects_data = [];
-        $this->backlog_subjects_previous_sem = [];
         $this->exam_fee_courses = [];
 
         $current_active_exams = Exam::Where('status', 1)->get();
@@ -95,7 +92,8 @@ class FillStudentExamForm extends Component
         $current_class_student_last_entry = $this->student->currentclassstudents->last();
         $current_class_inward_students = $this->student->currentclassstudents->where('pfstatus', '!=', -1)->where('markssheetprint_status', '!=', -1);
 
-        if (true) {
+        if (true) 
+        {
             if (is_null($current_class_student_last_entry)) 
             {
                 // Fetch FY
@@ -188,7 +186,8 @@ class FillStudentExamForm extends Component
                                 if (is_null($sem_1_data) && is_null($sem_2_data)) {
                                     if ($current_class_student_last_entry->markssheetprint_status = -1) 
                                     {   
-                                        // Fetch Direct SY SEM-III // Done
+                                        // If Marksheet Not Printed & FY Result Not Exists
+                                        // Fetch Direct SY SEM-III
                                         $this->regular_subjects_data=[];
                                         $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
                                         $this->check_subject_checkboxs($this->regular_subjects_data);
@@ -203,17 +202,18 @@ class FillStudentExamForm extends Component
                                    
                                     if ($this->year_result == 0) 
                                     {   
-                                        // Fetch FY SEM-I-II Fail Student  // Done
+                                        // Fetch FY SEM-I-II Fail Student
                                         $this->regular_subjects_data = [];
                                         $this->backlog_subjects_data = [];
                                         $this->backlog_subjects_data = $this->student->get_backlog_subjects();
                                         $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
                                         $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
                                     } else 
-                                    {
+                                    {   
+                                        
                                         if ($current_exam_session == 2) 
                                         {   
-                                            // Fetch SY SEM-III Regular Student  // Done
+                                            // Fetch SY SEM-IV Pass OR ATKT Student
                                             $this->regular_subjects_data=[];
                                             $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 2)->get();
                                             $this->check_subject_checkboxs($this->regular_subjects_data);
@@ -222,8 +222,7 @@ class FillStudentExamForm extends Component
                                             $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
                                         } else 
                                         {   
-                                           
-                                            // Fetch SY SEM-III Regular Student  // Done
+                                            /// Fetch SY SEM-III Pass OR ATKT Student
                                             $this->regular_subjects_data=[];
                                             $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
                                             $this->check_subject_checkboxs($this->regular_subjects_data);
@@ -237,7 +236,8 @@ class FillStudentExamForm extends Component
                             } 
                             else 
                             {   
-                                // FY SEM-I-II Fail OLD Year Student // Done
+                                // Old Academic Year
+                                // FY SEM-I-II Fail Student
                                 $this->regular_subjects_data = [];
                                 $this->backlog_subjects_data = [];
                                 $this->backlog_subjects_data = $this->student->get_backlog_subjects();
@@ -245,8 +245,9 @@ class FillStudentExamForm extends Component
                                 $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
                             }
                         } else 
-                        {
-                            // FY SEM-I-II Fail Student // Done
+                        {   
+                            // Admission Data Not Found
+                            // FY SEM-I-II Fail Student
                             $this->regular_subjects_data = [];
                             $this->backlog_subjects_data = [];
                             $this->backlog_subjects_data = $this->student->get_backlog_subjects();
@@ -258,12 +259,12 @@ class FillStudentExamForm extends Component
                         // Fetch SY SEM-IV
                         $this->patternclass_id = $current_class_student_last_entry->patternclass_id;
                         $admission_data = Admissiondata::where('memid', $this->member_id)->where('patternclass_id', $this->patternclass_id)->get();
-
+                        
                         if (!$admission_data->isEmpty()) 
                         {
                             if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
                             {   
-                                // Fetch SY SEM-IV
+                                // Fetch SY SEM-IV Pass OR ATKT Student
                                 $this->regular_subjects_data=[];
                                 $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
                                 $this->check_subject_checkboxs($this->regular_subjects_data);
@@ -273,8 +274,9 @@ class FillStudentExamForm extends Component
                                 $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
                             } 
                             else 
-                            {
-                                // Fetch FY Fail Student
+                            {   
+                                // Old Academic Year
+                                // Fetch SY SEM-IV Pass OR ATKT Student
                                 $this->regular_subjects_data = null;
                                 $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
                                 $this->check_subject_checkboxs($this->regular_subjects_data);
@@ -298,7 +300,7 @@ class FillStudentExamForm extends Component
                         if (!$admission_data->isEmpty()) 
                         {
                             if ($admission_data->last()->academicyear_id == $current_active_exams->first()->academicyear_id) 
-                            {
+                            {   
                                 if ($current_class_inward_students->isEmpty()) 
                                 {   
                                     // If Exam Form Not Inward Exam Not Given
@@ -337,11 +339,11 @@ class FillStudentExamForm extends Component
                                             //  If FY Pass
                                             $sem_3_data = $this->student->studentresults->where('sem', 3)->last();
                                             $sem_4_data = $this->student->studentresults->where('sem', 4)->last();
-
+                                            
                                             if (!(is_null($sem_3_data) && is_null($sem_4_data))) 
                                             {
                                                 $this->year_result = $this->student->get_year_result_exam_form($sem_3_data, $sem_4_data, $current_class_student_last_entry);
-
+                                                
                                                 // Checking SY Result 
                                                 if ($this->year_result == 0) 
                                                 {   
@@ -355,10 +357,11 @@ class FillStudentExamForm extends Component
                                                   
                                                 } 
                                                 else 
-                                                {   
-                                                    // Fetch ATKT & Regular Student
+                                                {  
+                                                    // If SY Pass
                                                     if ($current_exam_session == 2) 
-                                                    {                                           
+                                                    {   
+                                                        // Fetch SEM-VI Pass Or ATKT Student                       
                                                         $this->regular_subjects_data = [];
                                                         $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 2)->get();
                                                         $this->check_subject_checkboxs($this->regular_subjects_data);
@@ -367,8 +370,9 @@ class FillStudentExamForm extends Component
                                                         $this->check_backlog_subject_checkboxs($this->backlog_subjects_data);
                                                         $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
                                                     }
-                                                     else 
+                                                    else 
                                                     {   
+                                                        // Fetch SEM-V Pass Or ATKT Student 
                                                         $this->regular_subjects_data = [];
                                                         $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
                                                         $this->check_subject_checkboxs($this->regular_subjects_data);
@@ -390,7 +394,6 @@ class FillStudentExamForm extends Component
 
                                     if (!(is_null($sem_1_data) && is_null($sem_2_data))) 
                                     {
-
                                         $this->year_result = $this->student->get_year_result_exam_form($sem_1_data, $sem_2_data, $current_class_student_last_entry);
                                         // Checking FY Result
                                         if ($this->year_result == 0) 
@@ -413,8 +416,9 @@ class FillStudentExamForm extends Component
                                             $this->exam_fee_courses = get_exam_form_fees($this->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
                                         }
                                     } else 
-                                    {
-                                        // Fail Student
+                                    {   
+                                        // If FY Result Not Exists
+                                        // Fetch Fail Student
                                         $this->regular_subjects_data = [];
                                         $this->backlog_subjects_data = [];
                                         $this->backlog_subjects_data = $this->student->get_backlog_subjects();
@@ -424,7 +428,9 @@ class FillStudentExamForm extends Component
                                 }
                             } 
                             else
-                            {
+                            {   
+                                // Old Academic Year
+                                // Fetch Fail Students
                                 $this->regular_subjects_data = [];
                                 $this->backlog_subjects_data = [];
                                 $this->backlog_subjects_data = $this->student->get_backlog_subjects();
@@ -439,7 +445,9 @@ class FillStudentExamForm extends Component
                             {
                                 $this->regular_subjects_data = [];
                                 $this->backlog_subjects_data = [];
-                            } else {
+                            } 
+                            else 
+                            {
                                 $this->dispatch('alert', type: 'info', message: 'Invalid Member ID Please Update Your Profile !!');
                             }
                         }
@@ -463,8 +471,7 @@ class FillStudentExamForm extends Component
                             } 
                             else 
                             {   
-                                // dd('TY SEM-V Fail ');
-                                // Fail Student
+                                // Fetch SEM-VI Fail Student
                                 $this->regular_subjects_data = [];
                                 $this->regular_subjects_data = Subject::whereIn('id', $admission_data->pluck('subject_id'))->where('subject_sem', $current_class_student_last_entry->sem + 1)->get();
                                 $this->check_subject_checkboxs($this->regular_subjects_data);
@@ -487,29 +494,7 @@ class FillStudentExamForm extends Component
                         $this->exam_fee_courses = get_exam_form_fees($current_class_student_last_entry->patternclass_id,$this->regular_subjects_data, $this->backlog_subjects_data);
                         break;
                 }
-
-                // $extra_credit_subject_ids = $this->student->intextracreditbatchseatnoallocations()->where('grade', '=', 'NA')->pluck('subject_id');
-
-                // if ($this->student->patternclass->courseclass->course->course_type == "PG") 
-                // {
-                //     if ($this->student->studentadmission->whereIn('academicyear_id', [1, 2])->count() >= 1) 
-                //     {
-                //         $this->extra_credit_subjects_data = Extracreditsubject::where('isactive',0)->where('course_type', $this->student->patternclass->courseclass->course->course_type)->get();
-                //         $total_extra_credits = $this->extra_credit_subjects_data->pluck('subject_credit')->sum();
-                //     } 
-                //     else 
-                //     {
-                //         $this->extra_credit_subjects_data = Extracreditsubject::where('isactive', 1)->where('course_type', $this->student->patternclass->courseclass->course->course_type)->get();
-                //         $total_extra_credits = $this->extra_credit_subjects_data->pluck('subject_credit')->sum();
-                //     }
-                // } 
-                // else 
-                // {
-                //     $this->extra_credit_subjects_data = Extracreditsubject::where('isactive', 1)->where('course_type', $this->student->patternclass->courseclass->course->course_type)->get();
-                //     $total_extra_credits = $this->extra_credit_subjects_data->pluck('subject_credit')->sum();
-                // }
-
-                // render student ,current_active_exams ,regular_subjects_data , current_exam_session , extra_credit_subjects_data ,backlog_subjects_previous_sem , total_extra_credits , backlog_subjects_data
+               
             }
         }
 
@@ -649,7 +634,6 @@ class FillStudentExamForm extends Component
                 // Redirecting To Student Dashboard
                 $this->redirect('/student/dashboard', navigate: true);
             } catch (\Exception $e) {
-                dd($e);
                 // If Above Work Not Done Then Revert Changes
                 DB::rollback();
 
