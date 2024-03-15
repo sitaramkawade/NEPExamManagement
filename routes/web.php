@@ -24,6 +24,7 @@ use App\Livewire\Faculty\FacultyDashboard;
 use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
+use App\Livewire\User\Faculty\UserFaculty;
 use App\Livewire\Student\Helpline\Helpline;
 use App\Livewire\User\Building\AllBuilding;
 use App\Livewire\User\ExamForm\AllExamForm;
@@ -77,10 +78,10 @@ use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
-use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Livewire\Faculty\InternalAudit\AssignTool\AllAssignTool;
 use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
+use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
@@ -239,6 +240,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //Generate Subject Order
   Route::get('/generate/subject/order', GenerateSubjectOrder::class)->name('generate_subject_order');
+
+  //User Faculty
+  Route::get('/faculty', UserFaculty::class)->name('all_faculty');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');

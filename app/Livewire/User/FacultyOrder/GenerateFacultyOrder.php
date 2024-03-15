@@ -3,6 +3,7 @@
 namespace App\Livewire\User\FacultyOrder;
 
 use Carbon\Carbon;
+use App\Models\Exam;
 use App\Models\Faculty;
 use App\Models\Subject;
 use Livewire\Component;
@@ -94,7 +95,9 @@ class GenerateFacultyOrder extends Component
 
         if ($exampanel->subject->patternclass)  
         {
-            $exampatternclasses = $exampanel->subject->patternclass->examPatternClasses->where('launch_status',1);
+            // $examids = Exam::where('status',1)->pluck('id')->toArray();
+            $exampatternclasses = $exampanel->subject->patternclass->examPatternClasses->where('launch_status', 1);
+            // dd($exampatternclasses);
            foreach($exampatternclasses as $exampatternclass)
             {     
                 $exam_order_data = [];
