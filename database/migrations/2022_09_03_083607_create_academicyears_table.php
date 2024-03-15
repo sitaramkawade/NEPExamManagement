@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('academicyears', function (Blueprint $table) {
             $table->id();
             $table->string('year_name',40)->nullable();
+            $table->tinyInteger('is_doc_year')->default('0');// 0 :No 1:Yes
             $table->tinyInteger('active')->default('0');// 0 :not active 1:active
             $table->timestamps();
             $table->softDeletes();
