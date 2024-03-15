@@ -129,24 +129,27 @@ class AllAssignTool extends Component
         foreach ($this->selected_tools as $toolId) {
             // Retrieve the selected tool's associated documents
             $toolDocuments = Internaltooldocument::where('internaltoolmaster_id', $toolId)->get();
+            if($toolDocuments){
+                foreach ($toolDocuments as $document) {
+                    $assignedToolData[] = [
+                        'internaltooldocument_id' => $document->id,
+                        'faculty_id' => Auth::guard('faculty')->user()->id,
+                        'academicyear_id' => $validatedData['academicyear_id'],
+                        'subject_id' => $validatedData['subject_id'],
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+                Facultyinternaldocument::insert($assignedToolData);
 
-            foreach ($toolDocuments as $document) {
-                $assignedToolData[] = [
-                    'internaltooldocument_id' => $document->id,
-                    'faculty_id' => Auth::guard('faculty')->user()->id,
-                    'academicyear_id' => $validatedData['academicyear_id'],
-                    'subject_id' => $validatedData['subject_id'],
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
+                $this->dispatch('alert', type: 'success', message: 'Tool Assigned To Subject Successfully');
+                $this->setmode('all'); // Assuming you want to switch back to a specific mode after updating
+            }else{
+                $this->dispatch('alert', type: 'info', message: 'Documents are not assigned for this tool!');
+                $this->resetinput();
             }
         }
 
-        Facultyinternaldocument::insert($assignedToolData);
-
-        $this->dispatch('alert', type: 'success', message: 'Tool Assigned To Subject Successfully');
-        $this->resetinput();
-        $this->setmode('all'); // Assuming you want to switch back to a specific mode after updating
     }
 
     public function edit(Facultyinternaldocument $assigned_tool)

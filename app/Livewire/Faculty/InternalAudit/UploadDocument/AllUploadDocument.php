@@ -39,9 +39,9 @@ class AllUploadDocument extends Component
     public $course_id;
     public $courses;
     public $patternclass_id;
-    public $pattern_classes;
+    public $pattern_classes=[];
     public $subject_id;
-    public $subjects;
+    public $subjects=[];
 
     public $file=[];
 
@@ -76,6 +76,59 @@ class AllUploadDocument extends Component
             'file.mimes' => 'The file must be a PNG, JPG, or JPEG image.',
         ];
     }
+
+    public function deleteconfirmation($id)
+    {
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
+
+    public function updated($propertyName, $value)
+    {
+        if($propertyName == 'academicyear_id'){
+            $this->loadPatternClasses();
+
+        }elseif($propertyName == 'patternclass_id'){
+            $this->loadSubjects($value);
+        }
+    }
+
+    public function loadPatternClasses()
+    {
+        $documents_data = Facultyinternaldocument::with('subject.patternclass','academicyear:id,year_name',)
+        ->where('faculty_id', Auth::guard('faculty')->user()->id)
+        ->where('status', 0)
+        ->get();
+        $this->pattern_classes = $documents_data->unique('subject.patternclass_id')->mapWithKeys(function ($item) {
+            return [
+                $item['subject']['patternclass']['id'] => [
+                    'classyear_name' => $item['subject']['patternclass']['courseclass']['classyear']['classyear_name'],
+                    'course_name' => $item['subject']['patternclass']['courseclass']['course']['course_name'],
+                    'pattern_name' => $item['subject']['patternclass']['pattern']['pattern_name'],
+                ]
+            ];
+        });
+    }
+
+    public function loadSubjects($value)
+    {
+        $subjects = Facultyinternaldocument::where('faculty_id', Auth::guard('faculty')->user()->id)
+            ->where('status', 0)
+            ->whereHas('subject', function ($query) use ($value) {
+                $query->where('patternclass_id', $value);
+            })
+            ->with('subject:id,subject_name,subject_code')
+            ->get()
+            ->mapWithKeys(function ($document) {
+                return [$document->subject->id => [
+                    'subject_name' => $document->subject->subject_name,
+                    'subject_code' => $document->subject->subject_code
+                ]];
+            });
+
+        $this->subjects = $subjects;
+    }
+
 
     // public function resetinput()
     // {
@@ -137,22 +190,52 @@ class AllUploadDocument extends Component
         }
     }
 
+    public function delete()
+    {
+        try {
+            $inttool_doc = Facultyinternaldocument::withTrashed()->find($this->delete_id);
 
+            // Delete the associated image
+            if ($inttool_doc->document_fileName) {
+                File::delete($inttool_doc->document_fileTitle); // Adjust the column name and storage method accordingly
+            }
+
+            // Reset the temporary URL
+            unset($this->file[$this->delete_id]);
+
+            // Update the columns to null instead of force deleting
+            $inttool_doc->update([
+                'document_fileName' => null,
+                'document_fileTitle' => null,
+                'status' => 0,
+                'updated_at' => now(),
+            ]);
+
+            $this->delete_id = null;
+            $this->dispatch('alert', type: 'success', message: 'Internal Tool Document Deleted Successfully !!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->errorInfo[1] == 1451) {
+                $this->dispatch('alert', type: 'error', message: 'This record is associated with another data. You cannot delete it !!');
+            }
+        }
+    }
+
+    public function mount()
+    {
+        // $documents_data = Facultyinternaldocument::with('subject.patternclass','academicyear:id,year_name',)
+        //     ->where('faculty_id', Auth::guard('faculty')->user()->id)
+        //     ->where('status', 0)
+        //     ->get();
+
+        $this->academicyears = Academicyear::where('is_doc_year',1)->pluck('year_name','id');
+        // $this->pattern_classes = $documents_data->pluck('subject.patternclass_id')->unique();
+        // $this->subjects =  $documents_data->pluck('subject.subject_name','subject.id');
+
+    }
 
     public function render()
     {
         if($this->mode == 'all'){
-            $this->academicyears = Academicyear::pluck('year_name','id');
-            $this->pattern_classes = Patternclass::select('id')->where('status', 1)->get();
-
-            if($this->patternclass_id){
-                $this->subjects = Subject::select('id', 'subject_name')
-                ->where('patternclass_id', $this->patternclass_id)
-                ->where('status', 1)
-                ->get();
-            }else{
-                $this->subjects=[];
-            }
 
             if ($this->subject_id) {
                 $this->documents_to_upload = Facultyinternaldocument::where('faculty_id',Auth::guard('faculty')->user()->id)
@@ -171,8 +254,8 @@ class AllUploadDocument extends Component
                 ->where('subject_id', $this->subject_id)
                 ->where('academicyear_id', $this->academicyear_id)
                 ->where('status', 1)
-                ->whereNotNull('column_name_1')
-                ->whereNotNull('column_name_2')
+                ->whereNotNull('document_fileName')
+                ->whereNotNull('document_fileTitle')
                 ->get();
             } else {
                 $this->uploaded_documents = [];
