@@ -29,6 +29,18 @@ if (!function_exists('get_pattern_class_name')) {
     }
 }
 
+// Getting Subject Name With Code
+if (!function_exists('get_subject_name')) {
+    function get_subject_name($subject_id)
+    {
+        $subject = Subject::find($subject_id);
+        if ($subject) {
+            return $subject->subject_code ."-".$subject->subject_name;
+        }
+        return null;
+    }
+}
+
 // Generate Subject Code
 if (!function_exists('generate_subject_code')) {
     function generate_subject_code($patternClassId, $subjectVerticalId, $subjectSem, $classYear)
@@ -103,10 +115,10 @@ if (!function_exists('get_student_current_sem'))
 
 
 // Checking Is Next Class Or Not
-if (!function_exists('get_is_next_class')) 
+if (!function_exists('get_is_next_class'))
 {
     function get_is_next_class($pattern_class_id)
-    {   
+    {
         $is_next_class=false;
         $pattern_class = Patternclass::with(['courseclass:nextyearclass_id,id'])->find($pattern_class_id);
         if($pattern_class)
@@ -122,7 +134,7 @@ if (!function_exists('get_is_next_class'))
 }
 
 // Getting Indian Rupees Currency
-if (!function_exists('currency_indian_rupees')) 
+if (!function_exists('currency_indian_rupees'))
 {
     function currency_indian_rupees($amount)
     {
@@ -133,7 +145,7 @@ if (!function_exists('currency_indian_rupees'))
 }
 
 // Getting Course Type , UG , PG ,PHD
-if (!function_exists('get_course_type')) 
+if (!function_exists('get_course_type'))
 {
     function get_course_type($pattern_class_id)
     {
@@ -146,10 +158,10 @@ if (!function_exists('get_course_type'))
 
 
 //Getting Student Exam Fees
-// if (!function_exists('get_exam_form_fees')) 
+// if (!function_exists('get_exam_form_fees'))
 // {
 //     function get_exam_form_fees($regular_subject_data,$backlog_subject_data=[])
-//     {   
+//     {
 //         $fee_courses = collect();
 //         $patternclass_id=null;
 //         $internal_count = 0;
@@ -237,7 +249,7 @@ if (!function_exists('get_course_type'))
 //                                 $updated_course_fee->fee = ($updated_course_fee->fee * $pattern_class_count);
 //                                 $fee_courses->push($updated_course_fee);
 //                             }else
-//                             {   
+//                             {
 //                                 // No Patternclass In Current Class For SEM-I
 //                                 $updated_course_fee = clone $course_fee;
 //                                 $updated_course_fee->fee = ($updated_course_fee->fee);
@@ -304,7 +316,7 @@ if (!function_exists('get_course_type'))
 //                     // Calculate Internal Marks Fee
 //                     if ($course_fee->fee_name == "Internal Marks Fee") {
 //                         if ($internal_count) {
-//                             // Count Inernal Subject According Subject Type ,I,IE,IP .etc 
+//                             // Count Inernal Subject According Subject Type ,I,IE,IP .etc
 //                             $updated_course_fee = clone $course_fee;
 //                             $updated_course_fee->fee = ($updated_course_fee->fee * $internal_count);
 //                             $fee_courses->push($updated_course_fee);
@@ -455,7 +467,7 @@ if (!function_exists('get_exam_form_fees')) {
             }
         }
         $sem_count = count($sems);
-        
+
         $exam = Exam::where('status', 1)->first();
         if ($exam) {
 
@@ -606,7 +618,7 @@ if (!function_exists('get_exam_form_fees')) {
                             // Calculate Passing Certificate Fee
                             $type=get_course_type($patternclass_id);
                             if(($type=="PG" && in_array(4, $sems)) || ($type=="UG"  && in_array(6, $sems)) || !(get_is_next_class($patternclass_id)))
-                            {   
+                            {
                                 $fees_array[] = [
                                     "form_name" => $course_fee->form_name,
                                     "fee_name" => $course_fee->fee_name,
@@ -703,7 +715,7 @@ if (!function_exists('get_exam_form_fees')) {
                         case "Internal Marks Fee":
                             // Calculate Internal Marks Fee
                             if ($internal_count) {
-                                // Count Inernal Subject According Subject Type ,I,IE,IP .etc 
+                                // Count Inernal Subject According Subject Type ,I,IE,IP .etc
                                 $fees_array[] = [
                                     "form_name" => $course_fee->form_name,
                                     "fee_name" => $course_fee->fee_name,
