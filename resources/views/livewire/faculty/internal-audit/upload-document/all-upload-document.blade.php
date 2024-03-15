@@ -67,7 +67,7 @@
         </div>
         <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
             <div class="bg-primary px-2 text-center py-1 font-semibold text-white dark:text-light">
-                Documents Pending Upload ( Hint : 250KB, png, jpg/jpeg, pdf )
+                Documents Pending Upload ( Hint : 1MB, png, jpg/jpeg, pdf )
             </div>
             <div class="overflow-x-auto">
                 <x-table.table>
@@ -75,7 +75,7 @@
                         <x-table.tr>
                             <x-table.th>ID</x-table.th>
                             <x-table.th>Document Name</x-table.th>
-                            <x-table.th>Preview</x-table.th>
+                            {{-- <x-table.th>Preview</x-table.th> --}}
                             <x-table.th>Action</x-table.th>
                         </x-table.tr>
                     </x-table.thead>
@@ -86,21 +86,28 @@
                                 <x-table.td>
                                     <x-table.text-scroll>{{ $document_to_upload->internaltooldocumentmaster->doc_name ?? '' }}</x-table.text-scroll>
                                 </x-table.td>
-                                <x-table.td>
+                                {{-- <x-table.td>
                                     <div class="h-[80px] w-[80px] rounded overflow-hidden">
                                         @if (isset($file[$document_to_upload->id]))
-                                            <img src="{{ asset($file[$document_to_upload->id]->temporaryUrl()) }}" alt="File Preview" class="h-full w-full object-cover" />
+                                            @if ($file[$document_to_upload->id]->getClientOriginalExtension() === 'pdf')
+                                                <img src="{{ asset('img/pdf.png') }}" alt="PDF" class="h-full w-full object-cover" />
+                                            @else
+                                                <img src="{{ asset($file[$document_to_upload->id]->temporaryUrl()) }}" alt="File Preview" class="h-full w-full object-cover" />
+                                            @endif
                                         @else
                                             <img src="{{ asset('img/no-img.png') }}" alt="No Image" class="h-full w-full object-cover" />
                                         @endif
                                     </div>
-                                </x-table.td>
+                                </x-table.td> --}}
                                 <x-table.td>
                                     <x-form wire:submit.prevent="save({{ $document_to_upload->id }})">
                                         <div class="flex items-center mb-2">
-                                            <x-input-file class="text-xs file:px-2 file:rounded-sm file:text-xs w-[75%] mr-2" name="file.{{ $document_to_upload->id }}" id="file.{{ $document_to_upload->id }}" wire:model="file.{{ $document_to_upload->id }}" accept="image/png, image/jpg, image/jpeg,.pdf" />
+                                            <x-input-file class="text-xs file:px-2 file:rounded-sm file:text-xs w-[75%] mr-2" name="file.{{ $document_to_upload->id }}" id="file.{{ $document_to_upload->id }}" wire:model="file.{{ $document_to_upload->id }}" />
                                             <x-table.upload-btn wire:loading.attr="disabled" wire:target="file.{{ $document_to_upload->id }}" wire:loading.class.remove="cursor-pointer" wire:loading.class.add="cursor-not-allowed" />
                                         </div>
+                                        @error("file.{{ $document_to_upload->id }}")
+                                            <div class="text-sm text-red-600 dark:text-red-400 space-y-1">{{ $message }}</div>
+                                        @enderror
                                         <x-input-label wire:loading.flex wire:target="file.{{ $document_to_upload->id }}" class="py-0 text-xs" for="file.{{ $document_to_upload->id }}" :value="__('Uploading...')" />
                                     </x-form>
                                 </x-table.td>
