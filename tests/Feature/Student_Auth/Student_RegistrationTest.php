@@ -25,6 +25,7 @@ class Student_RegistrationTest extends TestCase
     //         'last_name' => 'Z',
     //         'member_id' => '12345',
     //         'mobile_no' => '1234567890',
+    //         'mother_name' => 'XYZ',
     //         'email' => 'test@example.com',
     //         'password' => 'password',
     //         'password_confirmation' => 'password',
