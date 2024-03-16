@@ -19,10 +19,13 @@
           </div>
           @if ($abcid_option['show_abcid'])
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-              <x-input-label for="abcid" :value="__('ABC ID')" /> @if ($abcid_option['required_abcid']) <x-required />  @endif
+              <x-input-label for="abcid" :value="__('ABC ID')" />
+              @if ($abcid_option['required_abcid'])
+                <x-required />
+              @endif
               <x-text-input id="abcid" type="number" wire:model="abcid" name="abcid" class="w-full mt-1" :value="old('abcid', $abcid)" autofocus autocomplete="abcid" />
               <x-input-error :messages="$errors->get('abcid')" class="mt-2" />
-            </div> 
+            </div>
           @endif
         </div>
         <x-table.table>
@@ -138,8 +141,8 @@
           @foreach ($exam_fee_courses as $course_fee)
             <x-table.tr wire:key="{{ $course_fee['id'] }}" class="dark:even:bg-primary-darker even:bg-primary-lighter dark:text-white text-black py-1">
               <x-table.td> {{ $course_fee['fee_name'] }}</x-table.td>
-              <x-table.td class="text-end"> {{ currency_indian_rupees($course_fee['fee']) }}</x-table.td>
-              <x-table.td> {{ $course_fee['remark']}}</x-table.td>
+              <x-table.td class="text-end"> {{ INR($course_fee['fee']) }}</x-table.td>
+              <x-table.td> {{ $course_fee['remark'] }}</x-table.td>
             </x-table.tr>
             @php
               $total = $total + $course_fee['fee'];
@@ -147,7 +150,7 @@
           @endforeach
           <x-table.tr class=" dark:text-white text-black py-1">
             <x-table.td> TOTAL FEE</x-table.td>
-            <x-table.td class="text-end"> {{ currency_indian_rupees($total) }}</x-table.td>
+            <x-table.td class="text-end"> {{ INR($total) }}</x-table.td>
             <x-table.td></x-table.td>
           </x-table.tr>
         </x-table.tbody>

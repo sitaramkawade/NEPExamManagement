@@ -27,7 +27,7 @@ class InwardExamForm extends Component
     public $sortColumn = "id";
     public $sortColumnBy = "ASC";
     public $course_id;
-    public $list_by;
+    public $list_by='m';
     public $application_id;
     public $patternclass_id;
 
@@ -150,7 +150,8 @@ class InwardExamForm extends Component
 
 
     public function procced_to_approve($id)
-    {
+    {   
+        $this->student_exam_form_extrcredit_subjects=collect([]);
         $this->application_id = null;
         $exam_form_master = Examformmaster::find($id);
         $this->inward_id = $exam_form_master->id;
