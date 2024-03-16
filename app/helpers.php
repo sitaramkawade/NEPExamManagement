@@ -8,6 +8,7 @@ use App\Models\Subject;
 use App\Models\Courseclass;
 use App\Models\Examfeeview;
 use App\Models\Patternclass;
+use App\Models\Examfeecourse;
 use App\Models\Departmentprefix;
 use App\Models\ExamPatternclass;
 use Illuminate\Support\Collection;
@@ -23,6 +24,18 @@ if (!function_exists('get_pattern_class_name')) {
             return  (isset($pattern_class->courseclass->classyear->classyear_name) ? $pattern_class->courseclass->classyear->classyear_name : '-') . " " .
                     (isset($pattern_class->courseclass->course->course_name) ? $pattern_class->courseclass->course->course_name : '-') . " " .
                     (isset($pattern_class->pattern->pattern_name) ? $pattern_class->pattern->pattern_name : '-');
+        }
+        return null;
+    }
+}
+
+// Getting Subject Name With Code
+if (!function_exists('get_subject_name')) {
+    function get_subject_name($subject_id)
+    {
+        $subject = Subject::find($subject_id);
+        if ($subject) {
+            return $subject->subject_code ."-".$subject->subject_name;
         }
         return null;
     }
@@ -102,10 +115,10 @@ if (!function_exists('get_student_current_sem'))
 
 
 // Checking Is Next Class Or Not
-if (!function_exists('get_is_next_class')) 
+if (!function_exists('get_is_next_class'))
 {
     function get_is_next_class($pattern_class_id)
-    {   
+    {
         $is_next_class=false;
         $pattern_class = Patternclass::with(['courseclass:nextyearclass_id,id'])->find($pattern_class_id);
         if($pattern_class)
@@ -121,7 +134,7 @@ if (!function_exists('get_is_next_class'))
 }
 
 // Getting Indian Rupees Currency
-if (!function_exists('currency_indian_rupees')) 
+if (!function_exists('currency_indian_rupees'))
 {
     function currency_indian_rupees($amount)
     {
@@ -132,7 +145,7 @@ if (!function_exists('currency_indian_rupees'))
 }
 
 // Getting Course Type , UG , PG ,PHD
-if (!function_exists('get_course_type')) 
+if (!function_exists('get_course_type'))
 {
     function get_course_type($pattern_class_id)
     {
@@ -145,10 +158,10 @@ if (!function_exists('get_course_type'))
 
 
 //Getting Student Exam Fees
-// if (!function_exists('get_exam_form_fees')) 
+// if (!function_exists('get_exam_form_fees'))
 // {
 //     function get_exam_form_fees($regular_subject_data,$backlog_subject_data=[])
-//     {   
+//     {
 //         $fee_courses = collect();
 //         $patternclass_id=null;
 //         $internal_count = 0;
@@ -236,7 +249,7 @@ if (!function_exists('get_course_type'))
 //                                 $updated_course_fee->fee = ($updated_course_fee->fee * $pattern_class_count);
 //                                 $fee_courses->push($updated_course_fee);
 //                             }else
-//                             {   
+//                             {
 //                                 // No Patternclass In Current Class For SEM-I
 //                                 $updated_course_fee = clone $course_fee;
 //                                 $updated_course_fee->fee = ($updated_course_fee->fee);
@@ -303,7 +316,7 @@ if (!function_exists('get_course_type'))
 //                     // Calculate Internal Marks Fee
 //                     if ($course_fee->fee_name == "Internal Marks Fee") {
 //                         if ($internal_count) {
-//                             // Count Inernal Subject According Subject Type ,I,IE,IP .etc 
+//                             // Count Inernal Subject According Subject Type ,I,IE,IP .etc
 //                             $updated_course_fee = clone $course_fee;
 //                             $updated_course_fee->fee = ($updated_course_fee->fee * $internal_count);
 //                             $fee_courses->push($updated_course_fee);
@@ -382,13 +395,31 @@ if (!function_exists('get_course_type'))
 
 //***************************************************************************************************************************************************** */
 
+// Getting Backlog Fee
+if (!function_exists('get_backlog_fee')) 
+{
+    function get_backlog_fee($sem,$pattern_class_id)
+    {   
+        $backlog_fee=0;
+        $fee_course=Examfeeview::where('form_name','Backlog Form')->where('patternclass_id',$pattern_class_id)->where('sem',$sem)->where('active_status',1)->first();
+
+        if($fee_course)
+        {
+            $backlog_fee=$fee_course->fee;
+        }
+
+        return $backlog_fee;
+    }
+}
+
 
 if (!function_exists('get_exam_form_fees')) {
-    function get_exam_form_fees($patternclass_id,$regular_subject_data, $backlog_subject_data = [])
+    function get_exam_form_fees($patternclass_id,$regular_subject_data, $backlog_subject_data,$is_fail=false)
     {     
+        $backlog_subject_data= collect($backlog_subject_data);
+        $total_backlog_fee=0;
         $internal_count = 0;
         $external_count = 0;
-        $backlog_count = 0;
         $project_count = 0;
         $evs_count = 0;
         $sem_count = 0;
@@ -397,6 +428,18 @@ if (!function_exists('get_exam_form_fees')) {
         $student=Auth::guard('student')->user();
         $statement_of_marks_is_year_wise = isset($setting->statement_of_marks_is_year_wise) ? $setting->statement_of_marks_is_year_wise : 0;
         $pattern_class_count = Currentclassstudent::whereIn('pfstatus',[0,2])->where('student_id',$student->id)->distinct('patternclass_id')->pluck('patternclass_id')->count();
+
+
+        $sem_wise_backlog_fee_total=[];
+        foreach( $backlog_subject_data->groupBy(['subject_sem','patternclass_id']) as $semester => $backlog_subject)
+        {   
+            foreach($backlog_subject as $subject_patternclass_id => $subject)
+            { 
+                $sem_wise_backlog_fee_total[$semester]=(get_backlog_fee($semester,$subject_patternclass_id) * count($subject));
+            }
+        }
+
+        $total_backlog_fee = array_sum($sem_wise_backlog_fee_total);
 
         $regular_and_backlog_subjects = collect($regular_subject_data)->merge($backlog_subject_data);
 
@@ -419,12 +462,13 @@ if (!function_exists('get_exam_form_fees')) {
                 $internal_count++;
             }
 
-            if ($subject->subject_type == "E" || $subject->subject_type == "IE" || $subject->subject_type == "IEP" || $subject->subject_type == "EP"  || $subject->subject_type == "EINTP" || $subject->subject_type == "IEG" || $subject->subject_type == "EG") {
+            if ($subject->subject_type == "E" || $subject->subject_type == "IE" || $subject->subject_type == "IEP" || $subject->subject_type == "EP"  || $subject->subject_type == "EINTP" ) {
                 $external_count++;
             }
+
         }
         $sem_count = count($sems);
-        
+
         $exam = Exam::where('status', 1)->first();
         if ($exam) {
 
@@ -451,19 +495,38 @@ if (!function_exists('get_exam_form_fees')) {
                             ];
                         break;
                         case "Exam Fee":
-                            // Calculate Exam Fee
-                            $fees_array[] = [
-                                "form_name" => $course_fee->form_name,
-                                "fee_name" => $course_fee->fee_name,
-                                "id" => $course_fee->id,
-                                "fee" =>$course_fee->fee,
-                                "sem" => $course_fee->sem,
-                                "patternclass_id" => $course_fee->patternclass_id,
-                                "examfees_id" => $course_fee->examfees_id,
-                                "active_status" =>$course_fee->active_status,
-                                "approve_status" =>$course_fee->approve_status,
-                                "remark" =>$course_fee->remark,
-                            ];
+
+                            if($is_fail)
+                            {
+                                // Calculate Exam Fee
+                                $fees_array[] = [
+                                    "form_name" => $course_fee->form_name,
+                                    "fee_name" => $course_fee->fee_name,
+                                    "id" => $course_fee->id,
+                                    "fee" =>$total_backlog_fee,
+                                    "sem" => $course_fee->sem,
+                                    "patternclass_id" => $course_fee->patternclass_id,
+                                    "examfees_id" => $course_fee->examfees_id,
+                                    "active_status" =>$course_fee->active_status,
+                                    "approve_status" =>$course_fee->approve_status,
+                                    "remark" =>$course_fee->remark,
+                                ];
+                            }else
+                            {
+                                 // Calculate Exam Fee
+                                 $fees_array[] = [
+                                    "form_name" => $course_fee->form_name,
+                                    "fee_name" => $course_fee->fee_name,
+                                    "id" => $course_fee->id,
+                                    "fee" =>($course_fee->fee +$total_backlog_fee),
+                                    "sem" => $course_fee->sem,
+                                    "patternclass_id" => $course_fee->patternclass_id,
+                                    "examfees_id" => $course_fee->examfees_id,
+                                    "active_status" =>$course_fee->active_status,
+                                    "approve_status" =>$course_fee->approve_status,
+                                    "remark" =>$course_fee->remark,
+                                ];
+                            }
                         break;
                         case "CAP Fee":
                             // Apply CAP Fee SEM Wise
@@ -556,7 +619,7 @@ if (!function_exists('get_exam_form_fees')) {
                             // Calculate Passing Certificate Fee
                             $type=get_course_type($patternclass_id);
                             if(($type=="PG" && in_array(4, $sems)) || ($type=="UG"  && in_array(6, $sems)) || !(get_is_next_class($patternclass_id)))
-                            {   
+                            {
                                 $fees_array[] = [
                                     "form_name" => $course_fee->form_name,
                                     "fee_name" => $course_fee->fee_name,
@@ -653,7 +716,7 @@ if (!function_exists('get_exam_form_fees')) {
                         case "Internal Marks Fee":
                             // Calculate Internal Marks Fee
                             if ($internal_count) {
-                                // Count Inernal Subject According Subject Type ,I,IE,IP .etc 
+                                // Count Inernal Subject According Subject Type ,I,IE,IP .etc
                                 $fees_array[] = [
                                     "form_name" => $course_fee->form_name,
                                     "fee_name" => $course_fee->fee_name,
@@ -787,24 +850,24 @@ if (!function_exists('get_exam_form_fees')) {
                                 }
                             }
                         break;
-                        case "Backlog Fee":
-                            // Calculate Backlog Subject Exam Fee
-                            if ($backlog_count) {
-                                // According Backlog Subject Count
-                                $fees_array[] = [
-                                    "form_name" => $course_fee->form_name,
-                                    "fee_name" => $course_fee->fee_name,
-                                    "id" => $course_fee->id,
-                                    "fee" =>($course_fee->fee * $backlog_count),
-                                    "sem" => $course_fee->sem,
-                                    "patternclass_id" => $course_fee->patternclass_id,
-                                    "examfees_id" => $course_fee->examfees_id,
-                                    "active_status" =>$course_fee->active_status,
-                                    "approve_status" =>$course_fee->approve_status,
-                                    "remark" =>$course_fee->remark,
-                                ];
-                            }
-                        break;
+                        // case "Backlog Fee":
+                        //     // Calculate Backlog Subject Exam Fee add in exam fee
+                        //     if ($total_backlog_fee) {
+                        //         // According Backlog Subject Count
+                        //         $fees_array[] = [
+                        //             "form_name" => $course_fee->form_name,
+                        //             "fee_name" => $course_fee->fee_name,
+                        //             "id" => $course_fee->id,
+                        //             "fee" =>$total_backlog_fee,
+                        //             "sem" => $course_fee->sem,
+                        //             "patternclass_id" => $course_fee->patternclass_id,
+                        //             "examfees_id" => $course_fee->examfees_id,
+                        //             "active_status" =>$course_fee->active_status,
+                        //             "approve_status" =>$course_fee->approve_status,
+                        //             "remark" =>$course_fee->remark,
+                        //         ];
+                        //     }
+                        // break;
                     }
                 }
             }

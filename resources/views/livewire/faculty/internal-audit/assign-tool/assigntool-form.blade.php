@@ -60,7 +60,7 @@
                         @forelse ($internaltools as $internaltool)
                             <x-select-option wire:key="{{ $internaltool->id }}" value="{{ $internaltool->id }}" class="text-start"> {{ $internaltool->toolname }} </x-select-option>
                         @empty
-                            <x-select-option class="text-center">Tools Not Found</x-select-option>
+                            <x-select-option class="text-start">Tools Not Found</x-select-option>
                         @endforelse
                     </x-input-select>
                     <x-input-error :messages="$errors->get('assignedtool_id')" class="mt-1" />

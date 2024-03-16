@@ -16,10 +16,12 @@ use App\Livewire\User\Grade\AllGrades;
 use App\Livewire\User\Course\AllCourse;
 use App\Livewire\User\Credit\AllCredit;
 use App\Livewire\User\Notice\AllNotice;
+use App\Http\Controllers\AuthController;
 use App\Livewire\User\College\AllCollege;
 use App\Livewire\User\ExamFee\AllExamFee;
 use App\Livewire\User\Pattern\AllPattern;
 use App\Livewire\User\Sanstha\AllSanstha;
+use App\Http\Controllers\GoogleController;
 use App\Livewire\Faculty\FacultyDashboard;
 use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
@@ -39,6 +41,7 @@ use App\Livewire\User\ExamPanel\AllExamPanel;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\ExamForm\InwardExamForm;
 use App\Livewire\User\ExamForm\ModifyExamForm;
+use App\Livewire\Faculty\FileUpload\FileUpload;
 use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
 use App\Http\Controllers\ExamOrderPdfController;
@@ -114,6 +117,13 @@ Route::middleware(['guest'])->group(function () {
 
   // RND
   Route::get('/rnd', RND::class);
+
+
+
+  Route::get('/login/google', [AuthController::class,'redirectToGoogleProvider']);
+  Route::get('/login/google/callback', [AuthController::class,'handleProviderGoogleCallback']);
+  Route::get('/gogle/home',  [AuthController::class,'index'])->name('google_home');
+  Route::get('/notice', [GoogleController::class,'handleNotice']);
 });
 
 // Auth Student Routes
@@ -200,18 +210,18 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Exam Time Table class wise
   Route::get('/examTimeTables', AllExamTimeTable::class)->name('all_examtimetable');
-  
+
   Route::get('exam/timetable/pdf/{exampatternclass}',[ExamOrderPdfController::class,'timetable'])->name('timetables');
-  
+
   //All Exam Time Table Subject-Wise
   Route::get('/examTimeTables/subject', SubjectExamTimeTable::class)->name('all_examtimetable_subject');
-  
+
   //All Buildings
   Route::get('/building', AllBuilding::class)->name('all_builidng');
-  
+
   //All Blocks
   Route::get('/blocks', AllBlock::class)->name('all_block');
-  
+
   //All Exam Building
   Route::get('/exam/building', AllExamBuilding::class)->name('all_exam_building');
 
@@ -373,7 +383,6 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Document Upload
   Route::get('/all-uploadocs', AllUploadDocument::class)->name('all-uploadocs');
-
 
 });
 

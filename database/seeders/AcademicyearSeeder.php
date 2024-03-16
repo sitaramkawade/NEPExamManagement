@@ -16,33 +16,37 @@ class AcademicyearSeeder extends Seeder
         Academicyear::create( [
             'id'=>1,
             'year_name'=>'2020-21',
+            'is_doc_year'=>0,
+            'active'=>0,
             'created_at'=>'2022-04-19 04:00:13',
             'updated_at'=>'2022-04-19 04:00:13',
-            'active'=>0,
             ] );
-                        
+
             Academicyear::create( [
             'id'=>2,
             'year_name'=>'2021-22',
+            'is_doc_year'=>0,
+            'active'=>0,
             'created_at'=>'2022-04-19 04:00:13',
             'updated_at'=>'2022-04-19 04:00:13',
-            'active'=>0,
             ] );
-                        
+
             Academicyear::create( [
             'id'=>3,
             'year_name'=>'2022-23',
+            'is_doc_year'=>0,
+            'active'=>1,
             'created_at'=>'2022-10-28 04:00:13',
             'updated_at'=>'2022-10-28 04:00:13',
-            'active'=>1,
             ] );
-                        
+
             Academicyear::create( [
             'id'=>4,
             'year_name'=>'2023-24',
+            'is_doc_year'=>0,
+            'active'=>0,
             'created_at'=>'2022-10-28 04:00:13',
             'updated_at'=>'2022-10-28 04:00:13',
-            'active'=>0,
             ] );
     }
 }

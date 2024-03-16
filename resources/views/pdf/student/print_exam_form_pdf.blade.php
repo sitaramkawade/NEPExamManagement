@@ -91,6 +91,15 @@
           </td>
         </tr>
         <tr>
+          <td colspan="3">
+            <b>Examination Form :</b> {{ $exam_form_master->exam->exam_name }}
+          </td>
+          <td colspan="3">
+            <b>Member-ID :</b> {{ $exam_form_master->student->memid }}
+          </td>
+          <td colspan="3">Form No : {{ '16060-' . str_pad($exam_form_master->id, 5, 0, STR_PAD_LEFT) }}</td>
+        </tr>
+        <tr>
           <td align="center" colspan="10">
             <b>Course Name:</b> {{ ' ' . $exam_form_master->patternclass->courseclass->classyear->classyear_name . ' ' . $exam_form_master->patternclass->courseclass->course->course_name . ' ' . $exam_form_master->patternclass->pattern->pattern_name }}
           </td>
@@ -206,7 +215,8 @@
                   <td colspan="8">2. Applied Subject Information : </td>
                 </tr>
                 <tr>
-                  <th style="width: 5%;">Year / Sem </th>
+                  <th style="width: 3%;">No</th>
+                  <th style="width: 2%;">Year / Sem </th>
                   <th style="width: 15%;">Sub Code</th>
                   <th style="width: 40%;">Subject Name</th>
                   <th style="width: 8%;">Internal</th>
@@ -217,8 +227,9 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($exam_form_master->studentexamforms as $d)
+                @foreach ($exam_form_master->studentexamforms as $key => $d)
                   <tr>
+                    <td align="center">{{  $key+1  }}</td>
                     <td align="center">{{ $d->subject->subject_sem }}</td>
                     <td>{{ $d->subject->subject_code }}</td>
                     <td>{{ $d->subject->subject_name }}</td>
