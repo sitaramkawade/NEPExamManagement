@@ -509,9 +509,8 @@ class FillStudentExamForm extends Component
 
     public function save_exam_form()
     {   
-        \Log::debug( 'save 2');
-        // if((!empty($this->regular_subjects_data) || !empty($this->backlog_subjects_data)) && !isset($this->exam_fee_courses))
-        {
+        if((!empty($this->regular_subjects_data) || !empty($this->backlog_subjects_data)) && isset($this->exam_fee_courses))
+        {   
             $exam = Exam::where('status', 1)->first();
             if($exam)
             {
@@ -666,11 +665,11 @@ class FillStudentExamForm extends Component
                 return false;
             }
         }
-        // else
-        // {   
-        //     $this->dispatch('alert', type: 'error', message: 'Either Subjects Or Fees Not Found.');
-        //     return false;
-        // }
+        else
+        {   
+            $this->dispatch('alert', type: 'error', message: 'Either Subjects Or Fees Not Found.');
+            return false;
+        }
     }
 
     // Exam Form Save
@@ -682,8 +681,8 @@ class FillStudentExamForm extends Component
         } 
         catch (\Illuminate\Validation\ValidationException $e) 
         {
+            $this->dispatch('alert', type: 'info', message: 'Please Enter Medium Of Instruction And ABC ID.');
             $this->page = 1;
-            \Log::debug($this->medium_instruction);
             return false;
         }
 
@@ -741,10 +740,21 @@ class FillStudentExamForm extends Component
 
     public function next_back()
     {
-        if ($this->page == 1) {
-            $this->validate();
-            $this->page = 2;
-        } else {
+        if ($this->page == 1) 
+        {   
+            try 
+            {
+                $this->validate();
+                $this->page = 2;
+            } 
+            catch (\Illuminate\Validation\ValidationException $e) 
+            {
+                $this->dispatch('alert', type: 'info', message: 'Please Select Medium Of Instruction And Enter ABC ID.');
+                $this->page = 1;
+            }
+
+        } else 
+        {
             $this->page = 1;
         }
     }

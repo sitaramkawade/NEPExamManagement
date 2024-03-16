@@ -60,8 +60,8 @@
     </div>
   @elseif($page == 2)
     <div>
-      <x-card-header :heading="(get_pattern_class_name($patternclass_id).' Inward Exam Form')">
-        <x-status type="button" class="py-1 mx-2" wire:click='setpage(1)'   type="success" wire:loading.attr="disabled">Back</x-status>
+      <x-card-header :heading="get_pattern_class_name($patternclass_id) . ' Inward Exam Form'">
+        <x-status type="button" class="py-1 mx-2" wire:click='setpage(1)' type="success" wire:loading.attr="disabled">Back</x-status>
         <x-status type="button" class="py-1 mx-2" wire:click='resetinput()' type="danger" wire:loading.attr="disabled">Cancel</x-status>
       </x-card-header>
       <x-table.frame x="0">
@@ -88,7 +88,8 @@
                   <x-table.td>{{ $examformmaster->student->eligibilityno }} </x-table.td>
                   <x-table.td>{{ isset($examformmaster->created_at) ? $examformmaster->created_at->format('Y-m-d') : '' }} </x-table.td>
                   <x-table.td>
-                    <x-table.delete i="0" wire:click="procced_to_approve({{ $examformmaster->id }})">Proceed For Approve</x-table.delete>
+                    <x-spinner class="!float-start mx-2 h-8" wire:target='procced_to_approve({{ $examformmaster->id }})' />
+                    <x-table.delete wire:loading.attr='disabled' i="0" wire:target='procced_to_approve({{ $examformmaster->id }})' wire:click="procced_to_approve({{ $examformmaster->id }})">Proceed For Approve</x-table.delete>
                   </x-table.td>
                 </x-table.tr>
               @empty
@@ -186,172 +187,185 @@
             <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
               Fee Details
             </div>
-            <x-table.table>
-              <x-table.thead>
-                <x-table.tr>
-                  <x-table.th>Head</x-table.th>
-                  <x-table.th>Approved Fee</x-table.th>
-                </x-table.tr>
-                @php
-                  $total = 0;
-                @endphp
-              </x-table.thead>
-              <x-table.tbody>
-                @forelse ($student_exam_form_fees as $key => $examformfee)
-                  <x-table.tr wire:key="{{ $examformfee->id }}">
-                    <x-table.td>{{ $examformfee->examfee->fee_name }} </x-table.td>
-                    <x-table.td>{{ $examformfee->fee_amount }} </x-table.td>
+            <div class="overflow-x-scroll">
+              <x-table.table style="width: 100%;">
+                <x-table.thead>
+                  <x-table.tr>
+                    <x-table.th style="width:50%;">Head</x-table.th>
+                    <x-table.th class=" w-20 text-end">Approved Fee</x-table.th>
+                    <x-table.th style="width:30%;">Remark</x-table.th>
                   </x-table.tr>
                   @php
-                    $total = $total + $examformfee->fee_amount;
+                    $total = 0;
                   @endphp
-                @empty
+                </x-table.thead>
+                <x-table.tbody>
+                  @forelse ($student_exam_form_fees as $key => $examformfee)
+                    <x-table.tr wire:key="{{ $examformfee->id }}">
+                      <x-table.td>{{ $examformfee->examfee->fee_name }} </x-table.td>
+                      <x-table.td class=" w-20 text-end">{{ INR($examformfee->fee_amount) }} </x-table.td>
+                      <x-table.td>{{ $examformfee->examfee->remark }} </x-table.td>
+                    </x-table.tr>
+                    @php
+                      $total = $total + $examformfee->fee_amount;
+                    @endphp
+                  @empty
+                    <x-table.tr>
+                      <x-table.td colspan="7">
+                        <p class="text-center">No Records Found</p>
+                      </x-table.td>
+                    </x-table.tr>
+                  @endforelse
                   <x-table.tr>
-                    <x-table.td colspan="7">
-                      <p class="text-center">No Records Found</p>
-                    </x-table.td>
+                    <x-table.td class="font-bold text-red-500">Total </x-table.td>
+                    <x-table.td class="font-bold text-red-500 w-20 text-end">{{ INR($total) }} </x-table.td>
+                    <x-table.td class="font-bold text-red-500"></x-table.td>
                   </x-table.tr>
-                @endforelse
-                <x-table.tr>
-                  <x-table.td class="text-xl font-bold text-red-500">Total </x-table.td>
-                  <x-table.td class="text-xl font-bold text-red-500">{{ $total }} </x-table.td>
-                </x-table.tr>
-              </x-table.tbody>
-            </x-table.table>
+                </x-table.tbody>
+              </x-table.table>
+            </div>
           </div>
           <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
             <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
               Subject Details
             </div>
-            <x-table.table>
-              <x-table.thead>
-                <x-table.tr>
-                  <x-table.th colspan="8">
-                    <p class="text-center">Regular Subjects</p>
-                  </x-table.th>
-                </x-table.tr>
-                <x-table.tr>
-                  <x-table.th>Year / Sem</x-table.th>
-                  <x-table.th>Subject Code</x-table.th>
-                  <x-table.th>Subject Name</x-table.th>
-                  <x-table.th>Internal</x-table.th>
-                  <x-table.th>External / Theory </x-table.th>
-                  <x-table.th>Practical </x-table.th>
-                  <x-table.th>Grade </x-table.th>
-                  <x-table.th>Project </x-table.th>
-                </x-table.tr>
-              </x-table.thead>
-              <x-table.tbody>
-                @forelse ($student_exam_form_subjects as  $examformsubject)
-                  <x-table.tr wire:key="{{ $examformsubject->id }}">
-                    <x-table.td>{{ $examformsubject->subject->subject_sem }} </x-table.td>
-                    <x-table.td>{{ $examformsubject->subject->subject_code }} </x-table.td>
-                    <x-table.td>{{ $examformsubject->subject->subject_name }} </x-table.td>
-
-                    @if ($examformsubject->subject->subject_type == 'G' || $examformsubject->subject->subject_type == 'IG')
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ $examformsubject->grade_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                    @endif
-                    @if ($examformsubject->subject->subject_type == 'IE')
-                      <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                    @endif
-                    @if ($examformsubject->subject->subject_type == 'IEG')
-                      <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                    @endif
-                    @if ($examformsubject->subject->subject_type == 'IP' && $examformsubject->subject->subjectcategory->subjectcategory != 'Project')
-                      <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                    @endif
-                    @if ($examformsubject->subject->subject_type == 'IP' && $examformsubject->subject->subjectcategory->subjectcategory == 'Project')
-                      <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                    @endif
-                    @if ($examformsubject->subject->subject_type == 'I')
-                      <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                    @endif
-                    @if ($examformsubject->subject->subject_type == 'IEP')
-                      <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ $examformsubject->int_practical_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                      <x-table.td>{{ 'N' }}</x-table.td>
-                    @endif
-                  </x-table.tr>
-                @empty
+            <div class="overflow-x-scroll">
+              <x-table.table>
+                <x-table.thead>
                   <x-table.tr>
-                    <x-table.td colspan="8">
-                      <p class="text-center">No Records Found</p>
-                    </x-table.td>
+                    <x-table.th colspan="9">
+                      <p class="text-center">Regular Subjects</p>
+                    </x-table.th>
                   </x-table.tr>
-                @endforelse
-              </x-table.tbody>
-            </x-table.table>
-            <x-table.table>
-              <x-table.thead>
-                <x-table.tr>
-                  <x-table.th colspan="7">
-                    <p class="text-center">Extra Credit Subjects</p>
-                  </x-table.th>
-                </x-table.tr>
-                <x-table.tr>
-                  <x-table.th>Year / Sem</x-table.th>
-                  <x-table.th>Subject Code</x-table.th>
-                  <x-table.th>Subject Name</x-table.th>
-                  <x-table.th>Internal</x-table.th>
-                  <x-table.th>External / Theory </x-table.th>
-                  <x-table.th>Practical </x-table.th>
-                  <x-table.th>Grade </x-table.th>
-                </x-table.tr>
-              </x-table.thead>
-              <x-table.tbody>
-                @forelse ($student_exam_form_extrcredit_subjects as  $examformextrcreditsubject)
-                  <x-table.tr wire:key="{{ $examformextrcreditsubject->id }}">
-                    <x-table.td>{{ '-' }} </x-table.td>
-                    <x-table.td>{{ $examformextrcreditsubject->subject->subject_code }} </x-table.td>
-                    <x-table.td>{{ $examformextrcreditsubject->subject->subject_name }} </x-table.td>
-                    <x-table.td>{{ 'N' }}</x-table.td>
-                    <x-table.td>{{ 'N' }}</x-table.td>
-                    <x-table.td>{{ 'N' }}</x-table.td>
-                    <x-table.td>{{ $examformextrcreditsubject->subject->select_status == 1 ? 'Y' : 'N' }}</x-table.td>
-                  </x-table.tr>
-                @empty
                   <x-table.tr>
-                    <x-table.td colspan="7">
-                      <p class="text-center">No Records Found</p>
-                    </x-table.td>
+                    <x-table.th>No</x-table.th>
+                    <x-table.th>Year / Sem</x-table.th>
+                    <x-table.th>Subject Code</x-table.th>
+                    <x-table.th>Subject Name</x-table.th>
+                    <x-table.th>Internal</x-table.th>
+                    <x-table.th>External / Theory </x-table.th>
+                    <x-table.th>Practical </x-table.th>
+                    <x-table.th>Grade </x-table.th>
+                    <x-table.th>Project </x-table.th>
                   </x-table.tr>
-                @endforelse
-              </x-table.tbody>
-            </x-table.table>
+                </x-table.thead>
+                <x-table.tbody>
+                  @forelse ($student_exam_form_subjects->sortBy('exam_id')->sortBy('subject_id') as $no => $examformsubject)
+                    <x-table.tr wire:key="{{ $examformsubject->id }}">
+                      <x-table.td>{{ $no + 1 }} </x-table.td>
+                      <x-table.td>{{ $examformsubject->subject->subject_sem }} </x-table.td>
+                      <x-table.td>{{ $examformsubject->subject->subject_code }} </x-table.td>
+                      <x-table.td>{{ $examformsubject->subject->subject_name }} </x-table.td>
+  
+                      @if ($examformsubject->subject->subject_type == 'G' || $examformsubject->subject->subject_type == 'IG')
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ $examformsubject->grade_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                      @endif
+                      @if ($examformsubject->subject->subject_type == 'IE')
+                        <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                      @endif
+                      @if ($examformsubject->subject->subject_type == 'IEG')
+                        <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                      @endif
+                      @if ($examformsubject->subject->subject_type == 'IP' && $examformsubject->subject->subjectcategory->subjectcategory != 'Project')
+                        <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                      @endif
+                      @if ($examformsubject->subject->subject_type == 'IP' && $examformsubject->subject->subjectcategory->subjectcategory == 'Project')
+                        <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                      @endif
+                      @if ($examformsubject->subject->subject_type == 'I')
+                        <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                      @endif
+                      @if ($examformsubject->subject->subject_type == 'IEP')
+                        <x-table.td>{{ $examformsubject->int_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ $examformsubject->ext_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ $examformsubject->int_practical_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                      @endif
+                    </x-table.tr>
+                  @empty
+                    <x-table.tr>
+                      <x-table.td colspan="9">
+                        <p class="text-center">No Records Found</p>
+                      </x-table.td>
+                    </x-table.tr>
+                  @endforelse
+                </x-table.tbody>
+              </x-table.table>
+              @if (!$student_exam_form_extrcredit_subjects->isEmpty())
+                <x-table.table>
+                  <x-table.thead>
+                    <x-table.tr>
+                      <x-table.th colspan="8">
+                        <p class="text-center">Extra Credit Subjects</p>
+                      </x-table.th>
+                    </x-table.tr>
+                    <x-table.tr>
+                      <x-table.th>No</x-table.th>
+                      <x-table.th>Year / Sem</x-table.th>
+                      <x-table.th>Subject Code</x-table.th>
+                      <x-table.th>Subject Name</x-table.th>
+                      <x-table.th>Internal</x-table.th>
+                      <x-table.th>External / Theory </x-table.th>
+                      <x-table.th>Practical </x-table.th>
+                      <x-table.th>Grade </x-table.th>
+                    </x-table.tr>
+                  </x-table.thead>
+                  <x-table.tbody>
+                    @forelse ($student_exam_form_extrcredit_subjects as $no2 => $examformextrcreditsubject)
+                      <x-table.tr wire:key="{{ $examformextrcreditsubject->id }}">
+                        <x-table.td>{{ $no2 + 1 }} </x-table.td>
+                        <x-table.td>{{ '-' }} </x-table.td>
+                        <x-table.td>{{ $examformextrcreditsubject->subject->subject_code }} </x-table.td>
+                        <x-table.td>{{ $examformextrcreditsubject->subject->subject_name }} </x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ 'N' }}</x-table.td>
+                        <x-table.td>{{ $examformextrcreditsubject->subject->select_status == 1 ? 'Y' : 'N' }}</x-table.td>
+                      </x-table.tr>
+                    @empty
+                      <x-table.tr>
+                        <x-table.td colspan="8">
+                          <p class="text-center">No Records Found</p>
+                        </x-table.td>
+                      </x-table.tr>
+                    @endforelse
+                  </x-table.tbody>
+                </x-table.table>
+              @endif
+            </div>
           </div>
-          <x-form-btn wire:loading.attr="disabled">Approve</x-form-btn>
-          <x-form-btn type="button" wire:click='verify({{ $inward_id }})' wire:loading.attr="disabled">Verify</x-form-btn>
-          <x-form-btn type="button" wire:click='resetinput()' wire:loading.attr="disabled">Cancel</x-form-btn>
+          <x-form-btn>Inward Exam Form</x-form-btn>
+          <x-form-btn type="button" wire:click='verify({{ $inward_id }})'>Verify For Online Payment</x-form-btn>
+          <x-form-btn type="button" wire:click='resetinput()'>Cancel</x-form-btn>
           @if ($this->list_by == 'o')
-            <x-form-btn type="button" wire:click='setpage(1)' wire:loading.attr="disabled">Back</x-form-btn>
+            <x-form-btn type="button" wire:click='setpage(1)'>Back</x-form-btn>
           @else
-            <x-form-btn type="button" wire:click='setpage(2)' wire:loading.attr="disabled">Back</x-form-btn>
+            <x-form-btn type="button" wire:click='setpage(2)'>Back</x-form-btn>
           @endif
         </div>
       </x-form>

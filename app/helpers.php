@@ -134,9 +134,9 @@ if (!function_exists('get_is_next_class'))
 }
 
 // Getting Indian Rupees Currency
-if (!function_exists('currency_indian_rupees'))
+if (!function_exists('INR'))
 {
-    function currency_indian_rupees($amount)
+    function INR($amount)
     {
         $formatter = new \NumberFormatter('en_IN', \NumberFormatter::CURRENCY);
         $formatter->setTextAttribute(\NumberFormatter::PATTERN_RULEBASED, "#,##,##0.00");
