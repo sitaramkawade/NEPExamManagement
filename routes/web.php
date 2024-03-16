@@ -40,6 +40,7 @@ use App\Livewire\User\ExamPanel\AllExamPanel;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\ExamForm\InwardExamForm;
 use App\Livewire\User\ExamForm\ModifyExamForm;
+use App\Livewire\Faculty\FileUpload\FileUpload;
 use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
 use App\Http\Controllers\ExamOrderPdfController;
@@ -208,18 +209,18 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All Exam Time Table class wise
   Route::get('/examTimeTables', AllExamTimeTable::class)->name('all_examtimetable');
-  
+
   Route::get('exam/timetable/pdf/{exampatternclass}',[ExamOrderPdfController::class,'timetable'])->name('timetables');
-  
+
   //All Exam Time Table Subject-Wise
   Route::get('/examTimeTables/subject', SubjectExamTimeTable::class)->name('all_examtimetable_subject');
-  
+
   //All Buildings
   Route::get('/building', AllBuilding::class)->name('all_builidng');
-  
+
   //All Blocks
   Route::get('/blocks', AllBlock::class)->name('all_block');
-  
+
   //All Exam Building
   Route::get('/exam/building', AllExamBuilding::class)->name('all_exam_building');
 
@@ -378,7 +379,6 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Document Upload
   Route::get('/all-uploadocs', AllUploadDocument::class)->name('all-uploadocs');
-
 
 });
 

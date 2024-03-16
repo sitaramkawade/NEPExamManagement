@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
             InternalToolMasterSeeder::class,
             InternalToolDocumentMasterSeeder::class,
             InternalToolDocumentSeeder::class,
-            // InternalToolAuditorSeeder::class,               // Patternclass, Faculty, Academicyear,
+            InternalToolAuditorSeeder::class,               // Patternclass, Faculty, Academicyear,
             CourseTypeMasterSeeder::class,
             DeptPrefixSeeder::class,
         ]);
