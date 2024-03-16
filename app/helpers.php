@@ -450,9 +450,10 @@ if (!function_exists('get_exam_form_fees')) {
                 $internal_count++;
             }
 
-            if ($subject->subject_type == "E" || $subject->subject_type == "IE" || $subject->subject_type == "IEP" || $subject->subject_type == "EP"  || $subject->subject_type == "EINTP" || $subject->subject_type == "IEG" || $subject->subject_type == "EG") {
+            if ($subject->subject_type == "E" || $subject->subject_type == "IE" || $subject->subject_type == "IEP" || $subject->subject_type == "EP"  || $subject->subject_type == "EINTP" ) {
                 $external_count++;
             }
+
         }
         $sem_count = count($sems);
         
