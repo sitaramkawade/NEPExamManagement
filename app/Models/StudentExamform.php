@@ -27,6 +27,7 @@ class StudentExamform extends Model
         'subject_id',
         'examformmaster_id',
         'college_id',
+        'is_backlog',
     ];
 
     public function exam()

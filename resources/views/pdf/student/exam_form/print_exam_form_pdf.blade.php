@@ -90,26 +90,26 @@
         </tr>
         <tr>
           <td colspan="3">
-            <b>Examination Form :</b> {{ $exam_form_master->exam->exam_name }}
-          </td>
-          <td colspan="4">
             <b>Member-ID :</b> {{ $exam_form_master->student->memid }}
+          </td>
+          <td colspan="4" style="text-align: center;">
+            <b>Examination Form :</b> {{ $exam_form_master->exam->exam_name }}
           </td>
           <td colspan="3" style="text-align: right;">Form No : {{ '16060-' . str_pad($exam_form_master->id, 5, 0, STR_PAD_LEFT) }}</td>
         </tr>
         <tr>
           <td align="center" colspan="10">
-            <b>Course Name:</b> {{ ' ' . $exam_form_master->patternclass->courseclass->classyear->classyear_name . ' ' . $exam_form_master->patternclass->courseclass->course->course_name . ' ' . $exam_form_master->patternclass->pattern->pattern_name }}
+            <b>Course Name:</b> {{  get_pattern_class_name($exam_form_master->patternclass_id) }}
           </td>
         </tr>
         <tr>
           <td colspan="3">
             <b>PRN:</b>{{ is_null($exam_form_master->student->prn) ? 'Fresh' : $exam_form_master->student->prn }}
           </td>
-          <td colspan="4">
-            <b>ELIGIBILITY NO.:</b> {{ $exam_form_master->student->eligibilityno }}
+          <td colspan="4" style="text-align: center;">
+            <b>ELIGIBILITY NO.:</b> {{ $exam_form_master->student->eligibilityno??'N.A.' }}
           </td>
-          <td colspan="3">
+          <td colspan="3" style="text-align: right;">
             <b>Total Fees to be Paid:</b> <span style="font-family: DejaVu Sans; sans-serif; font-weight:normal">₹</span> {{ ' ' . $exam_form_master->totalfee }}
           </td>
         </tr>
@@ -225,9 +225,12 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($exam_form_master->studentexamforms->sortBy('exam_id')->sortBy('subject_id') as $key => $d)
+                @php
+                  $count=0;
+                @endphp
+                @foreach ($exam_form_master->studentexamforms->sortByDESC('is_backlog')->sortBy('exam_id') as  $d)
                   <tr>
-                    <td align="center">{{  $key+1  }}</td>
+                    <td align="center">{{  ++$count  }}</td>
                     <td align="center">{{ $d->subject->subject_sem }}</td>
                     <td>{{ $d->subject->subject_code }}</td>
                     <td>{{ $d->subject->subject_name }}</td>
@@ -284,6 +287,16 @@
                 @endforeach
               </tbody>
             </table>
+          </td>
+        </tr>
+        <tr>
+          <td  colspan="5">
+            <br>
+            Regular Subjects : {{ $exam_form_master->studentexamforms->where('is_backlog',0)->count() }}
+          </td>
+          <td style="text-align: right;" colspan="5">
+            <br>
+            Backlog Subjects : {{ $exam_form_master->studentexamforms->where('is_backlog',1)->count() }}
           </td>
         </tr>
       </tbody>
@@ -344,30 +357,30 @@
       <table width="100%">
         <tbody>
           <tr>
-            <td>
+            <td colspan="3">3. Fee Details:</td>
+          </tr>
+          <tr>
+            <td width="100%">
               <table width="100%" cellspacing="0">
                 <tbody>
                   <tr>
-                    <td colspan="3">3. Fee Details:</td>
-                  </tr>
-                  <tr>
-                    <td>
+                    <td style="text-align: center;">
                       <b>Examination Form :</b> {{ $exam_form_master->exam->exam_name }}
-                    </td>
-                    <td colspan="2">Form No : {{ $exam_form_master->id }}</td>
+                    </td >
+                    <td style="text-align: center;" colspan="2">Form No : {{ $exam_form_master->id }}</td>
                   </tr>
                   <tr>
                     <td>Fee Type</td>
-                    <td>Fee Amount</td>
-                    <td>Remarks</td>
+                    <td style="text-align: right;">Fee Amount</td>
+                    <td style="text-align: center;">Remarks</td>
                   </tr>
                   @php
                     $totalfee = 0;
                   @endphp
                   @foreach ($exam_form_master->studentexamformfees->sortBy('examfees_id') as $d)
                     <tr>
-                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $d->examfee->fee_name }}</td>
-                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $d->fee_amount }}</td>
+                      <td>{{ $d->examfee->fee_name }}</td>
+                      <td style="font-weight:normal ; text-align: right; font-family: DejaVu Sans; sans-serif;">{{ INR($d->fee_amount) }}</td>
                       @php
                         $totalfee = $totalfee + $d->fee_amount;
                       @endphp
@@ -376,7 +389,8 @@
                   @endforeach
                   <tr>
                     <td style="font-family: DejaVu Sans; sans-serif; font-size:20px; font-weight:bold">Total Fee to Be Paid:</td>
-                    <td colspan="2" style="font-family: DejaVu Sans; sans-serif; font-size:20px; font-weight:bold">&nbsp;&nbsp;&nbsp;<span>₹</span>{{ $totalfee }}</td>
+                    <td  style="font-family: DejaVu Sans; text-align: right; sans-serif; font-size:20px; font-weight:bold">{{ INR($totalfee)  }}</td>
+                    <td></td>
                   </tr>
                 </tbody>
               </table>
