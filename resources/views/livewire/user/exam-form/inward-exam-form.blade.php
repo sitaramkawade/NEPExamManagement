@@ -234,7 +234,7 @@
                 <x-table.thead>
                   <x-table.tr>
                     <x-table.th colspan="9">
-                      <p class="text-center">Regular Subjects</p>
+                      <p class="text-center">Regular & Backlog Subjects</p>
                     </x-table.th>
                   </x-table.tr>
                   <x-table.tr>
@@ -250,9 +250,12 @@
                   </x-table.tr>
                 </x-table.thead>
                 <x-table.tbody>
-                  @forelse ($student_exam_form_subjects->sortBy('exam_id')->sortBy('subject_id') as $no => $examformsubject)
+                  @php
+                    $count=0;
+                  @endphp
+                  @forelse ($student_exam_form_subjects->sortByDESC('is_backlog')->sortBy('exam_id') as $examformsubject)
                     <x-table.tr wire:key="{{ $examformsubject->id }}">
-                      <x-table.td>{{ $no + 1 }} </x-table.td>
+                      <x-table.td>{{ ++$count }} </x-table.td>
                       <x-table.td>{{ $examformsubject->subject->subject_sem }} </x-table.td>
                       <x-table.td>{{ $examformsubject->subject->subject_code }} </x-table.td>
                       <x-table.td>{{ $examformsubject->subject->subject_name }} </x-table.td>
@@ -314,6 +317,14 @@
                       </x-table.td>
                     </x-table.tr>
                   @endforelse
+                  <x-table.tr>
+                    <x-table.td colspan="4">
+                      Regular Subjects : {{ $student_exam_form_subjects->where('is_backlog',0)->count() }}
+                    </x-table.td>
+                    <x-table.td colspan="4">
+                      Backlog Subjects :  {{ $student_exam_form_subjects->where('is_backlog',1)->count() }}
+                    </x-table.td>
+                  </x-table.tr>
                 </x-table.tbody>
               </x-table.table>
               @if (!$student_exam_form_extrcredit_subjects->isEmpty())

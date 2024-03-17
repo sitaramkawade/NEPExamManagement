@@ -5,6 +5,7 @@ namespace App\Livewire\User\ExamForm;
 use App\Models\Exam;
 use App\Models\Subject;
 use Livewire\Component;
+use App\Models\Examfeeview;
 use App\Models\Admissiondata;
 use App\Models\Examformmaster;
 use App\Models\StudentExamform;
@@ -28,6 +29,8 @@ class ModifyExamForm extends Component
     public $student_exam_form_subjects=[];
     #[Locked]
     public $student_exam_form_fees=[];
+    #[Locked]
+    public $student_exam_form_refrance_fees=[];
     #[Locked]
     public $student_exam_form_extrcredit_subjects=[];
     #[Locked]
@@ -69,14 +72,14 @@ class ModifyExamForm extends Component
         $this->validate();
         $exam_form_master=Examformmaster::find($this->application_id);
         $this->student=$exam_form_master->student;
-        $temp = ($exam_form_master->patternclass->courseclass->classyear->classyear_name ?? '') . ' ' . ($exam_form_master->patternclass->courseclass->course->course_name ?? '') . ' ' . ($exam_form_master->patternclass->pattern->pattern_name ?? '');
         $this->modify_id=$exam_form_master->id;
         $this->mother_name=$exam_form_master->student->mother_name;
-        $this->course_name=$temp;
+        $this->course_name=get_pattern_class_name($exam_form_master->patternclass_id);
         $this->memid=$exam_form_master->student->memid;
         $this->student_name=$exam_form_master->student->student_name;
         $this->student_exam_form_subjects= $exam_form_master->studentexamforms()->get();
         $this->student_exam_form_fees= $exam_form_master->studentexamformfees()->get();
+        $this->student_exam_form_refrance_fees=  $student_course_fees = Examfeeview::where('patternclass_id', $exam_form_master->patternclass_id)->where('active_status', 1)->distinct('examfees_id')->groupBy('examfees_id')->orderBy('examfees_id','ASC')->latest()->get();
         $this->student_exam_form_extrcredit_subjects= $exam_form_master->studentextracreditexamforms()->get();
         $this->page=2;
 
@@ -116,7 +119,7 @@ class ModifyExamForm extends Component
         }
         else
         {
-           $this->dispatch('alert',type:'info',message:'Comming Soon !!');
+            $this->subjects_not_selected=Subject::where('patternclass_id',$exam_form_master->patternclass_id)->whereNotIn('id',$exam_form_master->studentexamforms()->pluck('subject_id'))->get();
         }
 
        
