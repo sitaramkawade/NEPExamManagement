@@ -4,7 +4,9 @@ namespace App\Livewire\Faculty\InternalAudit\HodAssignTool;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Facultyinternaldocument;
+use App\Exports\Faculty\InternalAudit\HodAssignTool\HodAssignToolExport;
 
 class AllHodAssignTool extends Component
 {
@@ -58,10 +60,10 @@ class AllHodAssignTool extends Component
     //     ];
     // }
 
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
+    // public function updated($propertyName)
+    // {
+    //     $this->validateOnly($propertyName);
+    // }
 
     // public function resetinput()
     // {
@@ -207,26 +209,26 @@ class AllHodAssignTool extends Component
     //     $this->sortColumnBy=="ASC";
     // }
 
-    // public function updatedSearch()
-    // {
-    //     $this->resetPage();
-    // }
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
 
-    // public function export()
-    // {
-    //     $filename="Faculty_Internal_Tool_Export-".now();
-    //     switch ($this->ext) {
-    //         case 'xlsx':
-    //             return Excel::download(new FacultyInternalDocumentExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
-    //         break;
-    //         case 'csv':
-    //             return Excel::download(new FacultyInternalDocumentExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
-    //         break;
-    //         case 'pdf':
-    //             return Excel::download(new FacultyInternalDocumentExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
-    //         break;
-    //     }
-    // }
+    public function export()
+    {
+        $filename="HodAssignTools-".now();
+        switch ($this->ext) {
+            case 'xlsx':
+                return Excel::download(new HodAssignToolExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+            break;
+            case 'csv':
+                return Excel::download(new HodAssignToolExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+            break;
+            case 'pdf':
+                return Excel::download(new HodAssignToolExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+            break;
+        }
+    }
 
     // public function status(Facultyinternaldocument $faculty_internal_document)
     // {
@@ -264,7 +266,7 @@ class AllHodAssignTool extends Component
 
     public function render()
     {
-        $faculty_internal_documents = Facultyinternaldocument::when($this->search, function($query, $search){
+        $faculty_internal_documents = Facultyinternaldocument::with(['faculty:faculty_name,id','subject:subject_name,id','academicyear:year_name,id','internaltooldocumentmaster:doc_name,id',])->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.internal-audit.hod-assign-tool.all-hod-assign-tool',compact('faculty_internal_documents'))->extends('layouts.faculty')->section('faculty');

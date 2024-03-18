@@ -199,7 +199,7 @@ class AllUploadDocument extends Component
 
             // Delete the associated image
             if ($inttool_doc->document_fileName) {
-                File::delete($inttool_doc->document_fileTitle); // Adjust the column name and storage method accordingly
+                File::delete($inttool_doc->document_filePath); // Adjust the column name and storage method accordingly
             }
 
             // Reset the temporary URL

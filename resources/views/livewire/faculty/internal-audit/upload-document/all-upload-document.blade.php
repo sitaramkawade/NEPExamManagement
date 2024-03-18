@@ -105,7 +105,7 @@
                                     <x-form wire:submit.prevent="save({{ $document_to_upload->id }})">
                                         <div class="flex items-center mb-2">
                                             <x-input-file class="text-xs file:px-2 file:rounded-sm file:text-xs w-[75%] mr-2" name="file.{{ $document_to_upload->id }}" id="file.{{ $document_to_upload->id }}" wire:model="file.{{ $document_to_upload->id }}" />
-                                            <x-table.upload-btn wire:loading.attr="disabled" wire:target="file.{{ $document_to_upload->id }}" wire:loading.class.remove="cursor-pointer" wire:loading.class.add="cursor-not-allowed" />
+                                            <x-table.upload-btn i="0" wire:loading.attr="disabled" wire:target="file.{{ $document_to_upload->id }}" wire:loading.class.remove="cursor-pointer" wire:loading.class.add="cursor-not-allowed" >Upload</x-table.upload-btn>
                                         </div>
                                         @error("file.{{ $document_to_upload->id }}")
                                             <div class="text-sm text-red-600 dark:text-red-400 space-y-1">{{ $message }}</div>
@@ -145,8 +145,8 @@
                                 </x-table.td>
                                 <x-table.td>
                                     <div class="flex items-center space-x-2">
+                                        <x-view-image-model-btn src="{{ isset($uploaded_document->document_filePath) ? asset($uploaded_document->document_filePath) : asset('img/no-img.png') }}" />
                                         <x-table.delete wire:click="deleteconfirmation({{ $uploaded_document->id }})" />
-                                        <x-view-image-model-btn src="{{ isset($uploaded_document->document_fileTitle) ? asset($uploaded_document->document_fileTitle) : asset('img/no-img.png') }}">View</x-view-image-model-btn>
                                     </div>
                                 </x-table.td>
                             </x-table.tr>
