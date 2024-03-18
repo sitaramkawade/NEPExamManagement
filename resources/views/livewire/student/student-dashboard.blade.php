@@ -123,19 +123,7 @@
                   </x-table.td>
                   <x-table.td>
                     @if (isset($exm_form->transaction->status))
-                      @if ($exm_form->transaction->status === 3)
-                        <x-status type="success"> Success</x-status>
-                      @elseif ($exm_form->transaction->status === 4)
-                        <x-status type="info">Refunded</x-status>
-                      @elseif ($exm_form->transaction->status === 5)
-                        <x-status type="danger">Failed</x-status>
-                      @elseif ($exm_form->transaction->status === 1)
-                        <x-status>Order Created</x-status>
-                      @elseif ($exm_form->transaction->status === 2)
-                        <x-status type="warning">Processing</x-status>
-                      @endif
-                    @else
-                      <x-status>NA</x-status>
+                      <x-status type="{{  App\Enums\PaymentStatus::get_type($exm_form->transaction->status) }}">  {{  App\Enums\PaymentStatus::get_status($exm_form->transaction->status)}} </x-status>
                     @endif
                   </x-table.td>
                   <x-table.td>
