@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Patternclass;
+use App\Models\Facultyinternaldocument;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,6 +40,11 @@ class Hodappointsubject extends Model
     public function patternclass(): BelongsTo
     {
         return $this->belongsTo(Patternclass::class,'patternclass_id','id')->withTrashed();
+    }
+
+    public function facultyinternaldocument():HasMany
+    {
+        return $this->hasMany(Facultyinternaldocument::class,'departmenthead_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

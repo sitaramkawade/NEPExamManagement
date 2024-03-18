@@ -10,6 +10,7 @@ use App\Models\Academicyear;
 use App\Models\Patternclass;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
+use App\Models\Hodappointsubject;
 use App\Models\Internaltoolmaster;
 use App\Models\Internaltoolauditor;
 use App\Models\Internaltooldocument;
@@ -125,31 +126,45 @@ class AllAssignTool extends Component
     {
 
         $validatedData = $this->validate();
-        $assignedToolData = [];
-        foreach ($this->selected_tools as $toolId) {
-            // Retrieve the selected tool's associated documents
-            $toolDocuments = Internaltooldocument::where('internaltoolmaster_id', $toolId)->get();
-            if($toolDocuments){
-                foreach ($toolDocuments as $document) {
-                    $assignedToolData[] = [
-                        'internaltooldocument_id' => $document->id,
-                        'faculty_id' => Auth::guard('faculty')->user()->id,
-                        'academicyear_id' => $validatedData['academicyear_id'],
-                        'subject_id' => $validatedData['subject_id'],
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ];
+
+        $headId = Hodappointsubject::select('faculty_id')
+        ->where('faculty_id', Auth::guard('faculty')->user()->id)
+        ->where('patternclass_id', $this->patternclass_id)
+        ->where('subject_id', $this->subject_id)
+        ->first();
+
+        if($headId !== null){
+            $assignedToolData = [];
+            foreach ($this->selected_tools as $toolId) {
+                // Retrieve the selected tool's associated documents
+                $toolDocuments = Internaltooldocument::where('internaltoolmaster_id', $toolId)->get();
+
+                if ($toolDocuments->isNotEmpty()) {
+                    foreach ($toolDocuments as $document) {
+                        $assignedToolData[] = [
+                            'internaltooldocument_id' => $document->id,
+                            'faculty_id' => Auth::guard('faculty')->user()->id,
+                            'academicyear_id' => $validatedData['academicyear_id'],
+                            'subject_id' => $validatedData['subject_id'],
+                            'departmenthead_id' => $headId->faculty_id,
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ];
+                    }
+
+                    Facultyinternaldocument::insert($assignedToolData);
+
+                    $this->dispatch('alert', type: 'success', message: 'Tool Assigned To Subject Successfully');
+                    $this->resetinput();
+                    $this->setmode('all');
+                } else {
+                    $this->dispatch('alert', type: 'info', message: 'Documents are not assigned for this tool!');
                 }
-                Facultyinternaldocument::insert($assignedToolData);
-
-                $this->dispatch('alert', type: 'success', message: 'Tool Assigned To Subject Successfully');
-                $this->setmode('all'); // Assuming you want to switch back to a specific mode after updating
-            }else{
-                $this->dispatch('alert', type: 'info', message: 'Documents are not assigned for this tool!');
-                $this->resetinput();
             }
+        }else {
+            $this->dispatch('alert', type: 'info', message: 'HOD Not Appointed For This Subject!');
+            return false;
         }
-
     }
 
     public function edit(Facultyinternaldocument $assigned_tool)

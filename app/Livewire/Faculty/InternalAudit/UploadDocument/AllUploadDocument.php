@@ -53,28 +53,28 @@ class AllUploadDocument extends Component
     public $mode='all';
 
 
-    protected function rules()
-    {
-        $rules = [];
-        foreach ($this->file as $key => $value) {
-            $rules["file.{$key}"] = ['required', 'file', 'max:1024', 'mimes:png,jpg,jpeg,pdf'];
-        }
-        return $rules;
-    }
+    // protected function rules()
+    // {
+    //     $rules = [];
+    //     foreach ($this->file as $key => $value) {
+    //         $rules["file.{$key}"] = ['required', 'file', 'max:1024', 'mimes:png,jpg,jpeg,pdf'];
+    //     }
+    //     return $rules;
+    // }
 
-    public function messages()
-    {
-        $messages = [];
-        foreach ($this->file as $key => $value) {
-            $docName = 'File';
+    // public function messages()
+    // {
+    //     $messages = [];
+    //     foreach ($this->file as $key => $value) {
+    //         $docName = 'File';
 
-            $messages["file.{$key}.required"] = "The {$docName} is required.";
-            $messages["file.{$key}.file"] = "The {$docName} must be a file.";
-            $messages["file.{$key}.max"] = "The {$docName} must not exceed :max KB.";
-            $messages["file.{$key}.mimes"] = "The {$docName} must be in PNG, JPG, JPEG, PDF, or TXT format.";
-        }
-        return $messages;
-    }
+    //         $messages["file.{$key}.required"] = "The {$docName} is required.";
+    //         $messages["file.{$key}.file"] = "The {$docName} must be a file.";
+    //         $messages["file.{$key}.max"] = "The {$docName} must not exceed :max KB.";
+    //         $messages["file.{$key}.mimes"] = "The {$docName} must be in PNG, JPG, JPEG, PDF, or TXT format.";
+    //     }
+    //     return $messages;
+    // }
 
 
     public function deleteconfirmation($id)
@@ -141,9 +141,8 @@ class AllUploadDocument extends Component
 
     public function save(Facultyinternaldocument $facultyinternaldocument)
     {
-        $validatedData = $this->validate();
-        dd($validatedData);
-
+        // $validatedData = $this->validate();
+        // dd($validatedData);
         if (!empty($this->file)) {
             // Check if the record exists
             if ($facultyinternaldocument) {
@@ -250,7 +249,7 @@ class AllUploadDocument extends Component
                 ->where('academicyear_id', $this->academicyear_id)
                 ->where('status', 1)
                 ->whereNotNull('document_fileName')
-                ->whereNotNull('document_fileTitle')
+                ->whereNotNull('document_filePath')
                 ->get();
             } else {
                 $this->uploaded_documents = [];

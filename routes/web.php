@@ -78,10 +78,11 @@ use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
-use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Livewire\Faculty\InternalAudit\AssignTool\AllAssignTool;
 use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
+use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
+use App\Livewire\Faculty\InternalAudit\HodAssignTool\AllHodAssignTool;
 use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
@@ -370,6 +371,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Document Upload
   Route::get('/upload/documents', AllUploadDocument::class)->name('all_upload_documents');
+
+  // All Hod Assign Tool
+  Route::get('/hod/assign/tools', AllHodAssignTool::class)->name('all_hod_assign_tools');
 
 });
 

@@ -21,12 +21,14 @@
                     </x-input-select>
                     <x-input-error :messages="$errors->get('academicyear_id')" class="mt-2" />
                 </div>
-                {{-- <div wire:ignore class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+                {{-- <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                     <x-input-label for="patternclass_id" :value="__('Select Pattern Class')" />
                     <x-select2.select style="width:100%;" id="patternclass_id" name="patternclass_id" wire:model='patternclass_id' data-placeholder>
                         <x-select2.option value=""></x-select2.option>
-                        @forelse ($pattern_classes as $pattern_class)
-                            <x-select2.option wire:key="{{ $pattern_class }}" value="{{ $pattern_class }}" class="text-start">{{ get_pattern_class_name($pattern_class) }}</x-select2.option>
+                        @forelse ($pattern_classes as $patternclassid => $patternclass)
+                            <x-select2.option wire:key="{{ $patternclassid }}" value="{{ $patternclassid }}" class="text-start">
+                                {{ $patternclass['classyear_name'] ?? '-' }} {{ $patternclass['course_name'] ?? '-' }} {{ $patternclass['pattern_name'] ?? '-' }}
+                            </x-select2.option>
                         @empty
                             <x-select-option class="text-start">Pattern Classes Not Found</x-select-option>
                         @endforelse
@@ -75,7 +77,7 @@
                         <x-table.tr>
                             <x-table.th>ID</x-table.th>
                             <x-table.th>Document Name</x-table.th>
-                            {{-- <x-table.th>Preview</x-table.th> --}}
+                            <x-table.th>Preview</x-table.th>
                             <x-table.th>Action</x-table.th>
                         </x-table.tr>
                     </x-table.thead>
@@ -86,7 +88,7 @@
                                 <x-table.td>
                                     <x-table.text-scroll>{{ $document_to_upload->internaltooldocumentmaster->doc_name ?? '' }}</x-table.text-scroll>
                                 </x-table.td>
-                                {{-- <x-table.td>
+                                <x-table.td>
                                     <div class="h-[80px] w-[80px] rounded overflow-hidden">
                                         @if (isset($file[$document_to_upload->id]))
                                             @if ($file[$document_to_upload->id]->getClientOriginalExtension() === 'pdf')
@@ -98,7 +100,7 @@
                                             <img src="{{ asset('img/no-img.png') }}" alt="No Image" class="h-full w-full object-cover" />
                                         @endif
                                     </div>
-                                </x-table.td> --}}
+                                </x-table.td>
                                 <x-table.td>
                                     <x-form wire:submit.prevent="save({{ $document_to_upload->id }})">
                                         <div class="flex items-center mb-2">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Internaltooldocumentmaster;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,12 +15,13 @@ class Facultyinternaldocument extends Model
     use HasFactory,SoftDeletes;
     protected $table='facultyinternaldocuments';
     protected $fillable=[
-        'faculty_id',
-        'document_fileName',
-        'document_fileTitle',
-        'internaltooldocument_id',
-        'subject_id',
         'academicyear_id',
+        'faculty_id',
+        'subject_id',
+        'internaltooldocument_id',
+        'document_fileName',
+        'document_filePath',
+        'departmenthead_id',
         'verifybyfaculty_id',
         'verificationremark',
         'status',
@@ -48,6 +50,11 @@ class Facultyinternaldocument extends Model
     public function internaltooldocument():BelongsTo
     {
         return $this->belongsTo(Internaltooldocument::class,'internaltooldocument_id','id');
+    }
+
+    public function departmenthead():BelongsTo
+    {
+        return $this->belongsTo(Hodappointsubject::class,'departmenthead_id','id');
     }
 
     public function scopeSearch(Builder $query, string $search)
