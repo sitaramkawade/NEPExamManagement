@@ -27,7 +27,7 @@ class InwardExamForm extends Component
     public $sortColumn = "id";
     public $sortColumnBy = "ASC";
     public $course_id;
-    public $list_by;
+    public $list_by='m';
     public $application_id;
     public $patternclass_id;
 
@@ -150,7 +150,8 @@ class InwardExamForm extends Component
 
 
     public function procced_to_approve($id)
-    {
+    {   
+        $this->student_exam_form_extrcredit_subjects=collect([]);
         $this->application_id = null;
         $exam_form_master = Examformmaster::find($id);
         $this->inward_id = $exam_form_master->id;
@@ -227,23 +228,7 @@ class InwardExamForm extends Component
                 }
             } else 
             {   
-                if ((get_course_type($student->patternclass_id) == 'PG' && $student_current_class_entry->sem == 4) || (get_course_type($student->patternclass_id) == 'UG' && $student_current_class_entry->sem == 6)) 
-                {
-                    $current_admission = false;
-
-                } 
-                else 
-                {
-                    $admission_data = Admissiondata::where('memid', $student->memid)->where('patternclass_id', $student_current_class_entry->patternclass_id + 1)->where('academicyear_id', $active_exam->academicyear_id)->get();
-                    if (!$admission_data->isEmpty()) 
-                    {
-                        $current_admission = true;
-                    } else 
-                    {
-                        $current_admission = false;
-                    }
-                }
-
+     
                 switch ($student_current_class_entry->sem) 
                 {   
                     case 1:
@@ -283,7 +268,7 @@ class InwardExamForm extends Component
                         } else if (!(is_null($sem_1_data) && is_null($sem_2_data))) 
                         {   
                             $this->year_result = $student->get_year_result_exam_form($sem_1_data,$sem_2_data, $student_current_class_entry);
-                            if ($this->year_result == 0 || $current_admission == false)
+                            if ($this->year_result == 0)
                             {
                                 // FY SEM-I-II Fail Student // Done
                                 $student->currentclassstudents()->create([
@@ -374,8 +359,7 @@ class InwardExamForm extends Component
                             {
                                 $this->year_result = $student->get_year_result_exam_form($sem_1_data,$sem_2_data, $student_current_class_entry);
                                
-                                dd($current_admission == false);
-                                if ($this->year_result != 1 || $current_admission == false)
+                                if ($this->year_result != 1 )
                                 {   
                                     $student->currentclassstudents()->create([
                                         'sem' => $student_current_class_entry->sem,
@@ -386,16 +370,14 @@ class InwardExamForm extends Component
                                     ]);
                                 } 
                                 else 
-                                {
-                                    dd('ok' );
+                                {   
                                     $sem_3_data = $student->studentresults->where('sem', 3)->last();
                                     $sem_4_data = $student->studentresults->where('sem', 4)->last();
                                     
                                     if (!(is_null($sem_3_data) && is_null($sem_4_data))) 
                                     {
                                         $this->year_result = $student->get_year_result_exam_form($sem_3_data, $sem_4_data, $student_current_class_entry);
-                                        
-                                        if ($this->year_result == 0 || $current_admission == false)
+                                        if ($this->year_result == 0)
                                         {   
                                             $student->currentclassstudents()->create([
                                                 'sem' => $student_current_class_entry->sem,
@@ -456,7 +438,7 @@ class InwardExamForm extends Component
                             {
                                 $this->year_result = $student->get_year_result_exam_form($sem_1_data,$sem_2_data, $student_current_class_entry);
 
-                                if ($this->year_result == 0 || $current_admission == false)
+                                if ($this->year_result == 0)
                                 {   
                                     $student->currentclassstudents()->create([
                                         'sem' => $student_current_class_entry->sem,

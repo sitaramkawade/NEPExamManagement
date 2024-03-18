@@ -14,11 +14,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <link href="{{ asset('assets/select-to/select2.min.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('assets/jquery/jquery.min.js') }}" ></script>
     <script src="{{ asset('assets/alpinejs/ui.min.js') }}" defer></script>
     <script src="{{ asset('assets/sweetalert/sweetalert.js') }}" defer></script>
     <script src="{{ asset('assets/select-to/select2.min.js') }}" defer></script>
     <script src="{{ asset('assets/chart/Chart.bundle.min.js') }}" ></script>
-    <script src="{{ asset('assets/jquery/jquery.min.js') }}" ></script>
     @livewireStyles()
     
     @yield('styles')

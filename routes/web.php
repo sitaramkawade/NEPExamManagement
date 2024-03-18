@@ -16,10 +16,12 @@ use App\Livewire\User\Grade\AllGrades;
 use App\Livewire\User\Course\AllCourse;
 use App\Livewire\User\Credit\AllCredit;
 use App\Livewire\User\Notice\AllNotice;
+use App\Http\Controllers\AuthController;
 use App\Livewire\User\College\AllCollege;
 use App\Livewire\User\ExamFee\AllExamFee;
 use App\Livewire\User\Pattern\AllPattern;
 use App\Livewire\User\Sanstha\AllSanstha;
+use App\Http\Controllers\GoogleController;
 use App\Livewire\Faculty\FacultyDashboard;
 use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
@@ -115,6 +117,13 @@ Route::middleware(['guest'])->group(function () {
 
   // RND
   Route::get('/rnd', RND::class);
+
+
+
+  Route::get('/login/google', [AuthController::class,'redirectToGoogleProvider']);
+  Route::get('/login/google/callback', [AuthController::class,'handleProviderGoogleCallback']);
+  Route::get('/gogle/home',  [AuthController::class,'index'])->name('google_home');
+  Route::get('/notice', [GoogleController::class,'handleNotice']);
 });
 
 // Auth Student Routes

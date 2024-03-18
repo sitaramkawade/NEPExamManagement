@@ -67,6 +67,7 @@
               <x-table.th>Head</x-table.th>
               <x-table.th>Previous Fee</x-table.th>
               <x-table.th>New Fee</x-table.th>
+              <x-table.th>Refrance Fee</x-table.th>
               <x-table.th>Modification</x-table.th>
             </x-table.tr>
             @php
@@ -83,6 +84,9 @@
                     <x-text-input id="newfees.{{ $examformfee->examfees_id }}" type="number" wire:model.live.debounce.30s="newfees.{{ $examformfee->examfees_id }}" placeholder="{{ __('Enter New ' . $examformfee->examfee->fee_name . '') }}" name="newfees.{{ $examformfee->examfees_id }}" class="w-50 mt" />
                     <x-input-error :messages="$errors->get('newfees.{$examformfee->examfees_id}')" class="mt-1" />
                   </div>
+                </x-table.td>
+                <x-table.td>
+                 {{ $student_exam_form_refrance_fees->where('examfees_id',$examformfee->examfees_id)->first()->fee }}
                 </x-table.td>
                 <x-table.td>
                   @if ($examformfee->fee_amount != $newfees[$examformfee->examfees_id])
@@ -118,6 +122,7 @@
         <x-table.table>
           <x-table.thead>
             <x-table.tr>
+              <x-table.th>No</x-table.th>
               <x-table.th>Year / Sem</x-table.th>
               <x-table.th>Subject Code</x-table.th>
               <x-table.th>Subject Name</x-table.th>
@@ -130,15 +135,19 @@
             </x-table.tr>
           </x-table.thead>
           <x-table.tbody>
-            @forelse ($student_exam_form_subjects as $index1 =>  $examformsubject)
+            @php
+              $count=0;
+            @endphp
+            @forelse ($student_exam_form_subjects->sortByDESC('is_backlog')->sortBy('exam_id') as $index1 =>  $examformsubject)
               @if ($index1 === 0)
                 <x-table.tr>
-                  <x-table.td colspan="9" class="bg-red-700 text-white">
+                  <x-table.td colspan="10" class="bg-red-700 text-white">
                     <p class="text-center font-bold  uppercase">Selected Subjects</p>
                   </x-table.td>
                 </x-table.tr>
               @endif
               <x-table.tr wire:key="{{ $examformsubject->id }}">
+                <x-table.td>{{ ++$count }} </x-table.td>
                 <x-table.td>{{ $examformsubject->subject->subject_sem }} </x-table.td>
                 <x-table.td>{{ $examformsubject->subject->subject_code }} </x-table.td>
                 <x-table.td>{{ $examformsubject->subject->subject_name }} </x-table.td>
@@ -236,7 +245,7 @@
               </x-table.tr>
             @empty
               <x-table.tr>
-                <x-table.td colspan="9">
+                <x-table.td colspan="10">
                   <p class="text-center">No Records Found</p>
                 </x-table.td>
               </x-table.tr>
@@ -244,12 +253,13 @@
             @foreach ($subjects_not_selected as $index2 => $notselectedsubject)
               @if ($index2 === 0)
                 <x-table.tr>
-                  <x-table.td colspan="9" class="bg-green-700 text-white">
+                  <x-table.td colspan="10" class="bg-green-700 text-white">
                     <p class="text-center font-bold  uppercase">Not Selected Subjects</p>
                   </x-table.td>
                 </x-table.tr>
               @endif
               <x-table.tr wire:key="{{ $notselectedsubject->id }}">
+                <x-table.td>{{  $index2+1 }} </x-table.td>
                 <x-table.td>{{ $notselectedsubject->subject_sem }} </x-table.td>
                 <x-table.td>{{ $notselectedsubject->subject_code }} </x-table.td>
                 <x-table.td>{{ $notselectedsubject->subject_name }} </x-table.td>
