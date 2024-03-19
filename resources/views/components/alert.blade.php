@@ -1,6 +1,6 @@
 
-@if (session()->has('alert'))
-    @foreach (session('alert') as $key => $alert)
+@if (session()->has('session-alert'))
+    @foreach (session('session-alert') as $key => $alert)
         <x-toast :type="$alert['type']" :key="$key">
             {{ $alert['message'] }}
         </x-toast>
