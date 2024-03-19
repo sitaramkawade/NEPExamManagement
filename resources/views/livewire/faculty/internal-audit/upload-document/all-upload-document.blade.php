@@ -104,7 +104,7 @@
                                 <x-table.td>
                                     <x-form wire:submit="save({{ $doc->id }})" id="document_to_upload.{{ $doc->id }}">
                                         <div class="flex items-center mb-2">
-                                            <x-input-file class="text-xs file:px-2 file:rounded-sm file:text-xs w-[75%] mr-2" name="document_to_upload.{{ $doc->id }}" id="document_to_upload.{{ $doc->id }}" wire:model.live="document_to_upload.{{ $doc->id }}" accept="image/png, image/jpeg, image/jpg, .pdf"/>
+                                            <x-input-file wire:click="resetinput({{ $doc->id }})" class="text-xs file:px-2 file:rounded-sm file:text-xs w-[75%] mr-2" name="document_to_upload.{{ $doc->id }}" id="document_to_upload.{{ $doc->id }}" wire:model="document_to_upload.{{ $doc->id }}" accept="image/png, image/jpeg, image/jpg, .pdf"/>
                                             <x-table.upload-btn i="0" wire:loading.attr="disabled" wire:target="document_to_upload.{{ $doc->id }}" wire:loading.class.remove="cursor-pointer" wire:loading.class.add="cursor-not-allowed" >Upload</x-table.upload-btn>
                                         </div>
                                             @error("document_to_upload.{$doc->id}")

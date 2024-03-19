@@ -22,13 +22,6 @@ class AllUploadDocument extends Component
     use WithFileUploads;
     protected $listeners = ['delete-confirmed'=>'delete'];
 
-    // public $academicyear_id=4;
-    // public $academicyears=[];
-    // public $patternclass_id=113;
-    // public $pattern_classes=[];
-    // public $subject_id=1907;
-    // public $subjects=[];
-
     public $academicyear_id;
     public $academicyears;
     public $patternclass_id;
@@ -38,7 +31,7 @@ class AllUploadDocument extends Component
 
     public $documents=[];
 
-    public $document_to_upload=[];
+    public $document_to_upload;
 
     public $uploaded_documents=[];
 
@@ -52,18 +45,6 @@ class AllUploadDocument extends Component
 
     public $mode='all';
 
-
-    // protected function rules()
-    // {
-    //     $rules = [];
-    //     if(count($this->documents) > 0)
-    //     {
-    //         foreach ($this->documents as $doc) {
-    //             $rules["document_to_upload.{$doc->id}"] = ['required','file','max:1024','mimes:png,jpg,jpeg,pdf'];
-    //         }
-    //     }
-    //     return $rules;
-    // }
 
     public function messages()
     {
@@ -81,8 +62,6 @@ class AllUploadDocument extends Component
         return $messages;
     }
 
-
-
     public function deleteconfirmation($id)
     {
         $this->delete_id=$id;
@@ -97,6 +76,16 @@ class AllUploadDocument extends Component
         }elseif($propertyName == 'patternclass_id'){
             $this->loadSubjects($value);
         }
+    }
+
+    // public function resetinput()
+    // {
+    //     $this->document_to_upload=[];
+    // }
+
+    public function resetinput($doc_id)
+    {
+        $this->document_to_upload[$doc_id] = null; // Reset the value of the specific file input
     }
 
     public function loadPatternClasses()
@@ -138,7 +127,7 @@ class AllUploadDocument extends Component
 
     public function save(Facultyinternaldocument $facultyinternaldocument)
     {
-        $this->validate(["document_to_upload.{$facultyinternaldocument->id}" => 'required|file|max:1024|mimes:png,jpg,jpeg,pdf',]);
+        $this->validate(["document_to_upload.{$facultyinternaldocument->internaltooldocument_id}" => 'required|file|max:1024|mimes:png,jpg,jpeg,pdf',]);
 
         if (!empty($this->documents)) {
             // Check if the record exists
@@ -164,14 +153,11 @@ class AllUploadDocument extends Component
                 // Path To Store
                 $path = 'internal-audit/' . $year_name . '/' . $faculty_name . '/' . $subject_code .'_'. $patternclass_id . '/';
 
-                // Iterate through each file
-                foreach ($this->document_to_upload as $document) {
-
-                    // Generate a unique file name for each document
-                    $fileName = $doc_name . '.' . $document->getClientOriginalExtension();
-
-                    // Upload the document
-                    $document->storeAs($path, $fileName, 'public');
+                // Generate a unique file name for each document
+                $fileName = $doc_name . '.' . $this->document_to_upload->getClientOriginalExtension();
+                
+                // Upload the document
+                $document->storeAs($path, $fileName, 'public');
 
                     // Update the record with the file information for each document
                     $facultyinternaldocument->update([
@@ -180,7 +166,8 @@ class AllUploadDocument extends Component
                         'updated_at' => now(),
                         'status' => 1,
                     ]);
-                }
+
+                $this->resetinput($facultyinternaldocument->internaltooldocument_id);
                 $this->dispatch('alert', type: 'success', message: 'Document Uploaded Successfully');
             } else {
                 $this->dispatch('alert', type: 'error', message: 'Failed To Upload Document!');
@@ -197,11 +184,11 @@ class AllUploadDocument extends Component
 
             // Delete the associated image
             if ($inttool_doc->document_fileName) {
-                File::delete($inttool_doc->document_filePath); // Adjust the column name and storage method accordingly
+                File::delete($inttool_doc->document_filePath);
             }
 
             // Reset the temporary URL
-            unset($this->documents[$this->delete_id]);
+            unset($this->document_to_upload[$this->delete_id]);
 
             // Update the columns to null instead of force deleting
             $inttool_doc->update([
@@ -222,7 +209,7 @@ class AllUploadDocument extends Component
 
     public function mount()
     {
-        $this->academicyears = Academicyear::where('is_doc_year',1)->pluck('year_name','id');
+        $this->academicyears = Academicyear::where('is_doc_year',1)->where('active',1)->pluck('year_name','id');
     }
 
     public function render()
