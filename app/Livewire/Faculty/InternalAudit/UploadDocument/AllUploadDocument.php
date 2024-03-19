@@ -23,21 +23,14 @@ class AllUploadDocument extends Component
     protected $listeners = ['delete-confirmed'=>'delete'];
 
     // public $academicyear_id=4;
-    // public $academicyears;
-    // public $course_id=21;
-    // public $courses;
+    // public $academicyears=[];
     // public $patternclass_id=113;
-    // public $pattern_classes;
+    // public $pattern_classes=[];
     // public $subject_id=1907;
-    // public $subjects;
-
-    public $isUploading = false;
-    public $fileLoaded = false;
+    // public $subjects=[];
 
     public $academicyear_id;
     public $academicyears;
-    public $course_id;
-    public $courses;
     public $patternclass_id;
     public $pattern_classes=[];
     public $subject_id;
@@ -60,22 +53,29 @@ class AllUploadDocument extends Component
     public $mode='all';
 
 
-    protected function rules()
-    {
-        return [
-            'file' => ['required','file', 'max:1024','mimes:png,jpg,jpeg']
-        ];
-    }
+    // protected function rules()
+    // {
+    //     $rules = [];
+    //     foreach ($this->file as $key => $value) {
+    //         $rules["file.{$key}"] = ['required', 'file', 'max:1024', 'mimes:png,jpg,jpeg,pdf'];
+    //     }
+    //     return $rules;
+    // }
 
-    public function messages()
-    {
-        return [
-            'file.required' => 'The file field is required.',
-            'file.file' => 'The selected file is invalid.',
-            'file.max' => 'The file must not be greater than 1024 kilobytes (1 MB).',
-            'file.mimes' => 'The file must be a PNG, JPG, or JPEG image.',
-        ];
-    }
+    // public function messages()
+    // {
+    //     $messages = [];
+    //     foreach ($this->file as $key => $value) {
+    //         $docName = 'File';
+
+    //         $messages["file.{$key}.required"] = "The {$docName} is required.";
+    //         $messages["file.{$key}.file"] = "The {$docName} must be a file.";
+    //         $messages["file.{$key}.max"] = "The {$docName} must not exceed :max KB.";
+    //         $messages["file.{$key}.mimes"] = "The {$docName} must be in PNG, JPG, JPEG, PDF, or TXT format.";
+    //     }
+    //     return $messages;
+    // }
+
 
     public function deleteconfirmation($id)
     {
@@ -141,6 +141,8 @@ class AllUploadDocument extends Component
 
     public function save(Facultyinternaldocument $facultyinternaldocument)
     {
+        // $validatedData = $this->validate();
+        // dd($validatedData);
         if (!empty($this->file)) {
             // Check if the record exists
             if ($facultyinternaldocument) {
@@ -176,7 +178,7 @@ class AllUploadDocument extends Component
                     // Update the record with the file information for each document
                     $facultyinternaldocument->update([
                         'document_fileName' => $fileName,
-                        'document_fileTitle' => 'storage/' . $path . $fileName,
+                        'document_filePath' => 'storage/' . $path . $fileName,
                         'updated_at' => now(),
                         'status' => 1,
                     ]);
@@ -197,7 +199,7 @@ class AllUploadDocument extends Component
 
             // Delete the associated image
             if ($inttool_doc->document_fileName) {
-                File::delete($inttool_doc->document_fileTitle); // Adjust the column name and storage method accordingly
+                File::delete($inttool_doc->document_filePath); // Adjust the column name and storage method accordingly
             }
 
             // Reset the temporary URL
@@ -206,7 +208,7 @@ class AllUploadDocument extends Component
             // Update the columns to null instead of force deleting
             $inttool_doc->update([
                 'document_fileName' => null,
-                'document_fileTitle' => null,
+                'document_filePath' => null,
                 'status' => 0,
                 'updated_at' => now(),
             ]);
@@ -222,15 +224,7 @@ class AllUploadDocument extends Component
 
     public function mount()
     {
-        // $documents_data = Facultyinternaldocument::with('subject.patternclass','academicyear:id,year_name',)
-        //     ->where('faculty_id', Auth::guard('faculty')->user()->id)
-        //     ->where('status', 0)
-        //     ->get();
-
         $this->academicyears = Academicyear::where('is_doc_year',1)->pluck('year_name','id');
-        // $this->pattern_classes = $documents_data->pluck('subject.patternclass_id')->unique();
-        // $this->subjects =  $documents_data->pluck('subject.subject_name','subject.id');
-
     }
 
     public function render()
@@ -255,7 +249,7 @@ class AllUploadDocument extends Component
                 ->where('academicyear_id', $this->academicyear_id)
                 ->where('status', 1)
                 ->whereNotNull('document_fileName')
-                ->whereNotNull('document_fileTitle')
+                ->whereNotNull('document_filePath')
                 ->get();
             } else {
                 $this->uploaded_documents = [];
