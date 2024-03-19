@@ -21,7 +21,7 @@ class StudentDashboard extends Component
             return $this->redirect('/student/profile',navigate:true);
         }
         
-        session()->flash('alert', [ ['type' => 'info', 'message' => 'Welcome To Dashboard'],]);
+        // session()->flash('session-alert', [ ['type' => 'info', 'message' => 'Welcome To Dashboard'],]);
 
         $this->exam_form_masters=$this->student->examformmasters()->get();
     }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\PaymentStatus;
 use App\Models\Examformmaster;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -21,13 +20,9 @@ class Transaction extends Model
         'payment_date',
         'razorpay_signature',
         'amount',
+        'status',
 
     ];
-
-    protected $casts = [
-        'status' => PaymentStatus::class,
-    ];
-
 
     public function examformmaster(): HasOne
     {

@@ -21,9 +21,11 @@
           </x-input-select>
           <x-input-select id="payment_status" wire:model.live="payment_status" name="payment_status" class="text-center h-8.5 mt-1">
             <x-select-option class="text-start" hidden> Payment Status </x-select-option>
-            @foreach (App\Enums\PaymentStatus::cases() as $status)
-              <x-select-option class="text-start" value="{{ $status->value }}">{{ $status->name }}</x-select-option>
-            @endforeach
+            <x-select-option class="text-start" value="created"> Order Created </x-select-option>
+            <x-select-option class="text-start" value="authorized"> Authorized </x-select-option>
+            <x-select-option class="text-start" value="captured"> Capture </x-select-option>
+            <x-select-option class="text-start" value="refunded"> Refund </x-select-option>
+            <x-select-option class="text-start" value="failed"> Failed </x-select-option>
           </x-input-select>
           <span class="py-2">
             <x-table.cancel class="p-2" wire:click='clear()' i="0"> Clear</x-table.cancel>
@@ -59,7 +61,7 @@
                   <x-table.td>
                     @if ($examformmaster->feepaidstatus)
                       <x-status type="success">Paid</x-status>
-                      @if ($examformmaster->transaction->status->value == 'captured')
+                      @if ($examformmaster->transaction->status == 'captured')
                         <x-status type="success"> Online </x-status>
                       @else
                         <x-status type="success"> Chash </x-status>
@@ -77,16 +79,28 @@
                   </x-table.td>
                   <x-table.td>
                     @if (isset($examformmaster->transaction_id))
-                      @if ($examformmaster->transaction->status->value == 'captured')
+                      @if ($examformmaster->transaction->status == 'captured')
                         <x-status> {{ isset($examformmaster->transaction->razorpay_payment_id) ? $examformmaster->transaction->razorpay_payment_id : '' }}</x-status>
                       @endif
                     @endif
                   </x-table.td>
                   <x-table.td>
-                    <x-status type="{{ App\Enums\PaymentStatus::get_type($examformmaster->transaction->status) }}"> {{ $examformmaster->transaction->status->name }} </x-status>
+                    @if (isset($examformmaster->transaction->status))
+                      @if ($examformmaster->transaction->status == 'captured')
+                        <x-status type="success"> Captured</x-status>
+                      @elseif ($examformmaster->transaction->status == 'refunded')
+                        <x-status type="info">Refunded</x-status>
+                      @elseif ($examformmaster->transaction->status == 'failed')
+                        <x-status type="danger">Failed</x-status>
+                      @elseif ($examformmaster->transaction->status == 'created')
+                        <x-status>Order Created</x-status>
+                      @elseif ($examformmaster->transaction->status == 'authorized')
+                        <x-status type="warning">Authorized</x-status>
+                      @endif
+                    @endif
                   </x-table.td>
                   <x-table.td>
-                    @if ($examformmaster->transaction->status->value == 'captured')
+                    @if ($examformmaster->transaction->status == 'captured')
                       <x-status> {{ isset($examformmaster->transaction->payment_date) ? Carbon\Carbon::parse($examformmaster->transaction->payment_date)->format('Y-m-d h:i:s A') : '' }}</x-status>
                     @endif
                   </x-table.td>

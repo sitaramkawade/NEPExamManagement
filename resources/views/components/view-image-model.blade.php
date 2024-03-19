@@ -16,17 +16,26 @@
         </div>
         <div class="p-4 md:p-5 space-y-4">
           <img id="view-document-model-image" class="border w-full max-h-50 object-cover overflow-y-scroll" src="" alt="image description">
+          <embed id="view-document-model-pdf" type="application/pdf" class="border w-full object-cover overflow-y-scroll" height="500px" src="" alt="pdf description" />
         </div>
       </div>
     </div>
   </div>
   @section('scripts')
     <script>
-      function openModal(imagePath) {
-        document.getElementById("view-document-model-image").src = imagePath;
+      function openModal(documentPath) {
+        const fileExtension = documentPath.match(/\.([^.]+)$/);
+        if (fileExtension && fileExtension[1] === 'pdf') {
+            document.getElementById("view-document-model-pdf").style.display = "block";
+            document.getElementById("view-document-model-pdf").src = documentPath;
+            document.getElementById("view-document-model-image").style.display = "none";
+        } else {
+            document.getElementById("view-document-model-image").style.display = "block";
+            document.getElementById("view-document-model-image").src = documentPath;
+            document.getElementById("view-document-model-pdf").style.display = "none";
+        }
         document.getElementById("view-document-model").classList.remove("hidden");
-      }
-
+        }
       function closeModal() {
         document.getElementById("view-document-model").classList.add("hidden");
       }

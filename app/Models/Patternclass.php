@@ -5,9 +5,11 @@ namespace App\Models;
 use App\Models\Exam;
 use App\Models\Course;
 use App\Models\Student;
-use App\Models\Courseclass;
 use App\Models\Subject;
+use App\Models\Courseclass;
+use App\Models\Admissiondata;
 use App\Models\Examfeecourse;
+use App\Models\Examformmaster;
 use App\Models\Exampatternclass;
 use App\Models\Hodappointsubject;
 use App\Models\Internaltoolauditor;
@@ -49,6 +51,17 @@ class Patternclass extends Model
     {
         return $this->hasMany(Subject::class,'patternclass_id','id')->withTrashed();
     }
+
+    public function examformmasters():HasMany
+    {
+        return $this->hasMany(Examformmaster::class,'patternclass_id','id');
+    }
+
+    public function admissiondatas():HasMany
+    {
+        return $this->hasMany(Admissiondata::class,'patternclass_id','id');
+    }
+
     public function hodappointsubjects():HasMany
     {
         return $this->hasMany(Hodappointsubject::class,'patternclass_id','id')->withTrashed();
