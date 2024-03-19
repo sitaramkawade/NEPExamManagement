@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\PaymentStatus;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -20,7 +19,7 @@ return new class extends Migration
             $table->timestamp('payment_date')->nullable();
             $table->string('razorpay_signature')->nullable();
             $table->decimal('amount', 10, 2)->nullable()->default(0);
-            $table->enum('status', PaymentStatus::getValues())->nullable()->comment('NULL,Created,Authorized,Captured,Refunded,Failed');
+            $table->string('status')->nullable()->comment('Created,Authorized,Captured,Refunded,Failed');
             $table->timestamps();
         });
     }

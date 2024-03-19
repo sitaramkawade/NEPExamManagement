@@ -74,6 +74,8 @@ use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\Faculty\SubjectCategory\AllSubjectCategory;
 use App\Livewire\Faculty\SubjectVertical\AllSubjectVertical;
+use App\Livewire\User\ExamFormStatistics\ExamFormReportView;
+use App\Livewire\User\ExamFormStatistics\ExamFormStatistics;
 use App\Http\Controllers\Student\Razorpay\RazorPayController;
 use App\Livewire\Student\StudentExamForm\FillStudentExamForm;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
@@ -85,6 +87,7 @@ use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
 use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
+use App\Http\Controllers\User\ExamFormStatistics\ExamFormReportViewController;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
@@ -315,6 +318,12 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //Modify Exam Form
   Route::get('/modify/exam/form',ModifyExamForm ::class)->name('modify_exam_form');
+
+  //Exam Form Statistics
+  Route::get('/exam/form/statistics',ExamFormStatistics::class)->name('exam_form_statistics');
+
+  //Exam Form Report View
+  Route::get('/exam/form/report/view/{exam_pattern_class_id}{status}',[ExamFormReportViewController::class,'exam_form_report_view'])->name('exam_form_report_view');
 
   //All Subject Hod
   Route::get('/all-hodappointsubject',  AllHodAppointSubject::class)->name('all-hodappointsubjects');

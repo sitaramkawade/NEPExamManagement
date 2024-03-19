@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\College;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Department;
 use App\Models\Academicyear;
@@ -56,6 +57,33 @@ class Admissiondata extends Model
         return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id')->withTrashed();
     }
 
+    public function checkexamform()
+    {
+       $stud= Student::where('memid',$this->memid)->where('email_verified','1')->orderBy('updated_at','DESC')->get();
+        
+        if(!is_null($stud))
+        {
+            if($stud->count()>0)
+            {   
+                if($stud->first()->checkstudexamform($stud->first()->id))
+                {
+                    return 'Filled';
+                } 
+                else
+                {
+                    return 'Not Filled';
+                }
+            }
+            else
+            {
+                return 'Not Registered';  
+            }
+        }
+        else
+        {
+            return 'Not Registered';
+        }
+    }
 
 
     public function scopeSearch(Builder $query, string $search)
