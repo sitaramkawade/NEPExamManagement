@@ -36,9 +36,9 @@ class AllUploadDocument extends Component
     public $subject_id;
     public $subjects=[];
 
-    public $file=[];
+    public $documents=[];
 
-    public $documents_to_upload=[];
+    public $document_to_upload=[];
 
     public $uploaded_documents=[];
 
@@ -56,25 +56,31 @@ class AllUploadDocument extends Component
     // protected function rules()
     // {
     //     $rules = [];
-    //     foreach ($this->file as $key => $value) {
-    //         $rules["file.{$key}"] = ['required', 'file', 'max:1024', 'mimes:png,jpg,jpeg,pdf'];
+    //     if(count($this->documents) > 0)
+    //     {
+    //         foreach ($this->documents as $doc) {
+    //             $rules["document_to_upload.{$doc->id}"] = ['required','file','max:1024','mimes:png,jpg,jpeg,pdf'];
+    //         }
     //     }
     //     return $rules;
     // }
 
-    // public function messages()
-    // {
-    //     $messages = [];
-    //     foreach ($this->file as $key => $value) {
-    //         $docName = 'File';
+    public function messages()
+    {
+        $messages = [];
+        if(count($this->documents) > 0)
+        {
+            $doc_name = "file";
+            foreach ($this->documents as $doc) {
+                $messages["document_to_upload.".$doc->id.".required"] = "The ".$doc_name." is required.";
+                $messages["document_to_upload.".$doc->id.".file"] = "The ".$doc_name." must be a file.";
+                $messages["document_to_upload.".$doc->id.".max"] = "The ".$doc_name." must not exceed 1 MB.";
+                $messages["document_to_upload.".$doc->id.".mimes"] = "The ".$doc_name." must be a JPG, JPEG, PDF, or PNG file.";
+            }
+        }
+        return $messages;
+    }
 
-    //         $messages["file.{$key}.required"] = "The {$docName} is required.";
-    //         $messages["file.{$key}.file"] = "The {$docName} must be a file.";
-    //         $messages["file.{$key}.max"] = "The {$docName} must not exceed :max KB.";
-    //         $messages["file.{$key}.mimes"] = "The {$docName} must be in PNG, JPG, JPEG, PDF, or TXT format.";
-    //     }
-    //     return $messages;
-    // }
 
 
     public function deleteconfirmation($id)
@@ -99,6 +105,7 @@ class AllUploadDocument extends Component
         ->where('faculty_id', Auth::guard('faculty')->user()->id)
         ->where('status', 0)
         ->get();
+
         $this->pattern_classes = $documents_data->unique('subject.patternclass_id')->mapWithKeys(function ($item) {
             return [
                 $item['subject']['patternclass']['id'] => [
@@ -129,21 +136,11 @@ class AllUploadDocument extends Component
         $this->subjects = $subjects;
     }
 
-
-    // public function resetinput()
-    // {
-    //     $this->academicyear_id=null;
-    //     $this->course_id=null;
-    //     $this->patternclass_id=null;
-    //     $this->subject_id=null;
-    //     $this->selected_tools=null;
-    // }
-
     public function save(Facultyinternaldocument $facultyinternaldocument)
     {
-        // $validatedData = $this->validate();
-        // dd($validatedData);
-        if (!empty($this->file)) {
+        $this->validate(["document_to_upload.{$facultyinternaldocument->id}" => 'required|file|max:1024|mimes:png,jpg,jpeg,pdf',]);
+
+        if (!empty($this->documents)) {
             // Check if the record exists
             if ($facultyinternaldocument) {
                 // Year Name
@@ -168,7 +165,8 @@ class AllUploadDocument extends Component
                 $path = 'internal-audit/' . $year_name . '/' . $faculty_name . '/' . $subject_code .'_'. $patternclass_id . '/';
 
                 // Iterate through each file
-                foreach ($this->file as $document) {
+                foreach ($this->document_to_upload as $document) {
+
                     // Generate a unique file name for each document
                     $fileName = $doc_name . '.' . $document->getClientOriginalExtension();
 
@@ -203,7 +201,7 @@ class AllUploadDocument extends Component
             }
 
             // Reset the temporary URL
-            unset($this->file[$this->delete_id]);
+            unset($this->documents[$this->delete_id]);
 
             // Update the columns to null instead of force deleting
             $inttool_doc->update([
@@ -232,14 +230,14 @@ class AllUploadDocument extends Component
         if($this->mode == 'all'){
 
             if ($this->subject_id) {
-                $this->documents_to_upload = Facultyinternaldocument::where('faculty_id',Auth::guard('faculty')->user()->id)
+                $this->documents = Facultyinternaldocument::where('faculty_id',Auth::guard('faculty')->user()->id)
                 ->with(['internaltooldocumentmaster:id,doc_name',])
                 ->where('subject_id',$this->subject_id)
                 ->where('academicyear_id',$this->academicyear_id)
                 ->where('status',0)
                 ->get();
             } else {
-                $this->documents_to_upload = [];
+                $this->documents = [];
             }
 
             if ($this->subject_id) {
