@@ -28,6 +28,7 @@ return new class extends Migration
             $table->bigInteger('verifybyfaculty_id')->unsigned()->nullable();
             $table->foreign('verifybyfaculty_id')->references('id')->on('faculties');
             $table->string('verificationremark', 255)->nullable();
+            $table->tinyInteger('is_complete')->default(0)->comment('0-No, 1-Yes');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
