@@ -78,6 +78,8 @@ use App\Livewire\User\HelplineDocument\AllHelplineDocument;
 use App\Livewire\Faculty\FacultyRoleType\AllFacultyRoleType;
 use App\Livewire\Faculty\SubjectCategory\AllSubjectCategory;
 use App\Livewire\Faculty\SubjectVertical\AllSubjectVertical;
+use App\Livewire\User\ExamFormStatistics\ExamFormReportView;
+use App\Livewire\User\ExamFormStatistics\ExamFormStatistics;
 use App\Http\Controllers\Student\Razorpay\RazorPayController;
 use App\Livewire\Student\StudentExamForm\FillStudentExamForm;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
@@ -88,7 +90,9 @@ use App\Livewire\Faculty\InternalAudit\AssignTool\AllAssignTool;
 use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
 use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
+use App\Livewire\Faculty\InternalAudit\HodAssignTool\AllHodAssignTool;
 use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
+use App\Http\Controllers\User\ExamFormStatistics\ExamFormReportViewController;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
@@ -331,6 +335,12 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Modify Exam Form
   Route::get('/modify/exam/form',ModifyExamForm ::class)->name('modify_exam_form');
 
+  //Exam Form Statistics
+  Route::get('/exam/form/statistics',ExamFormStatistics::class)->name('exam_form_statistics');
+
+  //Exam Form Report View
+  Route::get('/exam/form/report/view/{exam_pattern_class_id}{status}',[ExamFormReportViewController::class,'exam_form_report_view'])->name('exam_form_report_view');
+
   //All Subject Hod
   Route::get('/all-hodappointsubject',  AllHodAppointSubject::class)->name('all-hodappointsubjects');
 
@@ -345,55 +355,58 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
 
   // All Faculty
-  Route::get('/all-faculties', AllFaculty::class)->name('all-faculties');
+  Route::get('/faculties', AllFaculty::class)->name('all_faculties');
 
   // All Faculty Role
-  Route::get('/all-faculty-role', AllFacultyRole::class)->name('all-roles');
+  Route::get('/role', AllFacultyRole::class)->name('all_roles');
 
   // All Faculty Role
-  Route::get('/all-faculty-roletype', AllFacultyRoleType::class)->name('all-roletypes');
+  Route::get('/roletype', AllFacultyRoleType::class)->name('all_role_types');
 
   // Update Faculty Profile
-  Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
+  Route::get('/update/profile', UpdateProfile::class)->name('update_profile');
 
   // All Subject Categories
-  Route::get('/subject-categories', AllSubjectCategory::class)->name('all-subjectcategories');
+  Route::get('/subject/categories', AllSubjectCategory::class)->name('all_subject_categories');
 
   // All Subject Verticals
-  Route::get('/subject-verticals', AllSubjectVertical::class)->name('all-subjectverticals');
+  Route::get('/subject/verticals', AllSubjectVertical::class)->name('all_subject_verticals');
 
   // All Subject
-  Route::get('/all-subject', AllSubject::class)->name('all-subjects');
+  Route::get('/subject', AllSubject::class)->name('all_subjects');
 
   // All Allocate Subject
-  Route::get('/all-assignsubject', AllAssignSubject::class)->name('all-assignsubjects');
+  Route::get('/assign/subject', AllAssignSubject::class)->name('all_assign_subjects');
 
   // All SubjectBucket
-  Route::get('/all-subjectbucket', AllSubjectBucket::class)->name('all-subjectbuckets');
+  Route::get('/subject/bucket', AllSubjectBucket::class)->name('all_subject_buckets');
 
   // All SubjectType
-  Route::get('/all-subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
+  Route::get('/subject/types', AllSubjectType::class)->name('all_subject_types');
 
   // All FacultyHead
-  Route::get('/all-facultyheads', AllFacultyHead::class)->name('all-facultyheads');
+  Route::get('/facultyheads', AllFacultyHead::class)->name('all_faculty_heads');
 
   // All ViewExamPanel
-  Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
+  Route::get('/view/exampanel', ViewExamPanel::class)->name('view_exam_panels');
 
   // All Department Prefix
-  Route::get('/all-deptprefixe', AllDepartmentPrefix::class)->name('all-deptprefixes');
+  Route::get('/department/prefixes', AllDepartmentPrefix::class)->name('all_department_prefixes');
 
   // All Internal Tool Master
-  Route::get('/all-internaltool', AllInternalTool::class)->name('all-internaltool');
+  Route::get('/internal/tool', AllInternalTool::class)->name('all_internal_tool');
 
   // All Internal Tool Document
-  Route::get('/all-internaltooldocs', AllInternalToolDocument::class)->name('all-internaltooldocs');
+  Route::get('/internal/tool/documents', AllInternalToolDocument::class)->name('all_internal_tool_documents');
 
   // All Assign Tool
-  Route::get('/all-assigntools', AllAssignTool::class)->name('all-assigntools');
+  Route::get('/assign/tools', AllAssignTool::class)->name('all_assign_tools');
 
   // All Document Upload
-  Route::get('/all-uploadocs', AllUploadDocument::class)->name('all-uploadocs');
+  Route::get('/upload/documents', AllUploadDocument::class)->name('all_upload_documents');
+
+  // All Hod Assign Tool
+  Route::get('/hod/assign/tools', AllHodAssignTool::class)->name('all_hod_assign_tools');
 
 });
 

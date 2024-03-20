@@ -509,9 +509,8 @@ class FillStudentExamForm extends Component
 
     public function save_exam_form()
     {   
-        \Log::debug( 'save 2');
-        // if((!empty($this->regular_subjects_data) || !empty($this->backlog_subjects_data)) && !isset($this->exam_fee_courses))
-        {
+        if((!empty($this->regular_subjects_data) || !empty($this->backlog_subjects_data)) && isset($this->exam_fee_courses))
+        {   
             $exam = Exam::where('status', 1)->first();
             if($exam)
             {
@@ -562,7 +561,10 @@ class FillStudentExamForm extends Component
         
                         // Init Student Exam Form
                         $student_exam_forms = [];
-        
+                        
+                        // Backlog Subject Ids
+                        $backlog_ids=array_values(collect($this->backlog_subjects_data)->pluck('id')->toArray());
+
                         // Prepare Student Exam Form Data
                         $regular_and_backlog_subjects = collect($this->regular_subjects_data)->merge($this->backlog_subjects_data);
         
@@ -573,6 +575,7 @@ class FillStudentExamForm extends Component
                                 'subject_id' => $subject->id,
                                 'examformmaster_id' => $exam_form_master_data->id,
                                 'college_id' => $this->student->college_id,
+                                'is_backlog'=>in_array($subject->id, $backlog_ids)?1:0,
                                 'int_status' => 0,
                                 'ext_status' => 0,
                                 'int_practical_status' => 0,
@@ -583,6 +586,7 @@ class FillStudentExamForm extends Component
                                 'created_at' => now(),
                                 'updated_at' => now(),
                             ];
+
         
                             // Set Checked Input
                             switch ($subject->subject_type) {
@@ -616,7 +620,7 @@ class FillStudentExamForm extends Component
         
                             $student_exam_forms[] = $student_exam_form;
                         }
-        
+
                         // Save Student Exam Form Data
                         $student_exam_form_data = StudentExamform::insert($student_exam_forms);
         
@@ -646,6 +650,8 @@ class FillStudentExamForm extends Component
                         // Redirecting To Student Dashboard
                         $this->redirect('/student/dashboard', navigate: true);
                     } catch (\Exception $e) {
+                        dd($e);
+                        \Log::debug($e);
                         // If Above Work Not Done Then Revert Changes
                         DB::rollback();
         
@@ -666,11 +672,11 @@ class FillStudentExamForm extends Component
                 return false;
             }
         }
-        // else
-        // {   
-        //     $this->dispatch('alert', type: 'error', message: 'Either Subjects Or Fees Not Found.');
-        //     return false;
-        // }
+        else
+        {   
+            $this->dispatch('alert', type: 'error', message: 'Either Subjects Or Fees Not Found.');
+            return false;
+        }
     }
 
     // Exam Form Save
@@ -682,8 +688,8 @@ class FillStudentExamForm extends Component
         } 
         catch (\Illuminate\Validation\ValidationException $e) 
         {
+            $this->dispatch('alert', type: 'info', message: 'Please Enter Medium Of Instruction And ABC ID.');
             $this->page = 1;
-            \Log::debug($this->medium_instruction);
             return false;
         }
 
@@ -741,10 +747,21 @@ class FillStudentExamForm extends Component
 
     public function next_back()
     {
-        if ($this->page == 1) {
-            $this->validate();
-            $this->page = 2;
-        } else {
+        if ($this->page == 1) 
+        {   
+            try 
+            {
+                $this->validate();
+                $this->page = 2;
+            } 
+            catch (\Illuminate\Validation\ValidationException $e) 
+            {
+                $this->dispatch('alert', type: 'info', message: 'Please Select Medium Of Instruction And Enter ABC ID.');
+                $this->page = 1;
+            }
+
+        } else 
+        {
             $this->page = 1;
         }
     }

@@ -59,7 +59,7 @@
   </head>
 
   <body>
-    <table style="width:100%; border-bottom:1pt  dotted gray; margin-bottom:2px;">
+    <table style="width:100%; border-bottom:1pt  dotted gray; margin-bottom:3px;">
       <tr>
         <td width="10px">
           <img src="{{ 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('img/unipune.png'))) }}" style="width: 100px; height: 60px;" />
@@ -78,47 +78,45 @@
     </table>
     <table width="100%" cellspacing="0">
       <tbody>
-        <tr>
+        <tr style="border-bottom:1pt  dotted gray; margin-bottom:3px;">
           <td colspan="3">
-            <b>Examination Form :</b> {{ $exam_form_master->exam->exam_name }}
+            <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($exam_form_master->student->memid, 'C128',2,35,array(0,0,0), true) }}" alt="barcode" />
           </td>
-          <td colspan="2">
-            <b>Member-ID :</b> {{ $exam_form_master->student->memid }}
+          <td colspan="4">
           </td>
-          <td colspan="3">Form No : {{ '16060-' . str_pad($exam_form_master->id, 5, 0, STR_PAD_LEFT) }}</td>
-          <td colspan="2">
+          <td colspan="3" style="text-align: right;">
             <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG( "".str_pad($exam_form_master->id, 5, 0, STR_PAD_LEFT)."" , 'C128',2,35,array(0,0,0), true) }}" alt="barcode" />
           </td>
         </tr>
         <tr>
           <td colspan="3">
-            <b>Examination Form :</b> {{ $exam_form_master->exam->exam_name }}
-          </td>
-          <td colspan="3">
             <b>Member-ID :</b> {{ $exam_form_master->student->memid }}
           </td>
-          <td colspan="3">Form No : {{ '16060-' . str_pad($exam_form_master->id, 5, 0, STR_PAD_LEFT) }}</td>
+          <td colspan="4" style="text-align: center;">
+            <b>Examination Form :</b> {{ $exam_form_master->exam->exam_name }}
+          </td>
+          <td colspan="3" style="text-align: right;">Form No : {{ '16060-' . str_pad($exam_form_master->id, 5, 0, STR_PAD_LEFT) }}</td>
         </tr>
         <tr>
           <td align="center" colspan="10">
-            <b>Course Name:</b> {{ ' ' . $exam_form_master->patternclass->courseclass->classyear->classyear_name . ' ' . $exam_form_master->patternclass->courseclass->course->course_name . ' ' . $exam_form_master->patternclass->pattern->pattern_name }}
+            <b>Course Name:</b> {{  get_pattern_class_name($exam_form_master->patternclass_id) }}
           </td>
         </tr>
         <tr>
           <td colspan="3">
             <b>PRN:</b>{{ is_null($exam_form_master->student->prn) ? 'Fresh' : $exam_form_master->student->prn }}
           </td>
-          <td colspan="4">
-            <b>ELIGIBILITY NO.:</b> {{ $exam_form_master->student->eligibilityno }}
+          <td colspan="4" style="text-align: center;">
+            <b>ELIGIBILITY NO.:</b> {{ $exam_form_master->student->eligibilityno??'N.A.' }}
           </td>
-          <td colspan="3">
+          <td colspan="3" style="text-align: right;">
             <b>Total Fees to be Paid:</b> <span style="font-family: DejaVu Sans; sans-serif; font-weight:normal">₹</span> {{ ' ' . $exam_form_master->totalfee }}
           </td>
         </tr>
         <tr>
           <td colspan="8">To,</td>
           <td colspan="2" rowspan="4" style="text-align: center;">
-            <img style="text-center" height="120" width="100" src="{{ 'data:image/png;base64,' . base64_encode(file_get_contents(public_path($exam_form_master->student->studentprofile->profile_photo_path))) }}" />
+            <img style="text-center" height="120" width="100" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path(isset($exam_form_master->student->studentprofile->profile_photo_path) ? $exam_form_master->student->studentprofile->profile_photo_path : 'img/no-img.png'))) }}" />
           </td>
         </tr>
         <tr>
@@ -133,7 +131,7 @@
         <tr>
           <td colspan="8">I request permission to present myself at the examination courses, mentioned below.</td>
           <td colspan="2" rowspan="2" style="text-align: center;">
-            <img height="40" width="100" src="{{ 'data:image/png;base64,' . base64_encode(file_get_contents(public_path($exam_form_master->student->studentprofile->sign_photo_path))) }}" />
+            <img height="40" width="100" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path(isset($exam_form_master->student->studentprofile->sign_photo_path) ? $exam_form_master->student->studentprofile->sign_photo_path : 'img/no-img.png'))) }}" />
           </td>
         </tr>
         <tr>
@@ -227,9 +225,12 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($exam_form_master->studentexamforms as $key => $d)
+                @php
+                  $count=0;
+                @endphp
+                @foreach ($exam_form_master->studentexamforms->sortByDESC('is_backlog')->sortBy('exam_id') as  $d)
                   <tr>
-                    <td align="center">{{  $key+1  }}</td>
+                    <td align="center">{{  ++$count  }}</td>
                     <td align="center">{{ $d->subject->subject_sem }}</td>
                     <td>{{ $d->subject->subject_code }}</td>
                     <td>{{ $d->subject->subject_name }}</td>
@@ -288,15 +289,24 @@
             </table>
           </td>
         </tr>
+        <tr>
+          <td  colspan="5">
+            <br>
+            Regular Subjects : {{ $exam_form_master->studentexamforms->where('is_backlog',0)->count() }}
+          </td>
+          <td style="text-align: right;" colspan="5">
+            <br>
+            Backlog Subjects : {{ $exam_form_master->studentexamforms->where('is_backlog',1)->count() }}
+          </td>
+        </tr>
       </tbody>
     </table>
     @if (!$exam_form_master->studentextracreditexamforms->IsEmpty())
       <div class="footer">
         <table style="width:100%;border-spacing:0">
           <tr>
-            <td align="right">Page: </td>
-            <td class="page-number"> </td>
-            <td align="right">Print Date: {{ $exam_form_master->created_at }}</td>
+            <td>Page: <span class="page-number"></span> </td>
+            <td align="right">Print Date: {{ now()->format('d / m / Y') }}</td>
           </tr>
         </table>
       </div>
@@ -336,9 +346,8 @@
     <div class="footer">
       <table style="width:100%;border-spacing:0">
         <tr>
-          <td align="right">Page: </td>
-          <td class="page-number"> </td>
-          <td align="right">Print Date: {{ $exam_form_master->created_at }}</td>
+          <td>Page: <span class="page-number"></span> </td>
+          <td align="right">Print Date: {{ now()->format('d / m / Y') }}</td>
         </tr>
       </table>
     </div>
@@ -348,30 +357,30 @@
       <table width="100%">
         <tbody>
           <tr>
-            <td>
+            <td colspan="3">3. Fee Details:</td>
+          </tr>
+          <tr>
+            <td width="100%">
               <table width="100%" cellspacing="0">
                 <tbody>
                   <tr>
-                    <td colspan="3">3. Fee Details:</td>
-                  </tr>
-                  <tr>
-                    <td>
+                    <td style="text-align: center;">
                       <b>Examination Form :</b> {{ $exam_form_master->exam->exam_name }}
-                    </td>
-                    <td colspan="2">Form No : {{ $exam_form_master->id }}</td>
+                    </td >
+                    <td style="text-align: center;" colspan="2">Form No : {{ $exam_form_master->id }}</td>
                   </tr>
                   <tr>
                     <td>Fee Type</td>
-                    <td>Fee Amount</td>
-                    <td>Remarks</td>
+                    <td style="text-align: right;">Fee Amount</td>
+                    <td style="text-align: center;">Remarks</td>
                   </tr>
                   @php
                     $totalfee = 0;
                   @endphp
                   @foreach ($exam_form_master->studentexamformfees->sortBy('examfees_id') as $d)
                     <tr>
-                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $d->examfee->fee_name }}</td>
-                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $d->fee_amount }}</td>
+                      <td>{{ $d->examfee->fee_name }}</td>
+                      <td style="font-weight:normal ; text-align: right; font-family: DejaVu Sans; sans-serif;">{{ INR($d->fee_amount) }}</td>
                       @php
                         $totalfee = $totalfee + $d->fee_amount;
                       @endphp
@@ -380,7 +389,8 @@
                   @endforeach
                   <tr>
                     <td style="font-family: DejaVu Sans; sans-serif; font-size:20px; font-weight:bold">Total Fee to Be Paid:</td>
-                    <td colspan="2" style="font-family: DejaVu Sans; sans-serif; font-size:20px; font-weight:bold">&nbsp;&nbsp;&nbsp;<span>₹</span>{{ $totalfee }}</td>
+                    <td  style="font-family: DejaVu Sans; text-align: right; sans-serif; font-size:20px; font-weight:bold">{{ INR($totalfee)  }}</td>
+                    <td></td>
                   </tr>
                 </tbody>
               </table>
@@ -398,21 +408,39 @@
       <p><b>Note : Special Subjects should be verified by the subject teacher and signed . <br> Please , Select Optional subject(s) carefully , because optional subject(s) are not editable. </b> </p>
       <br>
       Yours faithfully,
-      <br><br><br><br>
-      <p>
-        Place : SANGAMNER &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Date : __________________ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Signature of the Candidate
-      </p>
-      <br><br><br><br>
-      <p>
-        Place : SANGAMNER &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Date : __________________ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stamp & Signature of the Principal
-      </p>
+      <br><br>
+
+      <table style="width:100%;margin-bottom:2px;">
+        <tr>
+          <td style="width:33.33%;text-align: left;"></td>
+          <td  style="width:33.33%; text-align: center;"></td>
+          <td  style="width:33.33%; text-align: center">
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path(isset($exam_form_master->student->studentprofile->sign_photo_path) ? $exam_form_master->student->studentprofile->sign_photo_path : 'img/no-img.png'))) }}" style="width: 100px; height: 50px;" />
+          </td>
+        </tr>
+      </table>
+      <table style="width:100%;border-spacing:0">
+        <tr>
+          <td style="width:33.33%;text-align: left;">Place : Sangamner </td>
+          <td  style="width:33.33%; text-align: center;"> Date : {{ date('d / m / Y', strtotime($exam_form_master->created_at)) }}</td>
+          <td  style="width:33.33%; text-align: right">Signature of the Candidate</td>
+        </tr>
+      </table>
+      <br><br><br>
+      <table style="width:100%;border-spacing:0">
+        <tr>
+          <td style="width:33.33%;text-align: left;">Place : Sangamner </td>
+          <td  style="width:33.33%; text-align: center;"> Date : __________________</td>
+          <td  style="width:33.33%; text-align: right">Stamp & Signature of the Principal</td>
+        </tr>
+      </table>
     </div>
     <div class="footer">
       <table style="width:100%;border-spacing:0">
         <tr>
-          <td align="right">Page: </td>
-          <td class="page-number"> </td>
-          <td align="right">Print Date: {{ $exam_form_master->created_at }}</td>
+          <td>Page: <span class="page-number"></span> </td>
+          <td align="right">Print Date: {{ now()->format('d / m / Y') }}</td>
         </tr>
       </table>
     </div>

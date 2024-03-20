@@ -20,12 +20,12 @@
             <x-select-option class="text-start" value="2"> Not Paid </x-select-option>
           </x-input-select>
           <x-input-select id="payment_status" wire:model.live="payment_status" name="payment_status" class="text-center h-8.5 mt-1">
-            <x-select-option class="text-start" hidden> Payment Status  </x-select-option>
-            <x-select-option class="text-start" value="1"> Order Created </x-select-option>
-            <x-select-option class="text-start" value="2"> Authorized </x-select-option>
-            <x-select-option class="text-start" value="3"> Capture </x-select-option>
-            <x-select-option class="text-start" value="4"> Refund </x-select-option>
-            <x-select-option class="text-start" value="5"> Failed </x-select-option>
+            <x-select-option class="text-start" hidden> Payment Status </x-select-option>
+            <x-select-option class="text-start" value="created"> Order Created </x-select-option>
+            <x-select-option class="text-start" value="authorized"> Authorized </x-select-option>
+            <x-select-option class="text-start" value="captured"> Capture </x-select-option>
+            <x-select-option class="text-start" value="refunded"> Refund </x-select-option>
+            <x-select-option class="text-start" value="failed"> Failed </x-select-option>
           </x-input-select>
           <span class="py-2">
             <x-table.cancel class="p-2" wire:click='clear()' i="0"> Clear</x-table.cancel>
@@ -37,13 +37,13 @@
               <x-table.tr>
                 <x-table.th wire:click="sort_column('examformmasters.id')" name="examformmasters.id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.exam_id')" name="examformmasters.exam_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Academic Year</x-table.th>
-                <x-table.th wire:click="sort_column('examformmasters.student_id')" name="examformmasters.student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Student Name</x-table.th>
-                <x-table.th wire:click="sort_column('examformmasters.student_id')" name="examformmasters.student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">PRN</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.student_id')" name="examformmasters.student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Member ID</x-table.th>
-                <x-table.th wire:click="sort_column('examformmasters.totalfee')" name="examformmasters.totalfee" :sort="$sortColumn" :sort_by="$sortColumnBy">Amount</x-table.th>
+                <x-table.th wire:click="sort_column('examformmasters.student_id')" name="examformmasters.student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Student Name</x-table.th>
+                <x-table.th wire:click="sort_column('examformmasters.totalfee')" name="examformmasters.totalfee" :sort="$sortColumn" :sort_by="$sortColumnBy">Fee Amount</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.feepaidstatus')" name="examformmasters.feepaidstatus" :sort="$sortColumn" :sort_by="$sortColumnBy">Fee Paid</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.inwardstatus')" name="examformmasters.inwardstatus" :sort="$sortColumn" :sort_by="$sortColumnBy">Inward</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.transaction_id')" name="examformmasters.transaction_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Payment ID</x-table.th>
+                <x-table.th wire:click="sort_column('transactions.status')" name="transactions.status" :sort="$sortColumn" :sort_by="$sortColumnBy">Payment Status</x-table.th>
                 <x-table.th wire:click="sort_column('transactions.payment_date')" name="transactions.payment_date" :sort="$sortColumn" :sort_by="$sortColumnBy">Payment Date</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.exam_id')" name="examformmasters.exam_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Exam</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.patternclass_id')" name="examformmasters.patternclass_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Pattern Class</x-table.th>
@@ -55,19 +55,16 @@
                 <x-table.tr wire:key="{{ $examformmaster->id }}">
                   <x-table.td>{{ $examformmaster->id }} </x-table.td>
                   <x-table.td>{{ isset($examformmaster->exam->academicyear->year_name) ? $examformmaster->exam->academicyear->year_name : '' }} </x-table.td>
-                  <x-table.td> <x-table.text-scroll> {{ isset($examformmaster->student->student_name) ? $examformmaster->student->student_name : '' }} </x-table.text-scroll> </x-table.td>
-                  <x-table.td>{{ isset($examformmaster->student->prn) ? $examformmaster->student->prn : '' }} </x-table.td>
                   <x-table.td>{{ isset($examformmaster->student->memid) ? $examformmaster->student->memid : '' }} </x-table.td>
-                  <x-table.td>{{ $examformmaster->totalfee }} </x-table.td>
+                  <x-table.td> <x-table.text-scroll> {{ isset($examformmaster->student->student_name) ? $examformmaster->student->student_name : '' }} </x-table.text-scroll> </x-table.td>
+                  <x-table.td>{{ INR($examformmaster->totalfee) }} </x-table.td>
                   <x-table.td>
                     @if ($examformmaster->feepaidstatus)
                       <x-status type="success">Paid</x-status>
-                      @if (isset($examformmaster->transaction->status))
-                        @if ($examformmaster->transaction->status == 3)
-                          <x-status type="success"> Online </x-status>
-                        @endif
+                      @if ($examformmaster->transaction->status == 'captured')
+                        <x-status type="success"> Online </x-status>
                       @else
-                        <x-status type="danger">Offline</x-status>
+                        <x-status type="success"> Chash </x-status>
                       @endif
                     @else
                       <x-status type="danger">Not Paid</x-status>
@@ -77,25 +74,38 @@
                     @if ($examformmaster->inwardstatus)
                       <x-status type="success">Yes</x-status>
                     @else
-                      <x-status type="dander">No</x-status>
+                      <x-status type="danger">No</x-status>
                     @endif
                   </x-table.td>
                   <x-table.td>
                     @if (isset($examformmaster->transaction_id))
-                      @if ($examformmaster->transaction->status == 3)
+                      @if ($examformmaster->transaction->status == 'captured')
                         <x-status> {{ isset($examformmaster->transaction->razorpay_payment_id) ? $examformmaster->transaction->razorpay_payment_id : '' }}</x-status>
                       @endif
                     @endif
                   </x-table.td>
                   <x-table.td>
                     @if (isset($examformmaster->transaction->status))
-                      @if ($examformmaster->transaction->status == 3)
-                        <x-status> {{ isset($examformmaster->transaction->payment_date) ? $examformmaster->transaction->payment_date : '' }}</x-status>
+                      @if ($examformmaster->transaction->status == 'captured')
+                        <x-status type="success"> Captured</x-status>
+                      @elseif ($examformmaster->transaction->status == 'refunded')
+                        <x-status type="info">Refunded</x-status>
+                      @elseif ($examformmaster->transaction->status == 'failed')
+                        <x-status type="danger">Failed</x-status>
+                      @elseif ($examformmaster->transaction->status == 'created')
+                        <x-status>Order Created</x-status>
+                      @elseif ($examformmaster->transaction->status == 'authorized')
+                        <x-status type="warning">Authorized</x-status>
                       @endif
                     @endif
                   </x-table.td>
+                  <x-table.td>
+                    @if ($examformmaster->transaction->status == 'captured')
+                      <x-status> {{ isset($examformmaster->transaction->payment_date) ? Carbon\Carbon::parse($examformmaster->transaction->payment_date)->format('Y-m-d h:i:s A') : '' }}</x-status>
+                    @endif
+                  </x-table.td>
                   <x-table.td> <x-table.text-scroll> {{ $examformmaster->exam->exam_name }} </x-table.text-scroll></x-table.td>
-                  <x-table.td> <x-table.text-scroll> {{ isset($examformmaster->patternclass->pattern->pattern_name) ? $examformmaster->patternclass->pattern->pattern_name : '' }} {{ isset($examformmaster->patternclass->courseclass->classyear->classyear_name) ? $examformmaster->patternclass->courseclass->classyear->classyear_name : '' }} {{ isset($examformmaster->patternclass->courseclass->course->course_name) ? $examformmaster->patternclass->courseclass->course->course_name : '' }} </x-table.text-scroll></x-table.td>
+                  <x-table.td> <x-table.text-scroll> {{ isset($examformmaster->patternclass->courseclass->classyear->classyear_name) ? $examformmaster->patternclass->courseclass->classyear->classyear_name : '' }} {{ isset($examformmaster->patternclass->courseclass->course->course_name) ? $examformmaster->patternclass->courseclass->course->course_name : '' }} {{ isset($examformmaster->patternclass->pattern->pattern_name) ? $examformmaster->patternclass->pattern->pattern_name : '' }}</x-table.text-scroll></x-table.td>
                   <x-table.td>{{ isset($examformmaster->created_at) ? $examformmaster->created_at->format('Y-m-d') : '' }} </x-table.td>
                 </x-table.tr>
               @empty

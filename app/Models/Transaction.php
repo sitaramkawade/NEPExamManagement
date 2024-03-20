@@ -21,8 +21,8 @@ class Transaction extends Model
         'razorpay_signature',
         'amount',
         'status',
-    ];
 
+    ];
 
     public function examformmaster(): HasOne
     {

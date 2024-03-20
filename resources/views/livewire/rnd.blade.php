@@ -16,7 +16,11 @@
       <x-select2.option value="{{ $subjcetid2 }}">{{  $subjectname2 }}</x-select2.option>
     @endforeach
   </x-select2.select>
-
-
+  <div>
+    <span wire:offline>
+        You are currently offline.
+    </span>
+</div>
 
 </div>
+

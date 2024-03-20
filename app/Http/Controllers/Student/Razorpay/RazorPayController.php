@@ -17,7 +17,7 @@ class RazorPayController extends Controller
 
     public function __construct()
     {
-        $this->api = new Api(env('RAZORPAY_KEY_ID'), env('RAZORPAY_KEY_SECRET'));
+        $this->api = new Api(config('services.razorpay.key'), config('services.razorpay.secret'));
     }
 
 
@@ -42,7 +42,7 @@ class RazorPayController extends Controller
                     {
                         $transaction->razorpay_order_id=$order->id;
                         $transaction->amount= $examformmaster->totalfee;
-                        $transaction->status=1;
+                        $transaction->status='created';
                         $transaction->save();
                         if($transaction)
                         {
@@ -50,14 +50,13 @@ class RazorPayController extends Controller
                             $examformmaster->update();
                         }
                     }
-    
+                    // $logo="data:image/x-icon;base64,".base64_encode(file_get_contents(public_path('favicon.ico')));
                     $json_order_data = [
-                        "key" =>env('RAZORPAY_KEY_ID'), 
+                        "key" =>config('services.razorpay.key'), 
                         "amount"=> $examformmaster->totalfee * 100, 
                         "currency"=> env('RAZORPAY_CURRENCY'),
                         "name"=>preg_replace('/(?<!\ )[A-Z]/', ' $0', config('app.name')), 
                         "description"=> "Student_Exam_Form_Paymnet",
-                        "image"=>asset('favicon.ico'),
                         "order_id"=> $order->id,
                         "prefill"=> [
                             "name"=> $examformmaster->student->student_name,
@@ -113,7 +112,7 @@ class RazorPayController extends Controller
                     $transaction->razorpay_payment_id = $request->razorpay_payment_id;
                     $transaction->razorpay_signature = $request->razorpay_signature;
                     $transaction->payment_date =  isset($payment['created_at']) ? date_create_from_format('U', $payment['created_at']) : null;
-                    $transaction->status = 3; // Capured
+                    $transaction->status='captured'; // Capured
                     $transaction->save();
             
                     $exam_form_master =  $transaction->examformmaster()->first();
@@ -133,18 +132,24 @@ class RazorPayController extends Controller
 
             return redirect()->route('student.dashboard')->with('alert', ['type' => 'success', 'message' => 'Payment Success & Verification Success.']);
 
+            // session()->flash('session-alert', [ ['type' => 'success', 'message' => 'Payment Success & Verification Success.'],]);
+            // return response()->json(['redirect_url' => route('student.dashboard')]);
         } 
         catch (SignatureVerificationError $e) 
         {
             DB::rollBack();
             \Log::error('Payment verification error: ' . $e->getMessage());
             return redirect()->route('student.dashboard')->with('alert', ['type' => 'error', 'message' => 'Verification Failed.']);
+            // session()->flash('session-alert', [ ['type' => 'error', 'message' => 'Verification Failed.'],]);
+            // return response()->json(['redirect_url' => route('student.dashboard')]);
         } 
         catch (\Exception $e) 
         {
             DB::rollBack();
             \Log::error('Payment verification error: ' . $e->getMessage());
             return redirect()->route('student.dashboard')->with('alert', ['type' => 'error', 'message' => 'An error occurred during payment verification.']);
+            // session()->flash('session-alert', [ ['type' => 'error', 'message' => 'An error occurred during payment verification.'],]);
+            // return response()->json(['redirect_url' => route('student.dashboard')]);
         }
     }
 
@@ -159,7 +164,7 @@ class RazorPayController extends Controller
             if( $transaction)
             {
                 $transaction->razorpay_payment_id=$request->error_razorpay_payment_id;
-                $transaction->status=5; // fail
+                $transaction->status='failed'; // fail
                 $transaction->update();
 
                 $student=$transaction->examformmaster()->first();
@@ -201,7 +206,7 @@ class RazorPayController extends Controller
                         "receipt"=>"Student_Exam_Form_Fee_Refund_".$examformmaster->id
                     ]);
                     $transaction->razorpay_refund_id= $refund->id;
-                    $transaction->status=4; // Refund
+                    $transaction->status= 'refunded'; // Refund
                     $transaction->update();
                     
                     $data = ['student_id' =>$examformmaster->student_id, 'payment_response' => $this->api->payment->fetch($transaction->razorpay_payment_id)->fetchRefund($refund->id)];

@@ -1,6 +1,13 @@
 @extends('layouts.student')
 @section('student')
-  <section class="w-full flex justify-center items-center h-screen">
+<section  x-data="{ loading: false }" x-init="window.addEventListener('beforeunload', () => loading = true)">
+  <div x-show="loading" class="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+    <x-full-spinner/>
+    <div class=" mt-32 text-white text-2xl">
+      Proccessing...
+    </div>
+  </div>
+  <section x-show="!loading" class="w-full flex justify-center items-center h-screen">
     <div class="w-full max-w-md mx-auto bg-white  dark:bg-darker border border-primary rounded-lg shadow-lg p-8">
       <h5 class="mb-4 text-2xl xs:text-xl text-center font-bold text-primary">Confirm Payment</h5>
       <hr class="mb-5 h-1 border-0 bg-primary">
@@ -54,6 +61,8 @@
 
                 document.getElementById('rzp-button1').addEventListener('click', function(e) {
                     rzp1.open();
+                    e.innerHTML = 'Processing...';
+                    e.disabled = true;
                     e.preventDefault();
                 });
 
@@ -66,5 +75,6 @@
         @endsection
     </div>
   </div>
+</section>
 </section>
 @endsection
