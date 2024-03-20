@@ -49,7 +49,7 @@ class Exampatternclass extends Model
     }
     
     public function patternclass(): BelongsTo
-    {
+    {   
         return $this->belongsTo(Patternclass::class, 'patternclass_id', 'id')->withTrashed();
     }
     
