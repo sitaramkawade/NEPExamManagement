@@ -17,7 +17,7 @@ class AllExam extends Component
     public $perPage=10;
     public $search='';
     public $sortColumn="id";
-    public $sortColumnBy="DESC";
+    public $sortColumnBy="ASC";
     public $ext;
     public $mode='all';
     #[Locked] 
