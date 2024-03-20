@@ -1,5 +1,8 @@
 <?php
 namespace App;
+use Google_Client;
+use Google_Service_Docs;
+
 class Google
 {
     public function client()

@@ -198,6 +198,7 @@ class SubjectExamTimeTable extends Component
             if($this->subject_id)
             {  
                 $patternclass_ids = Subjectbucket::where('subject_id', $this->subject_id)->pluck('patternclass_id');
+                dd($patternclass_ids);
                 if ($patternclass_ids->isNotEmpty()) {
 
                     $this->exampatternclasses = Exampatternclass::with([

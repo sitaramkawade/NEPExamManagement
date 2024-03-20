@@ -26,10 +26,12 @@ use App\Livewire\Faculty\FacultyDashboard;
 use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
+use App\Livewire\User\Faculty\UserFaculty;
 use App\Livewire\Student\Helpline\Helpline;
 use App\Livewire\User\Building\AllBuilding;
 use App\Livewire\User\ExamForm\AllExamForm;
 use App\Livewire\User\Helpline\AllHelpline;
+use App\Livewire\User\PaperSet\AllPaperSet;
 use App\Livewire\User\Ratehead\AllRateHead;
 use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
@@ -40,6 +42,7 @@ use App\Livewire\User\ExamPanel\AllExamPanel;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\ExamForm\InwardExamForm;
 use App\Livewire\User\ExamForm\ModifyExamForm;
+use App\Http\Controllers\GoogleDriveController;
 use App\Livewire\Faculty\FileUpload\FileUpload;
 use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
@@ -67,6 +70,7 @@ use App\Livewire\User\SubjectOrder\GenerateSubjectOrder;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamTimeTable\SubjectExamTimeTable;
+use App\Livewire\User\PaperSubmission\AllPaperSubmission;
 use App\Livewire\User\ExamForm\DeleteExamFormBeforeInward;
 use App\Livewire\User\GenerateExamOrder\GenerateExamOrder;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
@@ -87,6 +91,7 @@ use App\Livewire\Faculty\InternalAudit\AssignTool\AllAssignTool;
 use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
 use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
+use App\Livewire\Faculty\InternalAudit\HodAssignTool\AllHodAssignTool;
 use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
 use App\Http\Controllers\User\ExamFormStatistics\ExamFormReportViewController;
 use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
@@ -122,11 +127,13 @@ Route::middleware(['guest'])->group(function () {
   Route::get('/rnd', RND::class);
 
 
+  Route::get('/upload/drive', [GoogleDriveController::class, 'uploadFile'])->name('upload-to-drive');
 
   Route::get('/login/google', [AuthController::class,'redirectToGoogleProvider']);
   Route::get('/login/google/callback', [AuthController::class,'handleProviderGoogleCallback']);
   Route::get('/gogle/home',  [AuthController::class,'index'])->name('google_home');
   Route::get('/notice', [GoogleController::class,'handleNotice']);
+
 });
 
 // Auth Student Routes
@@ -254,6 +261,15 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Generate Subject Order
   Route::get('/generate/subject/order', GenerateSubjectOrder::class)->name('generate_subject_order');
 
+  //User Faculty
+  Route::get('/faculty', UserFaculty::class)->name('all_faculty');
+
+  //All PaperSet
+  Route::get('/paper/set', AllPaperSet::class)->name('all_paperset');
+
+  //All PaperSubmission
+  Route::get('/paper/submission', AllPaperSubmission::class)->name('all_paper_submission');
+
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');
 
@@ -344,55 +360,58 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   Route::get('dashboard', FacultyDashboard::class)->name('dashboard');
 
   // All Faculty
-  Route::get('/all-faculties', AllFaculty::class)->name('all-faculties');
+  Route::get('/faculties', AllFaculty::class)->name('all_faculties');
 
   // All Faculty Role
-  Route::get('/all-faculty-role', AllFacultyRole::class)->name('all-roles');
+  Route::get('/role', AllFacultyRole::class)->name('all_roles');
 
   // All Faculty Role
-  Route::get('/all-faculty-roletype', AllFacultyRoleType::class)->name('all-roletypes');
+  Route::get('/roletype', AllFacultyRoleType::class)->name('all_role_types');
 
   // Update Faculty Profile
-  Route::get('/update-profile', UpdateProfile::class)->name('updateprofile');
+  Route::get('/update/profile', UpdateProfile::class)->name('update_profile');
 
   // All Subject Categories
-  Route::get('/subject-categories', AllSubjectCategory::class)->name('all-subjectcategories');
+  Route::get('/subject/categories', AllSubjectCategory::class)->name('all_subject_categories');
 
   // All Subject Verticals
-  Route::get('/subject-verticals', AllSubjectVertical::class)->name('all-subjectverticals');
+  Route::get('/subject/verticals', AllSubjectVertical::class)->name('all_subject_verticals');
 
   // All Subject
-  Route::get('/all-subject', AllSubject::class)->name('all-subjects');
+  Route::get('/subject', AllSubject::class)->name('all_subjects');
 
   // All Allocate Subject
-  Route::get('/all-assignsubject', AllAssignSubject::class)->name('all-assignsubjects');
+  Route::get('/assign/subject', AllAssignSubject::class)->name('all_assign_subjects');
 
   // All SubjectBucket
-  Route::get('/all-subjectbucket', AllSubjectBucket::class)->name('all-subjectbuckets');
+  Route::get('/subject/bucket', AllSubjectBucket::class)->name('all_subject_buckets');
 
   // All SubjectType
-  Route::get('/all-subjecttypes', AllSubjectType::class)->name('all-subjecttypes');
+  Route::get('/subject/types', AllSubjectType::class)->name('all_subject_types');
 
   // All FacultyHead
-  Route::get('/all-facultyheads', AllFacultyHead::class)->name('all-facultyheads');
+  Route::get('/facultyheads', AllFacultyHead::class)->name('all_faculty_heads');
 
   // All ViewExamPanel
-  Route::get('/view-exampanel', ViewExamPanel::class)->name('view-exampanels');
+  Route::get('/view/exampanel', ViewExamPanel::class)->name('view_exam_panels');
 
   // All Department Prefix
-  Route::get('/all-deptprefixe', AllDepartmentPrefix::class)->name('all-deptprefixes');
+  Route::get('/department/prefixes', AllDepartmentPrefix::class)->name('all_department_prefixes');
 
   // All Internal Tool Master
-  Route::get('/all-internaltool', AllInternalTool::class)->name('all-internaltool');
+  Route::get('/internal/tool', AllInternalTool::class)->name('all_internal_tool');
 
   // All Internal Tool Document
-  Route::get('/all-internaltooldocs', AllInternalToolDocument::class)->name('all-internaltooldocs');
+  Route::get('/internal/tool/documents', AllInternalToolDocument::class)->name('all_internal_tool_documents');
 
   // All Assign Tool
-  Route::get('/all-assigntools', AllAssignTool::class)->name('all-assigntools');
+  Route::get('/assign/tools', AllAssignTool::class)->name('all_assign_tools');
 
   // All Document Upload
-  Route::get('/all-uploadocs', AllUploadDocument::class)->name('all-uploadocs');
+  Route::get('/upload/documents', AllUploadDocument::class)->name('all_upload_documents');
+
+  // All Hod Assign Tool
+  Route::get('/hod/assign/tools', AllHodAssignTool::class)->name('all_hod_assign_tools');
 
 });
 
