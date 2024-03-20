@@ -112,7 +112,7 @@
                   <x-table.td>
                     @if ($exm_form->feepaidstatus)
                       <x-status type="success"> Paid</x-status>
-                      @if (isset($exm_form->transaction->status) && $exm_form->transaction->status === 3)
+                      @if (isset($exm_form->transaction->status) && $exm_form->transaction->status === 'captured')
                         <x-status type="success"> Online</x-status>
                       @else
                         <x-status type="danger">Cash</x-status>
@@ -123,7 +123,17 @@
                   </x-table.td>
                   <x-table.td>
                     @if (isset($exm_form->transaction->status))
-                      <x-status type="{{  App\Enums\PaymentStatus::get_type($exm_form->transaction->status) }}">  {{  App\Enums\PaymentStatus::get_status($exm_form->transaction->status)}} </x-status>
+                      @if ($exm_form->transaction->status === 'captured')
+                        <x-status type="success"> Success</x-status>
+                      @elseif ($exm_form->transaction->status === 'refunded')
+                        <x-status type="info">Refunded</x-status>
+                      @elseif ($exm_form->transaction->status === 'Failed')
+                        <x-status type="danger">Failed</x-status>
+                      @elseif ($exm_form->transaction->status === 'created')
+                        <x-status>Order Created</x-status>
+                      @elseif ($exm_form->transaction->status === 'authorized')
+                        <x-status type="warning">Processing</x-status>
+                      @endif
                     @endif
                   </x-table.td>
                   <x-table.td>
@@ -142,21 +152,23 @@
                     @endif
                   </x-table.td>
                   <x-table.td>
-                    @if ($exm_form->feepaidstatus == 1)
-                      <x-dashboard.form-button class="bg-orange-500 h-7 rounded-md border-none"> Fee Reciept</x-dashboard.form-button>
-                    @else
-                      @if ($exm_form->verified_at)
-                        <x-dashboard.form-button class="bg-green-500 h-7 rounded-md border-none" action="{{ route('student.student_pay_exam_form_fee', $exm_form->id) }}"> Pay Fee </x-dashboard.form-button>
+                    @if ($exm_form->exam->status ==1)
+                      @if ($exm_form->feepaidstatus == 1)
+                        <x-dashboard.form-button class="bg-orange-500 h-7 rounded-md border-none"> Fee Reciept</x-dashboard.form-button>
+                      @else
+                        @if ($exm_form->verified_at)
+                          <x-dashboard.form-button class="bg-green-500 h-7 rounded-md border-none" action="{{ route('student.student_pay_exam_form_fee', $exm_form->id) }}"> Pay Fee </x-dashboard.form-button>
+                        @endif
                       @endif
-                    @endif
-                    @if ($exm_form->inwardstatus == 0)
-                      @if ($exm_form->feepaidstatus == 0)
-                        @if ($exm_form->printstatus == 0)
-                          <x-dashboard.form-button class="bg-pink-500 h-7 rounded-md border-none" target="_blank" action="{{ route('student.student_print_preview_exam_form') }}">Preview</x-dashboard.form-button>
-                          <x-dashboard.form-button class="bg-red-500 h-7 rounded-md border-none" action="{{ route('student.student_delete_exam_form') }}">Delete</x-dashboard.form-button>
-                          <x-dashboard.form-button class="bg-blue-500 h-7 rounded-md border-none" target="_blank" wire:click='$refresh' action="{{ route('student.student_print_final_exam_form') }}" onclick="return confirm('Once Printed, the form cannot be edited. Confirm if you wish to print it.')">Confirm & Print</x-dashboard.form-button>
-                        @else
-                          <x-dashboard.form-button class="bg-blue-500 h-7 rounded-md border-none" target="_blank" action="{{ route('student.student_print_final_exam_form') }}">Print</x-dashboard.form-button>
+                      @if ($exm_form->inwardstatus == 0)
+                        @if ($exm_form->feepaidstatus == 0)
+                          @if ($exm_form->printstatus == 0)
+                            <x-dashboard.form-button class="bg-pink-500 h-7 rounded-md border-none" target="_blank" action="{{ route('student.student_print_preview_exam_form') }}">Preview</x-dashboard.form-button>
+                            <x-dashboard.form-button class="bg-red-500 h-7 rounded-md border-none" action="{{ route('student.student_delete_exam_form') }}" onclick="return confirm('Are You Sure You Want Delete Exam Form.')">Delete</x-dashboard.form-button>
+                            <x-dashboard.form-button class="bg-blue-500 h-7 rounded-md border-none" target="_blank" wire:click='$refresh' action="{{ route('student.student_print_final_exam_form') }}" onclick="return confirm('Once Printed, the form cannot be edited. Confirm if you wish to print it.')">Confirm & Print</x-dashboard.form-button>
+                          @else
+                            <x-dashboard.form-button class="bg-blue-500 h-7 rounded-md border-none" target="_blank" action="{{ route('student.student_print_final_exam_form') }}">Print</x-dashboard.form-button>
+                          @endif
                         @endif
                       @endif
                     @endif
