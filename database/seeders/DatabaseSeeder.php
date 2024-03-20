@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\PapersetSeeder;
 use Database\Seeders\DeptPrefixSeeder;
 use Database\Seeders\InternalToolDocumentSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -45,6 +46,7 @@ class DatabaseSeeder extends Seeder
             ExamOrderPostSeeder::class,
             BuildingSeeder::class,
             CourseCategorySeeder::class,
+            PapersetSeeder::class,
             ExamFeeMasterSeeder::class,                     // ApplyFeeSeeder , FormTypeSeeder
             CasteSeeder::class,                             // CasteCategorySeeder
             StateSeeder::class,                             // CountrySeeder
@@ -77,7 +79,6 @@ class DatabaseSeeder extends Seeder
             ExamFeeCoursesSeeder::class,                    // Patternclass, Examfeemaster
             FacultyHeadSeeder::class,                       // Faculty, Department
             HodAppointSubjectSeeder::class,                 // Faculty, Subject, Patternclass
-            ExamOrderPostSeeder::class,
             SubjectTypeMasterSeeder::class,                 // Subjectcategory, Subjecttype
             InternalToolMasterSeeder::class,
             InternalToolDocumentMasterSeeder::class,

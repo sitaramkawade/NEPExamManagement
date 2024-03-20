@@ -171,6 +171,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\AppNameServiceProvider::class,
+        // App\Providers\GoogleDriveServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,  
 
 
