@@ -51,7 +51,7 @@
                     <img style="width: 135px; height: 150px;" class="object-center object-fill  " src="{{ isset($uploaded_documents_old[$doc->id]) ? asset($uploaded_documents_old[$doc->id]) : asset('img/no-img.png') }}" alt="{{ $doc->document_name }}" />
                   </div>
                   <x-input-label class="py-2" for="{{ $doc->id }}" :value="$doc->document_name" />
-                  <x-view-image-model-btn src="{{ isset($uploaded_documents_old[$doc->id]) ? asset($uploaded_documents_old[$doc->id]) : asset('img/no-img.png') }}"> View Document</x-view-image-model-btn>
+                  <x-view-image-model-btn class="mb-2" title="{{ $doc->document_name }}" src="{{ isset($uploaded_documents_old[$doc->id]) ? asset($uploaded_documents_old[$doc->id]) : asset('img/no-img.png') }}"> View Document</x-view-image-model-btn>
                 </div>
               @endforeach
             </div>

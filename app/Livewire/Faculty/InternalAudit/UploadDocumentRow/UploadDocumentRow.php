@@ -11,7 +11,15 @@ class UploadDocumentRow extends Component
     use WithFileUploads;
 
     public $faculty_internal_document_data;
+
     public $document_to_upload;
+
+    public $previewLoaded = false;
+
+    public function updatedDocumentToUpload()
+    {
+        $this->previewLoaded = true;
+    }
 
     protected function rules()
     {
@@ -60,11 +68,14 @@ class UploadDocumentRow extends Component
                 // Document Name
                 $doc_name = isset($faculty_internal_document_data->internaltooldocument->internaltooldocumentmaster->doc_name) ? $faculty_internal_document_data->internaltooldocument->internaltooldocumentmaster->doc_name : 'DN';
 
-                // Path To Store
-                $path = 'internal-audit/' . $year_name . '/' . $faculty_name . '/' . $subject_code .'_'. $patternclass_id . '/';
+                // Generate a unique identifier
+                $unique_id = uniqid();
 
                 // Generate a unique file name for each document
-                $fileName = $doc_name . '.' . $this->document_to_upload->getClientOriginalExtension();
+                $fileName = $doc_name . '_' . $unique_id . '.' . $this->document_to_upload->getClientOriginalExtension();
+
+                // Path To Store
+                $path = 'internal-audit/' . $year_name . '/' . $faculty_name . '/' . $subject_code .'_'. $patternclass_id . '/';
 
                 // Upload the document
                 $document->storeAs($path, $fileName, 'public');

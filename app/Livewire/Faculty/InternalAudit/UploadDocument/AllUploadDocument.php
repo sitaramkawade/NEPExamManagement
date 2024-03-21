@@ -43,8 +43,14 @@ class AllUploadDocument extends Component
 
     public function loadPatternClasses()
     {
-        $documents_data = Facultyinternaldocument::with('subject.patternclass','academicyear:id,year_name',)
-        ->where('faculty_id', Auth::guard('faculty')->user()->id)
+        $user_id = Auth::guard('faculty')->user()->id;
+
+        $documents_data = Facultyinternaldocument::with([
+            'subject.patternclass.courseclass.classyear:id,classyear_name',
+            'subject.patternclass.courseclass.course:id,course_name',
+            'subject.patternclass.pattern:id,pattern_name'
+        ])
+        ->where('faculty_id', $user_id)
         ->where('status', 0)
         ->get();
 
@@ -59,25 +65,21 @@ class AllUploadDocument extends Component
         });
     }
 
+
     public function loadSubjects($value)
     {
-        $subjects = Facultyinternaldocument::where('faculty_id', Auth::guard('faculty')->user()->id)
-            ->where('status', 0)
+        $user_id = Auth::guard('faculty')->user()->id;
+
+        $this->subjects = Facultyinternaldocument::where('faculty_id', $user_id)->where('status', 0)
             ->whereHas('subject', function ($query) use ($value) {
                 $query->where('patternclass_id', $value);
             })
-            ->with('subject:id,subject_name,subject_code')
+            ->with(['subject' => function ($query) {
+                $query->select('id', 'subject_name', 'subject_code');
+            }])
             ->get()
-            ->mapWithKeys(function ($document) {
-                return [$document->subject->id => [
-                    'subject_name' => $document->subject->subject_name,
-                    'subject_code' => $document->subject->subject_code
-                ]];
-            });
-
-        $this->subjects = $subjects;
+            ->pluck('subject', 'subject.id');
     }
-
 
     public function mount()
     {

@@ -7,7 +7,7 @@
         <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
             Fetch Tool Document's
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-1">
+        <div class="grid grid-cols-1 md:grid-cols-2">
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="academicyear_id" :value="__('Academic Year')" />
                 <x-input-select id="academicyear_id" wire:model.live="academicyear_id" name="academicyear_id" class="text-center @error('academicyear_id') is-invalid @enderror w-full mt-1" :value="old('academicyear_id', $academicyear_id)" required autofocus autocomplete="academicyear_id">
@@ -34,7 +34,8 @@
                 </x-input-select>
                 <x-input-error :messages="$errors->get('patternclass_id')" class="mt-1" />
             </div>
-
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-1">
             <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="subject_id" :value="__('Select Subject')" />
                 <x-input-select id="subject_id" wire:model.live="subject_id" name="subject_id" class="text-center w-full mt-1" :value="old('subject_id', $subject_id)" required autocomplete="subject_id">
@@ -49,7 +50,6 @@
                 </x-input-select>
                 <x-input-error :messages="$errors->get('subject_id')" class="mt-1" />
             </div>
-
         </div>
     </div>
     <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
@@ -60,6 +60,7 @@
             <x-table.table>
                 <x-table.thead>
                     <x-table.tr>
+                        <x-table.th>Tool Name</x-table.th>
                         <x-table.th>Document Name</x-table.th>
                         <x-table.th>Preview</x-table.th>
                         <x-table.th>Action</x-table.th>
@@ -70,7 +71,7 @@
                         <livewire:faculty.internal-audit.upload-document-row.upload-document-row :key="$facultyinternaldocument->id" :$facultyinternaldocument />
                     @empty
                         <x-table.tr>
-                            <x-table.td colSpan='3' class="text-center">No Data Found</x-table.td>
+                            <x-table.td colSpan='4' class="text-center">No Data Found</x-table.td>
                         </x-table.tr>
                     @endforelse
                 </x-table.tbody>
@@ -85,6 +86,7 @@
             <x-table.table>
                 <x-table.thead>
                     <x-table.tr>
+                        <x-table.th>Tool Name</x-table.th>
                         <x-table.th>Document Name</x-table.th>
                         <x-table.th>Action</x-table.th>
                     </x-table.tr>
@@ -93,11 +95,14 @@
                     @forelse ($uploaded_documents as $uploaded_document)
                         <x-table.tr wire:key="{{ $uploaded_document->id }}">
                             <x-table.td>
+                                <x-table.text-scroll>{{ $uploaded_document->internaltooldocument->internaltoolmaster->toolname ?? '' }}</x-table.text-scroll>
+                            </x-table.td>
+                            <x-table.td>
                                 <x-table.text-scroll>{{ $uploaded_document->internaltooldocumentmaster->doc_name ?? '' }}</x-table.text-scroll>
                             </x-table.td>
                             <x-table.td>
                                 <div class="flex items-center space-x-2">
-                                    <x-view-image-model-btn src="{{ isset($uploaded_document->document_filePath) ? asset($uploaded_document->document_filePath) : asset('img/no-img.png') }}" />
+                                    <x-view-image-model-btn title="{{ $uploaded_document->internaltooldocumentmaster->doc_name }}" i="1" src="{{ isset($uploaded_document->document_filePath) ? asset($uploaded_document->document_filePath) : asset('img/no-img.png') }}" />
                                     <x-table.delete wire:click="deleteconfirmation({{ $uploaded_document->id }})" />
                                 </div>
                             </x-table.td>
