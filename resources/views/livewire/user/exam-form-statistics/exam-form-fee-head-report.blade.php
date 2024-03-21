@@ -4,7 +4,7 @@
       <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
       <x-breadcrumb.link name="Exam Form Fee Head Statistics" />
     </x-breadcrumb.breadcrumb>
-    <x-card-header heading="{{ isset($active_exam->exam_name)??$active_exam->exam_name }} Exam Form Fee Head Statistics" />
+    <x-card-header heading="{{ isset($active_exam->exam_name)?$active_exam->exam_name:''; }} Exam Form Fee Head Statistics" />
     <x-table.frame s="0" x="0">
       <x-slot:header>
         <div class="w-full inline">
@@ -25,10 +25,8 @@
           @php
             $examfeecourses = App\Models\Examfeecourse::where('patternclass_id', $exam_pattern_class->patternclass_id)->where('active_status', 1)->orderBy('examfees_id', 'ASC')->orderBy('sem', 'ASC')->get();
           @endphp
-          <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
-            <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
-              {{ get_pattern_class_name($exam_pattern_class->patternclass_id) }}
-            </div>
+
+          <x-card-collapsible heading=" {{ get_pattern_class_name($exam_pattern_class->patternclass_id) }}" on="0">
             <div>
               <x-table.table>
                 <x-table.thead>
@@ -46,8 +44,8 @@
                   @endphp
                   @foreach ($examfeecourses as $exam_fee_coures)
                   @php
-                    $form_count=App\Models\Studentexamformfee::whereIn('examformmaster_id', $exam_pattern_class->patternclass->examformmasters->pluck('id'))->where('examfees_id', $exam_fee_coures->examfees_id)->count();
-                    $fee_count = App\Models\Studentexamformfee::whereIn('examformmaster_id', $exam_pattern_class->patternclass->examformmasters->pluck('id'))->where('examfees_id', $exam_fee_coures->examfees_id)->sum('fee_amount');
+                    $form_count=App\Models\Studentexamformfee::whereIn('examformmaster_id', $exam_pattern_class->patternclass->examformmasters->where('inwardstatus',1)->pluck('id'))->where('examfees_id', $exam_fee_coures->examfees_id)->count();
+                    $fee_count = App\Models\Studentexamformfee::whereIn('examformmaster_id', $exam_pattern_class->patternclass->examformmasters->where('inwardstatus',1)->pluck('id'))->where('examfees_id', $exam_fee_coures->examfees_id)->sum('fee_amount');
                     $total_fee+= $fee_count;
                   @endphp
                     <x-table.tr>
@@ -69,7 +67,7 @@
                 </x-table.tbody>
               </x-table.table>
             </div>
-          </div>
+          </x-card-collapsible>
         @endforeach
       </x-slot>
       <x-slot:footer>

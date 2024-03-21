@@ -1,4 +1,4 @@
-<div class="inline-flex items-center min-w-[20%] mx-auto">
+<div class="inline-flex items-center w-[10%] mx-auto">
 
   <label for="simple-search" class="sr-only">Search</label>
   <div class="relative w-full">
