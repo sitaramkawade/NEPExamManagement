@@ -8,10 +8,22 @@
       <x-card-header heading="All Exam Form's" />
       <x-table.frame>
         <x-slot:header>
-          <x-input-select id="academicyear_id" wire:model.live="academicyear_id" name="academicyear_id" class="text-center h-8.5 mt-1">
-            <x-select-option class="text-start" hidden> Academic Year </x-select-option>
+          <x-input-select id="academicyear_id" wire:model.live="academicyear_id" name="academicyear_id" class="text-center  h-8.5 mt-1">
+            <x-select-option class="text-start" hidden>Year </x-select-option>
             @foreach ($academic_years as $a_id)
               <x-select-option wire:key="{{ $a_id->id }}" value="{{ $a_id->id }}" class="text-start">{{ $a_id->year_name }}</x-select-option>
+            @endforeach
+          </x-input-select>
+          <x-input-select id="exam_id" wire:model.live="exam_id" name="exam_id" class="text-center h-8.5 mt-1">
+            <x-select-option class="text-start" hidden> Exam </x-select-option>
+            @foreach ($exams as $exam)
+              <x-select-option wire:key="{{ $exam->id }}" value="{{ $exam->id }}" class="text-start">{{ $exam->exam_name }}</x-select-option>
+            @endforeach
+          </x-input-select>
+          <x-input-select id="patternclass_id" wire:model.live="patternclass_id" name="patternclass_id" class="text-center w-60 h-8.5 mt-1">
+            <x-select-option class="text-start" hidden> Pattern Class </x-select-option>
+            @foreach ($patternclasses as $pc)
+              <x-select-option wire:key="{{ $pc->id }}" value="{{ $pc->id }}" class="text-start">{{ get_pattern_class_name($pc->id) }}</x-select-option>
             @endforeach
           </x-input-select>
           <x-input-select id="fee_status" wire:model.live="fee_status" name="fee_status" class="text-center h-8.5 mt-1">
@@ -37,6 +49,9 @@
               <x-table.tr>
                 <x-table.th wire:click="sort_column('examformmasters.id')" name="examformmasters.id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.exam_id')" name="examformmasters.exam_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Academic Year</x-table.th>
+                <x-table.th wire:click="sort_column('examformmasters.exam_id')" name="examformmasters.exam_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Exam</x-table.th>
+                <x-table.th wire:click="sort_column('examformmasters.patternclass_id')" name="examformmasters.patternclass_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Pattern Class</x-table.th>
+                <x-table.th wire:click="sort_column('examformmasters.student_id')" name="examformmasters.student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">PRN</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.student_id')" name="examformmasters.student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Member ID</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.student_id')" name="examformmasters.student_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Student Name</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.totalfee')" name="examformmasters.totalfee" :sort="$sortColumn" :sort_by="$sortColumnBy">Fee Amount</x-table.th>
@@ -45,16 +60,17 @@
                 <x-table.th wire:click="sort_column('examformmasters.transaction_id')" name="examformmasters.transaction_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Payment ID</x-table.th>
                 <x-table.th wire:click="sort_column('transactions.status')" name="transactions.status" :sort="$sortColumn" :sort_by="$sortColumnBy">Payment Status</x-table.th>
                 <x-table.th wire:click="sort_column('transactions.payment_date')" name="transactions.payment_date" :sort="$sortColumn" :sort_by="$sortColumnBy">Payment Date</x-table.th>
-                <x-table.th wire:click="sort_column('examformmasters.exam_id')" name="examformmasters.exam_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Exam</x-table.th>
-                <x-table.th wire:click="sort_column('examformmasters.patternclass_id')" name="examformmasters.patternclass_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Pattern Class</x-table.th>
                 <x-table.th wire:click="sort_column('examformmasters.created_at')" name="examformmasters.created_at" :sort="$sortColumn" :sort_by="$sortColumnBy">Form Date</x-table.th>
               </x-table.tr>
             </x-table.thead>
             <x-table.tbody>
               @forelse ($exam_form_masters as $key => $examformmaster)
-                <x-table.tr wire:key="{{ $examformmaster->id }}">
-                  <x-table.td>{{ $examformmaster->id }} </x-table.td>
-                  <x-table.td>{{ isset($examformmaster->exam->academicyear->year_name) ? $examformmaster->exam->academicyear->year_name : '' }} </x-table.td>
+              <x-table.tr wire:key="{{ $examformmaster->id }}">
+                <x-table.td>{{ $examformmaster->id }} </x-table.td>
+                <x-table.td>{{ isset($examformmaster->exam->academicyear->year_name) ? $examformmaster->exam->academicyear->year_name : '' }} </x-table.td>
+                <x-table.td> <x-table.text-scroll> {{ $examformmaster->exam->exam_name }} </x-table.text-scroll></x-table.td>
+                <x-table.td> <x-table.text-scroll> {{ isset($examformmaster->patternclass->courseclass->classyear->classyear_name) ? $examformmaster->patternclass->courseclass->classyear->classyear_name : '' }} {{ isset($examformmaster->patternclass->courseclass->course->course_name) ? $examformmaster->patternclass->courseclass->course->course_name : '' }} {{ isset($examformmaster->patternclass->pattern->pattern_name) ? $examformmaster->patternclass->pattern->pattern_name : '' }}</x-table.text-scroll></x-table.td>
+                  <x-table.td>{{ isset($examformmaster->student->memid) ? $examformmaster->student->prn : '' }} </x-table.td>
                   <x-table.td>{{ isset($examformmaster->student->memid) ? $examformmaster->student->memid : '' }} </x-table.td>
                   <x-table.td> <x-table.text-scroll> {{ isset($examformmaster->student->student_name) ? $examformmaster->student->student_name : '' }} </x-table.text-scroll> </x-table.td>
                   <x-table.td>{{ INR($examformmaster->totalfee) }} </x-table.td>
@@ -104,8 +120,6 @@
                       <x-status> {{ isset($examformmaster->transaction->payment_date) ? Carbon\Carbon::parse($examformmaster->transaction->payment_date)->format('Y-m-d h:i:s A') : '' }}</x-status>
                     @endif
                   </x-table.td>
-                  <x-table.td> <x-table.text-scroll> {{ $examformmaster->exam->exam_name }} </x-table.text-scroll></x-table.td>
-                  <x-table.td> <x-table.text-scroll> {{ isset($examformmaster->patternclass->courseclass->classyear->classyear_name) ? $examformmaster->patternclass->courseclass->classyear->classyear_name : '' }} {{ isset($examformmaster->patternclass->courseclass->course->course_name) ? $examformmaster->patternclass->courseclass->course->course_name : '' }} {{ isset($examformmaster->patternclass->pattern->pattern_name) ? $examformmaster->patternclass->pattern->pattern_name : '' }}</x-table.text-scroll></x-table.td>
                   <x-table.td>{{ isset($examformmaster->created_at) ? $examformmaster->created_at->format('Y-m-d') : '' }} </x-table.td>
                 </x-table.tr>
               @empty

@@ -636,3 +636,53 @@ if (!function_exists('get_exam_form_fees')) {
         return collect($fees_array);
     }
 }
+
+
+if (!function_exists('amount_to_word')) {
+function amount_to_word($amount)
+{
+    $units = array("Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen");
+    $tens = array("", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety");
+
+    try {
+        $amount_int = (int)$amount;
+        $amount_dec = (int)round(($amount - $amount_int) * 100);
+        if ($amount_dec == 0) {
+            return convert($amount_int) . " Rupees Only.";
+        } else {
+            return convert($amount_int) . " Rupees And " . convert($amount_dec) . " Paisa Only.";
+        }
+    } catch (Exception $e) {
+        // Handle exception
+        return "Error: " . $e->getMessage();
+    }
+}
+}
+
+if (!function_exists('convert')) {
+function convert($i)
+{
+    $units = array("Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen");
+    $tens = array("", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety");
+
+    if ($i < 20) {
+        return $units[$i];
+    }
+    if ($i < 100) {
+        return $tens[(int)($i / 10)] . (($i % 10 > 0) ? " " . convert($i % 10) : "");
+    }
+    if ($i < 1000) {
+        return $units[(int)($i / 100)] . " Hundred" . (($i % 100 > 0) ? " And " . convert($i % 100) : "");
+    }
+    if ($i < 100000) {
+        return convert((int)($i / 1000)) . " Thousand " . (($i % 1000 > 0) ? " " . convert($i % 1000) : "");
+    }
+    if ($i < 10000000) {
+        return convert((int)($i / 100000)) . " Lakh " . (($i % 100000 > 0) ? " " . convert($i % 100000) : "");
+    }
+    if ($i < 1000000000) {
+        return convert((int)($i / 10000000)) . " Crore " . (($i % 10000000 > 0) ? " " . convert($i % 10000000) : "");
+    }
+    return convert((int)($i / 1000000000)) . " Arab " . (($i % 1000000000 > 0) ? " " . convert($i % 1000000000) : "");
+}
+}
