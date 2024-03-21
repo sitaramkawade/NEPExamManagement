@@ -26,10 +26,12 @@ use App\Livewire\Faculty\FacultyDashboard;
 use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
 use App\Livewire\Student\StudentDashboard;
+use App\Livewire\User\Faculty\UserFaculty;
 use App\Livewire\Student\Helpline\Helpline;
 use App\Livewire\User\Building\AllBuilding;
 use App\Livewire\User\ExamForm\AllExamForm;
 use App\Livewire\User\Helpline\AllHelpline;
+use App\Livewire\User\PaperSet\AllPaperSet;
 use App\Livewire\User\Ratehead\AllRateHead;
 use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
@@ -40,6 +42,7 @@ use App\Livewire\User\ExamPanel\AllExamPanel;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\ExamForm\InwardExamForm;
 use App\Livewire\User\ExamForm\ModifyExamForm;
+use App\Http\Controllers\GoogleDriveController;
 use App\Livewire\Faculty\FileUpload\FileUpload;
 use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
@@ -67,6 +70,7 @@ use App\Livewire\User\SubjectOrder\GenerateSubjectOrder;
 use App\Livewire\Student\Profile\MultiStepStudentProfile;
 use App\Livewire\User\BoardUniversity\AllBoardUniversity;
 use App\Livewire\User\ExamTimeTable\SubjectExamTimeTable;
+use App\Livewire\User\PaperSubmission\AllPaperSubmission;
 use App\Livewire\User\ExamForm\DeleteExamFormBeforeInward;
 use App\Livewire\User\GenerateExamOrder\GenerateExamOrder;
 use App\Livewire\User\ExamPatternClass\AllExamPatternClass;
@@ -82,6 +86,7 @@ use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
+use App\Livewire\User\ExamFormStatistics\ExamFormFeeHeadReport;
 use App\Livewire\Faculty\InternalAudit\AssignTool\AllAssignTool;
 use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
@@ -122,11 +127,13 @@ Route::middleware(['guest'])->group(function () {
   Route::get('/rnd', RND::class);
 
 
+  Route::get('/upload/drive', [GoogleDriveController::class, 'uploadFile'])->name('upload-to-drive');
 
   Route::get('/login/google', [AuthController::class,'redirectToGoogleProvider']);
   Route::get('/login/google/callback', [AuthController::class,'handleProviderGoogleCallback']);
   Route::get('/gogle/home',  [AuthController::class,'index'])->name('google_home');
   Route::get('/notice', [GoogleController::class,'handleNotice']);
+
 });
 
 // Auth Student Routes
@@ -254,6 +261,15 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Generate Subject Order
   Route::get('/generate/subject/order', GenerateSubjectOrder::class)->name('generate_subject_order');
 
+  //User Faculty
+  Route::get('/faculty', UserFaculty::class)->name('all_faculty');
+
+  //All PaperSet
+  Route::get('/paper/set', AllPaperSet::class)->name('all_paperset');
+
+  //All PaperSubmission
+  Route::get('/paper/submission', AllPaperSubmission::class)->name('all_paper_submission');
+
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');
 
@@ -325,6 +341,10 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //Exam Form Report View
   Route::get('/exam/form/report/view/{exam_pattern_class_id}{status}',[ExamFormReportViewController::class,'exam_form_report_view'])->name('exam_form_report_view');
+
+  //Exam Form Fee Head Statistics
+  Route::get('/exam/form/fee/head/statistics',ExamFormFeeHeadReport::class)->name('exam_form_fee_head_statistics');
+
 
   //All Subject Hod
   Route::get('/all-hodappointsubject',  AllHodAppointSubject::class)->name('all-hodappointsubjects');

@@ -67,7 +67,8 @@ class GenerateSubjectOrder extends Component
                 // Access $exampanel->subject->patternclass safely here
                 if ( $exampanel->subject->patternclass) 
                {
-                    $exampatternclasses = $exampanel->subject->patternclass->examPatternClasses->where('launch_status',1);
+                    $examids = Exam::where('status',1)->pluck('id')->toArray();
+                    $exampatternclasses = $exampanel->subject->patternclass->examPatternClasses->whereIn('exam_id',$examids);
                     foreach($exampatternclasses as $exampatternclass)
                         {
                             $exam_order_data = [];
