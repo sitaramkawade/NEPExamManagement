@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Exampanel extends Model
 {
@@ -38,6 +39,11 @@ class Exampanel extends Model
     public function subject(): BelongsTo
     {
         return $this->belongsTo(Subject::class,'subject_id','id')->withTrashed();
+    }
+
+    public function subjects(): BelongsToMany
+    {
+        return $this->belongsToMany(Subject::class,'subject_id','id')->withTrashed();
     }
 
     public function scopeSearch(Builder $query, string $search)

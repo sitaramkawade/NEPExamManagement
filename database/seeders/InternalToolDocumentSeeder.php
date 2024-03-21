@@ -13,7 +13,7 @@ class InternalToolDocumentSeeder extends Seeder
         // First Record
         Internaltooldocument::create( [
             'internaltooldoc_id'=>1,
-            'internaltoolmaster_id'=>1,
+            'internaltoolmaster_id'=>14,
             'is_multiple'=>1,
             'status'=>1,
             'created_at'=>'2023-02-11 16:34:46',
@@ -21,7 +21,7 @@ class InternalToolDocumentSeeder extends Seeder
         ] );
         Internaltooldocument::create( [
             'internaltooldoc_id'=>2,
-            'internaltoolmaster_id'=>1,
+            'internaltoolmaster_id'=>14,
             'is_multiple'=>1,
             'status'=>1,
             'created_at'=>'2023-02-11 16:34:46',
@@ -29,7 +29,7 @@ class InternalToolDocumentSeeder extends Seeder
         ] );
         Internaltooldocument::create( [
             'internaltooldoc_id'=>3,
-            'internaltoolmaster_id'=>1,
+            'internaltoolmaster_id'=>14,
             'is_multiple'=>1,
             'status'=>1,
             'created_at'=>'2023-02-11 16:34:46',
@@ -39,7 +39,7 @@ class InternalToolDocumentSeeder extends Seeder
         // Second Record
         Internaltooldocument::create( [
             'internaltooldoc_id'=>2,
-            'internaltoolmaster_id'=>2,
+            'internaltoolmaster_id'=>15,
             'is_multiple'=>1,
             'status'=>1,
             'created_at'=>'2023-02-11 16:34:46',
@@ -47,7 +47,7 @@ class InternalToolDocumentSeeder extends Seeder
         ] );
         Internaltooldocument::create( [
             'internaltooldoc_id'=>3,
-            'internaltoolmaster_id'=>2,
+            'internaltoolmaster_id'=>15,
             'is_multiple'=>1,
             'status'=>1,
             'created_at'=>'2023-02-11 16:34:46',
@@ -57,7 +57,7 @@ class InternalToolDocumentSeeder extends Seeder
         // Third Record
         Internaltooldocument::create( [
             'internaltooldoc_id'=>5,
-            'internaltoolmaster_id'=>3,
+            'internaltoolmaster_id'=>16,
             'is_multiple'=>1,
             'status'=>1,
             'created_at'=>'2023-02-11 16:34:46',
@@ -65,7 +65,7 @@ class InternalToolDocumentSeeder extends Seeder
         ] );
         Internaltooldocument::create( [
             'internaltooldoc_id'=>6,
-            'internaltoolmaster_id'=>3,
+            'internaltoolmaster_id'=>16,
             'is_multiple'=>1,
             'status'=>1,
             'created_at'=>'2023-02-11 16:34:46',

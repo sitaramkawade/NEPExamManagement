@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Student\StudentExamForm;
+namespace App\Http\Controllers\Student\ExamForm;
 
 use PDF;
 use App\Models\Exam;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class PrintStudentExamFormController extends Controller
+class ExamFormController extends Controller
 {
     public function print_preview_exam_form()
     {   
@@ -51,6 +51,23 @@ class PrintStudentExamFormController extends Controller
                 $pdf = PDF::loadView('pdf.student.exam_form.print_exam_form_pdf', compact('exam_form_master'))->setPaper('a4', 'portrait')->setOptions(['images' => true, 'defaultFont' => 'sans-serif']);
                 $pdf->output();
                 return $pdf->stream('exam_form.pdf');
+            }
+        }
+    }
+
+
+    public function print_exam_form_fee_recipet()
+    {   
+        $student = Auth::guard('student')->user();
+        $active_exam = Exam::select('id')->Where('status',1)->first();
+        if($active_exam)
+        {
+            $exam_form_master=$student->examformmasters->where('exam_id', $active_exam->id)->first();
+            if($exam_form_master)
+            {
+
+                $pdf = PDF::loadView('pdf.student.exam_form.print_exam_form_fee_recipet', compact('exam_form_master'))->setPaper('A4');
+                return $pdf->download('exam_form_fee_recipet.pdf');
             }
         }
     }

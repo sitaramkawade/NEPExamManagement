@@ -15,22 +15,23 @@ class HodAppointSubjectSeeder extends Seeder
 {
     public function run(): void
     {
-        $faker = Faker::create();
-
-        $facultyIds = Faculty::pluck('id')->toArray();
-        $userIds = User::pluck('id')->toArray();
-        $subjectIds = Subject::pluck('id')->toArray();
-        $patternClassIds = Patternclass::pluck('id')->toArray();
-
-        for ($i = 1; $i <= 20; $i++) {
-            Hodappointsubject::create([
-                'faculty_id' =>  $faker->randomElement($facultyIds),
-                'subject_id' => $faker->randomElement($subjectIds),
-                'patternclass_id' => $faker->randomElement($patternClassIds),
-                'appointby_id' => $faker->randomElement($userIds),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+        Hodappointsubject::create( [
+            'faculty_id'=>1,
+            'subject_id'=>607,
+            'patternclass_id'=>5,
+            'appointby_id'=>1,
+            'status'=>1,
+            'created_at'=>'2024-03-19 12:28:57',
+            'updated_at'=>'2024-03-19 12:28:57'
+        ] );
+        Hodappointsubject::create( [
+            'faculty_id'=>1,
+            'subject_id'=>1199,
+            'patternclass_id'=>6,
+            'appointby_id'=>1,
+            'status'=>1,
+            'created_at'=>'2024-03-19 12:28:57',
+            'updated_at'=>'2024-03-19 12:28:57'
+        ] );
     }
 }
