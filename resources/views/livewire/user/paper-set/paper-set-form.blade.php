@@ -3,7 +3,7 @@
         Paper Set
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2">
+    <div class="grid grid-cols-1 md:grid-cols-1">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="set_name" :value="__('Set Name')" />
             <x-required />
