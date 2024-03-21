@@ -13,7 +13,7 @@
                 @forelse ($patternclasses as $pattern_calss)
                 <x-select-option wire:key="{{ $pattern_calss->id }}" value="{{ $pattern_calss->id }}" class="text-start"> {{ $pattern_calss->pattern->pattern_name ?? '-' }} {{ $pattern_calss->courseclass->classyear->classyear_name ?? '-' }} {{ $pattern_calss->courseclass->course->course_name ?? '-' }} </x-select-option>
                 @empty
-                <x-select-option class="text-start">Subject Categories Not Found</x-select-option>
+                <x-select-option class="text-start">Patternclass </x-select-option>
                 @endforelse
             </x-input-select>
             <x-input-error :messages="$errors->get('patternclass_id')" class="mt-1" />
@@ -30,9 +30,11 @@
             </x-input-select>
             <x-input-error :messages="$errors->get('faculty_id')" class="mt-2" />
         </div>
+    </div>
 
+    <div class="grid grid-cols-1 md:grid-cols-1">
         <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="noofsets" :value="__('Department Type')" />
+            <x-input-label for="noofsets" :value="__('No of Set')" />
             <x-required />
             <x-input-select id="noofsets" wire:model="noofsets" name="noofsets" class="text-center  w-full mt-1" :value="old('noofsets',$noofsets)" required autocomplete="noofsets">
                 <x-select-option class="text-start" hidden> -- Select -- </x-select-option>

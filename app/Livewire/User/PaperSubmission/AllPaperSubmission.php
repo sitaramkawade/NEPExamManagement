@@ -91,19 +91,21 @@ class AllPaperSubmission extends Component
     public function save()
     {
         $validatedData= $this->validate();
-        if($validatedData)
-        {
+        if($validatedData){
+        $exam=Exam::where('status',1)->first();
+        if( $exam)
+            {
             $papersubmission = Papersubmission::create([
-                'exam_id' => 1,
+                'exam_id' => $exam->id,
                 'subject_id' => $this->subject_id,
                 'noofsets' => $this->noofsets,
                 'user_id' =>  Auth::guard('user')->user()->id,
                 'faculty_id' =>  $this->facultydata->faculty_id,
                 'status' => 1
                 ]);
-
                 PaperSubmissionJob::dispatch($papersubmission);
             }
+        }
 
             $details = [
                 'subject' => 'Hello',
@@ -115,8 +117,7 @@ class AllPaperSubmission extends Component
             Mail::to(trim($this->facultydata->faculty->email))
             ->cc(['exam.unit@sangamnercollege.edu.in'])
             ->send(new PaperSubmitted($details));
-    
- 
+
             $this->setmode('add');
             $this->dispatch('alert',type:'success',message:'Paper Submission Added Successfully !!'  );
         
@@ -144,8 +145,6 @@ class AllPaperSubmission extends Component
                 'faculty_id' =>  $this->facultydata->faculty_id,
                 'status' => $this->status,
                 ]);
-
-              
                     
         $this->dispatch('alert',type:'success',message:'Paper Submission Updated Successfully !!'  );
         $this->setmode('all');
