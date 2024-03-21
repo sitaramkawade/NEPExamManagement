@@ -43,8 +43,8 @@ class AcademicyearSeeder extends Seeder
             Academicyear::create( [
             'id'=>4,
             'year_name'=>'2023-24',
-            'is_doc_year'=>0,
-            'active'=>0,
+            'is_doc_year'=>1,
+            'active'=>1,
             'created_at'=>'2022-10-28 04:00:13',
             'updated_at'=>'2022-10-28 04:00:13',
             ] );

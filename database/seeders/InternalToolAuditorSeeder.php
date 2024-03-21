@@ -11,7 +11,6 @@ class InternalToolAuditorSeeder extends Seeder
     public function run(): void
     {
         Internaltoolauditor::create( [
-            'id'=>1,
             'patternclass_id'=>10,
             'faculty_id'=>134,
             'academicyear_id'=>3,
@@ -22,7 +21,6 @@ class InternalToolAuditorSeeder extends Seeder
         ] );
 
         Internaltoolauditor::create( [
-            'id'=>2,
             'patternclass_id'=>11,
             'faculty_id'=>134,
             'academicyear_id'=>3,
@@ -33,7 +31,6 @@ class InternalToolAuditorSeeder extends Seeder
         ] );
 
         Internaltoolauditor::create( [
-            'id'=>3,
             'patternclass_id'=>12,
             'faculty_id'=>134,
             'academicyear_id'=>3,
