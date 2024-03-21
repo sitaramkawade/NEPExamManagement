@@ -2,92 +2,27 @@
 
 namespace App\Livewire\Faculty\InternalAudit\UploadDocument;
 
-use App\Models\Course;
-use App\Models\Subject;
 use Livewire\Component;
-use App\Models\Courseclass;
 use App\Models\Academicyear;
-use App\Models\Patternclass;
 use Livewire\WithFileUploads;
-use Illuminate\Validation\Rule;
-use Illuminate\Http\UploadedFile;
-use App\Models\Internaltoolmaster;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Models\Facultyinternaldocument;
 
-
 class AllUploadDocument extends Component
 {
-    use WithFileUploads;
-    protected $listeners = ['delete-confirmed'=>'delete'];
-
-    // public $academicyear_id=4;
-    // public $academicyears=[];
-    // public $patternclass_id=113;
-    // public $pattern_classes=[];
-    // public $subject_id=1907;
-    // public $subjects=[];
-
+    protected $listeners = ['delete-confirmed'=>'delete','form-submitted' => 'render'];
     public $academicyear_id;
     public $academicyears;
     public $patternclass_id;
     public $pattern_classes=[];
     public $subject_id;
     public $subjects=[];
-
-    public $documents=[];
-
-    public $document_to_upload=[];
-
+    public $facultyinternaldocuments=[];
     public $uploaded_documents=[];
-
-    public $counter_one = 1;
-    public $counter_two = 1;
 
     #[Locked]
     public $delete_id;
-    #[Locked]
-    public $uploaddoc_id;
-
-    public $mode='all';
-
-
-    // protected function rules()
-    // {
-    //     $rules = [];
-    //     if(count($this->documents) > 0)
-    //     {
-    //         foreach ($this->documents as $doc) {
-    //             $rules["document_to_upload.{$doc->id}"] = ['required','file','max:1024','mimes:png,jpg,jpeg,pdf'];
-    //         }
-    //     }
-    //     return $rules;
-    // }
-
-    public function messages()
-    {
-        $messages = [];
-        if(count($this->documents) > 0)
-        {
-            $doc_name = "file";
-            foreach ($this->documents as $doc) {
-                $messages["document_to_upload.".$doc->id.".required"] = "The ".$doc_name." is required.";
-                $messages["document_to_upload.".$doc->id.".file"] = "The ".$doc_name." must be a file.";
-                $messages["document_to_upload.".$doc->id.".max"] = "The ".$doc_name." must not exceed 1 MB.";
-                $messages["document_to_upload.".$doc->id.".mimes"] = "The ".$doc_name." must be a JPG, JPEG, PDF, or PNG file.";
-            }
-        }
-        return $messages;
-    }
-
-
-
-    public function deleteconfirmation($id)
-    {
-        $this->delete_id=$id;
-        $this->dispatch('delete-confirmation');
-    }
 
     public function updated($propertyName, $value)
     {
@@ -99,10 +34,23 @@ class AllUploadDocument extends Component
         }
     }
 
+    public function deleteconfirmation($id)
+    {
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
+
+
     public function loadPatternClasses()
     {
-        $documents_data = Facultyinternaldocument::with('subject.patternclass','academicyear:id,year_name',)
-        ->where('faculty_id', Auth::guard('faculty')->user()->id)
+        $user_id = Auth::guard('faculty')->user()->id;
+
+        $documents_data = Facultyinternaldocument::with([
+            'subject.patternclass.courseclass.classyear:id,classyear_name',
+            'subject.patternclass.courseclass.course:id,course_name',
+            'subject.patternclass.pattern:id,pattern_name'
+        ])
+        ->where('faculty_id', $user_id)
         ->where('status', 0)
         ->get();
 
@@ -117,77 +65,25 @@ class AllUploadDocument extends Component
         });
     }
 
+
     public function loadSubjects($value)
     {
-        $subjects = Facultyinternaldocument::where('faculty_id', Auth::guard('faculty')->user()->id)
-            ->where('status', 0)
+        $user_id = Auth::guard('faculty')->user()->id;
+
+        $this->subjects = Facultyinternaldocument::where('faculty_id', $user_id)->where('status', 0)
             ->whereHas('subject', function ($query) use ($value) {
                 $query->where('patternclass_id', $value);
             })
-            ->with('subject:id,subject_name,subject_code')
+            ->with(['subject' => function ($query) {
+                $query->select('id', 'subject_name', 'subject_code');
+            }])
             ->get()
-            ->mapWithKeys(function ($document) {
-                return [$document->subject->id => [
-                    'subject_name' => $document->subject->subject_name,
-                    'subject_code' => $document->subject->subject_code
-                ]];
-            });
-
-        $this->subjects = $subjects;
+            ->pluck('subject', 'subject.id');
     }
 
-    public function save(Facultyinternaldocument $facultyinternaldocument)
+    public function mount()
     {
-        $this->validate(["document_to_upload.{$facultyinternaldocument->id}" => 'required|file|max:1024|mimes:png,jpg,jpeg,pdf',]);
-
-        if (!empty($this->documents)) {
-            // Check if the record exists
-            if ($facultyinternaldocument) {
-                // Year Name
-                $year_name = isset($facultyinternaldocument->academicyear->year_name) ? $facultyinternaldocument->academicyear->year_name : 'YN';
-
-                // Patternclass ID
-                $patternclass_id = isset($facultyinternaldocument->subject->patternclass->id) ? $facultyinternaldocument->subject->patternclass->id : 'PC';
-
-                // Faculty Name
-                $faculty_name = isset($facultyinternaldocument->faculty->faculty_name) ? $facultyinternaldocument->faculty->faculty_name : 'FN';
-
-                // Subject Code
-                $subject_code = isset($facultyinternaldocument->subject->subject_code) ? $facultyinternaldocument->subject->subject_code : 'SC';
-
-                // Tool Name
-                $tool_name = isset($facultyinternaldocument->internaltooldocument->internaltoolmaster->toolname) ? $facultyinternaldocument->internaltooldocument->internaltoolmaster->toolname : 'TN';
-
-                // Document Name
-                $doc_name = isset($facultyinternaldocument->internaltooldocument->internaltooldocumentmaster->doc_name) ? $facultyinternaldocument->internaltooldocument->internaltooldocumentmaster->doc_name : 'DN';
-
-                // Path To Store
-                $path = 'internal-audit/' . $year_name . '/' . $faculty_name . '/' . $subject_code .'_'. $patternclass_id . '/';
-
-                // Iterate through each file
-                foreach ($this->document_to_upload as $document) {
-
-                    // Generate a unique file name for each document
-                    $fileName = $doc_name . '.' . $document->getClientOriginalExtension();
-
-                    // Upload the document
-                    $document->storeAs($path, $fileName, 'public');
-
-                    // Update the record with the file information for each document
-                    $facultyinternaldocument->update([
-                        'document_fileName' => $fileName,
-                        'document_filePath' => 'storage/' . $path . $fileName,
-                        'updated_at' => now(),
-                        'status' => 1,
-                    ]);
-                }
-                $this->dispatch('alert', type: 'success', message: 'Document Uploaded Successfully');
-            } else {
-                $this->dispatch('alert', type: 'error', message: 'Failed To Upload Document!');
-            }
-        } else {
-            $this->dispatch('alert', type: 'info', message: 'Please wait document is still loading!');
-        }
+        $this->academicyears = Academicyear::where('is_doc_year',1)->where('active',1)->pluck('year_name','id');
     }
 
     public function delete()
@@ -197,11 +93,8 @@ class AllUploadDocument extends Component
 
             // Delete the associated image
             if ($inttool_doc->document_fileName) {
-                File::delete($inttool_doc->document_filePath); // Adjust the column name and storage method accordingly
+                File::delete($inttool_doc->document_filePath);
             }
-
-            // Reset the temporary URL
-            unset($this->documents[$this->delete_id]);
 
             // Update the columns to null instead of force deleting
             $inttool_doc->update([
@@ -220,39 +113,32 @@ class AllUploadDocument extends Component
         }
     }
 
-    public function mount()
-    {
-        $this->academicyears = Academicyear::where('is_doc_year',1)->pluck('year_name','id');
-    }
-
     public function render()
     {
-        if($this->mode == 'all'){
-
-            if ($this->subject_id) {
-                $this->documents = Facultyinternaldocument::where('faculty_id',Auth::guard('faculty')->user()->id)
-                ->with(['internaltooldocumentmaster:id,doc_name',])
-                ->where('subject_id',$this->subject_id)
-                ->where('academicyear_id',$this->academicyear_id)
-                ->where('status',0)
-                ->get();
-            } else {
-                $this->documents = [];
-            }
-
-            if ($this->subject_id) {
-                $this->uploaded_documents = Facultyinternaldocument::where('faculty_id', Auth::guard('faculty')->user()->id)
-                ->with(['internaltooldocumentmaster:id,doc_name'])
-                ->where('subject_id', $this->subject_id)
-                ->where('academicyear_id', $this->academicyear_id)
-                ->where('status', 1)
-                ->whereNotNull('document_fileName')
-                ->whereNotNull('document_filePath')
-                ->get();
-            } else {
-                $this->uploaded_documents = [];
-            }
+        if ($this->subject_id) {
+            $this->facultyinternaldocuments = Facultyinternaldocument::where('faculty_id',Auth::guard('faculty')->user()->id)
+            ->with(['internaltooldocumentmaster:id,doc_name',])
+            ->where('subject_id',$this->subject_id)
+            ->where('academicyear_id',$this->academicyear_id)
+            ->where('status',0)
+            ->get();
+        } else {
+            $this->facultyinternaldocuments = [];
         }
+
+        if ($this->subject_id) {
+            $this->uploaded_documents = Facultyinternaldocument::where('faculty_id', Auth::guard('faculty')->user()->id)
+            ->with(['internaltooldocumentmaster:id,doc_name'])
+            ->where('subject_id', $this->subject_id)
+            ->where('academicyear_id', $this->academicyear_id)
+            ->where('status', 1)
+            ->whereNotNull('document_fileName')
+            ->whereNotNull('document_filePath')
+            ->get();
+        } else {
+            $this->uploaded_documents = [];
+        }
+
         return view('livewire.faculty.internal-audit.upload-document.all-upload-document')->extends('layouts.faculty')->section('faculty');
     }
 }

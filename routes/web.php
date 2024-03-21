@@ -16,12 +16,10 @@ use App\Livewire\User\Grade\AllGrades;
 use App\Livewire\User\Course\AllCourse;
 use App\Livewire\User\Credit\AllCredit;
 use App\Livewire\User\Notice\AllNotice;
-use App\Http\Controllers\AuthController;
 use App\Livewire\User\College\AllCollege;
 use App\Livewire\User\ExamFee\AllExamFee;
 use App\Livewire\User\Pattern\AllPattern;
 use App\Livewire\User\Sanstha\AllSanstha;
-use App\Http\Controllers\GoogleController;
 use App\Livewire\Faculty\FacultyDashboard;
 use App\Livewire\Faculty\Home\FacultyHome;
 use App\Livewire\Student\Home\StudentHome;
@@ -42,7 +40,6 @@ use App\Livewire\User\ExamPanel\AllExamPanel;
 use App\Livewire\User\Programme\AllProgramme;
 use App\Livewire\User\ExamForm\InwardExamForm;
 use App\Livewire\User\ExamForm\ModifyExamForm;
-use App\Http\Controllers\GoogleDriveController;
 use App\Livewire\Faculty\FileUpload\FileUpload;
 use App\Livewire\User\Department\AllDepartment;
 use App\Livewire\User\University\AllUniversity;
@@ -87,14 +84,14 @@ use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
 use App\Livewire\User\QuestionPaperBank\AllQuestionPaperBank;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
+use App\Livewire\User\ExamFormStatistics\ExamFormFeeHeadReport;
 use App\Livewire\Faculty\InternalAudit\AssignTool\AllAssignTool;
-use App\Livewire\Student\StudentExamForm\FillStudentExamFormNew;
 use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
 use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Livewire\Faculty\InternalAudit\HodAssignTool\AllHodAssignTool;
 use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
+use App\Http\Controllers\Student\ExamForm\ExamFormController;
 use App\Http\Controllers\User\ExamFormStatistics\ExamFormReportViewController;
-use App\Http\Controllers\Student\StudentExamForm\PrintStudentExamFormController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
@@ -126,14 +123,6 @@ Route::middleware(['guest'])->group(function () {
   // RND
   Route::get('/rnd', RND::class);
 
-
-  Route::get('/upload/drive', [GoogleDriveController::class, 'uploadFile'])->name('upload-to-drive');
-
-  Route::get('/login/google', [AuthController::class,'redirectToGoogleProvider']);
-  Route::get('/login/google/callback', [AuthController::class,'handleProviderGoogleCallback']);
-  Route::get('/gogle/home',  [AuthController::class,'index'])->name('google_home');
-  Route::get('/notice', [GoogleController::class,'handleNotice']);
-
 });
 
 // Auth Student Routes
@@ -158,10 +147,13 @@ Route::prefix('student')->name('student.')->middleware(['auth:student','is_stude
   Route::post('/delete/exam/form',DeleteStudentExamForm::class)->name('student_delete_exam_form');
 
   // Student Print Preview Exam Form
-  Route::post('/print/preview/exam/form', [PrintStudentExamFormController::class,'print_preview_exam_form'])->name('student_print_preview_exam_form');
+  Route::post('/print/preview/exam/form', [ExamFormController::class,'print_preview_exam_form'])->name('student_print_preview_exam_form');
 
   // Student Print Final Exam Form
-  Route::post('/print/final/exam/form', [PrintStudentExamFormController::class,'print_final_exam_form'])->name('student_print_final_exam_form');
+  Route::post('/print/final/exam/form', [ExamFormController::class,'print_final_exam_form'])->name('student_print_final_exam_form');
+
+  // Student Print Final Exam Form
+  Route::post('/print/exam/form/fee/recipet', [ExamFormController::class,'print_exam_form_fee_recipet'])->name('student_print_exam_form_fee_recipet');
 
   // Student Pay Exam Form Fee
   Route::post('/pay/exam/form/fee/{examformmaster}', [RazorPayController::class,'student_pay_exam_form_fee'])->name('student_pay_exam_form_fee');
@@ -344,6 +336,10 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //Exam Form Report View
   Route::get('/exam/form/report/view/{exam_pattern_class_id}{status}',[ExamFormReportViewController::class,'exam_form_report_view'])->name('exam_form_report_view');
+
+  //Exam Form Fee Head Statistics
+  Route::get('/exam/form/fee/head/statistics',ExamFormFeeHeadReport::class)->name('exam_form_fee_head_statistics');
+
 
   //All Subject Hod
   Route::get('/all-hodappointsubject',  AllHodAppointSubject::class)->name('all-hodappointsubjects');
