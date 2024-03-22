@@ -14,9 +14,10 @@ use App\Models\Patternclass;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Models\Papersubmission;
+use Illuminate\Validation\Rule;
 use App\Models\Qestionpaperbank;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Validation\Rule;
+
 
 class AllQuestionPaperBank extends Component
 {
@@ -40,7 +41,7 @@ class AllQuestionPaperBank extends Component
     public $user_id;
     public $faculty_id;
     public $is_used;
-    public $questionbank=[[]];
+    public $questionbank=[];
     
     public $subject_id;
     public $subjects;
@@ -86,8 +87,59 @@ class AllQuestionPaperBank extends Component
  
     public function upload_document()
     {
-        dd($this->questionbank);
+        $exam=Exam::where('status',1)->first();
+        if($exam)
+        {
+            foreach ($this->questionbank as $subject_id => $array) 
+            {
+                foreach ($array as $set_id => $file) 
+                {
+                  $papersubmission= Papersubmission::where('exam_id',$exam->id)->where('subject_id',$subject_id)->where('faculty_id',$this->faculty_id)->where('user_id',Auth::guard('user')->user()->id)->first();
+                  if($papersubmission)
+                  { 
+                    $papersubmission->update([
+                        'noofsets'=>$papersubmission->noofsets+1,    
+                    ]);
+
+                  }else
+                  {
+                    $papersubmission= Papersubmission::create([
+                        'exam_id'=>$exam->id,
+                        'subject_id'=>$subject_id,
+                        'noofsets'=>1,
+                        'faculty_id'=>$this->faculty_id,
+                        'user_id'=>Auth::guard('user')->user()->id,
+                        'status'=>1         
+                    ]);
+                  }
+
+                   $papareset= Paperset::find($set_id);
+
+                   $questionbank = Qestionpaperbank::create([
+                        'exam_id'=>$exam->id,
+                        'papersubmission_id'=>$papersubmission->id,
+                        'user_id'=>Auth::guard('user')->user()->id,
+                        'set_id'=>$set_id,
+                        'file_name'=>$papersubmission->subject->subject_name.'-'.$papareset->set_name,
+                        'faculty_id'=>$this->faculty_id,
+                        'is_used'=>1,
+                    ]);
+
+                    if ($file !== null) 
+                    {
+                        $path = 'user/file/';
+                        $fileName = 'paperset-' . time() . '.' . $file->getClientOriginalExtension();
+                        $file->storeAs($path, $fileName, 'public');
+                        $questionbank->update([ 'file_path'=>'storage/' . $path . $fileName,]);
+                        $file=null;
+                    }
+                    $this->questionbank=[];
+                    $this->dispatch('alert',type:'success',message:'Question Bank Added Successfully !!'  );
+                }
+            }
+        }
     }
+
     public function resetinput()
     {
         $this->papersubmission_id = null;
@@ -115,47 +167,49 @@ class AllQuestionPaperBank extends Component
         $this->mode=$mode;
     }
 
-    public function add(Qestionpaperbank  $bank)
-    { 
-        $exam=Exam::where('status',1)->first();
-        if( $exam)
-        {
-           $papersubmission= Papersubmission::create([
-            'exam_id'=>$exam->id,
-            'subject_id'=>349,
-            'noofsets'=>3,
-            'faculty_id'=>$this->faculty_id,
-            'user_id'=>Auth::guard('user')->user()->id,
-            'status'=>1         
-            ]);
+    // public function add(Qestionpaperbank  $bank)
+    // {   
 
-            $bank->exam_id= $exam->id;
-            $bank->papersubmission_id=$papersubmission->id;
-            $bank->user_id= Auth::guard('user')->user()->id;
-            $bank->set_id= 1;
-            $bank->file_name=$papersubmission->subject->subject_name.'-'.$bank->paperset->set_name;
-            $bank->faculty_id= $this->faculty_id;
-            $bank->is_used= 1;
+    //     dd('hello');
+    //     $exam=Exam::where('status',1)->first();
+    //     if( $exam)
+    //     {
+    //        $papersubmission= Papersubmission::create([
+    //         'exam_id'=>$exam->id,
+    //         'subject_id'=>349,
+    //         'noofsets'=>3,
+    //         'faculty_id'=>$this->faculty_id,
+    //         'user_id'=>Auth::guard('user')->user()->id,
+    //         'status'=>1         
+    //         ]);
+
+    //         $bank->exam_id= $exam->id;
+    //         $bank->papersubmission_id=$papersubmission->id;
+    //         $bank->user_id= Auth::guard('user')->user()->id;
+    //         $bank->set_id= 1;
+    //         $bank->file_name=$papersubmission->subject->subject_name.'-'.$bank->paperset->set_name;
+    //         $bank->faculty_id= $this->faculty_id;
+    //         $bank->is_used= 1;
            
-            if ($this->file_path !== null) {
-                $path = 'user/file/';
-                $fileName = 'paperset-' . time() . '.' . $this->file_path->getClientOriginalExtension();
-                $this->file_path->storeAs($path, $fileName, 'public');
-                $bank->file_path = 'storage/' . $path . $fileName;
-                $this->reset('file_path');
-            }
+    //         if ($this->file_path !== null) {
+    //             $path = 'user/file/';
+    //             $fileName = 'paperset-' . time() . '.' . $this->file_path->getClientOriginalExtension();
+    //             $this->file_path->storeAs($path, $fileName, 'public');
+    //             $bank->file_path = 'storage/' . $path . $fileName;
+    //             $this->reset('file_path');
+    //         }
           
     
-            $bank->save();
+    //         $bank->save();
            
-            $this->dispatch('alert',type:'success',message:'Question Bank Added Successfully !!'  );
-        }
-        else{
-            $this->dispatch('alert',type:'info',message:'Active Exam not found'  );
-        }
+    //         $this->dispatch('alert',type:'success',message:'Question Bank Added Successfully !!'  );
+    //     }
+    //     else{
+    //         $this->dispatch('alert',type:'info',message:'Active Exam not found'  );
+    //     }
        
         
-    }
+    // }
 
 
     public function deleteconfirmation($id)

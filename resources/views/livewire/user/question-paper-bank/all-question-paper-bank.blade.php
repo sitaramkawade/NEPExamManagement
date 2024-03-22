@@ -4,9 +4,9 @@
         <x-card-header heading=" Add Qestion Bank">
             <x-back-btn wire:click="setmode('all')" />
         </x-card-header>
-        <x-form wire:submit="add()">
-            @include('livewire.user.question-paper-bank.question-form')
-        </x-form>
+
+        @include('livewire.user.question-paper-bank.question-form')
+
     </div>
     @elseif($mode=='edit')
     <x-card-header heading="Edit Qestion Bank">
