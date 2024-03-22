@@ -34,6 +34,7 @@ use App\Livewire\User\Ratehead\AllRateHead;
 use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
+use App\Http\Controllers\WatermarkController;
 use App\Livewire\User\ClassYear\AllClassYear;
 use App\Livewire\User\ExamOrder\AllExamOrder;
 use App\Livewire\User\ExamPanel\AllExamPanel;
@@ -77,6 +78,7 @@ use App\Livewire\Faculty\SubjectCategory\AllSubjectCategory;
 use App\Livewire\Faculty\SubjectVertical\AllSubjectVertical;
 use App\Livewire\User\ExamFormStatistics\ExamFormReportView;
 use App\Livewire\User\ExamFormStatistics\ExamFormStatistics;
+use App\Http\Controllers\Student\ExamForm\ExamFormController;
 use App\Http\Controllers\Student\Razorpay\RazorPayController;
 use App\Livewire\Student\StudentExamForm\FillStudentExamForm;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
@@ -89,7 +91,6 @@ use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
 use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Livewire\Faculty\InternalAudit\HodAssignTool\AllHodAssignTool;
 use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
-use App\Http\Controllers\Student\ExamForm\ExamFormController;
 use App\Http\Controllers\User\ExamFormStatistics\ExamFormReportViewController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
@@ -121,6 +122,9 @@ Route::middleware(['guest'])->group(function () {
 
   // RND
   Route::get('/rnd', RND::class);
+
+  Route::get('/test',[WatermarkController::class,'index']);
+  Route::post('/add-watermark',[WatermarkController::class,'addWatermark'])->name('add-watermark');
 
 });
 
