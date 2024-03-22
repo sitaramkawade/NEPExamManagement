@@ -98,11 +98,11 @@
                                 <x-table.text-scroll>{{ $uploaded_document->internaltooldocument->internaltoolmaster->toolname ?? '' }}</x-table.text-scroll>
                             </x-table.td>
                             <x-table.td>
-                                <x-table.text-scroll>{{ $uploaded_document->internaltooldocumentmaster->doc_name ?? '' }}</x-table.text-scroll>
+                                <x-table.text-scroll>{{ $uploaded_document->internaltooldocument->internaltooldocumentmaster->doc_name ?? '' }}</x-table.text-scroll>
                             </x-table.td>
                             <x-table.td>
                                 <div class="flex items-center space-x-2">
-                                    <x-view-image-model-btn title="{{ $uploaded_document->internaltooldocumentmaster->doc_name }}" i="1" src="{{ isset($uploaded_document->document_filePath) ? asset($uploaded_document->document_filePath) : asset('img/no-img.png') }}" />
+                                    <x-view-image-model-btn title="{{ $uploaded_document->internaltooldocument->internaltooldocumentmaster->doc_name }}" i="1" src="{{ isset($uploaded_document->document_filePath) ? asset($uploaded_document->document_filePath) : asset('img/no-img.png') }}" />
                                     <x-table.delete wire:click="deleteconfirmation({{ $uploaded_document->id }})" />
                                 </div>
                             </x-table.td>
