@@ -711,7 +711,7 @@
                                     <div class="relative h-auto p-4">
                                         <div class="p-5 text-sm text-gray-600 dark:text-gray-400 ">
                                             <div class="flex flex-col items-center mx-auto space-x-6 ">
-                                                <div class="shrink-0 py-3">
+                                                <div class="shrink-0 py-3 bg-white">
                                                     @if ($sign_photo_path_old)
                                                         <img style="width: 200px; height:82px;" class="object-center oobject-fill" src="{{ isset($sign_photo_path_old)?asset($sign_photo_path_old):asset('img/no-img.png'); }}" alt="Current profile photo" />
                                                     @endif
