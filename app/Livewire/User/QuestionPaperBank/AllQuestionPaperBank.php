@@ -40,6 +40,7 @@ class AllQuestionPaperBank extends Component
     public $user_id;
     public $faculty_id;
     public $is_used;
+    public $questionbank=[[]];
     
     public $subject_id;
     public $subjects;
@@ -54,9 +55,8 @@ class AllQuestionPaperBank extends Component
     {
         return [
             'papersubmission_id' => ['required',],       
-            'set_id' => ['required',],
-            'file_path' => ['required','file', 'mimes:pdf'],
-            // 'file_name' => ['required', 'string', 'max:255'],        
+            'set_id' => ['required',Rule::exists(Paperset::class,'id')],
+            'file_path' => ['required','file', 'mimes:pdf'], 
             'is_used' => ['required'],
          ];
     }
@@ -84,6 +84,10 @@ class AllQuestionPaperBank extends Component
     ];
 }
  
+    public function upload_document()
+    {
+        dd($this->questionbank);
+    }
     public function resetinput()
     {
         $this->papersubmission_id = null;
@@ -118,7 +122,7 @@ class AllQuestionPaperBank extends Component
         {
            $papersubmission= Papersubmission::create([
             'exam_id'=>$exam->id,
-            'subject_id'=>$this->subject_id,
+            'subject_id'=>349,
             'noofsets'=>3,
             'faculty_id'=>$this->faculty_id,
             'user_id'=>Auth::guard('user')->user()->id,
@@ -135,22 +139,21 @@ class AllQuestionPaperBank extends Component
            
             if ($this->file_path !== null) {
                 $path = 'user/file/';
-                $fileName = 'user-' . time() . '.' . $this->file_path->getClientOriginalExtension();
+                $fileName = 'paperset-' . time() . '.' . $this->file_path->getClientOriginalExtension();
                 $this->file_path->storeAs($path, $fileName, 'public');
                 $bank->file_path = 'storage/' . $path . $fileName;
+                $this->reset('file_path');
             }
-            else{
-                $this->dispatch('alert',type:'info',message:'file path not found'  );
-            }
-
+          
+    
             $bank->save();
            
+            $this->dispatch('alert',type:'success',message:'Question Bank Added Successfully !!'  );
         }
         else{
             $this->dispatch('alert',type:'info',message:'Active Exam not found'  );
         }
        
-        $this->dispatch('alert',type:'success',message:'Paper Submission Added Successfully !!'  );
         
     }
 
@@ -209,6 +212,7 @@ class AllQuestionPaperBank extends Component
 
         $subject_ids = $exampanels->pluck('subject_id');
         $this->subjects=Subject::whereIn('id', $subject_ids)->get();
+
         $faculty= $exampanels->where('examorderpost_id', '1')->where('active_status', '1')->first();
         if($faculty)
         {
