@@ -154,7 +154,7 @@
                   <x-table.td>
                     @if ($exm_form->exam->status ==1)
                       @if ($exm_form->feepaidstatus == 1)
-                        <x-dashboard.form-button class="bg-orange-500 h-7 rounded-md border-none"> Fee Reciept</x-dashboard.form-button>
+                        <x-dashboard.form-button class="bg-orange-500 h-7 rounded-md border-none" target="_blank" action="{{ route('student.student_print_exam_form_fee_recipet') }}"> Fee Reciept</x-dashboard.form-button>
                       @else
                         @if ($exm_form->verified_at)
                           <x-dashboard.form-button class="bg-green-500 h-7 rounded-md border-none" action="{{ route('student.student_pay_exam_form_fee', $exm_form->id) }}"> Pay Fee </x-dashboard.form-button>

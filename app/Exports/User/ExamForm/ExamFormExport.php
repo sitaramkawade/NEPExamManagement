@@ -32,7 +32,7 @@ class ExamFormExport implements  FromCollection, WithHeadings, ShouldAutoSize, W
 
     public function headings(): array
     {
-        return ['ID', 'Academic Year', 'Student Name','PRN','Member ID','Amount','Fee Paid','Inward','Payment ID','Payment Date','Exam','Pattern Class','Form Date'];
+        return ['ID', 'Academic Year','Exam','Pattern Class','PRN','Member ID','Student Name','Amount','Fee Paid','Inward','Payment ID','Payment Date','Form Date'];
     }
 
     public function map($row): array
@@ -40,16 +40,16 @@ class ExamFormExport implements  FromCollection, WithHeadings, ShouldAutoSize, W
         return [
             $row->id,
             $row->exam->academicyear->year_name??'-',
-            isset($row->student->student_name)?$row->student->student_name:'',
+            isset($row->exam->exam_name)?$row->exam->exam_name:'',
+            (isset($row->patternclass->courseclass->classyear->classyear_name) ? $row->patternclass->courseclass->classyear->classyear_name : '-').' '.(isset($row->patternclass->courseclass->course->course_name) ? $row->patternclass->courseclass->course->course_name : '-').' '.(isset($row->patternclass->pattern->pattern_name) ? $row->patternclass->pattern->pattern_name : '-'),
             isset($row->student->prn)?$row->student->prn:'',
             isset($row->student->memid)?$row->student->memid:'',
+            isset($row->student->student_name)?$row->student->student_name:'',
             $row->totalfee??'-',
             ($row->feepaidstatus == 1 ? 'Paid ' . (isset($row->transaction->status) ? ($row->transaction->status == 'captured'? 'Online' : 'Offline') : '') : 'Not Paid'),
             $row->inwardstatus == 1 ? 'Yes' : 'No',
             (isset($row->transaction->status) ? ($row->transaction->status == 'captured' ? $row->transaction->razorpay_payment_id : '') : ''),
             (isset($row->transaction->status) ? ($row->transaction->status == 'captured' ? Carbon::parse($row->transaction->payment_date)->format('Y-m-d h:i:s A')  : '') : ''),
-            isset($row->exam->exam_name)?$row->exam->exam_name:'',
-            (isset($row->patternclass->courseclass->classyear->classyear_name) ? $row->patternclass->courseclass->classyear->classyear_name : '-').' '.(isset($row->patternclass->courseclass->course->course_name) ? $row->patternclass->courseclass->course->course_name : '-').' '.(isset($row->patternclass->pattern->pattern_name) ? $row->patternclass->pattern->pattern_name : '-'),
             $row->created_at->format('Y-m-d'),
         ];
     }
