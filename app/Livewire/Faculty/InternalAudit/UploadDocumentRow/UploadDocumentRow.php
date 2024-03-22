@@ -5,6 +5,7 @@ namespace App\Livewire\Faculty\InternalAudit\UploadDocumentRow;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Facultyinternaldocument;
+use Illuminate\Support\Facades\Storage;
 
 class UploadDocumentRow extends Component
 {
@@ -75,10 +76,13 @@ class UploadDocumentRow extends Component
                 $fileName = $doc_name . '_' . $unique_id . '.' . $this->document_to_upload->getClientOriginalExtension();
 
                 // Path To Store
-                $path = 'internal-audit/' . $year_name . '/' . $faculty_name . '/' . $subject_code .'_'. $patternclass_id . '/';
+                $path = 'files/internal-audit/' . $year_name . '/' . $faculty_name . '/' . $subject_code .'_'. $patternclass_id . '/';
 
-                // Upload the document
-                $document->storeAs($path, $fileName, 'public');
+                // Get the full path of the temporary file
+                $tempFilePath = $document->getPathname();
+
+                // Upload the document to FTP
+                Storage::disk('ftp')->put($path . $fileName, file_get_contents($tempFilePath));
 
                     // Update the record with the file information for each document
                     $faculty_internal_document_data->update([
