@@ -115,7 +115,7 @@
           <div class="relative h-auto p-4">
             <div class="p-5 text-sm text-gray-600 dark:text-gray-400">
               <div class="mx-auto flex flex-col items-center space-x-6">
-                <div class="shrink-0 py-3">
+                <div class="shrink-0 py-3 bg-white">
                   @if ($sign_photo_path_old)
                     <img style="width: 200px; height:82px;" class="oobject-fill object-center" src="{{ isset($sign_photo_path_old) ? asset($sign_photo_path_old) : asset("img/no-img.png") }}" alt="Current profile photo" />
                   @endif
@@ -217,18 +217,14 @@
       <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
         New Course Enrollment
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2">
+      <div class="grid grid-cols-1">
         @php
           $ptn_class = App\Models\Patternclass::find($pattern_class_id);
         @endphp
         @if (isset($ptn_class->id))
           <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
             <x-input-label for="pattern" :value="__("Pattern")" />
-            <x-input-show id='pattern' :value="$ptn_class->pattern->pattern_name" />
-          </div>
-          <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
-            <x-input-label for="class" :value="__("Class")" />
-            <x-input-show id='class' value="{{ isset($ptn_class->getclass->classyear->classyear_name)?$ptn_class->getclass->classyear->classyear_name:''; }} {{  isset($ptn_class->getclass->course->course_name)?$ptn_class->getclass->course->course_name:''; }}" />
+            <x-input-show id='pattern' :value="get_pattern_class_name($ptn_class->id)" />
           </div>
         @endif
       </div>
