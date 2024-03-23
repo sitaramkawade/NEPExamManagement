@@ -24,6 +24,8 @@ class Facultyinternaldocument extends Model
         'departmenthead_id',
         'verifybyfaculty_id',
         'verificationremark',
+        'freeze_by_faculty',
+        'freeze_by_hod',
         'status',
     ];
 
