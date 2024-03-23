@@ -5,7 +5,7 @@ namespace App\Livewire\User\QuestionPaperBank;
 use App\Models\Exam;
 use App\Models\User;
 use App\Models\Faculty;
-use App\Models\Subject;
+use App\Models\Subject;https://github.com/sitaramkawade/NEPExamManagement/pull/170/conflict?name=resources%252Fviews%252Flivewire%252Fuser%252Fquestion-paper-bank%252Fquestion-form.blade.php&ancestor_oid=8b77f7916ffbce4fd97a1e07e59299c937379e2a&base_oid=698323e18d8519a9aa632e80855560e4b8f5e8a4&head_oid=b6131c1d1116239f3f003d2fc2f0e4b51371d9d1
 use Livewire\Component;
 use App\Models\Paperset;
 use App\Models\Examorder;
@@ -63,7 +63,7 @@ class AllQuestionPaperBank extends Component
     }
 
     public function messages()
-{
+    {
     return [
         'papersubmission_id.required' => 'The papersubmission ID field is required.',
         'papersubmission_id.exists' => 'The selected papersubmission ID is invalid.',
@@ -138,7 +138,9 @@ class AllQuestionPaperBank extends Component
                 }
             }
         }
+
     }
+ 
 
     public function resetinput()
     {
