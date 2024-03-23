@@ -26,6 +26,8 @@ return new class extends Migration
             $table->bigInteger('faculty_id')->unsigned()->nullable();//Custodian
             $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->tinyInteger('is_used')->default(1); //If 1 means available
+            $table->timestamp('print_date')->nullable();
+            $table->timestamp('exam_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

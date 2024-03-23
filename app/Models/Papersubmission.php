@@ -6,7 +6,7 @@ use App\Models\Exam;
 use App\Models\User;
 use App\Models\Faculty;
 use App\Models\Subject;
-use App\Models\Qestionpaperbank;
+use App\Models\Questionpaperbank;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -32,7 +32,7 @@ class Papersubmission extends Model
     
     public function questionbanks(): HasMany
     {
-        return $this->hasMany(Qestionpaperbank::class, 'papersubmission_id', 'id');
+        return $this->hasMany(Questionpaperbank::class, 'papersubmission_id', 'id');
     }
 
     public function exam(): BelongsTo
