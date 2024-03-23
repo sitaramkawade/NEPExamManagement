@@ -26,6 +26,7 @@ class Papersubmission extends Model
         'faculty_id',
         'user_id',
         'status',
+        'is_confirmed',
     ];
 
     
