@@ -7,22 +7,36 @@ use App\Models\Academicyear;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Facultyinternaldocument;
+use App\Exports\Faculty\InternalAudit\FacultyInternalDocument\FacultyInternalDocumentExport;
 
 class AllUploadDocument extends Component
 {
-    protected $listeners = ['delete-confirmed'=>'delete','form-submitted' => 'render'];
+    protected $listeners = ['delete-confirmed'=>'delete','form-submitted' => 'render', 'freeze-confirmed' => 'freeze'];
+
     public $academicyear_id;
     public $academicyears;
+
+    public $semester_id;
+    public $semesters=[];
+
     public $patternclass_id;
     public $pattern_classes=[];
+
     public $subject_id;
     public $subjects=[];
+
     public $facultyinternaldocuments=[];
     public $uploaded_documents=[];
 
+    public $ext;
+    public $search='';
+
     #[Locked]
     public $delete_id;
+    #[Locked]
+    public $freeze_id;
 
     public function updated($propertyName, $value)
     {
@@ -30,7 +44,11 @@ class AllUploadDocument extends Component
             $this->loadPatternClasses();
 
         }elseif($propertyName == 'patternclass_id'){
+            $this->loadSemesters($value);
+
+        }elseif($propertyName == 'semester_id'){
             $this->loadSubjects($value);
+
         }
     }
 
@@ -40,6 +58,11 @@ class AllUploadDocument extends Component
         $this->dispatch('delete-confirmation');
     }
 
+    public function freezeconfirmation($id)
+    {
+        $this->freeze_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
 
     public function loadPatternClasses()
     {
@@ -51,7 +74,6 @@ class AllUploadDocument extends Component
             'subject.patternclass.pattern:id,pattern_name'
         ])
         ->where('faculty_id', $user_id)
-        ->where('status', 0)
         ->get();
 
         $this->pattern_classes = $documents_data->unique('subject.patternclass_id')->mapWithKeys(function ($item) {
@@ -65,20 +87,63 @@ class AllUploadDocument extends Component
         });
     }
 
-
-    public function loadSubjects($value)
+    public function loadSemesters($patternclass_id)
     {
         $user_id = Auth::guard('faculty')->user()->id;
 
-        $this->subjects = Facultyinternaldocument::where('faculty_id', $user_id)->where('status', 0)
-            ->whereHas('subject', function ($query) use ($value) {
-                $query->where('patternclass_id', $value);
+        $documents_data = Facultyinternaldocument::whereHas('subject', function ($query) use ($patternclass_id) {
+                $query->where('patternclass_id', $patternclass_id);
             })
             ->with(['subject' => function ($query) {
-                $query->select('id', 'subject_name', 'subject_code');
+                $query->select('id', 'patternclass_id', 'subject_sem');
             }])
+            ->where('faculty_id', $user_id)
+            ->get();
+        $this->semesters = $documents_data->pluck('subject.subject_sem')->unique();
+    }
+
+    public function loadSubjects($semester)
+    {
+        $user_id = Auth::guard('faculty')->user()->id;
+
+        $this->subjects = Facultyinternaldocument::where('faculty_id', $user_id)
+            ->whereHas('subject', function ($query) use ($semester) {
+                $query->where('subject_sem', $semester);
+            })
+            ->with(['subject:id,subject_name,subject_code'])
             ->get()
-            ->pluck('subject', 'subject.id');
+            ->pluck('subject', 'id')->unique();
+    }
+
+    public function freezeTool(Facultyinternaldocument $facultyinternaldocument)
+    {
+        if( $facultyinternaldocument->freeze_by_faculty==0)
+        {
+            $facultyinternaldocument->freeze_by_faculty=1;
+        }
+        else if( $facultyinternaldocument->freeze_by_faculty==1)
+        {
+            $facultyinternaldocument->freeze_by_faculty=0;
+        }
+        $facultyinternaldocument->update();
+
+        $this->dispatch('alert',type:'success',message:'Tool Freezed Successfully !!');
+    }
+
+    public function export()
+    {
+        $filename="FacultyInternalDocument-".now();
+        switch ($this->ext) {
+            case 'xlsx':
+                return Excel::download(new FacultyInternalDocumentExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+            break;
+            case 'csv':
+                return Excel::download(new FacultyInternalDocumentExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+            break;
+            case 'pdf':
+                return Excel::download(new FacultyInternalDocumentExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+            break;
+        }
     }
 
     public function mount()
