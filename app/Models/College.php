@@ -20,6 +20,7 @@ class College extends Model
     protected $table='colleges';
     protected $fillable=[
         'college_name',
+        'college_name_marathi',
         'college_address',
         'college_website_url',
         'college_email',

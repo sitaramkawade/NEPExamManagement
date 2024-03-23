@@ -54,8 +54,8 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,                          // StateSeeder
             TalukaSeeder::class,                            // DistrictSeeder
             StudenthelplineDocumentSeeder::class,           // StudenthelplineQuerySeeder
-            CollegeSeeder::class,                           // Sanstha, University
-            SansthaSeeder::class,                           // College , University
+            SansthaSeeder::class,                           // Sanstha, University  
+            CollegeSeeder::class,                           // College
             PatternSeeder::class,                           // College
             CapmasterSeeder::class,                         // College , Exam
             CourseSeeder::class,                            // College , Programme

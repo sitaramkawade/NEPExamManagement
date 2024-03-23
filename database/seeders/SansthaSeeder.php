@@ -23,8 +23,9 @@ class SansthaSeeder extends Seeder
             'sanstha_contact_no'=>'02425225893',
             'status'=>'1',]
         );
-        $data1=University::create(
-            [ 
+        University::create(
+            [   
+                'id'=>1,
                 'university_name'=>'Savitribai Phule Pune University, Pune',
                 'university_address'=>'	Ganeshkhind, Aundh, Pune, Maharashtra, India',
                 'university_website_url'=>'http://www.unipune.ac.in/',
@@ -35,46 +36,6 @@ class SansthaSeeder extends Seeder
             ]
          );
 
-        $data->colleges()->create([
-            'college_name'=>'Sangamner Nagarpalika Arts D. J. Malpani Commerce and B. N. Sarda Science College (Autonomous), Sangamner',
-            'college_address'=>' At post- Ghulewadi, Nashik Pune Highway, Sangamner Tal-Sangamner Dist-Ahmednagar',
-            'college_website_url'=>'www.sangamnercollege.edu.in',
-            'college_email'=>'info@sangamnercollege.edu.in',
-            'college_contact_no'=>'02425225893',
-            'college_logo_path'=>'',
-            'university_id'=>$data1->id,
-            'status'=>'1',          
-            'is_default'=>'1',          
-
-        ]);
-
-        $data->colleges()->create([
-            'college_name'=>'KJ Somaiya College of Arts Commerce and Science',
-            'college_address'=>' Mohanirajnagar Tal. Kopargaon, Ahmednagar, Maharashtra, India.',
-            'college_website_url'=>'www.kjscollege.edu.in',
-            'college_email'=>'info@kjscollege.edu.in',
-            'college_contact_no'=>'02425225893',
-            'college_logo_path'=>'',
-            'university_id'=>$data1->id,
-            'status'=>'1',          
-            'is_default'=>'1',          
-
-        ]);
-
-        $data->colleges()->create([
-            'college_name'=>'Padmashri Vikhe Patil College of Arts Science and Commerce',
-            'college_address'=>'Pravaranagar Tal-Rahata District, Ahmednagar, Maharashtra.',
-            'college_website_url'=>'www.pvpcollege.edu.in',
-            'college_email'=>'info@pvpcollege.edu.in',
-            'college_contact_no'=>'02425225893',
-            'college_logo_path'=>'',
-            'university_id'=>$data1->id,
-            'status'=>'1',          
-            'is_default'=>'1',          
-        ]);
-
-
-        
 
     }
 }
