@@ -63,7 +63,7 @@ class AllQuestionPaperBank extends Component
     }
 
     public function messages()
-{
+    {
     return [
         'papersubmission_id.required' => 'The papersubmission ID field is required.',
         'papersubmission_id.exists' => 'The selected papersubmission ID is invalid.',
@@ -83,62 +83,8 @@ class AllQuestionPaperBank extends Component
         'faculty_id.exists' => 'The selected faculty ID is invalid.',
         'is_used.required' => 'The is used field is required.',
     ];
-}
- 
-    public function upload_document()
-    {
-        $exam=Exam::where('status',1)->first();
-        if($exam)
-        {
-            foreach ($this->questionbank as $subject_id => $array) 
-            {
-                foreach ($array as $set_id => $file) 
-                {
-                  $papersubmission= Papersubmission::where('exam_id',$exam->id)->where('subject_id',$subject_id)->where('faculty_id',$this->faculty_id)->where('user_id',Auth::guard('user')->user()->id)->first();
-                  if($papersubmission)
-                  { 
-                    $papersubmission->update([
-                        'noofsets'=>$papersubmission->noofsets+1,    
-                    ]);
-
-                  }else
-                  {
-                    $papersubmission= Papersubmission::create([
-                        'exam_id'=>$exam->id,
-                        'subject_id'=>$subject_id,
-                        'noofsets'=>1,
-                        'faculty_id'=>$this->faculty_id,
-                        'user_id'=>Auth::guard('user')->user()->id,
-                        'status'=>1         
-                    ]);
-                  }
-
-                   $papareset= Paperset::find($set_id);
-
-                   $questionbank = Qestionpaperbank::create([
-                        'exam_id'=>$exam->id,
-                        'papersubmission_id'=>$papersubmission->id,
-                        'user_id'=>Auth::guard('user')->user()->id,
-                        'set_id'=>$set_id,
-                        'file_name'=>$papersubmission->subject->subject_name.'-'.$papareset->set_name,
-                        'faculty_id'=>$this->faculty_id,
-                        'is_used'=>1,
-                    ]);
-
-                    if ($file !== null) 
-                    {
-                        $path = 'user/file/';
-                        $fileName = 'paperset-' . time() . '.' . $file->getClientOriginalExtension();
-                        $file->storeAs($path, $fileName, 'public');
-                        $questionbank->update([ 'file_path'=>'storage/' . $path . $fileName,]);
-                        $file=null;
-                    }
-                    $this->questionbank=[];
-                    $this->dispatch('alert',type:'success',message:'Question Bank Added Successfully !!'  );
-                }
-            }
-        }
     }
+ 
 
     public function resetinput()
     {
