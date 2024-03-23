@@ -4,13 +4,17 @@
         <section>
           <div class="bg-white dark:text-white dark:bg-slate-800  ring-1 ring-slate-900/5 grid grid-cols-1 justify-between gap-2 p-3 lg:grid-cols-3">
             <div class="order-1 flex-1 text-center text-2xl font-semibold">
-              संगमनेर नगरपालिका कला डी.जे. मालपाणी वाणिज्य आणि बी.एन.सारडा विज्ञान महाविद्यालय (स्वायत्त), संगमनेर.
+              @if ($college)
+              {{ $college->college_name_marathi }}
+            @endif
             </div>
             <div class="order-first flex-1 md:order-2">
               <img class="w-26 m-auto h-24 animate-pulse rounded" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path("img/shikshan-logo.png"))) }}" alt="Shikshan Logo" />
             </div>
             <div class="order-last flex-1 text-center text-2xl font-semibold">
-              Sangamner Nagarpalika Arts D. J. Malpani Commerce and B. N. Sarda Science College (Autonomous), Sangamner.
+              @if ($college)
+                {{ $college->college_name }}
+              @endif
             </div>
           </div>
         </section>
