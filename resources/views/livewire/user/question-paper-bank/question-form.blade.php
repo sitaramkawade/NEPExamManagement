@@ -13,7 +13,6 @@
           @foreach ($sets as $set)
             <x-table.th>{{ 'Set ' . $set->set_name }} </x-table.th>
           @endforeach
-          <x-table.th>Action</x-table.th>
         </x-table.tr>
       </x-table.thead>
       <x-table.tbody>
@@ -23,12 +22,8 @@
             <x-table.td>{{ $subject->subject_name }} </x-table.td>
             @foreach ($sets as $set)
               <x-table.td>
-                <form wire:submit='upload_document()'>
-                  <div class="flex items-center mb-2">
-                    <x-input-file class="text-xs file:px-2 file:rounded-sm file:text-xs w-[75%] mr-2" name="questionbank.{{ $subject->id }}.{{ $set->id }}" id="questionbank.{{ $subject->id }}.{{ $set->id }}" wire:model="questionbank.{{ $subject->id }}.{{ $set->id }}" accept=".pdf" />
-                    <x-table.upload-btn i="0" >Upload</x-table.upload-btn>
-                  </div>
-                </form>
+               
+                <livewire:user.question-paper-bank.question-paper-cell :key="$subject->id" :$set :$faculty_id subject_id='{{ $subject->id }}'/>
               </x-table.td>
             @endforeach
           </x-table.tr>
