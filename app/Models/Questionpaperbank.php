@@ -27,8 +27,8 @@ class Questionpaperbank extends Model
         'user_id',
         'faculty_id',
         'is_used',
-        'paper_exam_date',
-        'print_date'
+        'print_date',
+        'exam_date',
     ];
 
     public function papersubmission(): BelongsTo
