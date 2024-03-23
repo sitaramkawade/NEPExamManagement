@@ -6,11 +6,9 @@ use App\Models\Exam;
 use App\Models\User;
 use App\Models\Faculty;
 use App\Models\Subject;
-use App\Models\Qestionpaperbank;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -28,12 +26,6 @@ class Papersubmission extends Model
         'status',
         'is_confirmed',
     ];
-
-    
-    public function questionbanks(): HasMany
-    {
-        return $this->hasMany(Qestionpaperbank::class, 'papersubmission_id', 'id');
-    }
 
     public function exam(): BelongsTo
     {

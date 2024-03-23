@@ -1,4 +1,3 @@
-
 <div>
   <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
     <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
@@ -14,7 +13,6 @@
             <x-table.th wire:click="sort_column('subject_id')" name="subject_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject</x-table.th>
             @foreach ($sets as $set)
               <x-table.th>{{ 'Set ' . $set->set_name }} </x-table.th>
-
             @endforeach
             <x-table.th>Action</x-table.th>
           </x-table.tr>
