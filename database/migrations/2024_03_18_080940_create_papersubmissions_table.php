@@ -18,14 +18,11 @@ return new class extends Migration
             $table->bigInteger('subject_id')->unsigned();
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->integer('noofsets')->default(0);
-            $table->tinyInteger('is_confirmed')->default('0');
             $table->tinyInteger('status')->default('0');
             $table->bigInteger('faculty_id')->unsigned();
             $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamp('paper_exam_date')->nullable();
-            $table->timestamp('print_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

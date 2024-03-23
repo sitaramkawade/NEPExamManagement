@@ -15,7 +15,7 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Models\Papersubmission;
 use Illuminate\Validation\Rule;
-use App\Models\Questionpaperbank;
+use App\Models\Qestionpaperbank;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -169,7 +169,7 @@ class AllQuestionPaperBank extends Component
         $this->mode=$mode;
     }
 
-    // public function add(Questionpaperbank  $bank)
+    // public function add(Qestionpaperbank  $bank)
     // {   
 
     //     dd('hello');
@@ -220,7 +220,7 @@ class AllQuestionPaperBank extends Component
         $this->dispatch('delete-confirmation');
     }
  
-    public function delete(Questionpaperbank  $bank)
+    public function delete(Qestionpaperbank  $bank)
     {   
         $bank->delete();
         $this->dispatch('alert',type:'success',message:'Question Bank Deleted Successfully !!');
@@ -228,7 +228,7 @@ class AllQuestionPaperBank extends Component
 
     public function restore($id)
     {   
-        $bank = Questionpaperbank::withTrashed()->find($id);
+        $bank = Qestionpaperbank::withTrashed()->find($id);
         $bank->restore();
         $this->dispatch('alert',type:'success',message:'Question Bank Restored Successfully !!');
     }
@@ -236,7 +236,7 @@ class AllQuestionPaperBank extends Component
     public function forcedelete()
     {  try
         {
-        $bank = Questionpaperbank::withTrashed()->find($this->delete_id);
+        $bank = Qestionpaperbank::withTrashed()->find($this->delete_id);
         $bank->forceDelete();
         $this->dispatch('alert',type:'success',message:'Question Bank Deleted Successfully !!');
         } catch
@@ -281,7 +281,7 @@ class AllQuestionPaperBank extends Component
       
         $this->sets=Paperset::select('set_name','id')->get();     
 
-        $banks=Questionpaperbank::select('id','papersubmission_id','exam_id','faculty_id','user_id','file_path','file_name','set_id','is_used','deleted_at')
+        $banks=Qestionpaperbank::select('id','papersubmission_id','exam_id','faculty_id','user_id','file_path','file_name','set_id','is_used','deleted_at')
         ->with(['exam:exam_name,id','faculty:faculty_name,id','user:name,id','papersubmission.subject:subject_name,id'])
         ->when($this->search, function ($query, $search) {
             $query->search($search);
