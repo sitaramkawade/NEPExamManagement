@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('qestionpaperbanks', function (Blueprint $table) {
+        Schema::create('questionpaperbanks', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('papersubmission_id')->unsigned();
             $table->foreign('papersubmission_id')->references('id')->on('papersubmissions');
@@ -26,6 +26,8 @@ return new class extends Migration
             $table->bigInteger('faculty_id')->unsigned()->nullable();//Custodian
             $table->foreign('faculty_id')->references('id')->on('faculties');
             $table->tinyInteger('is_used')->default(1); //If 1 means available
+            $table->timestamp('print_date')->nullable();
+            $table->timestamp('exam_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -36,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('qestionpaperbanks');
+        Schema::dropIfExists('questionpaperbanks');
     }
 };

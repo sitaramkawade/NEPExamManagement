@@ -12,11 +12,11 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Qestionpaperbank extends Model
+class Questionpaperbank extends Model
 {
     use HasFactory,SoftDeletes; 
     protected $dates = ['deleted_at'];
-    protected $table='qestionpaperbanks';
+    protected $table='questionpaperbanks';
     protected $fillable=[
         'id',
         'papersubmission_id',
@@ -27,6 +27,8 @@ class Qestionpaperbank extends Model
         'user_id',
         'faculty_id',
         'is_used',
+        'print_date',
+        'exam_date',
     ];
 
     public function papersubmission(): BelongsTo
