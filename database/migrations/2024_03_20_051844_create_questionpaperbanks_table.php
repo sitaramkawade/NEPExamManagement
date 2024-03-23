@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('qestionpaperbanks', function (Blueprint $table) {
+        Schema::create('questionpaperbanks', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('papersubmission_id')->unsigned();
             $table->foreign('papersubmission_id')->references('id')->on('papersubmissions');
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('qestionpaperbanks');
+        Schema::dropIfExists('questionpaperbanks');
     }
 };

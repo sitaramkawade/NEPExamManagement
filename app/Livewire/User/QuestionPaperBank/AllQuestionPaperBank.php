@@ -15,7 +15,7 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Models\Papersubmission;
 use Illuminate\Validation\Rule;
-use App\Models\Qestionpaperbank;
+use App\Models\Questionpaperbank;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -115,7 +115,7 @@ class AllQuestionPaperBank extends Component
 
                    $papareset= Paperset::find($set_id);
 
-                   $questionbank = Qestionpaperbank::create([
+                   $questionbank = Questionpaperbank::create([
                         'exam_id'=>$exam->id,
                         'papersubmission_id'=>$papersubmission->id,
                         'user_id'=>Auth::guard('user')->user()->id,
@@ -167,7 +167,7 @@ class AllQuestionPaperBank extends Component
         $this->mode=$mode;
     }
 
-    // public function add(Qestionpaperbank  $bank)
+    // public function add(Questionpaperbank  $bank)
     // {   
 
     //     dd('hello');
@@ -218,7 +218,7 @@ class AllQuestionPaperBank extends Component
         $this->dispatch('delete-confirmation');
     }
  
-    public function delete(Qestionpaperbank  $bank)
+    public function delete(Questionpaperbank  $bank)
     {   
         $bank->delete();
         $this->dispatch('alert',type:'success',message:'Question Bank Deleted Successfully !!');
@@ -226,7 +226,7 @@ class AllQuestionPaperBank extends Component
 
     public function restore($id)
     {   
-        $bank = Qestionpaperbank::withTrashed()->find($id);
+        $bank = Questionpaperbank::withTrashed()->find($id);
         $bank->restore();
         $this->dispatch('alert',type:'success',message:'Question Bank Restored Successfully !!');
     }
@@ -234,7 +234,7 @@ class AllQuestionPaperBank extends Component
     public function forcedelete()
     {  try
         {
-        $bank = Qestionpaperbank::withTrashed()->find($this->delete_id);
+        $bank = Questionpaperbank::withTrashed()->find($this->delete_id);
         $bank->forceDelete();
         $this->dispatch('alert',type:'success',message:'Question Bank Deleted Successfully !!');
         } catch
@@ -279,7 +279,7 @@ class AllQuestionPaperBank extends Component
       
         $this->sets=Paperset::select('set_name','id')->get();     
 
-        $banks=Qestionpaperbank::select('id','papersubmission_id','exam_id','faculty_id','user_id','file_path','file_name','set_id','is_used','deleted_at')
+        $banks=Questionpaperbank::select('id','papersubmission_id','exam_id','faculty_id','user_id','file_path','file_name','set_id','is_used','deleted_at')
         ->with(['exam:exam_name,id','faculty:faculty_name,id','user:name,id','papersubmission.subject:subject_name,id'])
         ->when($this->search, function ($query, $search) {
             $query->search($search);
