@@ -3,7 +3,7 @@
         <x-table.text-scroll>{{ $faculty_internal_document_data->internaltooldocument->internaltoolmaster->toolname ?? '' }}</x-table.text-scroll>
     </x-table.td>
     <x-table.td>
-        <x-table.text-scroll>{{ $faculty_internal_document_data->internaltooldocumentmaster->doc_name ?? '' }}</x-table.text-scroll>
+        <x-table.text-scroll>{{ $faculty_internal_document_data->internaltooldocument->internaltooldocumentmaster->doc_name ?? '' }}</x-table.text-scroll>
     </x-table.td>
     <x-table.td>
         <div class="h-[80px] w-[80px] rounded overflow-hidden">

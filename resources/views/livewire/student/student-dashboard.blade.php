@@ -11,12 +11,14 @@
           <div class="grid grid-cols-2 gap-4">
             <div class="col-span-2">
               <x-dashboard.card heading="Action" class="dark:bg-green-500  bg-green-100">
-                <x-dashboard.inner-card heading="Exam Form">
-                  <x-dashboard.form-button class="bg-purple-500" action="{{ route('student.student_exam_form') }}"> Exam Form </x-dashboard.form-button>
-                  {{-- <x-dashboard.form-button class="bg-red-500" action="{{ route('student.student_delete_exam_form') }}"> Delete Exam Form </x-dashboard.form-button>
-                  <x-dashboard.form-button class="bg-pink-500" target="_blank" action="{{ route('student.student_print_preview_exam_form') }}"> Preview Exam Form </x-dashboard.form-button>
-                  <x-dashboard.form-button class="bg-blue-500" target="_blank" action="{{ route('student.student_print_final_exam_form') }}" onclick="return confirm('Once Printed, the form cannot be edited. Confirm if you wish to print it.')"> Print Exam Form </x-dashboard.form-button> --}}
-                </x-dashboard.inner-card>
+                @if ($active_exam_pattern_class)
+                  <x-dashboard.inner-card heading="Exam Form">
+                    <x-dashboard.form-button class="bg-purple-500" action="{{ route('student.student_exam_form') }}"> Exam Form </x-dashboard.form-button>
+                    {{-- <x-dashboard.form-button class="bg-red-500" action="{{ route('student.student_delete_exam_form') }}"> Delete Exam Form </x-dashboard.form-button>
+                    <x-dashboard.form-button class="bg-pink-500" target="_blank" action="{{ route('student.student_print_preview_exam_form') }}"> Preview Exam Form </x-dashboard.form-button>
+                    <x-dashboard.form-button class="bg-blue-500" target="_blank" action="{{ route('student.student_print_final_exam_form') }}" onclick="return confirm('Once Printed, the form cannot be edited. Confirm if you wish to print it.')"> Print Exam Form </x-dashboard.form-button> --}}
+                  </x-dashboard.inner-card>
+                @endif
               </x-dashboard.card>
             </div>
             <x-dashboard.card heading="Learning Mode" class=" dark:bg-yellow-500 bg-yellow-100">
@@ -67,9 +69,9 @@
                 <x-dashboard.card-item> Mother Name : {{ $student->mother_name ?? 'N.A.' }} </x-dashboard.card-item>
               </x-dashboard.card>
               <x-dashboard.card heading="Course Enrollment" class=" dark:bg-red-400 bg-red-100">
-                <x-dashboard.card-item> Pattern : {{ isset($student->patternclass->pattern->pattern_name) ? $student->patternclass->pattern->pattern_name : '' }} </x-dashboard.card-item>
-                <x-dashboard.card-item> Course : {{ isset($student->patternclass->courseclass->course->course_name) ? $student->patternclass->courseclass->course->course_name : '' }} </x-dashboard.card-item>
-                <x-dashboard.card-item> Current Class : {{ isset($student->patternclass->courseclass->classyear->classyear_name) ? $student->patternclass->courseclass->classyear->classyear_name : '' }} {{ isset($student->patternclass->getclass->course->course_name) ? $student->patternclass->getclass->course->course_name : '' }} </x-dashboard.card-item>
+                <x-dashboard.card-item> Pattern : {{ isset($pattern_class->pattern->pattern_name) ? $pattern_class->pattern->pattern_name : '' }} </x-dashboard.card-item>
+                <x-dashboard.card-item> Course : {{ isset($pattern_class->courseclass->course->course_name) ? $pattern_class->courseclass->course->course_name : '' }} </x-dashboard.card-item>
+                <x-dashboard.card-item> Current Class : {{ isset($pattern_class->courseclass->classyear->classyear_name) ? $pattern_class->courseclass->classyear->classyear_name : '' }} {{ isset($pattern_class->courseclass->course->course_name) ? $pattern_class->courseclass->course->course_name : '' }}</x-dashboard.card-item>
               </x-dashboard.card>
             </div>
           </div>
@@ -77,7 +79,6 @@
         <div class="col-span-2 py-4">
           <x-dashboard.card heading="Non CGPA Extra Mandatory Credits" class=" dark:bg-purple-500 bg-purple-100">
             <div class="grid grid-cols-3 gap-2">
-              <x-dashboard.card-item> Total : 12 </x-dashboard.card-item>
               <x-dashboard.card-item> Earned : 5 </x-dashboard.card-item>
               <x-dashboard.card-item> Remaining : 7 </x-dashboard.card-item>
             </div>

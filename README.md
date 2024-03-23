@@ -67,3 +67,8 @@ ExamTimetable           ->  Examtimetable
 ExamPanel               ->  Exampanel
 SubjectBucketTypeMaster ->  Subjectbuckettypemaster
 SubjectTypeMaster       ->  Subjecttypemaster
+
+
+Regex 
+
+'id'\s*=>\s*\d+,
