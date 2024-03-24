@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Academicyear;
+use App\Models\Papersubmission;
 use App\Models\Exampatternclass;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -43,5 +44,10 @@ class Exam extends Model
     public function exampatternclasses()
     {
         return $this->hasMany(Exampatternclass::class)->withTrashed();
+    }
+    
+    public function papersubmissions()
+    {
+        return $this->hasMany(Papersubmission::class)->withTrashed();
     }
 }
