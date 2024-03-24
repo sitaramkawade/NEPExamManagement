@@ -7,6 +7,7 @@ use App\Models\Subject;
 use App\Models\Capmaster;
 use App\Models\Examorder;
 use App\Models\Patternclass;
+use App\Models\Examtimetable;
 use App\Models\Subjectbucket;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -66,6 +67,11 @@ class Exampatternclass extends Model
     public function order()
     {
         return $this->hasMany(Examorder::class,'exam_patternclass_id','id');
+    }
+
+    public function examtimetables()
+    {
+        return $this->hasMany(Examtimetable::class,'exam_patternclass_id','id');
     }
 
     public function exam(): BelongsTo
