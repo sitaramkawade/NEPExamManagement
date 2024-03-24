@@ -4,7 +4,7 @@
     'slot' => true,
 ])
 
-<div x-data="{ on: {{ $on ? 'true' : 'false' }} }" class="m-2 overflow-hidden border dark:border-primary-darker shadow">
+<div x-data="{ on: {{ $on ? 'true' : 'false' }} }" {!! $attributes->merge(['class' => 'overflow-hidden border dark:border-primary-darker shadow']) !!}>
     <div class="px-2 py-1 font-semibold dark:text-light bg-primary">
         <div class="grid grid-cols-2 md:grid-cols-2 items-center">
             <p class="text-white text-md font-medium">{{ $heading }}</p>
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div>
-        <div class="grid grid-cols-1 md:grid-cols-1">
+        <div class="">
             <div x-show="on">
                 {{ $slot }}
             </div>
