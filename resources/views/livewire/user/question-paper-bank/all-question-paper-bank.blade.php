@@ -3,7 +3,7 @@
     <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
       Question Bank's <x-spinner />
     </div>
-    <div>
+    <div class="overflow-x-scroll">
       <x-form wire:submit="confirm_uploaded_paper_sets()">
         <x-table.table>
           <x-table.thead>
@@ -23,7 +23,7 @@
                 @foreach ($sets as $set)
                   <x-table.td>
                     @php
-                        $ukey = (int)$subject->id . '' . (int)$set->id;
+                        $ukey = $subject->id. '-' .$set->id;
                     @endphp
                     <livewire:user.question-paper-bank.question-paper-cell :key="$ukey" :$set :$faculty_id subject_id='{{ $subject->id }}' />
                   </x-table.td>
@@ -36,7 +36,9 @@
             @endforelse
           </x-table.tbody>
         </x-table.table>
-        <x-form-btn>Confirm & Submit</x-form-btn>
+        @if (count($subjects))
+          <x-form-btn onclick="return alert('Are You Sure You Want Confirm And Submit.')">Confirm  & Submit All Sets</x-form-btn>
+        @endif
       </x-form>
     </div>
   </div>
