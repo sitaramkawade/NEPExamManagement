@@ -64,7 +64,6 @@ class UploadDocumentRow extends Component
                     'document_fileName' => $fileName,
                     'document_filePath' => 'storage/' . $path . $fileName,
                     'updated_at' => now(),
-                    'status' => 1,
                 ]);
 
                 $this->resetinput();

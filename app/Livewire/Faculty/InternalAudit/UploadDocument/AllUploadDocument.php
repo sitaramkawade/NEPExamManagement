@@ -30,8 +30,8 @@ class AllUploadDocument extends Component
     public $facultyinternaldocuments=[];
     public $uploaded_documents=[];
 
-    public $ext;
-    public $search='';
+    public $total_document_count;
+    public $uploaded_document_count;
 
     #[Locked]
     public $delete_id;
@@ -115,35 +115,22 @@ class AllUploadDocument extends Component
             ->pluck('subject', 'id')->unique();
     }
 
-    public function freezeTool(Facultyinternaldocument $facultyinternaldocument)
+    public function freeze_tool()
     {
-        if( $facultyinternaldocument->freeze_by_faculty==0)
-        {
-            $facultyinternaldocument->freeze_by_faculty=1;
-        }
-        else if( $facultyinternaldocument->freeze_by_faculty==1)
-        {
-            $facultyinternaldocument->freeze_by_faculty=0;
-        }
-        $facultyinternaldocument->update();
+        // Retrieve the IDs of faculty internal documents to be frozen
+        $faculty_internal_documents = Facultyinternaldocument::where('faculty_id', Auth::guard('faculty')->user()->id)
+            ->where('subject_id', $this->subject_id)
+            ->where('academicyear_id', $this->academicyear_id)
+            ->whereNotNull('document_fileName')
+            ->whereNotNull('document_filePath')
+            ->where('freeze_by_faculty', 0) // Only select documents that are not already frozen
+            ->pluck('id');
+
+        // Update the selected documents to mark them as frozen
+        Facultyinternaldocument::whereIn('id', $faculty_internal_documents)
+            ->update(['freeze_by_faculty' => 1]);
 
         $this->dispatch('alert',type:'success',message:'Tool Freezed Successfully !!');
-    }
-
-    public function export()
-    {
-        $filename="FacultyInternalDocument-".now();
-        switch ($this->ext) {
-            case 'xlsx':
-                return Excel::download(new FacultyInternalDocumentExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
-            break;
-            case 'csv':
-                return Excel::download(new FacultyInternalDocumentExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
-            break;
-            case 'pdf':
-                return Excel::download(new FacultyInternalDocumentExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
-            break;
-        }
     }
 
     public function mount()
@@ -165,7 +152,6 @@ class AllUploadDocument extends Component
             $inttool_doc->update([
                 'document_fileName' => null,
                 'document_filePath' => null,
-                'status' => 0,
                 'updated_at' => now(),
             ]);
 
@@ -185,8 +171,10 @@ class AllUploadDocument extends Component
             ->with(['internaltooldocumentmaster:id,doc_name',])
             ->where('subject_id',$this->subject_id)
             ->where('academicyear_id',$this->academicyear_id)
-            ->where('status',0)
+            ->whereNull('document_fileName')
+            ->whereNull('document_filePath')
             ->get();
+
         } else {
             $this->facultyinternaldocuments = [];
         }
@@ -196,13 +184,20 @@ class AllUploadDocument extends Component
             ->with(['internaltooldocumentmaster:id,doc_name'])
             ->where('subject_id', $this->subject_id)
             ->where('academicyear_id', $this->academicyear_id)
-            ->where('status', 1)
             ->whereNotNull('document_fileName')
             ->whereNotNull('document_filePath')
             ->get();
+
+            $this->uploaded_document_count = $this->uploaded_documents->where('freeze_by_faculty', 0)->count();
+
         } else {
             $this->uploaded_documents = [];
         }
+
+        $this->total_document_count = Facultyinternaldocument::where('faculty_id', Auth::guard('faculty')->user()->id)
+            ->where('subject_id', $this->subject_id)
+            ->where('academicyear_id', $this->academicyear_id)
+            ->count();
 
         return view('livewire.faculty.internal-audit.upload-document.all-upload-document')->extends('layouts.faculty')->section('faculty');
     }
