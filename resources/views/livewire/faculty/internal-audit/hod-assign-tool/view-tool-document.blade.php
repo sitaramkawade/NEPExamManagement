@@ -41,6 +41,7 @@
             <x-table.tr>
                 <x-table.th>Document Name</x-table.th>
                 <x-table.th>Status</x-table.th>
+                <x-table.th>Action</x-table.th>
             </x-table.tr>
         </x-table.thead>
         <x-table.tbody>
@@ -54,12 +55,24 @@
                             <x-status type="danger"> Not Uploaded</x-status>
                         @endif
                     </x-table.td>
+                    <x-table.td>
+                        @if ($internaltooldocument->document_fileName !== null && $internaltooldocument->document_filePath !== null)
+                            <x-view-image-model-btn title="{{ $internaltooldocument->internaltooldocument->internaltooldocumentmaster->doc_name }}" i="1" src="{{ isset($internaltooldocument->document_filePath) ? asset($internaltooldocument->document_filePath) : asset('img/no-img.png') }}" />
+                        @endif
+                    </x-table.td>
                 </x-table.tr>
             @empty
                 <x-table.tr>
                     <x-table.td colSpan='2' class="text-center">No Data Found</x-table.td>
                 </x-table.tr>
             @endforelse
+            @if ($this->show_freeze_button($internaltooldocument->internaltooldocument->internaltoolmaster->id))
+                <x-table.tr>
+                    <x-table.td colSpan='3' class="text-right">
+                        <x-table.approve wire:click='freeze_tool({{ $internaltooldocument->internaltooldocument->internaltoolmaster->id }})' i="0">Freeze</x-table.approve>
+                    </x-table.td>
+                </x-table.tr>
+            @endif
         </x-table.tbody>
     </x-table.table>
 </div>

@@ -3,8 +3,8 @@
 namespace App\Livewire\Faculty\InternalAudit\UploadDocument;
 
 use Livewire\Component;
-use App\Models\Academicyear;
 use Livewire\WithFileUploads;
+use App\Models\DocumentAcademicYear;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
@@ -135,7 +135,7 @@ class AllUploadDocument extends Component
 
     public function mount()
     {
-        $this->academicyears = Academicyear::where('is_doc_year',1)->where('active',1)->pluck('year_name','id');
+        $this->academicyears = DocumentAcademicYear::where('active',1)->pluck('year_name','id');
     }
 
     public function delete()

@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('academicyears', function (Blueprint $table) {
+        Schema::create('document_academic_years', function (Blueprint $table) {
             $table->id();
             $table->string('year_name',40)->nullable();
+            $table->string('description')->nullable();
             $table->tinyInteger('active')->default('0');// 0 :not active 1:active
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('academicyears');
+        Schema::dropIfExists('document_academic_years');
     }
 };
