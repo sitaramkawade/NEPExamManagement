@@ -2,15 +2,14 @@
 
 namespace App\Policies\User\StrongRoom;
 
-use App\Models\User;
+
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class StrongRoomPolicy
-{
-    /**
-     * Create a new policy instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+{   
+    
+
+   
 }
