@@ -8,40 +8,42 @@
       <x-card-header heading="All Exam Form's" />
       <x-table.frame>
         <x-slot:header>
-          <x-input-select id="academicyear_id" wire:model.live="academicyear_id" name="academicyear_id" class="text-center  h-8.5 mt-1">
-            <x-select-option class="text-start" hidden>Year </x-select-option>
-            @foreach ($academic_years as $a_id)
-              <x-select-option wire:key="{{ $a_id->id }}" value="{{ $a_id->id }}" class="text-start">{{ $a_id->year_name }}</x-select-option>
-            @endforeach
-          </x-input-select>
-          <x-input-select id="exam_id" wire:model.live="exam_id" name="exam_id" class="text-center h-8.5 mt-1">
-            <x-select-option class="text-start" hidden> Exam </x-select-option>
-            @foreach ($exams as $exam)
-              <x-select-option wire:key="{{ $exam->id }}" value="{{ $exam->id }}" class="text-start">{{ $exam->exam_name }}</x-select-option>
-            @endforeach
-          </x-input-select>
-          <x-input-select id="patternclass_id" wire:model.live="patternclass_id" name="patternclass_id" class="text-center w-60 h-8.5 mt-1">
-            <x-select-option class="text-start" hidden> Pattern Class </x-select-option>
-            @foreach ($patternclasses as $pc)
-              <x-select-option wire:key="{{ $pc->id }}" value="{{ $pc->id }}" class="text-start">{{ get_pattern_class_name($pc->id) }}</x-select-option>
-            @endforeach
-          </x-input-select>
-          <x-input-select id="fee_status" wire:model.live="fee_status" name="fee_status" class="text-center h-8.5 mt-1">
-            <x-select-option class="text-start" hidden> Fee Status </x-select-option>
-            <x-select-option class="text-start" value="1"> Paid </x-select-option>
-            <x-select-option class="text-start" value="2"> Not Paid </x-select-option>
-          </x-input-select>
-          <x-input-select id="payment_status" wire:model.live="payment_status" name="payment_status" class="text-center h-8.5 mt-1">
-            <x-select-option class="text-start" hidden> Payment Status </x-select-option>
-            <x-select-option class="text-start" value="created"> Order Created </x-select-option>
-            <x-select-option class="text-start" value="authorized"> Authorized </x-select-option>
-            <x-select-option class="text-start" value="captured"> Capture </x-select-option>
-            <x-select-option class="text-start" value="refunded"> Refund </x-select-option>
-            <x-select-option class="text-start" value="failed"> Failed </x-select-option>
-          </x-input-select>
-          <span class="py-2">
-            <x-table.cancel class="p-2" wire:click='clear()' i="0"> Clear</x-table.cancel>
-          </span>
+          <div class="flex gap-x-0.5">
+            <x-input-select id="academicyear_id" wire:model.live="academicyear_id" name="academicyear_id" class="text-center  h-10">
+              <x-select-option class="text-start" hidden>Year </x-select-option>
+              @foreach ($academic_years as $a_id)
+                <x-select-option wire:key="{{ $a_id->id }}" value="{{ $a_id->id }}" class="text-start">{{ $a_id->year_name }}</x-select-option>
+              @endforeach
+            </x-input-select>
+            <x-input-select id="exam_id" wire:model.live="exam_id" name="exam_id" class="text-center h-10 ">
+              <x-select-option class="text-start" hidden> Exam </x-select-option>
+              @foreach ($exams as $exam)
+                <x-select-option wire:key="{{ $exam->id }}" value="{{ $exam->id }}" class="text-start">{{ $exam->exam_name }}</x-select-option>
+              @endforeach
+            </x-input-select>
+            <x-input-select id="patternclass_id" wire:model.live="patternclass_id" name="patternclass_id" class="text-center w-80 h-10 ">
+              <x-select-option class="text-start" hidden> Pattern Class </x-select-option>
+              @foreach ($patternclasses as $pc)
+                <x-select-option wire:key="{{ $pc->id }}" value="{{ $pc->id }}" class="text-start">{{ get_pattern_class_name($pc->id) }}</x-select-option>
+              @endforeach
+            </x-input-select>
+            <x-input-select id="fee_status" wire:model.live="fee_status" name="fee_status" class="text-center h-10 ">
+              <x-select-option class="text-start" hidden> Fee Status </x-select-option>
+              <x-select-option class="text-start" value="1"> Paid </x-select-option>
+              <x-select-option class="text-start" value="2"> Not Paid </x-select-option>
+            </x-input-select>
+            <x-input-select id="payment_status" wire:model.live="payment_status" name="payment_status" class="text-center h-10 ">
+              <x-select-option class="text-start" hidden> Payment Status </x-select-option>
+              <x-select-option class="text-start" value="created"> Order Created </x-select-option>
+              <x-select-option class="text-start" value="authorized"> Authorized </x-select-option>
+              <x-select-option class="text-start" value="captured"> Capture </x-select-option>
+              <x-select-option class="text-start" value="refunded"> Refund </x-select-option>
+              <x-select-option class="text-start" value="failed"> Failed </x-select-option>
+            </x-input-select>
+            <span class="h-10">
+              <x-table.cancel class="mx-0.5 py-0.5 h-10" wire:click='clear()' i="0"> Clear</x-table.cancel>
+            </span>
+          </div>
         </x-slot>
         <x-slot:body>
           <x-table.table>
@@ -77,7 +79,7 @@
                   <x-table.td>
                     @if ($examformmaster->feepaidstatus)
                       <x-status type="success">Paid</x-status>
-                      @if ($examformmaster->transaction->status == 'captured')
+                      @if (isset($examformmaster->transaction->status) && $examformmaster->transaction->status == 'captured')
                         <x-status type="success"> Online </x-status>
                       @else
                         <x-status type="success"> Chash </x-status>
@@ -116,7 +118,7 @@
                     @endif
                   </x-table.td>
                   <x-table.td>
-                    @if ($examformmaster->transaction->status == 'captured')
+                    @if (isset($examformmaster->transaction->status) && $examformmaster->transaction->status == 'captured')
                       <x-status> {{ isset($examformmaster->transaction->payment_date) ? Carbon\Carbon::parse($examformmaster->transaction->payment_date)->format('Y-m-d h:i:s A') : '' }}</x-status>
                     @endif
                   </x-table.td>
