@@ -148,21 +148,18 @@ class AllGrades extends Component
     {   
         try
         {
-        $grade = Gradepoint::withTrashed()->find($this->delete_id);
-        $grade->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Grade Deleted Successfully !!');
-    } catch
-    (\Illuminate\Database\QueryException $e) {
+            $grade = Gradepoint::withTrashed()->find($this->delete_id);
+            $grade->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Grade Deleted Successfully !!');
+        } catch
+        (\Illuminate\Database\QueryException $e) {
+            if ($e->errorInfo[1] == 1451) {
 
-        if ($e->errorInfo[1] == 1451) {
-
-            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-        } 
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
-    }
-
-
-    
+   
     public function export()
     {   
         $filename="Grade-".now();
@@ -184,8 +181,7 @@ class AllGrades extends Component
     {
         $this->validateOnly($property);
     }
-
-    
+  
     public function setmode($mode)
     {
         if($mode=='add')
@@ -207,8 +203,6 @@ class AllGrades extends Component
         }
         $grade->update();
     }
-
- 
 
     public function sort_column($column)
     {
