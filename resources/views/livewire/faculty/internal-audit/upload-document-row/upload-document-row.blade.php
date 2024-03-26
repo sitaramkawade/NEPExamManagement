@@ -22,10 +22,14 @@
         <x-form wire:submit="save({{ $faculty_internal_document_data->id }})" id="{{ $faculty_internal_document_data->id }}">
             <div class="flex items-center mb-2">
                 <x-input-file wire:click="resetinput" class="text-xs file:px-2 file:rounded-sm file:text-xs w-[75%] mr-2" name="document_to_upload" id="document_to_upload" wire:model="document_to_upload" accept="image/png, image/jpeg, image/jpg, .pdf" />
-                <x-table.upload-btn i="0" wire:loading.attr="disabled" wire:target="document_to_upload" wire:loading.class.remove="cursor-pointer" wire:loading.class.add="cursor-not-allowed" :disabled="!$previewLoaded">Upload</x-table.upload-btn>
+                @if (isset($document_to_upload))
+                    <x-table.upload-btn i="0" wire:loading.remove wire:target="document_to_upload" class="cursor-pointer px-5" >Upload</x-table.upload-btn>
+                @else
+                    <x-table.upload-btn type="button" i="0" wire:loading.remove wire:target="document_to_upload" class=" cursor-not-allowed bg-red-400 px-5">No File</x-table.upload-btn>
+                    <x-table.upload-btn type="button" i="0" wire:loading wire:target="document_to_upload" class="px-4 !bg-blue-400 cursor-not-allowed">Loading</x-table.upload-btn>
+                @endif
             </div>
             <x-input-error :messages="$errors->get('document_to_upload')" class="mt-2" />
-            <x-input-label wire:loading.flex wire:target="document_to_upload" class="py-0 text-xs" for="document_to_upload" :value="__('Uploading...')" />
         </x-form>
     </x-table.td>
 </x-table.tr>

@@ -168,7 +168,7 @@ class AllUploadDocument extends Component
     {
         if ($this->subject_id) {
             $this->facultyinternaldocuments = Facultyinternaldocument::where('faculty_id',Auth::guard('faculty')->user()->id)
-            ->with(['internaltooldocumentmaster:id,doc_name',])
+            ->with(['internaltooldocument.internaltooldocumentmaster:id,doc_name','internaltooldocument.internaltoolmaster:id,toolname',])
             ->where('subject_id',$this->subject_id)
             ->where('academicyear_id',$this->academicyear_id)
             ->whereNull('document_fileName')
@@ -180,8 +180,7 @@ class AllUploadDocument extends Component
         }
 
         if ($this->subject_id) {
-            $this->uploaded_documents = Facultyinternaldocument::where('faculty_id', Auth::guard('faculty')->user()->id)
-            ->with(['internaltooldocumentmaster:id,doc_name'])
+            $this->uploaded_documents = Facultyinternaldocument::select('id','internaltooldocument_id','freeze_by_faculty','document_filePath')->where('faculty_id', Auth::guard('faculty')->user()->id)
             ->where('subject_id', $this->subject_id)
             ->where('academicyear_id', $this->academicyear_id)
             ->whereNotNull('document_fileName')

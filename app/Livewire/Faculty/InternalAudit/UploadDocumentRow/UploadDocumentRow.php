@@ -15,13 +15,6 @@ class UploadDocumentRow extends Component
 
     public $document_to_upload;
 
-    public $previewLoaded = false;
-
-    public function updatedDocumentToUpload()
-    {
-        $this->previewLoaded = true;
-    }
-
     protected function rules()
     {
         return [
