@@ -24,6 +24,7 @@ class ExamorderSeeder extends Seeder
             'token'=>'trwffgte59unfjfdjksvf',
         ]);
 
+        
         Examorder::create([
             'user_id'=>1,
             'exampanel_id' => 2,
