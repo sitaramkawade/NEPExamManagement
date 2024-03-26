@@ -94,48 +94,46 @@
         <div class="bg-primary px-2 text-center py-1 font-semibold text-white dark:text-light">
             Uploaded Documents
         </div>
-        <x-table.frame>
-            <x-slot:body>
-                <x-table.table>
-                    <x-table.thead>
-                        <x-table.tr>
-                            <x-table.th>Tool Name</x-table.th>
-                            <x-table.th>Document Name</x-table.th>
-                            <x-table.th>Action</x-table.th>
-                            <x-table.th>Freeze</x-table.th>
-                        </x-table.tr>
-                    </x-table.thead>
-                    <x-table.tbody>
-                        @forelse ($uploaded_documents as $uploaded_document)
-                            <x-table.tr wire:key="{{ $uploaded_document->id }}">
-                                <x-table.td>
-                                    <x-table.text-scroll>{{ $uploaded_document->internaltooldocument->internaltoolmaster->toolname ?? '' }}</x-table.text-scroll>
-                                </x-table.td>
-                                <x-table.td>
-                                    <x-table.text-scroll>{{ $uploaded_document->internaltooldocument->internaltooldocumentmaster->doc_name ?? '' }}</x-table.text-scroll>
-                                </x-table.td>
-                                <x-table.td>
-                                    <div class="flex items-center space-x-2">
-                                        <x-view-image-model-btn title="{{ $uploaded_document->internaltooldocument->internaltooldocumentmaster->doc_name }}" i="1" src="{{ isset($uploaded_document->document_filePath) ? asset($uploaded_document->document_filePath) : asset('img/no-img.png') }}" />
-                                        @if (!$uploaded_document->freeze_by_faculty)
-                                            <x-table.delete wire:click="deleteconfirmation({{ $uploaded_document->id }})" />
-                                        @endif
-                                    </div>
-                                </x-table.td>
-                                <x-table.td>
-                                    @if (!$uploaded_document->freeze_by_faculty)
-                                        <x-table.approve wire:click='freezeTool({{ $uploaded_document->id }})' i="0">Freeze</x-table.approve>
-                                    @endif
-                                </x-table.td>
-                            </x-table.tr>
-                        @empty
-                            <x-table.tr>
-                                <x-table.td colSpan='4' class="text-center">No Data Found</x-table.td>
-                            </x-table.tr>
-                        @endforelse
-                    </x-table.tbody>
-                </x-table.table>
-            </x-slot:body>
-        </x-table.frame>
+
+        <x-table.table>
+            <x-table.thead>
+                <x-table.tr>
+                    <x-table.th>Tool Name</x-table.th>
+                    <x-table.th>Document Name</x-table.th>
+                    <x-table.th>Action</x-table.th>
+                </x-table.tr>
+            </x-table.thead>
+            <x-table.tbody>
+                @forelse ($uploaded_documents as $uploaded_document)
+                    <x-table.tr wire:key="{{ $uploaded_document->id }}">
+                        <x-table.td>
+                            <x-table.text-scroll>{{ $uploaded_document->internaltooldocument->internaltoolmaster->toolname ?? '' }}</x-table.text-scroll>
+                        </x-table.td>
+                        <x-table.td>
+                            <x-table.text-scroll>{{ $uploaded_document->internaltooldocument->internaltooldocumentmaster->doc_name ?? '' }}</x-table.text-scroll>
+                        </x-table.td>
+                        <x-table.td>
+                            <div class="flex items-center space-x-2">
+                                <x-view-image-model-btn title="{{ $uploaded_document->internaltooldocument->internaltooldocumentmaster->doc_name }}" i="1" src="{{ isset($uploaded_document->document_filePath) ? asset($uploaded_document->document_filePath) : asset('img/no-img.png') }}" />
+                                @if (!$uploaded_document->freeze_by_faculty)
+                                    <x-table.delete wire:click="deleteconfirmation({{ $uploaded_document->id }})" />
+                                @endif
+                            </div>
+                        </x-table.td>
+                    </x-table.tr>
+                @empty
+                    <x-table.tr>
+                        <x-table.td colSpan='3' class="text-center">No Data Found</x-table.td>
+                    </x-table.tr>
+                @endforelse
+                @if ($uploaded_document_count === $total_document_count)
+                    <x-table.tr>
+                        <x-table.td colSpan='3' class="text-right">
+                            <x-table.approve wire:click='freeze_tool' i="0">Freeze</x-table.approve>
+                        </x-table.td>
+                    </x-table.tr>
+                @endif
+            </x-table.tbody>
+        </x-table.table>
     </div>
 </div>

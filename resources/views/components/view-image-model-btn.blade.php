@@ -1,6 +1,6 @@
 @props(["src" => "", "slot" => false, "i"=>true, "title" => ""])
 
-<button onclick="openModal('{{ $src }}','{{ $title }}')" {!! $attributes->merge(["class" => "inline-flex text-white  cursor-pointer"]) !!}>
+<button type="button" onclick="openModal('{{ $src }}','{{ $title }}')" {!! $attributes->merge(["class" => "inline-flex text-white  cursor-pointer"]) !!}>
   <span class="inline-flex items-center justify-center rounded-md bg-yellow-700 px-2.5 py-1.5 shadow-lg">
     @if ($i)
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-1 h-5 w-5 dark:text-white">

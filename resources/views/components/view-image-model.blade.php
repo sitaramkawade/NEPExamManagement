@@ -24,6 +24,8 @@
   @section('scripts')
     <script>
       function openModal(documentPath ,title) {
+        console.log(documentPath);
+        console.log(title);
         const fileExtension = documentPath.match(/\.([^.]+)$/);
         if (fileExtension && fileExtension[1] === 'pdf') {
           document.getElementById("view-document-model-pdf").style.display = "block";

@@ -145,19 +145,34 @@ class QuestionPaperCell extends Component
             {
                 if($papersubmission) 
                 {
-                    if($papersubmission->questionbanks()->count()===1)
-                    {
-                        $papersubmission->questionbanks()->withTrashed()->forceDelete();
+                    if($papersubmission->questionbanks()->withTrashed()->count()===1)
+                    {   
+                        $questionbank =Questionpaperbank::withTrashed()->find($questionpaperbank_id);
+                        if($questionbank)
+                        {
+
+                            if (isset($questionbank->file_path)) 
+                            {
+                                File::delete($questionbank->file_path);
+                            }
+                                
+                            $questionbank->forceDelete();
+                        }
+
                         $papersubmission->withTrashed()->forceDelete();
                     }else
                     {
-                        $questionbank = $papersubmission->questionbanks()->withTrashed()->where('id',$questionpaperbank_id)->get();
-                        if ($questionbank->file_path) 
+                        $questionbank =Questionpaperbank::withTrashed()->find($questionpaperbank_id);
+                        if($questionbank)
                         {
-                            File::delete($questionbank->file_path);
+
+                            if (isset($questionbank->file_path)) 
+                            {
+                                File::delete($questionbank->file_path);
+                            }
+                                
+                            $questionbank->forceDelete();
                         }
-                        
-                        $questionbank->forceDelete();
 
                         $papersubmission->update([
                             'noofsets'=>$papersubmission->noofsets-1

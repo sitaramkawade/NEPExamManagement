@@ -54,12 +54,15 @@ class AllExamPanel extends Component
     public function messages()
     {   
         $messages = [
-            'faculty_id.required' => 'The Faculty field is required.',
-            'faculty_id.exists' => 'The selected Faculty is invalid.',
-            'examorderpost_id.required' => 'The Exam Order Post field is required.',
-            'examorderpost_id.exists' => 'The selected Exam Order Post is invalid.',
-            'subject_id.required' => 'The Subject field is required.',
-            'subject_id.exists' => 'The selected Subject is invalid.',
+        'faculty_id.required' => 'The faculty ID is required.',
+        'faculty_id.exists' => 'The selected faculty ID is invalid.',
+        'examorderpost_id.required' => 'The exam order post ID is required.',
+        'examorderpost_id.exists' => 'The selected exam order post ID is invalid.',
+        'subject_id.required' => 'The subject ID is required.',
+        'subject_id.exists' => 'The selected subject ID is invalid.',
+        'description.required' => 'The description is required.',
+        'description.string' => 'The description must be a string.',
+        'description.max' => 'The description may not be greater than 50 characters.',
         ];
         return $messages;
     }
@@ -129,10 +132,8 @@ class AllExamPanel extends Component
          ->where('subject_id', $this->subject_id)
          ->where('active_status', 1)
          ->first();
-        //  dd($existingRecord);
 
          if ($existingRecord) {
-            // Update the status of the existing record to inactive
             $existingRecord->update(['active_status' => 0]);
         }
 
@@ -216,21 +217,19 @@ class AllExamPanel extends Component
     {   
         try
         {
-        $exampanel = Exampanel::withTrashed()->find($this->delete_id);
-        $exampanel->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Exam Order Post Deleted Successfully !!');
-    } catch
-    (\Illuminate\Database\QueryException $e) {
+            $exampanel = Exampanel::withTrashed()->find($this->delete_id);
+            $exampanel->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Exam Order Post Deleted Successfully !!');
+        } catch
+        (\Illuminate\Database\QueryException $e) 
+        {
+            if ($e->errorInfo[1] == 1451) {
 
-        if ($e->errorInfo[1] == 1451) {
-
-            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-        } 
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
-    }
-
-
-    
+   
     public function render()
     {
         

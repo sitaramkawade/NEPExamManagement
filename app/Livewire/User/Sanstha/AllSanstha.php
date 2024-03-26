@@ -46,18 +46,20 @@ class AllSanstha extends Component
     public function messages()
     {   
         $messages = [
-            'sanstha_name.required' => 'The Sanstha Name field is required.',
-            'sanstha_name.string' => 'The Sanstha Name must be a string.',
-            'sanstha_name.max' => 'The  Sanstha Name must not exceed :max characters.',
-            'sanstha_chairman_name.required' => 'The Sanstha Chairman Name field is required.',
-            'sanstha_chairman_name.string' => 'The Sanstha Chairman Name must be a string.',
-            'sanstha_chairman_name.max' => 'The  Sanstha Chairman Name must not exceed :max characters.',
-            'sanstha_address.required' => 'The Sanstha Address field is required.',
-            'sanstha_address.string' => 'The Sanstha Address must be a string.',
-            'sanstha_address.max' => 'The  Sanstha Address must not exceed :max characters.',
-            'sanstha_website_url.required' => 'The Sanstha Website Url field is required.',
-            'sanstha_website_url.max' => 'The Sanstha Website Url not exceed :max characters.',
-            'sanstha_contact_no.required' => 'The Sanstha Contact Number field is required.',
+            'sanstha_name.required' => 'The Sanstha name is required.',
+            'sanstha_name.string' => 'The Sanstha name must be a string.',
+            'sanstha_name.max' => 'The Sanstha name may not be greater than 255 characters.',
+            'sanstha_chairman_name.required' => 'The chairman name is required.',
+            'sanstha_chairman_name.string' => 'The chairman name must be a string.',
+            'sanstha_chairman_name.max' => 'The chairman name may not be greater than 50 characters.',
+            'sanstha_address.required' => 'The Sanstha address is required.',
+            'sanstha_address.string' => 'The Sanstha address must be a string.',
+            'sanstha_address.max' => 'The Sanstha address may not be greater than 255 characters.',
+            'sanstha_website_url.required' => 'The Sanstha website URL is required.',
+            'sanstha_website_url.string' => 'The Sanstha website URL must be a string.',
+            'sanstha_website_url.max' => 'The Sanstha website URL may not be greater than 50 characters.',
+            'sanstha_contact_no.required' => 'The Sanstha contact number is required.',
+            'sanstha_contact_no.max' => 'The Sanstha contact number may not be greater than 20 characters.',
         ];
         return $messages;
     }
@@ -69,12 +71,6 @@ class AllSanstha extends Component
          $this->sanstha_address=null;
          $this->sanstha_website_url=null;
          $this->sanstha_contact_no=null;
-    }
-
-    public function resetInputFields()
-    {
-        // Reset the specified properties to their initial state
-        $this->reset(['sanstha_name', 'sanstha_chairman_name','sanstha_address','sanstha_contact_no','sanstha_website_url','status']);
     }
 
     public function updated($propertyName)
@@ -91,8 +87,8 @@ class AllSanstha extends Component
         $this->mode=$mode;
     }
 
-    public function add(){
-        
+    public function add()
+    {      
         $validatedData = $this->validate();
        
         if ($validatedData) {
@@ -108,45 +104,46 @@ class AllSanstha extends Component
 
         $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
         $this->setmode('all');
+        }
     }
-}
-
-public function deleteconfirmation($id)
-{
-    $this->delete_id=$id;
-    $this->dispatch('delete-confirmation');
-}
 
 
-public function delete(Sanstha  $sanstha)
-{   
-    $sanstha->delete();
-    $this->dispatch('alert',type:'success',message:'Sanstha Soft Deleted Successfully !!');
-}
-
-public function restore($id)
-{   
-    $sanstha = Sanstha::withTrashed()->find($id);
-    $sanstha->restore();
-    $this->dispatch('alert',type:'success',message:'Sanstha Restored Successfully !!');
-}
-
-public function forcedelete()
-{  
-    try
+    public function deleteconfirmation($id)
     {
-    $sanstha = Sanstha::withTrashed()->find($this->delete_id);
-    $sanstha->forceDelete();
-    $this->dispatch('alert',type:'success',message:'Sanstha Deleted Successfully !!');
-    } catch
-    (\Illuminate\Database\QueryException $e) {
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
 
-    if ($e->errorInfo[1] == 1451) {
 
-        $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-    } 
+    public function delete(Sanstha  $sanstha)
+    {   
+        $sanstha->delete();
+        $this->dispatch('alert',type:'success',message:'Sanstha Soft Deleted Successfully !!');
+    }
+
+    public function restore($id)
+    {   
+        $sanstha = Sanstha::withTrashed()->find($id);
+        $sanstha->restore();
+        $this->dispatch('alert',type:'success',message:'Sanstha Restored Successfully !!');
 }
-}
+
+    public function forcedelete()
+    {  
+        try
+        {
+            $sanstha = Sanstha::withTrashed()->find($this->delete_id);
+            $sanstha->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Sanstha Deleted Successfully !!');
+            } catch
+            (\Illuminate\Database\QueryException $e) {
+
+            if ($e->errorInfo[1] == 1451) {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
+    }
 
     public function edit(Sanstha $sanstha ){
 

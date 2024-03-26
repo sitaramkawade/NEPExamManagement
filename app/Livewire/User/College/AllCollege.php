@@ -65,25 +65,29 @@ class AllCollege extends Component
     public function messages()
     {   
         $messages = [
-            'college_name.required' => 'The College Name field is required.',
-            'college_name.string' => 'The College Name must be a string.',
-            'college_name.max' => 'The  College Name must not exceed :max characters.',
-            'college_address.required' => 'The College Address field is required.',
-            'college_address.string' => 'The College Address must be a string.',
-            'college_address.max' => 'The  College Address must not exceed :max characters.',
-            'college_email.required' => 'The  College Email  field is required.',
-            'college_website_url.required' => 'The  College Website Url field is required.',
-            'college_contact_no.required' => 'The  College Contact Number field is required.',
-            'college_logo_path.required' => 'The  College Logo is required.',
-            'sanstha_id.required' => 'The Sanstha field is required.',
-            'sanstha_id.exists' => 'The selected Sanstha does not exist.',
-            'university_id.required' => 'The Sanstha field is required.',
-            'university_id.exists' => 'The selected Sanstha does not exist.',
+        'college_name.required' => 'The college name is required.',
+        'college_name.string' => 'The college name must be a string.',
+        'college_name.max' => 'The college name may not be greater than 255 characters.',
+        'college_address.required' => 'The college address is required.',
+        'college_address.string' => 'The college address must be a string.',
+        'college_address.max' => 'The college address may not be greater than 255 characters.',
+        'college_website_url.required' => 'The college website URL is required.',
+        'college_website_url.string' => 'The college website URL must be a string.',
+        'college_website_url.max' => 'The college website URL may not be greater than 100 characters.',
+        'college_email.required' => 'The college email is required.',
+        'college_email.email' => 'The college email must be a valid email address.',
+        'college_contact_no.required' => 'The college contact number is required.',
+        'college_contact_no.numeric' => 'The college contact number must be a number.',
+        'college_logo_path.required' => 'The college logo is required.',
+        'college_logo_path.max' => 'The college logo path may not be greater than 250 characters.',
+        'college_logo_path.mimes' => 'The college logo must be a file of type: png, jpg, jpeg.',
+        'sanstha_id.required' => 'The Sanstha ID is required.',
+        'sanstha_id.exists' => 'The selected Sanstha ID is invalid.',
+        'university_id.required' => 'The University ID is required.',
+        'university_id.exists' => 'The selected University ID is invalid.',
         ];
         return $messages;
     }
-
-    
 
     public function resetinput()
     {
@@ -140,7 +144,7 @@ class AllCollege extends Component
         
         $college->save();
 
-        $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
+        $this->dispatch('alert',type:'success',message:'College Added Successfully !!'  );
         $this->setmode('all');
     }
     }
