@@ -24,6 +24,8 @@ class Facultyinternaldocument extends Model
         'departmenthead_id',
         'verifybyfaculty_id',
         'verificationremark',
+        'freeze_by_faculty',
+        'freeze_by_hod',
         'status',
     ];
 
@@ -40,11 +42,6 @@ class Facultyinternaldocument extends Model
     public function academicyear()
     {
         return $this->belongsTo(Academicyear::class,'academicyear_id','id')->withTrashed();
-    }
-
-    public function internaltooldocumentmaster():BelongsTo
-    {
-        return $this->belongsTo(Internaltooldocumentmaster::class,'internaltooldocument_id','id');
     }
 
     public function internaltooldocument():BelongsTo

@@ -7,22 +7,36 @@ use App\Models\Academicyear;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Facultyinternaldocument;
+use App\Exports\Faculty\InternalAudit\FacultyInternalDocument\FacultyInternalDocumentExport;
 
 class AllUploadDocument extends Component
 {
-    protected $listeners = ['delete-confirmed'=>'delete','form-submitted' => 'render'];
+    protected $listeners = ['delete-confirmed'=>'delete','form-submitted' => 'render', 'freeze-confirmed' => 'freeze'];
+
     public $academicyear_id;
     public $academicyears;
+
+    public $semester_id;
+    public $semesters=[];
+
     public $patternclass_id;
     public $pattern_classes=[];
+
     public $subject_id;
     public $subjects=[];
+
     public $facultyinternaldocuments=[];
     public $uploaded_documents=[];
 
+    public $total_document_count;
+    public $uploaded_document_count;
+
     #[Locked]
     public $delete_id;
+    #[Locked]
+    public $freeze_id;
 
     public function updated($propertyName, $value)
     {
@@ -30,7 +44,11 @@ class AllUploadDocument extends Component
             $this->loadPatternClasses();
 
         }elseif($propertyName == 'patternclass_id'){
+            $this->loadSemesters($value);
+
+        }elseif($propertyName == 'semester_id'){
             $this->loadSubjects($value);
+
         }
     }
 
@@ -40,6 +58,11 @@ class AllUploadDocument extends Component
         $this->dispatch('delete-confirmation');
     }
 
+    public function freezeconfirmation($id)
+    {
+        $this->freeze_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
 
     public function loadPatternClasses()
     {
@@ -51,7 +74,6 @@ class AllUploadDocument extends Component
             'subject.patternclass.pattern:id,pattern_name'
         ])
         ->where('faculty_id', $user_id)
-        ->where('status', 0)
         ->get();
 
         $this->pattern_classes = $documents_data->unique('subject.patternclass_id')->mapWithKeys(function ($item) {
@@ -65,20 +87,50 @@ class AllUploadDocument extends Component
         });
     }
 
-
-    public function loadSubjects($value)
+    public function loadSemesters($patternclass_id)
     {
         $user_id = Auth::guard('faculty')->user()->id;
 
-        $this->subjects = Facultyinternaldocument::where('faculty_id', $user_id)->where('status', 0)
-            ->whereHas('subject', function ($query) use ($value) {
-                $query->where('patternclass_id', $value);
+        $documents_data = Facultyinternaldocument::whereHas('subject', function ($query) use ($patternclass_id) {
+                $query->where('patternclass_id', $patternclass_id);
             })
             ->with(['subject' => function ($query) {
-                $query->select('id', 'subject_name', 'subject_code');
+                $query->select('id', 'patternclass_id', 'subject_sem');
             }])
+            ->where('faculty_id', $user_id)
+            ->get();
+        $this->semesters = $documents_data->pluck('subject.subject_sem')->unique();
+    }
+
+    public function loadSubjects($semester)
+    {
+        $user_id = Auth::guard('faculty')->user()->id;
+
+        $this->subjects = Facultyinternaldocument::where('faculty_id', $user_id)
+            ->whereHas('subject', function ($query) use ($semester) {
+                $query->where('subject_sem', $semester);
+            })
+            ->with(['subject:id,subject_name,subject_code'])
             ->get()
-            ->pluck('subject', 'subject.id');
+            ->pluck('subject', 'id')->unique();
+    }
+
+    public function freeze_tool()
+    {
+        // Retrieve the IDs of faculty internal documents to be frozen
+        $faculty_internal_documents = Facultyinternaldocument::where('faculty_id', Auth::guard('faculty')->user()->id)
+            ->where('subject_id', $this->subject_id)
+            ->where('academicyear_id', $this->academicyear_id)
+            ->whereNotNull('document_fileName')
+            ->whereNotNull('document_filePath')
+            ->where('freeze_by_faculty', 0) // Only select documents that are not already frozen
+            ->pluck('id');
+
+        // Update the selected documents to mark them as frozen
+        Facultyinternaldocument::whereIn('id', $faculty_internal_documents)
+            ->update(['freeze_by_faculty' => 1]);
+
+        $this->dispatch('alert',type:'success',message:'Tool Freezed Successfully !!');
     }
 
     public function mount()
@@ -100,7 +152,6 @@ class AllUploadDocument extends Component
             $inttool_doc->update([
                 'document_fileName' => null,
                 'document_filePath' => null,
-                'status' => 0,
                 'updated_at' => now(),
             ]);
 
@@ -117,27 +168,35 @@ class AllUploadDocument extends Component
     {
         if ($this->subject_id) {
             $this->facultyinternaldocuments = Facultyinternaldocument::where('faculty_id',Auth::guard('faculty')->user()->id)
-            ->with(['internaltooldocumentmaster:id,doc_name',])
+            ->with(['internaltooldocument.internaltooldocumentmaster:id,doc_name','internaltooldocument.internaltoolmaster:id,toolname',])
             ->where('subject_id',$this->subject_id)
             ->where('academicyear_id',$this->academicyear_id)
-            ->where('status',0)
+            ->whereNull('document_fileName')
+            ->whereNull('document_filePath')
             ->get();
+
         } else {
             $this->facultyinternaldocuments = [];
         }
 
         if ($this->subject_id) {
-            $this->uploaded_documents = Facultyinternaldocument::where('faculty_id', Auth::guard('faculty')->user()->id)
-            ->with(['internaltooldocumentmaster:id,doc_name'])
+            $this->uploaded_documents = Facultyinternaldocument::select('id','internaltooldocument_id','freeze_by_faculty','document_filePath')->where('faculty_id', Auth::guard('faculty')->user()->id)
             ->where('subject_id', $this->subject_id)
             ->where('academicyear_id', $this->academicyear_id)
-            ->where('status', 1)
             ->whereNotNull('document_fileName')
             ->whereNotNull('document_filePath')
             ->get();
+
+            $this->uploaded_document_count = $this->uploaded_documents->where('freeze_by_faculty', 0)->count();
+
         } else {
             $this->uploaded_documents = [];
         }
+
+        $this->total_document_count = Facultyinternaldocument::where('faculty_id', Auth::guard('faculty')->user()->id)
+            ->where('subject_id', $this->subject_id)
+            ->where('academicyear_id', $this->academicyear_id)
+            ->count();
 
         return view('livewire.faculty.internal-audit.upload-document.all-upload-document')->extends('layouts.faculty')->section('faculty');
     }

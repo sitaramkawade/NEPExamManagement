@@ -27,8 +27,8 @@ class Questionpaperbank extends Model
         'user_id',
         'faculty_id',
         'is_used',
-        'paper_exam_date',
-        'print_date'
+        'print_date',
+        'exam_date',
     ];
 
     public function papersubmission(): BelongsTo
@@ -60,8 +60,8 @@ class Questionpaperbank extends Model
     public function scopeSearch(Builder $query,string $search)
     {
         return $query->with('papersubmission.subject','exam','user','faculty')
-       -> where('set', 'like', "%{$search}%")
-       ->orWhere('file_name', 'like', "%{$search}%")
+        -> where('set', 'like', "%{$search}%")
+        ->orWhere('file_name', 'like', "%{$search}%")
         ->orWhere(function ($subquery) use ($search) {
             $subquery->orWhereHas('exam', function ($subQuery) use ($search) {
                 $subQuery->where('exam_name', 'like', "%{$search}%");

@@ -3,6 +3,7 @@
 namespace App\Livewire\Faculty\InternalAudit\HodAssignTool;
 
 use Livewire\Component;
+use App\Models\Academicyear;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Facultyinternaldocument;
@@ -20,6 +21,7 @@ class AllHodAssignTool extends Component
     public $subject_id;
     public $subjects;
     public $internaltooldocument_id;
+    public $tool_name;
     public $internaltooldocuments;
     public $document_fileName;
     public $document_fileNames;
@@ -99,18 +101,10 @@ class AllHodAssignTool extends Component
     //     $this->dispatch('delete-confirmation');
     // }
 
-    // public function setmode($mode)
-    // {
-    //     if($mode=='add')
-    //     {
-    //         $this->resetinput();
-    //     }
-    //     if($mode=='edit')
-    //     {
-    //         $this->resetValidation();
-    //     }
-    //     $this->mode=$mode;
-    // }
+    public function setmode($mode)
+    {
+        $this->mode=$mode;
+    }
 
     // public function save()
     // {
@@ -156,58 +150,58 @@ class AllHodAssignTool extends Component
     //     $this->setmode('all');
     // }
 
-    // public function delete()
-    // {
-    //     try
-    //     {
-    //         $faculty_internal_document = Facultyinternaldocument::withTrashed()->find($this->delete_id);
-    //         $faculty_internal_document->forceDelete();
-    //         $this->delete_id = null;
-    //         $this->dispatch('alert',type:'success',message:'Faculty Internal Tool Document Deleted Successfully !!');
-    //     } catch (\Illuminate\Database\QueryException $e) {
+    public function delete()
+    {
+        try
+        {
+            $faculty_internal_document = Facultyinternaldocument::withTrashed()->find($this->delete_id);
+            $faculty_internal_document->forceDelete();
+            $this->delete_id = null;
+            $this->dispatch('alert',type:'success',message:'Faculty Internal Tool Document Deleted Successfully !!');
+        } catch (\Illuminate\Database\QueryException $e) {
 
-    //         if ($e->errorInfo[1] == 1451) {
+            if ($e->errorInfo[1] == 1451) {
 
-    //             $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-    //         }
-    //     }
-    // }
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            }
+        }
+    }
 
-    // public function softdelete($id)
-    // {
-    //     $faculty_internal_document = Facultyinternaldocument::withTrashed()->find($id);
-    //     if ($faculty_internal_document) {
-    //         $faculty_internal_document->delete();
-    //         $this->dispatch('alert',type:'success',message:'Faculty Internal Tool Document Soft Deleted Successfully');
-    //     } else {
-    //         $this->dispatch('alert',type:'error',message:'Faculty Internal Tool Document Not Found !');
-    //     }
-    // }
+    public function softdelete($id)
+    {
+        $faculty_internal_document = Facultyinternaldocument::withTrashed()->find($id);
+        if ($faculty_internal_document) {
+            $faculty_internal_document->delete();
+            $this->dispatch('alert',type:'success',message:'Faculty Internal Tool Document Soft Deleted Successfully');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Faculty Internal Tool Document Not Found !');
+        }
+    }
 
-    // public function restore($id)
-    // {
-    //     $faculty_internal_document = Facultyinternaldocument::withTrashed()->find($id);
+    public function restore($id)
+    {
+        $faculty_internal_document = Facultyinternaldocument::withTrashed()->find($id);
 
-    //     if ($faculty_internal_document) {
-    //         $faculty_internal_document->restore();
-    //         $this->delete_id = null;
-    //         $this->dispatch('alert',type:'success',message:'Faculty Internal Tool Document Restored Successfully');
-    //     } else {
-    //         $this->dispatch('alert',type:'error',message:'Faculty Internal Tool Document Not Found');
-    //     }
-    //     $this->setmode('all');
-    // }
+        if ($faculty_internal_document) {
+            $faculty_internal_document->restore();
+            $this->delete_id = null;
+            $this->dispatch('alert',type:'success',message:'Faculty Internal Tool Document Restored Successfully');
+        } else {
+            $this->dispatch('alert',type:'error',message:'Faculty Internal Tool Document Not Found');
+        }
+        $this->setmode('all');
+    }
 
-    // public function sort_column($column)
-    // {
-    //     if( $this->sortColumn === $column)
-    //     {
-    //         $this->sortColumnBy=($this->sortColumnBy=="ASC")?"DESC":"ASC";
-    //         return;
-    //     }
-    //     $this->sortColumn=$column;
-    //     $this->sortColumnBy=="ASC";
-    // }
+    public function sort_column($column)
+    {
+        if( $this->sortColumn === $column)
+        {
+            $this->sortColumnBy=($this->sortColumnBy=="ASC")?"DESC":"ASC";
+            return;
+        }
+        $this->sortColumn=$column;
+        $this->sortColumnBy=="ASC";
+    }
 
     public function updatedSearch()
     {
@@ -245,28 +239,32 @@ class AllHodAssignTool extends Component
     //     $this->dispatch('alert',type:'success',message:'Faculty Internal Tool Document Status Updated Successfully !!');
     // }
 
-    // public function view(Facultyinternaldocument $faculty_internal_document)
-    // {
-    //     if ($faculty_internal_document){
-    //         $this->academicyear_id= $faculty_internal_document->academicyear->year_name;
-    //         $this->faculty_id= $faculty_internal_document->faculty->faculty_name;
-    //         $this->subject_id= $faculty_internal_document->subject->subject_name;
-    //         $this->internaltooldocument_id= $faculty_internal_document->internaltooldocumentmaster->doc_name;
-    //         $this->document_fileName= $faculty_internal_document->document_fileName;
-    //         $this->document_filePath= $faculty_internal_document->document_filePath;
-    //         $this->departmenthead_id = $faculty_internal_document->faculty->faculty_name;
-    //         $this->verifybyfaculty_id = $faculty_internal_document->faculty->faculty_name;
-    //         $this->verificationremark = $faculty_internal_document->verificationremark;
-    //         $this->status = $faculty_internal_document->status;
-    //     }else{
-    //         $this->dispatch('alert',type:'error',message:'Faculty Internal Tool Document Details Not Found');
-    //     }
-    //     $this->setmode('view');
-    // }
+    public function view(Facultyinternaldocument $faculty_internal_document)
+    {
+        if ($faculty_internal_document){
+            $this->academicyear_id= $faculty_internal_document->academicyear->year_name;
+            $this->tool_name= $faculty_internal_document->internaltooldocument->internaltoolmaster->toolname;
+            $this->faculty_id= $faculty_internal_document->faculty->faculty_name;
+            $this->subject_id= $faculty_internal_document->subject->subject_name;
+            $this->departmenthead_id = $faculty_internal_document->faculty->faculty_name;
+            $this->verifybyfaculty_id = $faculty_internal_document->faculty->faculty_name;
+            $this->verificationremark = $faculty_internal_document->verificationremark;
+            $this->status = $faculty_internal_document->status;
+            $this->internaltooldocuments= Facultyinternaldocument::where('subject_id',$faculty_internal_document->subject_id)->get();
+        }else{
+            $this->dispatch('alert',type:'error',message:'Faculty Internal Tool Document Details Not Found');
+        }
+        $this->setmode('view');
+    }
+
+    public function mount()
+    {
+        $this->academicyears = Academicyear::where('is_doc_year',1)->get();
+    }
 
     public function render()
     {
-        $faculty_internal_documents = Facultyinternaldocument::with(['faculty:faculty_name,id','subject:subject_name,id','academicyear:year_name,id','internaltooldocumentmaster:doc_name,id',])->when($this->search, function($query, $search){
+        $faculty_internal_documents = Facultyinternaldocument::with(['faculty:faculty_name,id','subject:subject_code,subject_name,id','academicyear:year_name,id','internaltooldocument.internaltooldocumentmaster:doc_name,id',])->when($this->search, function($query, $search){
             $query->search($search);
         })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
         return view('livewire.faculty.internal-audit.hod-assign-tool.all-hod-assign-tool',compact('faculty_internal_documents'))->extends('layouts.faculty')->section('faculty');

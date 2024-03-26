@@ -34,6 +34,7 @@ use App\Livewire\User\Ratehead\AllRateHead;
 use App\Livewire\Faculty\Faculty\AllFaculty;
 use App\Livewire\Faculty\Subject\AllSubject;
 use App\Livewire\Student\StudentViewProfile;
+use App\Livewire\User\StrongRoom\StrongRoom;
 use App\Http\Controllers\WatermarkController;
 use App\Livewire\User\ClassYear\AllClassYear;
 use App\Livewire\User\ExamOrder\AllExamOrder;
@@ -197,7 +198,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('/exams', AllExam::class)->name('all_exam');
 
   //All Educational Course
-  Route::get('/educationalCourses', AllEducationalCourse::class)->name('all_educationalcourse');
+  Route::get('/educational/courses', AllEducationalCourse::class)->name('all_educational_course');
 
   //All CGPA
   Route::get('/cgpas', AllCgpa::class)->name('all_cgpa');
@@ -209,18 +210,19 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('/departments', AllDepartment::class)->name('all_department');
 
   //All Department Types
-  Route::get('/departmentTypes', AllDepartmentType::class)->name('all_departmenttype');
+  Route::get('/department/types', AllDepartmentType::class)->name('all_department_types');
 
   //All Credits
   Route::get('/credits', AllCredit::class)->name('all_credit');
 
-  //All Exam Time Table class wise
-  Route::get('/examTimeTables', AllExamTimeTable::class)->name('all_examtimetable');
+  //All Exam Time Table Class-Wise
+  Route::get('/exam/timetable/clss/wise', AllExamTimeTable::class)->name('all_exam_time_table');
 
-  Route::get('exam/timetable/pdf/{exampatternclass}',[ExamOrderPdfController::class,'timetable'])->name('timetables');
+  //Exam Order Pdf
+  Route::get('exam/timetable/pdf/{exampatternclass}',[ExamOrderPdfController::class,'timetable'])->name('time_tables');
 
   //All Exam Time Table Subject-Wise
-  Route::get('/examTimeTables/subject', SubjectExamTimeTable::class)->name('all_examtimetable_subject');
+  Route::get('/exam/timetable/subject/wise', SubjectExamTimeTable::class)->name('all_exam_time_table_subject');
 
   //All Buildings
   Route::get('/building', AllBuilding::class)->name('all_builidng');
@@ -241,11 +243,12 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('/exampanel', AllExamPanel::class)->name('all_exam_panel');
 
   //All Exam Order
-  Route::get('/examorder', AllExamOrder::class)->name('all_exam_order');
+  Route::get('/exam/order', AllExamOrder::class)->name('all_exam_order');
 
   //Generate Exam Order
   Route::get('/generate/exam/order', GenerateExamOrder::class)->name('generate_exam_order');
 
+  //Generate Exam Order PDF
   Route::get('exam/order/{id}/{token}', [ExamOrderPdfController::class, 'order'])->name('examorder');
 
   //Cancel Exam Order
@@ -303,16 +306,16 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('/caps',AllCap::class)->name('all_cap');
 
   //All Academic Year
-  Route::get('/academicyears',AllAcademicYear::class)->name('all_academic_year');
+  Route::get('/academic/years',AllAcademicYear::class)->name('all_academic_year');
 
   //All Academic Year
-  Route::get('/boarduniversities',AllBoardUniversity::class)->name('all_board_university');
+  Route::get('/board/universities',AllBoardUniversity::class)->name('all_board_university');
 
   //All Time Table Slot
-  Route::get('/timetableslots',AllTimeTableSlot::class)->name('all_time_table_slot');
+  Route::get('/time/table/slots',AllTimeTableSlot::class)->name('all_time_table_slot');
 
   //All Admission Data
-  Route::get('/admissiondatas',AllAdmissionData::class)->name('all_admission_data');
+  Route::get('/admission/datas',AllAdmissionData::class)->name('all_admission_data');
 
   //All Notice
   Route::get('/notices',AllNotice::class)->name('all_notice');
@@ -344,9 +347,11 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Exam Form Fee Head Statistics
   Route::get('/exam/form/fee/head/statistics',ExamFormFeeHeadReport::class)->name('exam_form_fee_head_statistics');
 
+  //Strong Room
+  Route::get('/strong/room',StrongRoom::class)->name('strong_room');
 
   //All Subject Hod
-  Route::get('/all-hodappointsubject',  AllHodAppointSubject::class)->name('all-hodappointsubjects');
+  Route::get('/hod/appoint/subject',  AllHodAppointSubject::class)->name('all_hod_appoint_subjects');
 
 });
 
