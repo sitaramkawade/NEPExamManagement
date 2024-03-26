@@ -44,11 +44,6 @@ class Facultyinternaldocument extends Model
         return $this->belongsTo(Academicyear::class,'academicyear_id','id')->withTrashed();
     }
 
-    public function internaltooldocumentmaster():BelongsTo
-    {
-        return $this->belongsTo(Internaltooldocumentmaster::class,'internaltooldocument_id','id');
-    }
-
     public function internaltooldocument():BelongsTo
     {
         return $this->belongsTo(Internaltooldocument::class,'internaltooldocument_id','id');
