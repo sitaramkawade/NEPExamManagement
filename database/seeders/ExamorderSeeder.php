@@ -16,19 +16,21 @@ class ExamorderSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        Examorder::create([
+            'user_id'=>1,
+            'exampanel_id' => 1,
+            'exam_patternclass_id' => 12,
+            'email_status' => 1,
+            'token'=>'trwffgte59unfjfdjksvf',
+        ]);
 
-        for ($i = 0; $i < 1; $i++) {
-
-            $exampatternclassIds = Exampatternclass::pluck('id')->toArray();
-            $exampanelIds = Exampanel::pluck('id')->toArray();
-
-            Examorder::create([
-                'exampanel_id' => rand(1, count($exampanelIds)),
-                'exam_patternclass_id' => rand(1, count($exampatternclassIds)),
-                'description' => $faker->word,
-                'email_status' => $faker->boolean,
-            ]);
-        }
+        Examorder::create([
+            'user_id'=>1,
+            'exampanel_id' => 2,
+            'exam_patternclass_id' => 12,
+            'email_status' => 1,
+            'token'=>'eurhvnxmrj467bvd',
+        ]);
+        
     }
 }
