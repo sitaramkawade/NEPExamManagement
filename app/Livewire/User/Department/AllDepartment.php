@@ -42,21 +42,24 @@ class AllDepartment extends Component
         'departmenttype' => ['required','string','max:255'],
         'college_id' => ['required',Rule::exists('colleges', 'id')],
         'status' => ['required'],
-         ];
+        ];
     }
 
     public function messages()
     {   
         $messages = [
-            'dept_name.required' => 'The Department Name field is required.',
-            'dept_name.string' => 'The Department Name must be a string.',
-            'dept_name.max' => 'The  Department Name must not exceed :max characters.',
-            'short_name.required' => 'The Short Name field is required.',
-            'short_name.string' => 'The Short Name must be a string.',
-            'short_name.max' => 'The  Short Name must not exceed :max characters.',
-            'departmenttype.required' => 'The Department Type field is required.',
-            'college_id.required' => 'The College field is required.',
-            'college_id.exists' => 'The selected Programme does not exist.',
+            'dept_name.required' => 'The department name is required.',
+            'dept_name.string' => 'The department name must be a string.',
+            'dept_name.max' => 'The department name may not be greater than 50 characters.',
+            'short_name.required' => 'The short name is required.',
+            'short_name.string' => 'The short name must be a string.',
+            'short_name.max' => 'The short name may not be greater than 50 characters.',
+            'departmenttype.required' => 'The department type is required.',
+            'departmenttype.string' => 'The department type must be a string.',
+            'departmenttype.max' => 'The department type may not be greater than 255 characters.',
+            'college_id.required' => 'The college ID is required.',
+            'college_id.exists' => 'The selected college ID is invalid.',
+            'status.required' => 'The status is required.',
         ];
         return $messages;
     }
@@ -102,9 +105,10 @@ class AllDepartment extends Component
         $this->setmode('all');
     }
 
-    public function edit(Department $dept){
-
-        if ($dept) {
+    public function edit(Department $dept)
+    {
+        if ($dept) 
+        {
             $this->dept_id=$dept->id;
             $this->dept_name = $dept->dept_name;     
             $this->short_name = $dept->short_name;
@@ -115,8 +119,8 @@ class AllDepartment extends Component
         }
     }
 
-    public function update(Department  $dept){
-
+    public function update(Department  $dept)
+    {
         $validatedData= $this->validate();
        
         if ($validatedData) {        
@@ -138,8 +142,7 @@ class AllDepartment extends Component
         $this->delete_id=$id;
         $this->dispatch('delete-confirmation');
     }
-    
-    
+      
     public function delete(Department  $dept)
     {   
         $dept->delete();
@@ -160,14 +163,15 @@ class AllDepartment extends Component
         $dept = Department::withTrashed()->find($this->delete_id);
         $dept->forceDelete();
         $this->dispatch('alert',type:'success',message:'Department Deleted Successfully !!');
-    } catch
-    (\Illuminate\Database\QueryException $e) {
+        } catch
+        (\Illuminate\Database\QueryException $e)
+        {
+            if ($e->errorInfo[1] == 1451) 
+            {
 
-        if ($e->errorInfo[1] == 1451) {
-
-            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-        } 
-    }
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
     public function Status(Department $dept)
@@ -213,7 +217,7 @@ class AllDepartment extends Component
     public function render()
     {
         $this->colleges=College::where('status',1)->pluck('college_name','id');
-
+        
         $departments=Department::select('id','dept_name','short_name','departmenttype','college_id','status','deleted_at')
        ->with('college:college_name,id')
         ->when($this->search, function ($query, $search) {

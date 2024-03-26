@@ -67,7 +67,6 @@ class UserFaculty extends Component
             'role_id' => ['required',Rule::exists(Role::class,'id')],
             'department_id' => ['required',Rule::exists(Department::class,'id')],
             'college_id' => ['required',Rule::exists(College::class,'id')],
-
             'account_no' => ['required', 'numeric','digits_between:8,16','unique:facultybankaccounts,account_no,'.($this->mode=='edit'? $this->facultybank_id :'')],
             'bank_address' => ['required', 'string', 'max:255',],
             'bank_name' => ['required', 'string', 'max:255',],
@@ -132,7 +131,6 @@ class UserFaculty extends Component
          $this->role_id=null;
          $this->department_id=null;
          $this->college_id=null;
-
          $this->bank_name=null;
          $this->account_no=null;
          $this->bank_address=null;

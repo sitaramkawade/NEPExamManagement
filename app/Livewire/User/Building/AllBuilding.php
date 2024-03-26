@@ -16,7 +16,6 @@ class AllBuilding extends Component
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
     #[Locked] 
     public $delete_id;
-
     public $building_name;
     public $Priority;
     public $status;
@@ -35,8 +34,8 @@ class AllBuilding extends Component
         return [
         'building_name' => ['required','string','max:255',Rule::unique('buildings', 'building_name')->ignore($this->building_id,)],
         'Priority' => ['required'],
-        'status' => ['required'],     
-         ];
+        'status' => ['required'],    
+        ];
     }
 
     public function messages()
@@ -106,13 +105,11 @@ class AllBuilding extends Component
     public function add()
     {
         $this->validate();
-
         $building =  new Building;
         $building->create([
             'building_name' => $this->building_name,
             'Priority' => $this->Priority,
-            'status' => $this->status,
-            
+            'status' => $this->status,          
         ]);
         $this->resetinput();
         $this->setmode('all');
@@ -120,7 +117,6 @@ class AllBuilding extends Component
     }
 
     public function edit(Building $building){
-
         if ($building) {
             $this->building_id=$building->id;
             $this->building_name = $building->building_name;
@@ -167,12 +163,13 @@ class AllBuilding extends Component
     }
 
     public function forcedelete()
-    {   try
-      { 
-         $building = Building::withTrashed()->find($this->delete_id);
+    {   
+        try
+        { 
+        $building = Building::withTrashed()->find($this->delete_id);
         $building->forceDelete();
         $this->dispatch('alert',type:'success',message:'Building Deleted Successfully !!');
-    }  catch
+        }  catch
         (\Illuminate\Database\QueryException $e) {
     
             if ($e->errorInfo[1] == 1451) {
@@ -199,8 +196,7 @@ class AllBuilding extends Component
     }
 
     public function render()
-    {
-        
+    {       
         $buildings=Building::select('id','building_name','Priority','status','deleted_at')
         ->when($this->search, function ($query, $search) {
             $query->search($search);

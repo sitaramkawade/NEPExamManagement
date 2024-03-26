@@ -34,18 +34,19 @@ class AllDepartmentType extends Component
         'departmenttype' => ['required','string','max:255'],
         'description' => ['required','string','max:255'],
         'status' => ['required'],
-         ];
+        ];
     }
 
     public function messages()
     {   
         $messages = [
-            'departmenttype.required' => 'The Department Type field is required.',
-            'departmenttype.string' => 'The Department Type must be a string.',
-            'departmenttype.max' => 'The  Department Type must not exceed :max characters.',
-            'description.required' => 'The Short Name field is required.',
-            'description.string' => 'The Short Name must be a string.',
-            'description.max' => 'The  Short Name must not exceed :max characters.',
+        'departmenttype.required' => 'The department type is required.',
+        'departmenttype.string' => 'The department type must be a string.',
+        'departmenttype.max' => 'The department type may not be greater than 255 characters.',
+        'description.required' => 'The description is required.',
+        'description.string' => 'The description must be a string.',
+        'description.max' => 'The description may not be greater than 255 characters.',
+        'status.required' => 'The status is required.',
         ];
         return $messages;
     }
@@ -139,14 +140,14 @@ class AllDepartmentType extends Component
         $dept = Departmenttype::withTrashed()->find($this->delete_id);
         $dept->forceDelete();
         $this->dispatch('alert',type:'success',message:'Department Type Deleted Successfully !!');
-    } catch
-    (\Illuminate\Database\QueryException $e) {
+        } catch
+        (\Illuminate\Database\QueryException $e)
+        {
+            if ($e->errorInfo[1] == 1451) {
 
-        if ($e->errorInfo[1] == 1451) {
-
-            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-        } 
-    }
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
     public function Status(Departmenttype $dept)
@@ -195,7 +196,6 @@ class AllDepartmentType extends Component
         ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
-
 
         return view('livewire.user.department-type.all-department-type',compact('departmenttypes'))->extends('layouts.user')->section('user');
     }

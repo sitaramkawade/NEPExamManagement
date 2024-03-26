@@ -4,7 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\PapersetSeeder;
+use Database\Seeders\ExamorderSeeder;
+use Database\Seeders\ExamPanelSeeder;
 use Database\Seeders\DeptPrefixSeeder;
+use Database\Seeders\ExamTimeTableSeeder;
 use Database\Seeders\InternalToolDocumentSeeder;
 use Database\Seeders\FacultyinternaldocumentSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -88,6 +91,8 @@ class DatabaseSeeder extends Seeder
             CourseTypeMasterSeeder::class,
             DeptPrefixSeeder::class,
             FacultyinternaldocumentSeeder::class,           // Academicyear, Faculty, Subject, Internaltooldocumentmaster,
+            ExamPanelSeeder::class,                         //Examorderseeder
+            ExamorderSeeder::class,
         ]);
     }
 }

@@ -61,13 +61,11 @@ class AllPaperSubmission extends Component
          ];
     }
 
-
     public function resetinput()
-    {
-        
-         $this->subject_id=null;   
-         $this->noofsets=null;          
-         $this->patternclass_id=null;       
+    {       
+        $this->subject_id=null;   
+        $this->noofsets=null;          
+        $this->patternclass_id=null;       
     }
 
     public function updated($propertyName)
@@ -91,11 +89,12 @@ class AllPaperSubmission extends Component
     public function save()
     {
         $validatedData= $this->validate();
-        if($validatedData){
-        $exam=Exam::where('status',1)->first();
-        if( $exam)
+        if($validatedData)
+        {
+            $exam=Exam::where('status',1)->first();
+            if( $exam)
             {
-            $papersubmission = Papersubmission::create([
+                $papersubmission = Papersubmission::create([
                 'exam_id' => $exam->id,
                 'subject_id' => $this->subject_id,
                 'noofsets' => $this->noofsets,
@@ -105,7 +104,7 @@ class AllPaperSubmission extends Component
                 ]);
                 PaperSubmissionJob::dispatch($papersubmission);
             }
-        }
+        
 
             $details = [
                 'subject' => 'Hello',
@@ -120,7 +119,7 @@ class AllPaperSubmission extends Component
 
             $this->setmode('add');
             $this->dispatch('alert',type:'success',message:'Paper Submission Added Successfully !!'  );
-        
+        }
     }
 
     public function edit()
@@ -137,15 +136,14 @@ class AllPaperSubmission extends Component
 
     public function update(Papersubmission $papersubmission)
     {
-            $papersubmission = Papersubmission::update([
-                'exam_id' => $this->exam_id,
-                'subject_id' => $this->subject_id,
-                'noofsets' => $this->noofsets,
-                'user_id' =>  Auth::guard('user')->user()->id,
-                'faculty_id' =>  $this->facultydata->faculty_id,
-                'status' => $this->status,
-                ]);
-                    
+        $papersubmission = Papersubmission::update([
+            'exam_id' => $this->exam_id,
+            'subject_id' => $this->subject_id,
+            'noofsets' => $this->noofsets,
+            'user_id' =>  Auth::guard('user')->user()->id,
+            'faculty_id' =>  $this->facultydata->faculty_id,
+            'status' => $this->status,
+            ]);                   
         $this->dispatch('alert',type:'success',message:'Paper Submission Updated Successfully !!'  );
         $this->setmode('all');
     }
@@ -185,12 +183,11 @@ class AllPaperSubmission extends Component
     public function forcedelete()
     {  try
         {
-        $papersubmission = Papersubmission::withTrashed()->find($this->delete_id);
-        $papersubmission->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Paper Submission Deleted Successfully !!');
+            $papersubmission = Papersubmission::withTrashed()->find($this->delete_id);
+            $papersubmission->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Paper Submission Deleted Successfully !!');
         } catch
-        (\Illuminate\Database\QueryException $e) {
-    
+            (\Illuminate\Database\QueryException $e) {  
             if ($e->errorInfo[1] == 1451) {
     
                 $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
@@ -209,7 +206,6 @@ class AllPaperSubmission extends Component
         $this->sortColumnBy=="ASC";
     }
 
-    
     public function export()
     {   
         $filename="Papersubmission-".now();
@@ -225,10 +221,7 @@ class AllPaperSubmission extends Component
             break;
         } 
     }
-
-
-
-    
+  
     public function render()
     {
             $this->exams=Exam::where('status',1)->pluck('exam_name','id');

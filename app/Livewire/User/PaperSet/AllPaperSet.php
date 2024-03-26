@@ -20,7 +20,6 @@ class AllPaperSet extends Component
     public $sortColumn="set_name";
     public $sortColumnBy="ASC";
     public $ext;
-
     public $set_name;
 
     #[Locked]
@@ -113,11 +112,11 @@ class AllPaperSet extends Component
     public function forcedelete()
     {  try
         {
-        $paperset = Paperset::withTrashed()->find($this->delete_id);
-        $paperset->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Paper Set Deleted Successfully !!');
-        } catch
-        (\Illuminate\Database\QueryException $e) {
+            $paperset = Paperset::withTrashed()->find($this->delete_id);
+            $paperset->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Paper Set Deleted Successfully !!');
+            } catch
+            (\Illuminate\Database\QueryException $e) {
     
             if ($e->errorInfo[1] == 1451) {
     

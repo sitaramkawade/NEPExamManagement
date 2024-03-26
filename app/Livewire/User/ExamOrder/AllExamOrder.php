@@ -21,9 +21,6 @@ use App\Exports\User\ExamOrder\ExportExamOrder;
 class AllExamOrder extends Component
 {
     use WithPagination;
-    #[Locked] 
-    public $delete_id;
-    
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
     public $perPage=10;
     public $search='';
@@ -36,8 +33,9 @@ class AllExamOrder extends Component
     public $exampanels;
     public $exam_patternclass_id;
     public $description;
-    public $email_status;
-
+    public $email_status;  
+    #[Locked] 
+    public $delete_id;    
     #[Locked] 
     public $edit_id;
 
@@ -47,19 +45,19 @@ class AllExamOrder extends Component
         'exampanel_id' => ['required',Rule::exists('exam_panels', 'id')],
         'exam_patternclass_id' => ['required',Rule::exists('exam_patternclasses', 'id')],
         'description' => ['required','string','max:50'],     
-         ];
+        ];
     }
 
     public function messages()
     {   
         $messages = [
-            'exampanel_id.required' => 'The Exam Panel field is required.',
-            'exampanel_id.exists' => 'The selected Exam Panel  is invalid.',
-            'exam_patternclass_id.required' => 'The Exam Patter Class field is required.',
-            'exam_patternclass_id.exists' => 'The selected Exam Patter Class  is invalid.',
-            'description.required'=> 'The Description field is required.',
-            'description.string'=> 'The Description  must be a string.',
-            'description.max'=> 'The Description must not exceed :max characters.',
+        'exampanel_id.required' => 'The exam panel ID is required.',
+        'exampanel_id.exists' => 'The selected exam panel ID is invalid.',
+        'exam_patternclass_id.required' => 'The exam pattern class ID is required.',
+        'exam_patternclass_id.exists' => 'The selected exam pattern class ID is invalid.',
+        'description.required' => 'The description is required.',
+        'description.string' => 'The description must be a string.',
+        'description.max' => 'The description may not be greater than 50 characters.',
         ];
         return $messages;
     }
@@ -109,17 +107,16 @@ class AllExamOrder extends Component
     {  
         try
         {
-        $examorder = Examorder::withTrashed()->find($this->delete_id);
-        $examorder->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Exam Order Deleted Successfully !!');
-    } catch
-    (\Illuminate\Database\QueryException $e) {
+            $examorder = Examorder::withTrashed()->find($this->delete_id);
+            $examorder->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Exam Order Deleted Successfully !!');
+        } catch
+            (\Illuminate\Database\QueryException $e) {
+            if ($e->errorInfo[1] == 1451) {
 
-        if ($e->errorInfo[1] == 1451) {
-
-            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-        } 
-    }
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
     public function Status(Examorder $examorder)
@@ -137,12 +134,9 @@ class AllExamOrder extends Component
 
    Public function cancelOrder(Examorder $examorder)
    {
-
          $examOrderIds=$examorder;
-         CancelOrderJob::dispatch([$examOrderIds]);
-            
+         CancelOrderJob::dispatch([$examOrderIds]);          
          $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
-
    }
 
    public function resendMail(Examorder $examorder)
@@ -151,31 +145,15 @@ class AllExamOrder extends Component
         SendEmailJob::dispatch([$examOrderIds]);
 
         $this->dispatch('alert',type:'success',message:'Emails have been resent successfully !!'  );
-        // $url=route('user.examorder', ['id' => $examorder->id,'token' =>$examorder->token]);
- 
-        // $details = [
-        //     'subject'=>'Hello',
-        //     'title' => 'Your Appoinment for Examination Work (Sangamner College Mail Notification)',
-        //     'body' => 'This is sample content we have added for this test mail',
-        //     'examorder_id'=> $examorder->id,
-        //     'url'=>$url,
-        // ];
-    
-        // Mail::to(trim($examorder->exampanel->faculty->email))
-        //  ->cc(['exam.unit@sangamnercollege.edu.in','coeautonoumous@sangamnercollege.edu.in'])
-        // ->send(new \App\Mail\MyTestMail($details));
     }
 
     public function bulkResend()
     {
-
         $examorders=Examorder::where('email_status',1)->get();
        
         $examOrderIds=$examorders;
         SendEmailJob::dispatch([$examOrderIds]);
         $this->dispatch('alert',type:'success',message:'Emails have been resent successfully !!'  );
-
-        // dd($this->dispatch);
     }
 
     public function bulkCancel()
@@ -183,16 +161,12 @@ class AllExamOrder extends Component
         $examorders=Examorder::where('email_status',1)->get();
         $examOrderIds=$examorders;
         CancelOrderJob::dispatch([$examOrderIds]);
-        $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
-       
+        $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );      
     }
 
     public function bulkDelete()
     {
-
         $examOrders = Examorder::withTrashed()->where('email_status', 0)->forcedelete();
-        // $examOrders->delete();
-
         $this->dispatch('alert',type:'success',message:'Exam Order have been Deleted !!'  );      
     }
 

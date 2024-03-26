@@ -47,24 +47,20 @@ class AllExamTimeTable extends Component
     public function rules()
     {
         return [
-
         'exam_pattern_class_id' => ['required',Rule::exists('exam_patternclasses', 'id')],
         'timeslot_id' => ['required',Rule::exists('timetableslots', 'id')],
-        'examdates.*' => ['nullable', 'date'],
-       
+        'examdates.*' => ['nullable', 'date'],    
          ];
     }
 
     public function messages()
     {   
         $messages = [
-           
-            'exam_patternclasses_ids.required' => 'The Exam Patter Class field is required.',
-            'exam_patternclasses_ids.exists' => 'The selected Exam Patter Class  is invalid.',
-            'timeslot_id.required' => 'The Time Slot field is required.',
-            'timeslot_id.exists' => 'The selected Time Slot  is invalid.',
-            'examdate.required' => 'The Exam Date field is required.',
-            'examdate.date' => 'The Exam Date must be a valid Date.',
+            'exam_pattern_class_id.required' => 'The exam pattern class ID is required.',
+            'exam_pattern_class_id.exists' => 'The selected exam pattern class ID is invalid.',
+            'timeslot_id.required' => 'The timeslot ID is required.',
+            'timeslot_id.exists' => 'The selected timeslot ID is invalid.',
+            'examdates.*.date' => 'One or more of the exam dates is not a valid date.',
         ];
         return $messages;
     }
@@ -79,10 +75,8 @@ class AllExamTimeTable extends Component
         $this->examdate=null;
         $this->is_default=null;
         $this->timeslot_ids=[];
-        $this->examdates=[];
-        
+        $this->examdates=[];      
     }
-
 
     public function updated($property)
     {
@@ -106,7 +100,8 @@ class AllExamTimeTable extends Component
     }
     
 
-    public function create(Exampatternclass  $exampatternclass ){
+    public function create(Exampatternclass  $exampatternclass )
+    {
         
         $this->exam_pattern_class_id=$exampatternclass;
         $this->semesters=Semester::where('status',1)->get();
@@ -123,23 +118,18 @@ class AllExamTimeTable extends Component
 
         foreach ($this->subjects as $subjectbucket) {
             $subjectName = $subjectbucket->subject->subject_name;
-            // dd($subjectName);
         }
-
         $this->timeslots=Timetableslot::where('isactive',1)->pluck('timeslot','id');
         $this->setmode('add');
      
     }
-
-
     
     public function deleteconfirmation($id)
     {
         $this->delete_id=$id;
         $this->dispatch('delete-confirmation');
     }
-
-   
+  
     public function delete(Exampatternclass  $exampatternclass)
     {   
         $exampatternclass->delete();
@@ -157,17 +147,16 @@ class AllExamTimeTable extends Component
     {  
         try
         {
-        $examTimeTable = Examtimetable::withTrashed()->find($this->delete_id);
-        $examTimeTable->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Exam Time Table Deleted Successfully !!');
-        } catch
-         (\Illuminate\Database\QueryException $e) {
+            $examTimeTable = Examtimetable::withTrashed()->find($this->delete_id);
+            $examTimeTable->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Exam Time Table Deleted Successfully !!');
+            } catch
+            (\Illuminate\Database\QueryException $e) {
+            if ($e->errorInfo[1] == 1451) {
 
-        if ($e->errorInfo[1] == 1451) {
-
-            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-        } 
-    }
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
     
     public function Status(Examtimetable $examTimeTable)
@@ -190,7 +179,6 @@ class AllExamTimeTable extends Component
         {
             $exam_time_table =[];
 
-         //   dd($this->examdates);
              foreach( $this->examdates as $subjectbucket_id => $examdate)
             {
                 $exam_time_table[]=[
@@ -202,7 +190,6 @@ class AllExamTimeTable extends Component
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ];
-
             }
             $exam_time_table_data = Examtimetable::insert($exam_time_table);
             DB::commit();
@@ -222,47 +209,43 @@ class AllExamTimeTable extends Component
 
     public function edit(Exampatternclass $exampatternclass)
     {
-          $this->resetinput();
-          $examtimetables=Examtimetable::where('exam_patternclasses_id',$exampatternclass->id)->get();
-          $this->time_id=$exampatternclass->id;
-          $this->sem=Subject::where('id',$examtimetables[0]->subjectbucket_id)->first()->subject_sem;
-          $this->exam_pattern_class_id = $exampatternclass->id;
-          $this->semesters=Semester::where('status',1)->get();
-          $this->subjects = Subjectbucket::
-          where('patternclass_id', $exampatternclass->patternclass_id)
-          ->where('status', 1)
-          ->when($this->sem, function ($query, $sem) {
-              $query->whereHas('subject', function ($q) use ($sem) {
-                  $q->where('subject_sem', $sem);
-              });
-          })
-          ->get();
-  
-          foreach ($this->subjects as $subjectbucket) {
-              $subjectName = $subjectbucket->subject->subject_name;
-              // dd($subjectName);
-          }
-          $this->timeslots=Timetableslot::where('isactive',1)->pluck('timeslot','id');
+        $this->resetinput();
+        $examtimetables=Examtimetable::where('exam_patternclasses_id',$exampatternclass->id)->get();
+        $this->time_id=$exampatternclass->id;
+        $this->sem=Subject::where('id',$examtimetables[0]->subjectbucket_id)->first()->subject_sem;
+        $this->exam_pattern_class_id = $exampatternclass->id;
+        $this->semesters=Semester::where('status',1)->get();
+        $this->subjects = Subjectbucket::
+        where('patternclass_id', $exampatternclass->patternclass_id)
+        ->where('status', 1)
+        ->when($this->sem, function ($query, $sem) {
+            $query->whereHas('subject', function ($q) use ($sem) {
+                $q->where('subject_sem', $sem);
+            });
+        })
+        ->get();
+    
+        foreach ($this->subjects as $subjectbucket) {
+            $subjectName = $subjectbucket->subject->subject_name;
+            // dd($subjectName);
+        }
+        $this->timeslots=Timetableslot::where('isactive',1)->pluck('timeslot','id');
          
         foreach($examtimetables as $examtimetable)
         {
             $this->timeslot_ids[$examtimetable->subjectbucket_id]=$examtimetable->timeslot_id;
             $this->examdates[$examtimetable->subjectbucket_id]=$examtimetable->examdate;
-            // dd(  $this->examdates);
-
         }
-        $this->setmode('edit');
-    
+
+        $this->setmode('edit'); 
     }
 
     public function update(Exampatternclass $exampatternclass)
     {
-        // Begin a database transaction
         DB::beginTransaction();
     
         try {
             foreach ($this->examdates as $subjectbucket_id => $examdate) {
-                // Update exam timetable records matching the condition
                 Examtimetable::where('subjectbucket_id', $subjectbucket_id)
                              ->where('exam_patternclasses_id', $exampatternclass->id)
                              ->update([
