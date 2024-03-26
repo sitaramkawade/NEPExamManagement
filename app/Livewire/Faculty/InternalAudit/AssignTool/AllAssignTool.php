@@ -6,13 +6,13 @@ use App\Models\Course;
 use App\Models\Subject;
 use Livewire\Component;
 use App\Models\Courseclass;
-use App\Models\Academicyear;
 use App\Models\Patternclass;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
 use App\Models\Hodappointsubject;
 use App\Models\Internaltoolmaster;
 use App\Models\Internaltoolauditor;
+use App\Models\DocumentAcademicYear;
 use App\Models\Internaltooldocument;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -54,7 +54,7 @@ class AllAssignTool extends Component
     protected function rules()
     {
         return [
-            'academicyear_id' => ['required', Rule::exists(Academicyear::class,'id')],
+            'academicyear_id' => ['required', Rule::exists(DocumentAcademicYear::class,'id')],
             'course_id' => ['required', Rule::exists(Course::class,'id')],
             'patternclass_id' => ['required', Rule::exists(Patternclass::class,'id')],
             'subject_id' => ['required', Rule::exists(Subject::class,'id')],
@@ -324,7 +324,7 @@ class AllAssignTool extends Component
     public function render()
     {
         if($this->mode !== 'all' && $this->mode !== 'view'){
-            $this->academicyears = Academicyear::pluck('year_name','id');
+            $this->academicyears = DocumentAcademicYear::pluck('year_name','id');
             $this->courses = Course::select('id', 'course_name', 'course_type',)->get();
             $course_classes = Courseclass::where('course_id', $this->course_id)->pluck('id');
             $this->pattern_classes = Patternclass::select('id', 'class_id', 'pattern_id')

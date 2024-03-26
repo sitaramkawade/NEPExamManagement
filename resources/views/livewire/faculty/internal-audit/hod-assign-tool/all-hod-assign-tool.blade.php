@@ -10,9 +10,9 @@
         <div>
             <x-breadcrumb.breadcrumb>
                 <x-breadcrumb.link route="faculty.dashboard" name="Dashboard" />
-                <x-breadcrumb.link name="Faculty Internal Documents" />
+                <x-breadcrumb.link name="HOD Tool's View" />
             </x-breadcrumb.breadcrumb>
-            <x-card-header heading="Faculty Internal Documents">
+            <x-card-header heading="HOD Tool View">
             </x-card-header>
             <x-table.frame :x="0" :r="0">
                 <x-slot:header>
@@ -31,40 +31,38 @@
                         <x-table.thead>
                             <x-table.tr>
                                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
+                                <x-table.th wire:click="sort_column('academicyear_id')" name="academicyear_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Academic Year</x-table.th>
                                 <x-table.th>Subject Code</x-table.th>
                                 <x-table.th wire:click="sort_column('subject_id')" name="subject_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject Name</x-table.th>
-                                <x-table.th wire:click="sort_column('internaltooldocument_id')" name="internaltooldocument_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Document Name</x-table.th>
                                 <x-table.th> Status </x-table.th>
                                 <x-table.th> Action </x-table.th>
                             </x-table.tr>
                         </x-table.thead>
                         <x-table.tbody>
-                            @forelse ($faculty_internal_documents as $faculty_internal_document)
-                                <x-table.tr wire:key="{{ $faculty_internal_document->id }}">
-                                    <x-table.td>{{ $faculty_internal_document->id }} </x-table.td>
-                                    <x-table.td>{{ $faculty_internal_document->subject->subject_code }} </x-table.td>
+                            @forelse ($groupedInternalDocuments as $key => $internalDocuments)
+                                <x-table.tr wire:key="{{ $key }}">
+                                    <x-table.td>{{ $internalDocuments->first()->id }}</x-table.td>
+                                    <x-table.td>{{ $internalDocuments->first()->academicyear->year_name }}</x-table.td>
+                                    <x-table.td>{{ $internalDocuments->first()->subject->subject_code }}</x-table.td>
                                     <x-table.td>
-                                        <x-table.text-scroll>{{ $faculty_internal_document->subject->subject_name }} </x-table.text-scroll>
+                                        <x-table.text-scroll>{{ $internalDocuments->first()->subject->subject_name }}</x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
-                                        <x-table.text-scroll>{{ $faculty_internal_document->internaltooldocument->internaltooldocumentmaster->doc_name }}</x-table.text-scroll>
-                                    </x-table.td>
-                                    <x-table.td>
-                                        @if (!$faculty_internal_document->deleted_at)
-                                            @if ($faculty_internal_document->status === 1)
-                                                <x-table.active wire:click="status({{ $faculty_internal_document->id }})" />
+                                        @if (!$internalDocuments->first()->deleted_at)
+                                            @if ($internalDocuments->first()->status === 1)
+                                                <x-table.active wire:click="status({{ $internalDocuments->first()->id }})" />
                                             @else
-                                                <x-table.inactive wire:click="status({{ $faculty_internal_document->id }})" />
+                                                <x-table.inactive wire:click="status({{ $internalDocuments->first()->id }})" />
                                             @endif
                                         @endif
                                     </x-table.td>
                                     <x-table.td>
-                                        @if ($faculty_internal_document->deleted_at)
-                                            <x-table.delete wire:click="deleteconfirmation({{ $faculty_internal_document->id }})" />
-                                            <x-table.restore wire:click="restore({{ $faculty_internal_document->id }})" />
+                                        @if ($internalDocuments->first()->deleted_at)
+                                            <x-table.delete wire:click="deleteconfirmation({{ $internalDocuments->first()->id }})" />
+                                            <x-table.restore wire:click="restore({{ $internalDocuments->first()->id }})" />
                                         @else
-                                            <x-table.view wire:click="view({{ $faculty_internal_document->id }})" />
-                                            <x-table.archive wire:click="delete({{ $faculty_internal_document->id }})" />
+                                            <x-table.view wire:click="view({{ $internalDocuments->first()->id }})" />
+                                            <x-table.archive wire:click="delete({{ $internalDocuments->first()->id }})" />
                                         @endif
                                     </x-table.td>
                                 </x-table.tr>
