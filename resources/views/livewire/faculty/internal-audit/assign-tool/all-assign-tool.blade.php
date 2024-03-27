@@ -66,7 +66,7 @@
                                         </x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
-                                            {{ (isset($assigned_int_tool->internaltooldocumentmaster->doc_name) ?  $assigned_int_tool->internaltooldocumentmaster->doc_name : '') }}
+                                            {{ (isset($assigned_int_tool->internaltooldocument->internaltooldocumentmaster->doc_name) ?  $assigned_int_tool->internaltooldocument->internaltooldocumentmaster->doc_name : '') }}
                                     </x-table.td>
                                     <x-table.td>
                                         {{ (isset($assigned_int_tool->academicyear->year_name) ?  $assigned_int_tool->academicyear->year_name : '') }}
