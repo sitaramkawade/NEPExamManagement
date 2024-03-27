@@ -14,6 +14,8 @@ class Timetableslot extends Model
 
     protected $fillable=[
         'timeslot',
+        'end_time',
+        'start_time',
         'slot',
         'isactive'
     ];

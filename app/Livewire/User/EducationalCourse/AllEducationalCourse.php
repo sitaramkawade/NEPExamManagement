@@ -20,6 +20,7 @@ class AllEducationalCourse extends Component
     public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
+    #[Locked] 
     public $delete_id;
     public $programme_id;
     public $course_id;
@@ -36,17 +37,17 @@ class AllEducationalCourse extends Component
         'course_name' => ['required','string','max:255'],
         'programme_id' => ['required',Rule::exists('programmes', 'id')],
         'is_active' => ['required'], 
-         ];
+        ];
     }
 
     public function messages()
     {   
         $messages = [
-            'course_name.required' => 'The Course Name field is required.',
-            'course_name.string' => 'The Course Name must be a string.',
-            'course_name.max' => 'The  Course Name must not exceed :max characters.',
-            'programme_id.required' => 'The Programme field is required.',
-            'programme_id.exists' => 'The selected Programme does not exist.',
+            'course_name.string' => 'The course name must be a string.',
+            'course_name.max' => 'The course name may not be greater than 255 characters.',
+            'programme_id.required' => 'The programme ID is required.',
+            'programme_id.exists' => 'The selected programme ID is invalid.',
+            'is_active.required' => 'The status is required.',
         ];
         return $messages;
     }
@@ -55,8 +56,7 @@ class AllEducationalCourse extends Component
     {
         $this->course_name=null;
         $this->programme_id=null;
-        $this->is_active=null;
-      
+        $this->is_active=null;     
     }
 
     public function updated($property)
@@ -151,17 +151,17 @@ class AllEducationalCourse extends Component
     {  
         try
         { 
-        $educationalCourse = Educationalcourse::withTrashed()->find($this->delete_id);
-        $educationalCourse->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Course Deleted Successfully !!');
-    } catch
-    (\Illuminate\Database\QueryException $e) {
+            $educationalCourse = Educationalcourse::withTrashed()->find($this->delete_id);
+            $educationalCourse->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Course Deleted Successfully !!');
+        } catch
+        (\Illuminate\Database\QueryException $e) {
 
-        if ($e->errorInfo[1] == 1451) {
+            if ($e->errorInfo[1] == 1451) {
 
-            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-        } 
-    }
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
     public function sort_column($column)

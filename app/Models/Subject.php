@@ -8,6 +8,7 @@ use App\Models\Exampanel;
 use App\Models\Studentmark;
 use App\Models\Subjecttype;
 use App\Models\Patternclass;
+use App\Models\Papersubmission;
 use App\Models\StudentExamform;
 use App\Models\Subjectcategory;
 use App\Models\Subjectvertical;
@@ -124,6 +125,11 @@ class Subject extends Model
     public function exampanels()
     {
         return $this->hasMany(Exampanel::class,'subject_id','id')->withTrashed();
+    }
+
+    public function papersubmissions()
+    {
+        return $this->hasMany(Papersubmission::class,'subject_id','id')->withTrashed();
     }
 
 

@@ -35,29 +35,29 @@ class AllBlock extends Component
     public function rules()
     {
        return [
-            'building_id'=>['required',Rule::exists('buildings', 'id')],
-            'classname'=>['required','string','max:80'],
-            'block'=>['required','string','max:4'],
-            'capacity'=>['required','digits_between:1,10'],
-            'noofblocks'=>['required','digits_between:1,10'],
+        'building_id'=>['required',Rule::exists('buildings', 'id')],
+        'classname'=>['required','string','max:80'],
+        'block'=>['required','string','max:4'],
+        'capacity'=>['required','digits_between:1,10'],
+        'noofblocks'=>['required','digits_between:1,10'],
         ];
     }
 
     public function messages()
     {   
         $messages = [
-            'building_id.required' => 'The Building field is required.',
-            'building_id.exists' => 'The selected Programme does not exist.',
-            'classname.required' => 'The Class Name field is required.',
-            'classname.string' => 'The Class Name must be a string.',
-            'classname.max' => 'The  Class Name must not exceed :max characters.',
-            'block.required' => 'The Block Name field is required.',
-            'block.string' => 'The Block Name must be a string.',
-            'block.max' => 'The  Block Name must not exceed :max characters.',
-            'capacity.required' => 'The Capacity field is required.',
-            'capacity.digit_between' => 'The  Block Name must not exceed :digit_between characters.',
-            'noofblocks.required' => 'The No of Blocks field is required.',
-            'noofblocks.digit_between' => 'The No of Block must not exceed :digit_between characters.',
+            'building_id.required' => 'The building ID is required.',
+            'building_id.exists' => 'The selected building ID is invalid.',
+            'classname.required' => 'The class name is required.',
+            'classname.string' => 'The class name must be a string.',
+            'classname.max' => 'The class name may not be greater than 80 characters.',
+            'block.required' => 'The block is required.',
+            'block.string' => 'The block must be a string.',
+            'block.max' => 'The block may not be greater than 4 characters.',
+            'capacity.required' => 'The capacity is required.',
+            'capacity.digits_between' => 'The capacity must be between 1 and 10 digits.',
+            'noofblocks.required' => 'The number of blocks is required.',
+            'noofblocks.digits_between' => 'The number of blocks must be between 1 and 10 digits.',
         ];
         return $messages;
     }
@@ -151,16 +151,16 @@ class AllBlock extends Component
         $block = Block::withTrashed()->find($this->delete_id);
         $block->forceDelete();
         $this->dispatch('alert',type:'success',message:'Block Deleted Successfully !!');
-    }
-    catch
-    (\Illuminate\Database\QueryException $e) {
+        }
+        catch
+        (\Illuminate\Database\QueryException $e) {
 
-        if ($e->errorInfo[1] == 1451) {
+            if ($e->errorInfo[1] == 1451) {
 
-            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-        } 
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
-}
 
     public function updated($property)
     {
@@ -217,12 +217,8 @@ class AllBlock extends Component
        
     }
 
-
-
     public function render()
-    {
-       
- 
+    { 
         if($this->mode!=='all')
         {
             $this->buildings = Building::where('status',1)->pluck('building_name','id');
@@ -234,7 +230,6 @@ class AllBlock extends Component
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
-        return view('livewire.user.block.all-block',compact('blocks'))->extends('layouts.user')->section('user');
-    
+        return view('livewire.user.block.all-block',compact('blocks'))->extends('layouts.user')->section('user');    
     }
 }

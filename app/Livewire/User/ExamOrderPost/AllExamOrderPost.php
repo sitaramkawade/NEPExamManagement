@@ -12,10 +12,7 @@ class AllExamOrderPost extends Component
 {
     use WithPagination;
 
-    protected $listeners = ['delete-confirmed'=>'forcedelete'];
-    #[Locked] 
-    public $delete_id;
-
+    protected $listeners = ['delete-confirmed'=>'forcedelete'];   
     public $mode='all';
     public $perPage=10;
     public $search='';
@@ -24,7 +21,9 @@ class AllExamOrderPost extends Component
     public $ext;
     public $post_name;
     public $status;
-
+    
+    #[Locked] 
+    public $delete_id;
     #[Locked] 
     public $post_id;
 
@@ -32,16 +31,15 @@ class AllExamOrderPost extends Component
     {
         return [
             'post_name' => ['required', 'string','max:50'],
-             ];
+        ];
     }
 
     public function messages()
     {   
         $messages = [
-            'post_name.required' => 'The Post Name is required.',
-            'post_name.string' => 'The Post Name must be a string.',
-            'post_name.max' => 'The Post Name must not exceed :max characters.',
-           
+            'post_name.required' => 'The post name is required.',
+            'post_name.string' => 'The post name must be a string.',
+            'post_name.max' => 'The post name may not be greater than 50 characters.',         
         ];
         return $messages;
     }
@@ -135,7 +133,6 @@ class AllExamOrderPost extends Component
         $this->resetinput();
         $this->setmode('all');
         $this->dispatch('alert',type:'success',message:'Exam Order Post Updated Successfully !!');
-
     }
 
     public function Status(Examorderpost $examorderpost)
@@ -175,17 +172,17 @@ class AllExamOrderPost extends Component
     {   
         try
         {
-        $examorderpost = Examorderpost::withTrashed()->find($this->delete_id);
-        $examorderpost->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Exam Order Post Deleted Successfully !!');
-    } catch
-    (\Illuminate\Database\QueryException $e) {
+            $examorderpost = Examorderpost::withTrashed()->find($this->delete_id);
+            $examorderpost->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Exam Order Post Deleted Successfully !!');
+        } catch
+            (\Illuminate\Database\QueryException $e) 
+        {
+            if ($e->errorInfo[1] == 1451) {
 
-        if ($e->errorInfo[1] == 1451) {
-
-            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-        } 
-    }
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
     
     public function render()

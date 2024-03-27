@@ -46,15 +46,16 @@ class AllExam extends Component
     public function messages()
     {   
         $messages = [
-            'exam_name.required' => 'The Exam Name field is required.',
-            'exam_name.string' => 'The Exam Name must be a string.',
-            'academicyear_id.required' => 'The Academic Year field is required.',
-            'academicyear_id.exists' => 'The selected Academic Year does not exist.',
-            'exam_name.max' => 'The  Exam Name must not exceed :max characters.',
-            'exam_sessions.required' => 'The Exam Session field is required.',
+        'exam_name.required' => 'The exam name is required.',
+        'exam_name.string' => 'The exam name must be a string.',
+        'exam_name.max' => 'The exam name may not be greater than 100 characters.',
+        'academicyear_id.required' => 'The academic year ID is required.',
+        'academicyear_id.exists' => 'The selected academic year ID is invalid.',
+        'status.required' => 'The status is required.',
+        'exam_sessions.required' => 'At least one exam session is required.',
         ];
         return $messages;
-        }
+    }
 
     public function resetinput()
     {
@@ -78,25 +79,26 @@ class AllExam extends Component
         $this->mode=$mode;
     }
 
-    public function add(Exam  $exam){
-        
+    public function add(Exam  $exam)
+    {      
         $validatedData = $this->validate();
-       
-        if ($validatedData) {
 
-        $exam->exam_name= $this->exam_name;         
-        $exam->academicyear_id= $this->academicyear_id;         
-        $exam->status= $this->status;
-        $exam->exam_sessions= $this->exam_sessions;
-        $exam->save();
-        $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->setmode('all');
+        if ($validatedData) 
+        {
+            $exam->exam_name= $this->exam_name;         
+            $exam->academicyear_id= $this->academicyear_id;         
+            $exam->status= $this->status;
+            $exam->exam_sessions= $this->exam_sessions;
+            $exam->save();
+            $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
+            $this->setmode('all');
+        }
     }
-}
 
-    public function edit(Exam $exam){
-
-        if ($exam) {
+    public function edit(Exam $exam)
+    {
+        if ($exam) 
+        {
             $this->exam_id=$exam->id;
             $this->exam_name = $exam->exam_name;
             $this->academicyear_id = $exam->academicyear_id;
@@ -106,23 +108,20 @@ class AllExam extends Component
         }
     }
 
-    public function update(Exam $exam){
-
-        $validatedData = $this->validate();
-       
+    public function update(Exam $exam)
+    {
+        $validatedData = $this->validate();      
         if ($validatedData) {
                    
-            $exam->update([
-                              
+            $exam->update([                         
                 'exam_name' => $this->exam_name,              
                 'academicyear_id' => $this->academicyear_id,              
                 'status' => $this->status,  
                 'exam_sessions' => $this->exam_sessions,                    
-            ]);
-          
+            ]);         
             $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
             $this->setmode('all');          
-    }
+        }
     }
 
     public function deleteconfirmation($id)
@@ -130,8 +129,7 @@ class AllExam extends Component
         $this->delete_id=$id;
         $this->dispatch('delete-confirmation');
     }
-    
-    
+       
     public function delete(Exam  $exam)
     {   
         $exam->delete();
@@ -149,17 +147,17 @@ class AllExam extends Component
     {  
         try
         {
-        $exam = Exam::withTrashed()->find($this->delete_id);
-        $exam->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Exam Deleted Successfully !!');
-    } catch
-    (\Illuminate\Database\QueryException $e) {
-
-        if ($e->errorInfo[1] == 1451) {
-
-            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-        } 
-    }
+            $exam = Exam::withTrashed()->find($this->delete_id);
+            $exam->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Exam Deleted Successfully !!');
+        } catch
+        (\Illuminate\Database\QueryException $e) 
+            {
+            if ($e->errorInfo[1] == 1451) 
+            {
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
 
@@ -208,7 +206,6 @@ class AllExam extends Component
         $this->academics=Academicyear::select('year_name','id')->where('active',1)->get();
 
         $exams=Exam::select('id','exam_name','exam_sessions','academicyear_id','status','deleted_at')
-        // ->with(['academicyear:year_name,id'])
         ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);

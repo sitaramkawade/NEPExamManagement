@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Exampanel;
 use App\Models\Academicyear;
 use App\Models\Papersubmission;
 use App\Models\Exampatternclass;
@@ -44,6 +45,11 @@ class Exam extends Model
     public function exampatternclasses()
     {
         return $this->hasMany(Exampatternclass::class)->withTrashed();
+    }
+    
+    public function exampanels()
+    {
+        return $this->hasMany(Exampanel::class)->withTrashed();
     }
     
     public function papersubmissions()

@@ -2,7 +2,11 @@
   <div>
     @if ($is_bank)
       <div class="flex items-center mb-2 gap-x-5 ">
-        <x-view-image-model-btn title="{{ $is_bank->file_name }}" i="1" src="{{ isset($is_bank->file_path) ? asset($is_bank->file_path) : asset('img/no-img.png') }}"> View </x-view-image-model-btn>
+        <form id="preview" name="preview" class="inline" action="{{ route('user.preview_question_paper') }}" method="post" target="_blank" >
+          @csrf
+          <input type="hidden" name="questionpaperbank" id="questionpaperbank" value="{{ $is_bank->id }}">
+          <x-table.view type="submit">View</x-table.view>
+        </form>
         @if (isset($is_bank->papersubmission->is_confirmed) && $is_bank->papersubmission->is_confirmed == 0)
           <x-table.delete wire:click='delete_question_paper_set_document({{ $is_bank->papersubmission_id }},{{ $is_bank->id }})'>Delete </x-table.delete>
         @endif
