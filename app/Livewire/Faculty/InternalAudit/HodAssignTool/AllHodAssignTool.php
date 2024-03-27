@@ -69,18 +69,10 @@ class AllHodAssignTool extends Component
     //     $this->validateOnly($propertyName);
     // }
 
-    // public function resetinput()
-    // {
-    //     $this->academicyear_id=null;
-    //     $this->faculty_id=null;
-    //     $this->subject_id=null;
-    //     $this->internaltooldocument_id=null;
-    //     $this->document_fileName=null;
-    //     $this->document_filePath=null;
-    //     $this->departmenthead_id=null;
-    //     $this->verifybyfaculty_id=null;
-    //     $this->verificationremark=null;
-    // }
+    public function resetinput()
+    {
+        $this->academicyear_id=null;
+    }
 
     // public function messages()
     // {
@@ -229,18 +221,18 @@ class AllHodAssignTool extends Component
     {
         // Find the IDs of all Facultyinternaldocument records related to the given internal_tool_master_id
         $uploaded_document_count = Facultyinternaldocument::whereHas('internaltooldocument', function ($query) use ($internal_tool_master_id) {
-            $query->where('internaltoolmaster_id', $internal_tool_master_id);
-        })->get()->count();
+            $query->where('internaltoolmaster_id', $internal_tool_master_id)
+                ->whereNotNull('document_fileName')
+                ->whereNotNull('document_filePath')
+                ->where('freeze_by_hod', '0');
+        })->count();
 
         $total_document_count = Internaltooldocument::whereHas('internaltoolmaster', function ($query) use ($internal_tool_master_id) {
             $query->where('id', $internal_tool_master_id);
-        })->get()->count();
-        if($uploaded_document_count === $total_document_count)
-        {
-            return true;
-        }else{
-            return false;
-        }
+        })->count();
+
+        // Return true if the counts match, false otherwise
+        return ($uploaded_document_count === $total_document_count);
     }
 
     public function restore($id)
@@ -329,13 +321,19 @@ class AllHodAssignTool extends Component
 
     public function render()
     {
-        // $faculty_internal_documents = Facultyinternaldocument::select('id','academicyear_id','subject_id','status')->with(['faculty:faculty_name,id','subject:subject_code,subject_name,id','academicyear:year_name,id','internaltooldocument.internaltooldocumentmaster:doc_name,id',])->when($this->search, function($query, $search){
-        //     $query->search($search);
-        // })->orderBy($this->sortColumn, $this->sortColumnBy)->withTrashed()->paginate($this->perPage);
+        if ($this->academicyear_id) {
+            $this->resetPage();
+            $faculty_internal_documents = Facultyinternaldocument::where('academicyear_id', $this->academicyear_id)
+                ->with(['faculty:faculty_name,id','subject:subject_code,subject_name,id','academicyear:year_name,id','internaltooldocument.internaltooldocumentmaster:doc_name,id'])
+                ->withTrashed()
+                ->paginate($this->perPage);
+            $groupedInternalDocuments = $faculty_internal_documents->groupBy('subject_id');
+        } else {
+            $this->dispatch('alert',type:'info',message:'Records Not Found This Academic Year !!'  );
+            $faculty_internal_documents = collect();
+            $groupedInternalDocuments = collect();
+        }
 
-        $faculty_internal_documents = Facultyinternaldocument::with(['faculty:faculty_name,id','subject:subject_code,subject_name,id','academicyear:year_name,id','internaltooldocument.internaltooldocumentmaster:doc_name,id',])->withTrashed()->paginate($this->perPage);
-        $groupedInternalDocuments = $faculty_internal_documents->groupBy('subject_id');
-
-        return view('livewire.faculty.internal-audit.hod-assign-tool.all-hod-assign-tool',compact('faculty_internal_documents','groupedInternalDocuments'))->extends('layouts.faculty')->section('faculty');
+        return view('livewire.faculty.internal-audit.hod-assign-tool.all-hod-assign-tool', compact('faculty_internal_documents', 'groupedInternalDocuments'))->extends('layouts.faculty')->section('faculty');
     }
 }
