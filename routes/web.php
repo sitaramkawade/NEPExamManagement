@@ -94,6 +94,7 @@ use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
 use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Livewire\Faculty\InternalAudit\HodAssignTool\AllHodAssignTool;
 use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
+use App\Livewire\User\QuestionPaperBankDownload\QuestionPaperBankDownload;
 use App\Http\Controllers\User\ExamFormStatistics\ExamFormReportViewController;
 use App\Http\Controllers\User\QuestionPaperBankPdf\QuestionPaperBankPdfController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
@@ -349,16 +350,20 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Exam Form Fee Head Statistics
   Route::get('/exam/form/fee/head/statistics',ExamFormFeeHeadReport::class)->name('exam_form_fee_head_statistics');
 
-  //Strong Room
+  //Question Paper Bank Downlaod
   Route::get('/strong/room',StrongRoom::class)->middleware('can:access-strong-room')->name('strong_room');
+  
+  //Strong Room
+  Route::get('/question/paper/bank/downlaod',QuestionPaperBankDownload::class)->name('question_paper_bank_download');
 
-  //Question Paper Bank Report
-  Route::get('/question/paper/bank/report',QuestionPaperBankReport::class)->name('question_paper_bank_report');
-
-   //Question Paper Bank Preview
+  //Question Paper Bank PDF Preview
   Route::post('/question/paper/bank/preview',[QuestionPaperBankPdfController::class,'preview_question_paper'])->name('preview_question_paper');
   
-
+  //Question Paper Bank PDF Download
+  Route::post('/question/paper/bank/download',[QuestionPaperBankPdfController::class,'download_question_paper'])->name('download_question_paper');
+    
+  //Question Paper Bank Report
+  Route::get('/question/paper/bank/report',QuestionPaperBankReport::class)->name('question_paper_bank_report');
 
   //All Subject Hod
   Route::get('/hod/appoint/subject',  AllHodAppointSubject::class)->name('all_hod_appoint_subjects');

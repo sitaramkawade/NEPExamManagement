@@ -1,12 +1,11 @@
 <div>
   <x-breadcrumb.breadcrumb>
     <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
-    <x-breadcrumb.link name="Strong Room's" />
+    <x-breadcrumb.link name="Question Paper Download's" />
   </x-breadcrumb.breadcrumb>
-  <x-card-header heading="Strong Room's" />
+  <x-card-header heading="Question Paper Download's" />
   <div>
     @if (!$papersubmissions->isEmpty())
-      <x-form wire:submit='approve_papaer_set()'>
         <x-table.frame a="0">
           <x-slot:body>
             <x-table.table>
@@ -16,8 +15,7 @@
                   <x-table.th>Subject</x-table.th>
                   @foreach ($pappersets as $set)
                     <x-table.th>
-                      <x-input-checkbox id="check_all" name="check_all" class=" h-6 w-6 ml-2" />
-                      {{ $set->set_name }}
+                      SET-{{ $set->set_name }}
                     </x-table.th>
                   @endforeach
                 </x-table.tr>
@@ -29,22 +27,23 @@
                     <x-table.td> {{ $papersubmission->subject->subject_name }}</x-table.td>
                     @foreach ($pappersets as $set)
                       @php
-                        $question_bank = $papersubmission
-                            ->questionbanks()
-                            ->where('set_id', $set->id)
-                            ->first();
+                        $question_bank = $papersubmission->questionbanks()->where('set_id', $set->id)->first();
                       @endphp
                       @if (isset($question_bank->set_id) && $question_bank->is_used == 0)
-                        <x-table.td>
-                          <x-input-checkbox name="question_bank.{{ $question_bank->id }}" wire:model="question_bank.{{ $question_bank->id }}" id="question_bank.{{ $question_bank->id }}" class="SET-{{ $set->set_name }}   h-6 w-6 mx-2" />
-                        </x-table.td>
-                      @elseif(isset($question_bank->is_used))
                         <x-table.td>
                           <x-status type="success" class="!p-0.5 ml-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                             </svg>
                           </x-status>
+                        </x-table.td>
+                      @elseif(isset($question_bank->is_used))
+                        <x-table.td>
+                          <form id="download" name="download" class="inline" action="{{ route('user.download_question_paper') }}" method="post" target="_blank" >
+                            @csrf
+                            <input type="hidden" name="questionpaperbank" id="questionpaperbank" value="{{ $question_bank->id }}">
+                            <x-table.download type="submit">Download</x-table.download>
+                          </form>
                         </x-table.td>
                       @else
                         <x-table.td>
@@ -66,21 +65,19 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                 </svg>
               </x-status>
-              <span class="h-5 mt-5 mx-2">Used Set</span>
+              <span class="h-5 mt-5 mx-2">Not Used Set</span>
               <x-status type="danger" class="!p-0.5 ml-2 h-5 mt-5">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                 </svg>
               </x-status>
               <span class="h-5 mt-5 mx-2">Not Uploaded</span>
-              <x-form-btn>Use Selected Paper Set For {{ isset($exam->exam_name) ? $exam->exam_name : '' }} Exam</x-form-btn>
             </div>
           </x-slot>
           <x-slot:footer>
             <x-table.paginate :data="$papersubmissions" />
           </x-slot>
         </x-table.frame>
-      </x-form>
       @php
         session()->forget('session-alert');
       @endphp

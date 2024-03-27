@@ -9,7 +9,8 @@ use App\Models\Examformmaster;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Jobs\SendEmailNotificationJob;
+use App\Jobs\User\SendEmailNotificationJob;
+
 
 class RazorPayController extends Controller
 {
