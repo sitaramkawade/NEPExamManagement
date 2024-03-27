@@ -74,7 +74,7 @@ class StrongRoom extends Component
     {   
 
         $currentDateTime = Carbon::now();
-        $intervalInMinutes = 500;
+        $intervalInMinutes =120;
         $startTime = $currentDateTime->toTimeString();
         $endTime = $currentDateTime->addMinutes($intervalInMinutes)->toTimeString(); 
 
@@ -84,8 +84,7 @@ class StrongRoom extends Component
         $exam = Exam::where('status', 1)->first();
         if ($exam) 
         {   
-            // $timeslot_ids=Timetableslot::whereBetween('start_time',[$startTime, $endTime])->pluck('id');
-            $timeslot_ids=Timetableslot::pluck('id');
+            $timeslot_ids=Timetableslot::whereBetween('start_time',[$startTime, $endTime])->pluck('id');
             $exam_patternclass_ids = $exam->exampatternclasses()->where('launch_status', 1)->pluck('id');
             $bucket_ids = Examtimetable::whereIn('timeslot_id', $timeslot_ids)->whereIn('exam_patternclasses_id', $exam_patternclass_ids)->whereDate('examdate',date('Y-m-d'))->pluck('subjectbucket_id');
             $subject_ids =Subjectbucket::whereIn('id',$bucket_ids)->pluck('subject_id');

@@ -95,6 +95,7 @@ use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Livewire\Faculty\InternalAudit\HodAssignTool\AllHodAssignTool;
 use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
 use App\Http\Controllers\User\ExamFormStatistics\ExamFormReportViewController;
+use App\Http\Controllers\User\QuestionPaperBankPdf\QuestionPaperBankPdfController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
@@ -353,6 +354,11 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //Question Paper Bank Report
   Route::get('/question/paper/bank/report',QuestionPaperBankReport::class)->name('question_paper_bank_report');
+
+   //Question Paper Bank Preview
+  Route::post('/question/paper/bank/preview',[QuestionPaperBankPdfController::class,'preview_question_paper'])->name('preview_question_paper');
+  
+
 
   //All Subject Hod
   Route::get('/hod/appoint/subject',  AllHodAppointSubject::class)->name('all_hod_appoint_subjects');
