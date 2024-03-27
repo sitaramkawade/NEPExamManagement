@@ -75,8 +75,8 @@ class StrongRoom extends Component
 
         $currentDateTime = Carbon::now();
         $intervalInMinutes =120;
-        $startTime = $currentDateTime->toTimeString();
-        $endTime = $currentDateTime->addMinutes($intervalInMinutes)->toTimeString(); 
+        $startTime = \DateTime::createFromFormat('H:i:s',  $currentDateTime->toTimeString())->format('H:i:s.u');
+        $endTime = \DateTime::createFromFormat('H:i:s', $currentDateTime->addMinutes($intervalInMinutes)->toTimeString())->format('H:i:s.u');
 
         $pappersets = Paperset::get();
         $papersubmissions = collect();
