@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
             SubjectverticalSeeder::class,                   // Subjectbuckettype
             SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
             SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
-            // AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
+            // AdmissionDataSeeder::class,                  // User,College,Patternclass,Subject,Academicyear
             AshutoshAdmissionDataSeeder::class,             // User,College,Patternclass,Subject,Academicyear
             StudentHelplineSeeder::class,                   // Student , Studenthelplinequery ,User
             StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
@@ -91,6 +91,8 @@ class DatabaseSeeder extends Seeder
             InternalToolAuditorSeeder::class,               // Patternclass, Faculty, Academicyear,
             CourseTypeMasterSeeder::class,
             DeptPrefixSeeder::class,
+            FacultyinternaldocumentSeeder::class,           // Academicyear, Faculty, Subject, Internaltooldocumentmaster,
+            ExamPanelSeeder::class,                         //user , faculty , examorderpost , subject
             AssignToolSeeder::class,                        // Academicyear, Faculty, Subject, Internaltooldocumentmaster,
             FacultyinternaldocumentSeeder::class,
         ]);
