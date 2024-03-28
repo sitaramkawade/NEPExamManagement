@@ -20,7 +20,6 @@ class AllPaperSet extends Component
     public $sortColumn="set_name";
     public $sortColumnBy="ASC";
     public $ext;
-
     public $set_name;
 
     #[Locked]
@@ -113,11 +112,11 @@ class AllPaperSet extends Component
     public function forcedelete()
     {  try
         {
-        $paperset = Paperset::withTrashed()->find($this->delete_id);
-        $paperset->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Paper Set Deleted Successfully !!');
-        } catch
-        (\Illuminate\Database\QueryException $e) {
+            $paperset = Paperset::withTrashed()->find($this->delete_id);
+            $paperset->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Paper Set Deleted Successfully !!');
+            } catch
+            (\Illuminate\Database\QueryException $e) {
     
             if ($e->errorInfo[1] == 1451) {
     
@@ -155,7 +154,7 @@ class AllPaperSet extends Component
     
     public function render()
     {
-        $papersets=Paperset::select('id','set_name')->when($this->search, function ($query, $search) {
+        $papersets=Paperset::select('id','set_name','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         return view('livewire.user.paper-set.all-paper-set',compact('papersets'))->extends('layouts.user')->section('user');

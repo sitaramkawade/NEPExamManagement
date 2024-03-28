@@ -17,36 +17,49 @@ class SendEmailJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $examOrderIds;
+    protected $details;
 
-    public function __construct($examOrderIds)
+    // public function __construct($examOrderIds)
+    // {
+    //     $this->examOrderIds = $examOrderIds;
+       
+    // }
+
+    public function __construct($details)
     {
-        $this->examOrderIds = $examOrderIds;
+        $this->details = $details;
        
     }
 
     public function handle(): void
     {
-        foreach ($this->examOrderIds as $examOrderId) {
+        Mail::to(trim($this->details['email']))
+        ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
+        ->send(new MyTestMail($this->details));
+
+
+
+        // foreach ($this->examOrderIds as $examOrderId) {
           
-            $examOrder = Examorder::find($examOrderId);
-           if($examOrder)
-            {
-             $url = url('user/exam/order/'.$examOrder->id.'/'.$examOrder->token);
+        //     $examOrder = Examorder::find($examOrderId);
+        //     if($examOrder)
+        //     {
+        //      $url = url('user/exam/order/'.$examOrder->id.'/'.$examOrder->token);
                 
-                $details = [
-                    'subject' => 'Hello',
-                    'title' => 'Your Appointment for Cancel Examination Work (Sangamner College Mail Notification)',
-                    'body' => 'This is sample content we have added for this test mail',
-                    'examorder_id' => $examOrder->id,
-                    'url' => $url,
-                ];
+        //         $details = [
+        //             'subject' => 'Hello',
+        //             'title' => 'Your Appointment for Cancel Examination Work (Sangamner College Mail Notification)',
+        //             'body' => 'This is sample content we have added for this test mail',
+        //             'examorder_id' => $examOrder->id,
+        //             'url' => $url,
+        //         ];
 
-                Mail::to(trim($examOrder->exampanel->faculty->email))
-                ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
-                ->send(new MyTestMail($details));
+        //         Mail::to(trim($examOrder->exampanel->faculty->email))
+        //         ->cc(['exam.unit@sangamnercollege.edu.in', 'coeautonoumous@sangamnercollege.edu.in'])
+        //         ->send(new MyTestMail($details));
 
-            }
-        }   
+        //     }
+        // }   
         
     }
 }

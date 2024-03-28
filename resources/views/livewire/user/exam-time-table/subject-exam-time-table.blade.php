@@ -14,7 +14,7 @@
         <x-back-btn wire:click="setmode('all')" />
     </x-card-header>
     <x-form wire:submit="update({{ $time_id  }})">
-           @include('livewire.user.exam-time-table.subject-exam-time-table-edit-form')
+        @include('livewire.user.exam-time-table.subject-exam-time-table-edit-form')
     </x-form>
 
     @elseif($mode=='bulkedit')
@@ -29,7 +29,7 @@
     <div>
         <x-card-header heading=" All Subject Wise Exam Time Table's">
             <x-add-btn wire:click="setmode('add')" />
-            <x-table.edit i="0" wire:click="setmode('bulkedit')" > Edit </x-table.edit> 
+            <x-table.edit i="0" wire:click="setmode('bulkedit')"> Edit </x-table.edit>
         </x-card-header>
         <x-table.frame>
             <x-slot:header>
@@ -39,7 +39,6 @@
                         <x-table.thead>
                             <x-table.tr>
                                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">No.</x-table.th>
-                                {{-- <x-table.th wire:click="sort_column('exam_patternclasses_id')" name="exam_patternclasses_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Exam Pattern Class </x-table.th> --}}
                                 <x-table.th wire:click="sort_column('exam_patternclasses_id')" name="exam_patternclasses_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Pattern Class </x-table.th>
                                 <x-table.th wire:click="sort_column('subjectbucket_id')" name="subjectbucket_id" :sort="$sortColumn" :sort_by="$sortColumnBy">Subject </x-table.th>
                                 <x-table.th wire:click="sort_column('examdate')" name="examdate" :sort="$sortColumn" :sort_by="$sortColumnBy">Date </x-table.th>
@@ -53,27 +52,19 @@
                                 <x-table.td> {{ $examtimetable->subjectbucket_id }}</x-table.td>
                                 <x-table.td class="text-wrap">{{ isset($examtimetable->exampatternclass->patternclass->pattern->pattern_name) ? $examtimetable->exampatternclass->patternclass->pattern->pattern_name : '-' }} {{ isset($examtimetable->exampatternclass->patternclass->courseclass->classyear->classyear_name) ? $examtimetable->exampatternclass->patternclass->courseclass->classyear->classyear_name : '-' }} {{ isset($examtimetable->exampatternclass->patternclass->courseclass->course->course_name) ? $examtimetable->exampatternclass->patternclass->courseclass->course->course_name : '-' }}</x-table.td>
                                 <x-table.td class="text-wrap">
-                                   {{ isset($examtimetable->subjectbucket->subject->subject_name) ? $examtimetable->subjectbucket->subject->subject_name : '-' }} 
+                                    {{ isset($examtimetable->subjectbucket->subject->subject_name) ? $examtimetable->subjectbucket->subject->subject_name : '-' }}
                                 </x-table.td>
                                 <x-table.td> {{isset($examtimetable->examdate) ? $examtimetable->examdate:'-' }}</x-table.td>
-                                
+
                                 <x-table.td> {{isset($examtimetable->timetableslot->timeslot) ? $examtimetable->timetableslot->timeslot : '-'}}</x-table.td>
                                 <x-table.td>
-
-                                    {{-- @if ($examtimetable->deleted_at)
-                                    <x-table.restore wire:click="restore({{ $examtimetable->id }})" />
-                                    @else
-                                    <x-table.edit wire:click="edit({{ $examtimetable->id }})" />
-                                    <x-table.archive wire:click="delete({{ $examtimetable->id }})" />
-                                    @endif --}}
-
                                     @if ($examtimetable->deleted_at)
                                     <x-table.delete wire:click="deleteconfirmation({{ $examtimetable->id }})" />
                                     <x-table.restore wire:click="restore({{ $examtimetable->id }})" />
                                     @else
                                     <x-table.edit wire:click="edit({{ $examtimetable->id }})" />
                                     <x-table.archive wire:click="delete({{ $examtimetable->id }})" />
-                                    @endif 
+                                    @endif
                                 </x-table.td>
                             </x-table.tr>
                             @empty
@@ -85,7 +76,7 @@
                     </x-table.table>
                     </x-slot>
                     <x-slot:footer>
-                            <x-table.paginate :data="$examtimetables" />
+                        <x-table.paginate :data="$examtimetables" />
                         </x-slot>
         </x-table.frame>
     </div>

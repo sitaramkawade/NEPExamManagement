@@ -17,22 +17,45 @@ class ExamTimeTableSeeder extends Seeder
      */
     public function run(): void
     {
+        Examtimetable::create([
+            'subjectbucket_id' => 3,
+            'exam_patternclasses_id' => 1,
+            'examdate' =>now(),
+            'timeslot_id' => 1 ,
+            'status' => 1,
+        ]);
+        
+        Examtimetable::create([
+            'subjectbucket_id' => 4,
+            'exam_patternclasses_id' => 1,
+            'examdate' =>now(),
+            'timeslot_id' => 1 ,
+            'status' => 1,
+        ]);
 
-        $faker = Faker::create();
+        Examtimetable::create([
+            'subjectbucket_id' => 9,
+            'exam_patternclasses_id' => 1,
+            'examdate' =>now(),
+            'timeslot_id' => 1 ,
+            'status' => 1,
+        ]);
 
-        for ($i = 0; $i < 100; $i++) {
+        Examtimetable::create([
+            'subjectbucket_id' => 10,
+            'exam_patternclasses_id' => 1,
+            'examdate' =>now(),
+            'timeslot_id' => 1 ,
+            'status' => 1,
+        ]);
 
-            $exampatternclassIds = Exampatternclass::pluck('id')->toArray();
-            $subjectIds = Subject::pluck('id')->toArray();
-            $timeslotIds = Timetableslot::pluck('id')->toArray();
-
-            Examtimetable::create([
-                'subject_id' => rand(1, count($subjectIds)),
-                'exam_patternclasses_id' => rand(1, count($exampatternclassIds)),
-                'examdate' => $faker->dateTimeBetween('now', '+30 days'),
-                'timeslot_id' => rand(1, count($timeslotIds)),
-                'status' => $faker->boolean,
-            ]);
-        }
+        Examtimetable::create([
+            'subjectbucket_id' => 20,
+            'exam_patternclasses_id' => 1,
+            'examdate' =>now(),
+            'timeslot_id' => 1 ,
+            'status' => 1,
+        ]);
+        
     }
 }

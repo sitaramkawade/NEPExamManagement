@@ -49,24 +49,29 @@ class AllPattern extends Component
     public function messages()
     {   
         $messages = [
-            'pattern_name.required' => 'The Pattern Name field is required.',
-            'pattern_name.string' => 'The Pattern Name must be a string.',
-            'pattern_name.max' => 'The  Pattern Name must not exceed :max characters.',
-            'pattern_startyear.required' => 'The Pattern Name field is required.',
-            'pattern_valid.required' => 'The Pattern Name field is required.',
-            'college_id.required' => 'The College field is required.',
-            'college_id.exists' => 'The selected Programme does not exist.',
+            'pattern_name.required' => 'The pattern name is required.',
+            'pattern_name.string' => 'The pattern name must be a string.',
+            'pattern_name.max' => 'The pattern name may not be greater than 50 characters.',
+            'pattern_startyear.required' => 'The pattern start year is required.',
+            'pattern_startyear.string' => 'The pattern start year must be a string.',
+            'pattern_startyear.max' => 'The pattern start year may not be greater than 4 characters.',
+            'pattern_valid.required' => 'The pattern validity is required.',
+            'pattern_valid.string' => 'The pattern validity must be a string.',
+            'pattern_valid.max' => 'The pattern validity may not be greater than 4 characters.',
+            'status.required' => 'The status is required.',
+            'college_id.required' => 'The college ID is required.',
+            'college_id.exists' => 'The selected college ID is invalid.',
         ];
         return $messages;
     }
 
     public function resetinput()
     {
-         $this->pattern_name=null;
-         $this->pattern_startyear=null;
-         $this->pattern_valid=null;
-         $this->status=null;
-         $this->college_id=null;
+        $this->pattern_name=null;
+        $this->pattern_startyear=null;
+        $this->pattern_valid=null;
+        $this->status=null;
+        $this->college_id=null;
     }
 
     public function updated($propertyName)
@@ -83,33 +88,23 @@ class AllPattern extends Component
         $this->mode=$mode;
     }
 
-    public function resetInputFields()
+    public function add()
     {
-        // Reset the specified properties to their initial state
-        $this->reset(['pattern_name', 'pattern_startyear' ,'pattern_valid','status','college_id']);
-    }
-
-    public function mount()
-    {
-        $this->colleges = College::all();    
-    }
-
-    public function add(){
-
         $validatedData = $this->validate();
        
-        if ($validatedData) {
-        $pattern= new Pattern;    
-        $pattern->pattern_name= $this->pattern_name;
-        $pattern->pattern_startyear= $this->pattern_startyear;
-        $pattern->pattern_valid= $this->pattern_valid;
-        $pattern->college_id= $this->college_id;      
-        $pattern->status= $this->status;
-        $pattern->save();
+        if ($validatedData)
+        {
+            $pattern= new Pattern;    
+            $pattern->pattern_name= $this->pattern_name;
+            $pattern->pattern_startyear= $this->pattern_startyear;
+            $pattern->pattern_valid= $this->pattern_valid;
+            $pattern->college_id= $this->college_id;      
+            $pattern->status= $this->status;
+            $pattern->save();
 
-        $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->setmode('all');
-    }
+            $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
+            $this->setmode('all');
+        }
     }
     
     public function Status(Pattern $pattern)
@@ -149,21 +144,20 @@ class AllPattern extends Component
     {  
         try
         {
-        $pattern = Pattern::withTrashed()->find($this->delete_id);
-        $pattern->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Pattern Deleted Successfully !!');
+            $pattern = Pattern::withTrashed()->find($this->delete_id);
+            $pattern->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Pattern Deleted Successfully !!');
         } catch
-        (\Illuminate\Database\QueryException $e) {
-
-        if ($e->errorInfo[1] == 1451) {
-
-            $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-        } 
+        (\Illuminate\Database\QueryException $e)
+        {
+            if ($e->errorInfo[1] == 1451) 
+            {
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
-    }
 
-    public function edit(Pattern $pattern){
-        
+    public function edit(Pattern $pattern){       
         if($pattern)
         { 
             $this->pattern_id=$pattern->id;
@@ -176,10 +170,10 @@ class AllPattern extends Component
         }
     }
 
-    public function update(Pattern  $pattern){
-       
+    public function update(Pattern  $pattern){      
         $validatedData= $this->validate();
-        if ($validatedData) {        
+        if ($validatedData) 
+        {        
             $pattern->update([
                 'pattern_name' => $this->pattern_name,
                 'pattern_startyear' => $this->pattern_startyear,
@@ -227,7 +221,7 @@ class AllPattern extends Component
         $this->colleges=College::where('status',1)->pluck('college_name','id');
 
         $patterns=Pattern::select('id','pattern_name','pattern_startyear','pattern_valid','college_id','status','deleted_at')
-       -> when($this->search, function ($query, $search) {
+        ->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 
