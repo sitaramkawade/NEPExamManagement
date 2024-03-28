@@ -25,7 +25,7 @@ class Questionpaperbank extends Model
         'file_path',
         'file_name',
         'user_id',
-        'faculty_id',
+        'chairman_id',
         'is_used',
         'print_date',
         'exam_date',
@@ -53,7 +53,7 @@ class Questionpaperbank extends Model
     
     public function faculty(): BelongsTo
     {
-        return $this->belongsTo(Faculty::class,'faculty_id','id')->withTrashed();
+        return $this->belongsTo(Faculty::class,'chairman_id','id')->withTrashed();
     }
 
 

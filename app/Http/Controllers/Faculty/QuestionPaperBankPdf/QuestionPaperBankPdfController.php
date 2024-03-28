@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\QuestionPaperBankPdf;
+namespace App\Http\Controllers\Faculty\QuestionPaperBankPdf;
 
 use Mpdf\Mpdf;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class QuestionPaperBankPdfController extends Controller
     {   
         $questionpaperbank =Questionpaperbank::find($request->questionpaperbank);
 
-        if($questionpaperbank->papersubmission->is_confirmed!==1 && $questionpaperbank->user_id === Auth::guard('user')->user()->id)
+        if($questionpaperbank->papersubmission->is_confirmed!==1 && $questionpaperbank->chairman_id === Auth::guard('faculty')->user()->id)
         {
             if(file_exists($questionpaperbank->file_path))
             {
@@ -35,7 +35,7 @@ class QuestionPaperBankPdfController extends Controller
     {   
         $questionpaperbank = Questionpaperbank::find($request->questionpaperbank);
     
-        if($questionpaperbank && $questionpaperbank->papersubmission->is_confirmed == 1 && $questionpaperbank->user_id === Auth::guard('user')->user()->id)
+        if($questionpaperbank && $questionpaperbank->papersubmission->is_confirmed == 1)
         {
             if(file_exists($questionpaperbank->file_path))
             {   
@@ -45,15 +45,21 @@ class QuestionPaperBankPdfController extends Controller
                 {
                     $file_path = $questionpaperbank->file_path;
 
-                    return response()->download($file_path);
+                    $questionpaperbank->print_date=date('Y-m-d');
+                    $questionpaperbank->print_by=Auth::guard('faculty')->user()->id;
+                    $questionpaperbank->update();
+                    return response()->download($file_path,str_replace(' ', '_', trim($questionpaperbank->file_name)).'.pdf');
                 }
                 else
                 {
                     $watermarkedPdf = $this->addWatermarkToPdfFromPath($questionpaperbank->file_path, $request);
                     if ($watermarkedPdf) {
+                        $questionpaperbank->print_date=date('Y-m-d');
+                        $questionpaperbank->print_by=Auth::guard('faculty')->user()->id;
+                        $questionpaperbank->update();
                         return response()->streamDownload(function () use ($watermarkedPdf) {
                             echo $watermarkedPdf;
-                        }, 'watermarked.pdf');
+                        }, str_replace(' ', '_', trim($questionpaperbank->file_name)).'.pdf');
                     } else {
     
                         return abort(500, 'Failed to add watermark to PDF');
@@ -76,6 +82,7 @@ class QuestionPaperBankPdfController extends Controller
     {
         $mpdf = new Mpdf();
         $mpdf->SetProtection(array(), 'user', 'Admin');
+        // $mpdf->SetProtection(array('copy','print','modify','annot-forms','fill-forms','extract','assemble','print-highres'), 'user', 'Admin');
         $watermark = $request->ip('REMOTE_ADDR') . ' - ' . date('d/m/Y h:i:s A');
         $watermarkImagePath = public_path('img/shikshan-logo.png');
     
@@ -96,10 +103,10 @@ class QuestionPaperBankPdfController extends Controller
             $mpdf->UseTemplate($tplidx);
             $imageWidth = 200;
             $imageHeight = 100;
-            $opacity = 0.2;
-            $mpdf->SetAlpha($opacity);
-            $mpdf->Image($watermarkImagePath, 50, 50, $imageWidth, $imageHeight);
-            $mpdf->SetAlpha(1);
+            // $opacity = 0.2;
+            // $mpdf->SetAlpha($opacity);
+            // $mpdf->Image($watermarkImagePath, 50, 50, $imageWidth, $imageHeight);
+            // $mpdf->SetAlpha(1);
             $mpdf->SetWatermarkText($watermark, 0.2);
             $mpdf->showWatermarkText = true;
     

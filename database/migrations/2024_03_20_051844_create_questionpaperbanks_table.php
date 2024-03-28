@@ -23,11 +23,13 @@ return new class extends Migration
             $table->foreign('set_id')->references('id')->on('papersets');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('faculty_id')->unsigned()->nullable();//Custodian
-            $table->foreign('faculty_id')->references('id')->on('faculties');
+            $table->bigInteger('chairman_id')->unsigned()->nullable();//Custodian
+            $table->foreign('chairman_id')->references('id')->on('faculties');
             $table->tinyInteger('is_used')->default(1); //If 1 means available
-            $table->timestamp('print_date')->nullable();
-            $table->timestamp('exam_date')->nullable();
+            $table->date('print_date')->nullable();
+            $table->bigInteger('print_by')->unsigned()->nullable();
+            $table->foreign('print_by')->references('id')->on('faculties');
+            $table->date('exam_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
