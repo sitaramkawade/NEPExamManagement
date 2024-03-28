@@ -17,22 +17,18 @@ class ExamPanelSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        Exampanel::create([
+        'faculty_id' => 139,
+        'examorderpost_id' => 1,
+        'subject_id' => 1436,
+        'active_status' => 1,
+        ]);
 
-        for ($i = 0; $i < 20; $i++) {
-
-            $faculty = Faculty::pluck('id')->toArray();
-            $examorderpost = Examorderpost::pluck('id')->toArray();
-            $subject = Subject::pluck('id')->toArray();
-
-            Exampanel::create([
-
-                'faculty_id' => rand(1, count($faculty)),
-                'examorderpost_id' => rand(1, count($examorderpost)),
-                'subject_id' => rand(1, count($subject)),
-                'active_status' => $faker->randomNumber(1),
-
-            ]);
-        }
+        Exampanel::create([
+        'faculty_id' => 140,
+        'examorderpost_id' => 1,
+        'subject_id' => 1437,
+        'active_status' => 1,
+        ]);
     }
 }

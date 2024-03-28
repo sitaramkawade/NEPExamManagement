@@ -15,13 +15,6 @@ class UploadDocumentRow extends Component
 
     public $document_to_upload;
 
-    public $previewLoaded = false;
-
-    public function updatedDocumentToUpload()
-    {
-        $this->previewLoaded = true;
-    }
-
     protected function rules()
     {
         return [
@@ -64,7 +57,6 @@ class UploadDocumentRow extends Component
                     'document_fileName' => $fileName,
                     'document_filePath' => 'storage/' . $path . $fileName,
                     'updated_at' => now(),
-                    'status' => 1,
                 ]);
 
                 $this->resetinput();

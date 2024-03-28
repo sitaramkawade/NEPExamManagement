@@ -52,17 +52,22 @@ class AllUniversity extends Component
     public function messages()
     {   
         $messages = [
-            'university_name.required' => 'The University Name field is required.',
-            'university_name.string' => 'The University Name must be a string.',
-            'university_name.max' => 'The  University Name must not exceed :max characters.',
-            'university_address.required' => 'The University Address field is required.',
-            'university_address.string' => 'The University Address must be a string.',
-            'university_address.max' => 'The  University Address must not exceed :max characters.',
-            'university_website_url.required' => 'The University Website Url field is required.',
-            'university_website_url.max' => 'The University Website Url not exceed :max characters.',
-            'university_contact_no.required' => 'The University Contact Number field is required.',
-            'university_logo_path.required' => 'The University Logo is required.',
-            'university_email.required' => 'The University Email is required.',
+            'university_name.required' => 'The university name is required.',
+            'university_name.string' => 'The university name must be a string.',
+            'university_name.max' => 'The university name may not be greater than 255 characters.',
+            'university_address.required' => 'The university address is required.',
+            'university_address.string' => 'The university address must be a string.',
+            'university_address.max' => 'The university address may not be greater than 255 characters.',
+            'university_website_url.required' => 'The university website URL is required.',
+            'university_website_url.string' => 'The university website URL must be a string.',
+            'university_website_url.max' => 'The university website URL may not be greater than 100 characters.',
+            'university_email.required' => 'The university email is required.',
+            'university_email.email' => 'The university email must be a valid email address.',
+            'university_contact_no.required' => 'The university contact number is required.',
+            'university_contact_no.max' => 'The university contact number may not be greater than 50 characters.',
+            'university_logo_path.required' => 'The university logo is required.',
+            'university_logo_path.max' => 'The university logo path may not be greater than 250 characters.',
+            'university_logo_path.mimes' => 'The university logo must be a file of type: png, jpg, jpeg.',
         ];
         return $messages;
     }
@@ -90,99 +95,96 @@ class AllUniversity extends Component
         }
         $this->mode=$mode;
     }
-
-    public function resetInputFields()
-    {
-        // Reset the specified properties to their initial state
-        $this->reset(['university_name', 'university_address','university_website_url','university_address',
-        'university_email','university_contact_no','university_logo_path']);
-    }
     
     public function add(){
         $validatedData= $this->validate();
 
-        if ($validatedData) { 
+        if ($validatedData) 
+        { 
 
-        $university= new University;
-        $university->university_name= $this->university_name;
-        $university->university_address=  $this->university_address;
-        $university->university_website_url=  $this->university_website_url;
-        $university->university_email= $this->university_email;
-        $university->university_contact_no= $this->university_contact_no;
-        $university->status= $this->status;
+            $university= new University;
+            $university->university_name= $this->university_name;
+            $university->university_address=  $this->university_address;
+            $university->university_website_url=  $this->university_website_url;
+            $university->university_email= $this->university_email;
+            $university->university_contact_no= $this->university_contact_no;
+            $university->status= $this->status;
         
-        if ($this->university_logo_path) {
-           
-            $path = 'user/profile/photo/';         
-            $fileName = 'user-' . time(). '.' . $this->university_logo_path->getClientOriginalExtension();               
-            $this->university_logo_path->storeAs($path, $fileName, 'public');         
-            $university->university_logo_path = 'storage/' . $path . $fileName;
-            $this->reset('university_logo_path');
-        }
+            if ($this->university_logo_path) 
+            {
+            
+                $path = 'user/profile/photo/';         
+                $fileName = 'user-' . time(). '.' . $this->university_logo_path->getClientOriginalExtension();               
+                $this->university_logo_path->storeAs($path, $fileName, 'public');         
+                $university->university_logo_path = 'storage/' . $path . $fileName;
+                $this->reset('university_logo_path');
+            }
         
-        $university->save();
+            $university->save();
 
-        $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
-        $this->setmode('all');
+            $this->dispatch('alert',type:'success',message:'Added Successfully !!'  );
+            $this->setmode('all');
        
+        }
     }
-}
     
-public function deleteconfirmation($id)
-{
-    $this->delete_id=$id;
-    $this->dispatch('delete-confirmation');
-}
-
-
-public function delete(University  $university)
-{   
-    $university->delete();
-    $this->dispatch('alert',type:'success',message:'University Soft Deleted Successfully !!');
-}
-
-public function restore($id)
-{   
-    $university = University::withTrashed()->find($id);
-    $university->restore();
-    $this->dispatch('alert',type:'success',message:'University Restored Successfully !!');
-}
-
-public function forcedelete()
-{  
-    try
+    public function deleteconfirmation($id)
     {
-    $university = University::withTrashed()->find($this->delete_id);
-    $university->forceDelete();
-    $this->dispatch('alert',type:'success',message:'University Deleted Successfully !!');
-    } catch
-    (\Illuminate\Database\QueryException $e) {
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
+    }
 
-    if ($e->errorInfo[1] == 1451) {
 
-        $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
-    } 
-}
-}
+    public function delete(University  $university)
+    {   
+        $university->delete();
+        $this->dispatch('alert',type:'success',message:'University Soft Deleted Successfully !!');
+    }
+
+    public function restore($id)
+    {   
+        $university = University::withTrashed()->find($id);
+        $university->restore();
+        $this->dispatch('alert',type:'success',message:'University Restored Successfully !!');
+    }
+
+    public function forcedelete()
+    {  
+        try
+        {
+            $university = University::withTrashed()->find($this->delete_id);
+            $university->forceDelete();
+            $this->dispatch('alert',type:'success',message:'University Deleted Successfully !!');
+        } catch
+        (\Illuminate\Database\QueryException $e) 
+        {
+            if ($e->errorInfo[1] == 1451)
+            {
+
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
+    }
 
     public function edit(University $university){
 
 
-        if ($university) {
-             if($university->university_logo_path){
-               $this->can_update=1;
-            $this->university_id=$university->id;
-            $this->university_name = $university->university_name;
-            $this->university_email = $university->university_email;
-            $this->university_contact_no = $university->university_contact_no;
-            $this->university_website_url = $university->university_website_url;
-            $this->university_logo_path_old = $university->university_logo_path;
-            $this->university_address = $university->university_address;
-            $this->status = $university->status;
-            $this->setmode('edit');
-           
+        if ($university) 
+        {
+             if($university->university_logo_path)
+             {
+                $this->can_update=1;
+                $this->university_id=$university->id;
+                $this->university_name = $university->university_name;
+                $this->university_email = $university->university_email;
+                $this->university_contact_no = $university->university_contact_no;
+                $this->university_website_url = $university->university_website_url;
+                $this->university_logo_path_old = $university->university_logo_path;
+                $this->university_address = $university->university_address;
+                $this->status = $university->status;
+                $this->setmode('edit');          
              }
-    }
+        }
     }
 
     public function update(University  $university){
@@ -238,10 +240,6 @@ public function forcedelete()
         $this->sortColumnBy=="ASC";
     }
 
-    public function updatedSearch()
-    {
-        $this->resetPage();
-    }
 
     public function export()
     {   

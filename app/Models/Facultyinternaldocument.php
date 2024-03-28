@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Faculty;
 use App\Models\Hodappointsubject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -24,6 +25,8 @@ class Facultyinternaldocument extends Model
         'departmenthead_id',
         'verifybyfaculty_id',
         'verificationremark',
+        'freeze_by_faculty',
+        'freeze_by_hod',
         'status',
     ];
 
@@ -39,12 +42,7 @@ class Facultyinternaldocument extends Model
 
     public function academicyear()
     {
-        return $this->belongsTo(Academicyear::class,'academicyear_id','id')->withTrashed();
-    }
-
-    public function internaltooldocumentmaster():BelongsTo
-    {
-        return $this->belongsTo(Internaltooldocumentmaster::class,'internaltooldocument_id','id');
+        return $this->belongsTo(DocumentAcademicYear::class,'academicyear_id','id')->withTrashed();
     }
 
     public function internaltooldocument():BelongsTo
@@ -55,6 +53,11 @@ class Facultyinternaldocument extends Model
     public function departmenthead():BelongsTo
     {
         return $this->belongsTo(Hodappointsubject::class,'departmenthead_id','id');
+    }
+
+    public function verifybyfaculty():BelongsTo
+    {
+        return $this->belongsTo(Faculty::class,'verifybyfaculty_id','id');
     }
 
     public function scopeSearch(Builder $query, string $search)

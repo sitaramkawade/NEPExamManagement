@@ -153,7 +153,7 @@ class ExamPatternclassSeeder extends Seeder
             ]);
 
             Exampatternclass::create([
-                'exam_id' => 4,
+                'exam_id' => 1,
                 'patternclass_id' => 11,
                 'result_date' => now(),
                 'launch_status' => 1,
@@ -191,7 +191,7 @@ class ExamPatternclassSeeder extends Seeder
             ]);
 
             Exampatternclass::create([
-                'exam_id' => 6,
+                'exam_id' => 1,
                 'patternclass_id' => 12,
                 'result_date' => now(),
                 'launch_status' => 1,

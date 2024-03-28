@@ -35,16 +35,20 @@ class AllCredit extends Component
         'credit' => ['required','numeric','between:0.00,9999.99'],
         'marks' =>  ['required','numeric','between:0.00,9999.99'],
         'passing' => ['required','max:5'],
-
-         ];
+        ];
     }
 
     public function messages()
     {   
         $messages = [
-            'credit.required' => 'The Credit field is required.',
-            'marks.required' => 'The Marks field is required.',
-            'passing.required' => 'The Passing field is required.',    
+            'credit.required' => 'The credit field is required.',
+            'credit.numeric' => 'The credit must be a number.',
+            'credit.between' => 'The credit must be between 0.00 and 9999.99.',
+            'marks.required' => 'The marks field is required.',
+            'marks.numeric' => 'The marks must be a number.',
+            'marks.between' => 'The marks must be between 0.00 and 9999.99.',
+            'passing.required' => 'The passing field is required.',
+            'passing.max' => 'The passing field may not be greater than 5 characters.',   
         ];
         return $messages;
     }
@@ -53,8 +57,7 @@ class AllCredit extends Component
     {
         $this->credit=null;
         $this->marks=null;
-        $this->passing=null;
-      
+        $this->passing=null;     
     }
 
     public function updated($property)
@@ -137,12 +140,12 @@ class AllCredit extends Component
     {  
         try
         {
-        $credits = Subjectcredit::withTrashed()->find($this->delete_id);
-        $credits->forceDelete();
-        $this->dispatch('alert',type:'success',message:'Credit Deleted Successfully !!');
+            $credits = Subjectcredit::withTrashed()->find($this->delete_id);
+            $credits->forceDelete();
+            $this->dispatch('alert',type:'success',message:'Credit Deleted Successfully !!');
         } catch
-        (\Illuminate\Database\QueryException $e) {
-    
+            (\Illuminate\Database\QueryException $e)
+        {
             if ($e->errorInfo[1] == 1451) {
     
                 $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');

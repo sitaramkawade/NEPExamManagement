@@ -254,6 +254,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Generate Exam Order PDF
   Route::get('exam/order/{id}/{token}', [ExamOrderPdfController::class, 'order'])->name('examorder');
 
+  //Generate merge order 
+  Route::get('merge/order/{id}/{token}', [ExamOrderPdfController::class, 'merge'])->name('mergeorder');
+
   //Cancel Exam Order
   Route::get('cancel/exam/order/{id}',[ExamOrderPdfController::class,'cancelorder'])->name('cancelorder');
 

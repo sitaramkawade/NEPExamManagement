@@ -95,23 +95,23 @@ class GenerateFacultyOrder extends Component
 
         if ($exampanel->subject->patternclass)  
         {
-            // $examids = Exam::where('status',1)->pluck('id')->toArray();
-            $exampatternclasses = $exampanel->subject->patternclass->examPatternClasses->where('launch_status', 1);
-            // dd($exampatternclasses);
+            $exam = Exam::where('status',1)->first();
+        
+            $exampatternclasses= Exampatternclass::where('exam_id',$exam->id)->where('patternclass_id',$exampanel->subject->patternclass_id)->where('launch_status', 1)->get();
            foreach($exampatternclasses as $exampatternclass)
             {     
                 $exam_order_data = [];
 
                 $token = Str::random(30);
                 $panels = [
-                    'user_id'=>Auth::guard('user')->user()->id,
-                    'exampanel_id' => $exampanel->id,
-                    'exam_patternclass_id' => $exampatternclass->id,
-                    'email_status' => 1,
-                    'description' => '',
-                    'token'=>  $token,
-                    'created_at' => now(),
-                    'updated_at' => now()
+                'user_id'=>Auth::guard('user')->user()->id,
+                'exampanel_id' => $exampanel->id,
+                'exam_patternclass_id' => $exampatternclass->id,
+                'email_status' => 1,
+                'description' => '',
+                'token'=>  $token,
+                'created_at' => now(),
+                'updated_at' => now()
                 ];
      
                 $exam_order_data[] = Examorder::create($panels);

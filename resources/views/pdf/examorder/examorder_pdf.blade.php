@@ -1,6 +1,5 @@
 
  <html>
-
 <head>
     <meta charset="UTF-8" />
     <title>Exam Order </title>
@@ -80,7 +79,6 @@
         }
     </style>
 
-
 </head>
 
 <body>
@@ -111,7 +109,7 @@
     </div>
     <div class="bold">
 
-        {{$examorder->exampanel->faculty->faculty_name}}
+        {{$examorder->exampanel?->faculty->faculty_name}}
 
     </div>
 
