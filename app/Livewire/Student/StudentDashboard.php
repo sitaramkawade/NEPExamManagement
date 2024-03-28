@@ -35,20 +35,15 @@ class StudentDashboard extends Component
         $this->patternclass_id=$this->student->patternclass_id;
         $this->current_class_last_entry=$this->student->currentclassstudents->last();
 
-        if($this->current_class_last_entry)
+        if(isset($this->current_class_last_entry))
         {
-            $this->patternclass_id=$current_class_last_entry->patternclass_id;
+            $this->patternclass_id=$this->current_class_last_entry->patternclass_id;
             
         }
 
        $this->active_exam_pattern_class = $exam->exampatternclasses()->where('patternclass_id',$this->patternclass_id)->where('launch_status',1)->first();
        $this->pattern_class = Patternclass::find($this->patternclass_id);
-
-
-
-    //    dd($active_exam_pattern_class);
-
-        
+  
         $this->exam_form_masters=$this->student->examformmasters()->get();
     }
 

@@ -1,5 +1,5 @@
 @props(["disabled" => false])
-<div class="float-right mx-0.5 inline-flex h-10 z-0">
+<div class="float-right mx-0.5 flex h-10 z-0">
   <form wire:submit="export()" class="relative inline-flex h-10 flex-wrap items-stretch z-0">
     <button wire:loading class="mx-2 h-10 w-10 rounded-md bg-primary-darker py-2 text-white">
       <span wire:loading>

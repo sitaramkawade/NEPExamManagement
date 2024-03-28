@@ -2,23 +2,28 @@
 
 namespace App\Livewire\User\StrongRoom;
 
+use Carbon\Carbon;
 use App\Models\Exam;
 use Livewire\Component;
 use App\Models\Paperset;
 use Livewire\WithPagination;
 use App\Models\Examtimetable;
+use App\Models\Subjectbucket;
+use App\Models\Timetableslot;
 use App\Models\Papersubmission;
 use Illuminate\Validation\Rule;
 use App\Models\Questionpaperbank;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class StrongRoom extends Component
 {   
     use WithPagination;
 
     public $perPage=10;
+    
+    public $question_bank=[];
     public $set_id;
-
     public function rules()
     {
         return [
@@ -37,9 +42,15 @@ class StrongRoom extends Component
         return $messages;
     }
 
+   
     public function approve_papaer_set()
     {   
-        $this->validate();
+
+        if(empty($this->question_bank))
+        {
+            $this->dispatch('alert',type:'info',message:'Please Select Question Paper Set  !!'  );
+            return false;
+        }
 
         DB::beginTransaction();
 
@@ -48,7 +59,7 @@ class StrongRoom extends Component
             $exam = Exam::where('status', 1)->first();
             if($exam)
             {
-                Questionpaperbank::where('exam_id', $exam->id)->where('set_id', $this->set_id)->update(['is_used' => 1]);
+                Questionpaperbank::whereIn('id', array_keys(array_filter($this->question_bank)))->update(['is_used' => 1]);
                 DB::commit();
                 $this->dispatch('alert',type:'success',message:'Question Paper Set Selected Successfully !!'  );
             }
@@ -61,16 +72,26 @@ class StrongRoom extends Component
 
     public function render()
     {   
-        $exam=Exam::where('status',1)->first();
 
-        // $tempa = $exam->exampatternclasses()->where('launch_status', 1)->pluck('id');
+        $currentDateTime = Carbon::now();
+        $intervalInMinutes =120;
+        $startTime = \DateTime::createFromFormat('H:i:s',  $currentDateTime->toTimeString())->format('H:i:s.u');
+        $endTime = \DateTime::createFromFormat('H:i:s', $currentDateTime->addMinutes($intervalInMinutes)->toTimeString())->format('H:i:s.u');
 
-        // $temp=Examtimetable::whereIn('exam_patternclasses_id', $tempa)->get();
-        // dd($temp);
+        $pappersets = Paperset::get();
+        $papersubmissions = collect();
 
-        $set_ids=Questionpaperbank::where('exam_id',$exam->id)->whereNot('is_used',1)->pluck('set_id');
-        $pappersets=Paperset::whereIn('id',$set_ids)->get();
-        $papersubmissions=Papersubmission::where('exam_id',$exam->id)->where('is_confirmed',1)->paginate($this->perPage);
-        return view('livewire.user.strong-room.strong-room',compact('papersubmissions','exam','pappersets'))->extends('layouts.user')->section('user');
+        $exam = Exam::where('status', 1)->first();
+        if ($exam) 
+        {   
+            $timeslot_ids=Timetableslot::whereBetween('start_time',[$startTime, $endTime])->pluck('id');
+            $exam_patternclass_ids = $exam->exampatternclasses()->where('launch_status', 1)->pluck('id');
+            $bucket_ids = Examtimetable::whereIn('timeslot_id', $timeslot_ids)->whereIn('exam_patternclasses_id', $exam_patternclass_ids)->whereDate('examdate',date('Y-m-d'))->pluck('subjectbucket_id');
+            $subject_ids =Subjectbucket::whereIn('id',$bucket_ids)->pluck('subject_id');
+            $papersubmissions = Papersubmission::where('exam_id', $exam->id)->where('is_confirmed', 1)->whereIn('subject_id', $subject_ids)->paginate($this->perPage);
+        }
+
+        return view('livewire.user.strong-room.strong-room', compact('papersubmissions', 'exam', 'pappersets'))->extends('layouts.user')->section('user');
     }
+
 }

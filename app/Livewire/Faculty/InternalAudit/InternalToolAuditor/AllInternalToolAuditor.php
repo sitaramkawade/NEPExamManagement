@@ -6,7 +6,6 @@ use App\Models\Course;
 use App\Models\Faculty;
 use Livewire\Component;
 use App\Models\Courseclass;
-use App\Models\Academicyear;
 use App\Models\Patternclass;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;

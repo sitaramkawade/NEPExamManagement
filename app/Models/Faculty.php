@@ -6,6 +6,7 @@ use App\Models\Subject;
 use App\Models\Hodappointsubject;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Internaltoolauditor;
+use App\Models\Facultyinternaldocument;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
@@ -114,6 +115,11 @@ class Faculty extends Authenticatable implements MustVerifyEmail
     public function subjects()
     {
         return $this->hasMany(Subject::class, 'faculty_id','id')->withTrashed();
+    }
+
+    public function facultyinternaldocument():HasMany
+    {
+        return $this->hasMany(Facultyinternaldocument::class,'verifybyfaculty_id','id')->withTrashed();
     }
 
     public function departments(): BelongsToMany

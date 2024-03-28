@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\PapersetSeeder;
+use Database\Seeders\AssignToolSeeder;
 use Database\Seeders\ExamorderSeeder;
 use Database\Seeders\ExamPanelSeeder;
 use Database\Seeders\DeptPrefixSeeder;
@@ -57,7 +58,7 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,                          // StateSeeder
             TalukaSeeder::class,                            // DistrictSeeder
             StudenthelplineDocumentSeeder::class,           // StudenthelplineQuerySeeder
-            SansthaSeeder::class,                           // Sanstha, University  
+            SansthaSeeder::class,                           // Sanstha, University
             CollegeSeeder::class,                           // College
             PatternSeeder::class,                           // College
             CapmasterSeeder::class,                         // College , Exam
@@ -92,7 +93,8 @@ class DatabaseSeeder extends Seeder
             DeptPrefixSeeder::class,
             FacultyinternaldocumentSeeder::class,           // Academicyear, Faculty, Subject, Internaltooldocumentmaster,
             ExamPanelSeeder::class,                         //user , faculty , examorderpost , subject
-            // ExamorderSeeder::class,                          //exampanel , exampatternclass
+            AssignToolSeeder::class,                        // Academicyear, Faculty, Subject, Internaltooldocumentmaster,
+            FacultyinternaldocumentSeeder::class,
         ]);
     }
 }
