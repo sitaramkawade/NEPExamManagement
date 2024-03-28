@@ -154,7 +154,7 @@ class AllPaperSet extends Component
     
     public function render()
     {
-        $papersets=Paperset::select('id','set_name')->when($this->search, function ($query, $search) {
+        $papersets=Paperset::select('id','set_name','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
         return view('livewire.user.paper-set.all-paper-set',compact('papersets'))->extends('layouts.user')->section('user');

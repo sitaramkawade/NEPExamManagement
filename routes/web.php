@@ -84,17 +84,19 @@ use App\Http\Controllers\Student\Razorpay\RazorPayController;
 use App\Livewire\Student\StudentExamForm\FillStudentExamForm;
 use App\Livewire\User\EducationalCourse\AllEducationalCourse;
 use App\Livewire\User\HodAppointSubject\AllHodAppointSubject;
-use App\Livewire\User\QuestionPaperBank\AllQuestionPaperBank;
 use App\Livewire\Faculty\DepartmentPrefix\AllDepartmentPrefix;
 use App\Livewire\Student\StudentExamForm\DeleteStudentExamForm;
 use App\Livewire\User\ExamFormStatistics\ExamFormFeeHeadReport;
 use App\Livewire\Faculty\InternalAudit\AssignTool\AllAssignTool;
+use App\Livewire\Faculty\QuestionPaperBank\AllQuestionPaperBank;
 use App\Livewire\User\QuestionPaperBank\QuestionPaperBankReport;
 use App\Livewire\Faculty\InternalAudit\InternalTool\AllInternalTool;
 use App\Livewire\Faculty\InternalToolAuditor\AllInternalToolAuditor;
 use App\Livewire\Faculty\InternalAudit\HodAssignTool\AllHodAssignTool;
 use App\Livewire\Faculty\InternalAudit\UploadDocument\AllUploadDocument;
+use App\Livewire\Faculty\QuestionPaperBankDownload\QuestionPaperBankDownload;
 use App\Http\Controllers\User\ExamFormStatistics\ExamFormReportViewController;
+use App\Http\Controllers\Faculty\QuestionPaperBankPdf\QuestionPaperBankPdfController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
 
@@ -252,6 +254,9 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   //Generate Exam Order PDF
   Route::get('exam/order/{id}/{token}', [ExamOrderPdfController::class, 'order'])->name('examorder');
 
+  //Generate merge order 
+  Route::get('merge/order/{id}/{token}', [ExamOrderPdfController::class, 'merge'])->name('mergeorder');
+
   //Cancel Exam Order
   Route::get('cancel/exam/order/{id}',[ExamOrderPdfController::class,'cancelorder'])->name('cancelorder');
 
@@ -269,9 +274,6 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
   //All PaperSubmission
   Route::get('/paper/submission', AllPaperSubmission::class)->name('all_paper_submission');
-
-  //All Question Paper Banks
-  Route::get('/question/paper/bank', AllQuestionPaperBank::class)->name('all_question_paper_bank');
 
   //All Users
   Route::get('/users', AllUser::class)->name('all_user');
@@ -349,7 +351,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
   Route::get('/exam/form/fee/head/statistics',ExamFormFeeHeadReport::class)->name('exam_form_fee_head_statistics');
 
   //Strong Room
-  Route::get('/strong/room',StrongRoom::class)->middleware('can:access-strong-room')->name('strong_room');
+  Route::get('/strong/room',StrongRoom::class)->middleware('can:access_strong_room')->name('strong_room');
 
   //Question Paper Bank Report
   Route::get('/question/paper/bank/report',QuestionPaperBankReport::class)->name('question_paper_bank_report');
@@ -421,6 +423,17 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
   // All Hod Assign Tool
   Route::get('/hod/assign/tools', AllHodAssignTool::class)->name('all_hod_assign_tools');
 
+  //All Question Paper Banks
+  Route::get('/question/paper/bank', AllQuestionPaperBank::class)->name('all_question_paper_bank');
+
+  //Question Paper Bank PDF Preview
+  Route::post('/question/paper/bank/preview',[QuestionPaperBankPdfController::class,'preview_question_paper'])->name('preview_question_paper');
+ 
+  //Question Paper Bank Downlaod
+  Route::get('/question/paper/bank/downlaod',QuestionPaperBankDownload::class)->middleware('can:access_download_question_paper')->name('question_paper_bank_download');
+
+  //Question Paper Bank PDF Download
+  Route::post('/question/paper/bank/download',[QuestionPaperBankPdfController::class,'download_question_paper'])->middleware('can:access_download_question_paper')->name('download_question_paper');
 });
 
 require __DIR__.'/student.php';

@@ -7,15 +7,15 @@
     <x-card-header heading="{{ isset($active_exam->exam_name)?$active_exam->exam_name:''; }} Exam Form Fee Head Statistics" />
     <x-table.frame s="0" x="0">
       <x-slot:header>
-        <div class="w-full inline">
-          <x-input-select id="pattern_class_id" wire:model.live="pattern_class_id" name="pattern_class_id" class="text-center  w-[80%] max-w-[80%] h-8.5 mt-1">
+        <div class="flex gap-x-0.5">
+          <x-input-select id="pattern_class_id" wire:model.live="pattern_class_id" name="pattern_class_id" class="text-center  w-[80%] max-w-[80%] h-10">
             <x-select-option class="text-start" hidden>-- Select Exam Pattern Class --</x-select-option>
             @foreach ($exampatternclasses as $epc_id => $pc_id)
               <x-select-option wire:key="{{ $epc_id }}" value="{{ $pc_id }}" class="text-start">{{ get_pattern_class_name($pc_id) }} </x-select-option>
             @endforeach
           </x-input-select>
-          <span class="py-2">
-            <x-table.cancel class="p-2" wire:click='clear()' i="0"> Clear</x-table.cancel>
+          <span>
+            <x-table.cancel  class="mx-2" wire:click='clear()' i="0"> Clear</x-table.cancel>
           </span>
 
         </div>

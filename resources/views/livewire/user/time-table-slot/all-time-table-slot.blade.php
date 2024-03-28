@@ -33,6 +33,8 @@
               <x-table.tr>
                 <x-table.th wire:click="sort_column('id')" name="id" :sort="$sortColumn" :sort_by="$sortColumnBy">ID</x-table.th>
                 <x-table.th wire:click="sort_column('timeslot')" name="timeslot" :sort="$sortColumn" :sort_by="$sortColumnBy">Time Slot</x-table.th>
+                <x-table.th wire:click="sort_column('start_time')" name="start_time" :sort="$sortColumn" :sort_by="$sortColumnBy"> Start Time</x-table.th>
+                <x-table.th wire:click="sort_column('end_time')" name="end_time" :sort="$sortColumn" :sort_by="$sortColumnBy"> End Time</x-table.th>
                 <x-table.th wire:click="sort_column('slot')" name="slot" :sort="$sortColumn" :sort_by="$sortColumnBy">Slot</x-table.th>
                 <x-table.th wire:click="sort_column('isactive')" name="isactive" :sort="$sortColumn" :sort_by="$sortColumnBy">Status</x-table.th>
                 <x-table.th> Action </x-table.th>
@@ -43,6 +45,8 @@
                 <x-table.tr wire:key="{{ $time_table_slot->id }}">
                   <x-table.td>{{ $time_table_slot->id }} </x-table.td>
                   <x-table.td>{{ $time_table_slot->timeslot }} </x-table.td>
+                  <x-table.td>{{ isset($time_table_slot->start_time)?date('h:i:s A',strtotime($time_table_slot->start_time)):''; }} </x-table.td>
+                  <x-table.td>{{ isset($time_table_slot->end_time)?date('h:i:s A',strtotime($time_table_slot->end_time)):''; }} </x-table.td>
                   <x-table.td>{{ $time_table_slot->slot }} </x-table.td>
                   <x-table.td>
                     @if (!$time_table_slot->deleted_at)

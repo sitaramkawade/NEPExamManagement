@@ -23,9 +23,6 @@ class AllPaperSubmission extends Component
 {
     use WithPagination;
     protected $listeners = ['delete-confirmed'=>'forcedelete'];
-
-    public $mode='add';
-    public $per_page = 10;
     public $perPage=10;
     public $search='';
     public $sortColumn="id";
@@ -34,7 +31,7 @@ class AllPaperSubmission extends Component
 
     public $exam_id;
     public $subject_id;
-    public $noofsets;
+    public $noofsets=2;
     public $faculty_id;
     public $department_id;
     public $user_id;
@@ -62,7 +59,7 @@ class AllPaperSubmission extends Component
     }
 
     public function resetinput()
-    {       
+    {
         $this->subject_id=null;   
         $this->noofsets=null;          
         $this->patternclass_id=null;       
@@ -71,19 +68,6 @@ class AllPaperSubmission extends Component
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
-    }
-
-    public function setmode($mode)
-    {
-        if($mode=='add')
-        {
-            $this->resetinput();
-        }
-        if($mode=='edit')
-        {
-            $this->resetValidation();
-        }
-        $this->mode=$mode;
     }
 
     public function save()
@@ -99,8 +83,9 @@ class AllPaperSubmission extends Component
                 'subject_id' => $this->subject_id,
                 'noofsets' => $this->noofsets,
                 'user_id' =>  Auth::guard('user')->user()->id,
-                'faculty_id' =>  $this->facultydata->faculty_id,
-                'status' => 1
+                'chairman_id' =>  $this->facultydata->faculty_id,
+                'status' => 0,
+                'is_online' => 0
                 ]);
                 PaperSubmissionJob::dispatch($papersubmission);
             }
@@ -120,32 +105,6 @@ class AllPaperSubmission extends Component
             $this->setmode('add');
             $this->dispatch('alert',type:'success',message:'Paper Submission Added Successfully !!'  );
         }
-    }
-
-    public function edit()
-    {
-        $papersubmission=new Papersubmission;
-        $this->paper_id=$papersubmission->id;
-        $this->exam_id = $papersubmission->exam_id;
-        $this->subject_id = $papersubmission->subject_id;
-        $this->noofsets = $papersubmission->noofsets;
-        $this->status = $papersubmission->status;
-            
-        $this->setmode('edit');
-    }
-
-    public function update(Papersubmission $papersubmission)
-    {
-        $papersubmission = Papersubmission::update([
-            'exam_id' => $this->exam_id,
-            'subject_id' => $this->subject_id,
-            'noofsets' => $this->noofsets,
-            'user_id' =>  Auth::guard('user')->user()->id,
-            'faculty_id' =>  $this->facultydata->faculty_id,
-            'status' => $this->status,
-            ]);                   
-        $this->dispatch('alert',type:'success',message:'Paper Submission Updated Successfully !!'  );
-        $this->setmode('all');
     }
 
     public function Status(Papersubmission $papersubmission)
@@ -224,26 +183,22 @@ class AllPaperSubmission extends Component
   
     public function render()
     {
-            $this->exams=Exam::where('status',1)->pluck('exam_name','id');
-            $this->patternclasses=Patternclass::select('id','class_id','pattern_id')->with(['pattern:pattern_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->where('status',1)->get();           
-
-            if($this->patternclass_id)
+        $this->exams=Exam::where('status',1)->pluck('exam_name','id');
+        $this->patternclasses=Patternclass::select('id','class_id','pattern_id')->with(['pattern:pattern_name,id','courseclass.course:course_name,id','courseclass.classyear:classyear_name,id'])->where('status',1)->get();           
+        if($this->patternclass_id)
+        {
+            $this->subjects = Subject::where('status', 1)->where('patternclass_id', $this->patternclass_id)->pluck('subject_name', 'id');
+        }
+        if($this->subject_id)
+        {
+           $subject= Subject::find($this->subject_id);
+           if($subject)
             {
-                $this->subjects = Subject::where('status', 1)->where('patternclass_id', $this->patternclass_id)->pluck('subject_name', 'id');
+                $this->facultydata = $subject->exampanels->where('examorderpost_id', '1')->where('active_status', '1')->first();
             }
-
-            if($this->subject_id)
-            {
-               $subject= Subject::find($this->subject_id);
-               if($subject)
-                {
-                    $this->facultydata = $subject->exampanels->where('examorderpost_id', '1')->where('active_status', '1')->first();
-                    //  dd($this->facultydata);
-                }
-            }
-        
-
-        $papersubmissions=Papersubmission::select('id','exam_id','subject_id','faculty_id','user_id','noofsets','status')
+        }
+ 
+        $papersubmissions=Papersubmission::select('id','exam_id','subject_id','faculty_id','user_id','noofsets','status','deleted_at')
         ->with(['exam:exam_name,id','subject:subject_name,id','faculty:faculty_name,id','user:name,id'])
         ->when($this->search, function ($query, $search) {
             $query->search($search);

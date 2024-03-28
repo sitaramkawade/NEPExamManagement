@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\PapersetSeeder;
+use Database\Seeders\AssignToolSeeder;
 use Database\Seeders\ExamorderSeeder;
 use Database\Seeders\ExamPanelSeeder;
 use Database\Seeders\DeptPrefixSeeder;
@@ -57,7 +58,7 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,                          // StateSeeder
             TalukaSeeder::class,                            // DistrictSeeder
             StudenthelplineDocumentSeeder::class,           // StudenthelplineQuerySeeder
-            SansthaSeeder::class,                           // Sanstha, University  
+            SansthaSeeder::class,                           // Sanstha, University
             CollegeSeeder::class,                           // College
             PatternSeeder::class,                           // College
             CapmasterSeeder::class,                         // College , Exam
@@ -75,7 +76,7 @@ class DatabaseSeeder extends Seeder
             SubjectverticalSeeder::class,                   // Subjectbuckettype
             SubjectSeeder::class,                           // subjectcategory , subjecttype , patternclass , classyear , department , college
             SubjectBucketSeeder::class,                     // department , patternclass , subjectcategory ,subject , academicyear
-            // AdmissionDataSeeder::class,                     // User,College,Patternclass,Subject,Academicyear
+            // AdmissionDataSeeder::class,                  // User,College,Patternclass,Subject,Academicyear
             AshutoshAdmissionDataSeeder::class,             // User,College,Patternclass,Subject,Academicyear
             StudentHelplineSeeder::class,                   // Student , Studenthelplinequery ,User
             StudentHelplineUploadedDocumentSeeder::class,   // Studenthelpline,Studenthelplinedocument
@@ -91,8 +92,9 @@ class DatabaseSeeder extends Seeder
             CourseTypeMasterSeeder::class,
             DeptPrefixSeeder::class,
             FacultyinternaldocumentSeeder::class,           // Academicyear, Faculty, Subject, Internaltooldocumentmaster,
-            ExamPanelSeeder::class,                         //Examorderseeder
-            ExamorderSeeder::class,
+            ExamPanelSeeder::class,                         //user , faculty , examorderpost , subject
+            AssignToolSeeder::class,                        // Academicyear, Faculty, Subject, Internaltooldocumentmaster,
+            FacultyinternaldocumentSeeder::class,
         ]);
     }
 }

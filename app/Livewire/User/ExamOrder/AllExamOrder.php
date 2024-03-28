@@ -15,6 +15,7 @@ use Livewire\WithPagination;
 use App\Mail\CancelOrderMail;
 use Illuminate\Validation\Rule;
 use App\Models\Exampatternclass;
+use App\Jobs\User\SendExamOrderJob;
 use Illuminate\Support\Facades\Mail;
 use App\Exports\User\ExamOrder\ExportExamOrder;
 
@@ -141,10 +142,23 @@ class AllExamOrder extends Component
 
    public function resendMail(Examorder $examorder)
     {
-        $examOrderIds=$examorder->id;
-        SendEmailJob::dispatch([$examOrderIds]);
+        // $examOrderIds=$examorder->id;
+        // SendEmailJob::dispatch([$examOrderIds]);
 
-        $this->dispatch('alert',type:'success',message:'Emails have been resent successfully !!'  );
+            $url = url('user/exam/order/'.$examorder->id.'/'.$examorder->token);
+        
+            $details = [
+                'subject'=>'Hello',
+                'title' => 'Your Appoinment for Examination Work (Sangamner College Mail Notification)',
+                'body' => 'This is sample content we have added for this test mail',
+                'examorder_id'=> $examorder->id,
+                'url'=>$url,
+                'email' => trim($examorder->exampanel->faculty->email)
+            ];
+
+            SendEmailJob::dispatch($details);  
+
+            $this->dispatch('alert',type:'success',message:'Emails have been resent successfully !!'  );
     }
 
     public function bulkResend()
@@ -153,6 +167,7 @@ class AllExamOrder extends Component
        
         $examOrderIds=$examorders;
         SendEmailJob::dispatch([$examOrderIds]);
+        
         $this->dispatch('alert',type:'success',message:'Emails have been resent successfully !!'  );
     }
 
@@ -164,12 +179,39 @@ class AllExamOrder extends Component
         $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );      
     }
 
+    public function MergeMail(Examorder $examorder)
+    {
+        $a = [];
+        $subjectList = ''; 
+        foreach ($examorder->exampanel->faculty->subjects as $subject) {
+            $a[] = $subject;
+            $subjectList .= $subject->name . ', ';
+        }
+        
+        $subjectList = rtrim($subjectList, ', ');
+        
+        $url = url('user/merge/order/'.$examorder->id.'/'.$examorder->token);
+        
+        $details = [
+            'subject' => 'Hello',
+            'title' => 'Your Appointment for Examination Work (Sangamner College Mail Notification)',
+            'body' => 'This is sample content we have added for this test mail. Subjects: ' . $subjectList,
+            'examorder_id' => $examorder->id,
+            'url' => $url,
+            'email' => trim($examorder->exampanel->faculty->email)
+        ];
+
+        SendExamOrderJob::dispatch($details);
+    
+        $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
+
+    }
+
     public function bulkDelete()
     {
         $examOrders = Examorder::withTrashed()->where('email_status', 0)->forcedelete();
         $this->dispatch('alert',type:'success',message:'Exam Order have been Deleted !!'  );      
     }
-
 
     public function sort_column($column)
     {

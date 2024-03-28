@@ -3,6 +3,7 @@
 namespace App\Livewire\User\TimeTableSlot;
 
 use Excel;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Timetableslot;
@@ -25,6 +26,8 @@ class AllTimeTableSlot extends Component
 
     public $slot;
     public $timeslot;
+    public $start_time;
+    public $end_time;
     public $isactive;
     #[Locked] 
     public $edit_id;
@@ -35,12 +38,18 @@ class AllTimeTableSlot extends Component
         return [
             'timeslot' => ['required', 'string','max:80','unique:timetableslots,timeslot,' . ($this->mode == 'edit' ? $this->edit_id : ''),],
             'slot' => ['required', 'integer', 'digits_between:1,10'],
+            'start_time' => ['required'],
+            'end_time' => ['required'],
         ];
     }
 
     public function messages()
     {   
         $messages = [
+            'start_time.required' => 'The Start Time field is required.',
+            'start_time.time' => 'The Start Time must be an time.',
+            'end_time.required' => 'The End Time field is required.',
+            'end_time.time' => 'The End Time must be an time.',
             'timeslot.required' => 'The Time Slot field is required.',
             'timeslot.string' => 'The Time Slot must be a string.',
             'timeslot.max' => 'The  Time Slot must not exceed :max characters.',
@@ -63,6 +72,8 @@ class AllTimeTableSlot extends Component
         $this->slot=null;
         $this->timeslot=null;
         $this->isactive=null;
+        $this->start_time=null;
+        $this->end_time=null;
     }
 
     public function sort_column($column)
@@ -108,11 +119,17 @@ class AllTimeTableSlot extends Component
 
     public function add()
     {
+
         $this->validate();
+
+        $startTime =\DateTime::createFromFormat('H:i',  $this->start_time)->format('H:i:s.u');
+        $endTime =\DateTime::createFromFormat('H:i',  $this->end_time)->format('H:i:s.u');
 
         $time_table_slot =  new Timetableslot;
         $time_table_slot->create([
             'slot' => $this->slot,
+            'start_time' => $startTime,
+            'end_time' => $endTime,
             'timeslot' => $this->timeslot,
             'isactive' => $this->isactive==true?0:1,
         ]);
@@ -129,6 +146,15 @@ class AllTimeTableSlot extends Component
         $this->slot= $time_table_slot->slot;
         $this->timeslot= $time_table_slot->timeslot;
         $this->isactive=$time_table_slot->isactive==1?0:true;
+        if($time_table_slot->start_time)
+        {   
+            $this->start_time = \DateTime::createFromFormat('H:i:s',  $time_table_slot->start_time)->format('H:i');
+        }
+
+        if($time_table_slot->end_time)
+        {
+            $this->end_time = \DateTime::createFromFormat('H:i:s',  $time_table_slot->end_time)->format('H:i');
+        }
   
         $this->setmode('edit');
     }
@@ -137,8 +163,13 @@ class AllTimeTableSlot extends Component
     {
         $this->validate();
 
+        $startTime =\DateTime::createFromFormat('H:i',  $this->start_time)->format('H:i:s.u');
+        $endTime =\DateTime::createFromFormat('H:i',  $this->end_time)->format('H:i:s.u');
+
         $time_table_slot->update([
             'slot' => $this->slot,
+            'start_time' => $startTime,
+            'end_time' => $endTime,
             'timeslot' => $this->timeslot,
             'isactive' => $this->isactive == true ? 0 : 1,
         ]);
@@ -203,7 +234,12 @@ class AllTimeTableSlot extends Component
 
     public function render()
     {   
-        $time_table_slots =Timetableslot::select('id','slot','timeslot','isactive','deleted_at')->when($this->search, function ($query, $search) {
+        if(isset($this->start_time) && $this->end_time)
+        {
+            $this->timeslot = "".\DateTime::createFromFormat('H:i',  $this->start_time)->format('h:i:s A')." To ".\DateTime::createFromFormat('H:i',  $this->end_time)->format('h:i:s A');
+        }
+
+        $time_table_slots =Timetableslot::select('id','slot','start_time','end_time','timeslot','isactive','deleted_at')->when($this->search, function ($query, $search) {
             $query->search($search);
         })->withTrashed()->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
 

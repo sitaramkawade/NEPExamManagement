@@ -23,10 +23,11 @@ class Papersubmission extends Model
         'exam_id',   
         'subject_id',
         'noofsets',
-        'faculty_id',
+        'chairman_id',
         'user_id',
         'status',
         'is_confirmed',
+        'is_online',
     ];
 
     
@@ -47,7 +48,7 @@ class Papersubmission extends Model
 
     public function faculty(): BelongsTo
     {
-        return $this->belongsTo(Faculty::class,'faculty_id','id')->withTrashed();
+        return $this->belongsTo(Faculty::class,'chairman_id','id')->withTrashed();
     }
 
     public function user(): BelongsTo

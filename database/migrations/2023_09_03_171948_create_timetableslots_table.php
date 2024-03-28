@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('timeslot',80);
             $table->Integer('slot')->unsigned();
             $table->integer('isactive')->default(0);
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
