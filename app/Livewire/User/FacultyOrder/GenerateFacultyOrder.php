@@ -128,6 +128,7 @@ class GenerateFacultyOrder extends Component
                     }
                 }
             }
+            
   
             $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
              $this->resetinput();
