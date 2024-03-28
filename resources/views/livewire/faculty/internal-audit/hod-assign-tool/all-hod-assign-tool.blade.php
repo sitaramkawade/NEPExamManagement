@@ -62,8 +62,13 @@
                                             <x-table.restore wire:click="restore({{ $internalDocuments->first()->id }})" />
                                         @else
                                             <x-table.view wire:click="view({{ $internalDocuments->first()->id }})" />
-                                            <x-table.archive wire:click="delete({{ $internalDocuments->first()->id }})" />
+                                            <x-table.archive wire:click="softdelete({{ $internalDocuments->first()->id }})" />
                                         @endif
+                                        <form method="post" action="{{ route('faculty.download_subject_tool_report') }}">
+                                            @csrf
+                                            <input type="hidden" name="subject_tool_report_id" value="{{ $internalDocuments->first()->id }}">
+                                            <input class="cursor-pointer" type="submit" value="Submit">
+                                        </form>
                                     </x-table.td>
                                 </x-table.tr>
                             @empty

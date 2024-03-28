@@ -26,7 +26,6 @@ class AllSubjectType extends Component
     public $sortColumn="type_name";
     public $sortColumnBy="ASC";
     public $mode='all';
-    public $per_page = 10;
     public $ext;
 
 

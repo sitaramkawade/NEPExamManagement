@@ -98,6 +98,7 @@ use App\Http\Controllers\User\ExamFormStatistics\ExamFormReportViewController;
 use App\Http\Controllers\User\QuestionPaperBankPdf\QuestionPaperBankPdfController;
 use App\Livewire\Faculty\InternalAudit\InternalToolDocument\AllInternalToolDocument;
 use App\Http\Controllers\Student\StudentExamForm\PrintPreviewStudentExamFormController;
+use App\Http\Controllers\Faculty\InternalAudit\HodInternalToolReport\HodInternalToolReportController;
 
 // Livewire Update Route
 Livewire::setUpdateRoute(function ($handle) {
@@ -357,7 +358,7 @@ Route::prefix('user')->name('user.')->middleware(['auth:user','is_user','verifie
 
    //Question Paper Bank Preview
   Route::post('/question/paper/bank/preview',[QuestionPaperBankPdfController::class,'preview_question_paper'])->name('preview_question_paper');
-  
+
 
 
   //All Subject Hod
@@ -426,6 +427,9 @@ Route::prefix('faculty')->name('faculty.')->middleware(['auth:faculty','verified
 
   // All Hod Assign Tool
   Route::get('/hod/assign/tools', AllHodAssignTool::class)->name('all_hod_assign_tools');
+
+  // Print Hod Internal Tool Report
+  Route::post('/hod/internal/tool/report', [HodInternalToolReportController::class,'download_subject_tool_report'])->name('download_subject_tool_report');
 
 });
 

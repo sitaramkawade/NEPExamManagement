@@ -44,7 +44,6 @@ class AllSubjectBucket extends Component
     public $subjectbucket_id;
 
     public $mode='all';
-    public $per_page = 10;
     public $perPage=10;
     public $search='';
     public $sortColumn="subject_id";

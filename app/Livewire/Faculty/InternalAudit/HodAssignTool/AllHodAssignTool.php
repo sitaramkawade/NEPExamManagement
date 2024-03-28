@@ -265,21 +265,21 @@ class AllHodAssignTool extends Component
         $this->resetPage();
     }
 
-    public function export()
-    {
-        $filename="HodAssignTools-".now();
-        switch ($this->ext) {
-            case 'xlsx':
-                return Excel::download(new HodAssignToolExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
-            break;
-            case 'csv':
-                return Excel::download(new HodAssignToolExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
-            break;
-            case 'pdf':
-                return Excel::download(new HodAssignToolExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
-            break;
-        }
-    }
+    // public function export()
+    // {
+    //     $filename="HodAssignTools-".now();
+    //     switch ($this->ext) {
+    //         case 'xlsx':
+    //             return Excel::download(new HodAssignToolExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.xlsx');
+    //         break;
+    //         case 'csv':
+    //             return Excel::download(new HodAssignToolExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.csv');
+    //         break;
+    //         case 'pdf':
+    //             return Excel::download(new HodAssignToolExport($this->search, $this->sortColumn, $this->sortColumnBy), $filename.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF,);
+    //         break;
+    //     }
+    // }
 
     // public function status(Facultyinternaldocument $faculty_internal_document)
     // {
@@ -321,19 +321,41 @@ class AllHodAssignTool extends Component
 
     public function render()
     {
-        if ($this->academicyear_id) {
-            $this->resetPage();
-            $faculty_internal_documents = Facultyinternaldocument::where('academicyear_id', $this->academicyear_id)
-                ->with(['faculty:faculty_name,id','subject:subject_code,subject_name,id','academicyear:year_name,id','internaltooldocument.internaltooldocumentmaster:doc_name,id'])
-                ->withTrashed()
-                ->paginate($this->perPage);
-            $groupedInternalDocuments = $faculty_internal_documents->groupBy('subject_id');
+        // Initialize variables
+        $faculty_internal_documents = collect();
+        $groupedInternalDocuments = collect();
+
+        // Check the mode
+        if ($this->mode !== 'view') {
+            // Check if academic year ID is set
+            if ($this->academicyear_id !== null) {
+                // Reset page and load records based on the academic year ID
+                $this->resetPage();
+                $faculty_internal_documents = Facultyinternaldocument::where('academicyear_id', $this->academicyear_id)
+                    ->with(['faculty:faculty_name,id','subject:subject_code,subject_name,id','academicyear:year_name,id','internaltooldocument.internaltooldocumentmaster:doc_name,id'])
+                    ->withTrashed()
+                    ->paginate($this->perPage);
+                $groupedInternalDocuments = $faculty_internal_documents->groupBy('subject_id');
+            } else {
+                // Load all records if academic year ID is not set
+                $faculty_internal_documents = Facultyinternaldocument::with(['faculty:faculty_name,id','subject:subject_code,subject_name,id','academicyear:year_name,id','internaltooldocument.internaltooldocumentmaster:doc_name,id'])
+                    ->withTrashed()
+                    ->paginate($this->perPage);
+                $groupedInternalDocuments = $faculty_internal_documents->groupBy('subject_id');
+            }
         } else {
-            $this->dispatch('alert',type:'info',message:'Records Not Found This Academic Year !!'  );
-            $faculty_internal_documents = collect();
-            $groupedInternalDocuments = collect();
+            // Load all records if mode is 'view'
+            $faculty_internal_documents = Facultyinternaldocument::with(['faculty:faculty_name,id','subject:subject_code,subject_name,id','academicyear:year_name,id','internaltooldocument.internaltooldocumentmaster:doc_name,id',])->withTrashed()->paginate($this->perPage);
+            $groupedInternalDocuments = $faculty_internal_documents->groupBy('subject_id');
+
+            // Check if no records found
+            if ($faculty_internal_documents->isEmpty()) {
+                $this->dispatch('alert', ['type' => 'info', 'message' => 'Records Not Found This Academic Year !!']);
+            }
         }
 
+        // Return the view with the data
         return view('livewire.faculty.internal-audit.hod-assign-tool.all-hod-assign-tool', compact('faculty_internal_documents', 'groupedInternalDocuments'))->extends('layouts.faculty')->section('faculty');
     }
+
 }

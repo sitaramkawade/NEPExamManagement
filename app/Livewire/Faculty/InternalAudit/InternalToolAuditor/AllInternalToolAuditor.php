@@ -42,7 +42,6 @@ class AllInternalToolAuditor extends Component
     public $sortColumn="patternclass_id";
     public $sortColumnBy="ASC";
     public $mode='all';
-    public $per_page = 10;
     public $ext;
 
 

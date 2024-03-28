@@ -34,7 +34,6 @@ class AllDepartmentPrefix extends Component
     public $sortColumn="dept_id";
     public $sortColumnBy="ASC";
     public $mode='all';
-    public $per_page = 10;
     public $ext;
 
     protected function rules()

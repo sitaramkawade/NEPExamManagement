@@ -84,7 +84,6 @@ class AllSubject extends Component
     public $delete_id;
 
     public $perPage=10;
-    public $per_page = 10;
     public $search='';
     public $sortColumn="subject_name";
     public $sortColumnBy="ASC";

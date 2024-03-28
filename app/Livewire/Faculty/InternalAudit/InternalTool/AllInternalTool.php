@@ -36,7 +36,6 @@ class AllInternalTool extends Component
     public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $mode='all';
-    public $per_page = 10;
     public $ext;
 
     public function rules()

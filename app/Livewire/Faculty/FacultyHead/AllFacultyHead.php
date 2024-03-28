@@ -27,7 +27,6 @@ class AllFacultyHead extends Component
     public $delete_id;
 
     public $mode='all';
-    public $per_page = 10;
     public $perPage=10;
     public $search='';
     public $sortColumn="faculty_id";

@@ -39,7 +39,6 @@ class ViewExamPanel extends Component
     public $delete_id;
 
     public $perPage=10;
-    public $per_page = 10;
     public $search='';
     public $mode='add';
     public $sortColumn="faculty_id";

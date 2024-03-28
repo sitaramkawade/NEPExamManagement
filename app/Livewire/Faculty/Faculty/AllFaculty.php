@@ -52,7 +52,6 @@ class AllFaculty extends Component
 
 
     public $mode='all';
-    public $per_page = 10;
     public $perPage=10;
     public $search='';
     public $sortColumn="faculty_name";

@@ -39,7 +39,6 @@ class AllHodAppointSubject extends Component
     public $courseclass_subjects;
 
     public $mode='all';
-    public $per_page = 10;
 
     #[Locked]
     public $hodappointsubject_id;
