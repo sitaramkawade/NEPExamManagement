@@ -16,24 +16,37 @@ class TimeTableSlotSeeder extends Seeder
     public function run(): void
     {   
         
-        $end_time = Carbon::now();
+        Timetableslot::create( [
+            'timeslot'=>'10:00:00 AM To 12:00:00 AM',
+            'slot'=>67,
+            'isactive'=>1,
+            'start_time'=>'10:00:00',
+            'end_time'=>'12:00:00',
+            'created_at'=>'2024-03-28 15:43:06',
+            'updated_at'=>'2024-03-28 16:16:11',
+            'deleted_at'=>NULL
+         ] );
 
-        $start_time = $end_time->copy()->addHours(2);
-
-
-        $end_time->addHours(2);
-
-        $timeslot = $end_time->copy()->addHours(2);
-
-        Timetableslot::create([
-            'start_time' => $start_time->format('H:i:s.u'),
-            'end_time' => $end_time->format('H:i:s.u'),
-            'timeslot' => $timeslot->format('H:i:s.u'),
-            'slot' => rand(11,99),
-            'isactive' => 1,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        Timetableslot::create( [
+            'timeslot'=>'13:00:00 PM To 14:00:00 PM',
+            'slot'=>67,
+            'isactive'=>1,
+            'start_time'=>'13:00:00',
+            'end_time'=>'14:00:00',
+            'created_at'=>'2024-03-28 15:43:06',
+            'updated_at'=>'2024-03-28 16:16:11',
+            'deleted_at'=>NULL
+         ] );
+        Timetableslot::create( [
+            'timeslot'=>'14:00:00 PM To 16:00:00 PM',
+            'slot'=>67,
+            'isactive'=>1,
+            'start_time'=>'14:00:00',
+            'end_time'=>'16:00:00',
+            'created_at'=>'2024-03-28 15:43:06',
+            'updated_at'=>'2024-03-28 16:16:11',
+            'deleted_at'=>NULL
+         ] );
         
     }
 }
