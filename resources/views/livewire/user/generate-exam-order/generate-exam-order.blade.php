@@ -46,11 +46,12 @@
                                         <x-table.text-scroll> {{ $exampatternclass->exam->exam_name }} </x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
-                                        <x-table.text-scroll>{{ isset($exampatternclass->patternclass->pattern->pattern_name) ? $exampatternclass->patternclass->pattern->pattern_name : '-' }} {{ isset($exampatternclass->patternclass->courseclass->classyear->classyear_name) ? $exampatternclass->patternclass->courseclass->classyear->classyear_name : '-' }} {{ isset($exampatternclass->patternclass->courseclass->course->course_name) ? $exampatternclass->patternclass->courseclass->course->course_name : '-' }} </x-table.text-scroll>
+                                        <x-table.text-scroll> {{ isset($exampatternclass->patternclass->courseclass->classyear->classyear_name) ? $exampatternclass->patternclass->courseclass->classyear->classyear_name : '-' }} {{ isset($exampatternclass->patternclass->courseclass->course->course_name) ? $exampatternclass->patternclass->courseclass->course->course_name : '-' }} </x-table.text-scroll>
                                     </x-table.td>
                                     <x-table.td>
                                         <x-table.edit i="0" wire:click="generateExamPanel({{ $exampatternclass->id }})">Create Order</x-table.edit>
                                         <x-table.edit i="0" wire:click="SendMail({{ $exampatternclass->id }})">Send Mail</x-table.edit></a>
+                                        
                                     </x-table.td>
                                 </x-table.tr>
                                 @empty

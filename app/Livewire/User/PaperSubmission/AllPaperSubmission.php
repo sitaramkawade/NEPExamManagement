@@ -243,7 +243,7 @@ class AllPaperSubmission extends Component
             }
         
 
-        $papersubmissions=Papersubmission::select('id','exam_id','subject_id','faculty_id','user_id','noofsets','status')
+        $papersubmissions=Papersubmission::select('id','exam_id','subject_id','faculty_id','user_id','noofsets','status','deleted_at')
         ->with(['exam:exam_name,id','subject:subject_name,id','faculty:faculty_name,id','user:name,id'])
         ->when($this->search, function ($query, $search) {
             $query->search($search);

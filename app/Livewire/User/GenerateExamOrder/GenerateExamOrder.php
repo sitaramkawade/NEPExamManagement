@@ -43,9 +43,12 @@ class GenerateExamOrder extends Component
     {     
         $panels = collect();
 
-         foreach ($exampatternclass->patternclass->subjects->whereIn('subject_sem', $this->semester) as $subject) 
-        {     
-            foreach($subject->exampanels as $pannel )
+         foreach ($exampatternclass->patternclass->subjects
+        //  ->whereIn('subject_sem', $this->semester)
+          as $subject) 
+         {     
+            // dd($subject->exampanels);
+            foreach($subject->exampanels->where('active_status','1') as $pannel )     
             {                   
                 $exam_order_data = [];
                 $token = Str::random(30);
@@ -60,8 +63,8 @@ class GenerateExamOrder extends Component
                 'created_at' => now(),
                 'updated_at' => now(),                 
                 ];
-                    
-                $exam_order_data[] = Examorder::create($panels);               
+                $exam_order_data[] = Examorder::create($panels);  
+                // dd($exam_order_data);          
             }        
         }
 
@@ -71,15 +74,39 @@ class GenerateExamOrder extends Component
 
     public function SendMail($id)
     {
-        ini_set('max_execution_time', 1800); 
-        $exampatterntclass = Exampatternclass::find($id);
-        $examOrderIds = $exampatterntclass->examorder->where('email_status', '0')->pluck('id')->toArray();
+      
+        $exampatterntclass= ExamPatternclass::find($id);
+        $a = [];
+        foreach($exampatterntclass->examorder->where('email_status' , '0') as $examorder)
+        {
+            $a[] = $examorder;
 
-        SendEmailJob::dispatch($examOrderIds);
+            $url = url('user/exam/order/'.$examorder->id.'/'.$examorder->token);
+        
+            $details = [
+                'subject'=>'Hello',
+                'title' => 'Your Appoinment for Examination Work (Sangamner College Mail Notification)',
+                'body' => 'This is sample content we have added for this test mail',
+                'examorder_id'=> $examorder->id,
+                'url'=>$url,
+                'email' => trim($examorder->exampanel->faculty->email)
+            ];
+
+           SendEmailJob::dispatch($details);
+
+            $examorder->update([
+                'email_status' => '1'
+            ]);   
+        }
+        // dd($a);
+
+        
+        
 
         $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
         $this->setmode('all');
     }
+
 
     public function render()
     {

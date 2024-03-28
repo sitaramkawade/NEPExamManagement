@@ -61,7 +61,7 @@
                                         @else
                                         <x-table.edit i='0' wire:click="resendMail({{ $examorder->id }})" > Resend </x-table.edit>
                                         <x-table.edit i='0' wire:click="cancelOrder({{ $examorder->id }})" > Cancel Order </x-table.edit>
-                                        
+                                        <x-table.edit i="0" wire:click="MergeMail({{ $examorder->id }})">Merge Mail</x-table.edit></a>
                                         @endif
                                     </x-table.td>
                                 </x-table.tr>

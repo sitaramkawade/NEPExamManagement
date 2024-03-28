@@ -73,7 +73,7 @@
             </div>
             <div class="px-2 py-2 text-sm text-gray-600 dark:text-gray-400">
                 <x-input-label for="description" :value="__('Description')" />
-                <x-text-input id="description" type="text" wire:model="description" name="description" class="w-full mt-1" :value="old('description',$description)" required autofocus autocomplete="description" />
+                <x-text-input id="description" type="text" wire:model="description" name="description" class="w-full mt-1" :value="old('description',$description)"  autofocus autocomplete="description" />
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
         </div>

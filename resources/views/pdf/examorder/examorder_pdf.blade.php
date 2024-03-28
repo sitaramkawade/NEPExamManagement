@@ -99,7 +99,7 @@
     </table>
     <div style="border-bottom:1pt solid gray;">
 
-        <div style="float:right; font-size: 12px;"> {{$examorder->created_at->format('d-M-Y')}} </div>
+        {{-- <div style="float:right; font-size: 12px;"> {{$examorder->created_at->format('d-M-Y')}} </div> --}}
         <div style="clear: left;" />
 
     </div>
@@ -111,7 +111,7 @@
     </div>
     <div class="bold">
 
-        {{$examorder->exampanel->faculty->faculty_name}}
+        {{$examorder->exampanel?->faculty->faculty_name}}
 
     </div>
 

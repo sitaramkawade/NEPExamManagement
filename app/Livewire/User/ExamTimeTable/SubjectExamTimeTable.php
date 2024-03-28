@@ -48,8 +48,8 @@ class SubjectExamTimeTable extends Component
     {
         $this->subject_id=null;
         $this->subjectcategory_id=null;
-        // $this->$exampatternclasses=[];
-        $this->patternclass_ids=null;
+        $this->patternclass_ids=[];
+        $this->exampatternclasses=[];
         $this->timeslot_id=null;
         $this->examdate=null;
         $this->timeslot_ids=[];
@@ -101,9 +101,7 @@ class SubjectExamTimeTable extends Component
     }
 
     public function edit(Examtimetable $examtimetable)
-    {
-        // dd($examtimetable);
-      
+    { 
         $this->resetinput();
 
         $this->time_id=$examtimetable->id;
@@ -111,7 +109,6 @@ class SubjectExamTimeTable extends Component
         $this->exam_patternclasses_id=$examtimetable->exampatternclass->patternclass->courseclass->course->course_name;
         $this->examdate=$examtimetable->examdate;
         $this->timeslot_id=$examtimetable->timeslot_id;
-        // dd( $this->timeslot_id);
         $this->setmode('edit');
       
     }
@@ -121,7 +118,7 @@ class SubjectExamTimeTable extends Component
         $examtimetable->examdate= $this->examdate;
         $examtimetable->timeslot_id= $this->timeslot_id;
         $examtimetable->update();
-        $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
+        $this->dispatch('alert',type:'success',message:'Time Table Updated Successfully !!'  );
         $this->setmode('all');
     }
 
@@ -130,16 +127,24 @@ class SubjectExamTimeTable extends Component
     {
         foreach ($this->examdates as $exam_pattern_class_id => $examdate) {
 
-            Examtimetable::where('subjectbucket_id', $subjectbucket_id)
-            ->where('exam_patternclasses_id', $examtimetable->exam_patternclasses_id)
+         $examtimetable=Examtimetable::where('subjectbucket_id',$this->subject_bucket_ids[$exam_pattern_class_id])
+            ->where('exam_patternclasses_id', $exam_pattern_class_id)
             ->update([
                 'examdate' => $examdate,
                 'timeslot_id' => $this->timeslot_ids[$exam_pattern_class_id],
                 'status' => 1,
             ]);
+
         }
-        $this->dispatch('alert',type:'success',message:'Updated Successfully !!'  );
+        $this->dispatch('alert',type:'success',message:'Time Table Updated Successfully !!'  );
         $this->setmode('all');
+    }
+
+    
+    public function deleteconfirmation($id)
+    {
+        $this->delete_id=$id;
+        $this->dispatch('delete-confirmation');
     }
 
     public function delete(Examtimetable  $examtimetable)
@@ -153,6 +158,22 @@ class SubjectExamTimeTable extends Component
         $examtimetable = Examtimetable::withTrashed()->find($id);
         $examtimetable->restore();
         $this->dispatch('alert',type:'success',message:'Exam Time Table Restored Successfully !!');
+    }
+
+    public function forcedelete()
+    {  try
+        {
+        $examtimetable = Examtimetable::withTrashed()->find($this->delete_id);
+        $examtimetable->forceDelete();
+        $this->dispatch('alert',type:'success',message:'Exam Time Deleted Successfully !!');
+        } catch
+        (\Illuminate\Database\QueryException $e) {
+    
+            if ($e->errorInfo[1] == 1451) {
+    
+                $this->dispatch('alert',type:'error',message:'This record is associated with another data. You cannot delete it !!');
+            } 
+        }
     }
 
         
@@ -190,7 +211,6 @@ class SubjectExamTimeTable extends Component
                 }
             }
             if($this->subjectcategory_id)
-            // dd($this->subjectcategory_id);
             {
                 $this->subjects = Subject::where('status', 1)->where('subjectcategory_id', $this->subjectcategory_id)->pluck('subject_name', 'id');
             }
@@ -198,14 +218,14 @@ class SubjectExamTimeTable extends Component
             if($this->subject_id)
             {  
                 $patternclass_ids = Subjectbucket::where('subject_id', $this->subject_id)->pluck('patternclass_id');
-                // dd($patternclass_ids);
+               
                 if ($patternclass_ids->isNotEmpty()) {
-
+                    $exam=Exam::where('status',1)->first();
                     $this->exampatternclasses = Exampatternclass::with([
                         'patternclass.pattern:id,pattern_name',
                         'patternclass.courseclass.course:id,course_name',
                         'patternclass.courseclass.classyear:id,classyear_name',
-                    ])->whereIn('patternclass_id', $patternclass_ids)->get();
+                    ])->where('exam_id',$exam->id)->whereIn('patternclass_id', $patternclass_ids)->get();
 
                     foreach ($this->exampatternclasses as $exampatternclass) {
                         $subject_bucket_id = Subjectbucket::where('patternclass_id', $exampatternclass->patternclass_id)->pluck('id')->first();
@@ -219,8 +239,11 @@ class SubjectExamTimeTable extends Component
 
         if($this->mode=='bulkedit')
         {
+          
             $this->subject_categories = Subjectcategory::whereIn('active', [1, 2])->pluck('subjectcategory', 'id');
             $this->timeslots=Timetableslot::where('isactive',1)->pluck('timeslot','id');
+
+            $this->resetinput();
 
             if($this->timeslot_id)
             {
@@ -243,13 +266,13 @@ class SubjectExamTimeTable extends Component
             if($this->subject_id)
             {  
                 $patternclass_ids = Subjectbucket::where('subject_id', $this->subject_id)->pluck('patternclass_id');
-                // dd($patternclass_ids);
                 if ($patternclass_ids->isNotEmpty()) {
+                    $exam=Exam::where('status',1)->first();
                     $this->exampatternclasses = ExamPatternclass::with([
                         'patternclass.pattern:id,pattern_name',
                         'patternclass.courseclass.course:id,course_name',
                         'patternclass.courseclass.classyear:id,classyear_name',
-                    ])->whereIn('patternclass_id', $patternclass_ids)->get();
+                    ])->where('exam_id',$exam->id)->whereIn('patternclass_id', $patternclass_ids)->get();
 
                     foreach ($this->exampatternclasses as $exampatternclass) {
                         $subject_bucket_id = Subjectbucket::where('patternclass_id', $exampatternclass->patternclass_id)->pluck('id')->first();
@@ -270,7 +293,7 @@ class SubjectExamTimeTable extends Component
 
         $this->timeslots=Timetableslot::where('isactive',1)->pluck('timeslot','id');
 
-        $examtimetables=Examtimetable::select('id','subjectbucket_id','exam_patternclasses_id','examdate','timeslot_id')
+        $examtimetables=Examtimetable::select('id','subjectbucket_id','exam_patternclasses_id','examdate','timeslot_id','deleted_at')
         ->with(['subjectbucket.subject:subject_name,id','exampatternclass.patternclass.pattern:pattern_name,id','exampatternclass.patternclass.courseclass.classyear:classyear_name,id','exampatternclass.patternclass.courseclass.course:course_name,id','Timetableslot:timeslot,id'])
         ->withTrashed()-> when($this->search, function ($query, $search) {
             $query->search($search);
