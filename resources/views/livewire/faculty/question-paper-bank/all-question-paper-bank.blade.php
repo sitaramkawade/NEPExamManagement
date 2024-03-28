@@ -1,4 +1,8 @@
 <div>
+  <x-breadcrumb.breadcrumb>
+    <x-breadcrumb.link route="faculty.dashboard" name="Dashboard" />
+    <x-breadcrumb.link name="Question Paper Bank's" />
+  </x-breadcrumb.breadcrumb>
   <div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
     <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
       Question Bank's <x-spinner />
@@ -24,7 +28,7 @@
                   @php
                     $ukey = $subject->id . '-' . $set->id;
                   @endphp
-                  <livewire:user.question-paper-bank.question-paper-cell :key="$ukey" :$set :$faculty_id subject_id='{{ $subject->id }}' />
+                  <livewire:faculty.question-paper-bank.question-paper-cell :key="$ukey" :$set subject_id='{{ $subject->id }}' />
                 </x-table.td>
               @endforeach
             </x-table.tr>

@@ -59,7 +59,7 @@ class StrongRoom extends Component
             $exam = Exam::where('status', 1)->first();
             if($exam)
             {
-                Questionpaperbank::whereIn('id', array_keys(array_filter($this->question_bank)))->update(['is_used' => 1]);
+                Questionpaperbank::whereIn('id', array_keys(array_filter($this->question_bank)))->update(['exam_date'=>date('Y-m-d'),'is_used' => 1]);
                 DB::commit();
                 $this->dispatch('alert',type:'success',message:'Question Paper Set Selected Successfully !!'  );
             }
@@ -88,7 +88,7 @@ class StrongRoom extends Component
             $exam_patternclass_ids = $exam->exampatternclasses()->where('launch_status', 1)->pluck('id');
             $bucket_ids = Examtimetable::whereIn('timeslot_id', $timeslot_ids)->whereIn('exam_patternclasses_id', $exam_patternclass_ids)->whereDate('examdate',date('Y-m-d'))->pluck('subjectbucket_id');
             $subject_ids =Subjectbucket::whereIn('id',$bucket_ids)->pluck('subject_id');
-            $papersubmissions = Papersubmission::where('exam_id', $exam->id)->where('is_confirmed', 1)->whereIn('subject_id', $subject_ids)->paginate($this->perPage);
+            $papersubmissions = Papersubmission::where('is_confirmed', 1)->whereIn('subject_id', $subject_ids)->paginate($this->perPage);
         }
 
         return view('livewire.user.strong-room.strong-room', compact('papersubmissions', 'exam', 'pappersets'))->extends('layouts.user')->section('user');

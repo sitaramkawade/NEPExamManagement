@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\User\QuestionPaperBank;
+namespace App\Livewire\Faculty\QuestionPaperBank;
 
 use App\Models\Exam;
 use Livewire\Component;
@@ -17,7 +17,6 @@ class QuestionPaperCell extends Component
 {
     use WithFileUploads;
     protected $listeners = ['refreshChild'=>'render'];
-    public $faculty_id;
     public $set;
     public $subject_id;
     public $exam_id;
@@ -77,7 +76,7 @@ class QuestionPaperCell extends Component
                     {
                         foreach ($array as $set_id => $file) 
                         {
-                            $papersubmission= Papersubmission::where('exam_id',$this->exam_id)->where('subject_id',$subject_id)->where('faculty_id',$this->faculty_id)->where('user_id',Auth::guard('user')->user()->id)->first();
+                            $papersubmission= Papersubmission::where('exam_id',$this->exam_id)->where('subject_id',$subject_id)->first();
                             if($papersubmission)
                             { 
                                 $papersubmission->update(['noofsets'=>$papersubmission->noofsets+1,]);
@@ -88,9 +87,9 @@ class QuestionPaperCell extends Component
                                     'exam_id'=>$this->exam_id,
                                     'subject_id'=>$subject_id,
                                     'noofsets'=>1,
-                                    'faculty_id'=>$this->faculty_id,
-                                    'user_id'=>Auth::guard('user')->user()->id,
-                                    'status'=>1         
+                                    'chairman_id'=>Auth::guard('faculty')->user()->id,
+                                    'status'=>0,         
+                                    'is_online'=>1         
                                 ]);
                             }
 
@@ -101,10 +100,9 @@ class QuestionPaperCell extends Component
                                 $questionbanks = Questionpaperbank::create([
                                     'exam_id'=>$this->exam_id,
                                     'papersubmission_id'=>$papersubmission->id,
-                                    'user_id'=>Auth::guard('user')->user()->id,
                                     'set_id'=>$set_id,
                                     'file_name'=>$papersubmission->subject->subject_name.'-'.$papareset->set_name,
-                                    'faculty_id'=>$this->faculty_id,
+                                    'chairman_id'=>Auth::guard('faculty')->user()->id,
                                     'is_used'=>0,
                                 ]);
 
@@ -204,6 +202,6 @@ class QuestionPaperCell extends Component
           $is_bank = false;
         }
 
-        return view('livewire.user.question-paper-bank.question-paper-cell',compact('is_bank'));
+        return view('livewire.faculty.question-paper-bank.question-paper-cell',compact('is_bank'));
     }
 }

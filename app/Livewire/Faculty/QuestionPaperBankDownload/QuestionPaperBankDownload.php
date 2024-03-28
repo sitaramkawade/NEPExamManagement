@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\User\QuestionPaperBankDownload;
+namespace App\Livewire\Faculty\QuestionPaperBankDownload;
 
 use Carbon\Carbon;
 use App\Models\Exam;
@@ -38,9 +38,9 @@ class QuestionPaperBankDownload extends Component
             $exam_patternclass_ids = $exam->exampatternclasses()->where('launch_status', 1)->pluck('id');
             $bucket_ids = Examtimetable::whereIn('timeslot_id', $timeslot_ids)->whereIn('exam_patternclasses_id', $exam_patternclass_ids)->whereDate('examdate',date('Y-m-d'))->pluck('subjectbucket_id');
             $subject_ids =Subjectbucket::whereIn('id',$bucket_ids)->pluck('subject_id');
-            $papersubmissions = Papersubmission::where('exam_id', $exam->id)->where('is_confirmed', 1)->whereIn('subject_id', $subject_ids)->paginate($this->perPage);
+            $papersubmissions = Papersubmission::where('is_confirmed', 1)->whereIn('subject_id', $subject_ids)->paginate($this->perPage);
         }
 
-        return view('livewire.user.question-paper-bank-download.question-paper-bank-download', compact('papersubmissions', 'exam', 'pappersets'))->extends('layouts.user')->section('user');
+        return view('livewire.faculty.question-paper-bank-download.question-paper-bank-download', compact('papersubmissions', 'exam', 'pappersets'))->extends('layouts.faculty')->section('faculty');
     }
 }

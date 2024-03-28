@@ -1,6 +1,6 @@
 <div>
   <x-breadcrumb.breadcrumb>
-    <x-breadcrumb.link route="user.dashboard" name="Dashboard" />
+    <x-breadcrumb.link route="faculty.dashboard" name="Dashboard" />
     <x-breadcrumb.link name="Question Paper Download's" />
   </x-breadcrumb.breadcrumb>
   <x-card-header heading="Question Paper Download's" />
@@ -39,7 +39,7 @@
                         </x-table.td>
                       @elseif(isset($question_bank->is_used))
                         <x-table.td>
-                          <form id="download" name="download" class="inline" action="{{ route('user.download_question_paper') }}" method="post" target="_blank" >
+                          <form id="download" name="download" class="inline" action="{{ route('faculty.download_question_paper') }}" method="post" target="_blank" >
                             @csrf
                             <input type="hidden" name="questionpaperbank" id="questionpaperbank" value="{{ $question_bank->id }}">
                             <x-table.download type="submit">Download</x-table.download>

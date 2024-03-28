@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\User\QuestionPaperBank;
+namespace App\Livewire\Faculty\QuestionPaperBank;
 
 use App\Models\Exam;
 use App\Models\User;
@@ -31,9 +31,6 @@ class AllQuestionPaperBank extends Component
     public $sortColumn="id";
     public $sortColumnBy="ASC";
     public $ext;
-
-
-    public $faculty_id;
     public $sets;
 
     public function sort_column($column)
@@ -79,14 +76,11 @@ class AllQuestionPaperBank extends Component
     {   
         $exam=Exam::where('status',1)->first();
         $confirmrd_subject_ids = $exam->papersubmissions()->where('is_confirmed',1)->pluck('subject_id');
-        $this->faculty_id=null;
         $this->sets=Paperset::select('set_name','id')->get();   
         $exampanel_ids=Examorder::pluck('exampanel_id');
         $exampanels= Exampanel::whereIn('id',$exampanel_ids);
         $subject_ids = $exampanels->pluck('subject_id');
         $subjects=Subject::whereNotIn('id', $confirmrd_subject_ids)->whereIn('id', $subject_ids)->orderBy($this->sortColumn, $this->sortColumnBy)->paginate($this->perPage);
-        $faculty= $exampanels->where('examorderpost_id',1)->where('active_status',1)->first();
-        if($faculty){ $this->faculty_id=$faculty->id; }
-        return view('livewire.user.question-paper-bank.all-question-paper-bank',compact('subjects'))->extends('layouts.user')->section('user');
+        return view('livewire.faculty.question-paper-bank.all-question-paper-bank',compact('subjects'))->extends('layouts.faculty')->section('faculty');
     }
 }

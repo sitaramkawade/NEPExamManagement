@@ -2,7 +2,7 @@
   <div>
     @if ($is_bank)
       <div class="flex items-center mb-2 gap-x-5 ">
-        <form id="preview" name="preview" class="inline" action="{{ route('user.preview_question_paper') }}" method="post" target="_blank" >
+        <form id="preview" name="preview" class="inline" action="{{ route('faculty.preview_question_paper') }}" method="post" target="_blank" >
           @csrf
           <input type="hidden" name="questionpaperbank" id="questionpaperbank" value="{{ $is_bank->id }}">
           <x-table.view type="submit">View</x-table.view>
