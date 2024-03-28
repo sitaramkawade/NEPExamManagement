@@ -41,13 +41,25 @@ class ExamOrderPdfController extends Controller
         }
     }
 
-    public function merge(ExamOrder  $examorder)
+    public function merge($id , $token)
     {
-            view()->share('pdf.examorder.examorder_pdf', compact('examorder'));
+        $examorder = ExamOrder::find($id);  
+        // dd($examorder);
        
-            $pdf = Pdf::loadView('pdf.examorder.examorder_pdf', compact('examorder'))->setOptions(['defaultFont' => 'sans-serif']);
-              
+        if (isset($examorder) && $examorder->token === $token) 
+        {
+            view()->share('pdf.examorder.mergeorder_pdf', compact('examorder'));
+    
+          
+            $pdf = Pdf::loadView('pdf.examorder.mergeorder_pdf', compact('examorder'))->setOptions(['defaultFont' => 'sans-serif']);
+    
+            
             return $pdf->stream('Exam-Order.pdf');
+        } else 
+        {
+            // If exam order doesn't exist or token doesn't match, return 404
+            return abort(404);
+        }
        
     }
 

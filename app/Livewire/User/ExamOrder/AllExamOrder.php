@@ -182,21 +182,27 @@ class AllExamOrder extends Component
     public function MergeMail(Examorder $examorder)
     {
         $a = [];
+        $subjectList = ''; 
         foreach ($examorder->exampanel->faculty->subjects as $subject) {
             $a[] = $subject;
-            $url = url('user/exam/order/'.$examorder->id.'/'.$examorder->token);
-        
-            $details = [
-                'subject' => 'Hello',
-                'title' => 'Your Appointment for Examination Work (Sangamner College Mail Notification)',
-                'body' => 'This is sample content we have added for this test mail',
-                'examorder_id' => $examorder->id,
-                'url' => $url,
-                'email' => trim($examorder->exampanel->faculty->email)
-            ];
-        
-            SendExamOrderJob::dispatch($details);
+            $subjectList .= $subject->name . ', ';
         }
+        
+        $subjectList = rtrim($subjectList, ', ');
+        
+        $url = url('user/merge/order/'.$examorder->id.'/'.$examorder->token);
+        
+        $details = [
+            'subject' => 'Hello',
+            'title' => 'Your Appointment for Examination Work (Sangamner College Mail Notification)',
+            'body' => 'This is sample content we have added for this test mail. Subjects: ' . $subjectList,
+            'examorder_id' => $examorder->id,
+            'url' => $url,
+            'email' => trim($examorder->exampanel->faculty->email)
+        ];
+
+        SendExamOrderJob::dispatch($details);
+    
         $this->dispatch('alert',type:'success',message:'Emails have been sent successfully !!'  );
 
     }
@@ -206,7 +212,6 @@ class AllExamOrder extends Component
         $examOrders = Examorder::withTrashed()->where('email_status', 0)->forcedelete();
         $this->dispatch('alert',type:'success',message:'Exam Order have been Deleted !!'  );      
     }
-
 
     public function sort_column($column)
     {

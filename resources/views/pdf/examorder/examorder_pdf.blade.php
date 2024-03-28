@@ -1,6 +1,5 @@
 
  <html>
-
 <head>
     <meta charset="UTF-8" />
     <title>Exam Order </title>
@@ -80,7 +79,6 @@
         }
     </style>
 
-
 </head>
 
 <body>
@@ -99,7 +97,7 @@
     </table>
     <div style="border-bottom:1pt solid gray;">
 
-        {{-- <div style="float:right; font-size: 12px;"> {{$examorder->created_at->format('d-M-Y')}} </div> --}}
+        <div style="float:right; font-size: 12px;"> {{$examorder->created_at->format('d-M-Y')}} </div>
         <div style="clear: left;" />
 
     </div>
